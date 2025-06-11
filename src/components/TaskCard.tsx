@@ -41,6 +41,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
           background: "#C1D3F7",
           width: "340px",
           height: "95px",
+          boxSizing: "border-box",
         }}
       >
         {/* Circular Image */}
