@@ -1,8 +1,7 @@
 import React from "react";
-import { Briefcase, Umbrella, Video, CheckCircle, Users } from "lucide-react";
+import { Briefcase, Upload, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
 export interface TaskItem {
@@ -30,15 +29,30 @@ export function TaskCard({ task, className }: TaskCardProps) {
   const getCardBgColor = () => {
     switch (task.type) {
       case "leave":
-        return "bg-red-300 border-r-0";
+        return "bg-red-300";
       case "review":
-        return "bg-blue-300 border-r-0";
+        return "bg-blue-300";
       case "multiday":
-        return "bg-blue-300 border-r-0";
+        return "bg-blue-300";
       case "meeting":
-        return "bg-orange-300 border-r-0";
+        return "bg-orange-300";
       default:
-        return "bg-gray-200 border-r-0";
+        return "bg-gray-200";
+    }
+  };
+
+  const getAvatarColor = () => {
+    switch (task.type) {
+      case "leave":
+        return "bg-blue-500";
+      case "review":
+        return "bg-purple-500";
+      case "multiday":
+        return "bg-blue-600";
+      case "meeting":
+        return "bg-orange-500";
+      default:
+        return "bg-gray-500";
     }
   };
 
@@ -46,29 +60,31 @@ export function TaskCard({ task, className }: TaskCardProps) {
     switch (task.status) {
       case "casual-leave":
         return (
-          <Badge className="bg-black text-white text-xs px-2 py-1">
+          <Badge className="bg-black text-white text-xs px-3 py-1 rounded">
             Casual Leave
           </Badge>
         );
       case "review":
         return (
-          <Badge className="bg-red-500 text-white text-xs px-2 py-1">
+          <Badge className="bg-red-500 text-white text-xs px-3 py-1 rounded">
             REVIEW
           </Badge>
         );
       case "new":
         return (
-          <Badge className="bg-red-500 text-white text-xs px-2 py-1">NEW</Badge>
+          <Badge className="bg-red-500 text-white text-xs px-3 py-1 rounded">
+            NEW
+          </Badge>
         );
       case "skipped":
         return (
-          <Badge className="bg-red-500 text-white text-xs px-2 py-1">
+          <Badge className="bg-red-500 text-white text-xs px-3 py-1 rounded">
             SKIPPED
           </Badge>
         );
       case "no-action":
         return (
-          <Badge className="bg-gray-500 text-white text-xs px-2 py-1">
+          <Badge className="bg-gray-500 text-white text-xs px-3 py-1 rounded">
             No Action
           </Badge>
         );
@@ -81,13 +97,13 @@ export function TaskCard({ task, className }: TaskCardProps) {
     switch (task.category) {
       case "g-task":
         return (
-          <Badge className="bg-black text-white border border-gray-600 text-xs px-2 py-1">
+          <Badge className="bg-black text-white text-xs px-3 py-1 rounded">
             G.Task
           </Badge>
         );
       case "d-task":
         return (
-          <Badge className="bg-black text-white border border-gray-600 text-xs px-2 py-1">
+          <Badge className="bg-black text-white text-xs px-3 py-1 rounded">
             D.Task
           </Badge>
         );
@@ -96,100 +112,59 @@ export function TaskCard({ task, className }: TaskCardProps) {
     }
   };
 
-  const getTaskIcon = () => {
-    switch (task.type) {
-      case "leave":
-        return <Umbrella className="w-5 h-5 text-black" />;
-      case "review":
-        return <CheckCircle className="w-5 h-5 text-black" />;
-      case "multiday":
-        return <Users className="w-5 h-5 text-white" />;
-      case "meeting":
-        return <Video className="w-5 h-5 text-black" />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <Card
       className={cn(
-        "relative p-4 rounded-lg shadow-sm",
+        "relative p-4 rounded-xl shadow-sm",
         getCardBgColor(),
         className,
       )}
     >
       <div className="flex items-start gap-3">
-        {/* Avatar or Icon */}
-        <div className="w-12 h-12 flex-shrink-0">
-          {task.avatar ? (
-            <Avatar className="w-12 h-12">
-              <AvatarImage src={task.avatar} />
-              <AvatarFallback className="bg-gray-500">
-                {getTaskIcon()}
-              </AvatarFallback>
-            </Avatar>
-          ) : (
-            <div
-              className={cn(
-                "w-12 h-12 rounded flex items-center justify-center",
-                task.type === "leave" && "bg-red-200",
-                task.type === "review" && "bg-blue-200",
-                task.type === "multiday" && "bg-gray-800",
-                task.type === "meeting" && "bg-orange-200",
-              )}
-            >
-              {task.type === "leave" && (
-                <Umbrella className="w-6 h-6 text-black" />
-              )}
-              {task.type === "review" && (
-                <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-5 h-5 text-white" />
-                </div>
-              )}
-              {task.type === "multiday" && (
-                <div className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  👤
-                </div>
-              )}
-              {task.type === "meeting" && (
-                <Avatar className="w-8 h-8">
-                  <AvatarImage src="/api/placeholder/32/32" />
-                  <AvatarFallback className="bg-gray-600 text-white text-xs">
-                    SG
-                  </AvatarFallback>
-                </Avatar>
-              )}
+        {/* Avatar */}
+        <div
+          className={cn(
+            "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0",
+            getAvatarColor(),
+          )}
+        >
+          {task.type === "leave" && (
+            <div className="text-white text-xl">☂️</div>
+          )}
+          {task.type === "review" && (
+            <CheckCircle className="w-6 h-6 text-white" />
+          )}
+          {task.type === "multiday" && (
+            <div className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              👤
             </div>
+          )}
+          {task.type === "meeting" && (
+            <div className="text-white text-xl">👤</div>
           )}
         </div>
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-lg text-gray-900 leading-tight">
+          <h3 className="font-bold text-lg text-gray-900 leading-tight mb-1">
             {task.title}
           </h3>
-          <p className="text-sm text-gray-800 mt-1 leading-tight">
+          <p className="text-sm text-gray-800 leading-tight mb-2">
             {task.description}
           </p>
           {task.time && (
-            <p className="text-sm text-gray-700 mt-1">{task.time}</p>
+            <p className="text-sm text-gray-700 mb-3">{task.time}</p>
           )}
 
           {/* Status and Category Badges */}
-          <div className="flex items-center gap-2 mt-3 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap">
             {getStatusBadge()}
             {getCategoryBadge()}
           </div>
 
           {/* Progress Bar for multiday tasks */}
           {task.type === "multiday" && (
-            <div className="w-full h-1.5 bg-red-500 mt-3 rounded"></div>
-          )}
-
-          {/* Progress Bar for meetings */}
-          {task.type === "meeting" && (
-            <div className="w-full h-1.5 bg-gray-500 mt-3 rounded"></div>
+            <div className="w-full h-1 bg-red-500 mt-3 rounded"></div>
           )}
         </div>
 
@@ -202,26 +177,16 @@ export function TaskCard({ task, className }: TaskCardProps) {
             </Badge>
           )}
 
-          {/* Notification count for meetings */}
-          {task.notifications && (
-            <Badge className="bg-blue-500 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center p-0">
-              {task.notifications}
-            </Badge>
-          )}
-
           {/* Action icons */}
-          <div className="flex items-center gap-1 mt-2">
+          <div className="flex items-center gap-2 mt-auto">
             {task.type === "leave" && (
-              <Briefcase className="w-4 h-4 text-black" />
+              <>
+                <Upload className="w-5 h-5 text-gray-700" />
+                <Briefcase className="w-5 h-5 text-gray-700" />
+              </>
             )}
-            {task.type === "meeting" && (
-              <Video className="w-4 h-4 text-black" />
-            )}
-            {(task.type === "review" || task.type === "multiday") && (
-              <div className="flex gap-1">
-                <div className="w-4 h-4 bg-gray-400 rounded"></div>
-                <div className="w-4 h-4 bg-gray-400 rounded"></div>
-              </div>
+            {task.type === "review" && (
+              <CheckCircle className="w-5 h-5 text-gray-700" />
             )}
           </div>
         </div>
