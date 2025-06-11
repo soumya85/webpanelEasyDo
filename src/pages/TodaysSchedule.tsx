@@ -107,13 +107,13 @@ export default function TodaysSchedule() {
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <div className="relative flex-1 sm:w-96">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 w-4 h-4" />
                 <Input
                   type="text"
                   placeholder="Search tasks, meetings, events..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-8 bg-white border-gray-300"
+                  className="pl-10 pr-8 bg-white border-gray-300 placeholder:text-gray-500"
                 />
                 {searchQuery && (
                   <button
