@@ -13,7 +13,9 @@ interface CalendarDay {
 
 interface ScheduleCalendarProps {
   currentDate: Date;
+  selectedDate: Date;
   onNavigate: (direction: "prev" | "next") => void;
+  onDateSelect: (day: number) => void;
   className?: string;
 }
 
