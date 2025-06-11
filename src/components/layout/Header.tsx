@@ -60,8 +60,17 @@ export function Header() {
 
           {/* Logo - Mobile Only */}
           <div className="md:hidden">
-            <div className="h-[38px] w-[38px] bg-gradient-to-br from-blue-500 to-green-500 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-sm">ED</span>
+            <div className="relative w-[38px] h-[38px]">
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-red-500 via-orange-500 to-green-500 p-0.5">
+                <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5 text-green-600 fill-current"
+                  >
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
 
