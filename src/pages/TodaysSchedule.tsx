@@ -152,11 +152,23 @@ export default function TodaysSchedule() {
 
         {/* Task Sections */}
         <div className="space-y-6">
+          {/* No Results Message */}
+          {filteredTasks.length === 0 && searchQuery && (
+            <div className="text-center py-12">
+              <div className="text-gray-500 text-lg mb-2">No tasks found</div>
+              <div className="text-gray-400 text-sm">
+                Try adjusting your search or filter criteria
+              </div>
+            </div>
+          )}
+
           {/* AllDay Section */}
           {allDayTasks.length > 0 && (
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <h2 className="text-sm font-bold text-gray-600">AllDay</h2>
+                <h2 className="text-sm font-bold text-gray-600">
+                  AllDay ({allDayTasks.length})
+                </h2>
                 <div className="flex-1 h-px bg-gray-300"></div>
               </div>
 
@@ -172,7 +184,9 @@ export default function TodaysSchedule() {
           {multiDayTasks.length > 0 && (
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <h2 className="text-sm font-bold text-gray-600">MultiDay</h2>
+                <h2 className="text-sm font-bold text-gray-600">
+                  MultiDay ({multiDayTasks.length})
+                </h2>
                 <div className="flex-1 h-px bg-gray-300"></div>
               </div>
 
@@ -205,6 +219,18 @@ export default function TodaysSchedule() {
               </div>
             ))}
           </div>
+
+          {/* Default empty state when no tasks at all */}
+          {filteredTasks.length === 0 && !searchQuery && (
+            <div className="text-center py-12">
+              <div className="text-gray-500 text-lg mb-2">
+                No tasks scheduled
+              </div>
+              <div className="text-gray-400 text-sm">
+                Your schedule is clear for today
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
