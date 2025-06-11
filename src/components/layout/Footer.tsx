@@ -9,8 +9,9 @@ export function Footer() {
       className={cn(
         "fixed bottom-0 right-0 z-20 bg-white border-t border-gray-200 px-6 py-4",
         "transition-all duration-300",
-        isExpanded ? "left-[280px]" : "left-[103px]",
-        "md:left-0",
+        // Mobile: full width footer
+        "left-0",
+        // Desktop: adjust for sidebar width
         isExpanded ? "md:left-[280px]" : "md:left-[103px]",
       )}
     >
