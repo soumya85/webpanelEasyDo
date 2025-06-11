@@ -112,7 +112,9 @@ export default function TodaysSchedule() {
         <div className="px-4 pb-4 mb-4">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="text-blue-600 font-medium text-base">
-              Today, {formatDate(currentDate).replace(/^\w+, /, "")}
+              {selectedDate.toDateString() === new Date().toDateString()
+                ? `Today, ${formatDate(selectedDate).replace(/^\w+, /, "")}`
+                : formatDate(selectedDate)}
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
