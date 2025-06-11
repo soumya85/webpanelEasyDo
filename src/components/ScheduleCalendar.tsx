@@ -61,6 +61,12 @@ export function ScheduleCalendar({
     const daysInMonth = lastDay.getDate();
     const startingDayOfWeek = firstDay.getDay();
 
+    // Get today's date for comparison
+    const today = new Date();
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth();
+    const todayDate = today.getDate();
+
     const days: (CalendarDay | null)[] = [];
 
     // Add empty cells for previous month
@@ -70,10 +76,13 @@ export function ScheduleCalendar({
 
     // Add days of current month
     for (let day = 1; day <= daysInMonth; day++) {
+      const isToday =
+        year === todayYear && month === todayMonth && day === todayDate;
+
       days.push({
         day,
         taskCount: mockTaskCounts[day],
-        isToday: day === 26, // Mock today as 26th for demo
+        isToday,
         isCurrentMonth: true,
       });
     }
