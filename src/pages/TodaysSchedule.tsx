@@ -192,7 +192,8 @@ export default function TodaysSchedule() {
                     <TaskCard
                       key={task.id}
                       task={task}
-                      className={index > 0 ? "-ml-64" : ""}
+                      className=""
+                      style={index > 0 ? { marginLeft: "-100px" } : {}}
                     />
                   ))}
                 </div>
