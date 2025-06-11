@@ -188,8 +188,12 @@ export default function TodaysSchedule() {
                 </div>
 
                 <div className="flex flex-col lg:flex-row mb-6">
-                  {allDayTasks.map((task) => (
-                    <TaskCard key={task.id} task={task} className="" />
+                  {allDayTasks.map((task, index) => (
+                    <TaskCard
+                      key={task.id}
+                      task={task}
+                      className={index > 0 ? "-ml-2" : ""}
+                    />
                   ))}
                 </div>
               </div>
