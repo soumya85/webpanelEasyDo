@@ -26,144 +26,162 @@ interface TaskCardProps {
 }
 
 export function TaskCard({ task, className }: TaskCardProps) {
-  // Render tasks-review card with exact Figma design
+  // Render tasks-review card with responsive Figma design
   if (task.type === "tasks-review") {
     return (
       <div
-        className={cn("relative", className)}
+        className={cn("", className)}
         style={{
-          width: "436px",
-          height: "108px",
+          display: "inline-flex",
+          padding: "10px",
+          alignItems: "flex-start",
+          gap: "10px",
           borderRadius: "8px",
           borderRight: "6px solid #96B9E7",
           background: "#C1D3F7",
+          width: "340px",
+          height: "95px",
         }}
       >
         {/* Circular Image */}
         <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/25f0c65eaacda0f951d53020f0d839aa081ae066?placeholderIfAbsent=true"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/81263de0d9d7965a8ac6711e4187e8b7464009e6?placeholderIfAbsent=true"
           alt="Tasks icon"
           style={{
             width: "51px",
             height: "51px",
-            flexShrink: 0,
             aspectRatio: "1/1",
             borderRadius: "53px",
-            position: "absolute",
-            left: "10px",
-            top: "12px",
+            position: "relative",
           }}
         />
 
-        {/* Main Title */}
+        {/* Content Container */}
         <div
           style={{
             display: "flex",
-            width: "358px",
-            height: "38px",
+            width: "259px",
             flexDirection: "column",
-            justifyContent: "center",
-            flexShrink: 0,
-            color: "#181818",
-            fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
-            fontSize: "18px",
-            fontStyle: "normal",
-            fontWeight: "700",
-            lineHeight: "normal",
-            position: "absolute",
-            left: "73px",
-            top: "6px",
+            alignItems: "flex-start",
+            gap: "8px",
+            position: "relative",
           }}
         >
-          Tasks, pending review.
-        </div>
+          {/* Main Title */}
+          <div
+            style={{
+              color: "#181818",
+              fontFamily: "Inter",
+              fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: "600",
+              lineHeight: "normal",
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                fontFamily:
+                  "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                fontWeight: "700",
+                fontSize: "18px",
+                color: "rgba(24,24,24,1)",
+              }}
+            >
+              Tasks, pending review.
+            </span>
+          </div>
 
-        {/* Subtitle */}
-        <div
-          style={{
-            display: "flex",
-            width: "418px",
-            height: "31px",
-            flexDirection: "column",
-            justifyContent: "center",
-            flexShrink: 0,
-            color: "#2C2D31",
-            fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
-            fontSize: "14px",
-            fontStyle: "normal",
-            fontWeight: "400",
-            lineHeight: "normal",
-            position: "absolute",
-            left: "74px",
-            top: "38px",
-          }}
-        >
-          Pending review tasks.
-        </div>
+          {/* Subtitle */}
+          <div
+            style={{
+              color: "#2C2D31",
+              fontFamily: "Inter",
+              fontSize: "14px",
+              fontStyle: "normal",
+              fontWeight: "500",
+              lineHeight: "normal",
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                fontFamily:
+                  "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                fontWeight: "400",
+                fontSize: "14px",
+                color: "rgba(44,45,49,1)",
+              }}
+            >
+              Pending review tasks.
+            </span>
+          </div>
 
-        {/* Review Button */}
-        <div
-          style={{
-            display: "inline-flex",
-            padding: "4px 0px 23px 4px",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            background: "rgba(0, 0, 0, 0.00)",
-            position: "absolute",
-            left: "70px",
-            top: "74px",
-            width: "69px",
-            height: "47px",
-          }}
-        >
+          {/* Bottom Row - Button and Icon */}
           <div
             style={{
               display: "flex",
-              height: "20px",
-              padding: "7px 5px",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "10px",
-              borderRadius: "4.5px",
-              border: "1px solid #F33B31",
-              background: "#FF3D30",
-              position: "absolute",
-              left: "4px",
-              top: "4px",
-              width: "65px",
+              paddingRight: "8px",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              alignSelf: "stretch",
+              position: "relative",
             }}
           >
+            {/* Review Button */}
             <div
               style={{
-                color: "#FFF",
-                fontFamily:
-                  "Inter, -apple-system, Roboto, Helvetica, sans-serif",
-                fontSize: "14px",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "normal",
+                display: "flex",
+                width: "65px",
+                height: "20px",
+                padding: "7px 5px",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+                borderRadius: "4.5px",
+                border: "1px solid #F33B31",
+                background: "#FF3D30",
                 position: "relative",
               }}
             >
-              REVIEW
+              <div
+                style={{
+                  color: "#FFF",
+                  fontFamily: "Inter",
+                  fontSize: "14px",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                  lineHeight: "normal",
+                  position: "relative",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily:
+                      "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                    fontWeight: "400",
+                    fontSize: "14px",
+                    color: "rgba(255,255,255,1)",
+                  }}
+                >
+                  REVIEW
+                </span>
+              </div>
             </div>
+
+            {/* Right Icon */}
+            <img
+              style={{
+                width: "17px",
+                height: "17px",
+                aspectRatio: "1/1",
+                position: "relative",
+              }}
+              src=""
+              alt=""
+            />
           </div>
         </div>
-
-        {/* Right Checkmark Icon */}
-        <img
-          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNyAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjUgNS41TDcgMTJMMy41IDguNSIgc3Ryb2tlPSIjMTgxODE4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K"
-          alt=""
-          style={{
-            width: "17px",
-            height: "17px",
-            flexShrink: 0,
-            aspectRatio: "1/1",
-            position: "absolute",
-            left: "398px",
-            top: "79px",
-          }}
-        />
       </div>
     );
   }
