@@ -187,7 +187,7 @@ export default function TodaysSchedule() {
                   <div className="flex-1 h-px bg-gray-300"></div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row lg:space-x-2 space-y-2 lg:space-y-0 mb-6">
+                <div className="flex flex-col lg:flex-row lg:space-x-1 space-y-1 lg:space-y-0 mb-6">
                   {allDayTasks.map((task) => (
                     <TaskCard key={task.id} task={task} className="" />
                   ))}
