@@ -15,7 +15,7 @@ export const useTasks = () => {
       id: "2",
       title: "Tasks, pending review.",
       description: "Pending review tasks.",
-      type: "review",
+      type: "tasks-review",
       status: "review",
     },
     {
@@ -72,7 +72,9 @@ export const useTasks = () => {
       myTasks: tasks.filter((task) => task.category === "g-task").length,
       delegatedTasks: tasks.filter((task) => task.category === "d-task").length,
       leave: tasks.filter((task) => task.type === "leave").length,
-      review: tasks.filter((task) => task.type === "review").length,
+      review: tasks.filter(
+        (task) => task.type === "review" || task.type === "tasks-review",
+      ).length,
       meetings: tasks.filter((task) => task.type === "meeting").length,
       multiday: tasks.filter((task) => task.type === "multiday").length,
     };
@@ -81,7 +83,10 @@ export const useTasks = () => {
   const getTasksByType = (filteredTasks: TaskItem[]) => {
     return {
       allDay: filteredTasks.filter(
-        (task) => task.type === "leave" || task.type === "review",
+        (task) =>
+          task.type === "leave" ||
+          task.type === "review" ||
+          task.type === "tasks-review",
       ),
       multiDay: filteredTasks.filter((task) => task.type === "multiday"),
       timed: filteredTasks.filter((task) => task.type === "meeting"),

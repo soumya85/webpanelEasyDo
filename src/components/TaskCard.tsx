@@ -10,7 +10,7 @@ export interface TaskItem {
   description: string;
   time?: string;
   endTime?: string;
-  type: "leave" | "review" | "meeting" | "multiday";
+  type: "leave" | "review" | "meeting" | "multiday" | "tasks-review";
   status: "new" | "review" | "skipped" | "no-action" | "casual-leave";
   category?: "g-task" | "d-task";
   duration?: string;
@@ -26,6 +26,158 @@ interface TaskCardProps {
 }
 
 export function TaskCard({ task, className }: TaskCardProps) {
+  // Render tasks-review card with exact Figma design
+  if (task.type === "tasks-review") {
+    return (
+      <div
+        className={cn("h-[108px] flex-shrink-0", className)}
+        style={{
+          display: "inline-flex",
+          padding: "10px",
+          alignItems: "flex-start",
+          gap: "10px",
+          borderRadius: "8px",
+          borderRight: "6px solid #96B9E7",
+          background: "#C1D3F7",
+          position: "relative",
+          minWidth: "fit-content",
+        }}
+      >
+        <img
+          src="/task-logo.png?v=1"
+          style={{
+            width: "51px",
+            height: "51px",
+            aspectRatio: "1/1",
+            borderRadius: "53px",
+            position: "relative",
+          }}
+          alt="Task logo"
+        />
+        <div
+          style={{
+            display: "flex",
+            width: "259px",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "8px",
+            position: "relative",
+          }}
+        >
+          <div
+            style={{
+              color: "#181818",
+              fontFamily: "Inter",
+              fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: "600",
+              lineHeight: "normal",
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                fontFamily:
+                  "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                fontWeight: "700",
+                fontSize: "18px",
+                color: "rgba(24,24,24,1)",
+              }}
+            >
+              Tasks, pending review.
+            </span>
+          </div>
+          <div
+            style={{
+              color: "#2C2D31",
+              fontFamily: "Inter",
+              fontSize: "14px",
+              fontStyle: "normal",
+              fontWeight: "500",
+              lineHeight: "normal",
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                fontFamily:
+                  "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                fontWeight: "400",
+                fontSize: "14px",
+                color: "rgba(44,45,49,1)",
+              }}
+            >
+              Pending review tasks.
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              paddingRight: "8px",
+              justifyContent: "flex-start",
+              alignItems: "flex-start",
+              alignSelf: "stretch",
+              position: "relative",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                width: "65px",
+                height: "20px",
+                padding: "7px 5px",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+                borderRadius: "4.5px",
+                border: "1px solid #F33B31",
+                background: "#FF3D30",
+                position: "relative",
+              }}
+            >
+              <div
+                style={{
+                  color: "#FFF",
+                  fontFamily: "Inter",
+                  fontSize: "14px",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                  lineHeight: "normal",
+                  position: "relative",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily:
+                      "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                    fontWeight: "400",
+                    fontSize: "14px",
+                    color: "rgba(255,255,255,1)",
+                  }}
+                >
+                  REVIEW
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Checkmark Icon - Positioned in bottom-right corner */}
+        <img
+          style={{
+            width: "17px",
+            height: "17px",
+            aspectRatio: "1/1",
+            position: "absolute",
+            bottom: "15px",
+            right: "15px",
+          }}
+          src="https://cdn.builder.io/api/v1/image/assets%2F8c95417dce92404398effcbaa04b5e27%2F34ba3997c5834f0a956d5b0e6a7abba5"
+          alt="Checkmark icon"
+        />
+      </div>
+    );
+  }
   // Render leave card with exact Figma design
   if (task.type === "leave") {
     return (
@@ -55,9 +207,9 @@ export function TaskCard({ task, className }: TaskCardProps) {
         </div>
         {/* Company Logo */}
         <img
-          src="https://23eae969f9844ba7a8dd3ccbf85706ea-6528478202b346e795a886180.fly.dev/logo-main.png"
-          alt="company logo"
-          className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain"
+          src="https://cdn.builder.io/api/v1/image/assets%2F8c95417dce92404398effcbaa04b5e27%2Fdd2c031e8b70429e9c899ee954eb4643"
+          alt="Liberty Highrise company logo"
+          className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain rounded-full"
           style={{
             left: "10px",
             top: "12px",
