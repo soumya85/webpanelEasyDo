@@ -284,7 +284,7 @@ export function Header() {
             <span className="font-semibold text-azure-24">
               {selectedCompany}
             </span>
-            <ChevronDown className="h-4 w-4 text-gray-500 rotate-90" />
+            <ChevronDown className="h-4 w-4 text-gray-500 -rotate-90" />
             <span className="text-gray-700">{selectedBranch}</span>
           </div>
 
