@@ -73,7 +73,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
 
         {/* Company Logo */}
         <img
-          src="/company-logo.png"
+          src="https://23eae969f9844ba7a8dd3ccbf85706ea-6528478202b346e795a886180.fly.dev/logo-main.png"
           alt="company logo"
           className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain"
           style={{
