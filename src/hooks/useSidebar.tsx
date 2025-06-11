@@ -20,15 +20,14 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  // Auto-collapse on mobile
+  // Auto-expand and close mobile overlay on resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsExpanded(false);
-      } else {
-        setIsExpanded(true);
+      if (window.innerWidth >= 768) {
         setIsMobileOpen(false);
       }
+      // Keep sidebar expanded on all screen sizes
+      setIsExpanded(true);
     };
 
     handleResize();
