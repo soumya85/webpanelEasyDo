@@ -40,7 +40,8 @@ const timeSlots = [
 ];
 
 export default function TodaysSchedule() {
-  const [currentDate, setCurrentDate] = useState(new Date()); // Current date
+  const [currentDate, setCurrentDate] = useState(new Date()); // Current date for calendar navigation
+  const [selectedDate, setSelectedDate] = useState(new Date()); // Selected date for timeline
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
