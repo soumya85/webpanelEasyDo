@@ -15,7 +15,7 @@ export const useTasks = () => {
       id: "2",
       title: "Tasks, pending review.",
       description: "Pending review tasks.",
-      type: "review",
+      type: "tasks-review",
       status: "review",
     },
     {
