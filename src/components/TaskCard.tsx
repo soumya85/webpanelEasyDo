@@ -26,7 +26,7 @@ interface TaskCardProps {
 }
 
 export function TaskCard({ task, className }: TaskCardProps) {
-  // Render tasks-review card with responsive Figma design
+  // Render tasks-review card with exact Figma design
   if (task.type === "tasks-review") {
     return (
       <div
@@ -41,13 +41,10 @@ export function TaskCard({ task, className }: TaskCardProps) {
           background: "#C1D3F7",
           width: "340px",
           height: "95px",
-          boxSizing: "border-box",
         }}
       >
-        {/* Circular Image */}
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/81263de0d9d7965a8ac6711e4187e8b7464009e6?placeholderIfAbsent=true"
-          alt="Tasks icon"
           style={{
             width: "51px",
             height: "51px",
@@ -55,9 +52,8 @@ export function TaskCard({ task, className }: TaskCardProps) {
             borderRadius: "53px",
             position: "relative",
           }}
+          alt="Image_1_34"
         />
-
-        {/* Content Container */}
         <div
           style={{
             display: "flex",
@@ -68,7 +64,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
             position: "relative",
           }}
         >
-          {/* Main Title */}
           <div
             style={{
               color: "#181818",
@@ -92,8 +87,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
               Tasks, pending review.
             </span>
           </div>
-
-          {/* Subtitle */}
           <div
             style={{
               color: "#2C2D31",
@@ -117,8 +110,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
               Pending review tasks.
             </span>
           </div>
-
-          {/* Bottom Row - Button and Icon */}
           <div
             style={{
               display: "flex",
@@ -129,7 +120,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
               position: "relative",
             }}
           >
-            {/* Review Button */}
             <div
               style={{
                 display: "flex",
@@ -169,8 +159,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
                 </span>
               </div>
             </div>
-
-            {/* Right Icon */}
             <img
               style={{
                 width: "17px",
