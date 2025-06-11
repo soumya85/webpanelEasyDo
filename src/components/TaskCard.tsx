@@ -30,19 +30,19 @@ export function TaskCard({ task, className }: TaskCardProps) {
   if (task.type === "tasks-review") {
     return (
       <div
+        className={cn("relative", className)}
         style={{
           width: "436px",
           height: "108px",
           borderRadius: "8px",
           borderRight: "6px solid #96B9E7",
           background: "#C1D3F7",
-          position: "relative",
         }}
-        className={cn("", className)}
       >
         {/* Circular Image */}
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/25f0c65eaacda0f951d53020f0d839aa081ae066?placeholderIfAbsent=true"
+          alt="Tasks icon"
           style={{
             width: "51px",
             height: "51px",
@@ -53,7 +53,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
             left: "10px",
             top: "12px",
           }}
-          alt="Image_1_34"
         />
 
         {/* Main Title */}
@@ -66,26 +65,17 @@ export function TaskCard({ task, className }: TaskCardProps) {
             justifyContent: "center",
             flexShrink: 0,
             color: "#181818",
-            fontFamily: "Inter",
+            fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
             fontSize: "18px",
             fontStyle: "normal",
-            fontWeight: "600",
+            fontWeight: "700",
             lineHeight: "normal",
             position: "absolute",
             left: "73px",
             top: "6px",
           }}
         >
-          <span
-            style={{
-              fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
-              fontWeight: "700",
-              fontSize: "18px",
-              color: "rgba(24,24,24,1)",
-            }}
-          >
-            Tasks, pending review.
-          </span>
+          Tasks, pending review.
         </div>
 
         {/* Subtitle */}
@@ -98,26 +88,17 @@ export function TaskCard({ task, className }: TaskCardProps) {
             justifyContent: "center",
             flexShrink: 0,
             color: "#2C2D31",
-            fontFamily: "Inter",
+            fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
             fontSize: "14px",
             fontStyle: "normal",
-            fontWeight: "500",
+            fontWeight: "400",
             lineHeight: "normal",
             position: "absolute",
             left: "74px",
             top: "38px",
           }}
         >
-          <span
-            style={{
-              fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
-              fontWeight: "400",
-              fontSize: "14px",
-              color: "rgba(44,45,49,1)",
-            }}
-          >
-            Pending review tasks.
-          </span>
+          Pending review tasks.
         </div>
 
         {/* Review Button */}
@@ -155,31 +136,24 @@ export function TaskCard({ task, className }: TaskCardProps) {
             <div
               style={{
                 color: "#FFF",
-                fontFamily: "Inter",
+                fontFamily:
+                  "Inter, -apple-system, Roboto, Helvetica, sans-serif",
                 fontSize: "14px",
                 fontStyle: "normal",
-                fontWeight: "500",
+                fontWeight: "400",
                 lineHeight: "normal",
                 position: "relative",
               }}
             >
-              <span
-                style={{
-                  fontFamily:
-                    "Inter, -apple-system, Roboto, Helvetica, sans-serif",
-                  fontWeight: "400",
-                  fontSize: "14px",
-                  color: "rgba(255,255,255,1)",
-                }}
-              >
-                REVIEW
-              </span>
+              REVIEW
             </div>
           </div>
         </div>
 
-        {/* Right Image Placeholder */}
+        {/* Right Checkmark Icon */}
         <img
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNyAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjUgNS41TDcgMTJMMy41IDguNSIgc3Ryb2tlPSIjMTgxODE4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K"
+          alt=""
           style={{
             width: "17px",
             height: "17px",
@@ -189,8 +163,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
             left: "398px",
             top: "79px",
           }}
-          src=""
-          alt=""
         />
       </div>
     );
