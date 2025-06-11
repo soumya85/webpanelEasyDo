@@ -113,8 +113,16 @@ export default function TodaysSchedule() {
                   placeholder="Search"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-white border-gray-300"
+                  className="pl-10 pr-8 bg-white border-gray-300"
                 />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    ×
+                  </button>
+                )}
               </div>
 
               <Select value={selectedFilter} onValueChange={setSelectedFilter}>
