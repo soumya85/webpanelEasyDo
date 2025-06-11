@@ -193,7 +193,7 @@ export default function TodaysSchedule() {
                       key={task.id}
                       task={task}
                       className=""
-                      style={index > 0 ? { marginLeft: "-100px" } : {}}
+                      style={index > 0 ? { marginLeft: "-200px" } : {}}
                     />
                   ))}
                 </div>
