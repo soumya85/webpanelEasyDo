@@ -201,7 +201,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
         </div>
         {/* Company Logo */}
         <img
-          src="/liberty-logo.png"
+          src="https://cdn.builder.io/api/v1/image/assets%2F8c95417dce92404398effcbaa04b5e27%2Fdd2c031e8b70429e9c899ee954eb4643"
           alt="Liberty Highrise company logo"
           className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain rounded-full"
           style={{
