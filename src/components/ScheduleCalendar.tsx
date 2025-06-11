@@ -13,13 +13,17 @@ interface CalendarDay {
 
 interface ScheduleCalendarProps {
   currentDate: Date;
+  selectedDate: Date;
   onNavigate: (direction: "prev" | "next") => void;
+  onDateSelect: (day: number) => void;
   className?: string;
 }
 
 export function ScheduleCalendar({
   currentDate,
+  selectedDate,
   onNavigate,
+  onDateSelect,
   className,
 }: ScheduleCalendarProps) {
   const monthNames = [
@@ -86,7 +90,6 @@ export function ScheduleCalendar({
         isCurrentMonth: true,
       });
     }
-
     // Fill remaining cells to complete the grid (6 rows x 7 days = 42 cells)
     const totalCells = 42;
     const remainingCells = totalCells - days.length;
@@ -140,45 +143,62 @@ export function ScheduleCalendar({
         {/* Calendar Grid */}
         <div className="border border-gray-300 rounded-md overflow-hidden">
           <div className="grid grid-cols-7">
-            {calendarData.map((dayData, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "h-12 flex flex-col items-center justify-center text-sm relative border-r border-b border-gray-200 last:border-r-0",
-                  index >= 35 && "border-b-0", // Remove bottom border for last row
-                  dayData?.isToday
-                    ? "bg-blue-500 text-white"
-                    : dayData
-                      ? "bg-white hover:bg-gray-50"
-                      : "bg-gray-100",
-                )}
-              >
-                {dayData && (
-                  <>
-                    <span
-                      className={cn(
-                        "font-bold text-base leading-none",
-                        dayData.isToday ? "text-white" : "text-gray-700",
-                      )}
-                    >
-                      {dayData.day}
-                    </span>
-                    {dayData.taskCount && (
+            {calendarData.map((dayData, index) => {
+              const isSelected =
+                dayData &&
+                selectedDate.getFullYear() === currentDate.getFullYear() &&
+                selectedDate.getMonth() === currentDate.getMonth() &&
+                selectedDate.getDate() === dayData.day;
+
+              return (
+                <div
+                  key={index}
+                  onClick={() => dayData && onDateSelect(dayData.day)}
+                  className={cn(
+                    "h-12 flex flex-col items-center justify-center text-sm relative border-r border-b border-gray-200 last:border-r-0",
+                    index >= 35 && "border-b-0", // Remove bottom border for last row
+                    dayData?.isToday
+                      ? "bg-blue-500 text-white"
+                      : isSelected
+                        ? "bg-blue-200 text-blue-900"
+                        : dayData
+                          ? "bg-white hover:bg-gray-50 cursor-pointer"
+                          : "bg-gray-100",
+                  )}
+                >
+                  {dayData && (
+                    <>
                       <span
                         className={cn(
-                          "text-xs px-1 rounded mt-0.5 leading-none",
+                          "font-bold text-base leading-none",
                           dayData.isToday
-                            ? "text-white bg-blue-400"
-                            : "text-blue-600 bg-blue-100",
+                            ? "text-white"
+                            : isSelected
+                              ? "text-blue-900"
+                              : "text-gray-700",
                         )}
                       >
-                        {dayData.taskCount}
+                        {dayData.day}
                       </span>
-                    )}
-                  </>
-                )}
-              </div>
-            ))}
+                      {dayData.taskCount && (
+                        <span
+                          className={cn(
+                            "text-xs px-1 rounded mt-0.5 leading-none",
+                            dayData.isToday
+                              ? "text-white bg-blue-400"
+                              : isSelected
+                                ? "text-blue-900 bg-blue-300"
+                                : "text-blue-600 bg-blue-100",
+                          )}
+                        >
+                          {dayData.taskCount}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -40,7 +40,8 @@ const timeSlots = [
 ];
 
 export default function TodaysSchedule() {
-  const [currentDate, setCurrentDate] = useState(new Date()); // Current date
+  const [currentDate, setCurrentDate] = useState(new Date()); // Current date for calendar navigation
+  const [selectedDate, setSelectedDate] = useState(new Date()); // Selected date for timeline
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -56,14 +57,23 @@ export default function TodaysSchedule() {
 
   const navigateMonth = (direction: "prev" | "next") => {
     setCurrentDate((prev) => {
-      const newDate = new Date(prev);
+      const newDate = new Date(prev.getFullYear(), prev.getMonth(), 1);
       if (direction === "prev") {
-        newDate.setMonth(prev.getMonth() - 1);
+        newDate.setMonth(newDate.getMonth() - 1);
       } else {
-        newDate.setMonth(prev.getMonth() + 1);
+        newDate.setMonth(newDate.getMonth() + 1);
       }
       return newDate;
     });
+  };
+
+  const handleDateSelect = (day: number) => {
+    const newSelectedDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day,
+    );
+    setSelectedDate(newSelectedDate);
   };
 
   const formatDate = (date: Date) => {
@@ -97,23 +107,25 @@ export default function TodaysSchedule() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         {/* Top Controls */}
-        <div className="bg-blue-50 rounded-lg p-4 mb-6">
+        <div className="px-4 pb-4 mb-4">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="text-blue-600 font-medium text-base">
-              Today, {formatDate(currentDate).replace(/^\w+, /, "")}
+              {selectedDate.toDateString() === new Date().toDateString()
+                ? `Today, ${formatDate(selectedDate).replace(/^\w+, /, "")}`
+                : formatDate(selectedDate)}
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <div className="relative flex-1 sm:w-96">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 w-4 h-4" />
                 <Input
                   type="text"
                   placeholder="Search tasks, meetings, events..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-8 bg-white border-gray-300"
+                  className="pl-10 pr-8 bg-white border-gray-300 placeholder:text-gray-500"
                 />
                 {searchQuery && (
                   <button
@@ -146,7 +158,9 @@ export default function TodaysSchedule() {
         {/* Calendar Widget */}
         <ScheduleCalendar
           currentDate={currentDate}
+          selectedDate={selectedDate}
           onNavigate={navigateMonth}
+          onDateSelect={handleDateSelect}
           className="mb-6"
         />
 
