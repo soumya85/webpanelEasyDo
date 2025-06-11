@@ -38,10 +38,22 @@ export function Sidebar() {
             <X className="h-5 w-5" />
           </button>
 
-          <div className="flex items-center gap-4">
-            <div className="h-[70px] w-[86px] bg-gradient-to-br from-blue-500 to-green-500 rounded-md flex items-center justify-center flex-shrink-0">
-              <div className="text-white font-bold text-lg">EasyDo</div>
-            </div>
+          <div className="flex items-center justify-center">
+            {isExpanded ? (
+              /* Expanded Logo - EasyDo with text */
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/eb01d55239b62aaccf11995df137c5221e0f0473?placeholderIfAbsent=true"
+                alt="EasyDo"
+                className="h-[70px] w-[86px] object-contain rounded-sm"
+              />
+            ) : (
+              /* Collapsed Logo - Just the circular icon */
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/eb01d55239b62aaccf11995df137c5221e0f0473?placeholderIfAbsent=true"
+                alt="EasyDo"
+                className="h-[42px] w-[42px] object-contain rounded-sm"
+              />
+            )}
           </div>
         </div>
 
