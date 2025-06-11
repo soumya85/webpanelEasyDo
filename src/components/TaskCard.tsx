@@ -30,15 +30,15 @@ export function TaskCard({ task, className }: TaskCardProps) {
   const getCardBgColor = () => {
     switch (task.type) {
       case "leave":
-        return "bg-red-300 border-r-8 border-red-600";
+        return "bg-red-300 border-r-0";
       case "review":
-        return "bg-blue-300 border-r-8 border-blue-600";
+        return "bg-blue-300 border-r-0";
       case "multiday":
-        return "bg-blue-300 border-r-8 border-blue-600";
+        return "bg-blue-300 border-r-0";
       case "meeting":
-        return "bg-orange-300 border-r-8 border-orange-600";
+        return "bg-orange-300 border-r-0";
       default:
-        return "bg-gray-200";
+        return "bg-gray-200 border-r-0";
     }
   };
 
