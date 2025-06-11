@@ -189,7 +189,7 @@ export default function TodaysSchedule() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mb-6">
                   {allDayTasks.map((task) => (
-                    <TaskCard key={task.id} task={task} className="max-w-md" />
+                    <TaskCard key={task.id} task={task} className="" />
                   ))}
                 </div>
               </div>
