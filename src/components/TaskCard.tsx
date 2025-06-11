@@ -42,12 +42,14 @@ export function TaskCard({ task, className }: TaskCardProps) {
       >
         {/* Company Logo */}
         <img
-          src="https://23eae969f9844ba7a8dd3ccbf85706ea-6528478202b346e795a886180.fly.dev/logo-main.png"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
           alt="company logo"
-          className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain"
+          className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain rounded-full bg-white p-2"
           style={{
             left: "10px",
             top: "12px",
+            background:
+              "url('https://via.placeholder.com/51x52/90EE90/000000?text=ALERT') center/contain no-repeat white",
           }}
         />
 
