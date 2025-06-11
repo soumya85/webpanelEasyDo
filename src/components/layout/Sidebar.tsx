@@ -41,40 +41,18 @@ export function Sidebar() {
           <div className="flex items-center justify-center">
             {isExpanded ? (
               /* Expanded Logo - Full EasyDo logo with text */
-              <div className="flex flex-col items-center gap-2">
-                {/* Circular logo with gradient and checkmark */}
-                <div className="relative w-12 h-12">
-                  <div className="w-full h-full rounded-full bg-gradient-to-br from-red-500 via-orange-500 to-green-500 p-0.5">
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="w-7 h-7 text-green-600 fill-current"
-                      >
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                {/* EasyDo text */}
-                <div className="text-lg font-bold tracking-tight">
-                  <span className="text-gray-800">Easy</span>
-                  <span className="text-red-500">Do</span>
-                </div>
-              </div>
+              <img
+                src="/logo-main.png"
+                alt="EasyDo Logo"
+                className="h-16 w-auto object-contain"
+              />
             ) : (
-              /* Collapsed Logo - Just the circular checkmark icon */
-              <div className="relative w-10 h-10">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-red-500 via-orange-500 to-green-500 p-0.5">
-                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="w-6 h-6 text-green-600 fill-current"
-                    >
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              /* Collapsed Logo - Just the circular icon */
+              <img
+                src="/logo-small.png"
+                alt="EasyDo Icon"
+                className="h-10 w-10 object-contain"
+              />
             )}
           </div>
         </div>
