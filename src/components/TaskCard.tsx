@@ -55,7 +55,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
         </div>
         {/* Company Logo */}
         <img
-          src="/liberty-logo.svg"
+          src="/liberty-logo.png"
           alt="Liberty Highrise company logo"
           className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain rounded-full"
           style={{
