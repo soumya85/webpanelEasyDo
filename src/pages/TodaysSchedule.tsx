@@ -40,7 +40,7 @@ const timeSlots = [
 ];
 
 export default function TodaysSchedule() {
-  const [currentDate, setCurrentDate] = useState(new Date(2025, 4, 26)); // May 26, 2025
+  const [currentDate, setCurrentDate] = useState(new Date()); // Current date
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
