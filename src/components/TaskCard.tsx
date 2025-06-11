@@ -26,6 +26,137 @@ interface TaskCardProps {
 }
 
 export function TaskCard({ task, className }: TaskCardProps) {
+  // Render tasks-review card with exact Figma design
+  if (task.type === "tasks-review") {
+    return (
+      <div
+        className={cn(
+          "relative rounded-lg shadow-sm overflow-hidden",
+          "w-full h-[108px] max-w-[436px]",
+          className,
+        )}
+        style={{
+          background: "#C1D3F7",
+          borderRight: "6px solid #96B9E7",
+        }}
+      >
+        {/* Circular Icon */}
+        <div
+          className="absolute w-[51px] h-[51px] flex-shrink-0 rounded-full bg-black flex items-center justify-center"
+          style={{
+            left: "10px",
+            top: "12px",
+          }}
+        >
+          <svg
+            width="25"
+            height="25"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="text-white"
+          >
+            <path
+              d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        {/* Main Title */}
+        <div
+          className="absolute flex flex-col justify-center flex-shrink-0"
+          style={{
+            width: "358px",
+            height: "38px",
+            left: "73px",
+            top: "6px",
+            color: "#181818",
+            fontFamily: "Inter",
+            fontSize: "18px",
+            fontWeight: "700",
+            lineHeight: "normal",
+          }}
+        >
+          Tasks, pending review.
+        </div>
+
+        {/* Subtitle */}
+        <div
+          className="absolute flex flex-col justify-center flex-shrink-0"
+          style={{
+            width: "418px",
+            height: "31px",
+            left: "74px",
+            top: "38px",
+            color: "#2C2D31",
+            fontFamily: "Inter",
+            fontSize: "14px",
+            fontWeight: "400",
+            lineHeight: "normal",
+          }}
+        >
+          Pending review tasks.
+        </div>
+
+        {/* Review Button */}
+        <div
+          className="absolute inline-flex justify-end items-center"
+          style={{
+            left: "70px",
+            top: "74px",
+            width: "69px",
+            height: "47px",
+            padding: "4px 0px 23px 4px",
+            background: "rgba(0, 0, 0, 0.00)",
+          }}
+        >
+          <div
+            className="absolute flex items-center justify-center"
+            style={{
+              left: "4px",
+              top: "4px",
+              width: "65px",
+              height: "20px",
+              padding: "7px 5px",
+              borderRadius: "4.5px",
+              border: "1px solid #F33B31",
+              background: "#FF3D30",
+            }}
+          >
+            <span
+              style={{
+                color: "#FFF",
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontWeight: "400",
+                lineHeight: "normal",
+              }}
+            >
+              REVIEW
+            </span>
+          </div>
+        </div>
+
+        {/* Right Checkmark Icon */}
+        <div
+          className="absolute flex items-center justify-center"
+          style={{
+            left: "398px",
+            top: "79px",
+            width: "17px",
+            height: "17px",
+          }}
+        >
+          <CheckCircle className="w-4 h-4 text-gray-700" />
+        </div>
+      </div>
+    );
+  }
+
   // Render leave card with exact Figma design
   if (task.type === "leave") {
     return (
