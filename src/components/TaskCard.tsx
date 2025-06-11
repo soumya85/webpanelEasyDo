@@ -44,7 +44,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
         }}
       >
         <img
-          src="/task-logo.png"
+          src="/task-logo.png?v=1"
           style={{
             width: "51px",
             height: "51px",
