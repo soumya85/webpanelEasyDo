@@ -32,7 +32,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
       <div
         className={cn(
           "relative rounded-lg shadow-sm overflow-hidden",
-          "w-[436px] h-[108px]",
+          "w-full h-[108px] max-w-[436px]",
           className,
         )}
         style={{
@@ -40,7 +40,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
           borderRight: "6px solid #E34441",
         }}
       >
-        {/* Company Logo */}
         <div
           className="absolute w-[51px] h-[52px] flex-shrink-0 rounded-full bg-white flex flex-col items-center justify-center border-2 border-gray-200"
           style={{
