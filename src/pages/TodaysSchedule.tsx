@@ -199,7 +199,7 @@ export default function TodaysSchedule() {
           )}
 
           {/* Timeline Section */}
-          <div className="space-y-4">
+          <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
             {timeSlots.map((timeSlot) => (
               <div key={timeSlot}>
                 <div className="flex items-center gap-4 mb-4">
