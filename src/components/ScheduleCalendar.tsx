@@ -90,7 +90,6 @@ export function ScheduleCalendar({
         isCurrentMonth: true,
       });
     }
-
     // Fill remaining cells to complete the grid (6 rows x 7 days = 42 cells)
     const totalCells = 42;
     const remainingCells = totalCells - days.length;
