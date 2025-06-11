@@ -39,6 +39,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
           borderRadius: "8px",
           borderRight: "6px solid #96B9E7",
           background: "#C1D3F7",
+          position: "relative",
         }}
       >
         <img
@@ -144,12 +145,15 @@ export function TaskCard({ task, className }: TaskCardProps) {
                   position: "relative",
                 }}
               >
-                <span style={{
-                  fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
-                  fontWeight: "400",
-                  fontSize: "14px",
-                  color: "rgba(255,255,255,1)",
-                }}>
+                <span
+                  style={{
+                    fontFamily:
+                      "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                    fontWeight: "400",
+                    fontSize: "14px",
+                    color: "rgba(255,255,255,1)",
+                  }}
+                >
                   REVIEW
                 </span>
               </div>
@@ -170,7 +174,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
           src="https://cdn.builder.io/api/v1/image/assets%2F8c95417dce92404398effcbaa04b5e27%2F34ba3997c5834f0a956d5b0e6a7abba5"
           alt="Checkmark icon"
         />
-        </div>
       </div>
     );
   }
