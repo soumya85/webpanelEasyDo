@@ -122,9 +122,13 @@ export default function TodaysSchedule() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="All">All</SelectItem>
-                  <SelectItem value="My Task">My Task</SelectItem>
-                  <SelectItem value="Delegated Task">Delegated Task</SelectItem>
+                  <SelectItem value="All">All ({taskCounts.total})</SelectItem>
+                  <SelectItem value="My Task">
+                    My Task ({taskCounts.myTasks})
+                  </SelectItem>
+                  <SelectItem value="Delegated Task">
+                    Delegated Task ({taskCounts.delegatedTasks})
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
