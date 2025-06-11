@@ -67,6 +67,15 @@ export default function TodaysSchedule() {
     });
   };
 
+  const handleDateSelect = (day: number) => {
+    const newSelectedDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day,
+    );
+    setSelectedDate(newSelectedDate);
+  };
+
   const formatDate = (date: Date) => {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
