@@ -99,7 +99,7 @@ export default function TodaysSchedule() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         {/* Top Controls */}
-        <div className="p-4 mb-4">
+        <div className="px-4 pb-4 mb-4">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="text-blue-600 font-medium text-base">
               Today, {formatDate(currentDate).replace(/^\w+, /, "")}
