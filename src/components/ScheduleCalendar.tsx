@@ -21,7 +21,9 @@ interface ScheduleCalendarProps {
 
 export function ScheduleCalendar({
   currentDate,
+  selectedDate,
   onNavigate,
+  onDateSelect,
   className,
 }: ScheduleCalendarProps) {
   const monthNames = [
