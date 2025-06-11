@@ -92,8 +92,8 @@ export function Header() {
         {/* Right Controls */}
         <div className="flex items-center justify-center gap-4 h-full">
           {/* Chat Notification */}
-          <div className="relative">
-            <button className="flex items-center justify-center p-[2px]">
+          <div className="relative flex items-center justify-center w-[22px] h-[22px]">
+            <button className="flex items-center justify-center w-full h-full">
               <svg
                 width="22"
                 height="22"
@@ -116,8 +116,8 @@ export function Header() {
           </div>
 
           {/* Bell Notification */}
-          <div className="relative">
-            <button className="flex items-center justify-center px-[2px]">
+          <div className="relative flex items-center justify-center w-[22px] h-[22px]">
+            <button className="flex items-center justify-center w-full h-full">
               <svg
                 width="21"
                 height="20"
@@ -140,7 +140,7 @@ export function Header() {
           </div>
 
           {/* User Avatar */}
-          <div className="w-[22px] flex justify-center">
+          <div className="flex items-center justify-center w-[22px] h-[22px]">
             <Avatar className="h-[21.31px] w-[21.31px]">
               <AvatarImage src="/api/placeholder/21/21" alt="User" />
               <AvatarFallback className="bg-azure-24 text-white text-xs">
