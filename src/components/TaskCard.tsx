@@ -10,7 +10,7 @@ export interface TaskItem {
   description: string;
   time?: string;
   endTime?: string;
-  type: "leave" | "review" | "meeting" | "multiday";
+  type: "leave" | "review" | "meeting" | "multiday" | "tasks-review";
   status: "new" | "review" | "skipped" | "no-action" | "casual-leave";
   category?: "g-task" | "d-task";
   duration?: string;
