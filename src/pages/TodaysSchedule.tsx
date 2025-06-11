@@ -44,32 +44,15 @@ export default function TodaysSchedule() {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredTasks = useMemo(() => {
-    let filtered = mockTasks;
+  const { getFilteredTasks, getTasksByType, getTaskCounts } = useTasks();
 
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (task) =>
-          task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          task.description.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
-    }
-
-    if (selectedFilter !== "All") {
-      // Filter logic for My Task / Delegated Task can be added here
-      // For now, we'll show all tasks regardless of filter
-    }
-
-    return filtered;
-  }, [searchQuery, selectedFilter]);
-
-  const allDayTasks = filteredTasks.filter(
-    (task) => task.type === "leave" || task.type === "review",
-  );
-  const multiDayTasks = filteredTasks.filter(
-    (task) => task.type === "multiday",
-  );
-  const timedTasks = filteredTasks.filter((task) => task.type === "meeting");
+  const filteredTasks = getFilteredTasks(searchQuery, selectedFilter);
+  const {
+    allDay: allDayTasks,
+    multiDay: multiDayTasks,
+    timed: timedTasks,
+  } = getTasksByType(filteredTasks);
+  const taskCounts = getTaskCounts();
 
   const navigateMonth = (direction: "prev" | "next") => {
     setCurrentDate((prev) => {
