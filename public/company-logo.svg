@@ -1,0 +1,21 @@
+<svg width="51" height="52" viewBox="0 0 51 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- White circle background -->
+  <circle cx="25.5" cy="26" r="25.5" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  
+  <!-- Flag design -->
+  <g transform="translate(13, 12)">
+    <!-- Flag pole -->
+    <rect x="2" y="0" width="2" height="20" fill="#666"/>
+    
+    <!-- Flag -->
+    <rect x="4" y="2" width="16" height="10" fill="#7ED321"/>
+    <rect x="12" y="2" width="8" height="10" fill="white"/>
+    
+    <!-- Some flag details -->
+    <rect x="14" y="4" width="4" height="2" fill="#7ED321"/>
+    <rect x="14" y="8" width="4" height="2" fill="#7ED321"/>
+  </g>
+  
+  <!-- ALERT text -->
+  <text x="25.5" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#DC3545">ALERT</text>
+</svg>
