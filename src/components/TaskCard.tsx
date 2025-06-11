@@ -30,7 +30,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
   if (task.type === "tasks-review") {
     return (
       <div
-        className={cn("w-full h-[108px] max-w-[436px]", className)}
+        className={cn("w-full h-[108px] max-w-[340px]", className)}
         style={{
           display: "inline-flex",
           padding: "10px",
@@ -161,14 +161,14 @@ export function TaskCard({ task, className }: TaskCardProps) {
           </div>
         </div>
 
-        {/* Checkmark Icon - Positioned in top-right corner */}
+        {/* Checkmark Icon - Positioned in bottom-right corner */}
         <img
           style={{
             width: "17px",
             height: "17px",
             aspectRatio: "1/1",
             position: "absolute",
-            top: "15px",
+            bottom: "15px",
             right: "15px",
           }}
           src="https://cdn.builder.io/api/v1/image/assets%2F8c95417dce92404398effcbaa04b5e27%2F34ba3997c5834f0a956d5b0e6a7abba5"
