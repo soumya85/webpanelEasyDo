@@ -150,8 +150,8 @@ export default function TodaysSchedule() {
           className="mb-6"
         />
 
-        {/* Task Sections */}
-        <div className="space-y-6">
+        {/* Task Sections - All in one white container */}
+        <div className="bg-white rounded-lg shadow-sm p-6">
           {/* No Results Message */}
           {filteredTasks.length === 0 && searchQuery && (
             <div className="text-center py-12">
@@ -162,62 +162,64 @@ export default function TodaysSchedule() {
             </div>
           )}
 
-          {/* AllDay Section */}
-          {allDayTasks.length > 0 && (
-            <div>
-              <div className="flex items-center gap-4 mb-4">
-                <h2 className="text-sm font-bold text-gray-600">
-                  AllDay ({allDayTasks.length})
-                </h2>
-                <div className="flex-1 h-px bg-gray-300"></div>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                {allDayTasks.map((task) => (
-                  <TaskCard key={task.id} task={task} className="max-w-md" />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* MultiDay Section */}
-          {multiDayTasks.length > 0 && (
-            <div>
-              <div className="flex items-center gap-4 mb-4">
-                <h2 className="text-sm font-bold text-gray-600">
-                  MultiDay ({multiDayTasks.length})
-                </h2>
-                <div className="flex-1 h-px bg-gray-300"></div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-4">
-                {multiDayTasks.map((task) => (
-                  <TaskCard key={task.id} task={task} className="max-w-md" />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Timeline Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-            {timeSlots.map((timeSlot) => (
-              <div key={timeSlot}>
+          <div className="space-y-6">
+            {/* AllDay Section */}
+            {allDayTasks.length > 0 && (
+              <div>
                 <div className="flex items-center gap-4 mb-4">
-                  <h2 className="text-sm font-bold text-gray-600 w-20 flex-shrink-0">
-                    {timeSlot}
+                  <h2 className="text-sm font-bold text-gray-600">
+                    AllDay ({allDayTasks.length})
                   </h2>
                   <div className="flex-1 h-px bg-gray-300"></div>
                 </div>
 
-                {/* Render timed tasks for specific slots */}
-                {timeSlot === "5:00 AM" &&
-                  timedTasks.map((task) => (
-                    <div key={task.id} className="ml-24">
-                      <TaskCard task={task} className="max-w-md" />
-                    </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+                  {allDayTasks.map((task) => (
+                    <TaskCard key={task.id} task={task} className="max-w-md" />
                   ))}
+                </div>
               </div>
-            ))}
+            )}
+
+            {/* MultiDay Section */}
+            {multiDayTasks.length > 0 && (
+              <div>
+                <div className="flex items-center gap-4 mb-4">
+                  <h2 className="text-sm font-bold text-gray-600">
+                    MultiDay ({multiDayTasks.length})
+                  </h2>
+                  <div className="flex-1 h-px bg-gray-300"></div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 mb-6">
+                  {multiDayTasks.map((task) => (
+                    <TaskCard key={task.id} task={task} className="max-w-md" />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Timeline Section */}
+            <div className="space-y-4">
+              {timeSlots.map((timeSlot) => (
+                <div key={timeSlot}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <h2 className="text-sm font-bold text-gray-600 w-20 flex-shrink-0">
+                      {timeSlot}
+                    </h2>
+                    <div className="flex-1 h-px bg-gray-300"></div>
+                  </div>
+
+                  {/* Render timed tasks for specific slots */}
+                  {timeSlot === "5:00 AM" &&
+                    timedTasks.map((task) => (
+                      <div key={task.id} className="ml-24">
+                        <TaskCard task={task} className="max-w-md" />
+                      </div>
+                    ))}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Default empty state when no tasks at all */}
