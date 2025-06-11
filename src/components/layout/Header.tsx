@@ -41,8 +41,9 @@ export function Header() {
         className={cn(
           "fixed top-0 right-0 z-30 h-[86px] bg-white border-b border-gray-400 flex items-center justify-between px-6",
           "transition-all duration-300",
-          isExpanded ? "left-[280px]" : "left-[103px]",
-          "md:left-0 md:pl-6",
+          // Mobile: always full width (left-0)
+          "left-0",
+          // Desktop: adjust for sidebar
           isExpanded ? "md:left-[280px]" : "md:left-[103px]",
         )}
       >
