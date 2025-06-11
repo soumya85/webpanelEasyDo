@@ -164,7 +164,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
                 aspectRatio: "1/1",
                 position: "relative",
               }}
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNyAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iOC41IiBjeT0iOC41IiByPSI4LjUiIGZpbGw9IndoaXRlIiBzdHJva2U9IiMxODE4MTgiIHN0cm9rZS13aWR0aD0iMSIvPgo8cGF0aCBkPSJNNS41IDguNUw3LjUgMTAuNUwxMS41IDYuNSIgc3Ryb2tlPSIjMTgxODE4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K"
+              src="https://cdn.builder.io/api/v1/image/assets%2F8c95417dce92404398effcbaa04b5e27%2F34ba3997c5834f0a956d5b0e6a7abba5"
               alt="Checkmark icon"
             />
           </div>
