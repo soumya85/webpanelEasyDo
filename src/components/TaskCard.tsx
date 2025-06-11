@@ -53,6 +53,17 @@ export function TaskCard({ task, className }: TaskCardProps) {
           </div>
           <div className="text-red-600 text-[8px] font-bold">ALERT</div>
         </div>
+        {/* Company Logo */}
+        <img
+          src="https://23eae969f9844ba7a8dd3ccbf85706ea-6528478202b346e795a886180.fly.dev/logo-main.png"
+          alt="company logo"
+          className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain"
+          style={{
+            left: "10px",
+            top: "12px",
+          }}
+        />
+
         {/* Title */}
         <div
           className="absolute flex flex-col justify-center flex-shrink-0"
@@ -71,16 +82,23 @@ export function TaskCard({ task, className }: TaskCardProps) {
           You are on leave
         </div>
 
-        {/* Company Logo */}
-        <img
-          src="https://23eae969f9844ba7a8dd3ccbf85706ea-6528478202b346e795a886180.fly.dev/logo-main.png"
-          alt="company logo"
-          className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain"
+        {/* Company Name */}
+        <div
+          className="absolute flex flex-col justify-center flex-shrink-0"
           style={{
-            left: "10px",
-            top: "12px",
+            width: "418px",
+            height: "31px",
+            left: "101px",
+            top: "38px",
+            color: "#000",
+            fontFamily: "Inter",
+            fontSize: "14px",
+            fontWeight: "400",
+            lineHeight: "normal",
           }}
-        />
+        >
+          Liberty Highrise Pvt Ltd
+        </div>
 
         {/* Casual Leave Badge */}
         <div
