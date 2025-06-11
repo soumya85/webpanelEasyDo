@@ -56,11 +56,11 @@ export default function TodaysSchedule() {
 
   const navigateMonth = (direction: "prev" | "next") => {
     setCurrentDate((prev) => {
-      const newDate = new Date(prev);
+      const newDate = new Date(prev.getFullYear(), prev.getMonth(), 1);
       if (direction === "prev") {
-        newDate.setMonth(prev.getMonth() - 1);
+        newDate.setMonth(newDate.getMonth() - 1);
       } else {
-        newDate.setMonth(prev.getMonth() + 1);
+        newDate.setMonth(newDate.getMonth() + 1);
       }
       return newDate;
     });
