@@ -30,136 +30,171 @@ export function TaskCard({ task, className }: TaskCardProps) {
   if (task.type === "tasks-review") {
     return (
       <div
-        className={cn(
-          "relative rounded-lg shadow-sm overflow-hidden",
-          "w-full h-[108px] max-w-[436px]",
-          className,
-        )}
         style={{
-          background: "#C1D3F7",
+          width: "436px",
+          height: "108px",
+          borderRadius: "8px",
           borderRight: "6px solid #96B9E7",
+          background: "#C1D3F7",
+          position: "relative",
         }}
+        className={cn("", className)}
       >
-        {/* Circular Icon */}
-        <div
-          className="absolute w-[51px] h-[51px] flex-shrink-0 rounded-full bg-black flex items-center justify-center"
+        {/* Circular Image */}
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/25f0c65eaacda0f951d53020f0d839aa081ae066?placeholderIfAbsent=true"
           style={{
+            width: "51px",
+            height: "51px",
+            flexShrink: 0,
+            aspectRatio: "1/1",
+            borderRadius: "53px",
+            position: "absolute",
             left: "10px",
             top: "12px",
           }}
-        >
-          <svg
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-white"
-          >
-            <path
-              d="M3 6H21M3 12H21M3 18H21"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <circle cx="7" cy="6" r="1" fill="currentColor" />
-            <circle cx="7" cy="12" r="1" fill="currentColor" />
-            <circle cx="7" cy="18" r="1" fill="currentColor" />
-          </svg>
-        </div>
+          alt="Image_1_34"
+        />
 
         {/* Main Title */}
         <div
-          className="absolute flex flex-col justify-center flex-shrink-0"
           style={{
+            display: "flex",
             width: "358px",
             height: "38px",
-            left: "73px",
-            top: "6px",
+            flexDirection: "column",
+            justifyContent: "center",
+            flexShrink: 0,
             color: "#181818",
             fontFamily: "Inter",
             fontSize: "18px",
-            fontWeight: "700",
+            fontStyle: "normal",
+            fontWeight: "600",
             lineHeight: "normal",
+            position: "absolute",
+            left: "73px",
+            top: "6px",
           }}
         >
-          Tasks, pending review.
+          <span
+            style={{
+              fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+              fontWeight: "700",
+              fontSize: "18px",
+              color: "rgba(24,24,24,1)",
+            }}
+          >
+            Tasks, pending review.
+          </span>
         </div>
 
         {/* Subtitle */}
         <div
-          className="absolute flex flex-col justify-center flex-shrink-0"
           style={{
+            display: "flex",
             width: "418px",
             height: "31px",
-            left: "74px",
-            top: "38px",
+            flexDirection: "column",
+            justifyContent: "center",
+            flexShrink: 0,
             color: "#2C2D31",
             fontFamily: "Inter",
             fontSize: "14px",
-            fontWeight: "400",
+            fontStyle: "normal",
+            fontWeight: "500",
             lineHeight: "normal",
+            position: "absolute",
+            left: "74px",
+            top: "38px",
           }}
         >
-          Pending review tasks.
+          <span
+            style={{
+              fontFamily: "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+              fontWeight: "400",
+              fontSize: "14px",
+              color: "rgba(44,45,49,1)",
+            }}
+          >
+            Pending review tasks.
+          </span>
         </div>
 
         {/* Review Button */}
         <div
-          className="absolute inline-flex justify-end items-center"
           style={{
+            display: "inline-flex",
+            padding: "4px 0px 23px 4px",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            background: "rgba(0, 0, 0, 0.00)",
+            position: "absolute",
             left: "70px",
             top: "74px",
             width: "69px",
             height: "47px",
-            padding: "4px 0px 23px 4px",
-            background: "rgba(0, 0, 0, 0.00)",
           }}
         >
           <div
-            className="absolute flex items-center justify-center"
             style={{
-              left: "4px",
-              top: "4px",
-              width: "65px",
+              display: "flex",
               height: "20px",
               padding: "7px 5px",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
               borderRadius: "4.5px",
               border: "1px solid #F33B31",
               background: "#FF3D30",
+              position: "absolute",
+              left: "4px",
+              top: "4px",
+              width: "65px",
             }}
           >
-            <span
+            <div
               style={{
                 color: "#FFF",
                 fontFamily: "Inter",
                 fontSize: "14px",
-                fontWeight: "400",
+                fontStyle: "normal",
+                fontWeight: "500",
                 lineHeight: "normal",
+                position: "relative",
               }}
             >
-              REVIEW
-            </span>
+              <span
+                style={{
+                  fontFamily:
+                    "Inter, -apple-system, Roboto, Helvetica, sans-serif",
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  color: "rgba(255,255,255,1)",
+                }}
+              >
+                REVIEW
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Right Checkmark Icon */}
-        <div
-          className="absolute flex items-center justify-center"
+        {/* Right Image Placeholder */}
+        <img
           style={{
-            left: "398px",
-            top: "79px",
             width: "17px",
             height: "17px",
+            flexShrink: 0,
+            aspectRatio: "1/1",
+            position: "absolute",
+            left: "398px",
+            top: "79px",
           }}
-        >
-          <CheckCircle className="w-4 h-4 text-gray-700" />
-        </div>
+          src=""
+          alt=""
+        />
       </div>
     );
   }
-
   // Render leave card with exact Figma design
   if (task.type === "leave") {
     return (
