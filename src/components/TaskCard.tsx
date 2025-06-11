@@ -30,7 +30,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
   if (task.type === "tasks-review") {
     return (
       <div
-        className={cn("", className)}
+        className={cn("w-full h-[108px] max-w-[436px]", className)}
         style={{
           display: "inline-flex",
           padding: "10px",
@@ -39,8 +39,6 @@ export function TaskCard({ task, className }: TaskCardProps) {
           borderRadius: "8px",
           borderRight: "6px solid #96B9E7",
           background: "#C1D3F7",
-          width: "340px",
-          height: "95px",
         }}
       >
         <img
