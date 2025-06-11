@@ -41,18 +41,19 @@ export function TaskCard({ task, className }: TaskCardProps) {
         }}
       >
         {/* Company Logo */}
-        <img
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
-          alt="company logo"
-          className="absolute w-[51px] h-[52px] flex-shrink-0 object-contain rounded-full bg-white p-2"
+        <div
+          className="absolute w-[51px] h-[52px] flex-shrink-0 rounded-full bg-white flex flex-col items-center justify-center border-2 border-gray-200"
           style={{
             left: "10px",
             top: "12px",
-            background:
-              "url('https://via.placeholder.com/51x52/90EE90/000000?text=ALERT') center/contain no-repeat white",
           }}
-        />
-
+        >
+          <div className="w-8 h-6 bg-gradient-to-r from-green-500 to-white rounded-sm mb-1 relative">
+            <div className="absolute inset-0 bg-green-500 w-1/2"></div>
+            <div className="absolute right-0 top-0 w-1/2 h-full bg-white"></div>
+          </div>
+          <div className="text-red-600 text-[8px] font-bold">ALERT</div>
+        </div>
         {/* Title */}
         <div
           className="absolute flex flex-col justify-center flex-shrink-0"
