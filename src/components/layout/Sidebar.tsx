@@ -40,19 +40,35 @@ export function Sidebar() {
 
           <div className="flex items-center justify-center">
             {isExpanded ? (
-              /* Expanded Logo - EasyDo with text */
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/eb01d55239b62aaccf11995df137c5221e0f0473?placeholderIfAbsent=true"
-                alt="EasyDo"
-                className="h-[70px] w-[86px] object-contain rounded-sm"
-              />
+              /* Expanded Logo - Full EasyDo logo with text */
+              <div className="flex flex-col items-center gap-1">
+                <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-red-500 via-orange-500 to-green-500 p-1">
+                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-6 h-6 text-green-600 fill-current"
+                    >
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-xl font-bold text-gray-800">
+                  <span className="text-gray-800">Easy</span>
+                  <span className="text-red-500">Do</span>
+                </div>
+              </div>
             ) : (
-              /* Collapsed Logo - Just the circular icon */
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/eb01d55239b62aaccf11995df137c5221e0f0473?placeholderIfAbsent=true"
-                alt="EasyDo"
-                className="h-[42px] w-[42px] object-contain rounded-sm"
-              />
+              /* Collapsed Logo - Just the circular checkmark icon */
+              <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-red-500 via-orange-500 to-green-500 p-1">
+                <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5 text-green-600 fill-current"
+                  >
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                  </svg>
+                </div>
+              </div>
             )}
           </div>
         </div>
