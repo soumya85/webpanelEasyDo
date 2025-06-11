@@ -187,14 +187,9 @@ export default function TodaysSchedule() {
                   <div className="flex-1 h-px bg-gray-300"></div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row mb-6">
-                  {allDayTasks.map((task, index) => (
-                    <TaskCard
-                      key={task.id}
-                      task={task}
-                      className=""
-                      style={index > 0 ? { marginLeft: "-200px" } : {}}
-                    />
+                <div className="flex flex-col lg:flex-row gap-4 mb-6">
+                  {allDayTasks.map((task) => (
+                    <TaskCard key={task.id} task={task} className="" />
                   ))}
                 </div>
               </div>
