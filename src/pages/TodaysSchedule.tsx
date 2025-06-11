@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -8,46 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TaskCard, TaskItem } from "@/components/TaskCard";
+import { TaskCard } from "@/components/TaskCard";
 import { ScheduleCalendar } from "@/components/ScheduleCalendar";
-
-const mockTasks: TaskItem[] = [
-  {
-    id: "1",
-    title: "You are on leave",
-    description: "Liberty Highrise Pvt Ltd",
-    type: "leave",
-    status: "casual-leave",
-    company: "Liberty Highrise Pvt Ltd",
-  },
-  {
-    id: "2",
-    title: "Tasks, pending review.",
-    description: "Pending review tasks.",
-    type: "review",
-    status: "review",
-  },
-  {
-    id: "3",
-    title: "(Important) code review for the...",
-    description: "01Feb 12:35 PM to 04 Feb 12:26 PM",
-    type: "multiday",
-    status: "new",
-    category: "g-task",
-    duration: "114d",
-    time: "Shibjyoti Android: Shibjyoti Sarkar...",
-  },
-  {
-    id: "4",
-    title: "Presentation for EasyDo Demo...",
-    description: "Soumyadeep Goswami created a new ...",
-    type: "meeting",
-    status: "new",
-    category: "d-task",
-    time: "5:00 AM",
-    notifications: 3,
-  },
-];
+import { useTasks } from "@/hooks/useTasks";
 
 const timeSlots = [
   "12:00 AM",
