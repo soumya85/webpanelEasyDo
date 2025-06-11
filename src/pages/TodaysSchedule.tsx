@@ -156,7 +156,9 @@ export default function TodaysSchedule() {
         {/* Calendar Widget */}
         <ScheduleCalendar
           currentDate={currentDate}
+          selectedDate={selectedDate}
           onNavigate={navigateMonth}
+          onDateSelect={handleDateSelect}
           className="mb-6"
         />
 
