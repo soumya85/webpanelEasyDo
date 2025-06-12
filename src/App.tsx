@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SidebarProvider } from "./hooks/useSidebar";
+import { UserProvider } from "./hooks/useUser";
 import { PageLayout } from "./components/layout/PageLayout";
 import Overview from "./pages/Overview";
 import Chats from "./pages/Chats";
