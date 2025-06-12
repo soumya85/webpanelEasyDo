@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import {
   BarChart,
@@ -13,6 +13,288 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
+import { ChevronDown } from "lucide-react";
+
+// Date Range Types
+type DateRangeOption =
+  | "TODAY"
+  | "YESTERDAY"
+  | "LAST_7_DAYS"
+  | "LAST_30_DAYS"
+  | "THIS_MONTH"
+  | "LAST_MONTH"
+  | "CUSTOM_RANGE";
+
+interface DateRange {
+  start: Date;
+  end: Date;
+  label: string;
+}
+
+// Date Range Calculator
+const calculateDateRange = (option: DateRangeOption): DateRange => {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  switch (option) {
+    case "TODAY":
+      return {
+        start: today,
+        end: today,
+        label: `${today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "YESTERDAY":
+      const yesterday = new Date(today);
+      yesterday.setDate(yesterday.getDate() - 1);
+      return {
+        start: yesterday,
+        end: yesterday,
+        label: `${yesterday.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "LAST_7_DAYS":
+      const last7Start = new Date(today);
+      last7Start.setDate(last7Start.getDate() - 6);
+      return {
+        start: last7Start,
+        end: today,
+        label: `${last7Start.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()} - ${today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "LAST_30_DAYS":
+      const last30Start = new Date(today);
+      last30Start.setDate(last30Start.getDate() - 29);
+      return {
+        start: last30Start,
+        end: today,
+        label: `${last30Start.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()} - ${today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "THIS_MONTH":
+      const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+      const thisMonthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+      return {
+        start: thisMonthStart,
+        end: thisMonthEnd,
+        label: `${thisMonthStart.toLocaleDateString("en-US", { month: "short", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "LAST_MONTH":
+      const lastMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+      const lastMonthEnd = new Date(now.getFullYear(), now.getMonth(), 0);
+      return {
+        start: lastMonthStart,
+        end: lastMonthEnd,
+        label: `${lastMonthStart.toLocaleDateString("en-US", { month: "short", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "CUSTOM_RANGE":
+    default:
+      // Default to MAY 14, 25 - JUN 12, 25 as shown in screenshot
+      const customStart = new Date(2025, 4, 14); // May 14, 2025
+      const customEnd = new Date(2025, 5, 12); // Jun 12, 2025
+      return {
+        start: customStart,
+        end: customEnd,
+        label: "MAY 14, 25 - JUN 12, 25",
+      };
+  }
+};
+
+// Data Generator Functions
+const generateKPIData = (dateRange: DateRange) => {
+  // Simulate different data based on date range
+  const daysDiff =
+    Math.ceil(
+      (dateRange.end.getTime() - dateRange.start.getTime()) /
+        (1000 * 60 * 60 * 24),
+    ) + 1;
+
+  // Base multiplier based on range duration
+  const multiplier = Math.min(daysDiff / 30, 2); // Cap at 2x for longer ranges
+
+  return {
+    totalEmployees: Math.floor(100 + multiplier * 20),
+    employeesOnLeave: Math.floor(8 + multiplier * 4),
+    newJoinees: Math.floor(2 + multiplier * 3),
+    totalHoliday: Math.floor(3 + multiplier * 2),
+  };
+};
+
+const generateSalaryData = (dateRange: DateRange) => {
+  const months = [
+    "Apr 25",
+    "May 25",
+    "Jun 25",
+    "Jul 25",
+    "Aug 25",
+    "Sep 25",
+    "Oct 25",
+    "Nov 25",
+    "Dec 25",
+    "Jan 26",
+    "Feb 26",
+    "Mar 26",
+  ];
+
+  return months.map((month, index) => ({
+    month,
+    salary: index < 3 ? Math.floor(150000 + Math.random() * 100000) : 0,
+  }));
+};
+
+const generateAttendanceStatusData = (dateRange: DateRange) => {
+  return [
+    {
+      name: "Present",
+      value: Math.floor(50 + Math.random() * 30),
+      color: "#4ADE80",
+    },
+    {
+      name: "Absent",
+      value: Math.floor(15 + Math.random() * 15),
+      color: "#9CA3AF",
+    },
+    {
+      name: "Leave",
+      value: Math.floor(5 + Math.random() * 10),
+      color: "#FB923C",
+    },
+    {
+      name: "Late",
+      value: Math.floor(2 + Math.random() * 8),
+      color: "#EF4444",
+    },
+    {
+      name: "Half Day",
+      value: Math.floor(1 + Math.random() * 4),
+      color: "#7DD3FC",
+    },
+  ];
+};
+
+const generateSalaryRangeData = (dateRange: DateRange) => {
+  return [
+    {
+      name: "Below-25000",
+      value: Math.floor(15 + Math.random() * 10),
+      color: "#F472B6",
+    },
+    {
+      name: "25001-50000",
+      value: Math.floor(25 + Math.random() * 20),
+      color: "#60A5FA",
+    },
+    {
+      name: "50001-75000",
+      value: Math.floor(10 + Math.random() * 15),
+      color: "#FBBF24",
+    },
+    {
+      name: "Above-75000",
+      value: Math.floor(20 + Math.random() * 20),
+      color: "#6EE7B7",
+    },
+  ];
+};
+
+const generateMonthlyAttendanceData = (dateRange: DateRange) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+  ];
+
+  return months.map((month, index) => ({
+    month,
+    Present: index < 5 ? Math.floor(60 + Math.random() * 20) : 0,
+    Absent: index < 5 ? Math.floor(10 + Math.random() * 15) : 0,
+    Leave: index < 5 ? Math.floor(5 + Math.random() * 10) : 0,
+    Late: index < 5 ? Math.floor(2 + Math.random() * 5) : 0,
+    Half: index < 5 ? Math.floor(1 + Math.random() * 3) : 0,
+  }));
+};
+
+// Date Range Picker Component
+const DateRangePicker: React.FC<{
+  selectedRange: DateRangeOption;
+  onRangeChange: (range: DateRangeOption) => void;
+  currentLabel: string;
+}> = ({ selectedRange, onRangeChange, currentLabel }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const options = [
+    { value: "TODAY" as DateRangeOption, label: "TODAY" },
+    { value: "YESTERDAY" as DateRangeOption, label: "YESTERDAY" },
+    { value: "LAST_7_DAYS" as DateRangeOption, label: "LAST 7 DAYS" },
+    { value: "LAST_30_DAYS" as DateRangeOption, label: "LAST 30 DAYS" },
+    { value: "THIS_MONTH" as DateRangeOption, label: "THIS MONTH" },
+    { value: "LAST_MONTH" as DateRangeOption, label: "LAST MONTH" },
+    { value: "CUSTOM_RANGE" as DateRangeOption, label: "CUSTOM RANGE" },
+  ];
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={cn(
+          "text-[#283C50] font-inter text-xs font-normal leading-[19.2px] uppercase",
+          "flex items-center justify-between px-3 py-[8px] sm:px-4 sm:py-[10.5px] rounded-[5px]",
+          "border border-[#DCDEE4] bg-white hover:bg-gray-50 transition-colors",
+          "w-full sm:min-w-[180px] lg:min-w-[200px] text-left",
+        )}
+      >
+        <span className="truncate pr-2 text-[10px] sm:text-xs">
+          {currentLabel}
+        </span>
+        <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setIsOpen(false)}
+          />
+          <div
+            className={cn(
+              "absolute top-full left-0 mt-1 w-full z-20",
+              "bg-white border border-[#DCDEE4] rounded-[5px] shadow-lg",
+              "max-h-64 overflow-y-auto",
+            )}
+          >
+            {options.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => {
+                  onRangeChange(option.value);
+                  setIsOpen(false);
+                }}
+                className={cn(
+                  "w-full text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-medium",
+                  "hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0",
+                  selectedRange === option.value
+                    ? "bg-[#4766E5] text-white hover:bg-[#4766E5]"
+                    : "text-[#283C50]",
+                )}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 // KPI Card Component
 interface KPICardProps {
@@ -25,17 +307,18 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-7 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "flex items-center gap-4 sm:gap-6 lg:gap-7 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-4 py-0 h-[154px] flex-1 min-w-[257px]",
+        "px-3 py-4 sm:px-4 sm:py-0 h-[120px] sm:h-[140px] lg:h-[154px]",
+        "w-full sm:flex-1 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
       <div className="flex-shrink-0">{icon}</div>
-      <div className="flex flex-col justify-center items-start">
-        <div className="text-[#283C50] text-[40px] font-bold leading-[64px] font-inter">
+      <div className="flex flex-col justify-center items-start min-w-0">
+        <div className="text-[#283C50] text-[28px] sm:text-[32px] lg:text-[40px] font-bold leading-tight lg:leading-[64px] font-inter">
           {value}
         </div>
-        <div className="text-[#283C50] text-[15px] font-bold leading-[19.2px] font-inter">
+        <div className="text-[#283C50] text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
           {label}
         </div>
       </div>
@@ -43,12 +326,96 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   );
 };
 
-// Icon Components
+// Chart Card Component
+interface ChartCardProps {
+  title: string;
+  children: React.ReactNode;
+  subtitle?: string;
+}
+
+const ChartCard: React.FC<ChartCardProps> = ({ title, children, subtitle }) => {
+  return (
+    <div
+      className={cn(
+        "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+        "h-[400px] sm:h-[450px] lg:h-[492.8px] flex-1 min-w-0 w-full",
+      )}
+    >
+      {/* Header */}
+      <div
+        className={cn(
+          "flex items-start sm:items-center justify-between px-4 py-3 sm:px-[20px] sm:py-[20px] lg:px-[25px] lg:py-[25px]",
+          "border-b border-[#E5E7EB] rounded-t-[5px] flex-shrink-0",
+          "flex-col sm:flex-row gap-2 sm:gap-0",
+        )}
+      >
+        <div className="flex flex-col items-start min-w-0 flex-1">
+          <h3 className="text-[#283C50] font-inter text-[16px] sm:text-[18px] lg:text-[20px] font-bold leading-5 sm:leading-6">
+            {title}
+          </h3>
+          {subtitle && (
+            <p className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[17px] lg:leading-[18px] mt-1 sm:mt-2">
+              {subtitle}
+            </p>
+          )}
+        </div>
+        <div className="flex items-center justify-center sm:pl-[20px] lg:pl-[51px]">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 border border-[#DCDEE4] rounded-full bg-white flex items-center justify-center p-1">
+            <div className="w-full h-full" />
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 p-3 sm:p-4 min-h-0 w-full relative">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+// Custom Legend Component
+const CustomLegend: React.FC<{ data: any[]; className?: string }> = ({
+  data,
+  className,
+}) => {
+  return (
+    <div
+      className={cn(
+        "flex flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center",
+        className,
+      )}
+    >
+      {data.map((entry, index) => (
+        <div key={index} className="flex items-center gap-1 sm:gap-2">
+          <div
+            className="w-2 h-2 sm:w-3 sm:h-3 rounded-sm flex-shrink-0"
+            style={{ backgroundColor: entry.color }}
+          />
+          <span className="text-[10px] sm:text-xs lg:text-sm text-[#283C50] font-inter">
+            {entry.name}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// Format currency for salary chart
+const formatCurrency = (value: number) => {
+  if (value >= 100000) {
+    return `₹${(value / 100000).toFixed(0)}L`;
+  }
+  return `₹${value.toLocaleString()}`;
+};
+
+// Icon Components (Responsive)
 const TotalEmployeesIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -57,6 +424,7 @@ const TotalEmployeesIcon = () => (
       viewBox="0 0 50 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_134" fill="white">
         <path d="M0 25.19C0 11.3829 11.1929 0.190002 25 0.190002C38.8071 0.190002 50 11.3829 50 25.19C50 38.9971 38.8071 50.19 25 50.19C11.1929 50.19 0 38.9971 0 25.19Z" />
@@ -81,8 +449,8 @@ const TotalEmployeesIcon = () => (
 const EmployeesOnLeaveIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -91,6 +459,7 @@ const EmployeesOnLeaveIcon = () => (
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_140" fill="white">
         <path d="M0.333008 25.19C0.333008 11.3829 11.5259 0.190002 25.333 0.190002C39.1401 0.190002 50.333 11.3829 50.333 25.19C50.333 38.9971 39.1401 50.19 25.333 50.19C11.5259 50.19 0.333008 38.9971 0.333008 25.19Z" />
@@ -115,8 +484,8 @@ const EmployeesOnLeaveIcon = () => (
 const NewJoineesIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -125,6 +494,7 @@ const NewJoineesIcon = () => (
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_146" fill="white">
         <path d="M0.666992 25.19C0.666992 11.3829 11.8599 0.190002 25.667 0.190002C39.4741 0.190002 50.667 11.3829 50.667 25.19C50.667 38.9971 39.4741 50.19 25.667 50.19C11.8599 50.19 0.666992 38.9971 0.666992 25.19Z" />
@@ -149,8 +519,8 @@ const NewJoineesIcon = () => (
 const TotalHolidayIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -159,6 +529,7 @@ const TotalHolidayIcon = () => (
       viewBox="0 0 50 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_152" fill="white">
         <path d="M0 25.19C0 11.3829 11.1929 0.190002 25 0.190002C38.8071 0.190002 50 11.3829 50 25.19C50 38.9971 38.8071 50.19 25 50.19C11.1929 50.19 0 38.9971 0 25.19Z" />
@@ -187,7 +558,7 @@ const ChevronRightIcon = () => (
     viewBox="0 0 6 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="w-1 h-[7px]"
+    className="w-1 h-[7px] flex-shrink-0"
   >
     <path
       d="M1.00391 7.595L5.00391 4.095L1.00391 0.595001"
@@ -198,221 +569,154 @@ const ChevronRightIcon = () => (
   </svg>
 );
 
-// Chart Data
-const salaryData = [
-  { month: "Apr 25", salary: 200000 },
-  { month: "May 25", salary: 0 },
-  { month: "Jun 25", salary: 0 },
-  { month: "Jul 25", salary: 0 },
-  { month: "Aug 25", salary: 0 },
-  { month: "Sep 25", salary: 0 },
-  { month: "Oct 25", salary: 0 },
-  { month: "Nov 25", salary: 0 },
-  { month: "Dec 25", salary: 0 },
-  { month: "Jan 26", salary: 0 },
-  { month: "Feb 26", salary: 0 },
-  { month: "Mar 26", salary: 0 },
-];
+const Overview: React.FC = () => {
+  // State Management
+  const [selectedDateRange, setSelectedDateRange] =
+    useState<DateRangeOption>("CUSTOM_RANGE");
 
-const attendanceStatusData = [
-  { name: "Present", value: 60, color: "#4ADE80" },
-  { name: "Absent", value: 25, color: "#9CA3AF" },
-  { name: "Leave", value: 8, color: "#FB923C" },
-  { name: "Late", value: 5, color: "#EF4444" },
-  { name: "Half Day", value: 2, color: "#7DD3FC" },
-];
+  // Calculate current date range and generate dynamic data
+  const currentDateRange = useMemo(
+    () => calculateDateRange(selectedDateRange),
+    [selectedDateRange],
+  );
 
-const salaryRangeData = [
-  { name: "Below-25000", value: 20, color: "#F472B6" },
-  { name: "25001-50000", value: 35, color: "#60A5FA" },
-  { name: "50001-75000", value: 15, color: "#FBBF24" },
-  { name: "Above-75000", value: 30, color: "#6EE7B7" },
-];
+  const kpiData = useMemo(
+    () => generateKPIData(currentDateRange),
+    [currentDateRange],
+  );
+  const salaryData = useMemo(
+    () => generateSalaryData(currentDateRange),
+    [currentDateRange],
+  );
+  const attendanceStatusData = useMemo(
+    () => generateAttendanceStatusData(currentDateRange),
+    [currentDateRange],
+  );
+  const salaryRangeData = useMemo(
+    () => generateSalaryRangeData(currentDateRange),
+    [currentDateRange],
+  );
+  const monthlyAttendanceData = useMemo(
+    () => generateMonthlyAttendanceData(currentDateRange),
+    [currentDateRange],
+  );
 
-const monthlyAttendanceData = [
-  { month: "Jan", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Feb", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Mar", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Apr", Present: 78, Absent: 12, Leave: 6, Late: 3, Half: 1 },
-  { month: "May", Present: 55, Absent: 25, Leave: 12, Late: 5, Half: 3 },
-  { month: "Jun", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Jul", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Aug", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Sep", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Oct", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-];
-
-// Chart Card Component
-interface ChartCardProps {
-  title: string;
-  children: React.ReactNode;
-  subtitle?: string;
-}
-
-const ChartCard: React.FC<ChartCardProps> = ({ title, children, subtitle }) => {
   return (
-    <div
-      className={cn(
-        "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "h-[492.8px] flex-1 min-w-0",
-      )}
-    >
-      {/* Header */}
+    <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
+      {/* Page Area */}
       <div
         className={cn(
-          "flex items-center justify-between px-[25px] py-[25px]",
-          "border-b border-[#E5E7EB] rounded-t-[5px]",
+          "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
         )}
       >
-        <div className="flex flex-col items-start">
-          <h3 className="text-[#283C50] font-inter text-[20px] font-bold leading-6">
-            {title}
-          </h3>
-          {subtitle && (
-            <p className="text-[#283C50] font-inter text-[15px] font-bold leading-[18px] mt-2">
-              {subtitle}
-            </p>
-          )}
-        </div>
-        <div className="flex items-center justify-center pl-[51px]">
-          <div className="w-5 h-5 border border-[#DCDEE4] rounded-full bg-white flex items-center justify-center p-1">
-            <div className="w-full h-full" />
-          </div>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 p-4">{children}</div>
-    </div>
-  );
-};
-
-// Custom Legend Component
-const CustomLegend: React.FC<{ data: any[]; className?: string }> = ({
-  data,
-  className,
-}) => {
-  return (
-    <div className={cn("flex flex-wrap gap-4 justify-center", className)}>
-      {data.map((entry, index) => (
-        <div key={index} className="flex items-center gap-2">
-          <div
-            className="w-3 h-3 rounded-sm"
-            style={{ backgroundColor: entry.color }}
-          />
-          <span className="text-sm text-[#283C50] font-inter">
-            {entry.name}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// Format currency for salary chart
-const formatCurrency = (value: number) => {
-  if (value >= 100000) {
-    return `₹${(value / 100000).toFixed(0)}L`;
-  }
-  return `₹${value.toLocaleString()}`;
-};
-
-const Overview: React.FC = () => {
-  return (
-    <div className={cn("w-full p-4 font-inter")}>
-      {/* Page Area */}
-      <div className={cn("flex w-full flex-col items-start gap-6")}>
         {/* Breadcrumb Section Row */}
         <div
           className={cn(
-            "flex min-h-[65px] px-[30px] py-[13.5px] justify-between items-center self-stretch",
+            "flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px]",
+            "px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px]",
+            "justify-between items-center self-stretch",
             "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
             "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+            "flex-row gap-2 lg:gap-0",
           )}
         >
           {/* Breadcrumb Navigation */}
-          <div className="flex justify-center items-center gap-[10px]">
-            <div className="text-[#283C50] font-inter text-base font-bold leading-[19.2px]">
+          <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
+            <div className="text-[#283C50] font-inter text-2xl sm:text-xl lg:text-base font-bold leading-[28px] sm:leading-[24px] lg:leading-[19.2px]">
               Overview
             </div>
-            <div className="text-[#DBD9D9] font-inter text-base font-normal leading-[19.2px]">
+            <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
               |
             </div>
-            <div className="text-[#283C50] font-inter text-[13px] font-bold leading-[20.8px]">
+            <div className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px] hidden sm:block">
               Liberty Highrise PVT Ltd
             </div>
-            <ChevronRightIcon />
-            <div className="text-[#222] font-inter text-[13px] font-normal leading-[20.8px]">
+            <div className="hidden sm:block">
+              <ChevronRightIcon />
+            </div>
+            <div className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
               All Branch
             </div>
           </div>
 
           {/* Filter Controls */}
-          <div className="flex justify-center items-center gap-[10px]">
-            <div
-              className={cn(
-                "text-[#283C50] font-inter text-xs font-normal leading-[19.2px] uppercase",
-                "flex px-4 py-[10.5px] flex-col items-start rounded-[5px]",
-                "border border-[#DCDEE4]",
-              )}
-            >
-              APR 22, 25 - MAY 21, 25
-            </div>
+          <div className="flex justify-end items-center gap-2 lg:gap-[10px] flex-shrink-0">
+            <DateRangePicker
+              selectedRange={selectedDateRange}
+              onRangeChange={setSelectedDateRange}
+              currentLabel={currentDateRange.label}
+            />
           </div>
         </div>
 
         {/* KPI Cards Row */}
         <div
           className={cn(
-            "flex justify-between items-center self-stretch gap-5",
-            "flex-wrap lg:flex-nowrap",
+            "flex justify-start items-stretch self-stretch gap-3 sm:gap-4 lg:gap-5",
+            "flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap",
+            "w-full",
           )}
         >
           <KPICard
             icon={<TotalEmployeesIcon />}
-            value="120"
+            value={kpiData.totalEmployees.toString()}
             label="Total Employees"
           />
           <KPICard
             icon={<EmployeesOnLeaveIcon />}
-            value="12"
+            value={kpiData.employeesOnLeave.toString()}
             label="Employees On Leave"
           />
-          <KPICard icon={<NewJoineesIcon />} value="4" label="New Joinees" />
+          <KPICard
+            icon={<NewJoineesIcon />}
+            value={kpiData.newJoinees.toString()}
+            label="New Joinees"
+          />
           <KPICard
             icon={<TotalHolidayIcon />}
-            value="5"
+            value={kpiData.totalHoliday.toString()}
             label="Total Holiday"
           />
         </div>
 
         {/* Analytics Section */}
-        <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
           {/* First Row of Charts */}
-          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+          <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
             {/* Salary Data Chart */}
             <ChartCard title="Salary Data Of Financial Year 2025-26">
-              <div className="h-full flex flex-col">
-                <div className="mb-4">
+              <div className="h-full flex flex-col w-full">
+                <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
                   <CustomLegend
                     data={[{ name: "Total Employee Salary", color: "#7DD3FC" }]}
                     className="justify-start"
                   />
                 </div>
-                <div className="flex-1">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={salaryData}>
+                <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={250}
+                  >
+                    <BarChart
+                      data={salaryData}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 60 }}
+                    >
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                       <XAxis
                         dataKey="month"
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        interval={0}
+                        angle={-45}
+                        textAnchor="end"
+                        height={50}
                       />
                       <YAxis
                         tickFormatter={formatCurrency}
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        width={60}
                       />
                       <Tooltip
                         formatter={(value) => [
@@ -434,18 +738,25 @@ const Overview: React.FC = () => {
             {/* Attendance Status Chart */}
             <ChartCard
               title="Attendance Status"
-              subtitle="Total Employees: 120"
+              subtitle={`Total Employees: ${kpiData.totalEmployees}`}
             >
-              <div className="h-full flex flex-col items-center">
-                <div className="flex-1 w-full max-w-[350px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
+              <div className="h-full flex flex-col items-center w-full">
+                <div
+                  className="flex-1 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[350px]"
+                  style={{ minHeight: "200px" }}
+                >
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={200}
+                  >
+                    <PieChart margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
                       <Pie
                         data={attendanceStatusData}
                         cx="50%"
                         cy="50%"
                         innerRadius={0}
-                        outerRadius={140}
+                        outerRadius="75%"
                         paddingAngle={2}
                         dataKey="value"
                       >
@@ -459,25 +770,34 @@ const Overview: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <CustomLegend data={attendanceStatusData} className="mt-4" />
+                <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
+                  <CustomLegend data={attendanceStatusData} />
+                </div>
               </div>
             </ChartCard>
           </div>
 
           {/* Second Row of Charts */}
-          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+          <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
             {/* Employee Count by Salary Range Chart */}
             <ChartCard title="Employee Count By Salary Range">
-              <div className="h-full flex flex-col items-center">
-                <div className="flex-1 w-full max-w-[400px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
+              <div className="h-full flex flex-col items-center w-full">
+                <div
+                  className="flex-1 w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]"
+                  style={{ minHeight: "200px" }}
+                >
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={200}
+                  >
+                    <PieChart margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
                       <Pie
                         data={salaryRangeData}
                         cx="50%"
                         cy="50%"
                         innerRadius={0}
-                        outerRadius={160}
+                        outerRadius="75%"
                         paddingAngle={2}
                         dataKey="value"
                       >
@@ -491,7 +811,9 @@ const Overview: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <CustomLegend data={salaryRangeData} className="mt-4" />
+                <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
+                  <CustomLegend data={salaryRangeData} />
+                </div>
               </div>
             </ChartCard>
 
@@ -500,8 +822,8 @@ const Overview: React.FC = () => {
               title="Attendance Summary"
               subtitle="Monthly Attendance Summary for 2025"
             >
-              <div className="h-full flex flex-col">
-                <div className="mb-4">
+              <div className="h-full flex flex-col w-full">
+                <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
                   <CustomLegend
                     data={[
                       { name: "Present", color: "#4ADE80" },
@@ -513,20 +835,29 @@ const Overview: React.FC = () => {
                     className="justify-start"
                   />
                 </div>
-                <div className="flex-1">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={monthlyAttendanceData}>
+                <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={250}
+                  >
+                    <BarChart
+                      data={monthlyAttendanceData}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 20 }}
+                    >
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                       <XAxis
                         dataKey="month"
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        height={40}
                       />
                       <YAxis
                         domain={[0, 100]}
                         tickFormatter={(value) => `${value}%`}
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        width={50}
                       />
                       <Tooltip formatter={(value) => [`${value}%`, ""]} />
                       <Bar dataKey="Present" stackId="a" fill="#4ADE80" />
