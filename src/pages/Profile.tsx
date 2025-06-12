@@ -311,8 +311,9 @@ const Profile: React.FC = () => {
   const displayUser = isEditing ? editingUser : user;
 
   return (
-    <div className="w-full p-3 sm:p-4 lg:p-6 font-inter">
-      <div className="flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6">
+    <PageLayout>
+      <div className="w-full p-3 sm:p-4 lg:p-6 font-inter">
+        <div className="flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6">
         {/* Breadcrumb Section */}
         <div
           className={cn(
