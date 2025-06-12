@@ -381,98 +381,57 @@ const Profile: React.FC = () => {
                       {getUserInitials(displayUser.name)}
                     </AvatarFallback>
                   </Avatar>
-                  {isEditing && (
-                    <div className="absolute -bottom-2 -right-2 flex gap-1">
-                      <Button
-                        size="icon"
-                        variant="secondary"
-                        className="h-8 w-8 rounded-full"
-                        onClick={() => fileInputRef.current?.click()}
-                      >
-                        <Camera className="h-4 w-4" />
-                      </Button>
-                      {(user.profileImage || profileImagePreview) && (
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button
-                              size="icon"
-                              variant="destructive"
-                              className="h-8 w-8 rounded-full"
+                  {/* Camera button always available, remove button only when image exists */}
+                  <div className="absolute -bottom-2 -right-2 flex gap-1">
+                    <Button
+                      size="icon"
+                      variant="secondary"
+                      className="h-8 w-8 rounded-full"
+                      onClick={() => fileInputRef.current?.click()}
+                      title={
+                        isEditing
+                          ? "Upload new profile picture"
+                          : "Change profile picture"
+                      }
+                    >
+                      <Camera className="h-4 w-4" />
+                    </Button>
+                    {(user.profileImage || profileImagePreview) && (
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            size="icon"
+                            variant="destructive"
+                            className="h-8 w-8 rounded-full"
+                            title="Remove profile picture"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Remove Profile Picture
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              {isEditing
+                                ? "Are you sure you want to remove your profile picture? This action cannot be undone."
+                                : "Are you sure you want to remove your profile picture? This will immediately update your profile across the application."}
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={handleRemoveImage}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                             >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>
-                                Remove Profile Picture
-                              </AlertDialogTitle>
-                              <AlertDialogDescription>
-                                Are you sure you want to remove your profile
-                                picture? This action cannot be undone.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction
-                                onClick={handleRemoveImage}
-                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                              >
-                                Remove
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      )}
-                    </div>
-                  )}
-                  {/* Upload/Remove buttons for non-editing mode */}
-                  {!isEditing && (
-                    <div className="absolute -bottom-2 -right-2 flex gap-1">
-                      <Button
-                        size="icon"
-                        variant="secondary"
-                        className="h-8 w-8 rounded-full"
-                        onClick={() => fileInputRef.current?.click()}
-                      >
-                        <Camera className="h-4 w-4" />
-                      </Button>
-                      {user.profileImage && (
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button
-                              size="icon"
-                              variant="destructive"
-                              className="h-8 w-8 rounded-full"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>
-                                Remove Profile Picture
-                              </AlertDialogTitle>
-                              <AlertDialogDescription>
-                                Are you sure you want to remove your profile
-                                picture? This will immediately update your
-                                profile across the application.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction
-                                onClick={handleRemoveImage}
-                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                              >
-                                Remove
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      )}
-                    </div>
-                  )}
+                              Remove
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    )}
+                  </div>
                   <input
                     ref={fileInputRef}
                     type="file"
