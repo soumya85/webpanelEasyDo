@@ -244,6 +244,10 @@ const Profile: React.FC = () => {
     } else {
       // If not editing, immediately remove from global state
       updateProfileImage(null);
+      toast({
+        title: "Success",
+        description: "Profile image removed successfully",
+      });
     }
   };
 
