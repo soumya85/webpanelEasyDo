@@ -187,19 +187,9 @@ const ChevronRightIcon = () => (
 
 const Overview: React.FC = () => {
   return (
-    <div
-      className={cn(
-        "flex flex-col justify-between items-start self-stretch relative w-full min-h-screen",
-        "bg-[#F8F9FA] font-inter",
-      )}
-    >
+    <div className={cn("w-full p-4 font-inter")}>
       {/* Page Area */}
-      <div
-        className={cn(
-          "flex w-full pr-4 pt-2 pb-6 pl-4 flex-col items-start gap-6",
-          "relative",
-        )}
-      >
+      <div className={cn("flex w-full flex-col items-start gap-6")}>
         {/* Breadcrumb Section Row */}
         <div
           className={cn(
