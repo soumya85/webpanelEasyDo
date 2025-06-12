@@ -405,7 +405,7 @@ const CustomLegend: React.FC<{ data: any[]; className?: string }> = ({
 // Format currency for salary chart
 const formatCurrency = (value: number) => {
   if (value >= 100000) {
-    return `��${(value / 100000).toFixed(0)}L`;
+    return `₹${(value / 100000).toFixed(0)}L`;
   }
   return `₹${value.toLocaleString()}`;
 };
@@ -622,7 +622,7 @@ const Overview: React.FC = () => {
         >
           {/* Breadcrumb Navigation */}
           <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
-            <div className="text-[#283C50] font-inter text-lg sm:text-xl lg:text-base font-bold leading-[20px] sm:leading-[24px] lg:leading-[19.2px]">
+            <div className="text-[#283C50] font-inter text-xl sm:text-xl lg:text-base font-bold leading-[24px] sm:leading-[24px] lg:leading-[19.2px]">
               Overview
             </div>
             <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
