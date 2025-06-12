@@ -793,9 +793,7 @@ const Chats: React.FC = () => {
       </div>
 
       <div
-        className="flex flex-col h-full bg-gray-50 overflow-hidden mt-0 md:mt-0"
-        style={{ marginTop: "calc(86px + 65px)" }}
-      >
+      <div className="flex flex-col h-full bg-gray-50 overflow-hidden" style={{ marginTop: '151px' }}>
         {/* Header - Hidden on mobile, visible on desktop */}
         <div className="hidden md:block bg-white border-b border-gray-200 sticky top-0 z-10">
           {/* Title and Search Bar */}
