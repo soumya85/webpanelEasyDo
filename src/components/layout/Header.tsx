@@ -273,9 +273,9 @@ export function Header() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-auto p-0">
                 <Avatar className="h-[21px] w-[21px]">
-                  <AvatarImage src="/api/placeholder/21/21" alt="User" />
+                  <AvatarImage src={getProfileImageSrc(user)} alt={user.name} />
                   <AvatarFallback className="bg-azure-24 text-white text-xs">
-                    BG
+                    {getUserInitials(user.name)}
                   </AvatarFallback>
                 </Avatar>
               </Button>
