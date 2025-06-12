@@ -384,6 +384,7 @@ const CompanyActionDrawer: React.FC<{
       <SheetHeader className="pb-4">
         <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
         <SheetTitle className="text-left">Company Options</SheetTitle>
+        <div className="w-full h-px bg-gray-200 mt-4" />
       </SheetHeader>
 
       <div className="space-y-6">
@@ -412,9 +413,6 @@ const CompanyActionDrawer: React.FC<{
 
         {/* Company Options Section */}
         <div>
-          <h3 className="text-[16px] font-semibold text-gray-900 mb-4">
-            Company Options
-          </h3>
           <div className="grid grid-cols-4 gap-4">
             {companyActions
               .filter((a) => a.category === "company")
