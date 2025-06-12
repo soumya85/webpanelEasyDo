@@ -1,18 +1,21 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 
 interface UserProfileProps {
   isExpanded: boolean;
 }
 
 export function UserProfile({ isExpanded }: UserProfileProps) {
+  const { user } = useUser();
+
   if (!isExpanded) {
     return (
       <div className="flex flex-col items-center p-4">
         <Avatar className="h-12 w-12">
-          <AvatarImage src="/api/placeholder/90/90" alt="Bhaskar Ghosh" />
+          <AvatarImage src={getProfileImageSrc(user)} alt={user.name} />
           <AvatarFallback className="bg-azure-24 text-white font-semibold">
-            BG
+            {getUserInitials(user.name)}
           </AvatarFallback>
         </Avatar>
       </div>
@@ -22,16 +25,16 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
   return (
     <div className="flex flex-col items-center gap-4 p-4 border-b border-gray-300">
       <Avatar className="h-20 w-20">
-        <AvatarImage src="/api/placeholder/90/90" alt="Bhaskar Ghosh" />
+        <AvatarImage src={getProfileImageSrc(user)} alt={user.name} />
         <AvatarFallback className="bg-azure-24 text-white font-semibold text-xl">
-          BG
+          {getUserInitials(user.name)}
         </AvatarFallback>
       </Avatar>
 
       <div className="flex flex-col items-center gap-2 text-center">
         <div className="flex items-center gap-2">
           <h3 className="font-bold text-azure-24 text-base leading-tight">
-            Bhaskar Ghosh
+            {user.name}
           </h3>
           <svg
             width="12"
@@ -48,15 +51,13 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
           </svg>
         </div>
 
-        <p className="text-xs text-azure-24 leading-tight">
-          Executive Director
-        </p>
+        <p className="text-xs text-azure-24 leading-tight">{user.position}</p>
 
         <Badge
           variant="default"
           className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-xl"
         >
-          Authority Level 1
+          Authority Level {user.authorityLevel}
         </Badge>
       </div>
     </div>

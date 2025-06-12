@@ -360,11 +360,6 @@ const ChartCard: React.FC<ChartCardProps> = ({ title, children, subtitle }) => {
             </p>
           )}
         </div>
-        <div className="flex items-center justify-center sm:pl-[20px] lg:pl-[51px]">
-          <div className="w-4 h-4 sm:w-5 sm:h-5 border border-[#DCDEE4] rounded-full bg-white flex items-center justify-center p-1">
-            <div className="w-full h-full" />
-          </div>
-        </div>
       </div>
 
       {/* Content */}
