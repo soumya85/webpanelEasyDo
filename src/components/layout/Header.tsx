@@ -279,15 +279,17 @@ export function Header() {
           "transition-all duration-300",
         )}
       >
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2 text-xs max-w-[60%] overflow-hidden">
-            <span className="font-semibold text-azure-24 truncate">
+        <div className="flex items-start justify-between px-4 py-3">
+          <div className="flex flex-col gap-1 text-xs max-w-[65%]">
+            <span className="font-semibold text-azure-24 leading-tight">
               {selectedCompany}
             </span>
-            <ChevronDown className="h-3 w-3 text-gray-500 -rotate-90 flex-shrink-0" />
-            <span className="text-gray-700 truncate whitespace-nowrap">
-              {selectedBranch}
-            </span>
+            <div className="flex items-center gap-2">
+              <ChevronDown className="h-3 w-3 text-gray-500 -rotate-90 flex-shrink-0" />
+              <span className="text-gray-700 leading-tight">
+                {selectedBranch}
+              </span>
+            </div>
           </div>
 
           <Button
