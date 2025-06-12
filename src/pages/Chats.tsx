@@ -549,7 +549,7 @@ const Chats: React.FC = () => {
             </span>
           </div>
 
-          {sampleMessages.map((message) => (
+          {messages.map((message) => (
             <MessageBubble key={message.id} message={message} />
           ))}
 
