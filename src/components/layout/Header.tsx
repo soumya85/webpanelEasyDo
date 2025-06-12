@@ -251,25 +251,27 @@ export function Header() {
 
         {/* Right Controls */}
         <div className="flex items-center gap-6">
-          {/* Desktop Icons */}
-          <div className="flex items-center gap-6">
-            {/* Theme Toggle */}
-            <Button variant="ghost" size="icon">
-              <Moon className="h-5 w-5 text-gray-500" />
-            </Button>
+          {/* Desktop Icons - Hidden on Chats page */}
+          {!isChatsPage && (
+            <div className="flex items-center gap-6">
+              {/* Theme Toggle */}
+              <Button variant="ghost" size="icon">
+                <Moon className="h-5 w-5 text-gray-500" />
+              </Button>
 
-            {/* Chat Notification */}
-            <Button variant="ghost" size="icon" className="relative">
-              <MessageSquare className="h-5 w-5 text-gray-500" />
-              <NotificationBadge count={2} variant="success" />
-            </Button>
+              {/* Chat Notification */}
+              <Button variant="ghost" size="icon" className="relative">
+                <MessageSquare className="h-5 w-5 text-gray-500" />
+                <NotificationBadge count={2} variant="success" />
+              </Button>
 
-            {/* Bell Notification */}
-            <Button variant="ghost" size="icon" className="relative">
-              <Bell className="h-5 w-5 text-gray-500" />
-              <NotificationBadge count={3} variant="error" />
-            </Button>
-          </div>
+              {/* Bell Notification */}
+              <Button variant="ghost" size="icon" className="relative">
+                <Bell className="h-5 w-5 text-gray-500" />
+                <NotificationBadge count={3} variant="error" />
+              </Button>
+            </div>
+          )}
 
           {/* User Avatar */}
           <DropdownMenu>
