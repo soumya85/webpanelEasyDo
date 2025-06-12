@@ -29,7 +29,7 @@ export function Sidebar() {
         )}
       >
         {/* Logo Section */}
-        <div className="flex flex-col items-center gap-2 p-4 border-b border-gray-400 flex-shrink-0">
+        <div className="flex flex-col items-center gap-2 px-4 py-4 border-b border-gray-400 flex-shrink-0 h-[86px] justify-center">
           {/* Mobile Close Button */}
           <button
             onClick={() => setMobileOpen(false)}
