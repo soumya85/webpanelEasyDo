@@ -498,6 +498,32 @@ const Chats: React.FC = () => {
     // Handle the selected action
   };
 
+  // Filter chats based on search query and selected filter
+  const filteredChats = chatItems.filter((chat) => {
+    // Search filter
+    const matchesSearch =
+      chat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      chat.lastMessage.toLowerCase().includes(searchQuery.toLowerCase());
+
+    if (!matchesSearch) return false;
+
+    // Category filter
+    switch (selectedFilter) {
+      case "Unread":
+        return chat.unreadCount > 0;
+      case "Groups":
+        return chat.isGroup;
+      case "Labels":
+        return chat.tags && chat.tags.length > 0;
+      case "Archived":
+        return false; // No archived chats in mock data
+      default:
+        return true;
+    }
+  });
+
+  const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
+
   if (selectedChat) {
     return (
       <div
