@@ -30,111 +30,34 @@ const App = () => (
       <BrowserRouter>
         <UserProvider>
           <SidebarProvider>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <PageLayout>
-                    <Overview />
-                  </PageLayout>
-                }
-              />
-              <Route path="/chats" element={<Chats />} />
-              <Route
-                path="/todays-schedule"
-                element={
-                  <PageLayout>
-                    <TodaysSchedule />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/employee-dashboard"
-                element={
-                  <PageLayout>
-                    <EmployeeDashboard />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/company-dashboard"
-                element={
-                  <PageLayout>
-                    <CompanyDashboard />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/tasks"
-                element={
-                  <PageLayout>
-                    <Tasks />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/meet"
-                element={
-                  <PageLayout>
-                    <Meet />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/notes-reminder"
-                element={
-                  <PageLayout>
-                    <NotesReminder />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/reports"
-                element={
-                  <PageLayout>
-                    <Reports />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <PageLayout>
-                    <Settings />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/help-support"
-                element={
-                  <PageLayout>
-                    <HelpSupport />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <PageLayout>
-                    <Profile />
-                  </PageLayout>
-                }
-              />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route
-                path="*"
-                element={
-                  <PageLayout>
-                    <NotFound />
-                  </PageLayout>
-                }
-              />
-            </Routes>
+            <PageLayout>
+              <Routes>
+                <Route path="/" element={<Overview />} />
+                <Route path="/chats" element={<Chats />} />
+                <Route path="/todays-schedule" element={<TodaysSchedule />} />
+                <Route
+                  path="/employee-dashboard"
+                  element={<EmployeeDashboard />}
+                />
+                <Route
+                  path="/company-dashboard"
+                  element={<CompanyDashboard />}
+                />
+                <Route path="/tasks" element={<Tasks />} />
+                <Route path="/meet" element={<Meet />} />
+                <Route path="/notes-reminder" element={<NotesReminder />} />
+                <Route path="/reports" element={<Reports />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/help-support" element={<HelpSupport />} />
+                <Route path="/profile" element={<Profile />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </PageLayout>
           </SidebarProvider>
         </UserProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
-
 export default App;
