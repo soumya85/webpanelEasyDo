@@ -199,6 +199,283 @@ const ChevronRightIcon = () => (
   </svg>
 );
 
+// Date Range Types
+type DateRangeOption =
+  | "TODAY"
+  | "YESTERDAY"
+  | "LAST_7_DAYS"
+  | "LAST_30_DAYS"
+  | "THIS_MONTH"
+  | "LAST_MONTH"
+  | "CUSTOM_RANGE";
+
+interface DateRange {
+  start: Date;
+  end: Date;
+  label: string;
+}
+
+// Date Range Picker Component
+const DateRangePicker: React.FC<{
+  selectedRange: DateRangeOption;
+  onRangeChange: (range: DateRangeOption) => void;
+  currentLabel: string;
+}> = ({ selectedRange, onRangeChange, currentLabel }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const options = [
+    { value: "TODAY" as DateRangeOption, label: "TODAY" },
+    { value: "YESTERDAY" as DateRangeOption, label: "YESTERDAY" },
+    { value: "LAST_7_DAYS" as DateRangeOption, label: "LAST 7 DAYS" },
+    { value: "LAST_30_DAYS" as DateRangeOption, label: "LAST 30 DAYS" },
+    { value: "THIS_MONTH" as DateRangeOption, label: "THIS MONTH" },
+    { value: "LAST_MONTH" as DateRangeOption, label: "LAST MONTH" },
+    { value: "CUSTOM_RANGE" as DateRangeOption, label: "CUSTOM RANGE" },
+  ];
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={cn(
+          "text-[#283C50] font-inter text-xs font-normal leading-[19.2px] uppercase",
+          "flex items-center justify-between px-4 py-[10.5px] min-w-[200px] rounded-[5px]",
+          "border border-[#DCDEE4] bg-white hover:bg-gray-50 transition-colors",
+        )}
+      >
+        <span>{currentLabel}</span>
+        <ChevronDown className="w-4 h-4 ml-2" />
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setIsOpen(false)}
+          />
+          <div
+            className={cn(
+              "absolute top-full left-0 mt-1 w-full min-w-[200px] z-20",
+              "bg-white border border-[#DCDEE4] rounded-[5px] shadow-lg",
+            )}
+          >
+            {options.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => {
+                  onRangeChange(option.value);
+                  setIsOpen(false);
+                }}
+                className={cn(
+                  "w-full text-left px-4 py-3 text-sm font-medium hover:bg-gray-50",
+                  "transition-colors border-b border-gray-100 last:border-b-0",
+                  selectedRange === option.value
+                    ? "bg-[#4766E5] text-white hover:bg-[#4766E5]"
+                    : "text-[#283C50]",
+                )}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+// Date Range Calculator
+const calculateDateRange = (option: DateRangeOption): DateRange => {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  switch (option) {
+    case "TODAY":
+      return {
+        start: today,
+        end: today,
+        label: `${today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "YESTERDAY":
+      const yesterday = new Date(today);
+      yesterday.setDate(yesterday.getDate() - 1);
+      return {
+        start: yesterday,
+        end: yesterday,
+        label: `${yesterday.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "LAST_7_DAYS":
+      const last7Start = new Date(today);
+      last7Start.setDate(last7Start.getDate() - 6);
+      return {
+        start: last7Start,
+        end: today,
+        label: `${last7Start.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()} - ${today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "LAST_30_DAYS":
+      const last30Start = new Date(today);
+      last30Start.setDate(last30Start.getDate() - 29);
+      return {
+        start: last30Start,
+        end: today,
+        label: `${last30Start.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()} - ${today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "THIS_MONTH":
+      const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+      const thisMonthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+      return {
+        start: thisMonthStart,
+        end: thisMonthEnd,
+        label: `${thisMonthStart.toLocaleDateString("en-US", { month: "short", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "LAST_MONTH":
+      const lastMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+      const lastMonthEnd = new Date(now.getFullYear(), now.getMonth(), 0);
+      return {
+        start: lastMonthStart,
+        end: lastMonthEnd,
+        label: `${lastMonthStart.toLocaleDateString("en-US", { month: "short", year: "2-digit" }).toUpperCase()}`,
+      };
+
+    case "CUSTOM_RANGE":
+    default:
+      // Default to MAY 14, 25 - JUN 12, 25 as shown in screenshot
+      const customStart = new Date(2025, 4, 14); // May 14, 2025
+      const customEnd = new Date(2025, 5, 12); // Jun 12, 2025
+      return {
+        start: customStart,
+        end: customEnd,
+        label: "MAY 14, 25 - JUN 12, 25",
+      };
+  }
+};
+
+// Data Generator Functions
+const generateKPIData = (dateRange: DateRange) => {
+  // Simulate different data based on date range
+  const daysDiff =
+    Math.ceil(
+      (dateRange.end.getTime() - dateRange.start.getTime()) /
+        (1000 * 60 * 60 * 24),
+    ) + 1;
+
+  // Base multiplier based on range duration
+  const multiplier = Math.min(daysDiff / 30, 2); // Cap at 2x for longer ranges
+
+  return {
+    totalEmployees: Math.floor(100 + multiplier * 20),
+    employeesOnLeave: Math.floor(8 + multiplier * 4),
+    newJoinees: Math.floor(2 + multiplier * 3),
+    totalHoliday: Math.floor(3 + multiplier * 2),
+  };
+};
+
+const generateSalaryData = (dateRange: DateRange) => {
+  const months = [
+    "Apr 25",
+    "May 25",
+    "Jun 25",
+    "Jul 25",
+    "Aug 25",
+    "Sep 25",
+    "Oct 25",
+    "Nov 25",
+    "Dec 25",
+    "Jan 26",
+    "Feb 26",
+    "Mar 26",
+  ];
+
+  return months.map((month, index) => ({
+    month,
+    salary: index < 3 ? Math.floor(150000 + Math.random() * 100000) : 0,
+  }));
+};
+
+const generateAttendanceStatusData = (dateRange: DateRange) => {
+  return [
+    {
+      name: "Present",
+      value: Math.floor(50 + Math.random() * 30),
+      color: "#4ADE80",
+    },
+    {
+      name: "Absent",
+      value: Math.floor(15 + Math.random() * 15),
+      color: "#9CA3AF",
+    },
+    {
+      name: "Leave",
+      value: Math.floor(5 + Math.random() * 10),
+      color: "#FB923C",
+    },
+    {
+      name: "Late",
+      value: Math.floor(2 + Math.random() * 8),
+      color: "#EF4444",
+    },
+    {
+      name: "Half Day",
+      value: Math.floor(1 + Math.random() * 4),
+      color: "#7DD3FC",
+    },
+  ];
+};
+
+const generateSalaryRangeData = (dateRange: DateRange) => {
+  return [
+    {
+      name: "Below-25000",
+      value: Math.floor(15 + Math.random() * 10),
+      color: "#F472B6",
+    },
+    {
+      name: "25001-50000",
+      value: Math.floor(25 + Math.random() * 20),
+      color: "#60A5FA",
+    },
+    {
+      name: "50001-75000",
+      value: Math.floor(10 + Math.random() * 15),
+      color: "#FBBF24",
+    },
+    {
+      name: "Above-75000",
+      value: Math.floor(20 + Math.random() * 20),
+      color: "#6EE7B7",
+    },
+  ];
+};
+
+const generateMonthlyAttendanceData = (dateRange: DateRange) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+  ];
+
+  return months.map((month, index) => ({
+    month,
+    Present: index < 5 ? Math.floor(60 + Math.random() * 20) : 0,
+    Absent: index < 5 ? Math.floor(10 + Math.random() * 15) : 0,
+    Leave: index < 5 ? Math.floor(5 + Math.random() * 10) : 0,
+    Late: index < 5 ? Math.floor(2 + Math.random() * 5) : 0,
+    Half: index < 5 ? Math.floor(1 + Math.random() * 3) : 0,
+  }));
+};
+
 // Chart Data
 const salaryData = [
   { month: "Apr 25", salary: 200000 },
