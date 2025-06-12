@@ -415,7 +415,7 @@ const TotalEmployeesIcon = () => (
   <div
     className={cn(
       "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
-      "rounded-full bg-[#F6F7FA] flex-shrink-0",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
