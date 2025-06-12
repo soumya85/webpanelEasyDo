@@ -196,8 +196,8 @@ const Overview: React.FC = () => {
       {/* Page Area */}
       <div
         className={cn(
-          "flex w-full pr-4 pt-6 pb-6 pl-4 flex-col items-start gap-6",
-          "relative ml-[280px]",
+          "flex w-full pr-4 pt-2 pb-6 pl-4 flex-col items-start gap-6",
+          "relative",
         )}
       >
         {/* Breadcrumb Section Row */}
