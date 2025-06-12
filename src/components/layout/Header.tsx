@@ -33,7 +33,10 @@ export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
   const { user } = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
   const [showMobileFilter, setShowMobileFilter] = useState(false);
+
+  const isChatsPage = location.pathname === "/chats";
   const [selectedCompany, setSelectedCompany] = useState(
     "Liberty Highrise PVT Ltd",
   );
