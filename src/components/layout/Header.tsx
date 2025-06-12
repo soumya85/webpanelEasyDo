@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
