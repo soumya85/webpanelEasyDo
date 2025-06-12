@@ -280,12 +280,14 @@ export function Header() {
         )}
       >
         <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2 text-sm">
-            <span className="font-semibold text-azure-24">
+          <div className="flex items-center gap-2 text-xs max-w-[60%] overflow-hidden">
+            <span className="font-semibold text-azure-24 truncate">
               {selectedCompany}
             </span>
-            <ChevronDown className="h-4 w-4 text-gray-500 -rotate-90" />
-            <span className="text-gray-700">{selectedBranch}</span>
+            <ChevronDown className="h-3 w-3 text-gray-500 -rotate-90 flex-shrink-0" />
+            <span className="text-gray-700 truncate whitespace-nowrap">
+              {selectedBranch}
+            </span>
           </div>
 
           <Button
