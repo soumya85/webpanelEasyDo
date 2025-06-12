@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { PageLayout } from "@/components/layout/PageLayout";
 import {
   BarChart,
   Bar,
@@ -550,286 +549,278 @@ const Overview: React.FC = () => {
   );
 
   return (
-    <PageLayout>
-      <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
-        {/* Page Area */}
+    <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
+      {/* Page Area */}
+      <div
+        className={cn(
+          "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
+        )}
+      >
+        {/* Breadcrumb Section Row */}
         <div
           className={cn(
-            "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
+            "flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px]",
+            "px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px]",
+            "justify-between items-center self-stretch",
+            "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
+            "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+            "flex-row gap-2 lg:gap-0",
           )}
         >
-          {/* Breadcrumb Section Row */}
-          <div
-            className={cn(
-              "flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px]",
-              "px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px]",
-              "justify-between items-center self-stretch",
-              "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
-              "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-              "flex-row gap-2 lg:gap-0",
-            )}
-          >
-            {/* Breadcrumb Navigation */}
-            <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
-              <div className="text-[#283C50] font-inter text-base sm:text-xl lg:text-base font-bold leading-[20px] sm:leading-[24px] lg:leading-[19.2px]">
-                Overview
-              </div>
-              <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
-                |
-              </div>
-              <div className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px] hidden sm:block">
-                Liberty Highrise PVT Ltd
-              </div>
-              <div className="hidden sm:block">
-                <ChevronRightIcon />
-              </div>
-              <div className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
-                All Branch
-              </div>
+          {/* Breadcrumb Navigation */}
+          <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
+            <div className="text-[#283C50] font-inter text-base sm:text-xl lg:text-base font-bold leading-[20px] sm:leading-[24px] lg:leading-[19.2px]">
+              Overview
             </div>
-
-            {/* Filter Controls */}
-            <div className="flex justify-end items-center gap-2 lg:gap-[10px] flex-shrink-0">
-              <DateRangePicker
-                selectedRange={selectedDateRange}
-                onRangeChange={setSelectedDateRange}
-                currentLabel={currentDateRange.label}
-              />
+            <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
+              |
+            </div>
+            <div className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px] hidden sm:block">
+              Liberty Highrise PVT Ltd
+            </div>
+            <div className="hidden sm:block">
+              <ChevronRightIcon />
+            </div>
+            <div className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
+              All Branch
             </div>
           </div>
 
-          {/* KPI Cards Row */}
-          <div
-            className={cn(
-              "grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap lg:flex-nowrap",
-              "gap-3 sm:gap-4 lg:gap-5 w-full",
-              "sm:justify-start sm:items-stretch self-stretch",
-            )}
-          >
-            <KPICard
-              icon={<TotalEmployeesIcon />}
-              value={kpiData.totalEmployees.toString()}
-              label="Total Employees"
-            />
-            <KPICard
-              icon={<EmployeesOnLeaveIcon />}
-              value={kpiData.employeesOnLeave.toString()}
-              label="Employees On Leave"
-            />
-            <KPICard
-              icon={<NewJoineesIcon />}
-              value={kpiData.newJoinees.toString()}
-              label="New Joinees"
-            />
-            <KPICard
-              icon={<TotalHolidayIcon />}
-              value={kpiData.totalHoliday.toString()}
-              label="Total Holiday"
+          {/* Filter Controls */}
+          <div className="flex justify-end items-center gap-2 lg:gap-[10px] flex-shrink-0">
+            <DateRangePicker
+              selectedRange={selectedDateRange}
+              onRangeChange={setSelectedDateRange}
+              currentLabel={currentDateRange.label}
             />
           </div>
+        </div>
 
-          {/* Analytics Section */}
-          <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
-            {/* First Row of Charts */}
-            <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
-              {/* Salary Data Chart */}
-              <ChartCard title="Salary Data Of Financial Year 2025-26">
-                <div className="h-full flex flex-col w-full">
-                  <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
-                    <CustomLegend
-                      data={[
-                        { name: "Total Employee Salary", color: "#7DD3FC" },
-                      ]}
-                      className="justify-start"
-                    />
-                  </div>
-                  <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
-                    <ResponsiveContainer
-                      width="100%"
-                      height="100%"
-                      minHeight={250}
-                    >
-                      <BarChart
-                        data={salaryData}
-                        margin={{ top: 5, right: 5, left: 5, bottom: 60 }}
-                      >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                        <XAxis
-                          dataKey="month"
-                          tick={{ fontSize: 9, fill: "#6B7280" }}
-                          axisLine={{ stroke: "#E5E7EB" }}
-                          interval={0}
-                          angle={-45}
-                          textAnchor="end"
-                          height={50}
-                        />
-                        <YAxis
-                          tickFormatter={formatCurrency}
-                          tick={{ fontSize: 9, fill: "#6B7280" }}
-                          axisLine={{ stroke: "#E5E7EB" }}
-                          width={60}
-                        />
-                        <Tooltip
-                          formatter={(value) => [
-                            formatCurrency(value as number),
-                            "Total Employee Salary",
-                          ]}
-                        />
-                        <Bar
-                          dataKey="salary"
-                          fill="#7DD3FC"
-                          radius={[4, 4, 0, 0]}
-                        />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
+        {/* KPI Cards Row */}
+        <div
+          className={cn(
+            "grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap lg:flex-nowrap",
+            "gap-3 sm:gap-4 lg:gap-5 w-full",
+            "sm:justify-start sm:items-stretch self-stretch",
+          )}
+        >
+          <KPICard
+            icon={<TotalEmployeesIcon />}
+            value={kpiData.totalEmployees.toString()}
+            label="Total Employees"
+          />
+          <KPICard
+            icon={<EmployeesOnLeaveIcon />}
+            value={kpiData.employeesOnLeave.toString()}
+            label="Employees On Leave"
+          />
+          <KPICard
+            icon={<NewJoineesIcon />}
+            value={kpiData.newJoinees.toString()}
+            label="New Joinees"
+          />
+          <KPICard
+            icon={<TotalHolidayIcon />}
+            value={kpiData.totalHoliday.toString()}
+            label="Total Holiday"
+          />
+        </div>
+
+        {/* Analytics Section */}
+        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
+          {/* First Row of Charts */}
+          <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
+            {/* Salary Data Chart */}
+            <ChartCard title="Salary Data Of Financial Year 2025-26">
+              <div className="h-full flex flex-col w-full">
+                <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
+                  <CustomLegend
+                    data={[{ name: "Total Employee Salary", color: "#7DD3FC" }]}
+                    className="justify-start"
+                  />
                 </div>
-              </ChartCard>
-
-              {/* Attendance Status Chart */}
-              <ChartCard
-                title="Attendance Status"
-                subtitle={`Total Employees: ${kpiData.totalEmployees}`}
-              >
-                <div className="h-full flex flex-col items-center w-full">
-                  <div
-                    className="flex-1 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[350px]"
-                    style={{ minHeight: "200px" }}
+                <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={250}
                   >
-                    <ResponsiveContainer
-                      width="100%"
-                      height="100%"
-                      minHeight={200}
+                    <BarChart
+                      data={salaryData}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 60 }}
                     >
-                      <PieChart
-                        margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-                      >
-                        <Pie
-                          data={attendanceStatusData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={0}
-                          outerRadius="75%"
-                          paddingAngle={2}
-                          dataKey="value"
-                        >
-                          {attendanceStatusData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          formatter={(value) => [`${value}%`, "Percentage"]}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
-                    <CustomLegend data={attendanceStatusData} />
-                  </div>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                      <XAxis
+                        dataKey="month"
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                        interval={0}
+                        angle={-45}
+                        textAnchor="end"
+                        height={50}
+                      />
+                      <YAxis
+                        tickFormatter={formatCurrency}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                        width={60}
+                      />
+                      <Tooltip
+                        formatter={(value) => [
+                          formatCurrency(value as number),
+                          "Total Employee Salary",
+                        ]}
+                      />
+                      <Bar
+                        dataKey="salary"
+                        fill="#7DD3FC"
+                        radius={[4, 4, 0, 0]}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
                 </div>
-              </ChartCard>
-            </div>
+              </div>
+            </ChartCard>
 
-            {/* Second Row of Charts */}
-            <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
-              {/* Employee Count by Salary Range Chart */}
-              <ChartCard title="Employee Count By Salary Range">
-                <div className="h-full flex flex-col items-center w-full">
-                  <div
-                    className="flex-1 w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]"
-                    style={{ minHeight: "200px" }}
+            {/* Attendance Status Chart */}
+            <ChartCard
+              title="Attendance Status"
+              subtitle={`Total Employees: ${kpiData.totalEmployees}`}
+            >
+              <div className="h-full flex flex-col items-center w-full">
+                <div
+                  className="flex-1 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[350px]"
+                  style={{ minHeight: "200px" }}
+                >
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={200}
                   >
-                    <ResponsiveContainer
-                      width="100%"
-                      height="100%"
-                      minHeight={200}
-                    >
-                      <PieChart
-                        margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
+                    <PieChart margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+                      <Pie
+                        data={attendanceStatusData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={0}
+                        outerRadius="75%"
+                        paddingAngle={2}
+                        dataKey="value"
                       >
-                        <Pie
-                          data={salaryRangeData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={0}
-                          outerRadius="75%"
-                          paddingAngle={2}
-                          dataKey="value"
-                        >
-                          {salaryRangeData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          formatter={(value) => [`${value}%`, "Percentage"]}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
-                    <CustomLegend data={salaryRangeData} />
-                  </div>
+                        {attendanceStatusData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => [`${value}%`, "Percentage"]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
                 </div>
-              </ChartCard>
+                <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
+                  <CustomLegend data={attendanceStatusData} />
+                </div>
+              </div>
+            </ChartCard>
+          </div>
 
-              {/* Monthly Attendance Summary Chart */}
-              <ChartCard
-                title="Attendance Summary"
-                subtitle="Monthly Attendance Summary for 2025"
-              >
-                <div className="h-full flex flex-col w-full">
-                  <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
-                    <CustomLegend
-                      data={[
-                        { name: "Present", color: "#4ADE80" },
-                        { name: "Absent", color: "#9CA3AF" },
-                        { name: "Leave", color: "#FB923C" },
-                        { name: "Late", color: "#EF4444" },
-                        { name: "Half Day", color: "#7DD3FC" },
-                      ]}
-                      className="justify-start"
-                    />
-                  </div>
-                  <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
-                    <ResponsiveContainer
-                      width="100%"
-                      height="100%"
-                      minHeight={250}
-                    >
-                      <BarChart
-                        data={monthlyAttendanceData}
-                        margin={{ top: 5, right: 5, left: 5, bottom: 20 }}
+          {/* Second Row of Charts */}
+          <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
+            {/* Employee Count by Salary Range Chart */}
+            <ChartCard title="Employee Count By Salary Range">
+              <div className="h-full flex flex-col items-center w-full">
+                <div
+                  className="flex-1 w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]"
+                  style={{ minHeight: "200px" }}
+                >
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={200}
+                  >
+                    <PieChart margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+                      <Pie
+                        data={salaryRangeData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={0}
+                        outerRadius="75%"
+                        paddingAngle={2}
+                        dataKey="value"
                       >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                        <XAxis
-                          dataKey="month"
-                          tick={{ fontSize: 9, fill: "#6B7280" }}
-                          axisLine={{ stroke: "#E5E7EB" }}
-                          height={40}
-                        />
-                        <YAxis
-                          domain={[0, 100]}
-                          tickFormatter={(value) => `${value}%`}
-                          tick={{ fontSize: 9, fill: "#6B7280" }}
-                          axisLine={{ stroke: "#E5E7EB" }}
-                          width={50}
-                        />
-                        <Tooltip formatter={(value) => [`${value}%`, ""]} />
-                        <Bar dataKey="Present" stackId="a" fill="#4ADE80" />
-                        <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
-                        <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
-                        <Bar dataKey="Late" stackId="a" fill="#EF4444" />
-                        <Bar dataKey="Half" stackId="a" fill="#7DD3FC" />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
+                        {salaryRangeData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => [`${value}%`, "Percentage"]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
                 </div>
-              </ChartCard>
-            </div>
+                <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
+                  <CustomLegend data={salaryRangeData} />
+                </div>
+              </div>
+            </ChartCard>
+
+            {/* Monthly Attendance Summary Chart */}
+            <ChartCard
+              title="Attendance Summary"
+              subtitle="Monthly Attendance Summary for 2025"
+            >
+              <div className="h-full flex flex-col w-full">
+                <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
+                  <CustomLegend
+                    data={[
+                      { name: "Present", color: "#4ADE80" },
+                      { name: "Absent", color: "#9CA3AF" },
+                      { name: "Leave", color: "#FB923C" },
+                      { name: "Late", color: "#EF4444" },
+                      { name: "Half Day", color: "#7DD3FC" },
+                    ]}
+                    className="justify-start"
+                  />
+                </div>
+                <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={250}
+                  >
+                    <BarChart
+                      data={monthlyAttendanceData}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 20 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                      <XAxis
+                        dataKey="month"
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                        height={40}
+                      />
+                      <YAxis
+                        domain={[0, 100]}
+                        tickFormatter={(value) => `${value}%`}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                        width={50}
+                      />
+                      <Tooltip formatter={(value) => [`${value}%`, ""]} />
+                      <Bar dataKey="Present" stackId="a" fill="#4ADE80" />
+                      <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
+                      <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
+                      <Bar dataKey="Late" stackId="a" fill="#EF4444" />
+                      <Bar dataKey="Half" stackId="a" fill="#7DD3FC" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </ChartCard>
           </div>
         </div>
       </div>
-    </PageLayout>
+    </div>
   );
 };
 
