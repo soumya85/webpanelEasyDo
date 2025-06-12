@@ -339,14 +339,14 @@ const ChartCard: React.FC<ChartCardProps> = ({ title, children, subtitle }) => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "h-[350px] sm:h-[400px] lg:h-[492.8px] flex-1 min-w-0",
+        "h-[400px] sm:h-[450px] lg:h-[492.8px] flex-1 min-w-0 w-full",
       )}
     >
       {/* Header */}
       <div
         className={cn(
-          "flex items-start sm:items-center justify-between px-4 py-4 sm:px-[20px] sm:py-[20px] lg:px-[25px] lg:py-[25px]",
-          "border-b border-[#E5E7EB] rounded-t-[5px]",
+          "flex items-start sm:items-center justify-between px-4 py-3 sm:px-[20px] sm:py-[20px] lg:px-[25px] lg:py-[25px]",
+          "border-b border-[#E5E7EB] rounded-t-[5px] flex-shrink-0",
           "flex-col sm:flex-row gap-2 sm:gap-0",
         )}
       >
@@ -368,7 +368,9 @@ const ChartCard: React.FC<ChartCardProps> = ({ title, children, subtitle }) => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-3 sm:p-4 overflow-hidden">{children}</div>
+      <div className="flex-1 p-3 sm:p-4 min-h-0 w-full relative">
+        {children}
+      </div>
     </div>
   );
 };
