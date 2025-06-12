@@ -310,7 +310,7 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
         "flex items-center gap-4 sm:gap-6 lg:gap-7 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
         "px-3 py-4 sm:px-4 sm:py-0 h-[120px] sm:h-[140px] lg:h-[154px]",
-        "flex-1 min-w-[250px] sm:min-w-[280px] lg:min-w-[257px]",
+        "w-full sm:flex-1 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
       <div className="flex-shrink-0">{icon}</div>
