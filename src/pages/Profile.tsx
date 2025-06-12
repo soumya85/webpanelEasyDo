@@ -28,6 +28,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "@/hooks/use-toast";
+import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 import {
   User,
   Mail,
@@ -52,19 +53,6 @@ import {
   EyeOff,
 } from "lucide-react";
 
-interface ProfileData {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  department: string;
-  position: string;
-  employeeId: string;
-  joinDate: string;
-  bio: string;
-  profileImage: string | null;
-}
-
 interface NotificationSettings {
   emailNotifications: boolean;
   pushNotifications: boolean;
@@ -83,6 +71,7 @@ interface SecuritySettings {
 }
 
 const Profile: React.FC = () => {
+  const { user, updateUser, updateProfileImage } = useUser();
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState<
     "profile" | "settings" | "activity"
@@ -93,20 +82,9 @@ const Profile: React.FC = () => {
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [profileData, setProfileData] = useState<ProfileData>({
-    name: "Bhaskar Ghosh",
-    email: "bhaskar.ghosh@libertyhighrise.com",
-    phone: "+91 98765 43210",
-    address: "Mumbai, Maharashtra, India",
-    department: "Executive Management",
-    position: "Executive Director",
-    employeeId: "LH001",
-    joinDate: "2018-01-15",
-    bio: "Experienced executive director with over 15 years in the industry. Leading digital transformation initiatives and strategic planning for Liberty Highrise.",
-    profileImage: null,
-  });
-
-  const [originalData, setOriginalData] = useState(profileData);
+  // Local state for editing
+  const [editingUser, setEditingUser] = useState(user);
+  const [originalUser, setOriginalUser] = useState(user);
 
   const [notifications, setNotifications] = useState<NotificationSettings>({
     emailNotifications: true,
@@ -154,13 +132,14 @@ const Profile: React.FC = () => {
   ];
 
   const handleEdit = () => {
-    setOriginalData(profileData);
+    setOriginalUser(user);
+    setEditingUser(user);
     setIsEditing(true);
   };
 
   const handleSave = () => {
     // Validation
-    if (!profileData.name.trim()) {
+    if (!editingUser.name.trim()) {
       toast({
         title: "Error",
         description: "Name is required",
@@ -169,7 +148,7 @@ const Profile: React.FC = () => {
       return;
     }
 
-    if (!profileData.email.trim() || !isValidEmail(profileData.email)) {
+    if (!editingUser.email.trim() || !isValidEmail(editingUser.email)) {
       toast({
         title: "Error",
         description: "Please enter a valid email address",
@@ -178,12 +157,12 @@ const Profile: React.FC = () => {
       return;
     }
 
-    // If there's a preview image, update the profile image
+    // Update global user state
+    updateUser(editingUser);
+
+    // If there's a preview image, update the profile image globally
     if (profileImagePreview) {
-      setProfileData((prev) => ({
-        ...prev,
-        profileImage: profileImagePreview,
-      }));
+      updateProfileImage(profileImagePreview);
       setProfileImagePreview(null);
     }
 
@@ -194,17 +173,20 @@ const Profile: React.FC = () => {
     });
 
     // Here you would typically save to backend
-    console.log("Saving profile data:", profileData);
+    console.log("Saving profile data:", editingUser);
   };
 
   const handleCancel = () => {
-    setProfileData(originalData);
+    setEditingUser(originalUser);
     setProfileImagePreview(null);
     setIsEditing(false);
   };
 
-  const handleInputChange = (field: keyof ProfileData, value: string) => {
-    setProfileData((prev) => ({
+  const handleInputChange = (
+    field: keyof typeof editingUser,
+    value: string,
+  ) => {
+    setEditingUser((prev) => ({
       ...prev,
       [field]: value,
     }));
@@ -243,12 +225,14 @@ const Profile: React.FC = () => {
 
   const handleRemoveImage = () => {
     setProfileImagePreview(null);
-    setProfileData((prev) => ({
-      ...prev,
-      profileImage: null,
-    }));
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+    if (isEditing) {
+      // If editing, just clear preview
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } else {
+      // If not editing, immediately remove from global state
+      updateProfileImage(null);
     }
   };
 
@@ -305,12 +289,10 @@ const Profile: React.FC = () => {
   };
 
   const getCurrentProfileImage = () => {
-    return (
-      profileImagePreview ||
-      profileData.profileImage ||
-      "/api/placeholder/128/128"
-    );
+    return profileImagePreview || getProfileImageSrc(user);
   };
+
+  const displayUser = isEditing ? editingUser : user;
 
   return (
     <div className="w-full p-3 sm:p-4 lg:p-6 font-inter">
@@ -378,13 +360,10 @@ const Profile: React.FC = () => {
                   <Avatar className="h-24 w-24 sm:h-32 sm:w-32">
                     <AvatarImage
                       src={getCurrentProfileImage()}
-                      alt={profileData.name}
+                      alt={displayUser.name}
                     />
                     <AvatarFallback className="bg-azure-24 text-white text-2xl sm:text-3xl font-bold">
-                      {profileData.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
+                      {getUserInitials(displayUser.name)}
                     </AvatarFallback>
                   </Avatar>
                   {isEditing && (
@@ -397,7 +376,7 @@ const Profile: React.FC = () => {
                       >
                         <Camera className="h-4 w-4" />
                       </Button>
-                      {(profileData.profileImage || profileImagePreview) && (
+                      {(user.profileImage || profileImagePreview) && (
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
                             <Button
@@ -430,6 +409,43 @@ const Profile: React.FC = () => {
                           </AlertDialogContent>
                         </AlertDialog>
                       )}
+                    </div>
+                  )}
+                  {/* Remove button for non-editing mode */}
+                  {!isEditing && user.profileImage && (
+                    <div className="absolute -bottom-2 -right-2">
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            size="icon"
+                            variant="destructive"
+                            className="h-8 w-8 rounded-full"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Remove Profile Picture
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Are you sure you want to remove your profile
+                              picture? This will immediately update your profile
+                              across the application.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={handleRemoveImage}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              Remove
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
                   )}
                   <input
@@ -466,7 +482,7 @@ const Profile: React.FC = () => {
                     variant="default"
                     className="bg-primary text-white px-3 py-1"
                   >
-                    Authority Level 1
+                    Authority Level {user.authorityLevel}
                   </Badge>
                 </div>
               </div>
@@ -481,7 +497,7 @@ const Profile: React.FC = () => {
                     {isEditing ? (
                       <Input
                         id="name"
-                        value={profileData.name}
+                        value={editingUser.name}
                         onChange={(e) =>
                           handleInputChange("name", e.target.value)
                         }
@@ -492,7 +508,7 @@ const Profile: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <User className="h-4 w-4 text-gray-500" />
                         <span className="text-base font-semibold text-azure-24">
-                          {profileData.name}
+                          {displayUser.name}
                         </span>
                         <div className="flex items-center">
                           <svg
@@ -519,7 +535,7 @@ const Profile: React.FC = () => {
                     </Label>
                     {isEditing ? (
                       <Select
-                        value={profileData.position}
+                        value={editingUser.position}
                         onValueChange={(value) =>
                           handleInputChange("position", value)
                         }
@@ -551,7 +567,7 @@ const Profile: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <Building className="h-4 w-4 text-gray-500" />
                         <span className="text-sm text-azure-24">
-                          {profileData.position}
+                          {displayUser.position}
                         </span>
                       </div>
                     )}
@@ -565,7 +581,7 @@ const Profile: React.FC = () => {
                       <Input
                         id="email"
                         type="email"
-                        value={profileData.email}
+                        value={editingUser.email}
                         onChange={(e) =>
                           handleInputChange("email", e.target.value)
                         }
@@ -576,7 +592,7 @@ const Profile: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <Mail className="h-4 w-4 text-gray-500" />
                         <span className="text-sm text-azure-24">
-                          {profileData.email}
+                          {displayUser.email}
                         </span>
                       </div>
                     )}
@@ -589,7 +605,7 @@ const Profile: React.FC = () => {
                     {isEditing ? (
                       <Input
                         id="phone"
-                        value={profileData.phone}
+                        value={editingUser.phone}
                         onChange={(e) =>
                           handleInputChange("phone", e.target.value)
                         }
@@ -600,7 +616,7 @@ const Profile: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <Phone className="h-4 w-4 text-gray-500" />
                         <span className="text-sm text-azure-24">
-                          {profileData.phone}
+                          {displayUser.phone}
                         </span>
                       </div>
                     )}
@@ -612,7 +628,7 @@ const Profile: React.FC = () => {
                     </Label>
                     {isEditing ? (
                       <Select
-                        value={profileData.department}
+                        value={editingUser.department}
                         onValueChange={(value) =>
                           handleInputChange("department", value)
                         }
@@ -643,7 +659,7 @@ const Profile: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <Building className="h-4 w-4 text-gray-500" />
                         <span className="text-sm text-azure-24">
-                          {profileData.department}
+                          {displayUser.department}
                         </span>
                       </div>
                     )}
@@ -656,7 +672,7 @@ const Profile: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-gray-500" />
                       <span className="text-sm text-azure-24">
-                        {new Date(profileData.joinDate).toLocaleDateString(
+                        {new Date(displayUser.joinDate).toLocaleDateString(
                           "en-US",
                           {
                             year: "numeric",
@@ -676,7 +692,7 @@ const Profile: React.FC = () => {
                   {isEditing ? (
                     <Input
                       id="address"
-                      value={profileData.address}
+                      value={editingUser.address}
                       onChange={(e) =>
                         handleInputChange("address", e.target.value)
                       }
@@ -687,7 +703,7 @@ const Profile: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <MapPin className="h-4 w-4 text-gray-500" />
                       <span className="text-sm text-azure-24">
-                        {profileData.address}
+                        {displayUser.address}
                       </span>
                     </div>
                   )}
@@ -740,7 +756,7 @@ const Profile: React.FC = () => {
                   {isEditing ? (
                     <Textarea
                       id="bio"
-                      value={profileData.bio}
+                      value={editingUser.bio}
                       onChange={(e) => handleInputChange("bio", e.target.value)}
                       rows={4}
                       className="w-full"
@@ -748,7 +764,7 @@ const Profile: React.FC = () => {
                     />
                   ) : (
                     <p className="text-sm text-gray-600 leading-relaxed">
-                      {profileData.bio}
+                      {displayUser.bio}
                     </p>
                   )}
                 </div>
@@ -761,7 +777,7 @@ const Profile: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <Shield className="h-4 w-4 text-gray-500" />
                       <span className="text-sm text-azure-24 font-mono">
-                        {profileData.employeeId}
+                        {displayUser.employeeId}
                       </span>
                     </div>
                   </div>
@@ -774,7 +790,7 @@ const Profile: React.FC = () => {
                       <Clock className="h-4 w-4 text-gray-500" />
                       <span className="text-sm text-azure-24">
                         {new Date().getFullYear() -
-                          new Date(profileData.joinDate).getFullYear()}{" "}
+                          new Date(displayUser.joinDate).getFullYear()}{" "}
                         years
                       </span>
                     </div>
