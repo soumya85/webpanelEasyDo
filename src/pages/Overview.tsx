@@ -13,7 +13,7 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
     <div
       className={cn(
         "flex items-center gap-7 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-        "shadow-[0px_1px_3px_0px_rgba(0,0,0,0.10),0px_2px_-1px_0px_rgba(0,0,0,0.10)]",
+        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
         "px-4 py-0 h-[154px] flex-1 min-w-[257px]",
       )}
     >
