@@ -98,10 +98,10 @@ export function Header() {
             </h1>
 
             {/* Create Button */}
-            <button className="flex items-center justify-center w-[32px] h-[30px] bg-[#4766E5] rounded-[3px] border border-[#4766E5]">
+            <button className="flex items-center justify-center w-[26px] h-[24px] bg-[#4766E5] rounded-[3px] border border-[#4766E5]">
               <svg
-                width="18"
-                height="16"
+                width="14"
+                height="12"
                 viewBox="0 0 18 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
