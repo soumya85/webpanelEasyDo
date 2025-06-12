@@ -405,7 +405,7 @@ const CustomLegend: React.FC<{ data: any[]; className?: string }> = ({
 // Format currency for salary chart
 const formatCurrency = (value: number) => {
   if (value >= 100000) {
-    return `₹${(value / 100000).toFixed(0)}L`;
+    return `��${(value / 100000).toFixed(0)}L`;
   }
   return `₹${value.toLocaleString()}`;
 };
@@ -614,15 +614,15 @@ const Overview: React.FC = () => {
           className={cn(
             "flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px]",
             "px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px]",
-            "justify-between items-start sm:items-center self-stretch",
+            "justify-between items-center self-stretch",
             "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
             "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-            "flex-col sm:flex-row gap-3 sm:gap-2 lg:gap-0",
+            "flex-row gap-2 lg:gap-0",
           )}
         >
           {/* Breadcrumb Navigation */}
-          <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap">
-            <div className="text-[#283C50] font-inter text-sm sm:text-base font-bold leading-[16px] sm:leading-[19.2px]">
+          <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
+            <div className="text-[#283C50] font-inter text-lg sm:text-xl lg:text-base font-bold leading-[20px] sm:leading-[24px] lg:leading-[19.2px]">
               Overview
             </div>
             <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
@@ -640,7 +640,7 @@ const Overview: React.FC = () => {
           </div>
 
           {/* Filter Controls */}
-          <div className="flex justify-start sm:justify-center items-center gap-2 lg:gap-[10px] w-full sm:w-auto">
+          <div className="flex justify-end items-center gap-2 lg:gap-[10px] flex-shrink-0">
             <DateRangePicker
               selectedRange={selectedDateRange}
               onRangeChange={setSelectedDateRange}
