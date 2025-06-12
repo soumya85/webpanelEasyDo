@@ -31,27 +31,31 @@ const App = () => (
         <UserProvider>
           <SidebarProvider>
             <PageLayout>
-            <Routes>
-              <Route path="/" element={<Overview />} />
-              <Route path="/chats" element={<Chats />} />
-              <Route path="/todays-schedule" element={<TodaysSchedule />} />
-              <Route
-                path="/employee-dashboard"
-                element={<EmployeeDashboard />}
-              />
-              <Route path="/company-dashboard" element={<CompanyDashboard />} />
-              <Route path="/tasks" element={<Tasks />} />
-              <Route path="/meet" element={<Meet />} />
-              <Route path="/notes-reminder" element={<NotesReminder />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/help-support" element={<HelpSupport />} />
-              <Route path="/profile" element={<Profile />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </PageLayout>
-        </SidebarProvider>
+              <Routes>
+                <Route path="/" element={<Overview />} />
+                <Route path="/chats" element={<Chats />} />
+                <Route path="/todays-schedule" element={<TodaysSchedule />} />
+                <Route
+                  path="/employee-dashboard"
+                  element={<EmployeeDashboard />}
+                />
+                <Route
+                  path="/company-dashboard"
+                  element={<CompanyDashboard />}
+                />
+                <Route path="/tasks" element={<Tasks />} />
+                <Route path="/meet" element={<Meet />} />
+                <Route path="/notes-reminder" element={<NotesReminder />} />
+                <Route path="/reports" element={<Reports />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/help-support" element={<HelpSupport />} />
+                <Route path="/profile" element={<Profile />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </PageLayout>
+          </SidebarProvider>
+        </UserProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
