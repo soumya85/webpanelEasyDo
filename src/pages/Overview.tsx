@@ -484,7 +484,7 @@ const EmployeesOnLeaveIcon = () => (
 const NewJoineesIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
       "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
@@ -494,7 +494,7 @@ const NewJoineesIcon = () => (
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+      className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_146" fill="white">
         <path d="M0.666992 25.19C0.666992 11.3829 11.8599 0.190002 25.667 0.190002C39.4741 0.190002 50.667 11.3829 50.667 25.19C50.667 38.9971 39.4741 50.19 25.667 50.19C11.8599 50.19 0.666992 38.9971 0.666992 25.19Z" />
