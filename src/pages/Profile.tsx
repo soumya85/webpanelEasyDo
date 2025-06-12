@@ -217,7 +217,18 @@ const Profile: React.FC = () => {
 
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileImagePreview(e.target?.result as string);
+        const base64Image = e.target?.result as string;
+        if (isEditing) {
+          // If in editing mode, just set preview
+          setProfileImagePreview(base64Image);
+        } else {
+          // If not in editing mode, immediately save to global state
+          updateProfileImage(base64Image);
+          toast({
+            title: "Success",
+            description: "Profile image updated successfully",
+          });
+        }
       };
       reader.readAsDataURL(file);
     }
