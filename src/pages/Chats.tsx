@@ -460,6 +460,7 @@ const Chats: React.FC = () => {
   const [selectedChat, setSelectedChat] = useState<ChatItem | null>(null);
   const [messageText, setMessageText] = useState("");
   const [isActionDrawerOpen, setIsActionDrawerOpen] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>(sampleMessages);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
