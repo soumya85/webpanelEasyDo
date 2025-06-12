@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,25 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "@/hooks/use-toast";
 import {
   User,
   Mail,
@@ -27,6 +46,10 @@ import {
   Bell,
   Lock,
   Globe,
+  Upload,
+  Trash2,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 
 interface ProfileData {
@@ -39,6 +62,7 @@ interface ProfileData {
   employeeId: string;
   joinDate: string;
   bio: string;
+  profileImage: string | null;
 }
 
 interface NotificationSettings {
@@ -53,6 +77,9 @@ interface SecuritySettings {
   twoFactorAuth: boolean;
   sessionTimeout: string;
   loginNotifications: boolean;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 const Profile: React.FC = () => {
@@ -60,6 +87,11 @@ const Profile: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
     "profile" | "settings" | "activity"
   >("profile");
+  const [showPassword, setShowPassword] = useState(false);
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
+    null,
+  );
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [profileData, setProfileData] = useState<ProfileData>({
     name: "Bhaskar Ghosh",
@@ -71,6 +103,7 @@ const Profile: React.FC = () => {
     employeeId: "LH001",
     joinDate: "2018-01-15",
     bio: "Experienced executive director with over 15 years in the industry. Leading digital transformation initiatives and strategic planning for Liberty Highrise.",
+    profileImage: null,
   });
 
   const [originalData, setOriginalData] = useState(profileData);
@@ -87,6 +120,9 @@ const Profile: React.FC = () => {
     twoFactorAuth: true,
     sessionTimeout: "30",
     loginNotifications: true,
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const recentActivities = [
@@ -123,13 +159,47 @@ const Profile: React.FC = () => {
   };
 
   const handleSave = () => {
+    // Validation
+    if (!profileData.name.trim()) {
+      toast({
+        title: "Error",
+        description: "Name is required",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!profileData.email.trim() || !isValidEmail(profileData.email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // If there's a preview image, update the profile image
+    if (profileImagePreview) {
+      setProfileData((prev) => ({
+        ...prev,
+        profileImage: profileImagePreview,
+      }));
+      setProfileImagePreview(null);
+    }
+
     setIsEditing(false);
+    toast({
+      title: "Success",
+      description: "Profile updated successfully",
+    });
+
     // Here you would typically save to backend
     console.log("Saving profile data:", profileData);
   };
 
   const handleCancel = () => {
     setProfileData(originalData);
+    setProfileImagePreview(null);
     setIsEditing(false);
   };
 
@@ -137,6 +207,85 @@ const Profile: React.FC = () => {
     setProfileData((prev) => ({
       ...prev,
       [field]: value,
+    }));
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith("image/")) {
+        toast({
+          title: "Error",
+          description: "Please select a valid image file",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Validate file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        toast({
+          title: "Error",
+          description: "Image size should be less than 5MB",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfileImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setProfileImagePreview(null);
+    setProfileData((prev) => ({
+      ...prev,
+      profileImage: null,
+    }));
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handlePasswordChange = () => {
+    if (security.newPassword !== security.confirmPassword) {
+      toast({
+        title: "Error",
+        description: "New passwords do not match",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (security.newPassword.length < 8) {
+      toast({
+        title: "Error",
+        description: "Password must be at least 8 characters long",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Here you would typically validate current password and update
+    toast({
+      title: "Success",
+      description: "Password updated successfully",
+    });
+
+    setSecurity((prev) => ({
+      ...prev,
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
     }));
   };
 
@@ -153,6 +302,14 @@ const Profile: React.FC = () => {
       default:
         return <Clock className="h-4 w-4 text-gray-500" />;
     }
+  };
+
+  const getCurrentProfileImage = () => {
+    return (
+      profileImagePreview ||
+      profileData.profileImage ||
+      "/api/placeholder/128/128"
+    );
   };
 
   return (
@@ -196,7 +353,7 @@ const Profile: React.FC = () => {
             <div className="flex gap-2">
               <Button onClick={handleSave} size="sm" className="gap-2">
                 <Save className="h-4 w-4" />
-                Save
+                Save Changes
               </Button>
               <Button
                 onClick={handleCancel}
@@ -220,7 +377,7 @@ const Profile: React.FC = () => {
                 <div className="relative">
                   <Avatar className="h-24 w-24 sm:h-32 sm:w-32">
                     <AvatarImage
-                      src="/api/placeholder/128/128"
+                      src={getCurrentProfileImage()}
                       alt={profileData.name}
                     />
                     <AvatarFallback className="bg-azure-24 text-white text-2xl sm:text-3xl font-bold">
@@ -231,15 +388,78 @@ const Profile: React.FC = () => {
                     </AvatarFallback>
                   </Avatar>
                   {isEditing && (
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full"
-                    >
-                      <Camera className="h-4 w-4" />
-                    </Button>
+                    <div className="absolute -bottom-2 -right-2 flex gap-1">
+                      <Button
+                        size="icon"
+                        variant="secondary"
+                        className="h-8 w-8 rounded-full"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <Camera className="h-4 w-4" />
+                      </Button>
+                      {(profileData.profileImage || profileImagePreview) && (
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              size="icon"
+                              variant="destructive"
+                              className="h-8 w-8 rounded-full"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                Remove Profile Picture
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Are you sure you want to remove your profile
+                                picture? This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={handleRemoveImage}
+                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                              >
+                                Remove
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      )}
+                    </div>
                   )}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                  />
                 </div>
+
+                {isEditing && (
+                  <div className="text-center">
+                    <p className="text-xs text-gray-500 mb-2">
+                      Upload a new profile picture
+                    </p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="gap-2"
+                    >
+                      <Upload className="h-4 w-4" />
+                      Choose File
+                    </Button>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Max size: 5MB. Supported: JPG, PNG, GIF
+                    </p>
+                  </div>
+                )}
 
                 <div className="text-center">
                   <Badge
@@ -256,7 +476,7 @@ const Profile: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-sm font-medium">
-                      Full Name
+                      Full Name *
                     </Label>
                     {isEditing ? (
                       <Input
@@ -266,6 +486,7 @@ const Profile: React.FC = () => {
                           handleInputChange("name", e.target.value)
                         }
                         className="w-full"
+                        placeholder="Enter your full name"
                       />
                     ) : (
                       <div className="flex items-center gap-2">
@@ -294,17 +515,38 @@ const Profile: React.FC = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="position" className="text-sm font-medium">
-                      Position
+                      Position *
                     </Label>
                     {isEditing ? (
-                      <Input
-                        id="position"
+                      <Select
                         value={profileData.position}
-                        onChange={(e) =>
-                          handleInputChange("position", e.target.value)
+                        onValueChange={(value) =>
+                          handleInputChange("position", value)
                         }
-                        className="w-full"
-                      />
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select position" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Executive Director">
+                            Executive Director
+                          </SelectItem>
+                          <SelectItem value="Managing Director">
+                            Managing Director
+                          </SelectItem>
+                          <SelectItem value="General Manager">
+                            General Manager
+                          </SelectItem>
+                          <SelectItem value="Assistant Manager">
+                            Assistant Manager
+                          </SelectItem>
+                          <SelectItem value="Team Lead">Team Lead</SelectItem>
+                          <SelectItem value="Senior Developer">
+                            Senior Developer
+                          </SelectItem>
+                          <SelectItem value="Developer">Developer</SelectItem>
+                        </SelectContent>
+                      </Select>
                     ) : (
                       <div className="flex items-center gap-2">
                         <Building className="h-4 w-4 text-gray-500" />
@@ -317,7 +559,7 @@ const Profile: React.FC = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-sm font-medium">
-                      Email
+                      Email *
                     </Label>
                     {isEditing ? (
                       <Input
@@ -328,6 +570,7 @@ const Profile: React.FC = () => {
                           handleInputChange("email", e.target.value)
                         }
                         className="w-full"
+                        placeholder="Enter your email"
                       />
                     ) : (
                       <div className="flex items-center gap-2">
@@ -351,6 +594,7 @@ const Profile: React.FC = () => {
                           handleInputChange("phone", e.target.value)
                         }
                         className="w-full"
+                        placeholder="Enter your phone number"
                       />
                     ) : (
                       <div className="flex items-center gap-2">
@@ -367,14 +611,34 @@ const Profile: React.FC = () => {
                       Department
                     </Label>
                     {isEditing ? (
-                      <Input
-                        id="department"
+                      <Select
                         value={profileData.department}
-                        onChange={(e) =>
-                          handleInputChange("department", e.target.value)
+                        onValueChange={(value) =>
+                          handleInputChange("department", value)
                         }
-                        className="w-full"
-                      />
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select department" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Executive Management">
+                            Executive Management
+                          </SelectItem>
+                          <SelectItem value="Human Resources">
+                            Human Resources
+                          </SelectItem>
+                          <SelectItem value="Information Technology">
+                            Information Technology
+                          </SelectItem>
+                          <SelectItem value="Finance & Accounting">
+                            Finance & Accounting
+                          </SelectItem>
+                          <SelectItem value="Operations">Operations</SelectItem>
+                          <SelectItem value="Marketing & Sales">
+                            Marketing & Sales
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
                     ) : (
                       <div className="flex items-center gap-2">
                         <Building className="h-4 w-4 text-gray-500" />
@@ -417,6 +681,7 @@ const Profile: React.FC = () => {
                         handleInputChange("address", e.target.value)
                       }
                       className="w-full"
+                      placeholder="Enter your address"
                     />
                   ) : (
                     <div className="flex items-center gap-2">
@@ -574,7 +839,7 @@ const Profile: React.FC = () => {
                     Security Settings
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <Label className="text-sm font-medium">
@@ -628,10 +893,111 @@ const Profile: React.FC = () => {
                           sessionTimeout: e.target.value,
                         }))
                       }
-                      className="w-24"
+                      className="w-32"
                       min="5"
                       max="120"
                     />
+                  </div>
+
+                  <Separator />
+
+                  {/* Password Change Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Change Password</h3>
+
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="currentPassword"
+                        className="text-sm font-medium"
+                      >
+                        Current Password
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="currentPassword"
+                          type={showPassword ? "text" : "password"}
+                          value={security.currentPassword}
+                          onChange={(e) =>
+                            setSecurity((prev) => ({
+                              ...prev,
+                              currentPassword: e.target.value,
+                            }))
+                          }
+                          className="w-full pr-10"
+                          placeholder="Enter current password"
+                        />
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="newPassword"
+                        className="text-sm font-medium"
+                      >
+                        New Password
+                      </Label>
+                      <Input
+                        id="newPassword"
+                        type="password"
+                        value={security.newPassword}
+                        onChange={(e) =>
+                          setSecurity((prev) => ({
+                            ...prev,
+                            newPassword: e.target.value,
+                          }))
+                        }
+                        className="w-full"
+                        placeholder="Enter new password"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="confirmPassword"
+                        className="text-sm font-medium"
+                      >
+                        Confirm New Password
+                      </Label>
+                      <Input
+                        id="confirmPassword"
+                        type="password"
+                        value={security.confirmPassword}
+                        onChange={(e) =>
+                          setSecurity((prev) => ({
+                            ...prev,
+                            confirmPassword: e.target.value,
+                          }))
+                        }
+                        className="w-full"
+                        placeholder="Confirm new password"
+                      />
+                    </div>
+
+                    <Button
+                      onClick={handlePasswordChange}
+                      className="gap-2"
+                      disabled={
+                        !security.currentPassword ||
+                        !security.newPassword ||
+                        !security.confirmPassword
+                      }
+                    >
+                      <Lock className="h-4 w-4" />
+                      Update Password
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -648,19 +1014,39 @@ const Profile: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label className="text-sm font-medium">Language</Label>
-                      <Input
-                        value="English (US)"
-                        readOnly
-                        className="bg-gray-50"
-                      />
+                      <Select defaultValue="en-US">
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="en-US">English (US)</SelectItem>
+                          <SelectItem value="en-GB">English (UK)</SelectItem>
+                          <SelectItem value="hi-IN">हिन्दी (Hindi)</SelectItem>
+                          <SelectItem value="mr-IN">मराठी (Marathi)</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div className="space-y-2">
                       <Label className="text-sm font-medium">Timezone</Label>
-                      <Input
-                        value="Asia/Kolkata (IST)"
-                        readOnly
-                        className="bg-gray-50"
-                      />
+                      <Select defaultValue="Asia/Kolkata">
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Asia/Kolkata">
+                            Asia/Kolkata (IST)
+                          </SelectItem>
+                          <SelectItem value="America/New_York">
+                            America/New_York (EST)
+                          </SelectItem>
+                          <SelectItem value="Europe/London">
+                            Europe/London (GMT)
+                          </SelectItem>
+                          <SelectItem value="Asia/Tokyo">
+                            Asia/Tokyo (JST)
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 </CardContent>
@@ -681,7 +1067,7 @@ const Profile: React.FC = () => {
                   {recentActivities.map((activity, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-3 p-3 rounded-lg bg-gray-50"
+                      className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
                     >
                       <div className="flex-shrink-0 mt-1">
                         {getActivityIcon(activity.type)}
