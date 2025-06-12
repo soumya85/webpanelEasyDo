@@ -685,30 +685,38 @@ const Overview: React.FC = () => {
           <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
             {/* Salary Data Chart */}
             <ChartCard title="Salary Data Of Financial Year 2025-26">
-              <div className="h-full flex flex-col">
-                <div className="mb-3 sm:mb-4">
+              <div className="h-full flex flex-col w-full">
+                <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
                   <CustomLegend
                     data={[{ name: "Total Employee Salary", color: "#7DD3FC" }]}
                     className="justify-start"
                   />
                 </div>
-                <div className="flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={salaryData}>
+                <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={250}
+                  >
+                    <BarChart
+                      data={salaryData}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 60 }}
+                    >
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                       <XAxis
                         dataKey="month"
-                        tick={{ fontSize: 10, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
                         interval={0}
                         angle={-45}
                         textAnchor="end"
-                        height={60}
+                        height={50}
                       />
                       <YAxis
                         tickFormatter={formatCurrency}
-                        tick={{ fontSize: 10, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        width={60}
                       />
                       <Tooltip
                         formatter={(value) => [
