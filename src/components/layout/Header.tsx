@@ -89,7 +89,7 @@ export function Header() {
 
           {/* Dashboard Title */}
           <h1 className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6">
-            {isChatsPage ? "Chats" : "Dashboard"}
+            Dashboard
           </h1>
 
           {/* Create Button */}
