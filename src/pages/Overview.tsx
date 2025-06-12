@@ -314,11 +314,11 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
       )}
     >
       <div className="flex-shrink-0">{icon}</div>
-      <div className="flex flex-col justify-center items-start min-w-0">
-        <div className="text-[#283C50] text-[28px] sm:text-[32px] lg:text-[40px] font-bold leading-tight lg:leading-[64px] font-inter">
+      <div className="flex flex-col justify-center items-start min-w-0 flex-1">
+        <div className="text-[#283C50] text-[24px] sm:text-[32px] lg:text-[40px] font-bold leading-tight lg:leading-[64px] font-inter">
           {value}
         </div>
-        <div className="text-[#283C50] text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
+        <div className="text-[#283C50] text-[11px] sm:text-[14px] lg:text-[15px] font-bold leading-[14px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
           {label}
         </div>
       </div>
