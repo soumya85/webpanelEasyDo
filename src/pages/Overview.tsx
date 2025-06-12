@@ -650,9 +650,9 @@ const Overview: React.FC = () => {
         {/* KPI Cards Row */}
         <div
           className={cn(
-            "flex justify-start items-center self-stretch gap-3 sm:gap-4 lg:gap-5",
+            "flex justify-start items-stretch self-stretch gap-3 sm:gap-4 lg:gap-5",
             "flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap",
-            "overflow-x-auto sm:overflow-x-visible",
+            "w-full",
           )}
         >
           <KPICard
