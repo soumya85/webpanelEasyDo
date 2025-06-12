@@ -91,7 +91,7 @@ export function Header() {
           </div>
 
           {/* Title and Button Group */}
-          <div className="flex items-center gap-3 ml-4">
+          <div className="flex items-center gap-3 ml-3">
             {/* Dashboard Title */}
             <h1 className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6">
               Dashboard
