@@ -383,7 +383,6 @@ const CompanyActionDrawer: React.FC<{
     <SheetContent side="bottom" className="h-[70vh] rounded-t-[20px]">
       <SheetHeader className="pb-4">
         <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
-        <SheetTitle className="text-left">Company Options</SheetTitle>
         <div className="w-full h-px bg-gray-200 mt-4" />
       </SheetHeader>
 
