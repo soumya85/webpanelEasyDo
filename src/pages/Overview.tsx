@@ -205,7 +205,7 @@ const Overview: React.FC = () => {
           className={cn(
             "flex min-h-[65px] px-[30px] py-[13.5px] justify-between items-center self-stretch",
             "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
-            "shadow-[0px_1px_3px_0px_rgba(0,0,0,0.10),0px_2px_-1px_0px_rgba(0,0,0,0.10)]",
+            "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
           )}
         >
           {/* Breadcrumb Navigation */}
