@@ -28,8 +28,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <SidebarProvider>
-          <PageLayout>
+        <UserProvider>
+          <SidebarProvider>
+            <PageLayout>
             <Routes>
               <Route path="/" element={<Overview />} />
               <Route path="/chats" element={<Chats />} />
