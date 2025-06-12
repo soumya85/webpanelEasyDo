@@ -502,6 +502,26 @@ const Profile: React.FC = () => {
                   </div>
                 )}
 
+                {!isEditing && !user.profileImage && (
+                  <div className="text-center">
+                    <p className="text-xs text-gray-500 mb-2">
+                      No profile picture set
+                    </p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="gap-2"
+                    >
+                      <Upload className="h-4 w-4" />
+                      Upload Picture
+                    </Button>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Upload will be saved immediately
+                    </p>
+                  </div>
+                )}
+
                 <div className="text-center">
                   <Badge
                     variant="default"
