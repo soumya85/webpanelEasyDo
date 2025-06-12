@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
