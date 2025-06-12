@@ -30,11 +30,25 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
+  const navigate = useNavigate();
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState(
     "Liberty Highrise PVT Ltd",
   );
   const [selectedBranch, setSelectedBranch] = useState("All Branch");
+
+  const handleProfileClick = () => {
+    navigate("/profile");
+  };
+
+  const handleSettingsClick = () => {
+    navigate("/settings");
+  };
+
+  const handleLogoutClick = () => {
+    // Add logout logic here
+    console.log("Logout clicked");
+  };
 
   return (
     <>
