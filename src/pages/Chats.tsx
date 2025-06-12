@@ -292,9 +292,6 @@ const ChatListItem: React.FC<{ chat: ChatItem; onClick: () => void }> = ({
         <h3 className="font-semibold text-gray-900 text-[16px] truncate">
           {chat.name}
         </h3>
-        <span className="text-[12px] text-gray-500 flex-shrink-0">
-          {chat.timestamp}
-        </span>
       </div>
 
       <div className="flex items-center gap-2 mb-2">
@@ -320,11 +317,16 @@ const ChatListItem: React.FC<{ chat: ChatItem; onClick: () => void }> = ({
       <p className="text-[14px] text-gray-600 truncate">{chat.lastMessage}</p>
     </div>
 
-    {chat.unreadCount > 0 && (
-      <Badge className="bg-blue-500 text-white min-w-[20px] h-5 rounded-full text-[11px] font-medium">
-        {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
-      </Badge>
-    )}
+    <div className="flex flex-col items-end gap-2">
+      <span className="text-[12px] text-gray-500 flex-shrink-0">
+        {chat.timestamp}
+      </span>
+      {chat.unreadCount > 0 && (
+        <Badge className="bg-blue-500 text-white min-w-[20px] h-5 rounded-full text-[11px] font-medium">
+          {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
+        </Badge>
+      )}
+    </div>
   </div>
 );
 
