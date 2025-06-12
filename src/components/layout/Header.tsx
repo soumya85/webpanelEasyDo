@@ -280,8 +280,8 @@ export function Header() {
         )}
       >
         <div className="flex items-start justify-between px-4 py-3">
-          <div className="flex flex-col gap-1 text-xs max-w-[65%]">
-            <span className="font-semibold text-azure-24 leading-tight">
+          <div className="flex flex-col gap-1 text-sm flex-1 mr-4">
+            <span className="font-semibold text-azure-24 leading-tight break-words">
               {selectedCompany}
             </span>
             <div className="flex items-center gap-2">
