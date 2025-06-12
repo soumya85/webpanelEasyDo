@@ -4,6 +4,9 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
+import { useSidebar } from "@/hooks/useSidebar";
+import { Menu, ChevronDown, Filter } from "lucide-react";
 import {
   Sheet,
   SheetContent,
