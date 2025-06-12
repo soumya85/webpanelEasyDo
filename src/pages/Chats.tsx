@@ -484,7 +484,10 @@ const Chats: React.FC = () => {
 
   if (selectedChat) {
     return (
-      <div className="flex flex-col h-full bg-white absolute inset-0">
+      <div
+        className="flex flex-col bg-white"
+        style={{ height: "calc(100vh - 151px)" }}
+      >
         {/* Chat Header */}
         <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
           <Button
