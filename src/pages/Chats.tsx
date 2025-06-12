@@ -414,9 +414,12 @@ const CompanyActionDrawer: React.FC<{
 
         {/* Company Options Section */}
         <div>
-          <h3 className="text-[16px] font-semibold text-gray-900 mb-4">
-            Company Options
-          </h3>
+          <div className="flex items-center gap-3 mb-4">
+            <h3 className="text-[16px] font-semibold text-gray-900">
+              Company Options
+            </h3>
+            <div className="flex-1 h-px bg-gray-300"></div>
+          </div>
           <div className="grid grid-cols-4 gap-4">
             {companyActions
               .filter((a) => a.category === "company")
