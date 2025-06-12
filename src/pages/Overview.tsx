@@ -196,7 +196,7 @@ const Overview: React.FC = () => {
       {/* Page Area */}
       <div
         className={cn(
-          "flex w-full max-w-[1140px] p-6 flex-col items-start gap-6",
+          "flex w-full max-w-[1140px] pr-6 pt-6 pb-6 pl-3 flex-col items-start gap-6",
           "relative mx-auto",
         )}
       >
