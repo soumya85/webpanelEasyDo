@@ -381,9 +381,10 @@ const CompanyActionDrawer: React.FC<{
 }> = ({ isOpen, onClose, onActionSelect }) => (
   <Sheet open={isOpen} onOpenChange={onClose}>
     <SheetContent side="bottom" className="h-[70vh] rounded-t-[20px]">
-      <div className="pb-4">
+      <SheetHeader className="pb-4">
         <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
-      </div>
+        <SheetTitle className="text-left">Company Options</SheetTitle>
+      </SheetHeader>
 
       <div className="space-y-6">
         {/* Communication Section */}
