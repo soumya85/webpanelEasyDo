@@ -31,6 +31,7 @@ import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
+  const { user } = useUser();
   const navigate = useNavigate();
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState(
