@@ -740,16 +740,23 @@ const Overview: React.FC = () => {
               title="Attendance Status"
               subtitle={`Total Employees: ${kpiData.totalEmployees}`}
             >
-              <div className="h-full flex flex-col items-center">
-                <div className="flex-1 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[350px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
+              <div className="h-full flex flex-col items-center w-full">
+                <div
+                  className="flex-1 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[350px]"
+                  style={{ minHeight: "200px" }}
+                >
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={200}
+                  >
+                    <PieChart margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
                       <Pie
                         data={attendanceStatusData}
                         cx="50%"
                         cy="50%"
                         innerRadius={0}
-                        outerRadius="80%"
+                        outerRadius="75%"
                         paddingAngle={2}
                         dataKey="value"
                       >
@@ -763,10 +770,9 @@ const Overview: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <CustomLegend
-                  data={attendanceStatusData}
-                  className="mt-2 sm:mt-3 lg:mt-4"
-                />
+                <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
+                  <CustomLegend data={attendanceStatusData} />
+                </div>
               </div>
             </ChartCard>
           </div>
