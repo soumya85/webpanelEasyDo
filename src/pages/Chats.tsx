@@ -461,6 +461,8 @@ const Chats: React.FC = () => {
   const [messageText, setMessageText] = useState("");
   const [isActionDrawerOpen, setIsActionDrawerOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(sampleMessages);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("All");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
