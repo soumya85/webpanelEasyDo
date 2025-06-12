@@ -9,7 +9,7 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
   if (!isExpanded) {
     return (
       <div className="flex flex-col items-center p-4">
-        <Avatar className="h-12 w-12 border-4 border-gray-200">
+        <Avatar className="h-12 w-12">
           <AvatarImage src="/api/placeholder/90/90" alt="Bhaskar Ghosh" />
           <AvatarFallback className="bg-azure-24 text-white font-semibold">
             BG
@@ -21,7 +21,7 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 border-b border-gray-300">
-      <Avatar className="h-20 w-20 border-4 border-gray-200">
+      <Avatar className="h-20 w-20">
         <AvatarImage src="/api/placeholder/90/90" alt="Bhaskar Ghosh" />
         <AvatarFallback className="bg-azure-24 text-white font-semibold text-xl">
           BG

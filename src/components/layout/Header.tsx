@@ -279,13 +279,17 @@ export function Header() {
           "transition-all duration-300",
         )}
       >
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2 text-sm">
-            <span className="font-semibold text-azure-24">
+        <div className="flex items-start justify-between px-4 py-3">
+          <div className="flex flex-col gap-1 text-sm flex-1 mr-4">
+            <span className="font-semibold text-azure-24 leading-tight break-words">
               {selectedCompany}
             </span>
-            <ChevronDown className="h-4 w-4 text-gray-500 -rotate-90" />
-            <span className="text-gray-700">{selectedBranch}</span>
+            <div className="flex items-center gap-2">
+              <ChevronDown className="h-4 w-4 text-gray-800 -rotate-90 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700 leading-tight">
+                {selectedBranch}
+              </span>
+            </div>
           </div>
 
           <Button
