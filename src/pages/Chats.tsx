@@ -777,9 +777,7 @@ const Chats: React.FC = () => {
             </span>
             <div className="flex items-center gap-2">
               <ChevronDown className="h-4 w-4 text-gray-800 -rotate-90 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 leading-tight">
-                All Branch
-              </span>
+              <span className="text-gray-700 leading-tight">All Branch</span>
             </div>
           </div>
 
@@ -794,86 +792,90 @@ const Chats: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col h-full bg-gray-50 overflow-hidden mt-0 md:mt-0" style={{ marginTop: 'calc(86px + 65px)' }}>
+      <div
+        className="flex flex-col h-full bg-gray-50 overflow-hidden mt-0 md:mt-0"
+        style={{ marginTop: "calc(86px + 65px)" }}
+      >
         {/* Header - Hidden on mobile, visible on desktop */}
         <div className="hidden md:block bg-white border-b border-gray-200 sticky top-0 z-10">
-        {/* Title and Search Bar */}
-        <div className="flex items-center gap-4 p-4">
-          <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
-          <div className="flex-1 relative">
-            <Input
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search"
-              className="pl-10 rounded-lg border-gray-300 bg-gray-50"
-            />
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <svg
-                className="h-4 w-4 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+          {/* Title and Search Bar */}
+          <div className="flex items-center gap-4 p-4">
+            <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
+            <div className="flex-1 relative">
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search"
+                className="pl-10 rounded-lg border-gray-300 bg-gray-50"
+              />
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <svg
+                  className="h-4 w-4 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Filter Tabs */}
+          <div className="px-4 pb-3">
+            <div className="flex gap-2 overflow-x-auto">
+              {filterTabs.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setSelectedFilter(filter)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
+                    selectedFilter === filter
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                  )}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Task Summary Cards */}
+          <div className="px-4 pb-4">
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {taskSummaries.map((task) => (
+                <TaskSummaryCard key={task.id} task={task} />
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="px-4 pb-3">
-          <div className="flex gap-2 overflow-x-auto">
-            {filterTabs.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setSelectedFilter(filter)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
-                  selectedFilter === filter
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                )}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Task Summary Cards */}
-        <div className="px-4 pb-4">
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {taskSummaries.map((task) => (
-              <TaskSummaryCard key={task.id} task={task} />
-            ))}
-          </div>
+        {/* Chat List */}
+        <div className="flex-1 bg-white overflow-y-auto">
+          {filteredChats.length > 0 ? (
+            filteredChats.map((chat) => (
+              <ChatListItem
+                key={chat.id}
+                chat={chat}
+                onClick={() => setSelectedChat(chat)}
+              />
+            ))
+          ) : (
+            <div className="flex items-center justify-center py-8">
+              <p className="text-gray-500 text-center">
+                {searchQuery ? "No chats found" : "No chats available"}
+              </p>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Chat List */}
-      <div className="flex-1 bg-white overflow-y-auto">
-        {filteredChats.length > 0 ? (
-          filteredChats.map((chat) => (
-            <ChatListItem
-              key={chat.id}
-              chat={chat}
-              onClick={() => setSelectedChat(chat)}
-            />
-          ))
-        ) : (
-          <div className="flex items-center justify-center py-8">
-            <p className="text-gray-500 text-center">
-              {searchQuery ? "No chats found" : "No chats available"}
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 
