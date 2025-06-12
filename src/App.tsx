@@ -16,6 +16,7 @@ import NotesReminder from "./pages/NotesReminder";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import HelpSupport from "./pages/HelpSupport";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
