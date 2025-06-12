@@ -285,7 +285,7 @@ export function Header() {
               {selectedCompany}
             </span>
             <div className="flex items-center gap-2">
-              <ChevronDown className="h-4 w-4 text-gray-800 -rotate-90 flex-shrink-0" />
+              <ChevronDown className="h-4 w-4 text-gray-800 -rotate-90 flex-shrink-0 mt-0.5" />
               <span className="text-gray-700 leading-tight">
                 {selectedBranch}
               </span>
