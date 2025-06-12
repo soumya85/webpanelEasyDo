@@ -44,15 +44,48 @@ const defaultUser: User = {
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
+const USER_STORAGE_KEY = "user-profile-data";
+
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User>(defaultUser);
+  const [user, setUser] = useState<User>(() => {
+    // Load user data from localStorage on initialization
+    if (typeof window !== "undefined") {
+      try {
+        const savedUser = localStorage.getItem(USER_STORAGE_KEY);
+        if (savedUser) {
+          const parsedUser = JSON.parse(savedUser);
+          return { ...defaultUser, ...parsedUser };
+        }
+      } catch (error) {
+        console.error("Error loading user data from localStorage:", error);
+      }
+    }
+    return defaultUser;
+  });
+
+  // Save user data to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+      } catch (error) {
+        console.error("Error saving user data to localStorage:", error);
+      }
+    }
+  }, [user]);
 
   const updateUser = (updates: Partial<User>) => {
-    setUser((prev) => ({ ...prev, ...updates }));
+    setUser((prev) => {
+      const updatedUser = { ...prev, ...updates };
+      return updatedUser;
+    });
   };
 
   const updateProfileImage = (imageUrl: string | null) => {
-    setUser((prev) => ({ ...prev, profileImage: imageUrl }));
+    setUser((prev) => {
+      const updatedUser = { ...prev, profileImage: imageUrl };
+      return updatedUser;
+    });
   };
 
   return (
