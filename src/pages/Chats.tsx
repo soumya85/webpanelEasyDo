@@ -467,6 +467,8 @@ const CompanyActionDrawer: React.FC<{
 );
 
 const Chats: React.FC = () => {
+  const { user } = useUser();
+  const { toggleMobile } = useSidebar();
   const [selectedChat, setSelectedChat] = useState<ChatItem | null>(null);
   const [messageText, setMessageText] = useState("");
   const [isActionDrawerOpen, setIsActionDrawerOpen] = useState(false);
