@@ -198,6 +198,126 @@ const ChevronRightIcon = () => (
   </svg>
 );
 
+// Chart Data
+const salaryData = [
+  { month: "Apr 25", salary: 200000 },
+  { month: "May 25", salary: 0 },
+  { month: "Jun 25", salary: 0 },
+  { month: "Jul 25", salary: 0 },
+  { month: "Aug 25", salary: 0 },
+  { month: "Sep 25", salary: 0 },
+  { month: "Oct 25", salary: 0 },
+  { month: "Nov 25", salary: 0 },
+  { month: "Dec 25", salary: 0 },
+  { month: "Jan 26", salary: 0 },
+  { month: "Feb 26", salary: 0 },
+  { month: "Mar 26", salary: 0 },
+];
+
+const attendanceStatusData = [
+  { name: "Present", value: 60, color: "#4ADE80" },
+  { name: "Absent", value: 25, color: "#9CA3AF" },
+  { name: "Leave", value: 8, color: "#FB923C" },
+  { name: "Late", value: 5, color: "#EF4444" },
+  { name: "Half Day", value: 2, color: "#7DD3FC" },
+];
+
+const salaryRangeData = [
+  { name: "Below-25000", value: 20, color: "#F472B6" },
+  { name: "25001-50000", value: 35, color: "#60A5FA" },
+  { name: "50001-75000", value: 15, color: "#FBBF24" },
+  { name: "Above-75000", value: 30, color: "#6EE7B7" },
+];
+
+const monthlyAttendanceData = [
+  { month: "Jan", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+  { month: "Feb", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+  { month: "Mar", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+  { month: "Apr", Present: 78, Absent: 12, Leave: 6, Late: 3, Half: 1 },
+  { month: "May", Present: 55, Absent: 25, Leave: 12, Late: 5, Half: 3 },
+  { month: "Jun", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+  { month: "Jul", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+  { month: "Aug", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+  { month: "Sep", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+  { month: "Oct", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
+];
+
+// Chart Card Component
+interface ChartCardProps {
+  title: string;
+  children: React.ReactNode;
+  subtitle?: string;
+}
+
+const ChartCard: React.FC<ChartCardProps> = ({ title, children, subtitle }) => {
+  return (
+    <div
+      className={cn(
+        "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+        "h-[492.8px] flex-1 min-w-0",
+      )}
+    >
+      {/* Header */}
+      <div
+        className={cn(
+          "flex items-center justify-between px-[25px] py-[25px]",
+          "border-b border-[#E5E7EB] rounded-t-[5px]",
+        )}
+      >
+        <div className="flex flex-col items-start">
+          <h3 className="text-[#283C50] font-inter text-[20px] font-bold leading-6">
+            {title}
+          </h3>
+          {subtitle && (
+            <p className="text-[#283C50] font-inter text-[15px] font-bold leading-[18px] mt-2">
+              {subtitle}
+            </p>
+          )}
+        </div>
+        <div className="flex items-center justify-center pl-[51px]">
+          <div className="w-5 h-5 border border-[#DCDEE4] rounded-full bg-white flex items-center justify-center p-1">
+            <div className="w-full h-full" />
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 p-4">{children}</div>
+    </div>
+  );
+};
+
+// Custom Legend Component
+const CustomLegend: React.FC<{ data: any[]; className?: string }> = ({
+  data,
+  className,
+}) => {
+  return (
+    <div className={cn("flex flex-wrap gap-4 justify-center", className)}>
+      {data.map((entry, index) => (
+        <div key={index} className="flex items-center gap-2">
+          <div
+            className="w-3 h-3 rounded-sm"
+            style={{ backgroundColor: entry.color }}
+          />
+          <span className="text-sm text-[#283C50] font-inter">
+            {entry.name}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// Format currency for salary chart
+const formatCurrency = (value: number) => {
+  if (value >= 100000) {
+    return `₹${(value / 100000).toFixed(0)}L`;
+  }
+  return `₹${value.toLocaleString()}`;
+};
+
 const Overview: React.FC = () => {
   return (
     <div className={cn("w-full p-4 font-inter")}>
