@@ -822,8 +822,8 @@ const Overview: React.FC = () => {
               title="Attendance Summary"
               subtitle="Monthly Attendance Summary for 2025"
             >
-              <div className="h-full flex flex-col">
-                <div className="mb-3 sm:mb-4">
+              <div className="h-full flex flex-col w-full">
+                <div className="mb-2 sm:mb-3 lg:mb-4 flex-shrink-0">
                   <CustomLegend
                     data={[
                       { name: "Present", color: "#4ADE80" },
@@ -835,20 +835,29 @@ const Overview: React.FC = () => {
                     className="justify-start"
                   />
                 </div>
-                <div className="flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={monthlyAttendanceData}>
+                <div className="flex-1 w-full" style={{ minHeight: "250px" }}>
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={250}
+                  >
+                    <BarChart
+                      data={monthlyAttendanceData}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 20 }}
+                    >
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                       <XAxis
                         dataKey="month"
-                        tick={{ fontSize: 10, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        height={40}
                       />
                       <YAxis
                         domain={[0, 100]}
                         tickFormatter={(value) => `${value}%`}
-                        tick={{ fontSize: 10, fill: "#6B7280" }}
+                        tick={{ fontSize: 9, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        width={50}
                       />
                       <Tooltip formatter={(value) => [`${value}%`, ""]} />
                       <Bar dataKey="Present" stackId="a" fill="#4ADE80" />
