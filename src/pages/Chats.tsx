@@ -380,12 +380,15 @@ const CompanyActionDrawer: React.FC<{
   onActionSelect: (action: any) => void;
 }> = ({ isOpen, onClose, onActionSelect }) => (
   <Sheet open={isOpen} onOpenChange={onClose}>
-    <SheetContent side="bottom" className="h-[80vh] rounded-t-[20px]">
+    <SheetContent
+      side="bottom"
+      className="h-[85vh] rounded-t-[20px] overflow-y-auto"
+    >
       <div className="pb-4">
         <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-6 pb-8">
         {/* Communication Section */}
         <div>
           <div className="grid grid-cols-4 gap-4 mb-6">
