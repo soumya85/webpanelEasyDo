@@ -667,9 +667,6 @@ const Chats: React.FC = () => {
     );
   }
 
-  const { user } = useUser();
-  const { toggleMobile } = useSidebar();
-
   return (
     <>
       {/* Mobile Header - Only visible on mobile */}
