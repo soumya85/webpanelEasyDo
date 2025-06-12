@@ -476,49 +476,264 @@ const generateMonthlyAttendanceData = (dateRange: DateRange) => {
   }));
 };
 
-// Chart Data
-const salaryData = [
-  { month: "Apr 25", salary: 200000 },
-  { month: "May 25", salary: 0 },
-  { month: "Jun 25", salary: 0 },
-  { month: "Jul 25", salary: 0 },
-  { month: "Aug 25", salary: 0 },
-  { month: "Sep 25", salary: 0 },
-  { month: "Oct 25", salary: 0 },
-  { month: "Nov 25", salary: 0 },
-  { month: "Dec 25", salary: 0 },
-  { month: "Jan 26", salary: 0 },
-  { month: "Feb 26", salary: 0 },
-  { month: "Mar 26", salary: 0 },
-];
+const Overview: React.FC = () => {
+  // State Management
+  const [selectedDateRange, setSelectedDateRange] =
+    useState<DateRangeOption>("CUSTOM_RANGE");
 
-const attendanceStatusData = [
-  { name: "Present", value: 60, color: "#4ADE80" },
-  { name: "Absent", value: 25, color: "#9CA3AF" },
-  { name: "Leave", value: 8, color: "#FB923C" },
-  { name: "Late", value: 5, color: "#EF4444" },
-  { name: "Half Day", value: 2, color: "#7DD3FC" },
-];
+  // Calculate current date range and generate dynamic data
+  const currentDateRange = useMemo(
+    () => calculateDateRange(selectedDateRange),
+    [selectedDateRange],
+  );
 
-const salaryRangeData = [
-  { name: "Below-25000", value: 20, color: "#F472B6" },
-  { name: "25001-50000", value: 35, color: "#60A5FA" },
-  { name: "50001-75000", value: 15, color: "#FBBF24" },
-  { name: "Above-75000", value: 30, color: "#6EE7B7" },
-];
+  const kpiData = useMemo(
+    () => generateKPIData(currentDateRange),
+    [currentDateRange],
+  );
+  const salaryData = useMemo(
+    () => generateSalaryData(currentDateRange),
+    [currentDateRange],
+  );
+  const attendanceStatusData = useMemo(
+    () => generateAttendanceStatusData(currentDateRange),
+    [currentDateRange],
+  );
+  const salaryRangeData = useMemo(
+    () => generateSalaryRangeData(currentDateRange),
+    [currentDateRange],
+  );
+  const monthlyAttendanceData = useMemo(
+    () => generateMonthlyAttendanceData(currentDateRange),
+    [currentDateRange],
+  );
 
-const monthlyAttendanceData = [
-  { month: "Jan", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Feb", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Mar", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Apr", Present: 78, Absent: 12, Leave: 6, Late: 3, Half: 1 },
-  { month: "May", Present: 55, Absent: 25, Leave: 12, Late: 5, Half: 3 },
-  { month: "Jun", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Jul", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Aug", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Sep", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-  { month: "Oct", Present: 0, Absent: 0, Leave: 0, Late: 0, Half: 0 },
-];
+  return (
+    <div className={cn("w-full p-4 font-inter")}>
+      {/* Page Area */}
+      <div className={cn("flex w-full flex-col items-start gap-6")}>
+        {/* Breadcrumb Section Row */}
+        <div
+          className={cn(
+            "flex min-h-[65px] px-[30px] py-[13.5px] justify-between items-center self-stretch",
+            "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
+            "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+          )}
+        >
+          {/* Breadcrumb Navigation */}
+          <div className="flex justify-center items-center gap-[10px]">
+            <div className="text-[#283C50] font-inter text-base font-bold leading-[19.2px]">
+              Overview
+            </div>
+            <div className="text-[#DBD9D9] font-inter text-base font-normal leading-[19.2px]">
+              |
+            </div>
+            <div className="text-[#283C50] font-inter text-[13px] font-bold leading-[20.8px]">
+              Liberty Highrise PVT Ltd
+            </div>
+            <ChevronRightIcon />
+            <div className="text-[#222] font-inter text-[13px] font-normal leading-[20.8px]">
+              All Branch
+            </div>
+          </div>
+
+          {/* Filter Controls */}
+          <div className="flex justify-center items-center gap-[10px]">
+            <DateRangePicker
+              selectedRange={selectedDateRange}
+              onRangeChange={setSelectedDateRange}
+              currentLabel={currentDateRange.label}
+            />
+          </div>
+        </div>
+
+        {/* KPI Cards Row */}
+        <div
+          className={cn(
+            "flex justify-between items-center self-stretch gap-5",
+            "flex-wrap lg:flex-nowrap",
+          )}
+        >
+          <KPICard
+            icon={<TotalEmployeesIcon />}
+            value={kpiData.totalEmployees.toString()}
+            label="Total Employees"
+          />
+          <KPICard
+            icon={<EmployeesOnLeaveIcon />}
+            value={kpiData.employeesOnLeave.toString()}
+            label="Employees On Leave"
+          />
+          <KPICard
+            icon={<NewJoineesIcon />}
+            value={kpiData.newJoinees.toString()}
+            label="New Joinees"
+          />
+          <KPICard
+            icon={<TotalHolidayIcon />}
+            value={kpiData.totalHoliday.toString()}
+            label="Total Holiday"
+          />
+        </div>
+
+        {/* Analytics Section */}
+        <div className="flex flex-col gap-6 w-full">
+          {/* First Row of Charts */}
+          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+            {/* Salary Data Chart */}
+            <ChartCard title="Salary Data Of Financial Year 2025-26">
+              <div className="h-full flex flex-col">
+                <div className="mb-4">
+                  <CustomLegend
+                    data={[{ name: "Total Employee Salary", color: "#7DD3FC" }]}
+                    className="justify-start"
+                  />
+                </div>
+                <div className="flex-1">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={salaryData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                      <XAxis
+                        dataKey="month"
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <YAxis
+                        tickFormatter={formatCurrency}
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <Tooltip
+                        formatter={(value) => [
+                          formatCurrency(value as number),
+                          "Total Employee Salary",
+                        ]}
+                      />
+                      <Bar
+                        dataKey="salary"
+                        fill="#7DD3FC"
+                        radius={[4, 4, 0, 0]}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </ChartCard>
+
+            {/* Attendance Status Chart */}
+            <ChartCard
+              title="Attendance Status"
+              subtitle={`Total Employees: ${kpiData.totalEmployees}`}
+            >
+              <div className="h-full flex flex-col items-center">
+                <div className="flex-1 w-full max-w-[350px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={attendanceStatusData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={0}
+                        outerRadius={140}
+                        paddingAngle={2}
+                        dataKey="value"
+                      >
+                        {attendanceStatusData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => [`${value}%`, "Percentage"]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <CustomLegend data={attendanceStatusData} className="mt-4" />
+              </div>
+            </ChartCard>
+          </div>
+
+          {/* Second Row of Charts */}
+          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+            {/* Employee Count by Salary Range Chart */}
+            <ChartCard title="Employee Count By Salary Range">
+              <div className="h-full flex flex-col items-center">
+                <div className="flex-1 w-full max-w-[400px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={salaryRangeData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={0}
+                        outerRadius={160}
+                        paddingAngle={2}
+                        dataKey="value"
+                      >
+                        {salaryRangeData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => [`${value}%`, "Percentage"]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <CustomLegend data={salaryRangeData} className="mt-4" />
+              </div>
+            </ChartCard>
+
+            {/* Monthly Attendance Summary Chart */}
+            <ChartCard
+              title="Attendance Summary"
+              subtitle="Monthly Attendance Summary for 2025"
+            >
+              <div className="h-full flex flex-col">
+                <div className="mb-4">
+                  <CustomLegend
+                    data={[
+                      { name: "Present", color: "#4ADE80" },
+                      { name: "Absent", color: "#9CA3AF" },
+                      { name: "Leave", color: "#FB923C" },
+                      { name: "Late", color: "#EF4444" },
+                      { name: "Half Day", color: "#7DD3FC" },
+                    ]}
+                    className="justify-start"
+                  />
+                </div>
+                <div className="flex-1">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={monthlyAttendanceData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                      <XAxis
+                        dataKey="month"
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <YAxis
+                        domain={[0, 100]}
+                        tickFormatter={(value) => `${value}%`}
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <Tooltip formatter={(value) => [`${value}%`, ""]} />
+                      <Bar dataKey="Present" stackId="a" fill="#4ADE80" />
+                      <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
+                      <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
+                      <Bar dataKey="Late" stackId="a" fill="#EF4444" />
+                      <Bar dataKey="Half" stackId="a" fill="#7DD3FC" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </ChartCard>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Chart Card Component
 interface ChartCardProps {
