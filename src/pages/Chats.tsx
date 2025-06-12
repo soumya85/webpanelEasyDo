@@ -599,13 +599,23 @@ const Chats: React.FC = () => {
             />
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 p-0 text-blue-500"
-          >
-            <Mic className="h-5 w-5" />
-          </Button>
+          {messageText.trim() ? (
+            <Button
+              onClick={handleSendMessage}
+              size="icon"
+              className="h-8 w-8 p-0 bg-blue-500 hover:bg-blue-600 text-white rounded-full"
+            >
+              <Send className="h-4 w-4" />
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 p-0 text-blue-500"
+            >
+              <Mic className="h-5 w-5" />
+            </Button>
+          )}
         </div>
 
         <CompanyActionDrawer
