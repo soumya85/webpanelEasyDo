@@ -550,13 +550,14 @@ const Overview: React.FC = () => {
   );
 
   return (
-    <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
-      {/* Page Area */}
-      <div
-        className={cn(
-          "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
-        )}
-      >
+    <PageLayout>
+      <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
+        {/* Page Area */}
+        <div
+          className={cn(
+            "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
+          )}
+        >
         {/* Breadcrumb Section Row */}
         <div
           className={cn(
