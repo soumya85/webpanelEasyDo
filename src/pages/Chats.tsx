@@ -380,7 +380,7 @@ const CompanyActionDrawer: React.FC<{
   onActionSelect: (action: any) => void;
 }> = ({ isOpen, onClose, onActionSelect }) => (
   <Sheet open={isOpen} onOpenChange={onClose}>
-    <SheetContent side="bottom" className="h-[70vh] rounded-t-[20px]">
+    <SheetContent side="bottom" className="h-[80vh] rounded-t-[20px]">
       <div className="pb-4">
         <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
       </div>
