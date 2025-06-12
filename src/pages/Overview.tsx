@@ -449,7 +449,7 @@ const TotalEmployeesIcon = () => (
 const EmployeesOnLeaveIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
       "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
@@ -459,7 +459,7 @@ const EmployeesOnLeaveIcon = () => (
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+      className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_140" fill="white">
         <path d="M0.333008 25.19C0.333008 11.3829 11.5259 0.190002 25.333 0.190002C39.1401 0.190002 50.333 11.3829 50.333 25.19C50.333 38.9971 39.1401 50.19 25.333 50.19C11.5259 50.19 0.333008 38.9971 0.333008 25.19Z" />
