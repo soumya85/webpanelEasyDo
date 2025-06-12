@@ -247,12 +247,15 @@ const DateRangePicker: React.FC<{
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "text-[#283C50] font-inter text-xs font-normal leading-[19.2px] uppercase",
-          "flex items-center justify-between px-4 py-[10.5px] min-w-[200px] rounded-[5px]",
+          "flex items-center justify-between px-3 py-[8px] sm:px-4 sm:py-[10.5px] rounded-[5px]",
           "border border-[#DCDEE4] bg-white hover:bg-gray-50 transition-colors",
+          "w-full sm:min-w-[180px] lg:min-w-[200px] text-left",
         )}
       >
-        <span>{currentLabel}</span>
-        <ChevronDown className="w-4 h-4 ml-2" />
+        <span className="truncate pr-2 text-[10px] sm:text-xs">
+          {currentLabel}
+        </span>
+        <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
       </button>
 
       {isOpen && (
@@ -263,8 +266,9 @@ const DateRangePicker: React.FC<{
           />
           <div
             className={cn(
-              "absolute top-full left-0 mt-1 w-full min-w-[200px] z-20",
+              "absolute top-full left-0 mt-1 w-full z-20",
               "bg-white border border-[#DCDEE4] rounded-[5px] shadow-lg",
+              "max-h-64 overflow-y-auto",
             )}
           >
             {options.map((option) => (
@@ -275,8 +279,8 @@ const DateRangePicker: React.FC<{
                   setIsOpen(false);
                 }}
                 className={cn(
-                  "w-full text-left px-4 py-3 text-sm font-medium hover:bg-gray-50",
-                  "transition-colors border-b border-gray-100 last:border-b-0",
+                  "w-full text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-medium",
+                  "hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0",
                   selectedRange === option.value
                     ? "bg-[#4766E5] text-white hover:bg-[#4766E5]"
                     : "text-[#283C50]",
@@ -303,17 +307,18 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-7 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "flex items-center gap-4 sm:gap-6 lg:gap-7 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-4 py-0 h-[154px] flex-1 min-w-[257px]",
+        "px-3 py-4 sm:px-4 sm:py-0 h-[120px] sm:h-[140px] lg:h-[154px]",
+        "flex-1 min-w-[250px] sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
       <div className="flex-shrink-0">{icon}</div>
-      <div className="flex flex-col justify-center items-start">
-        <div className="text-[#283C50] text-[40px] font-bold leading-[64px] font-inter">
+      <div className="flex flex-col justify-center items-start min-w-0">
+        <div className="text-[#283C50] text-[28px] sm:text-[32px] lg:text-[40px] font-bold leading-tight lg:leading-[64px] font-inter">
           {value}
         </div>
-        <div className="text-[#283C50] text-[15px] font-bold leading-[19.2px] font-inter">
+        <div className="text-[#283C50] text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
           {label}
         </div>
       </div>
@@ -334,35 +339,36 @@ const ChartCard: React.FC<ChartCardProps> = ({ title, children, subtitle }) => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "h-[492.8px] flex-1 min-w-0",
+        "h-[350px] sm:h-[400px] lg:h-[492.8px] flex-1 min-w-0",
       )}
     >
       {/* Header */}
       <div
         className={cn(
-          "flex items-center justify-between px-[25px] py-[25px]",
+          "flex items-start sm:items-center justify-between px-4 py-4 sm:px-[20px] sm:py-[20px] lg:px-[25px] lg:py-[25px]",
           "border-b border-[#E5E7EB] rounded-t-[5px]",
+          "flex-col sm:flex-row gap-2 sm:gap-0",
         )}
       >
-        <div className="flex flex-col items-start">
-          <h3 className="text-[#283C50] font-inter text-[20px] font-bold leading-6">
+        <div className="flex flex-col items-start min-w-0 flex-1">
+          <h3 className="text-[#283C50] font-inter text-[16px] sm:text-[18px] lg:text-[20px] font-bold leading-5 sm:leading-6">
             {title}
           </h3>
           {subtitle && (
-            <p className="text-[#283C50] font-inter text-[15px] font-bold leading-[18px] mt-2">
+            <p className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[17px] lg:leading-[18px] mt-1 sm:mt-2">
               {subtitle}
             </p>
           )}
         </div>
-        <div className="flex items-center justify-center pl-[51px]">
-          <div className="w-5 h-5 border border-[#DCDEE4] rounded-full bg-white flex items-center justify-center p-1">
+        <div className="flex items-center justify-center sm:pl-[20px] lg:pl-[51px]">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 border border-[#DCDEE4] rounded-full bg-white flex items-center justify-center p-1">
             <div className="w-full h-full" />
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4">{children}</div>
+      <div className="flex-1 p-3 sm:p-4 overflow-hidden">{children}</div>
     </div>
   );
 };
@@ -373,14 +379,19 @@ const CustomLegend: React.FC<{ data: any[]; className?: string }> = ({
   className,
 }) => {
   return (
-    <div className={cn("flex flex-wrap gap-4 justify-center", className)}>
+    <div
+      className={cn(
+        "flex flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center",
+        className,
+      )}
+    >
       {data.map((entry, index) => (
-        <div key={index} className="flex items-center gap-2">
+        <div key={index} className="flex items-center gap-1 sm:gap-2">
           <div
-            className="w-3 h-3 rounded-sm"
+            className="w-2 h-2 sm:w-3 sm:h-3 rounded-sm flex-shrink-0"
             style={{ backgroundColor: entry.color }}
           />
-          <span className="text-sm text-[#283C50] font-inter">
+          <span className="text-[10px] sm:text-xs lg:text-sm text-[#283C50] font-inter">
             {entry.name}
           </span>
         </div>
@@ -397,12 +408,12 @@ const formatCurrency = (value: number) => {
   return `₹${value.toLocaleString()}`;
 };
 
-// Icon Components
+// Icon Components (Responsive)
 const TotalEmployeesIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -411,6 +422,7 @@ const TotalEmployeesIcon = () => (
       viewBox="0 0 50 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_134" fill="white">
         <path d="M0 25.19C0 11.3829 11.1929 0.190002 25 0.190002C38.8071 0.190002 50 11.3829 50 25.19C50 38.9971 38.8071 50.19 25 50.19C11.1929 50.19 0 38.9971 0 25.19Z" />
@@ -435,8 +447,8 @@ const TotalEmployeesIcon = () => (
 const EmployeesOnLeaveIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -445,6 +457,7 @@ const EmployeesOnLeaveIcon = () => (
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_140" fill="white">
         <path d="M0.333008 25.19C0.333008 11.3829 11.5259 0.190002 25.333 0.190002C39.1401 0.190002 50.333 11.3829 50.333 25.19C50.333 38.9971 39.1401 50.19 25.333 50.19C11.5259 50.19 0.333008 38.9971 0.333008 25.19Z" />
@@ -469,8 +482,8 @@ const EmployeesOnLeaveIcon = () => (
 const NewJoineesIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -479,6 +492,7 @@ const NewJoineesIcon = () => (
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_146" fill="white">
         <path d="M0.666992 25.19C0.666992 11.3829 11.8599 0.190002 25.667 0.190002C39.4741 0.190002 50.667 11.3829 50.667 25.19C50.667 38.9971 39.4741 50.19 25.667 50.19C11.8599 50.19 0.666992 38.9971 0.666992 25.19Z" />
@@ -503,8 +517,8 @@ const NewJoineesIcon = () => (
 const TotalHolidayIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[50px] h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA]",
+      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
     <svg
@@ -513,6 +527,7 @@ const TotalHolidayIcon = () => (
       viewBox="0 0 50 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_152" fill="white">
         <path d="M0 25.19C0 11.3829 11.1929 0.190002 25 0.190002C38.8071 0.190002 50 11.3829 50 25.19C50 38.9971 38.8071 50.19 25 50.19C11.1929 50.19 0 38.9971 0 25.19Z" />
@@ -541,7 +556,7 @@ const ChevronRightIcon = () => (
     viewBox="0 0 6 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="w-1 h-[7px]"
+    className="w-1 h-[7px] flex-shrink-0"
   >
     <path
       d="M1.00391 7.595L5.00391 4.095L1.00391 0.595001"
@@ -585,36 +600,43 @@ const Overview: React.FC = () => {
   );
 
   return (
-    <div className={cn("w-full p-4 font-inter")}>
+    <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
       {/* Page Area */}
-      <div className={cn("flex w-full flex-col items-start gap-6")}>
+      <div
+        className={cn(
+          "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
+        )}
+      >
         {/* Breadcrumb Section Row */}
         <div
           className={cn(
-            "flex min-h-[65px] px-[30px] py-[13.5px] justify-between items-center self-stretch",
+            "flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px]",
+            "px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px]",
+            "justify-between items-start sm:items-center self-stretch",
             "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
             "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+            "flex-col sm:flex-row gap-3 sm:gap-2 lg:gap-0",
           )}
         >
           {/* Breadcrumb Navigation */}
-          <div className="flex justify-center items-center gap-[10px]">
-            <div className="text-[#283C50] font-inter text-base font-bold leading-[19.2px]">
+          <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap">
+            <div className="text-[#283C50] font-inter text-sm sm:text-base font-bold leading-[16px] sm:leading-[19.2px]">
               Overview
             </div>
-            <div className="text-[#DBD9D9] font-inter text-base font-normal leading-[19.2px]">
+            <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
               |
             </div>
-            <div className="text-[#283C50] font-inter text-[13px] font-bold leading-[20.8px]">
+            <div className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px]">
               Liberty Highrise PVT Ltd
             </div>
             <ChevronRightIcon />
-            <div className="text-[#222] font-inter text-[13px] font-normal leading-[20.8px]">
+            <div className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px]">
               All Branch
             </div>
           </div>
 
           {/* Filter Controls */}
-          <div className="flex justify-center items-center gap-[10px]">
+          <div className="flex justify-start sm:justify-center items-center gap-2 lg:gap-[10px] w-full sm:w-auto">
             <DateRangePicker
               selectedRange={selectedDateRange}
               onRangeChange={setSelectedDateRange}
@@ -626,8 +648,9 @@ const Overview: React.FC = () => {
         {/* KPI Cards Row */}
         <div
           className={cn(
-            "flex justify-between items-center self-stretch gap-5",
-            "flex-wrap lg:flex-nowrap",
+            "flex justify-start items-center self-stretch gap-3 sm:gap-4 lg:gap-5",
+            "flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap",
+            "overflow-x-auto sm:overflow-x-visible",
           )}
         >
           <KPICard
@@ -653,30 +676,34 @@ const Overview: React.FC = () => {
         </div>
 
         {/* Analytics Section */}
-        <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
           {/* First Row of Charts */}
-          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+          <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
             {/* Salary Data Chart */}
             <ChartCard title="Salary Data Of Financial Year 2025-26">
               <div className="h-full flex flex-col">
-                <div className="mb-4">
+                <div className="mb-3 sm:mb-4">
                   <CustomLegend
                     data={[{ name: "Total Employee Salary", color: "#7DD3FC" }]}
                     className="justify-start"
                   />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={salaryData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                       <XAxis
                         dataKey="month"
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 10, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
+                        interval={0}
+                        angle={-45}
+                        textAnchor="end"
+                        height={60}
                       />
                       <YAxis
                         tickFormatter={formatCurrency}
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 10, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
                       />
                       <Tooltip
@@ -702,7 +729,7 @@ const Overview: React.FC = () => {
               subtitle={`Total Employees: ${kpiData.totalEmployees}`}
             >
               <div className="h-full flex flex-col items-center">
-                <div className="flex-1 w-full max-w-[350px]">
+                <div className="flex-1 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[350px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -710,7 +737,7 @@ const Overview: React.FC = () => {
                         cx="50%"
                         cy="50%"
                         innerRadius={0}
-                        outerRadius={140}
+                        outerRadius="80%"
                         paddingAngle={2}
                         dataKey="value"
                       >
@@ -724,17 +751,20 @@ const Overview: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <CustomLegend data={attendanceStatusData} className="mt-4" />
+                <CustomLegend
+                  data={attendanceStatusData}
+                  className="mt-2 sm:mt-3 lg:mt-4"
+                />
               </div>
             </ChartCard>
           </div>
 
           {/* Second Row of Charts */}
-          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+          <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
             {/* Employee Count by Salary Range Chart */}
             <ChartCard title="Employee Count By Salary Range">
               <div className="h-full flex flex-col items-center">
-                <div className="flex-1 w-full max-w-[400px]">
+                <div className="flex-1 w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -742,7 +772,7 @@ const Overview: React.FC = () => {
                         cx="50%"
                         cy="50%"
                         innerRadius={0}
-                        outerRadius={160}
+                        outerRadius="80%"
                         paddingAngle={2}
                         dataKey="value"
                       >
@@ -756,7 +786,10 @@ const Overview: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <CustomLegend data={salaryRangeData} className="mt-4" />
+                <CustomLegend
+                  data={salaryRangeData}
+                  className="mt-2 sm:mt-3 lg:mt-4"
+                />
               </div>
             </ChartCard>
 
@@ -766,7 +799,7 @@ const Overview: React.FC = () => {
               subtitle="Monthly Attendance Summary for 2025"
             >
               <div className="h-full flex flex-col">
-                <div className="mb-4">
+                <div className="mb-3 sm:mb-4">
                   <CustomLegend
                     data={[
                       { name: "Present", color: "#4ADE80" },
@@ -778,19 +811,19 @@ const Overview: React.FC = () => {
                     className="justify-start"
                   />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={monthlyAttendanceData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                       <XAxis
                         dataKey="month"
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 10, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
                       />
                       <YAxis
                         domain={[0, 100]}
                         tickFormatter={(value) => `${value}%`}
-                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        tick={{ fontSize: 10, fill: "#6B7280" }}
                         axisLine={{ stroke: "#E5E7EB" }}
                       />
                       <Tooltip formatter={(value) => [`${value}%`, ""]} />
