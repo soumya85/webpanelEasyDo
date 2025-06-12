@@ -519,7 +519,7 @@ const NewJoineesIcon = () => (
 const TotalHolidayIcon = () => (
   <div
     className={cn(
-      "flex justify-center items-center w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
+      "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
       "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
     )}
   >
@@ -529,7 +529,7 @@ const TotalHolidayIcon = () => (
       viewBox="0 0 50 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+      className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
     >
       <mask id="path-1-inside-1_66_152" fill="white">
         <path d="M0 25.19C0 11.3829 11.1929 0.190002 25 0.190002C38.8071 0.190002 50 11.3829 50 25.19C50 38.9971 38.8071 50.19 25 50.19C11.1929 50.19 0 38.9971 0 25.19Z" />
