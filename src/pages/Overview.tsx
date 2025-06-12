@@ -626,11 +626,13 @@ const Overview: React.FC = () => {
             <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
               |
             </div>
-            <div className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px]">
+            <div className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px] hidden sm:block">
               Liberty Highrise PVT Ltd
             </div>
-            <ChevronRightIcon />
-            <div className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px]">
+            <div className="hidden sm:block">
+              <ChevronRightIcon />
+            </div>
+            <div className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
               All Branch
             </div>
           </div>
