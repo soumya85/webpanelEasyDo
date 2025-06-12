@@ -471,9 +471,22 @@ const Chats: React.FC = () => {
 
   const handleSendMessage = () => {
     if (messageText.trim()) {
+      const newMessage: ChatMessage = {
+        id: Date.now().toString(),
+        text: messageText.trim(),
+        timestamp: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        isSent: true,
+        isRead: false,
+      };
+
+      setMessages((prev) => [...prev, newMessage]);
+      setMessageText("");
+
       // Here you would typically send the message to your backend
       console.log("Sending message:", messageText);
-      setMessageText("");
     }
   };
 
