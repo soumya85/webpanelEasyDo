@@ -159,9 +159,9 @@ export function Header() {
           {/* User Avatar */}
           <div className="flex items-center justify-center -mt-1">
             <Avatar className="h-[22px] w-[22px]">
-              <AvatarImage src="/api/placeholder/22/22" alt="User" />
+              <AvatarImage src={getProfileImageSrc(user)} alt={user.name} />
               <AvatarFallback className="bg-azure-24 text-white text-xs">
-                BG
+                {getUserInitials(user.name)}
               </AvatarFallback>
             </Avatar>
           </div>
