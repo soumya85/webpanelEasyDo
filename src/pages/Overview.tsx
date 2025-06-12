@@ -386,6 +386,161 @@ const Overview: React.FC = () => {
             label="Total Holiday"
           />
         </div>
+
+        {/* Analytics Section */}
+        <div className="flex flex-col gap-6 w-full">
+          {/* First Row of Charts */}
+          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+            {/* Salary Data Chart */}
+            <ChartCard title="Salary Data Of Financial Year 2025-26">
+              <div className="h-full flex flex-col">
+                <div className="mb-4">
+                  <CustomLegend
+                    data={[{ name: "Total Employee Salary", color: "#7DD3FC" }]}
+                    className="justify-start"
+                  />
+                </div>
+                <div className="flex-1">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={salaryData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                      <XAxis
+                        dataKey="month"
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <YAxis
+                        tickFormatter={formatCurrency}
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <Tooltip
+                        formatter={(value) => [
+                          formatCurrency(value as number),
+                          "Total Employee Salary",
+                        ]}
+                      />
+                      <Bar
+                        dataKey="salary"
+                        fill="#7DD3FC"
+                        radius={[4, 4, 0, 0]}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </ChartCard>
+
+            {/* Attendance Status Chart */}
+            <ChartCard
+              title="Attendance Status"
+              subtitle="Total Employees: 120"
+            >
+              <div className="h-full flex flex-col items-center">
+                <div className="flex-1 w-full max-w-[350px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={attendanceStatusData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={0}
+                        outerRadius={140}
+                        paddingAngle={2}
+                        dataKey="value"
+                      >
+                        {attendanceStatusData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => [`${value}%`, "Percentage"]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <CustomLegend data={attendanceStatusData} className="mt-4" />
+              </div>
+            </ChartCard>
+          </div>
+
+          {/* Second Row of Charts */}
+          <div className="flex gap-6 w-full flex-wrap lg:flex-nowrap">
+            {/* Employee Count by Salary Range Chart */}
+            <ChartCard title="Employee Count By Salary Range">
+              <div className="h-full flex flex-col items-center">
+                <div className="flex-1 w-full max-w-[400px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={salaryRangeData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={0}
+                        outerRadius={160}
+                        paddingAngle={2}
+                        dataKey="value"
+                      >
+                        {salaryRangeData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => [`${value}%`, "Percentage"]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <CustomLegend data={salaryRangeData} className="mt-4" />
+              </div>
+            </ChartCard>
+
+            {/* Monthly Attendance Summary Chart */}
+            <ChartCard
+              title="Attendance Summary"
+              subtitle="Monthly Attendance Summary for 2025"
+            >
+              <div className="h-full flex flex-col">
+                <div className="mb-4">
+                  <CustomLegend
+                    data={[
+                      { name: "Present", color: "#4ADE80" },
+                      { name: "Absent", color: "#9CA3AF" },
+                      { name: "Leave", color: "#FB923C" },
+                      { name: "Late", color: "#EF4444" },
+                      { name: "Half Day", color: "#7DD3FC" },
+                    ]}
+                    className="justify-start"
+                  />
+                </div>
+                <div className="flex-1">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={monthlyAttendanceData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                      <XAxis
+                        dataKey="month"
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <YAxis
+                        domain={[0, 100]}
+                        tickFormatter={(value) => `${value}%`}
+                        tick={{ fontSize: 12, fill: "#6B7280" }}
+                        axisLine={{ stroke: "#E5E7EB" }}
+                      />
+                      <Tooltip formatter={(value) => [`${value}%`, ""]} />
+                      <Bar dataKey="Present" stackId="a" fill="#4ADE80" />
+                      <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
+                      <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
+                      <Bar dataKey="Late" stackId="a" fill="#EF4444" />
+                      <Bar dataKey="Half" stackId="a" fill="#7DD3FC" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </ChartCard>
+          </div>
+        </div>
       </div>
     </div>
   );
