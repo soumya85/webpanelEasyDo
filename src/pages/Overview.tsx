@@ -781,16 +781,23 @@ const Overview: React.FC = () => {
           <div className="flex gap-4 sm:gap-5 lg:gap-6 w-full flex-col lg:flex-row">
             {/* Employee Count by Salary Range Chart */}
             <ChartCard title="Employee Count By Salary Range">
-              <div className="h-full flex flex-col items-center">
-                <div className="flex-1 w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
+              <div className="h-full flex flex-col items-center w-full">
+                <div
+                  className="flex-1 w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]"
+                  style={{ minHeight: "200px" }}
+                >
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minHeight={200}
+                  >
+                    <PieChart margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
                       <Pie
                         data={salaryRangeData}
                         cx="50%"
                         cy="50%"
                         innerRadius={0}
-                        outerRadius="80%"
+                        outerRadius="75%"
                         paddingAngle={2}
                         dataKey="value"
                       >
@@ -804,10 +811,9 @@ const Overview: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <CustomLegend
-                  data={salaryRangeData}
-                  className="mt-2 sm:mt-3 lg:mt-4"
-                />
+                <div className="flex-shrink-0 mt-2 sm:mt-3 lg:mt-4">
+                  <CustomLegend data={salaryRangeData} />
+                </div>
               </div>
             </ChartCard>
 
