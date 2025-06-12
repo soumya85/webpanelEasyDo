@@ -534,216 +534,217 @@ const Chats: React.FC = () => {
 
   if (selectedChat) {
     return (
-      <div
-        className="flex flex-col bg-white -mb-16 pb-16"
-        style={{ height: "calc(100vh - 151px + 4rem)" }}
-      >
-        {/* Chat Header */}
-        <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setSelectedChat(null)}
-            className="h-8 w-8 p-0"
-          >
-            <ArrowLeft className="h-5 w-5 text-blue-500" />
-          </Button>
-
-          <Avatar className="h-8 w-8">
-            <AvatarImage src={selectedChat.avatar} alt={selectedChat.name} />
-            <AvatarFallback className="bg-gray-300 text-gray-700 text-sm">
-              {selectedChat.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .slice(0, 2)}
-            </AvatarFallback>
-          </Avatar>
-
-          <div className="flex-1">
-            <h2 className="font-semibold text-[16px] text-gray-900">
-              {selectedChat.phone || selectedChat.name}
-            </h2>
-            <p className="text-[12px] text-gray-500">36 minutes ago</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
-              <Phone className="h-5 w-5 text-blue-500" />
-            </Button>
-            <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
-              <MoreHorizontal className="h-5 w-5 text-blue-500" />
-            </Button>
-          </div>
-        </div>
-
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-1">
-          <div className="text-center">
-            <span className="bg-gray-200 text-gray-600 text-[12px] px-3 py-1 rounded-full">
-              Wednesday 01 May 2024
-            </span>
-          </div>
-
-          {messages.map((message) => (
-            <MessageBubble key={message.id} message={message} />
-          ))}
-
-          <div className="text-center">
-            <span className="bg-gray-200 text-gray-600 text-[12px] px-3 py-1 rounded-full">
-              Wednesday 08 May 2024
-            </span>
-          </div>
-
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Quick Actions */}
-        <div className="px-4 py-2 border-t border-gray-100">
-          <div className="flex gap-2 mb-3 overflow-x-auto">
-            {quickActions.map((action) => (
-              <button
-                key={action.id}
-                onClick={() => handleActionSelect(action)}
-                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-full whitespace-nowrap text-[12px] font-medium text-gray-700"
-              >
-                <action.icon className="h-4 w-4" />
-                {action.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Input Area */}
-        <div className="flex items-center gap-3 p-4 border-t border-gray-200 bg-white">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsActionDrawerOpen(true)}
-            className="h-8 w-8 p-0 text-blue-500"
-          >
-            <Plus className="h-5 w-5" />
-          </Button>
-
-          <div className="flex-1 relative">
-            <Input
-              value={messageText}
-              onChange={(e) => setMessageText(e.target.value)}
-              placeholder="Type here..."
-              className="rounded-full border-gray-300 pr-10"
-              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-            />
-          </div>
-
-          {messageText.trim() ? (
-            <Button
-              onClick={handleSendMessage}
-              size="icon"
-              className="h-8 w-8 p-0 bg-blue-500 hover:bg-blue-600 text-white rounded-full"
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          ) : (
+      <PageLayout>
+        <div className="flex flex-col bg-white h-full">
+          {/* Chat Header */}
+          <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
             <Button
               variant="ghost"
               size="icon"
+              onClick={() => setSelectedChat(null)}
+              className="h-8 w-8 p-0"
+            >
+              <ArrowLeft className="h-5 w-5 text-blue-500" />
+            </Button>
+
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={selectedChat.avatar} alt={selectedChat.name} />
+              <AvatarFallback className="bg-gray-300 text-gray-700 text-sm">
+                {selectedChat.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .slice(0, 2)}
+              </AvatarFallback>
+            </Avatar>
+
+            <div className="flex-1">
+              <h2 className="font-semibold text-[16px] text-gray-900">
+                {selectedChat.phone || selectedChat.name}
+              </h2>
+              <p className="text-[12px] text-gray-500">36 minutes ago</p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
+                <Phone className="h-5 w-5 text-blue-500" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
+                <MoreHorizontal className="h-5 w-5 text-blue-500" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-1">
+            <div className="text-center">
+              <span className="bg-gray-200 text-gray-600 text-[12px] px-3 py-1 rounded-full">
+                Wednesday 01 May 2024
+              </span>
+            </div>
+
+            {messages.map((message) => (
+              <MessageBubble key={message.id} message={message} />
+            ))}
+
+            <div className="text-center">
+              <span className="bg-gray-200 text-gray-600 text-[12px] px-3 py-1 rounded-full">
+                Wednesday 08 May 2024
+              </span>
+            </div>
+
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick Actions */}
+          <div className="px-4 py-2 border-t border-gray-100">
+            <div className="flex gap-2 mb-3 overflow-x-auto">
+              {quickActions.map((action) => (
+                <button
+                  key={action.id}
+                  onClick={() => handleActionSelect(action)}
+                  className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-full whitespace-nowrap text-[12px] font-medium text-gray-700"
+                >
+                  <action.icon className="h-4 w-4" />
+                  {action.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Input Area */}
+          <div className="flex items-center gap-3 p-4 border-t border-gray-200 bg-white">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsActionDrawerOpen(true)}
               className="h-8 w-8 p-0 text-blue-500"
             >
-              <Mic className="h-5 w-5" />
+              <Plus className="h-5 w-5" />
             </Button>
-          )}
-        </div>
 
-        <CompanyActionDrawer
-          isOpen={isActionDrawerOpen}
-          onClose={() => setIsActionDrawerOpen(false)}
-          onActionSelect={handleActionSelect}
-        />
-      </div>
+            <div className="flex-1 relative">
+              <Input
+                value={messageText}
+                onChange={(e) => setMessageText(e.target.value)}
+                placeholder="Type here..."
+                className="rounded-full border-gray-300 pr-10"
+                onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+              />
+            </div>
+
+            {messageText.trim() ? (
+              <Button
+                onClick={handleSendMessage}
+                size="icon"
+                className="h-8 w-8 p-0 bg-blue-500 hover:bg-blue-600 text-white rounded-full"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            ) : (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 p-0 text-blue-500"
+              >
+                <Mic className="h-5 w-5" />
+              </Button>
+            )}
+          </div>
+
+          <CompanyActionDrawer
+            isOpen={isActionDrawerOpen}
+            onClose={() => setIsActionDrawerOpen(false)}
+            onActionSelect={handleActionSelect}
+          />
+        </div>
+      </PageLayout>
     );
   }
 
   return (
-    <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        {/* Title and Search Bar */}
-        <div className="flex items-center gap-4 p-4">
-          <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
-          <div className="flex-1 relative">
-            <Input
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search"
-              className="pl-10 rounded-lg border-gray-300 bg-gray-50"
-            />
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <svg
-                className="h-4 w-4 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+    <PageLayout>
+      <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
+        {/* Content Header */}
+        <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+          {/* Title and Search Bar */}
+          <div className="flex items-center gap-4 p-4">
+            <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
+            <div className="flex-1 relative">
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search"
+                className="pl-10 rounded-lg border-gray-300 bg-gray-50"
+              />
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <svg
+                  className="h-4 w-4 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Filter Tabs */}
+          <div className="px-4 pb-3">
+            <div className="flex gap-2 overflow-x-auto">
+              {filterTabs.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setSelectedFilter(filter)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
+                    selectedFilter === filter
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                  )}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Task Summary Cards */}
+          <div className="px-4 pb-4">
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {taskSummaries.map((task) => (
+                <TaskSummaryCard key={task.id} task={task} />
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="px-4 pb-3">
-          <div className="flex gap-2 overflow-x-auto">
-            {filterTabs.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setSelectedFilter(filter)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
-                  selectedFilter === filter
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                )}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Task Summary Cards */}
-        <div className="px-4 pb-4">
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {taskSummaries.map((task) => (
-              <TaskSummaryCard key={task.id} task={task} />
-            ))}
-          </div>
+        {/* Chat List */}
+        <div className="flex-1 bg-white overflow-y-auto">
+          {filteredChats.length > 0 ? (
+            filteredChats.map((chat) => (
+              <ChatListItem
+                key={chat.id}
+                chat={chat}
+                onClick={() => setSelectedChat(chat)}
+              />
+            ))
+          ) : (
+            <div className="flex items-center justify-center py-8">
+              <p className="text-gray-500 text-center">
+                {searchQuery ? "No chats found" : "No chats available"}
+              </p>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Chat List */}
-      <div className="flex-1 bg-white overflow-y-auto">
-        {filteredChats.length > 0 ? (
-          filteredChats.map((chat) => (
-            <ChatListItem
-              key={chat.id}
-              chat={chat}
-              onClick={() => setSelectedChat(chat)}
-            />
-          ))
-        ) : (
-          <div className="flex items-center justify-center py-8">
-            <p className="text-gray-500 text-center">
-              {searchQuery ? "No chats found" : "No chats available"}
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
+    </PageLayout>
   );
 };
 
