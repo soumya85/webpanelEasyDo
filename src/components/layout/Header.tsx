@@ -91,17 +91,17 @@ export function Header() {
           </div>
 
           {/* Title and Button Group */}
-          <div className="flex items-center gap-3 ml-4">
+          <div className="flex items-center gap-3 ml-3">
             {/* Dashboard Title */}
             <h1 className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6">
               Dashboard
             </h1>
 
             {/* Create Button */}
-            <button className="flex items-center justify-center w-[32px] h-[30px] bg-[#4766E5] rounded-[3px] border border-[#4766E5]">
+            <button className="flex items-center justify-center w-[26px] h-[24px] bg-[#4766E5] rounded-[3px] border border-[#4766E5]">
               <svg
-                width="18"
-                height="16"
+                width="14"
+                height="12"
                 viewBox="0 0 18 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -257,27 +257,25 @@ export function Header() {
 
         {/* Right Controls */}
         <div className="flex items-center gap-6">
-          {/* Desktop Icons - Hidden on Chats page */}
-          {!isChatsPage && (
-            <div className="flex items-center gap-6">
-              {/* Theme Toggle */}
-              <Button variant="ghost" size="icon">
-                <Moon className="h-5 w-5 text-gray-500" />
-              </Button>
+          {/* Desktop Icons */}
+          <div className="flex items-center gap-6">
+            {/* Theme Toggle */}
+            <Button variant="ghost" size="icon">
+              <Moon className="h-5 w-5 text-gray-500" />
+            </Button>
 
-              {/* Chat Notification */}
-              <Button variant="ghost" size="icon" className="relative">
-                <MessageSquare className="h-5 w-5 text-gray-500" />
-                <NotificationBadge count={2} variant="success" />
-              </Button>
+            {/* Chat Notification */}
+            <Button variant="ghost" size="icon" className="relative">
+              <MessageSquare className="h-5 w-5 text-gray-500" />
+              <NotificationBadge count={2} variant="success" />
+            </Button>
 
-              {/* Bell Notification */}
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5 text-gray-500" />
-                <NotificationBadge count={3} variant="error" />
-              </Button>
-            </div>
-          )}
+            {/* Bell Notification */}
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell className="h-5 w-5 text-gray-500" />
+              <NotificationBadge count={3} variant="error" />
+            </Button>
+          </div>
 
           {/* User Avatar */}
           <DropdownMenu>

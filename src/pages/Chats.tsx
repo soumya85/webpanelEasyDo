@@ -666,10 +666,14 @@ const Chats: React.FC = () => {
     <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        {/* Title and Search Bar */}
-        <div className="flex items-center gap-4 p-4">
+        {/* Title */}
+        <div className="px-4 pt-4 pb-2">
           <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
-          <div className="flex-1 relative">
+        </div>
+
+        {/* Search Bar */}
+        <div className="px-4 pb-3">
+          <div className="relative">
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
