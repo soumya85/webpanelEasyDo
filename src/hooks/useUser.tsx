@@ -114,5 +114,7 @@ export function getUserInitials(name: string): string {
 
 // Helper function to get profile image or fallback
 export function getProfileImageSrc(user: User): string {
-  return user.profileImage || "/api/placeholder/128/128";
+  // Return the actual profile image if it exists, otherwise return empty string
+  // This will cause the Avatar component to fall back to the AvatarFallback
+  return user.profileImage || "";
 }
