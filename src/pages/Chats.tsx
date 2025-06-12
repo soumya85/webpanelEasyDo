@@ -418,7 +418,7 @@ const CompanyActionDrawer: React.FC<{
             <h3 className="text-[16px] font-semibold text-gray-900">
               Company Options
             </h3>
-            <div className="flex-1 h-px bg-gray-300"></div>
+            <div className="flex-1 h-px bg-gray-500"></div>
           </div>
           <div className="grid grid-cols-4 gap-4">
             {companyActions
