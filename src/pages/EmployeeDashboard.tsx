@@ -152,17 +152,27 @@ export default function EmployeeDashboard() {
 
         {/* New Dashboard Sections */}
         <div className="flex flex-col gap-6 sm:gap-8 w-full">
-          {/* First Row: Attendance Summary and Performance Meter */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <AttendanceSummary />
-            <PerformanceMeter />
+          {/* First Row: Attendance Summary and Performance Meter - Equal Heights */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-auto lg:h-[500px]">
+            <div className="h-full">
+              <AttendanceSummary />
+            </div>
+            <div className="h-full">
+              <PerformanceMeter />
+            </div>
           </div>
 
-          {/* Second Row: Wages, Leave Balance, and Upcoming Holidays */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <WagesSummary />
-            <LeaveBalance />
-            <UpcomingHolidays />
+          {/* Second Row: Wages, Leave Balance, and Upcoming Holidays - Equal Heights */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-auto lg:h-[450px]">
+            <div className="h-full">
+              <WagesSummary />
+            </div>
+            <div className="h-full">
+              <LeaveBalance />
+            </div>
+            <div className="h-full">
+              <UpcomingHolidays />
+            </div>
           </div>
         </div>
       </div>
