@@ -126,9 +126,6 @@ export default function AttendanceSummary() {
                     <span className="text-gray-800 font-semibold ml-1">21</span>
                   </span>
                 </div>
-                <div className="text-right">
-                  <span className="text-gray-500 text-xs">Work From</span>
-                </div>
               </div>
             </div>
           </div>
