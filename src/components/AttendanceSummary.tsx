@@ -12,20 +12,6 @@ export default function AttendanceSummary() {
       borderColor: "border-green-200",
     },
     {
-      label: "Absent",
-      value: 3,
-      color: "text-gray-600",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Leave",
-      value: "0.0",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
-    },
-    {
       label: "Late",
       value: 0,
       color: "text-gray-500",
@@ -52,6 +38,20 @@ export default function AttendanceSummary() {
       color: "text-red-600",
       bgColor: "bg-red-50",
       borderColor: "border-red-200",
+    },
+    {
+      label: "Absent",
+      value: 3,
+      color: "text-gray-600",
+      bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
+    },
+    {
+      label: "Leave",
+      value: "0.0",
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-200",
     },
   ];
 
