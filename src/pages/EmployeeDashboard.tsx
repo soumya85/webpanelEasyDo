@@ -1,5 +1,4 @@
 import {
-  UserX,
   Clock,
   DollarSign,
   Receipt,
@@ -10,11 +9,42 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+// Custom Leave Request Icon from Figma design
+const LeaveRequestIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-8 w-8"
+  >
+    <circle cx="16" cy="16" r="16" fill="#4766E5" />
+    <g transform="translate(6, 8)">
+      <circle cx="6" cy="4" r="3" fill="white" />
+      <path d="M2 14c0-2.5 1.5-4 4-4s4 1.5 4 4v2H2v-2z" fill="white" />
+      <path
+        d="M12 10l3 3-3 3"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 13H11"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </g>
+  </svg>
+);
+
 export default function EmployeeDashboard() {
   const cardData = [
     // Row 1
     {
-      icon: <UserX className="h-8 w-8 text-blue-600" />,
+      icon: <LeaveRequestIcon />,
       title: "Leave Request",
       id: "leave-request",
     },
