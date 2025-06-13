@@ -102,7 +102,7 @@ export default function EmployeeDashboard() {
               Liberty Highrise PVT Ltd
             </span>
             <div className="hidden sm:block">
-              <ChevronRight className="w-1 h-[7px] text-[#7C8796] flex-shrink-0" />
+              <ChevronRightIcon />
             </div>
             <span className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
               All Branch
