@@ -13,7 +13,13 @@ export default function EmployeeDashboard() {
   const cardData = [
     // Row 1
     {
-      icon: <LeaveRequestIcon />,
+      icon: (
+        <img
+          src="/leave_request-icon.png"
+          alt="Leave Request"
+          className="h-8 w-8"
+        />
+      ),
       title: "Leave Request",
       id: "leave-request",
     },
