@@ -101,17 +101,17 @@ export default function EmployeeDashboard() {
                 key={card.id}
                 className={cn(
                   "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
-                  "px-3 sm:px-4 justify-center items-center gap-1 sm:gap-1.5 flex-shrink-0",
+                  "px-3 sm:px-4 justify-center items-center gap-2 flex-shrink-0",
                   "rounded-[10px] border-b-[6px] border-[#4766E5] bg-white",
                   "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
                 )}
               >
-                <div className="flex w-[35px] sm:w-[41px] flex-col items-start gap-2.5 flex-shrink-0">
+                <div className="flex w-[35px] sm:w-[41px] flex-col items-start flex-shrink-0">
                   {card.icon}
                 </div>
-                <div className="flex justify-center items-center gap-2.5 flex-1 min-w-0">
-                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px] text-center">
+                <div className="flex justify-start items-center flex-1 min-w-0">
+                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px]">
                     {card.title}
                   </h3>
                 </div>
@@ -126,17 +126,17 @@ export default function EmployeeDashboard() {
                 key={card.id}
                 className={cn(
                   "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
-                  "px-3 sm:px-4 justify-center items-center gap-2 sm:gap-3 flex-shrink-0",
+                  "px-3 sm:px-4 justify-center items-center gap-2 flex-shrink-0",
                   "rounded-[10px] border-b-[6px] border-[#4766E5] bg-white",
                   "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
                 )}
               >
-                <div className="flex w-[35px] sm:w-[41px] flex-col items-start gap-2.5 flex-shrink-0">
+                <div className="flex w-[35px] sm:w-[41px] flex-col items-start flex-shrink-0">
                   {card.icon}
                 </div>
-                <div className="flex justify-center items-center gap-2.5 flex-1 min-w-0">
-                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px] text-center">
+                <div className="flex justify-start items-center flex-1 min-w-0">
+                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px]">
                     {card.title}
                   </h3>
                 </div>
