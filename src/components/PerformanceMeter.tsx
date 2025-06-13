@@ -43,22 +43,6 @@ export default function PerformanceMeter() {
     },
   };
 
-  // Custom label component for the gauge with better positioning
-  const renderCustomLabel = ({ cx, cy }: { cx: number; cy: number }) => {
-    return (
-      <text
-        x={cx}
-        y={cy + 5} // Slightly adjust Y position
-        textAnchor="middle"
-        dominantBaseline="middle"
-        className="text-xl font-bold fill-gray-800"
-        fontSize="20"
-      >
-        {overallScore}%
-      </text>
-    );
-  };
-
   // Custom bar colors based on performance
   const getBarColor = (percentage: number) => {
     if (percentage === 0) return "#6b7280"; // Gray for 0%
@@ -82,34 +66,41 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Circular Performance Gauge - Increased size and better positioning */}
+          {/* Circular Performance Gauge - Fixed positioning */}
           <div className="mb-4">
-            <div className="relative w-80 h-44 mx-auto flex items-center justify-center">
-              <PieChart width={320} height={176}>
-                <Pie
-                  data={gaugeData}
-                  cx={160} // Center X position
-                  cy={140} // Center Y position - moved down to ensure visibility
-                  innerRadius={70}
-                  outerRadius={100}
-                  startAngle={180}
-                  endAngle={0}
-                  dataKey="value"
-                  labelLine={false}
-                  label={renderCustomLabel}
-                >
-                  {gaugeData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
-                  ))}
-                </Pie>
-              </PieChart>
+            <div className="relative w-full h-48 flex items-center justify-center">
+              {/* Chart Container */}
+              <div className="relative">
+                <PieChart width={300} height={180}>
+                  <Pie
+                    data={gaugeData}
+                    cx={150} // Center X position
+                    cy={150} // Center Y position - moved significantly down
+                    innerRadius={60}
+                    outerRadius={90}
+                    startAngle={180}
+                    endAngle={0}
+                    dataKey="value"
+                    labelLine={false}
+                  >
+                    {gaugeData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                  </Pie>
+                </PieChart>
 
-              {/* Score Labels - Positioned better */}
-              <div className="absolute bottom-2 left-4 text-sm font-medium text-red-500">
-                Poor
+                {/* Score Text - Positioned absolutely to ensure visibility */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-xl font-bold text-gray-800 mt-8">
+                    {overallScore}%
+                  </div>
+                </div>
               </div>
-              <div className="absolute bottom-2 right-4 text-sm font-medium text-green-500">
-                Good
+
+              {/* Poor/Good Labels */}
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-64 flex justify-between">
+                <span className="text-sm font-medium text-red-500">Poor</span>
+                <span className="text-sm font-medium text-green-500">Good</span>
               </div>
             </div>
           </div>
