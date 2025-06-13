@@ -20,11 +20,11 @@ const LeaveRequestIcon = () => (
     className="h-8 w-8"
   >
     {/* Person head (circle) */}
-    <circle cx="8" cy="7" r="5.5" fill="#4766E5" />
+    <circle cx="8" cy="8" r="6" fill="#4766E5" />
 
-    {/* L-shaped bracket flowing into arrow */}
+    {/* L-bracket extending into arrow - single path */}
     <path
-      d="M3 15 L3 25 L16 25 L16 27 L23 23 L16 19 L16 21 L7 21 L7 15 Z"
+      d="M4 16 L4 24 L18 24 L18 26 L24 22 L18 18 L18 20 L8 20 L8 16 L4 16 Z"
       fill="#4766E5"
     />
   </svg>
