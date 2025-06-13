@@ -9,26 +9,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-// Custom Leave Request Icon from Figma design
-const LeaveRequestIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 41 34"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-8 w-8"
-  >
-    {/* Person head (circle) */}
-    <circle cx="8" cy="8" r="6" fill="#4766E5" />
-
-    {/* L-shaped bracket flowing into arrow */}
-    <path
-      d="M2 17 L2 28 L22 28 L22 30 L30 26 L22 22 L22 24 L6 24 L6 17 L2 17 Z"
-      fill="#4766E5"
-    />
-  </svg>
-);
 export default function EmployeeDashboard() {
   const cardData = [
     // Row 1
