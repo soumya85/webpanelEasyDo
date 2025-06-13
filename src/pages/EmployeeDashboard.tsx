@@ -18,8 +18,8 @@ export default function EmployeeDashboard() {
           src="/leave_request-icon.png"
           alt="Leave Request"
           className="h-8 w-8"
-        />
-      ),
+    {
+      icon: <img src="/leave_request-icon.png" alt="Leave Request" />,
       title: "Leave Request",
       id: "leave-request",
     },
