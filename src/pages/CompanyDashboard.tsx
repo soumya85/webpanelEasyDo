@@ -24,49 +24,53 @@ export default function CompanyDashboard() {
   const cardData = [
     // Row 1
     {
-      icon: <img src="/reports-icon.png" alt="Register" />,
+      icon: <img src="/register-icon.png" alt="Register" />,
       title: "Register",
       id: "register",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Background Verification" />,
+      icon: (
+        <img src="/backgroundcheck-icon.png" alt="Background Verification" />
+      ),
       title: "Background Verification",
       id: "background-verification",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Performance Review" />,
+      icon: (
+        <img src="/performamance_review-icon.png" alt="Performance Review" />
+      ),
       title: "Performance Review",
       id: "performance-review",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Location" />,
+      icon: <img src="/location-icon.png" alt="Location" />,
       title: "Location",
       id: "location",
     },
     // Row 2
     {
-      icon: <img src="/reports-icon.png" alt="Branch" />,
+      icon: <img src="/branch-icon.png" alt="Branch" />,
       title: "Branch",
       id: "branch",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Announce" />,
+      icon: <img src="/announce-icon.png" alt="Announce" />,
       title: "Announce",
       id: "announce",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Documents" />,
+      icon: <img src="/Documents-icon.png" alt="Documents" />,
       title: "Documents",
       id: "documents",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Leave" />,
+      icon: <img src="/leave-icon.png" alt="Leave" />,
       title: "Leave",
       id: "leave",
     },
     // Row 3
     {
-      icon: <img src="/reports-icon.png" alt="Holiday" />,
+      icon: <img src="/holiday-icon.png" alt="Holiday" />,
       title: "Holiday",
       id: "holiday",
     },
@@ -76,7 +80,7 @@ export default function CompanyDashboard() {
       id: "reports",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Pending Approvals" />,
+      icon: <img src="/pendingapproval-icon.png" alt="Pending Approvals" />,
       title: "Pending Approvals",
       id: "pending-approvals",
     },
