@@ -20,19 +20,13 @@ const LeaveRequestIcon = () => (
     className="h-8 w-8"
   >
     {/* Person head (circle) */}
-    <circle cx="8" cy="8" r="6" fill="#4766E5" />
+    <circle cx="8" cy="7" r="5.5" fill="#4766E5" />
 
-    {/* L-bracket shape extending into arrow */}
-    <g fill="#4766E5">
-      {/* Vertical part of L */}
-      <rect x="2" y="16" width="4" height="12" />
-
-      {/* Horizontal part of L extending into arrow */}
-      <rect x="2" y="24" width="16" height="4" />
-
-      {/* Arrow head */}
-      <polygon points="18,20 26,24 18,28" />
-    </g>
+    {/* L-shaped bracket flowing into arrow */}
+    <path
+      d="M3 15 L3 25 L16 25 L16 27 L23 23 L16 19 L16 21 L7 21 L7 15 Z"
+      fill="#4766E5"
+    />
   </svg>
 );
 export default function EmployeeDashboard() {
