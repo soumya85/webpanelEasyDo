@@ -6,40 +6,52 @@ export default function AttendanceSummary() {
   const attendanceData = [
     {
       label: "Present",
-      value: 20,
+      value: 0,
       color: "text-green-600",
       bgColor: "bg-green-50",
+      borderColor: "border-green-200",
     },
     {
       label: "Absent",
-      value: 0,
+      value: 3,
       color: "text-gray-600",
       bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
     },
     {
       label: "Leave",
-      value: 1,
+      value: "0.0",
       color: "text-orange-600",
       bgColor: "bg-orange-50",
+      borderColor: "border-orange-200",
     },
-    { label: "Late", value: 3, color: "text-red-600", bgColor: "bg-red-50" },
+    {
+      label: "Late",
+      value: 0,
+      color: "text-gray-500",
+      bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
+    },
     {
       label: "Half Day",
       value: 0,
-      color: "text-gray-600",
+      color: "text-gray-500",
       bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
     },
     {
-      label: "Red Flags",
-      value: 5,
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-    },
-    {
-      label: "Holidays",
-      value: 3,
+      label: "Total Staff",
+      value: 120,
       color: "text-blue-600",
       bgColor: "bg-blue-50",
+      borderColor: "border-blue-200",
+    },
+    {
+      label: "Week Off",
+      value: 0,
+      color: "text-red-600",
+      bgColor: "bg-red-50",
+      borderColor: "border-red-200",
     },
   ];
 
@@ -53,9 +65,11 @@ export default function AttendanceSummary() {
             <h2 className="text-[#283C50] font-inter text-xl font-bold">
               Attendance
             </h2>
-            <div className="flex items-center gap-2 text-[#4766E5] font-medium">
-              <span className="text-sm">May, 2025</span>
-              <ChevronRight className="w-4 h-4" />
+            <div className="flex items-center gap-2">
+              <button className="text-[#4766E5] font-medium hover:text-[#3752D1] transition-colors cursor-pointer">
+                <span className="text-sm">Today (Fri, 13 Jun 2025)</span>
+              </button>
+              <ChevronRight className="w-4 h-4 text-[#4766E5]" />
             </div>
           </div>
 
@@ -66,39 +80,56 @@ export default function AttendanceSummary() {
                 <div
                   key={item.label}
                   className={cn(
-                    "flex flex-col items-center justify-center p-4 rounded-lg",
-                    "min-h-[80px] transition-transform hover:scale-105",
+                    "flex flex-col items-center justify-center p-4 rounded-lg border",
+                    "min-h-[100px] transition-all duration-200 hover:scale-105 hover:shadow-md",
                     item.bgColor,
+                    item.borderColor,
                   )}
                 >
-                  <div className={cn("text-2xl font-bold mb-1", item.color)}>
+                  <div className={cn("text-3xl font-bold mb-2", item.color)}>
                     {item.value}
                   </div>
-                  <div className="text-xs text-gray-600 text-center font-medium">
+                  <div className="text-sm text-gray-700 text-center font-medium">
                     {item.label}
                   </div>
+
+                  {/* Progress indicators for specific categories */}
                   {item.label === "Present" && (
-                    <div className="w-full h-1 bg-green-500 rounded-full mt-2" />
+                    <div className="w-full h-1 bg-green-500 rounded-full mt-3" />
+                  )}
+                  {item.label === "Absent" && (
+                    <div className="w-full h-1 bg-gray-400 rounded-full mt-3" />
                   )}
                   {item.label === "Leave" && (
-                    <div className="w-full h-1 bg-orange-500 rounded-full mt-2" />
+                    <div className="w-full h-1 bg-orange-500 rounded-full mt-3" />
                   )}
-                  {item.label === "Late" && (
-                    <div className="w-full h-1 bg-red-500 rounded-full mt-2" />
+                  {item.label === "Total Staff" && (
+                    <div className="w-full h-1 bg-blue-500 rounded-full mt-3" />
                   )}
-                  {item.label === "Red Flags" && (
-                    <div className="w-full h-1 bg-red-500 rounded-full mt-2" />
-                  )}
-                  {item.label === "Holidays" && (
-                    <div className="w-full h-1 bg-blue-500 rounded-full mt-2" />
+                  {item.label === "Week Off" && (
+                    <div className="w-full h-1 bg-red-500 rounded-full mt-3" />
                   )}
                 </div>
               ))}
             </div>
 
-            {/* Footer */}
-            <div className="text-sm text-gray-600 text-center font-medium mt-auto">
-              Total Days: 24, Working Days: 21
+            {/* Footer with additional information */}
+            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-6">
+                  <span className="text-gray-700 font-medium">
+                    <span className="text-gray-500">Total Days:</span>
+                    <span className="text-gray-800 font-semibold ml-1">24</span>
+                  </span>
+                  <span className="text-gray-700 font-medium">
+                    <span className="text-gray-500">Working Days:</span>
+                    <span className="text-gray-800 font-semibold ml-1">21</span>
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="text-gray-500 text-xs">Work From</span>
+                </div>
+              </div>
             </div>
           </div>
         </CardContent>
