@@ -66,39 +66,42 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Circular Performance Gauge - Fixed positioning */}
-          <div className="mb-4">
-            <div className="relative w-full h-48 flex items-center justify-center">
-              {/* Chart Container */}
-              <div className="relative">
-                <PieChart width={300} height={180}>
-                  <Pie
-                    data={gaugeData}
-                    cx={150} // Center X position
-                    cy={150} // Center Y position - moved significantly down
-                    innerRadius={60}
-                    outerRadius={90}
-                    startAngle={180}
-                    endAngle={0}
-                    dataKey="value"
-                    labelLine={false}
-                  >
-                    {gaugeData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.fill} />
-                    ))}
-                  </Pie>
-                </PieChart>
+          {/* Circular Performance Gauge - Completely redesigned */}
+          <div className="mb-6">
+            <div className="relative w-full max-w-sm mx-auto">
+              {/* Main gauge container with adequate height */}
+              <div className="relative h-40 flex items-end justify-center overflow-visible">
+                {/* Chart positioned to show only top half */}
+                <div className="relative" style={{ marginBottom: "-60px" }}>
+                  <PieChart width={280} height={200}>
+                    <Pie
+                      data={gaugeData}
+                      cx={140}
+                      cy={140}
+                      innerRadius={70}
+                      outerRadius={100}
+                      startAngle={180}
+                      endAngle={0}
+                      dataKey="value"
+                      labelLine={false}
+                    >
+                      {gaugeData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </div>
 
-                {/* Score Text - Positioned absolutely to ensure visibility */}
+                {/* Score text positioned independently and safely */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-xl font-bold text-gray-800 mt-8">
+                  <div className="bg-white px-2 py-1 rounded text-2xl font-bold text-gray-800 shadow-sm border">
                     {overallScore}%
                   </div>
                 </div>
               </div>
 
-              {/* Poor/Good Labels */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-64 flex justify-between">
+              {/* Poor/Good Labels positioned below */}
+              <div className="flex justify-between items-center mt-4 px-8">
                 <span className="text-sm font-medium text-red-500">Poor</span>
                 <span className="text-sm font-medium text-green-500">Good</span>
               </div>
