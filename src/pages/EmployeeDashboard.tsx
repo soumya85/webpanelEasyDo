@@ -1,5 +1,10 @@
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import AttendanceSummary from "@/components/AttendanceSummary";
+import PerformanceMeter from "@/components/PerformanceMeter";
+import WagesSummary from "@/components/WagesSummary";
+import LeaveBalance from "@/components/LeaveBalance";
+import UpcomingHolidays from "@/components/UpcomingHolidays";
 
 export default function EmployeeDashboard() {
   const cardData = [
@@ -92,7 +97,7 @@ export default function EmployeeDashboard() {
           </div>
         </div>
 
-        {/* Cards Grid */}
+        {/* Quick Action Cards Grid */}
         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
           {/* Row 1 */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full">
@@ -143,6 +148,24 @@ export default function EmployeeDashboard() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* New Dashboard Sections */}
+        <div className="flex flex-col gap-6 sm:gap-8 w-full">
+          {/* Attendance Summary */}
+          <AttendanceSummary />
+
+          {/* Performance Meter */}
+          <PerformanceMeter />
+
+          {/* Wages Summary */}
+          <WagesSummary />
+
+          {/* Leave Balance */}
+          <LeaveBalance />
+
+          {/* Upcoming Holidays */}
+          <UpcomingHolidays />
         </div>
       </div>
     </div>
