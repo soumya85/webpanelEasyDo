@@ -1,10 +1,28 @@
-import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import PerformanceMeter from "@/components/PerformanceMeter";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
+
+// Custom ChevronRight Icon to match Overview page
+const ChevronRightIcon = () => (
+  <svg
+    width="6"
+    height="9"
+    viewBox="0 0 6 9"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-1 h-[7px] flex-shrink-0"
+  >
+    <path
+      d="M1.00391 7.595L5.00391 4.095L1.00391 0.595001"
+      stroke="#7C8796"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export default function EmployeeDashboard() {
   const cardData = [
