@@ -37,26 +37,27 @@ export default function LeaveBalance() {
   ];
 
   return (
-    <div className="w-full">
-      {/* Section Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-[#283C50] font-inter text-xl font-bold">
-          Leave Balance
-        </h2>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-[#4766E5] hover:text-[#4766E5]/80"
-        >
-          View Detail
-          <ChevronRight className="w-4 h-4 ml-1" />
-        </Button>
-      </div>
+    <div className="w-full h-full">
+      {/* Card with background starting from title */}
+      <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
+        <CardContent className="p-6 flex-1 flex flex-col">
+          {/* Section Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[#283C50] font-inter text-xl font-bold">
+              Leave Balance
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#4766E5] hover:text-[#4766E5]/80"
+            >
+              View Detail
+              <ChevronRight className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
 
-      <Card className="bg-white border border-gray-200 shadow-sm">
-        <CardContent className="p-6">
           {/* Leave Balance Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-4 mb-6 flex-1">
             {leaveData.map((item, index) => (
               <div
                 key={item.label}
@@ -78,7 +79,7 @@ export default function LeaveBalance() {
           </div>
 
           {/* Status Information */}
-          <div className="space-y-3">
+          <div className="space-y-3 mt-auto">
             {/* Status Badges */}
             <div className="flex items-center gap-2 justify-center">
               <Badge
@@ -97,8 +98,8 @@ export default function LeaveBalance() {
             </div>
 
             {/* Carried Forward Notice */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-gray-700 leading-relaxed text-center">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p className="text-xs text-gray-700 leading-relaxed text-center">
                 <span className="font-semibold text-blue-600">5.83</span> unused
                 leaves are carried forward from last year and added in{" "}
                 <span className="font-semibold">Earn Leave (EL)</span> Balance
