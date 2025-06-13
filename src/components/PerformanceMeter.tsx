@@ -36,16 +36,13 @@ export default function PerformanceMeter() {
     return "#22c55e"; // Green for high performance
   };
 
-  // Calculate rotation for the gauge (180 degrees = 0%, 0 degrees = 100%)
-  const rotation = 180 - overallScore * 1.8; // 1.8 degrees per percent
-
   return (
     <div className="w-full h-full">
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
         <CardContent className="p-6 flex-1 flex flex-col">
           {/* Section Header - Title at top */}
-          <div className="text-center mb-4">
+          <div className="text-center mb-6">
             <h2 className="text-[#283C50] font-inter text-xl font-bold mb-2">
               Performance Meter
             </h2>
@@ -54,50 +51,41 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Custom CSS-based Circular Performance Gauge */}
-          <div className="mb-6">
-            <div className="relative w-full max-w-sm mx-auto">
-              {/* Gauge Container */}
-              <div className="relative w-64 h-32 mx-auto">
-                {/* Background Semi-circle */}
-                <div className="absolute inset-0 flex items-end justify-center">
-                  <div className="relative w-48 h-24 overflow-hidden">
-                    <div className="absolute bottom-0 left-0 w-full h-full border-8 border-gray-200 rounded-t-full"></div>
-                    {/* Active Progress Arc */}
-                    <div
-                      className="absolute bottom-0 left-0 w-full h-full border-8 border-red-500 rounded-t-full"
-                      style={{
-                        clipPath: `polygon(0 100%, ${overallScore}% 100%, ${overallScore}% 0, 0 0)`,
-                        background:
-                          "conic-gradient(from 180deg, #ef4444 0deg, #ef4444 ${overallScore * 3.6}deg, transparent ${overallScore * 3.6}deg)",
-                        borderImage: `conic-gradient(from 180deg, #ef4444 0deg, #ef4444 ${overallScore * 1.8}deg, #f3f4f6 ${overallScore * 1.8}deg) 1`,
-                      }}
-                    ></div>
-                  </div>
+          {/* Simple Semicircle Gauge */}
+          <div className="mb-8">
+            <div className="relative w-full max-w-xs mx-auto">
+              {/* Gauge Background */}
+              <div className="relative w-48 h-24 mx-auto">
+                {/* Background semicircle */}
+                <div className="absolute inset-0">
+                  <div className="w-full h-full border-8 border-gray-200 rounded-t-full"></div>
                 </div>
 
-                {/* Needle/Pointer */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                {/* Progress arc - using a simple approach */}
+                <div className="absolute inset-0">
                   <div
-                    className="w-1 h-16 bg-gray-800 rounded-full origin-bottom transform"
+                    className="w-full h-full border-8 border-red-500 rounded-t-full"
                     style={{
-                      transform: `translateX(-50%) rotate(${rotation}deg)`,
+                      background: `conic-gradient(from 180deg, #ef4444 0deg, #ef4444 ${overallScore * 1.8}deg, transparent ${overallScore * 1.8}deg)`,
+                      WebkitMask:
+                        "radial-gradient(circle at center bottom, transparent 32px, black 40px)",
+                      mask: "radial-gradient(circle at center bottom, transparent 32px, black 40px)",
                     }}
                   ></div>
-                  {/* Center dot */}
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rounded-full"></div>
                 </div>
+              </div>
 
-                {/* Score Display - Positioned safely below the gauge */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8">
-                  <div className="text-2xl font-bold text-gray-800 text-center bg-white px-3 py-1 rounded-lg shadow-sm border">
+              {/* Score Display - Positioned safely below with plenty of space */}
+              <div className="mt-6 text-center">
+                <div className="inline-block bg-white border-2 border-gray-300 rounded-lg px-4 py-2 shadow-sm">
+                  <div className="text-2xl font-bold text-gray-800">
                     {overallScore}%
                   </div>
                 </div>
               </div>
 
               {/* Poor/Good Labels */}
-              <div className="flex justify-between items-center mt-12 px-8">
+              <div className="flex justify-between items-center mt-4 px-2">
                 <span className="text-sm font-medium text-red-500">Poor</span>
                 <span className="text-sm font-medium text-green-500">Good</span>
               </div>
@@ -105,23 +93,23 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="h-40 flex-1 min-h-0">
+          <div className="h-32 flex-1 min-h-0">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <BarChart
                 data={performanceData}
-                margin={{ top: 10, right: 20, left: 10, bottom: 50 }}
+                margin={{ top: 10, right: 20, left: 10, bottom: 40 }}
               >
                 <XAxis
                   dataKey="category"
-                  tick={{ fontSize: 9 }}
+                  tick={{ fontSize: 8 }}
                   angle={-45}
                   textAnchor="end"
-                  height={50}
+                  height={40}
                   interval={0}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 11 }}
+                  tick={{ fontSize: 10 }}
                   tickFormatter={(value) => `${value}%`}
                 />
                 <ChartTooltip
