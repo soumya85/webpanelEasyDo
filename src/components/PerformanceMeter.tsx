@@ -12,7 +12,7 @@ import {
   Bar,
   XAxis,
   YAxis,
-  ResponsiveContainer,
+  Tooltip,
 } from "recharts";
 import { cn } from "@/lib/utils";
 
@@ -27,13 +27,21 @@ export default function PerformanceMeter() {
 
   // Performance categories data
   const performanceData = [
-    { category: "Management Review", percentage: 0, color: "#6b7280" },
-    { category: "Attendance", percentage: 97, color: "#3b82f6" },
-    { category: "On-Time Tasks", percentage: 0, color: "#6b7280" },
-    { category: "Task Performance", percentage: 40, color: "#f97316" },
-    { category: "Attend Meeting", percentage: 0, color: "#6b7280" },
-    { category: "Sales Lead", percentage: 0, color: "#6b7280" },
+    { category: "Management Review", percentage: 0 },
+    { category: "Attendance", percentage: 97 },
+    { category: "On-Time Tasks", percentage: 0 },
+    { category: "Task Performance", percentage: 40 },
+    { category: "Attend Meeting", percentage: 0 },
+    { category: "Sales Lead", percentage: 0 },
   ];
+
+  // Chart configuration for the ChartContainer
+  const chartConfig = {
+    percentage: {
+      label: "Performance",
+      color: "#3b82f6",
+    },
+  };
 
   // Custom label component for the gauge
   const renderCustomLabel = ({ cx, cy }: { cx: number; cy: number }) => {
@@ -43,11 +51,19 @@ export default function PerformanceMeter() {
         y={cy}
         textAnchor="middle"
         dominantBaseline="middle"
-        className="text-lg font-bold"
+        className="text-lg font-bold fill-gray-800"
       >
         {overallScore}%
       </text>
     );
+  };
+
+  // Custom bar colors based on performance
+  const getBarColor = (percentage: number) => {
+    if (percentage === 0) return "#6b7280"; // Gray for 0%
+    if (percentage <= 40) return "#f97316"; // Orange for low performance
+    if (percentage <= 70) return "#eab308"; // Yellow for medium performance
+    return "#22c55e"; // Green for high performance
   };
 
   return (
@@ -96,7 +112,7 @@ export default function PerformanceMeter() {
 
         {/* Performance Categories Bar Chart */}
         <div className="h-64">
-          <ResponsiveContainer width="100%" height="100%">
+          <ChartContainer config={chartConfig} className="h-full w-full">
             <BarChart
               data={performanceData}
               margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
@@ -118,13 +134,16 @@ export default function PerformanceMeter() {
                 content={<ChartTooltipContent />}
                 formatter={(value) => [`${value}%`, "Performance"]}
               />
-              <Bar dataKey="percentage" fill="#3b82f6" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="percentage" radius={[4, 4, 0, 0]}>
                 {performanceData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={getBarColor(entry.percentage)}
+                  />
                 ))}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          </ChartContainer>
         </div>
 
         {/* Performance Legend */}
@@ -133,7 +152,7 @@ export default function PerformanceMeter() {
             <div key={index} className="text-center">
               <div
                 className={cn("text-xs font-medium mb-1")}
-                style={{ color: item.color }}
+                style={{ color: getBarColor(item.percentage) }}
               >
                 {item.percentage}%
               </div>
