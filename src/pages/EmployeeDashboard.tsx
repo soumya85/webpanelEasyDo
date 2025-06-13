@@ -20,19 +20,12 @@ const LeaveRequestIcon = () => (
     className="h-8 w-8"
   >
     {/* Person head (circle) */}
-    <circle cx="8" cy="7" r="5" fill="#4766E5" />
+    <circle cx="8" cy="8" r="5" fill="#4766E5" />
 
-    {/* Body (rectangle) */}
-    <rect x="3" y="14" width="10" height="8" rx="2" fill="#4766E5" />
-
-    {/* Arrow pointing right */}
+    {/* Body with integrated arrow shape */}
     <path
-      d="M15 18 L22 18 M19 15 L22 18 L19 21"
-      stroke="#4766E5"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
+      d="M3 16 L3 22 L13 22 L13 24 L19 20 L13 16 L13 18 L3 18 Z"
+      fill="#4766E5"
     />
   </svg>
 );
