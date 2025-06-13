@@ -49,9 +49,11 @@ export default function EmployeeDashboard() {
   ];
 
   return (
-    <div className="w-full max-w-[1140px] mx-auto p-6 font-inter">
-      {/* Breadcrumb Section */}
-      <div className="flex min-h-[65px] px-[30px] py-[13.5px] justify-between items-center bg-white rounded-lg border-l-[6px] border-l-blue-600 shadow-sm shadow-black/10 mb-6">
+    <div className="w-full p-3 sm:p-4 lg:p-6 font-inter">
+      {/* Page Area */}
+      <div className="flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6">
+        {/* Breadcrumb Section Row */}
+        <div className="flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px] px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px] justify-between items-center self-stretch rounded-lg border-l-[6px] border-[#4766E5] bg-white shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] flex-row gap-2 lg:gap-0">
         <div className="flex items-center gap-2.5">
           <span className="font-semibold text-base text-slate-700 leading-[19.2px]">
             Employee Dashboard
