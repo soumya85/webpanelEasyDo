@@ -40,9 +40,9 @@ export default function PerformanceMeter() {
     <div className="w-full h-full">
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
-        <CardContent className="p-6 flex-1 flex flex-col space-y-6">
+        <CardContent className="p-6 flex-1 flex flex-col">
           {/* Section Header - Title at top */}
-          <div className="text-center">
+          <div className="text-center mb-6">
             <h2 className="text-[#283C50] font-inter text-xl font-bold mb-2">
               Performance Meter
             </h2>
@@ -51,63 +51,51 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Score Display - Prominently shown at top */}
-          <div className="text-center py-4">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full text-white shadow-lg">
-              <div className="text-center">
-                <div className="text-2xl font-bold">{overallScore}</div>
-                <div className="text-xs font-medium">SCORE</div>
-              </div>
+          {/* Large, Clear Score Display */}
+          <div className="text-center mb-8 py-6">
+            <div className="text-6xl font-bold text-red-500 mb-4">
+              {overallScore}%
             </div>
-          </div>
+            <div className="text-lg font-medium text-gray-600 mb-4">
+              Overall Performance Score
+            </div>
 
-          {/* Simple Progress Bar Gauge */}
-          <div className="space-y-4">
-            {/* Semicircle Visual */}
-            <div className="relative w-full max-w-xs mx-auto">
-              <div className="relative w-40 h-20 mx-auto overflow-hidden">
-                {/* Background semicircle */}
-                <div className="w-full h-full border-8 border-gray-200 rounded-t-full"></div>
-
-                {/* Progress fill */}
-                <div className="absolute inset-0">
-                  <div
-                    className="w-full h-full border-8 border-red-500 rounded-t-full transition-all duration-500"
-                    style={{
-                      transform: `rotate(${(overallScore / 100) * 180 - 180}deg)`,
-                      transformOrigin: "center bottom",
-                      clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
-                    }}
-                  ></div>
-                </div>
+            {/* Simple Progress Bar */}
+            <div className="w-full max-w-sm mx-auto">
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div
+                  className="bg-red-500 h-3 rounded-full transition-all duration-500"
+                  style={{ width: `${overallScore}%` }}
+                ></div>
               </div>
-
-              {/* Poor/Good Labels */}
-              <div className="flex justify-between items-center mt-2 px-4">
-                <span className="text-xs font-medium text-red-500">Poor</span>
-                <span className="text-xs font-medium text-green-500">Good</span>
+              <div className="flex justify-between mt-2 text-sm">
+                <span className="text-red-500 font-medium">Poor</span>
+                <span className="text-green-500 font-medium">Good</span>
               </div>
             </div>
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="flex-1 min-h-[120px]">
+          <div className="flex-1 min-h-[100px]">
+            <h3 className="text-center text-sm font-semibold text-gray-700 mb-3">
+              Category Breakdown
+            </h3>
             <ChartContainer config={chartConfig} className="h-full w-full">
               <BarChart
                 data={performanceData}
-                margin={{ top: 10, right: 15, left: 15, bottom: 40 }}
+                margin={{ top: 10, right: 10, left: 10, bottom: 35 }}
               >
                 <XAxis
                   dataKey="category"
                   tick={{ fontSize: 8 }}
                   angle={-45}
                   textAnchor="end"
-                  height={40}
+                  height={35}
                   interval={0}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 10 }}
+                  tick={{ fontSize: 9 }}
                   tickFormatter={(value) => `${value}%`}
                 />
                 <ChartTooltip
@@ -127,7 +115,7 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-3">
             {performanceData.map((item, index) => (
               <div key={index} className="text-center">
                 <div
