@@ -1,9 +1,5 @@
 import { cn } from "@/lib/utils";
 import AttendanceSummary from "@/components/AttendanceSummary";
-import PerformanceMeter from "@/components/PerformanceMeter";
-import WagesSummary from "@/components/WagesSummary";
-import LeaveBalance from "@/components/LeaveBalance";
-import UpcomingHolidays from "@/components/UpcomingHolidays";
 
 // Custom ChevronRight Icon to match Overview page
 const ChevronRightIcon = () => (
