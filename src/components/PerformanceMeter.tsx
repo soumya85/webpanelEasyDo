@@ -4,26 +4,11 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
 import { cn } from "@/lib/utils";
 
 export default function PerformanceMeter() {
   const overallScore = 25.5;
-
-  // Gauge data for the circular meter
-  const gaugeData = [
-    { name: "Score", value: overallScore, fill: "#ef4444" }, // Red for poor score
-    { name: "Remaining", value: 100 - overallScore, fill: "#f3f4f6" }, // Light gray for remaining
-  ];
 
   // Performance categories data
   const performanceData = [
@@ -57,7 +42,7 @@ export default function PerformanceMeter() {
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
         <CardContent className="p-6 flex-1 flex flex-col">
           {/* Section Header - Title at top */}
-          <div className="text-center mb-4">
+          <div className="text-center mb-6">
             <h2 className="text-[#283C50] font-inter text-xl font-bold mb-2">
               Performance Meter
             </h2>
@@ -66,63 +51,51 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Circular Performance Gauge - Fixed positioning */}
-          <div className="mb-4">
-            <div className="relative w-full h-48 flex items-center justify-center">
-              {/* Chart Container */}
-              <div className="relative">
-                <PieChart width={300} height={180}>
-                  <Pie
-                    data={gaugeData}
-                    cx={150} // Center X position
-                    cy={150} // Center Y position - moved significantly down
-                    innerRadius={60}
-                    outerRadius={90}
-                    startAngle={180}
-                    endAngle={0}
-                    dataKey="value"
-                    labelLine={false}
-                  >
-                    {gaugeData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.fill} />
-                    ))}
-                  </Pie>
-                </PieChart>
+          {/* Large, Clear Score Display */}
+          <div className="text-center mb-8 py-6">
+            <div className="text-6xl font-bold text-red-500 mb-4">
+              {overallScore}%
+            </div>
+            <div className="text-lg font-medium text-gray-600 mb-4">
+              Overall Performance Score
+            </div>
 
-                {/* Score Text - Positioned absolutely to ensure visibility */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-xl font-bold text-gray-800 mt-8">
-                    {overallScore}%
-                  </div>
-                </div>
+            {/* Simple Progress Bar */}
+            <div className="w-full max-w-sm mx-auto">
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div
+                  className="bg-red-500 h-3 rounded-full transition-all duration-500"
+                  style={{ width: `${overallScore}%` }}
+                ></div>
               </div>
-
-              {/* Poor/Good Labels */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-64 flex justify-between">
-                <span className="text-sm font-medium text-red-500">Poor</span>
-                <span className="text-sm font-medium text-green-500">Good</span>
+              <div className="flex justify-between mt-2 text-sm">
+                <span className="text-red-500 font-medium">Poor</span>
+                <span className="text-green-500 font-medium">Good</span>
               </div>
             </div>
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="h-40 flex-1 min-h-0">
+          <div className="flex-1 min-h-[100px]">
+            <h3 className="text-center text-sm font-semibold text-gray-700 mb-3">
+              Category Breakdown
+            </h3>
             <ChartContainer config={chartConfig} className="h-full w-full">
               <BarChart
                 data={performanceData}
-                margin={{ top: 10, right: 20, left: 10, bottom: 50 }}
+                margin={{ top: 10, right: 10, left: 10, bottom: 35 }}
               >
                 <XAxis
                   dataKey="category"
-                  tick={{ fontSize: 9 }}
+                  tick={{ fontSize: 8 }}
                   angle={-45}
                   textAnchor="end"
-                  height={50}
+                  height={35}
                   interval={0}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 11 }}
+                  tick={{ fontSize: 9 }}
                   tickFormatter={(value) => `${value}%`}
                 />
                 <ChartTooltip
@@ -142,7 +115,7 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-3">
             {performanceData.map((item, index) => (
               <div key={index} className="text-center">
                 <div
