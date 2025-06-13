@@ -43,15 +43,16 @@ export default function PerformanceMeter() {
     },
   };
 
-  // Custom label component for the gauge
+  // Custom label component for the gauge with better positioning
   const renderCustomLabel = ({ cx, cy }: { cx: number; cy: number }) => {
     return (
       <text
         x={cx}
-        y={cy}
+        y={cy + 5} // Slightly adjust Y position
         textAnchor="middle"
         dominantBaseline="middle"
-        className="text-lg font-bold fill-gray-800"
+        className="text-xl font-bold fill-gray-800"
+        fontSize="20"
       >
         {overallScore}%
       </text>
@@ -72,7 +73,7 @@ export default function PerformanceMeter() {
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
         <CardContent className="p-6 flex-1 flex flex-col">
           {/* Section Header - Title at top */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-4">
             <h2 className="text-[#283C50] font-inter text-xl font-bold mb-2">
               Performance Meter
             </h2>
@@ -81,16 +82,16 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Circular Performance Gauge */}
-          <div className="mb-6">
-            <div className="relative w-64 h-32 mx-auto">
-              <PieChart width={256} height={128}>
+          {/* Circular Performance Gauge - Increased size and better positioning */}
+          <div className="mb-4">
+            <div className="relative w-80 h-44 mx-auto flex items-center justify-center">
+              <PieChart width={320} height={176}>
                 <Pie
                   data={gaugeData}
-                  cx={128}
-                  cy={128}
-                  innerRadius={60}
-                  outerRadius={90}
+                  cx={160} // Center X position
+                  cy={140} // Center Y position - moved down to ensure visibility
+                  innerRadius={70}
+                  outerRadius={100}
                   startAngle={180}
                   endAngle={0}
                   dataKey="value"
@@ -103,41 +104,41 @@ export default function PerformanceMeter() {
                 </Pie>
               </PieChart>
 
-              {/* Score Labels */}
-              <div className="absolute bottom-0 left-0 text-sm font-medium text-red-500">
+              {/* Score Labels - Positioned better */}
+              <div className="absolute bottom-2 left-4 text-sm font-medium text-red-500">
                 Poor
               </div>
-              <div className="absolute bottom-0 right-0 text-sm font-medium text-green-500">
+              <div className="absolute bottom-2 right-4 text-sm font-medium text-green-500">
                 Good
               </div>
             </div>
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="h-48 flex-1 min-h-0">
+          <div className="h-40 flex-1 min-h-0">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <BarChart
                 data={performanceData}
-                margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+                margin={{ top: 10, right: 20, left: 10, bottom: 50 }}
               >
                 <XAxis
                   dataKey="category"
-                  tick={{ fontSize: 10 }}
+                  tick={{ fontSize: 9 }}
                   angle={-45}
                   textAnchor="end"
-                  height={60}
+                  height={50}
                   interval={0}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 12 }}
+                  tick={{ fontSize: 11 }}
                   tickFormatter={(value) => `${value}%`}
                 />
                 <ChartTooltip
                   content={<ChartTooltipContent />}
                   formatter={(value) => [`${value}%`, "Performance"]}
                 />
-                <Bar dataKey="percentage" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="percentage" radius={[2, 2, 0, 0]}>
                   {performanceData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
@@ -150,7 +151,7 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mt-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-2">
             {performanceData.map((item, index) => (
               <div key={index} className="text-center">
                 <div
