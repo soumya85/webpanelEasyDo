@@ -118,11 +118,11 @@ export default function AttendanceSummary() {
               <div className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-6">
                   <span className="text-gray-700 font-medium">
-                    <span className="text-gray-500">Total Days:</span>
+                    <span className="text-gray-500">Work From Home:</span>
                     <span className="text-gray-800 font-semibold ml-1">24</span>
                   </span>
                   <span className="text-gray-700 font-medium">
-                    <span className="text-gray-500">Working Days:</span>
+                    <span className="text-gray-500">Work On Holiday:</span>
                     <span className="text-gray-800 font-semibold ml-1">21</span>
                   </span>
                 </div>
