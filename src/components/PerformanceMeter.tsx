@@ -4,26 +4,11 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
 import { cn } from "@/lib/utils";
 
 export default function PerformanceMeter() {
   const overallScore = 25.5;
-
-  // Gauge data for the circular meter
-  const gaugeData = [
-    { name: "Score", value: overallScore, fill: "#ef4444" }, // Red for poor score
-    { name: "Remaining", value: 100 - overallScore, fill: "#f3f4f6" }, // Light gray for remaining
-  ];
 
   // Performance categories data
   const performanceData = [
@@ -51,6 +36,9 @@ export default function PerformanceMeter() {
     return "#22c55e"; // Green for high performance
   };
 
+  // Calculate rotation for the gauge (180 degrees = 0%, 0 degrees = 100%)
+  const rotation = 180 - overallScore * 1.8; // 1.8 degrees per percent
+
   return (
     <div className="w-full h-full">
       {/* Card with background starting from title */}
@@ -66,42 +54,50 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Circular Performance Gauge - Completely redesigned */}
+          {/* Custom CSS-based Circular Performance Gauge */}
           <div className="mb-6">
             <div className="relative w-full max-w-sm mx-auto">
-              {/* Main gauge container with adequate height */}
-              <div className="relative h-40 flex items-end justify-center overflow-visible">
-                {/* Chart positioned to show only top half */}
-                <div className="relative" style={{ marginBottom: "-60px" }}>
-                  <PieChart width={280} height={200}>
-                    <Pie
-                      data={gaugeData}
-                      cx={140}
-                      cy={140}
-                      innerRadius={70}
-                      outerRadius={100}
-                      startAngle={180}
-                      endAngle={0}
-                      dataKey="value"
-                      labelLine={false}
-                    >
-                      {gaugeData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.fill} />
-                      ))}
-                    </Pie>
-                  </PieChart>
+              {/* Gauge Container */}
+              <div className="relative w-64 h-32 mx-auto">
+                {/* Background Semi-circle */}
+                <div className="absolute inset-0 flex items-end justify-center">
+                  <div className="relative w-48 h-24 overflow-hidden">
+                    <div className="absolute bottom-0 left-0 w-full h-full border-8 border-gray-200 rounded-t-full"></div>
+                    {/* Active Progress Arc */}
+                    <div
+                      className="absolute bottom-0 left-0 w-full h-full border-8 border-red-500 rounded-t-full"
+                      style={{
+                        clipPath: `polygon(0 100%, ${overallScore}% 100%, ${overallScore}% 0, 0 0)`,
+                        background:
+                          "conic-gradient(from 180deg, #ef4444 0deg, #ef4444 ${overallScore * 3.6}deg, transparent ${overallScore * 3.6}deg)",
+                        borderImage: `conic-gradient(from 180deg, #ef4444 0deg, #ef4444 ${overallScore * 1.8}deg, #f3f4f6 ${overallScore * 1.8}deg) 1`,
+                      }}
+                    ></div>
+                  </div>
                 </div>
 
-                {/* Score text positioned independently and safely */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white px-2 py-1 rounded text-2xl font-bold text-gray-800 shadow-sm border">
+                {/* Needle/Pointer */}
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                  <div
+                    className="w-1 h-16 bg-gray-800 rounded-full origin-bottom transform"
+                    style={{
+                      transform: `translateX(-50%) rotate(${rotation}deg)`,
+                    }}
+                  ></div>
+                  {/* Center dot */}
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rounded-full"></div>
+                </div>
+
+                {/* Score Display - Positioned safely below the gauge */}
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8">
+                  <div className="text-2xl font-bold text-gray-800 text-center bg-white px-3 py-1 rounded-lg shadow-sm border">
                     {overallScore}%
                   </div>
                 </div>
               </div>
 
-              {/* Poor/Good Labels positioned below */}
-              <div className="flex justify-between items-center mt-4 px-8">
+              {/* Poor/Good Labels */}
+              <div className="flex justify-between items-center mt-12 px-8">
                 <span className="text-sm font-medium text-red-500">Poor</span>
                 <span className="text-sm font-medium text-green-500">Good</span>
               </div>
