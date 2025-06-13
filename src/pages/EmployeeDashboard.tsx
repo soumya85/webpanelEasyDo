@@ -1,75 +1,48 @@
-import {
-  Clock,
-  DollarSign,
-  Receipt,
-  BarChart3,
-  Calendar,
-  CalendarDays,
-  FileText,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
-// Custom Leave Request Icon from Figma design
-const LeaveRequestIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 41 34"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-8 w-8"
-  >
-    {/* Person head (circle) */}
-    <circle cx="8" cy="8" r="6" fill="#4766E5" />
-
-    {/* L-shaped bracket flowing into arrow */}
-    <path
-      d="M2 17 L2 28 L22 28 L22 30 L30 26 L22 22 L22 24 L6 24 L6 17 L2 17 Z"
-      fill="#4766E5"
-    />
-  </svg>
-);
 export default function EmployeeDashboard() {
   const cardData = [
     // Row 1
     {
-      icon: <LeaveRequestIcon />,
+      icon: <img src="/leave_request-icon.png" alt="Leave Request" />,
       title: "Leave Request",
       id: "leave-request",
     },
     {
-      icon: <Clock className="h-8 w-8 text-blue-600" />,
+      icon: <img src="/OT_request-icon.png" alt="OT Request" />,
       title: "OT Request",
       id: "ot-request",
     },
     {
-      icon: <DollarSign className="h-8 w-8 text-blue-600" />,
+      icon: (
+        <img src="/Salaryadvance_request-icon.png" alt="Salary Adv. Request" />
+      ),
       title: "Salary Adv. Request",
       id: "salary-request",
     },
     {
-      icon: <Receipt className="h-8 w-8 text-blue-600" />,
+      icon: <img src="/Reimburse_request-icon.png" alt="Reimburse Request" />,
       title: "Reimburse Request",
       id: "reimburse-request",
     },
     // Row 2
     {
-      icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
+      icon: <img src="/statistics-icon.png" alt="Statistics" />,
       title: "Statistics",
       id: "statistics",
     },
     {
-      icon: <Calendar className="h-8 w-8 text-blue-600" />,
+      icon: <img src="/leave-icon.png" alt="Leave" />,
       title: "Leave",
       id: "leave",
     },
     {
-      icon: <CalendarDays className="h-8 w-8 text-blue-600" />,
+      icon: <img src="/holiday-icon.png" alt="Holiday" />,
       title: "Holiday",
       id: "holiday",
     },
     {
-      icon: <FileText className="h-8 w-8 text-blue-600" />,
+      icon: <img src="/reports-icon.png" alt="Reports" />,
       title: "Reports",
       id: "reports",
     },
