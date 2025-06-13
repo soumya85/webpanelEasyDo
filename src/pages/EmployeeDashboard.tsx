@@ -75,8 +75,8 @@ export default function EmployeeDashboard() {
             All Branch
           </span>
         </div>
-        <div className="w-[171px] h-[41.19px]">
-          {/* Filter Controls placeholder - can be implemented later */}
+        <div className="w-[171px] h-[41.19px] flex items-center justify-end">
+          <div className="h-full bg-transparent"></div>
         </div>
       </div>
 
