@@ -19,22 +19,16 @@ const LeaveRequestIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     className="h-8 w-8"
   >
-    <circle cx="16" cy="16" r="16" fill="#4766E5" />
-    <g transform="translate(4, 6)">
-      {/* Person silhouette */}
-      <circle cx="6" cy="4" r="2.5" fill="white" />
-      <path d="M2 16c0-2 2-4 4-4s4 2 4 4v2H2v-2z" fill="white" />
+    {/* Person head (circle) */}
+    <circle cx="10" cy="8" r="6" fill="#4766E5" />
+
+    {/* Body/torso with arrow */}
+    <g fill="#4766E5">
+      {/* Rectangular body/base */}
+      <rect x="4" y="16" width="12" height="8" rx="1" />
+
       {/* Arrow pointing right */}
-      <g transform="translate(12, 6)">
-        <path d="M0 4h6" stroke="white" strokeWidth="2" strokeLinecap="round" />
-        <path
-          d="M4 1l3 3-3 3"
-          stroke="white"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
+      <polygon points="16,16 24,20 16,24" />
     </g>
   </svg>
 );
