@@ -40,9 +40,9 @@ export default function PerformanceMeter() {
     <div className="w-full h-full">
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
-        <CardContent className="p-6 flex-1 flex flex-col">
+        <CardContent className="p-6 flex-1 flex flex-col space-y-6">
           {/* Section Header - Title at top */}
-          <div className="text-center mb-6">
+          <div className="text-center">
             <h2 className="text-[#283C50] font-inter text-xl font-bold mb-2">
               Performance Meter
             </h2>
@@ -51,53 +51,51 @@ export default function PerformanceMeter() {
             </p>
           </div>
 
-          {/* Simple Semicircle Gauge */}
-          <div className="mb-8">
-            <div className="relative w-full max-w-xs mx-auto">
-              {/* Gauge Background */}
-              <div className="relative w-48 h-24 mx-auto">
-                {/* Background semicircle */}
-                <div className="absolute inset-0">
-                  <div className="w-full h-full border-8 border-gray-200 rounded-t-full"></div>
-                </div>
+          {/* Score Display - Prominently shown at top */}
+          <div className="text-center py-4">
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full text-white shadow-lg">
+              <div className="text-center">
+                <div className="text-2xl font-bold">{overallScore}</div>
+                <div className="text-xs font-medium">SCORE</div>
+              </div>
+            </div>
+          </div>
 
-                {/* Progress arc - using a simple approach */}
+          {/* Simple Progress Bar Gauge */}
+          <div className="space-y-4">
+            {/* Semicircle Visual */}
+            <div className="relative w-full max-w-xs mx-auto">
+              <div className="relative w-40 h-20 mx-auto overflow-hidden">
+                {/* Background semicircle */}
+                <div className="w-full h-full border-8 border-gray-200 rounded-t-full"></div>
+
+                {/* Progress fill */}
                 <div className="absolute inset-0">
                   <div
-                    className="w-full h-full border-8 border-red-500 rounded-t-full"
+                    className="w-full h-full border-8 border-red-500 rounded-t-full transition-all duration-500"
                     style={{
-                      background: `conic-gradient(from 180deg, #ef4444 0deg, #ef4444 ${overallScore * 1.8}deg, transparent ${overallScore * 1.8}deg)`,
-                      WebkitMask:
-                        "radial-gradient(circle at center bottom, transparent 32px, black 40px)",
-                      mask: "radial-gradient(circle at center bottom, transparent 32px, black 40px)",
+                      transform: `rotate(${(overallScore / 100) * 180 - 180}deg)`,
+                      transformOrigin: "center bottom",
+                      clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
                     }}
                   ></div>
                 </div>
               </div>
 
-              {/* Score Display - Positioned safely below with plenty of space */}
-              <div className="mt-6 text-center">
-                <div className="inline-block bg-white border-2 border-gray-300 rounded-lg px-4 py-2 shadow-sm">
-                  <div className="text-2xl font-bold text-gray-800">
-                    {overallScore}%
-                  </div>
-                </div>
-              </div>
-
               {/* Poor/Good Labels */}
-              <div className="flex justify-between items-center mt-4 px-2">
-                <span className="text-sm font-medium text-red-500">Poor</span>
-                <span className="text-sm font-medium text-green-500">Good</span>
+              <div className="flex justify-between items-center mt-2 px-4">
+                <span className="text-xs font-medium text-red-500">Poor</span>
+                <span className="text-xs font-medium text-green-500">Good</span>
               </div>
             </div>
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="h-32 flex-1 min-h-0">
+          <div className="flex-1 min-h-[120px]">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <BarChart
                 data={performanceData}
-                margin={{ top: 10, right: 20, left: 10, bottom: 40 }}
+                margin={{ top: 10, right: 15, left: 15, bottom: 40 }}
               >
                 <XAxis
                   dataKey="category"
@@ -129,7 +127,7 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
             {performanceData.map((item, index) => (
               <div key={index} className="text-center">
                 <div
