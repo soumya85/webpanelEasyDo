@@ -5,6 +5,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
+import { useLocation } from "react-router-dom";
 
 interface SidebarContextType {
   isExpanded: boolean;
