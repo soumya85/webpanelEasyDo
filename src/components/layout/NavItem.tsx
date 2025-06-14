@@ -16,8 +16,10 @@ export function NavItem({ icon: Icon, label, href, badge }: NavItemProps) {
   const isActive = location.pathname === href;
 
   const handleClick = () => {
-    // Close mobile sidebar when navigating
-    if (window.innerWidth < 768) {
+    // Close mobile sidebar when navigating on mobile, tablet, and iPad
+    // Use media query to ensure proper detection
+    const isMobileOrTablet = window.matchMedia("(max-width: 1023px)").matches;
+    if (isMobileOrTablet) {
       setMobileOpen(false);
     }
   };
