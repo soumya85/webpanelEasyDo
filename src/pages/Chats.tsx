@@ -2854,8 +2854,8 @@ const Chats: React.FC = () => {
   // Set default chat for desktop on mount
   useEffect(() => {
     const setDefaultChatForDesktop = () => {
-      // Only set default chat if we're on desktop (width >= 768px)
-      if (window.innerWidth >= 768 && !selectedChat) {
+      // Only set default chat if we're on desktop (width >= 1024px)
+      if (window.innerWidth >= 1024 && !selectedChat) {
         setSelectedChat(chatItems[0]);
       }
     };
