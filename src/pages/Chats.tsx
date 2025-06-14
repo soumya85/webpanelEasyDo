@@ -355,7 +355,7 @@ const chatItems: ChatItem[] = [
     avatar: "/api/placeholder/40/40",
     lastMessage: "Training session was very helpful",
     timestamp: "3 days ago",
-    unreadCount: 0,
+    unreadCount: 1,
     isGroup: false,
     tags: [],
   },
