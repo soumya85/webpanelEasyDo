@@ -181,7 +181,7 @@ const chatItems: ChatItem[] = [
   },
   {
     id: "10",
-    name: "Liberty Kokoro Daily Attendance",
+    name: "Liberty Kolkata Daily Attendance",
     avatar: "",
     lastMessage: "Bhaskar: Good morning ! Working on ap...",
     timestamp: "Yesterday",
