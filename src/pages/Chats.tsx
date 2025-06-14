@@ -77,6 +77,7 @@ interface ChatItem {
   isGroup: boolean;
   tags?: string[];
   phone?: string;
+  isArchived?: boolean;
 }
 
 // Mock Data
@@ -90,93 +91,468 @@ const taskSummaries: TaskSummary[] = [
 const chatItems: ChatItem[] = [
   {
     id: "1",
-    name: "Lokendra Kumar",
+    name: "EasyDo AI",
     avatar: "/api/placeholder/40/40",
-    lastMessage: "After that please share that link also",
-    timestamp: "11:45",
-    unreadCount: 0,
+    lastMessage: "It's time to punch in from Innov8 Solution...",
+    timestamp: "2:25 PM",
+    unreadCount: 486,
     isGroup: false,
-    phone: "+91 98765 43210",
+    tags: [],
   },
   {
     id: "2",
-    name: "Liberty Kokoro Daily Attendance",
+    name: "Bug Resolve 2025",
     avatar: "",
-    lastMessage: "Bhaskar: Good morning ! Working on ap...",
-    timestamp: "10:47",
-    unreadCount: 2,
+    lastMessage: "This message was deleted",
+    timestamp: "1:58 PM",
+    unreadCount: 19,
     isGroup: true,
-    tags: ["GROUP"],
+    tags: ["GROUP CHAT", "#LIBERTY"],
   },
   {
     id: "3",
-    name: "IntelliUI UX Designers Group",
-    avatar: "",
-    lastMessage: "IntelliUI: 📄 I'm improving messages to...",
-    timestamp: "10:15",
-    unreadCount: 0,
-    isGroup: true,
-    tags: ["GROUP"],
+    name: "~Chinmay Banerjee (+91...",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "👁️ Meet",
+    timestamp: "11:31 AM",
+    unreadCount: 47,
+    isGroup: false,
+    tags: [],
   },
   {
     id: "4",
-    name: "Liberty Righrise Private Limited",
-    avatar: "",
-    lastMessage: "Old design",
-    timestamp: "Yesterday",
-    unreadCount: 5,
-    isGroup: true,
-    tags: ["GROUP"],
+    name: "~Amulya Kumar Kar (+91...",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "🏃 Attendance",
+    timestamp: "10:12 AM",
+    unreadCount: 2,
+    isGroup: false,
+    tags: [],
   },
   {
     id: "5",
-    name: "EasyDo Marketing 2024",
-    avatar: "",
-    lastMessage: "Bhaskar Ghosh found: it .",
-    timestamp: "Yesterday",
+    name: "~Bholanath Pal (983607...",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Good Morning all",
+    timestamp: "9:45 AM",
     unreadCount: 0,
-    isGroup: true,
-    tags: ["GROUP"],
+    isGroup: false,
+    tags: [],
   },
   {
     id: "6",
-    name: "Bhaskar Ghosh",
+    name: "Priya Sharma",
     avatar: "/api/placeholder/40/40",
-    lastMessage: "📄 https://www.youtube.com/watch?v=sSE...",
-    timestamp: "Yesterday",
-    unreadCount: 1,
+    lastMessage: "Can you review the document?",
+    timestamp: "8:30 AM",
+    unreadCount: 3,
     isGroup: false,
-    phone: "+91 87654 32109",
+    tags: [],
   },
   {
     id: "7",
-    name: "EasyDo Web App - Lokendra",
-    avatar: "",
-    lastMessage: "lokendra: 58 image",
-    timestamp: "Yesterday",
-    unreadCount: 0,
-    isGroup: true,
-    tags: ["GROUP"],
+    name: "Rajesh Kumar",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Thanks for the update!",
+    timestamp: "8:15 AM",
+    unreadCount: 1,
+    isGroup: false,
+    tags: [],
   },
   {
     id: "8",
-    name: "Easy Do SIX",
+    name: "Dev Team Sprint Planning",
     avatar: "",
-    lastMessage: "Ravi Mishra",
+    lastMessage: "Sprint planning starts at 10 AM",
     timestamp: "Yesterday",
     unreadCount: 3,
     isGroup: true,
-    tags: ["GROUP"],
+    tags: ["GROUP CHAT", "#DEV"],
   },
   {
     id: "9",
-    name: "Liberty Ahmedabad Daily Atten...",
+    name: "Anjali Verma",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Sure, I'll send it by EOD",
+    timestamp: "Yesterday",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "10",
+    name: "Liberty Kolkata Daily Attendance",
     avatar: "",
-    lastMessage: "Dev: The links have steps to follow to Integr...",
+    lastMessage: "Bhaskar: Good morning ! Working on ap...",
+    timestamp: "Yesterday",
+    unreadCount: 2,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#LIBERTY"],
+  },
+  {
+    id: "11",
+    name: "Marketing Team",
+    avatar: "",
+    lastMessage: "Campaign results are looking great!",
+    timestamp: "Yesterday",
+    unreadCount: 5,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#MARKETING"],
+  },
+  {
+    id: "12",
+    name: "Vikram Singh",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Let's schedule a call tomorrow",
+    timestamp: "Yesterday",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "13",
+    name: "Neha Patel",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "The files are ready for download",
+    timestamp: "Yesterday",
+    unreadCount: 4,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "14",
+    name: "Project Alpha Team",
+    avatar: "",
+    lastMessage: "Milestone 3 completed successfully!",
+    timestamp: "Yesterday",
+    unreadCount: 8,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#ALPHA"],
+  },
+  {
+    id: "15",
+    name: "Suresh Gupta",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Meeting scheduled for 3 PM",
+    timestamp: "Yesterday",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "16",
+    name: "IntelliUI UX Designers Group",
+    avatar: "",
+    lastMessage: "IntelliUI: 📄 I'm improving messages to...",
     timestamp: "Yesterday",
     unreadCount: 0,
     isGroup: true,
-    tags: ["GROUP"],
+    tags: ["GROUP CHAT"],
+  },
+  {
+    id: "17",
+    name: "Ravi Mishra",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Payment processed successfully",
+    timestamp: "Yesterday",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "18",
+    name: "QA Testing Team",
+    avatar: "",
+    lastMessage: "New build is ready for testing",
+    timestamp: "Yesterday",
+    unreadCount: 12,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#QA"],
+  },
+  {
+    id: "19",
+    name: "Kavita Rao",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Documents uploaded to shared folder",
+    timestamp: "2 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "20",
+    name: "EasyDo Marketing 2024",
+    avatar: "",
+    lastMessage: "Bhaskar Ghosh found: it .",
+    timestamp: "2 days ago",
+    unreadCount: 0,
+    isGroup: true,
+    tags: ["GROUP CHAT"],
+  },
+  {
+    id: "21",
+    name: "Deepak Joshi",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Great work on the presentation!",
+    timestamp: "2 days ago",
+    unreadCount: 2,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "22",
+    name: "HR Announcements",
+    avatar: "",
+    lastMessage: "New policy updates available",
+    timestamp: "2 days ago",
+    unreadCount: 1,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#HR"],
+  },
+  {
+    id: "23",
+    name: "Aditi Kapoor",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Budget approval received",
+    timestamp: "2 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "24",
+    name: "Client Support Team",
+    avatar: "",
+    lastMessage: "Ticket #1234 resolved",
+    timestamp: "2 days ago",
+    unreadCount: 3,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#SUPPORT"],
+  },
+  {
+    id: "25",
+    name: "Manish Agarwal",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Invoice sent for approval",
+    timestamp: "2 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "26",
+    name: "Liberty Ahmedabad Daily Atten...",
+    avatar: "",
+    lastMessage: "Dev: The links have steps to follow to Integr...",
+    timestamp: "3 days ago",
+    unreadCount: 0,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#LIBERTY"],
+  },
+  {
+    id: "27",
+    name: "Pooja Reddy",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Training session was very helpful",
+    timestamp: "3 days ago",
+    unreadCount: 1,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "28",
+    name: "Finance Team Updates",
+    avatar: "",
+    lastMessage: "Q4 reports are now available",
+    timestamp: "3 days ago",
+    unreadCount: 2,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#FINANCE"],
+  },
+  {
+    id: "29",
+    name: "Rohit Sharma",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Server maintenance completed",
+    timestamp: "3 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "30",
+    name: "Product Development",
+    avatar: "",
+    lastMessage: "Feature release scheduled for Monday",
+    timestamp: "3 days ago",
+    unreadCount: 7,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#PRODUCT"],
+  },
+  {
+    id: "31",
+    name: "Sita Devi",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Vendor contract signed",
+    timestamp: "3 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "32",
+    name: "Sales Team Discussion",
+    avatar: "",
+    lastMessage: "Monthly targets achieved!",
+    timestamp: "4 days ago",
+    unreadCount: 4,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#SALES"],
+  },
+  {
+    id: "33",
+    name: "Amit Sinha",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Database backup completed",
+    timestamp: "4 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "34",
+    name: "Operations Team",
+    avatar: "",
+    lastMessage: "Daily standup at 9 AM tomorrow",
+    timestamp: "4 days ago",
+    unreadCount: 1,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#OPS"],
+  },
+  {
+    id: "35",
+    name: "Geeta Pillai",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Client feedback was positive",
+    timestamp: "4 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "36",
+    name: "Security Updates",
+    avatar: "",
+    lastMessage: "New security patches available",
+    timestamp: "5 days ago",
+    unreadCount: 2,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#SECURITY"],
+  },
+  {
+    id: "37",
+    name: "Arjun Mehta",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Code review completed",
+    timestamp: "5 days ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "38",
+    name: "Design Team Sync",
+    avatar: "",
+    lastMessage: "Wireframes approved by client",
+    timestamp: "5 days ago",
+    unreadCount: 3,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#DESIGN"],
+  },
+  {
+    id: "39",
+    name: "Lakshmi Narayan",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Project timeline updated",
+    timestamp: "1 week ago",
+    unreadCount: 0,
+    isGroup: false,
+    tags: [],
+  },
+  {
+    id: "40",
+    name: "Company All Hands",
+    avatar: "",
+    lastMessage: "Next all-hands meeting: March 15th",
+    timestamp: "1 week ago",
+    unreadCount: 15,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#COMPANY"],
+  },
+  // Archived Chats
+  {
+    id: "41",
+    name: "Old Project Beta",
+    avatar: "",
+    lastMessage: "Project completed successfully",
+    timestamp: "2 weeks ago",
+    unreadCount: 0,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#BETA"],
+    isArchived: true,
+  },
+  {
+    id: "42",
+    name: "Raghav Malhotra",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Thanks for the collaboration!",
+    timestamp: "3 weeks ago",
+    unreadCount: 0,
+    isGroup: false,
+    isArchived: true,
+  },
+  {
+    id: "43",
+    name: "Legacy System Migration",
+    avatar: "",
+    lastMessage: "Migration completed successfully",
+    timestamp: "1 month ago",
+    unreadCount: 0,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#LEGACY"],
+    isArchived: true,
+  },
+  {
+    id: "44",
+    name: "Former Client Support",
+    avatar: "",
+    lastMessage: "Contract ended, thanks for everything",
+    timestamp: "1 month ago",
+    unreadCount: 0,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#SUPPORT"],
+    isArchived: true,
+  },
+  {
+    id: "45",
+    name: "Sunita Khanna",
+    avatar: "/api/placeholder/40/40",
+    lastMessage: "Will miss working together",
+    timestamp: "2 months ago",
+    unreadCount: 0,
+    isGroup: false,
+    isArchived: true,
+  },
+  {
+    id: "46",
+    name: "Closed Project Gamma",
+    avatar: "",
+    lastMessage: "Final deliverables submitted",
+    timestamp: "2 months ago",
+    unreadCount: 0,
+    isGroup: true,
+    tags: ["GROUP CHAT", "#GAMMA"],
+    isArchived: true,
   },
 ];
 
@@ -424,7 +800,7 @@ const conversationData: Record<string, ChatMessage[]> = {
   ],
 
   "2": [
-    // Liberty Kokoro Daily Attendance - Group chat
+    // Liberty Kolkata Daily Attendance - Group chat
     {
       id: "2-1",
       text: "Good morning everyone! Time for daily attendance",
@@ -2132,6 +2508,29 @@ const ChatContactsList: React.FC<{
 }) => {
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
 
+  // Calculate counts for each filter
+  const getFilterCount = (filter: string) => {
+    switch (filter) {
+      case "All":
+        return chatItems.filter((chat) => !chat.isArchived).length;
+      case "Unread":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.unreadCount > 0,
+        ).length;
+      case "Groups":
+        return chatItems.filter((chat) => !chat.isArchived && chat.isGroup)
+          .length;
+      case "Labels":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.tags && chat.tags.length > 0,
+        ).length;
+      case "Archived":
+        return chatItems.filter((chat) => chat.isArchived === true).length;
+      default:
+        return 0;
+    }
+  };
+
   return (
     <div className="flex flex-col h-full bg-white border-r border-gray-200">
       {/* Header */}
@@ -2149,20 +2548,33 @@ const ChatContactsList: React.FC<{
               {/* Filter Tabs */}
               <div className="space-y-4">
                 <div className="flex gap-2 flex-wrap">
-                  {filterTabs.map((filter) => (
-                    <button
-                      key={filter}
-                      onClick={() => onFilterChange(filter)}
-                      className={cn(
-                        "px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                        selectedFilter === filter
-                          ? "bg-blue-500 text-white"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                      )}
-                    >
-                      {filter}
-                    </button>
-                  ))}
+                  {filterTabs.map((filter) => {
+                    const count = getFilterCount(filter);
+                    return (
+                      <button
+                        key={filter}
+                        onClick={() => onFilterChange(filter)}
+                        className={cn(
+                          "px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2",
+                          selectedFilter === filter
+                            ? "bg-blue-500 text-white"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                        )}
+                      >
+                        <span>{filter}</span>
+                        <Badge
+                          className={cn(
+                            "text-xs",
+                            selectedFilter === filter
+                              ? "bg-white/20 text-white"
+                              : "bg-blue-500 text-white",
+                          )}
+                        >
+                          {count}
+                        </Badge>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {/* Task Summary Cards */}
@@ -2236,16 +2648,26 @@ const ChatContactsList: React.FC<{
                 </p>
                 {chat.unreadCount > 0 && (
                   <Badge className="bg-blue-500 text-white text-xs ml-2">
-                    {chat.unreadCount}
+                    {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
                   </Badge>
                 )}
               </div>
 
-              {chat.isGroup && (
-                <div className="mt-1">
-                  <Badge variant="secondary" className="text-xs">
-                    GROUP
-                  </Badge>
+              {chat.tags && chat.tags.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {chat.tags.map((tag, index) => (
+                    <Badge
+                      key={index}
+                      className={cn(
+                        "text-xs px-2 py-0.5 text-white font-medium",
+                        tag.startsWith("#")
+                          ? "bg-blue-600 hover:bg-blue-700"
+                          : "bg-gray-800 hover:bg-gray-900",
+                      )}
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
                 </div>
               )}
             </div>
@@ -2433,6 +2855,29 @@ const MobileChatList: React.FC<{
 }) => {
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
 
+  // Calculate counts for each filter
+  const getFilterCount = (filter: string) => {
+    switch (filter) {
+      case "All":
+        return chatItems.filter((chat) => !chat.isArchived).length;
+      case "Unread":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.unreadCount > 0,
+        ).length;
+      case "Groups":
+        return chatItems.filter((chat) => !chat.isArchived && chat.isGroup)
+          .length;
+      case "Labels":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.tags && chat.tags.length > 0,
+        ).length;
+      case "Archived":
+        return chatItems.filter((chat) => chat.isArchived === true).length;
+      default:
+        return 0;
+    }
+  };
+
   return (
     <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
       {/* Header with Original Mobile Design */}
@@ -2458,20 +2903,33 @@ const MobileChatList: React.FC<{
         {/* Filter Tabs */}
         <div className="px-4 pb-3">
           <div className="flex gap-2 overflow-x-auto">
-            {filterTabs.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => onFilterChange(filter)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
-                  selectedFilter === filter
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                )}
-              >
-                {filter}
-              </button>
-            ))}
+            {filterTabs.map((filter) => {
+              const count = getFilterCount(filter);
+              return (
+                <button
+                  key={filter}
+                  onClick={() => onFilterChange(filter)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-2",
+                    selectedFilter === filter
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                  )}
+                >
+                  <span>{filter}</span>
+                  <Badge
+                    className={cn(
+                      "text-xs",
+                      selectedFilter === filter
+                        ? "bg-white/20 text-white"
+                        : "bg-blue-500 text-white",
+                    )}
+                  >
+                    {count}
+                  </Badge>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -2908,16 +3366,23 @@ const Chats: React.FC = () => {
     if (!matchesSearch) return false;
 
     switch (selectedFilter) {
+      case "All":
+        // Show all non-archived chats
+        return !chat.isArchived;
       case "Unread":
-        return chat.unreadCount > 0;
+        // Show only non-archived chats with unread messages
+        return !chat.isArchived && chat.unreadCount > 0;
       case "Groups":
-        return chat.isGroup;
+        // Show only non-archived group chats
+        return !chat.isArchived && chat.isGroup;
       case "Labels":
-        return chat.tags && chat.tags.length > 0;
+        // Show only non-archived chats that have tags/labels
+        return !chat.isArchived && chat.tags && chat.tags.length > 0;
       case "Archived":
-        return false;
+        // Show only archived chats
+        return chat.isArchived === true;
       default:
-        return true;
+        return !chat.isArchived;
     }
   });
 
