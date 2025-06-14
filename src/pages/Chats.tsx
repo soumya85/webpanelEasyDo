@@ -3294,16 +3294,23 @@ const Chats: React.FC = () => {
     if (!matchesSearch) return false;
 
     switch (selectedFilter) {
+      case "All":
+        // Show all non-archived chats
+        return !chat.isArchived;
       case "Unread":
-        return chat.unreadCount > 0;
+        // Show only non-archived chats with unread messages
+        return !chat.isArchived && chat.unreadCount > 0;
       case "Groups":
-        return chat.isGroup;
+        // Show only non-archived group chats
+        return !chat.isArchived && chat.isGroup;
       case "Labels":
-        return chat.tags && chat.tags.length > 0;
+        // Show only non-archived chats that have tags/labels
+        return !chat.isArchived && chat.tags && chat.tags.length > 0;
       case "Archived":
-        return false;
+        // Show only archived chats
+        return chat.isArchived === true;
       default:
-        return true;
+        return !chat.isArchived;
     }
   });
 
