@@ -38,7 +38,7 @@ import {
   Shield,
   Settings,
   Search,
-  Filter,
+  Menu,
 } from "lucide-react";
 
 // Types
