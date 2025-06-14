@@ -981,9 +981,9 @@ const CompanyActionDrawer: React.FC<{
 // ============================================================
 
 const Chats: React.FC = () => {
-  const [selectedChat, setSelectedChat] = useState<ChatItem | null>(
-    chatItems[0], // Default to first chat on desktop
-  );
+  // For mobile: start with no chat selected (show list)
+  // For desktop: start with first chat selected (show conversation)
+  const [selectedChat, setSelectedChat] = useState<ChatItem | null>(null);
   const [messageText, setMessageText] = useState("");
   const [isActionDrawerOpen, setIsActionDrawerOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(sampleMessages);
