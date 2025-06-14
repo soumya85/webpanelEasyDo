@@ -350,7 +350,7 @@ const ChatContactsList: React.FC<{
                 <MoreVertical className="h-4 w-4 text-gray-600" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-96 p-4" align="end">
+            <PopoverContent className="w-80 p-4" align="end">
               {/* Filter Tabs */}
               <div className="space-y-4">
                 <div className="flex gap-2 flex-wrap">
