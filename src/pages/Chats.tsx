@@ -2236,16 +2236,26 @@ const ChatContactsList: React.FC<{
                 </p>
                 {chat.unreadCount > 0 && (
                   <Badge className="bg-blue-500 text-white text-xs ml-2">
-                    {chat.unreadCount}
+                    {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
                   </Badge>
                 )}
               </div>
 
-              {chat.isGroup && (
-                <div className="mt-1">
-                  <Badge variant="secondary" className="text-xs">
-                    GROUP
-                  </Badge>
+              {chat.tags && chat.tags.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {chat.tags.map((tag, index) => (
+                    <Badge
+                      key={index}
+                      className={cn(
+                        "text-xs px-2 py-0.5 text-white font-medium",
+                        tag.startsWith("#")
+                          ? "bg-blue-600 hover:bg-blue-700"
+                          : "bg-gray-800 hover:bg-gray-900",
+                      )}
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
                 </div>
               )}
             </div>
