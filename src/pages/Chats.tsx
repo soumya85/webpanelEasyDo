@@ -90,6 +90,7 @@ const chatItems: ChatItem[] = [
     timestamp: "11:45",
     unreadCount: 0,
     isGroup: false,
+    phone: "+91 98765 43210",
   },
   {
     id: "2",
@@ -97,7 +98,7 @@ const chatItems: ChatItem[] = [
     avatar: "",
     lastMessage: "Bhaskar: Good morning ! Working on ap...",
     timestamp: "10:47",
-    unreadCount: 0,
+    unreadCount: 2,
     isGroup: true,
     tags: ["GROUP"],
   },
@@ -117,7 +118,7 @@ const chatItems: ChatItem[] = [
     avatar: "",
     lastMessage: "Old design",
     timestamp: "Yesterday",
-    unreadCount: 0,
+    unreadCount: 5,
     isGroup: true,
     tags: ["GROUP"],
   },
@@ -137,8 +138,9 @@ const chatItems: ChatItem[] = [
     avatar: "/api/placeholder/40/40",
     lastMessage: "📄 https://www.youtube.com/watch?v=sSE...",
     timestamp: "Yesterday",
-    unreadCount: 0,
+    unreadCount: 1,
     isGroup: false,
+    phone: "+91 87654 32109",
   },
   {
     id: "7",
@@ -156,7 +158,7 @@ const chatItems: ChatItem[] = [
     avatar: "",
     lastMessage: "Ravi Mishra",
     timestamp: "Yesterday",
-    unreadCount: 0,
+    unreadCount: 3,
     isGroup: true,
     tags: ["GROUP"],
   },
@@ -306,7 +308,10 @@ const companyActions = [
   },
 ];
 
-// Desktop Components
+// ============================================================
+// DESKTOP COMPONENTS (WhatsApp Style - Two Panel Layout)
+// ============================================================
+
 const ChatContactsList: React.FC<{
   chatItems: ChatItem[];
   selectedChat: ChatItem | null;
@@ -550,7 +555,167 @@ const ChatConversation: React.FC<{
   );
 };
 
-// Mobile Components (keep existing mobile UI)
+// ============================================================
+// MOBILE COMPONENTS (Original Design with Task Cards & Filters)
+// ============================================================
+
+const MobileChatList: React.FC<{
+  chatItems: ChatItem[];
+  onChatSelect: (chat: ChatItem) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  selectedFilter: string;
+  onFilterChange: (filter: string) => void;
+}> = ({
+  chatItems,
+  onChatSelect,
+  searchQuery,
+  onSearchChange,
+  selectedFilter,
+  onFilterChange,
+}) => {
+  const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
+
+  return (
+    <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
+      {/* Header with Original Mobile Design */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        {/* Title */}
+        <div className="px-4 pt-4 pb-2">
+          <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
+        </div>
+
+        {/* Search Bar */}
+        <div className="px-4 pb-3">
+          <div className="relative">
+            <Input
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              placeholder="Search"
+              className="pl-10 rounded-lg border-gray-300 bg-gray-50"
+            />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          </div>
+        </div>
+
+        {/* Filter Tabs */}
+        <div className="px-4 pb-3">
+          <div className="flex gap-2 overflow-x-auto">
+            {filterTabs.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => onFilterChange(filter)}
+                className={cn(
+                  "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
+                  selectedFilter === filter
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                )}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Task Summary Cards - Original Design Feature */}
+        <div className="px-4 pb-4">
+          <div className="flex gap-3 overflow-x-auto pb-2">
+            {taskSummaries.map((task) => (
+              <div
+                key={task.id}
+                className="bg-gray-100 rounded-[20px] p-4 min-w-[120px] text-center cursor-pointer hover:bg-gray-200 transition-colors"
+              >
+                <div className="text-[28px] font-bold text-blue-500 mb-1">
+                  {task.count}
+                </div>
+                <div className="text-[12px] font-medium text-gray-800 leading-tight">
+                  {task.title}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Chat List */}
+      <div className="flex-1 bg-white overflow-y-auto">
+        {chatItems.length > 0 ? (
+          chatItems.map((chat) => (
+            <div
+              key={chat.id}
+              onClick={() => onChatSelect(chat)}
+              className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+            >
+              <div className="relative">
+                <Avatar className="h-12 w-12">
+                  <AvatarImage src={chat.avatar} alt={chat.name} />
+                  <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
+                    {chat.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="font-semibold text-gray-900 text-[16px] truncate">
+                    {chat.name}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-2 mb-2">
+                  {chat.isGroup && (
+                    <Badge
+                      variant="secondary"
+                      className="bg-black text-white text-[10px] px-2 py-0.5 rounded"
+                    >
+                      GROUP CHAT
+                    </Badge>
+                  )}
+                  {chat.tags?.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+
+                <p className="text-[14px] text-gray-600 truncate">
+                  {chat.lastMessage}
+                </p>
+              </div>
+
+              <div className="flex flex-col items-end gap-2">
+                <span className="text-[12px] text-gray-500 flex-shrink-0">
+                  {chat.timestamp}
+                </span>
+                {chat.unreadCount > 0 && (
+                  <Badge className="bg-blue-500 text-white min-w-[20px] h-5 rounded-full text-[11px] font-medium">
+                    {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
+                  </Badge>
+                )}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="flex items-center justify-center py-8">
+            <p className="text-gray-500 text-center">
+              {searchQuery ? "No chats found" : "No chats available"}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const MobileChatView: React.FC<{
   selectedChat: ChatItem | null;
   messages: ChatMessage[];
@@ -665,7 +830,7 @@ const MobileChatView: React.FC<{
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Actions - Original Design Feature */}
       <div className="px-4 py-2 border-t border-gray-100">
         <div className="flex gap-2 mb-3 overflow-x-auto">
           {quickActions.map((action) => (
@@ -723,163 +888,7 @@ const MobileChatView: React.FC<{
   );
 };
 
-const MobileChatList: React.FC<{
-  chatItems: ChatItem[];
-  onChatSelect: (chat: ChatItem) => void;
-  searchQuery: string;
-  onSearchChange: (query: string) => void;
-  selectedFilter: string;
-  onFilterChange: (filter: string) => void;
-}> = ({
-  chatItems,
-  onChatSelect,
-  searchQuery,
-  onSearchChange,
-  selectedFilter,
-  onFilterChange,
-}) => {
-  const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
-
-  return (
-    <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        {/* Title */}
-        <div className="px-4 pt-4 pb-2">
-          <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
-        </div>
-
-        {/* Search Bar */}
-        <div className="px-4 pb-3">
-          <div className="relative">
-            <Input
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search"
-              className="pl-10 rounded-lg border-gray-300 bg-gray-50"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          </div>
-        </div>
-
-        {/* Filter Tabs */}
-        <div className="px-4 pb-3">
-          <div className="flex gap-2 overflow-x-auto">
-            {filterTabs.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => onFilterChange(filter)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
-                  selectedFilter === filter
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                )}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Task Summary Cards */}
-        <div className="px-4 pb-4">
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {taskSummaries.map((task) => (
-              <div
-                key={task.id}
-                className="bg-gray-100 rounded-[20px] p-4 min-w-[120px] text-center cursor-pointer hover:bg-gray-200 transition-colors"
-              >
-                <div className="text-[28px] font-bold text-blue-500 mb-1">
-                  {task.count}
-                </div>
-                <div className="text-[12px] font-medium text-gray-800 leading-tight">
-                  {task.title}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Chat List */}
-      <div className="flex-1 bg-white overflow-y-auto">
-        {chatItems.length > 0 ? (
-          chatItems.map((chat) => (
-            <div
-              key={chat.id}
-              onClick={() => onChatSelect(chat)}
-              className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
-            >
-              <div className="relative">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={chat.avatar} alt={chat.name} />
-                  <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
-                    {chat.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </AvatarFallback>
-                </Avatar>
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-semibold text-gray-900 text-[16px] truncate">
-                    {chat.name}
-                  </h3>
-                </div>
-
-                <div className="flex items-center gap-2 mb-2">
-                  {chat.isGroup && (
-                    <Badge
-                      variant="secondary"
-                      className="bg-black text-white text-[10px] px-2 py-0.5 rounded"
-                    >
-                      GROUP CHAT
-                    </Badge>
-                  )}
-                  {chat.tags?.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                <p className="text-[14px] text-gray-600 truncate">
-                  {chat.lastMessage}
-                </p>
-              </div>
-
-              <div className="flex flex-col items-end gap-2">
-                <span className="text-[12px] text-gray-500 flex-shrink-0">
-                  {chat.timestamp}
-                </span>
-                {chat.unreadCount > 0 && (
-                  <Badge className="bg-blue-500 text-white min-w-[20px] h-5 rounded-full text-[11px] font-medium">
-                    {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
-                  </Badge>
-                )}
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="flex items-center justify-center py-8">
-            <p className="text-gray-500 text-center">
-              {searchQuery ? "No chats found" : "No chats available"}
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
+// Company Action Drawer (shared between mobile and desktop)
 const CompanyActionDrawer: React.FC<{
   isOpen: boolean;
   onClose: () => void;
@@ -967,16 +976,34 @@ const CompanyActionDrawer: React.FC<{
   </Sheet>
 );
 
-// Main Component
+// ============================================================
+// MAIN COMPONENT
+// ============================================================
+
 const Chats: React.FC = () => {
-  const [selectedChat, setSelectedChat] = useState<ChatItem | null>(
-    chatItems[0],
-  ); // Default to first chat on desktop
+  // For mobile: start with no chat selected (show list)
+  // For desktop: start with first chat selected (show conversation)
+  const [selectedChat, setSelectedChat] = useState<ChatItem | null>(null);
   const [messageText, setMessageText] = useState("");
   const [isActionDrawerOpen, setIsActionDrawerOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(sampleMessages);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("All");
+
+  // Set default chat for desktop on mount
+  useEffect(() => {
+    const setDefaultChatForDesktop = () => {
+      // Only set default chat if we're on desktop (width >= 768px)
+      if (window.innerWidth >= 768 && !selectedChat) {
+        setSelectedChat(chatItems[0]);
+      }
+    };
+
+    setDefaultChatForDesktop();
+    window.addEventListener("resize", setDefaultChatForDesktop);
+
+    return () => window.removeEventListener("resize", setDefaultChatForDesktop);
+  }, [selectedChat]);
 
   const handleSendMessage = () => {
     if (messageText.trim()) {
@@ -1025,7 +1052,7 @@ const Chats: React.FC = () => {
 
   return (
     <>
-      {/* Desktop Layout - WhatsApp Style */}
+      {/* DESKTOP LAYOUT - WhatsApp Style (No Changes) */}
       <div
         className="hidden md:flex h-full bg-white"
         style={{ height: "calc(100vh - 86px)" }}
@@ -1052,7 +1079,7 @@ const Chats: React.FC = () => {
         />
       </div>
 
-      {/* Mobile Layout - Keep existing mobile UI */}
+      {/* MOBILE LAYOUT - Original Design with Task Cards & Filters */}
       <div className="md:hidden">
         {selectedChat ? (
           <MobileChatView
