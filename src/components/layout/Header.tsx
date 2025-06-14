@@ -57,8 +57,8 @@ export function Header() {
 
   return (
     <>
-      {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-30 h-[86px] bg-white border-b border-[#E0E0E0] flex items-center justify-between px-3">
+      {/* Mobile/Tablet Header */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-30 h-[86px] bg-white border-b border-[#E0E0E0] flex items-center justify-between px-3">
         {/* Left Controls */}
         <div className="flex items-center">
           {/* Logo and Menu Group */}
