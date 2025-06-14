@@ -304,10 +304,10 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Breadcrumb Section */}
+      {/* Mobile/Tablet Breadcrumb Section */}
       <div
         className={cn(
-          "fixed top-[86px] left-0 right-0 z-20 md:hidden bg-white border-b border-gray-200 shadow-sm",
+          "fixed top-[86px] left-0 right-0 z-20 lg:hidden bg-white border-b border-gray-200 shadow-sm",
           "transition-all duration-300",
         )}
       >
