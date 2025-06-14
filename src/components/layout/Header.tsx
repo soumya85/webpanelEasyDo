@@ -180,12 +180,12 @@ export function Header() {
       {/* Desktop Header */}
       <header
         className={cn(
-          "hidden md:flex fixed top-0 right-0 z-30 h-[86px] bg-white border-b border-gray-400 items-center justify-between px-6",
+          "hidden lg:flex fixed top-0 right-0 z-30 h-[86px] bg-white border-b border-gray-400 items-center justify-between px-6",
           "transition-all duration-300",
-          // Mobile: always full width (left-0)
+          // Mobile/Tablet: always full width (left-0)
           "left-0",
           // Desktop: adjust for sidebar
-          isExpanded ? "md:left-[280px]" : "md:left-[103px]",
+          isExpanded ? "lg:left-[280px]" : "lg:left-[103px]",
         )}
       >
         {/* Left Controls */}
