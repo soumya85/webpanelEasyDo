@@ -2508,6 +2508,29 @@ const ChatContactsList: React.FC<{
 }) => {
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
 
+  // Calculate counts for each filter
+  const getFilterCount = (filter: string) => {
+    switch (filter) {
+      case "All":
+        return chatItems.filter((chat) => !chat.isArchived).length;
+      case "Unread":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.unreadCount > 0,
+        ).length;
+      case "Groups":
+        return chatItems.filter((chat) => !chat.isArchived && chat.isGroup)
+          .length;
+      case "Labels":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.tags && chat.tags.length > 0,
+        ).length;
+      case "Archived":
+        return chatItems.filter((chat) => chat.isArchived === true).length;
+      default:
+        return 0;
+    }
+  };
+
   return (
     <div className="flex flex-col h-full bg-white border-r border-gray-200">
       {/* Header */}
