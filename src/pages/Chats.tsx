@@ -2548,20 +2548,33 @@ const ChatContactsList: React.FC<{
               {/* Filter Tabs */}
               <div className="space-y-4">
                 <div className="flex gap-2 flex-wrap">
-                  {filterTabs.map((filter) => (
-                    <button
-                      key={filter}
-                      onClick={() => onFilterChange(filter)}
-                      className={cn(
-                        "px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                        selectedFilter === filter
-                          ? "bg-blue-500 text-white"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                      )}
-                    >
-                      {filter}
-                    </button>
-                  ))}
+                  {filterTabs.map((filter) => {
+                    const count = getFilterCount(filter);
+                    return (
+                      <button
+                        key={filter}
+                        onClick={() => onFilterChange(filter)}
+                        className={cn(
+                          "px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2",
+                          selectedFilter === filter
+                            ? "bg-blue-500 text-white"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                        )}
+                      >
+                        <span>{filter}</span>
+                        <Badge
+                          className={cn(
+                            "text-xs",
+                            selectedFilter === filter
+                              ? "bg-white/20 text-white"
+                              : "bg-blue-500 text-white",
+                          )}
+                        >
+                          {count}
+                        </Badge>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {/* Task Summary Cards */}
