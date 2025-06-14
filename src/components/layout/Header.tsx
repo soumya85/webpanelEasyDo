@@ -58,7 +58,10 @@ export function Header() {
   return (
     <>
       {/* Mobile/Tablet Header - Show on screens smaller than 1024px */}
-      <header className="block lg:hidden fixed top-0 left-0 right-0 z-50 h-[86px] bg-white border-b border-[#E0E0E0] flex items-center justify-between px-3 shadow-sm">
+      <header
+        className="fixed top-0 left-0 right-0 z-50 h-[86px] bg-white border-b border-[#E0E0E0] flex items-center justify-between px-3 shadow-sm lg:hidden"
+        style={{ display: "flex" }}
+      >
         {/* Left Controls */}
         <div className="flex items-center">
           {/* Logo and Menu Group */}
