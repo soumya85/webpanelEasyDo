@@ -20,6 +20,16 @@ const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 export function SidebarProvider({ children }: { children: ReactNode }) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const location = useLocation();
+
+  // Auto-collapse sidebar on chat page, expand on other pages
+  useEffect(() => {
+    if (location.pathname === "/chats") {
+      setIsExpanded(false);
+    } else {
+      setIsExpanded(true);
+    }
+  }, [location.pathname]);
 
   // Auto-expand and close mobile overlay on resize
   useEffect(() => {
@@ -27,8 +37,6 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
       if (window.innerWidth >= 768) {
         setIsMobileOpen(false);
       }
-      // Keep sidebar expanded on all screen sizes
-      setIsExpanded(true);
     };
 
     handleResize();
