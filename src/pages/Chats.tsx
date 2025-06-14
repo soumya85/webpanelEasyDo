@@ -2507,6 +2507,7 @@ const ChatContactsList: React.FC<{
   onFilterChange,
 }) => {
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   // Calculate counts for each filter
   const getFilterCount = (filter: string) => {
@@ -2538,7 +2539,7 @@ const ChatContactsList: React.FC<{
         {/* Title and Action Buttons */}
         <div className="flex items-center justify-between mb-3">
           <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
-          <Popover>
+          <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
             <PopoverTrigger asChild>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <MoreVertical className="h-4 w-4 text-gray-600" />
@@ -2553,7 +2554,10 @@ const ChatContactsList: React.FC<{
                     return (
                       <button
                         key={filter}
-                        onClick={() => onFilterChange(filter)}
+                        onClick={() => {
+                          onFilterChange(filter);
+                          setIsPopoverOpen(false);
+                        }}
                         className={cn(
                           "px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2",
                           selectedFilter === filter
@@ -2789,8 +2793,54 @@ const ChatConversation: React.FC<{
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Action Buttons */}
+      <div className="px-4 py-2 border-t border-gray-200 bg-white">
+        <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <Receipt className="h-4 w-4" />
+            Sales Invoice
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <UserPlus className="h-4 w-4" />
+            Lead
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <CheckSquare className="h-4 w-4" />
+            Approval
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <BarChart3 className="h-4 w-4" />
+            Poll
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <Clock className="h-4 w-4" />
+            Attendance
+          </Button>
+        </div>
+      </div>
+
       {/* Input Area */}
-      <div className="p-4 border-t border-gray-200 bg-white">
+      <div className="p-4 bg-white">
         <div className="flex items-end gap-3">
           <Button
             variant="ghost"
