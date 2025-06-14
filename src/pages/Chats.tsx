@@ -2539,7 +2539,7 @@ const ChatContactsList: React.FC<{
         {/* Title and Action Buttons */}
         <div className="flex items-center justify-between mb-3">
           <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
-          <Popover>
+          <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
             <PopoverTrigger asChild>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <MoreVertical className="h-4 w-4 text-gray-600" />
@@ -2554,7 +2554,10 @@ const ChatContactsList: React.FC<{
                     return (
                       <button
                         key={filter}
-                        onClick={() => onFilterChange(filter)}
+                        onClick={() => {
+                          onFilterChange(filter);
+                          setIsPopoverOpen(false);
+                        }}
                         className={cn(
                           "px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2",
                           selectedFilter === filter
