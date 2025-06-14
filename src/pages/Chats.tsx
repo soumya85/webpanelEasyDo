@@ -2507,6 +2507,7 @@ const ChatContactsList: React.FC<{
   onFilterChange,
 }) => {
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   // Calculate counts for each filter
   const getFilterCount = (filter: string) => {
