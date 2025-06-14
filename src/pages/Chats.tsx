@@ -38,7 +38,7 @@ import {
   Shield,
   Settings,
   Search,
-  Menu,
+  MoreVertical,
 } from "lucide-react";
 
 // Types
