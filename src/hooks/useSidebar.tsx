@@ -55,7 +55,7 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleExpanded = () => {
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 1024) {
       setIsExpanded(!isExpanded);
     }
   };
