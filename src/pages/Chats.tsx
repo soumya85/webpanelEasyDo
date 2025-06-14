@@ -324,35 +324,84 @@ const ChatContactsList: React.FC<{
   onChatSelect: (chat: ChatItem) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  selectedFilter: string;
+  onFilterChange: (filter: string) => void;
 }> = ({
   chatItems,
   selectedChat,
   onChatSelect,
   searchQuery,
   onSearchChange,
-}) => (
-  <div className="flex flex-col h-full bg-white border-r border-gray-200">
-    {/* Header */}
-    <div className="p-4 border-b border-gray-200">
-      {/* Title and Action Buttons */}
-      <div className="flex items-center justify-between mb-3">
-        <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
-        <Button variant="ghost" size="icon" className="h-8 w-8">
-          <MoreVertical className="h-4 w-4 text-gray-600" />
-        </Button>
-      </div>
+  selectedFilter,
+  onFilterChange,
+}) => {
+  const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
 
-      {/* Search */}
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-        <Input
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Search or start a new chat"
-          className="pl-10 bg-gray-50 border-gray-200"
-        />
+  return (
+    <div className="flex flex-col h-full bg-white border-r border-gray-200">
+      {/* Header */}
+      <div className="p-4 border-b border-gray-200">
+        {/* Title and Action Buttons */}
+        <div className="flex items-center justify-between mb-3">
+          <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <MoreVertical className="h-4 w-4 text-gray-600" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80 p-4" align="end">
+              {/* Filter Tabs */}
+              <div className="space-y-4">
+                <div className="flex gap-2 flex-wrap">
+                  {filterTabs.map((filter) => (
+                    <button
+                      key={filter}
+                      onClick={() => onFilterChange(filter)}
+                      className={cn(
+                        "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                        selectedFilter === filter
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                      )}
+                    >
+                      {filter}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Task Summary Cards */}
+                <div className="grid grid-cols-2 gap-3">
+                  {taskSummaries.map((task) => (
+                    <div
+                      key={task.id}
+                      className="bg-gray-100 rounded-2xl p-4 text-center cursor-pointer hover:bg-gray-200 transition-colors"
+                    >
+                      <div className="text-2xl font-bold text-blue-500 mb-1">
+                        {task.count}
+                      </div>
+                      <div className="text-xs font-medium text-gray-800 leading-tight">
+                        {task.title}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
+
+        {/* Search */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Input
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            placeholder="Search or start a new chat"
+            className="pl-10 bg-gray-50 border-gray-200"
+          />
+        </div>
       </div>
-    </div>
 
     {/* Chat List */}
     <div className="flex-1 overflow-y-auto">
