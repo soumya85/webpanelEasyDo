@@ -38,6 +38,7 @@ import {
   Shield,
   Settings,
   Search,
+  Filter,
 } from "lucide-react";
 
 // Types
