@@ -2923,9 +2923,9 @@ const Chats: React.FC = () => {
 
   return (
     <>
-      {/* DESKTOP LAYOUT - WhatsApp Style (No Changes) */}
+      {/* DESKTOP LAYOUT - WhatsApp Style (Only for large screens 1024px+) */}
       <div
-        className="hidden md:flex h-full bg-white"
+        className="hidden lg:flex h-full bg-white"
         style={{ height: "calc(100vh - 86px)" }}
       >
         {/* Left Panel - Chat Contacts */}
@@ -2952,8 +2952,8 @@ const Chats: React.FC = () => {
         />
       </div>
 
-      {/* MOBILE LAYOUT - Original Design with Task Cards & Filters */}
-      <div className="md:hidden">
+      {/* MOBILE/TABLET LAYOUT - Original Design with Task Cards & Filters */}
+      <div className="lg:hidden">
         {selectedChat ? (
           <MobileChatView
             selectedChat={selectedChat}
