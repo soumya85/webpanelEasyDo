@@ -333,7 +333,7 @@ const ChatContactsList: React.FC<{
       <div className="flex items-center justify-between mb-3">
         <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
         <Button variant="ghost" size="icon" className="h-8 w-8">
-          <Menu className="h-4 w-4 text-gray-600" />
+          <MoreVertical className="h-4 w-4 text-gray-600" />
         </Button>
       </div>
 
