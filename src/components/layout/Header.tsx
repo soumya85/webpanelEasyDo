@@ -57,7 +57,7 @@ export function Header() {
 
   return (
     <>
-      {/* Mobile/Tablet Header */}
+      {/* Mobile/Tablet Header - Show on screens smaller than 1024px */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-30 h-[86px] bg-white border-b border-[#E0E0E0] flex items-center justify-between px-3">
         {/* Left Controls */}
         <div className="flex items-center">
@@ -65,7 +65,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             {/* Small Logo */}
             <img
-              src="/logo-small.png"
+              src="/company-logo.svg"
               alt="EasyDo Logo"
               className="w-[38px] h-[38px] object-contain rounded-[3px]"
             />
@@ -177,7 +177,7 @@ export function Header() {
         </div>
       </header>
 
-      {/* Desktop Header */}
+      {/* Desktop Header - Show on screens 1024px and larger */}
       <header
         className={cn(
           "hidden lg:flex fixed top-0 right-0 z-30 h-[86px] bg-white border-b border-gray-400 items-center justify-between px-6",
