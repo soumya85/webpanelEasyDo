@@ -26,8 +26,8 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const handleSidebarState = () => {
       if (location.pathname === "/chats") {
-        // Chat page: expanded on mobile, collapsed on desktop
-        setIsExpanded(window.innerWidth < 768);
+        // Chat page: expanded on mobile/tablet, collapsed on desktop
+        setIsExpanded(window.innerWidth < 1024);
       } else {
         // Other pages: always expanded
         setIsExpanded(true);
