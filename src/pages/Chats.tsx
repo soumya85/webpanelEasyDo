@@ -800,7 +800,7 @@ const conversationData: Record<string, ChatMessage[]> = {
   ],
 
   "2": [
-    // Liberty Kokoro Daily Attendance - Group chat
+    // Liberty Kolkata Daily Attendance - Group chat
     {
       id: "2-1",
       text: "Good morning everyone! Time for daily attendance",
