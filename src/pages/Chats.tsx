@@ -332,14 +332,9 @@ const ChatContactsList: React.FC<{
       {/* Title and Action Buttons */}
       <div className="flex items-center justify-between mb-3">
         <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <Plus className="h-4 w-4 text-gray-600" />
-          </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <MoreHorizontal className="h-4 w-4 text-gray-600" />
-          </Button>
-        </div>
+        <Button variant="ghost" size="icon" className="h-8 w-8">
+          <Menu className="h-4 w-4 text-gray-600" />
+        </Button>
       </div>
 
       {/* Search */}
