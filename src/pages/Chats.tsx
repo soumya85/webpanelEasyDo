@@ -403,62 +403,63 @@ const ChatContactsList: React.FC<{
         </div>
       </div>
 
-    {/* Chat List */}
-    <div className="flex-1 overflow-y-auto">
-      {chatItems.map((chat) => (
-        <div
-          key={chat.id}
-          onClick={() => onChatSelect(chat)}
-          className={cn(
-            "flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100",
-            selectedChat?.id === chat.id && "bg-gray-100",
-          )}
-        >
-          <Avatar className="h-12 w-12 flex-shrink-0">
-            <AvatarImage src={chat.avatar} alt={chat.name} />
-            <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
-              {chat.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .slice(0, 2)}
-            </AvatarFallback>
-          </Avatar>
+      {/* Chat List */}
+      <div className="flex-1 overflow-y-auto">
+        {chatItems.map((chat) => (
+          <div
+            key={chat.id}
+            onClick={() => onChatSelect(chat)}
+            className={cn(
+              "flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100",
+              selectedChat?.id === chat.id && "bg-gray-100",
+            )}
+          >
+            <Avatar className="h-12 w-12 flex-shrink-0">
+              <AvatarImage src={chat.avatar} alt={chat.name} />
+              <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
+                {chat.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .slice(0, 2)}
+              </AvatarFallback>
+            </Avatar>
 
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between mb-1">
-              <h3 className="font-medium text-gray-900 text-sm truncate">
-                {chat.name}
-              </h3>
-              <span className="text-xs text-gray-500 flex-shrink-0">
-                {chat.timestamp}
-              </span>
-            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="font-medium text-gray-900 text-sm truncate">
+                  {chat.name}
+                </h3>
+                <span className="text-xs text-gray-500 flex-shrink-0">
+                  {chat.timestamp}
+                </span>
+              </div>
 
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-600 truncate flex-1">
-                {chat.lastMessage}
-              </p>
-              {chat.unreadCount > 0 && (
-                <Badge className="bg-blue-500 text-white text-xs ml-2">
-                  {chat.unreadCount}
-                </Badge>
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-gray-600 truncate flex-1">
+                  {chat.lastMessage}
+                </p>
+                {chat.unreadCount > 0 && (
+                  <Badge className="bg-blue-500 text-white text-xs ml-2">
+                    {chat.unreadCount}
+                  </Badge>
+                )}
+              </div>
+
+              {chat.isGroup && (
+                <div className="mt-1">
+                  <Badge variant="secondary" className="text-xs">
+                    GROUP
+                  </Badge>
+                </div>
               )}
             </div>
-
-            {chat.isGroup && (
-              <div className="mt-1">
-                <Badge variant="secondary" className="text-xs">
-                  GROUP
-                </Badge>
-              </div>
-            )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ChatConversation: React.FC<{
   selectedChat: ChatItem | null;
