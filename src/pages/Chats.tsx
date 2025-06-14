@@ -77,6 +77,7 @@ interface ChatItem {
   isGroup: boolean;
   tags?: string[];
   phone?: string;
+  isArchived?: boolean;
 }
 
 // Mock Data
