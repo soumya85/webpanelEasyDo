@@ -57,8 +57,8 @@ export function Header() {
 
   return (
     <>
-      {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-30 h-[86px] bg-white border-b border-[#E0E0E0] flex items-center justify-between px-3">
+      {/* Mobile/Tablet Header - Show on screens smaller than 1024px */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-30 h-[86px] bg-white border-b border-[#E0E0E0] flex items-center justify-between px-3">
         {/* Left Controls */}
         <div className="flex items-center">
           {/* Logo and Menu Group */}
@@ -177,15 +177,15 @@ export function Header() {
         </div>
       </header>
 
-      {/* Desktop Header */}
+      {/* Desktop Header - Show on screens 1024px and larger */}
       <header
         className={cn(
-          "hidden md:flex fixed top-0 right-0 z-30 h-[86px] bg-white border-b border-gray-400 items-center justify-between px-6",
+          "hidden lg:flex fixed top-0 right-0 z-30 h-[86px] bg-white border-b border-gray-400 items-center justify-between px-6",
           "transition-all duration-300",
-          // Mobile: always full width (left-0)
+          // Mobile/Tablet: always full width (left-0)
           "left-0",
           // Desktop: adjust for sidebar
-          isExpanded ? "md:left-[280px]" : "md:left-[103px]",
+          isExpanded ? "lg:left-[280px]" : "lg:left-[103px]",
         )}
       >
         {/* Left Controls */}
@@ -304,10 +304,10 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Breadcrumb Section */}
+      {/* Mobile/Tablet Breadcrumb Section */}
       <div
         className={cn(
-          "fixed top-[86px] left-0 right-0 z-20 md:hidden bg-white border-b border-gray-200 shadow-sm",
+          "fixed top-[86px] left-0 right-0 z-20 lg:hidden bg-white border-b border-gray-200 shadow-sm",
           "transition-all duration-300",
         )}
       >

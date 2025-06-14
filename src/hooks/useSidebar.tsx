@@ -26,8 +26,8 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const handleSidebarState = () => {
       if (location.pathname === "/chats") {
-        // Chat page: expanded on mobile, collapsed on desktop
-        setIsExpanded(window.innerWidth < 768);
+        // Chat page: expanded on mobile/tablet, collapsed on desktop
+        setIsExpanded(window.innerWidth < 1024);
       } else {
         // Other pages: always expanded
         setIsExpanded(true);
@@ -44,7 +44,7 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   // Auto-expand and close mobile overlay on resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1024) {
         setIsMobileOpen(false);
       }
     };
@@ -55,7 +55,7 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleExpanded = () => {
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 1024) {
       setIsExpanded(!isExpanded);
     }
   };
