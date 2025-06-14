@@ -10,10 +10,10 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile Overlay */}
+      {/* Mobile/Tablet Overlay */}
       {isMobileOpen && (
         <div
-          className="fixed inset-0 bg-black/25 z-40 md:hidden"
+          className="fixed inset-0 bg-black/25 z-40 lg:hidden"
           onClick={() => setMobileOpen(false)}
         />
       )}
