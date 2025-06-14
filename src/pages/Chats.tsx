@@ -2645,7 +2645,7 @@ const MobileChatView: React.FC<{
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-1">
+      <div className="flex-1 overflow-y-auto p-4 space-y-1 scrollbar-hide">
         <div className="text-center">
           <span className="bg-gray-200 text-gray-600 text-[12px] px-3 py-1 rounded-full">
             Wednesday 01 May 2024
@@ -2854,8 +2854,8 @@ const Chats: React.FC = () => {
   // Set default chat for desktop on mount
   useEffect(() => {
     const setDefaultChatForDesktop = () => {
-      // Only set default chat if we're on desktop (width >= 768px)
-      if (window.innerWidth >= 768 && !selectedChat) {
+      // Only set default chat if we're on desktop (width >= 1024px)
+      if (window.innerWidth >= 1024 && !selectedChat) {
         setSelectedChat(chatItems[0]);
       }
     };
@@ -2923,9 +2923,9 @@ const Chats: React.FC = () => {
 
   return (
     <>
-      {/* DESKTOP LAYOUT - WhatsApp Style (No Changes) */}
+      {/* DESKTOP LAYOUT - WhatsApp Style (Only for large screens 1024px+) */}
       <div
-        className="hidden md:flex h-full bg-white"
+        className="hidden lg:flex h-full bg-white"
         style={{ height: "calc(100vh - 86px)" }}
       >
         {/* Left Panel - Chat Contacts */}
@@ -2952,8 +2952,8 @@ const Chats: React.FC = () => {
         />
       </div>
 
-      {/* MOBILE LAYOUT - Original Design with Task Cards & Filters */}
-      <div className="md:hidden">
+      {/* MOBILE/TABLET LAYOUT - Original Design with Task Cards & Filters */}
+      <div className="lg:hidden">
         {selectedChat ? (
           <MobileChatView
             selectedChat={selectedChat}
