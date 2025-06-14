@@ -2789,8 +2789,54 @@ const ChatConversation: React.FC<{
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Action Buttons */}
+      <div className="px-4 py-2 border-t border-gray-200 bg-white">
+        <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <Receipt className="h-4 w-4" />
+            Sales Invoice
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <UserPlus className="h-4 w-4" />
+            Lead
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <CheckSquare className="h-4 w-4" />
+            Approval
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <BarChart3 className="h-4 w-4" />
+            Poll
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
+          >
+            <Clock className="h-4 w-4" />
+            Attendance
+          </Button>
+        </div>
+      </div>
+
       {/* Input Area */}
-      <div className="p-4 border-t border-gray-200 bg-white">
+      <div className="p-4 bg-white">
         <div className="flex items-end gap-3">
           <Button
             variant="ghost"
