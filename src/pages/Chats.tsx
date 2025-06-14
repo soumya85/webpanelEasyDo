@@ -1127,6 +1127,8 @@ const Chats: React.FC = () => {
             onChatSelect={setSelectedChat}
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
+            selectedFilter={selectedFilter}
+            onFilterChange={setSelectedFilter}
           />
         </div>
 
