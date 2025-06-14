@@ -990,6 +990,21 @@ const Chats: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("All");
 
+  // Set default chat for desktop on mount
+  useEffect(() => {
+    const setDefaultChatForDesktop = () => {
+      // Only set default chat if we're on desktop (width >= 768px)
+      if (window.innerWidth >= 768 && !selectedChat) {
+        setSelectedChat(chatItems[0]);
+      }
+    };
+
+    setDefaultChatForDesktop();
+    window.addEventListener("resize", setDefaultChatForDesktop);
+
+    return () => window.removeEventListener("resize", setDefaultChatForDesktop);
+  }, [selectedChat]);
+
   const handleSendMessage = () => {
     if (messageText.trim()) {
       const newMessage: ChatMessage = {
