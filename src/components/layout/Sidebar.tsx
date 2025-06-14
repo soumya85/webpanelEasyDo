@@ -30,10 +30,10 @@ export function Sidebar() {
       >
         {/* Logo Section */}
         <div className="flex flex-col items-center gap-2 px-4 py-4 border-b border-gray-400 flex-shrink-0 h-[86px] justify-center">
-          {/* Mobile Close Button */}
+          {/* Mobile/Tablet Close Button */}
           <button
             onClick={() => setMobileOpen(false)}
-            className="absolute top-4 right-4 md:hidden p-1 hover:bg-gray-100 rounded"
+            className="absolute top-4 right-4 lg:hidden p-1 hover:bg-gray-100 rounded"
           >
             <X className="h-5 w-5" />
           </button>
