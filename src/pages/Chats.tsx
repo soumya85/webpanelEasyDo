@@ -2645,7 +2645,7 @@ const MobileChatView: React.FC<{
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-1">
+      <div className="flex-1 overflow-y-auto p-4 space-y-1 scrollbar-hide">
         <div className="text-center">
           <span className="bg-gray-200 text-gray-600 text-[12px] px-3 py-1 rounded-full">
             Wednesday 01 May 2024
