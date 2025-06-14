@@ -65,7 +65,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             {/* Small Logo */}
             <img
-              src="/company-logo.svg"
+              src="/logo-main.png"
               alt="EasyDo Logo"
               className="w-[38px] h-[38px] object-contain rounded-[3px]"
             />
