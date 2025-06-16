@@ -385,13 +385,13 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
           </h3>
         </div>
         <div className="flex flex-col items-end text-right">
-          <div className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold">
+          <div className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold leading-none">
             Total Hour :{" "}
             <span className="text-[11px] sm:text-[12px] lg:text-[13px]">
               208
             </span>
           </div>
-          <div className="text-[#1a1a1a] font-inter text-[8px] sm:text-[9px] lg:text-[10px] font-normal -mt-5">
+          <div className="text-[#1a1a1a] font-inter text-[8px] sm:text-[9px] lg:text-[10px] font-normal leading-none -mt-6">
             Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
             OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
           </div>
