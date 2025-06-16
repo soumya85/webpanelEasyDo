@@ -401,7 +401,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       {/* Chart Content - Expanded to take more space */}
       <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1 lg:px-4 lg:py-1 flex-1">
         {/* Chart - Increased height */}
-        <div className="flex-1" style={{ minHeight: "100px", height: "100px" }}>
+        <div className="flex-1" style={{ minHeight: "120px", height: "120px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
