@@ -19,6 +19,11 @@ import {
   CheckSquare,
   Calendar,
   CheckCircle,
+  Search,
+  Settings,
+  ChevronDown as ChevronDownIcon,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 // Date Range Types
