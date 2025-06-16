@@ -390,15 +390,41 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex items-center gap-3 sm:gap-4 flex-1 px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5">
-        {/* Right Section - Mini Chart */}
-        <div className="flex-shrink-0 w-24 sm:w-32 lg:w-40 h-12 sm:h-16 lg:h-20">
+      {/* Chart Content */}
+      <div className="flex items-start gap-4 px-5 py-4">
+        {/* Chart */}
+        <div className="flex-1" style={{ minHeight: "120px", height: "120px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
-              margin={{ top: 2, right: 2, left: 2, bottom: 2 }}
+              margin={{ top: 10, right: 10, left: 25, bottom: 20 }}
             >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#D1D5DB"
+                horizontal={true}
+                vertical={false}
+              />
+              <XAxis
+                dataKey="day"
+                tick={{ fontSize: 10, fill: "#6B7280" }}
+                axisLine={{ stroke: "#E5E7EB" }}
+                tickLine={false}
+                height={25}
+              />
+              <YAxis
+                domain={[0, 12]}
+                tickFormatter={(value) => `${value}h`}
+                tick={{ fontSize: 10, fill: "#6B7280" }}
+                axisLine={false}
+                tickLine={false}
+                width={25}
+                ticks={[0, 4, 8, 12]}
+              />
+              <Tooltip
+                formatter={(value) => [`${value}h`, ""]}
+                labelFormatter={(label) => `Day ${label}`}
+              />
               <Bar dataKey="Present" stackId="a" fill="#22C55E" />
               <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
               <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
@@ -410,38 +436,38 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         </div>
 
         {/* Legend - 2 Column Layout */}
-        <div className="flex gap-2 flex-shrink-0">
+        <div className="flex gap-3 flex-shrink-0">
           {/* Column 1 */}
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             {[
               { name: "Present", color: "#22C55E" },
               { name: "Absent", color: "#9CA3AF" },
               { name: "OT", color: "#3B82F6" },
             ].map((entry, index) => (
-              <div key={index} className="flex items-center gap-1">
+              <div key={index} className="flex items-center gap-2">
                 <div
-                  className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm flex-shrink-0"
+                  className="w-3 h-3 rounded-sm flex-shrink-0"
                   style={{ backgroundColor: entry.color }}
                 />
-                <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#283C50] font-inter font-medium">
+                <span className="text-[11px] text-[#1a1a1a] font-inter font-medium">
                   {entry.name}
                 </span>
               </div>
             ))}
           </div>
           {/* Column 2 */}
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             {[
               { name: "Leave", color: "#FB923C" },
               { name: "Holiday", color: "#EF4444" },
               { name: "Red Flags", color: "#DC2626" },
             ].map((entry, index) => (
-              <div key={index} className="flex items-center gap-1">
+              <div key={index} className="flex items-center gap-2">
                 <div
-                  className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm flex-shrink-0"
+                  className="w-3 h-3 rounded-sm flex-shrink-0"
                   style={{ backgroundColor: entry.color }}
                 />
-                <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#283C50] font-inter font-medium">
+                <span className="text-[11px] text-[#1a1a1a] font-inter font-medium">
                   {entry.name}
                 </span>
               </div>
