@@ -407,7 +407,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               />
               <XAxis
                 dataKey="day"
-                tick={{ fontSize: 7, fill: "#6B7280" }}
+                tick={{ fontSize: 7, fill: "#6B7280", fontWeight: "bold" }}
                 axisLine={{ stroke: "#E5E7EB" }}
                 tickLine={false}
                 height={12}
@@ -415,7 +415,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               <YAxis
                 domain={[0, 12]}
                 tickFormatter={(value) => `${value}h`}
-                tick={{ fontSize: 7, fill: "#6B7280" }}
+                tick={{ fontSize: 7, fill: "#6B7280", fontWeight: "bold" }}
                 axisLine={false}
                 tickLine={false}
                 width={15}
