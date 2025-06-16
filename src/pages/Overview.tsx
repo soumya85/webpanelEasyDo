@@ -391,7 +391,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               208
             </span>
           </div>
-          <div className="text-[#1a1a1a] font-inter text-[8px] sm:text-[9px] lg:text-[10px] font-normal leading-none -mt-6">
+          <div className="text-[#1a1a1a] font-inter text-[8px] sm:text-[9px] lg:text-[10px] font-normal leading-none -mt-8">
             Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
             OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
           </div>
