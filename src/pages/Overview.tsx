@@ -1915,10 +1915,10 @@ const Overview: React.FC = () => {
               value="7"
               label="Announcements"
             />
-            <EmployeeOfTheMonthCard />
+            <EmployeeOfTheMonthCard dateRange={currentDateRange} />
           </div>
           <div className="flex-1">
-            <EmployeeWorkingHourTrendsCard />
+            <EmployeeWorkingHourTrendsCard dateRange={currentDateRange} />
           </div>
         </div>
 
