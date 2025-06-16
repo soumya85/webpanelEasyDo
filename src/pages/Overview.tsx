@@ -307,7 +307,7 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-4 sm:gap-5 lg:gap-6 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "flex items-center gap-2 sm:gap-3 lg:gap-3 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
         "px-3 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6 h-[90px] sm:h-[105px] lg:h-[120px]",
         "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
