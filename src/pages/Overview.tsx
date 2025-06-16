@@ -548,70 +548,98 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       >
         <div className="flex flex-col items-start min-w-0 flex-1">
           <h3 className="text-[#283C50] font-inter text-[14px] sm:text-[16px] lg:text-[18px] font-bold leading-tight">
-            Employee Working Hour Trends
+// Employee Working Hour Trends Card Component
+const EmployeeWorkingHourTrendsCard: React.FC = () => {
+  const workingHourData = [
+    { day: 1, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 2, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 3, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
+    { day: 4, Present: 6, Leave: 2, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 5, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
+    { day: 6, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 7, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 8, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 9, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 10, Present: 11, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
+    { day: 11, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
+    { day: 12, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 13, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 14, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 15, Present: 4, Leave: 0, Absent: 4, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 16, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 17, Present: 11, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
+    { day: 18, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
+    { day: 19, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 20, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 21, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 22, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 23, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 24, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
+    { day: 25, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
+    { day: 26, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 27, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 28, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 29, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 30, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+  ];
+
+  return (
+    <div
+      className={cn(
+        "flex flex-col bg-white rounded-[10px]",
+        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[320px]",
+        "border border-gray-100",
+      )}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <div className="flex flex-col">
+          <h3 className="text-[#1a1a1a] font-inter text-[16px] font-normal leading-tight">
+            Employee Working Hour Trends{" "}
+            <span className="text-[#4766E5] font-normal">- Sept 2024</span>
           </h3>
-          <span className="text-[#4766E5] font-inter text-[12px] sm:text-[13px] lg:text-[14px] font-normal leading-tight">
-            - Sept 2024
-          </span>
         </div>
         <div className="flex flex-col items-end text-right">
-          <div className="text-[#283C50] font-inter text-[14px] sm:text-[16px] font-bold">
-            Total Hour: <span className="text-[18px] sm:text-[20px]">208</span>
+          <div className="text-[#1a1a1a] font-inter text-[16px] font-bold">
+            Total Hour : <span className="text-[18px]">208</span>
           </div>
-          <div className="text-[#283C50] font-inter text-[11px] sm:text-[12px] font-normal">
-            Worked: <span className="text-[#22C55E] font-semibold">160</span>{" "}
-            OT: <span className="text-[#3B82F6] font-semibold">14</span> Hrs
+          <div className="text-[#1a1a1a] font-inter text-[12px] font-normal">
+            Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
+            OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
           </div>
         </div>
       </div>
 
       {/* Chart Content */}
-      <div className="flex-1 px-3 py-2 sm:px-4 sm:py-3 min-h-0 w-full relative">
+      <div className="flex-1 px-4 py-3 min-h-0 w-full relative">
         <div className="h-full flex flex-col w-full">
-          {/* Legend */}
-          <div className="mb-2 flex-shrink-0">
-            <div className="flex flex-wrap gap-2 sm:gap-3 justify-start">
-              {[
-                { name: "Present", color: "#22C55E" },
-                { name: "Leave", color: "#FB923C" },
-                { name: "Absent", color: "#9CA3AF" },
-                { name: "Holiday", color: "#EF4444" },
-                { name: "OT", color: "#3B82F6" },
-                { name: "Red Flags", color: "#DC2626" },
-              ].map((entry, index) => (
-                <div key={index} className="flex items-center gap-1">
-                  <div
-                    className="w-2 h-2 sm:w-3 sm:h-3 rounded-sm flex-shrink-0"
-                    style={{ backgroundColor: entry.color }}
-                  />
-                  <span className="text-[9px] sm:text-[10px] lg:text-[11px] text-[#283C50] font-inter">
-                    {entry.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Chart */}
-          <div className="flex-1 w-full" style={{ minHeight: "80px" }}>
-            <ResponsiveContainer width="100%" height="100%" minHeight={80}>
+          <div className="flex-1 w-full mb-3" style={{ minHeight: "120px" }}>
+            <ResponsiveContainer width="100%" height="100%" minHeight={120}>
               <BarChart
-                data={workingHourData.filter((_, index) => index % 7 === 0)} // Show every 7th day
-                margin={{ top: 5, right: 5, left: 5, bottom: 15 }}
+                data={[
+                  { day: 1, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+                  { day: 8, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+                  { day: 15, Present: 4, Leave: 0, Absent: 4, Holiday: 0, OT: 0, RedFlags: 0 },
+                  { day: 22, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+                  { day: 29, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+                ]}
+                margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                 <XAxis
                   dataKey="day"
-                  tick={{ fontSize: 8, fill: "#6B7280" }}
+                  tick={{ fontSize: 10, fill: "#6B7280" }}
                   axisLine={{ stroke: "#E5E7EB" }}
-                  height={20}
+                  height={25}
                 />
                 <YAxis
                   domain={[0, 12]}
                   tickFormatter={(value) => `${value}h`}
-                  tick={{ fontSize: 8, fill: "#6B7280" }}
+                  tick={{ fontSize: 10, fill: "#6B7280" }}
                   axisLine={{ stroke: "#E5E7EB" }}
-                  width={25}
+                  width={30}
                 />
                 <Tooltip
                   formatter={(value) => [`${value}h`, ""]}
@@ -625,6 +653,30 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
                 <Bar dataKey="RedFlags" stackId="a" fill="#DC2626" />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+
+          {/* Legend */}
+          <div className="flex-shrink-0">
+            <div className="flex flex-wrap gap-4 justify-center">
+              {[
+                { name: "Present", color: "#22C55E" },
+                { name: "Leave", color: "#FB923C" },
+                { name: "Absent", color: "#9CA3AF" },
+                { name: "Holiday", color: "#EF4444" },
+                { name: "OT", color: "#3B82F6" },
+                { name: "Red Flags", color: "#DC2626" },
+              ].map((entry, index) => (
+                <div key={index} className="flex items-center gap-1">
+                  <div
+                    className="w-3 h-3 rounded-sm flex-shrink-0"
+                    style={{ backgroundColor: entry.color }}
+                  />
+                  <span className="text-[11px] text-[#1a1a1a] font-inter font-medium">
+                    {entry.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
