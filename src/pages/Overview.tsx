@@ -1162,7 +1162,7 @@ const EmployeeAttendanceLog: React.FC = () => {
     });
 
     return filtered;
-  }, [searchTerm, sortBy, sortOrder]);
+  }, [searchTerm, sortBy, sortOrder, selectedDate]);
 
   // Pagination
   const totalPages = Math.ceil(filteredAndSortedEmployees.length / rowsPerPage);
