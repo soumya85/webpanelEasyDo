@@ -1338,17 +1338,33 @@ const EmployeeAttendanceLog: React.FC = () => {
 
   // Scroll to table function
   const scrollToTable = () => {
-    if (tableRef.current) {
-      // Get the position of the table relative to the page
-      const tablePosition =
-        tableRef.current.getBoundingClientRect().top + window.pageYOffset;
+    // Use setTimeout to ensure DOM has updated before scrolling
+    setTimeout(() => {
+      if (tableRef.current) {
+        // Try multiple scroll methods for better compatibility
 
-      // Scroll to the table with some offset for better positioning
-      window.scrollTo({
-        top: tablePosition - 20, // 20px offset from top
-        behavior: "smooth",
-      });
-    }
+        // Method 1: scrollIntoView
+        tableRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+
+        // Method 2: Fallback with window.scrollTo
+        setTimeout(() => {
+          const tablePosition =
+            tableRef.current?.getBoundingClientRect().top ?? 0;
+          const currentScrollY = window.pageYOffset;
+
+          if (tablePosition !== 0) {
+            window.scrollTo({
+              top: currentScrollY + tablePosition - 100, // 100px offset from top
+              behavior: "smooth",
+            });
+          }
+        }, 100);
+      }
+    }, 50);
   };
 
   // Handle pagination navigation
