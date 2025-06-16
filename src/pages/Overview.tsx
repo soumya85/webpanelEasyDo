@@ -496,38 +496,38 @@ const EmployeeOfTheMonthCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5 h-[110px] sm:h-[125px] lg:h-[140px]",
+        "p-4 h-[110px] sm:h-[125px] lg:h-[140px]",
         "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
       {/* Header */}
-      <div className="mb-2 sm:mb-3">
-        <h3 className="text-[#1a1a1a] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight">
+      <div className="mb-3">
+        <h3 className="text-[#1a1a1a] font-inter text-[14px] font-medium leading-tight">
           Employee of the month{" "}
-          <span className="text-[#4766E5] font-normal">- Sept 2024</span>
+          <span className="text-[#4766E5] font-medium">- Sept 2024</span>
         </h3>
       </div>
 
       {/* Employee Info */}
-      <div className="flex items-center gap-2 sm:gap-3 flex-1">
+      <div className="flex items-start gap-3 flex-1">
         {/* Avatar with Badge */}
         <div className="flex-shrink-0 relative">
           <div
             className={cn(
-              "flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14",
-              "bg-[#1a1a1a] rounded-full text-white font-bold text-sm sm:text-base lg:text-lg",
+              "flex items-center justify-center w-12 h-12",
+              "bg-[#1a1a1a] rounded-full text-white font-bold text-lg",
             )}
           >
             SP
           </div>
           {/* Person Badge Icon */}
-          <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-[#4766E5] rounded-full flex items-center justify-center">
+          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#6B7280] rounded-full flex items-center justify-center">
             <svg
-              width="8"
-              height="8"
+              width="12"
+              height="12"
               viewBox="0 0 24 24"
               fill="none"
-              className="text-white w-2 h-2 sm:w-2.5 sm:h-2.5"
+              className="text-white w-3 h-3"
             >
               <path
                 d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
@@ -538,34 +538,55 @@ const EmployeeOfTheMonthCard: React.FC = () => {
         </div>
 
         {/* Employee Details */}
-        <div className="flex flex-col flex-1 min-w-0 justify-center">
+        <div className="flex flex-col flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1">
-            <h4 className="text-[#1a1a1a] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-tight truncate">
+            <h4 className="text-[#1a1a1a] font-inter text-[16px] font-bold leading-tight">
               Sanjay Patel
             </h4>
             <div className="flex items-center gap-1 flex-shrink-0">
               <svg
-                width="12"
-                height="12"
+                width="14"
+                height="14"
                 viewBox="0 0 24 24"
-                fill="none"
+                fill="#22C55E"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-3 h-3 sm:w-3.5 sm:h-3.5"
+                className="w-3.5 h-3.5"
               >
                 <path
                   d="M12 2L14.09 8.26L21 9L15.5 14.74L17 21.5L12 18.27L7 21.5L8.5 14.74L3 9L9.91 8.26L12 2Z"
-                  stroke="#10B981"
-                  fill="none"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-[#10B981] font-inter text-[10px] sm:text-[11px] font-medium">
+              <span className="text-[#6B7280] font-inter text-[12px] font-medium">
                 (0)
               </span>
             </div>
           </div>
+
+          <div className="text-[#6B7280] font-inter text-[12px] font-normal mb-1">
+            Ahmedabad office <span className="font-semibold text-[#1a1a1a]">Branch</span>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="text-[#6B7280] font-inter text-[12px] font-normal">
+              Overall Employee Score: <span className="font-bold text-[#1a1a1a]">2.76</span>
+            </div>
+            <div className="flex-shrink-0">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="#4766E5"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4"
+              >
+                <path
+                  d="M12 2L15.09 8.5L22 9.5L17 14.5L18.18 21.5L12 18.5L5.82 21.5L7 14.5L2 9.5L8.91 8.5L12 2Z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
 
           <p className="text-[#6B7280] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal leading-tight mb-1 truncate">
             Ahmedabad office Branch
