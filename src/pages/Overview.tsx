@@ -462,7 +462,9 @@ const EmployeeWorkingHourTrendsCard: React.FC<
         <div className="flex flex-col">
           <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
-            <span className="text-[#4766E5] font-bold">- {monthDisplay}</span>
+            <span className="text-[#4766E5] font-bold">
+              - {dateRangeDisplay}
+            </span>
           </h3>
         </div>
         <div className="flex flex-col items-end text-right">
