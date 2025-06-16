@@ -379,9 +379,9 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       {/* Header - Made more compact */}
       <div className="flex items-center justify-between px-2 py-0.5 sm:px-3 sm:py-1 lg:px-4 lg:py-1 border-b border-gray-100 flex-shrink-0">
         <div className="flex flex-col">
-          <h3 className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal leading-tight">
+          <h3 className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
-            <span className="text-[#4766E5] font-normal">- Sept 2024</span>
+            <span className="text-[#4766E5] font-bold">- Sept 2024</span>
           </h3>
         </div>
         <div className="flex flex-col items-end text-right">
@@ -654,7 +654,7 @@ const formatCurrency = (value: number) => {
   if (value >= 100000) {
     return `₹${(value / 100000).toFixed(0)}L`;
   }
-  return `₹${value.toLocaleString()}`;
+  return `���${value.toLocaleString()}`;
 };
 
 // Icon Components (Responsive)
