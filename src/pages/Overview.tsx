@@ -307,9 +307,9 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-3 sm:gap-6 lg:gap-7 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "flex items-center gap-2 sm:gap-3 lg:gap-3 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-2 py-3 sm:px-4 sm:py-0 h-[110px] sm:h-[140px] lg:h-[154px]",
+        "px-3 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6 h-[90px] sm:h-[105px] lg:h-[120px]",
         "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
@@ -318,7 +318,7 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
         <div className="text-[#283C50] text-[24px] sm:text-[32px] lg:text-[40px] font-bold leading-tight lg:leading-[64px] font-inter">
           {value}
         </div>
-        <div className="text-[#283C50] text-[11px] sm:text-[14px] lg:text-[15px] font-bold leading-[14px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
+        <div className="text-[#4B5563] text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
           {label}
         </div>
       </div>
@@ -407,92 +407,80 @@ const formatCurrency = (value: number) => {
 
 // Icon Components (Responsive)
 const TotalEmployeesIcon = () => (
-  <div
-    className={cn(
-      "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
-    )}
-  >
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
     <svg
       width="50"
       height="51"
       viewBox="0 0 50 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+      className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px]"
     >
       <path
         d="M17.5 29.1744H20.5V35.1744H17.5V29.1744ZM32.5 15.5806C32.4375 17.0494 32.0625 18.3306 31.375 19.4244C30.6875 20.4869 29.7344 21.2056 28.5156 21.5806V35.1744H26.5V29.1744H24.5312V35.1744H22.5156V23.2681C22.2344 23.3619 22.0312 23.4713 21.9062 23.5963C20.9688 24.3463 20.5 25.3775 20.5 26.69V27.2056H18.5312V26.69C18.5312 24.7213 19.2344 23.1275 20.6406 21.9088C22.0469 20.7525 23.6719 20.1744 25.5156 20.1744C26.9219 20.1744 28.0781 19.8306 28.9844 19.1431C30.0156 18.2994 30.5312 17.1431 30.5312 15.6744V15.2056H32.5V15.5806ZM26.9219 18.5806C26.5156 18.9869 26.0469 19.19 25.5156 19.19C24.9844 19.19 24.5156 18.9869 24.1094 18.5806C23.7031 18.1744 23.5 17.7056 23.5 17.1744C23.5 16.6431 23.7031 16.19 24.1094 15.815C24.5156 15.4088 24.9844 15.2056 25.5156 15.2056C26.0469 15.2056 26.5156 15.4088 26.9219 15.815C27.3281 16.19 27.5312 16.6431 27.5312 17.1744C27.5312 17.7056 27.3281 18.1744 26.9219 18.5806Z"
         fill="#4766E5"
+        transform="scale(2)"
+        transform-origin="center"
       />
     </svg>
   </div>
 );
 
 const EmployeesOnLeaveIcon = () => (
-  <div
-    className={cn(
-      "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
-    )}
-  >
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
     <svg
       width="51"
       height="51"
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+      className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px]"
     >
       <path
         d="M34.333 32.7369L32.9268 34.19L26.458 27.7681L27.9111 26.315L34.333 32.7369ZM26.458 16.19C23.8799 16.19 21.3018 17.1744 19.333 19.1431H19.2861C15.3486 23.0806 15.3486 29.5025 19.2861 33.44L33.583 19.1431C31.6143 17.1744 29.0361 16.19 26.458 16.19ZM19.4736 30.44C18.7236 29.2213 18.3486 27.815 18.3486 26.315C18.3486 25.3775 18.4893 24.4869 18.7705 23.6431C19.0049 25.565 19.6611 27.44 20.8799 29.0806L19.4736 30.44ZM22.333 27.6275C20.9736 25.565 20.458 23.1275 20.9268 20.7838C21.5361 20.69 22.0986 20.5963 22.6611 20.5963C24.4893 20.5963 26.2236 21.1588 27.7705 22.19L22.333 27.6275ZM23.7861 18.6275C24.6299 18.3463 25.5205 18.2056 26.458 18.2056C27.958 18.2056 29.3643 18.5806 30.583 19.3306L29.2236 20.7369C27.583 19.5181 25.708 18.8619 23.7861 18.6275Z"
         fill="#4766E5"
+        transform="scale(2)"
+        transform-origin="center"
       />
     </svg>
   </div>
 );
 
 const NewJoineesIcon = () => (
-  <div
-    className={cn(
-      "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
-    )}
-  >
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
     <svg
       width="51"
       height="51"
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+      className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px]"
     >
       <path
         d="M29.3936 21.2994L33.8467 25.7994L32.4404 27.2056L28.5029 23.2213V35.1744H26.4873V29.1744H24.5186V35.1744H22.5029V21.9088C21.0342 21.4713 19.8311 20.6431 18.8936 19.4244C17.9561 18.1744 17.4873 16.7681 17.4873 15.2056H19.5029C19.5029 16.5806 19.9873 17.7525 20.9561 18.7213C21.9248 19.69 23.0967 20.1744 24.4717 20.1744H27.0498C27.8623 20.1744 28.6436 20.5494 29.3936 21.2994ZM24.0498 18.6275C23.6748 18.2213 23.4873 17.7369 23.4873 17.1744C23.4873 16.6119 23.6748 16.1431 24.0498 15.7681C24.4561 15.3931 24.9404 15.2056 25.5029 15.2056C26.0654 15.2056 26.5342 15.3931 26.9092 15.7681C27.3154 16.1431 27.5186 16.6119 27.5186 17.1744C27.5186 17.7369 27.3154 18.2213 26.9092 18.6275C26.5342 19.0025 26.0654 19.19 25.5029 19.19C24.9404 19.19 24.4561 19.0025 24.0498 18.6275Z"
         fill="#4766E5"
+        transform="scale(2)"
+        transform-origin="center"
       />
     </svg>
   </div>
 );
 
 const TotalHolidayIcon = () => (
-  <div
-    className={cn(
-      "flex justify-center items-center w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]",
-      "border border-[#DCDEE4] rounded-full bg-[#F6F7FA] flex-shrink-0",
-    )}
-  >
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
     <svg
       width="50"
       height="51"
       viewBox="0 0 50 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+      className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px]"
     >
       <path
         d="M31.9844 17.1744C32.5469 17.1744 33.0156 17.3775 33.3906 17.7838C33.7969 18.1588 34 18.6275 34 19.19V33.2056C34 33.7369 33.7969 34.2056 33.3906 34.6119C33.0156 34.9869 32.5469 35.1744 31.9844 35.1744H18.0156C17.4531 35.1744 16.9688 34.9869 16.5625 34.6119C16.1875 34.2056 16 33.7369 16 33.2056V19.19C16 18.6275 16.1875 18.1588 16.5625 17.7838C16.9688 17.3775 17.4531 17.1744 18.0156 17.1744H19V15.2056H21.0156V17.1744H28.9844V15.2056H31V17.1744H31.9844ZM31.9844 33.2056V23.1744H18.0156V33.2056H31.9844ZM22 27.2056V25.19H19.9844V27.2056H22ZM25.9844 27.2056V25.19H24.0156V27.2056H25.9844ZM30.0156 27.2056V25.19H28V27.2056H30.0156ZM22 31.19V29.1744H19.9844V31.19H22ZM25.9844 31.19V29.1744H24.0156V31.19H25.9844ZM30.0156 31.19V29.1744H28V31.19H30.0156Z"
         fill="#4766E5"
+        transform="scale(2)"
+        transform-origin="center"
       />
     </svg>
   </div>
