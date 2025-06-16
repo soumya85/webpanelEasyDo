@@ -939,7 +939,7 @@ const Overview: React.FC = () => {
             label="Pending Tasks"
           />
           <KPICard
-            icon={<TotalHolidayIcon />}
+            icon={<UpcomingMeetingsIcon />}
             value="20"
             label="Upcoming Meetings"
           />
