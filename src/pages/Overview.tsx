@@ -17,7 +17,7 @@ import {
   ChevronDown,
   Trophy,
   CheckSquare,
-  Calendar,
+  Calendar as CalendarIcon,
   CheckCircle,
   Search,
   SlidersHorizontal,
