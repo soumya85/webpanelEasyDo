@@ -623,7 +623,7 @@ const Overview: React.FC = () => {
           )}
         >
           <KPICard
-            icon={<TotalHolidayIcon />}
+            icon={<TotalEmployeesIcon />}
             value="100"
             label="Total Attendance"
           />
@@ -647,18 +647,16 @@ const Overview: React.FC = () => {
         {/* Third KPI Cards Row */}
         <div
           className={cn(
-            "flex flex-row flex-wrap",
+            "grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap lg:flex-nowrap",
             "gap-3 sm:gap-4 lg:gap-5 w-full",
-            "justify-start items-stretch",
+            "sm:justify-start sm:items-stretch self-stretch",
           )}
         >
-          <div className="w-full sm:w-auto sm:flex-none">
-            <KPICard
-              icon={<TotalHolidayIcon />}
-              value="7"
-              label="Announcements"
-            />
-          </div>
+          <KPICard
+            icon={<TotalHolidayIcon />}
+            value="7"
+            label="Announcements"
+          />
         </div>
 
         {/* Analytics Section */}
