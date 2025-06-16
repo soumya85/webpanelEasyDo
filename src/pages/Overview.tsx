@@ -508,9 +508,9 @@ const EmployeeOfTheMonthCard: React.FC = () => {
     >
       {/* Header */}
       <div className="mb-3">
-        <h3 className="text-[#1a1a1a] font-inter text-[14px] font-medium leading-tight">
+        <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
           Employee of the month{" "}
-          <span className="text-[#4766E5] font-medium">- Sept 2024</span>
+          <span className="text-[#4766E5] font-bold">- Sept 2024</span>
         </h3>
       </div>
 
