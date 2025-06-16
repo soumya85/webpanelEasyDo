@@ -589,14 +589,18 @@ const EmployeeOfTheMonthCard: React.FC<EmployeeOfTheMonthCardProps> = ({
 }) => {
   const employeeData = useMemo(
     () => generateEmployeeOfTheMonthData(dateRange),
-    [],
+    [dateRange],
   );
 
-  // Always show current month for "Employee of the Month"
-  const currentDate = new Date();
-  const monthDisplay = currentDate
-    .toLocaleDateString("en-US", { month: "short", year: "2-digit" })
-    .toUpperCase();
+  // Format date range for display - show the reference month for Employee of the Month
+  const formatDateForDisplay = (date: Date) => {
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    });
+  };
+
+  const monthDisplay = formatDateForDisplay(dateRange.start).toUpperCase();
 
   return (
     <div
