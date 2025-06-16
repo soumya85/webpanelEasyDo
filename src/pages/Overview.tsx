@@ -454,19 +454,28 @@ const EmployeeWorkingHourTrendsCard: React.FC<
         <div className="flex flex-col">
           <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
-            <span className="text-[#4766E5] font-bold">- Sept 2024</span>
+            <span className="text-[#4766E5] font-bold">
+              - {dateRangeDisplay}
+            </span>
           </h3>
         </div>
         <div className="flex flex-col items-end text-right">
           <div className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold">
             Total Hour :{" "}
             <span className="text-[11px] sm:text-[12px] lg:text-[13px]">
-              208
+              {summary.totalHours}
             </span>
           </div>
           <div className="text-[#1a1a1a] font-inter text-[8px] sm:text-[9px] lg:text-[10px] font-normal">
-            Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
-            OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
+            Worked :{" "}
+            <span className="text-[#22C55E] font-semibold">
+              {summary.workedHours}
+            </span>{" "}
+            OT :{" "}
+            <span className="text-[#3B82F6] font-semibold">
+              {summary.overtimeHours}
+            </span>{" "}
+            Hrs
           </div>
         </div>
       </div>
