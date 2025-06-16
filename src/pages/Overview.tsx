@@ -1110,9 +1110,6 @@ const EmployeeAttendanceLog: React.FC = () => {
   // Generate dynamic attendance data based on selected date
   const generateAttendanceDataForDate = (date: Date) => {
     const today = new Date();
-    const daysDiff = Math.floor(
-      (today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
-    );
 
     return employeeAttendanceData.map((employee, index) => {
       // Create more complex variation based on date and employee
@@ -1120,23 +1117,21 @@ const EmployeeAttendanceLog: React.FC = () => {
       const dayOfWeek = date.getDay();
 
       // Weekend handling
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        // Sunday or Saturday
+      if (dayOfWeek === 0) {
+        // Sunday
         return {
           ...employee,
-          status: "ABSENT" as const,
+          status: "WEEK OFF" as const,
           checkInTime: "N/A",
           checkoutTime: "N/A",
           arrival: "N/A" as const,
           totalWorkingHour: "N/A",
         };
-      }
-
-      // Future dates
-      if (date > today) {
+      } else if (dayOfWeek === 6) {
+        // Saturday
         return {
           ...employee,
-          status: "ABSENT" as const,
+          status: "WEEK OFF" as const,
           checkInTime: "N/A",
           checkoutTime: "N/A",
           arrival: "N/A" as const,
