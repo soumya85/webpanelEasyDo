@@ -886,7 +886,7 @@ const Overview: React.FC = () => {
             label="Total Attendance"
           />
           <KPICard
-            icon={<TotalHolidayIcon />}
+            icon={<PendingTasksIcon />}
             value="40"
             label="Pending Tasks"
           />
@@ -896,7 +896,7 @@ const Overview: React.FC = () => {
             label="Upcoming Meetings"
           />
           <KPICard
-            icon={<TotalHolidayIcon />}
+            icon={<PendingApprovalsIcon />}
             value="18"
             label="Pending Approvals"
           />
