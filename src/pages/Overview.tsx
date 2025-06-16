@@ -520,8 +520,8 @@ const EmployeeOfTheMonthCard: React.FC = () => {
           >
             SP
           </div>
-          {/* Person Badge Icon */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-[#6B7280] rounded-full flex items-center justify-center">
+          {/* Trophy Badge Icon */}
+          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-5 bg-[#4766E5] rounded-full flex items-center justify-center">
             <svg
               width="12"
               height="12"
@@ -530,7 +530,11 @@ const EmployeeOfTheMonthCard: React.FC = () => {
               className="text-white w-3 h-3"
             >
               <path
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                d="M6 9C6 10.45 6.39 11.78 7.07 12.96C7.75 14.14 8.67 15.08 9.75 15.71C10.83 16.34 12.05 16.66 13.29 16.66C14.53 16.66 15.75 16.34 16.83 15.71C17.91 15.08 18.83 14.14 19.51 12.96C20.19 11.78 20.58 10.45 20.58 9H22C22 10.78 21.22 12.47 19.84 13.66C18.46 14.85 16.58 15.44 14.64 15.32V17H16V19H8V17H9.36V15.32C7.42 15.44 5.54 14.85 4.16 13.66C2.78 12.47 2 10.78 2 9C2 7.89 2.89 7 4 7H6C6 7.89 6.89 9 6 9Z"
+                fill="currentColor"
+              />
+              <path
+                d="M12 2L13.09 4.26L15.5 4.74L13.75 6.74L14.18 9.26L12 8.27L9.82 9.26L10.25 6.74L8.5 4.74L10.91 4.26L12 2Z"
                 fill="currentColor"
               />
             </svg>
