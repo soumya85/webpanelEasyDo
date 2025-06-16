@@ -809,6 +809,330 @@ const UpcomingMeetingsIcon = () => (
   </div>
 );
 
+// Employee Attendance Log Component
+interface EmployeeAttendanceData {
+  id: string;
+  name: string;
+  designation: string;
+  location: string;
+  avatar: string;
+  checkInTime: string;
+  checkoutTime: string;
+  arrival: "Ontime" | "Late" | "N/A";
+  totalWorkingHour: string;
+  status: "PRESENT" | "HALF-DAY" | "CASUAL LEAVE" | "SICK LEAVE" | "ABSENT";
+}
+
+const employeeAttendanceData: EmployeeAttendanceData[] = [
+  {
+    id: "1",
+    name: "Amulya Kr Kar",
+    designation: "Chief Accountant",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "10:15 A.M",
+    checkoutTime: "9:00 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "10:45 Hrs",
+    status: "PRESENT",
+  },
+  {
+    id: "2",
+    name: "Abhijit Mukherjee",
+    designation: "Operation Executive",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "10:15 A.M",
+    checkoutTime: "7:15 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "9 Hrs",
+    status: "PRESENT",
+  },
+  {
+    id: "3",
+    name: "Abhijit Mondal",
+    designation: "Jetty Sincer",
+    location: "Haldia Branch",
+    avatar: "/placeholder.svg",
+    checkInTime: "N/A",
+    checkoutTime: "N/A",
+    arrival: "N/A",
+    totalWorkingHour: "N/A",
+    status: "CASUAL LEAVE",
+  },
+  {
+    id: "4",
+    name: "Amit Parmer",
+    designation: "IOS Developer",
+    location: "Ahmedabad Branch",
+    avatar: "/placeholder.svg",
+    checkInTime: "10:15 A.M",
+    checkoutTime: "7:15 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "9 Hrs",
+    status: "PRESENT",
+  },
+  {
+    id: "5",
+    name: "Bholanath Paul",
+    designation: "Office Boy",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "N/A",
+    checkoutTime: "N/A",
+    arrival: "N/A",
+    totalWorkingHour: "N/A",
+    status: "ABSENT",
+  },
+  {
+    id: "6",
+    name: "Chandan Bose",
+    designation: "Airport Executive",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "11:15 A.M",
+    checkoutTime: "7:15 P.M",
+    arrival: "Late",
+    totalWorkingHour: "8 Hrs",
+    status: "HALF-DAY",
+  },
+  {
+    id: "7",
+    name: "Chinmay Bannerjee",
+    designation: "Operation Staff",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "N/A",
+    checkoutTime: "N/A",
+    arrival: "N/A",
+    totalWorkingHour: "N/A",
+    status: "ABSENT",
+  },
+  {
+    id: "8",
+    name: "Nital Samanta",
+    designation: "Accounts Manager",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "10:15 A.M",
+    checkoutTime: "7:15 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "9 Hrs",
+    status: "PRESENT",
+  },
+  {
+    id: "9",
+    name: "Rupkumar Saha",
+    designation: "Accounts Executive",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "10:40 A.M",
+    checkoutTime: "7:15P.M",
+    arrival: "Late",
+    totalWorkingHour: "8:35 Hrs",
+    status: "PRESENT",
+  },
+  {
+    id: "10",
+    name: "Smita Chakraborty",
+    designation: "Customs Executive",
+    location: "Head Office",
+    avatar: "/placeholder.svg",
+    checkInTime: "N/A",
+    checkoutTime: "N/A",
+    arrival: "N/A",
+    totalWorkingHour: "N/A",
+    status: "SICK LEAVE",
+  },
+];
+
+const StatusBadge: React.FC<{ status: EmployeeAttendanceData["status"] }> = ({
+  status,
+}) => {
+  const statusStyles = {
+    PRESENT: "border-green-500 text-green-600 bg-green-50",
+    "HALF-DAY": "border-red-500 text-red-600 bg-red-50",
+    "CASUAL LEAVE": "border-orange-500 text-orange-600 bg-orange-50",
+    "SICK LEAVE": "border-yellow-500 text-yellow-600 bg-yellow-50",
+    ABSENT: "border-gray-500 text-gray-600 bg-gray-50",
+  };
+
+  return (
+    <span
+      className={cn(
+        "px-2 py-1 rounded-md border text-xs font-medium",
+        statusStyles[status],
+      )}
+    >
+      {status}
+    </span>
+  );
+};
+
+const ArrivalBadge: React.FC<{
+  arrival: EmployeeAttendanceData["arrival"];
+}> = ({ arrival }) => {
+  if (arrival === "N/A") {
+    return <span className="text-gray-500 text-sm">N/A</span>;
+  }
+
+  const arrivalStyles = {
+    Ontime: "text-green-600",
+    Late: "text-red-600",
+  };
+
+  return (
+    <span
+      className={cn(
+        "text-sm font-medium",
+        arrivalStyles[arrival as "Ontime" | "Late"],
+      )}
+    >
+      {arrival}
+    </span>
+  );
+};
+
+const EmployeeAttendanceLog: React.FC = () => {
+  return (
+    <div className="bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-6 w-full">
+      {/* Header */}
+      <div className="mb-6">
+        <h2 className="text-[#1a1a1a] font-inter text-[18px] font-semibold mb-4">
+          Employee Attendance Log
+        </h2>
+
+        {/* Search and Filter Bar */}
+        <div className="flex items-center gap-4 mb-4">
+          <div className="flex-1 relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Enter employee name"
+              className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors"
+            />
+          </div>
+          <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+            <Settings className="h-5 w-5" />
+          </button>
+          <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg">
+            <span className="text-sm text-gray-700">19/9/2024</span>
+            <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+          </div>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="text-left py-3 px-4 text-sm font-medium text-gray-700">
+                Employee Name
+              </th>
+              <th className="text-left py-3 px-4 text-sm font-medium text-gray-700">
+                Check-In Time
+              </th>
+              <th className="text-left py-3 px-4 text-sm font-medium text-gray-700">
+                Checkout Time
+              </th>
+              <th className="text-left py-3 px-4 text-sm font-medium text-gray-700">
+                Arrival
+              </th>
+              <th className="text-left py-3 px-4 text-sm font-medium text-gray-700">
+                Total Working Hour
+              </th>
+              <th className="text-left py-3 px-4 text-sm font-medium text-gray-700">
+                Details
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {employeeAttendanceData.map((employee, index) => (
+              <tr
+                key={employee.id}
+                className={cn(
+                  "border-b border-gray-100 hover:bg-gray-50 transition-colors",
+                  index % 2 === 0 ? "bg-white" : "bg-gray-50/50",
+                )}
+              >
+                <td className="py-4 px-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden">
+                      <img
+                        src={employee.avatar}
+                        alt={employee.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <div className="font-semibold text-gray-900 text-sm">
+                          {employee.name}
+                        </div>
+                        <StatusBadge status={employee.status} />
+                      </div>
+                      <div className="text-xs text-gray-600 mt-1">
+                        {employee.designation}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        ({employee.location})
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td className="py-4 px-4 text-sm text-gray-700">
+                  {employee.checkInTime}
+                </td>
+                <td className="py-4 px-4 text-sm text-gray-700">
+                  {employee.checkoutTime}
+                </td>
+                <td className="py-4 px-4">
+                  <ArrivalBadge arrival={employee.arrival} />
+                </td>
+                <td className="py-4 px-4 text-sm text-gray-700">
+                  {employee.totalWorkingHour}
+                </td>
+                <td className="py-4 px-4">
+                  <button className="flex items-center gap-1 px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-600 hover:bg-gray-50 transition-colors">
+                    View
+                    <ChevronDownIcon className="h-3 w-3" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-600">Rows per page:</span>
+          <div className="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md">
+            <span className="text-sm text-gray-700">10</span>
+            <ChevronDownIcon className="h-3 w-3 text-gray-400" />
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-gray-600">1-10 of 97</span>
+          <div className="flex items-center gap-2">
+            <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <span className="text-sm text-gray-600">1/10</span>
+            <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ChevronRightIcon = () => (
   <svg
     width="6"
