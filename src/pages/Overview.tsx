@@ -1611,7 +1611,7 @@ const EmployeeAttendanceLog: React.FC = () => {
           </span>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              onClick={handlePreviousPage}
               disabled={currentPage === 1}
               className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -1621,9 +1621,7 @@ const EmployeeAttendanceLog: React.FC = () => {
               {currentPage}/{totalPages}
             </span>
             <button
-              onClick={() =>
-                setCurrentPage(Math.min(totalPages, currentPage + 1))
-              }
+              onClick={handleNextPage}
               disabled={currentPage === totalPages}
               className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
