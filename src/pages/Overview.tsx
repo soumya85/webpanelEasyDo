@@ -373,7 +373,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "w-full min-w-0 h-[130px] sm:h-[145px] lg:h-[160px]",
+        "w-full min-w-0 h-[150px] sm:h-[165px] lg:h-[180px]",
       )}
     >
       {/* Header - Made more compact */}
