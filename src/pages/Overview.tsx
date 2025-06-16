@@ -309,7 +309,7 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
       className={cn(
         "flex items-center gap-2 sm:gap-3 lg:gap-3 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-3 pt-4 pb-4 sm:px-5 sm:pt-5 sm:pb-5 lg:px-6 lg:pt-6 lg:pb-6 h-[90px] sm:h-[105px] lg:h-[120px]",
+        "px-3 pt-4 pb-4 sm:px-5 sm:pt-5 sm:pb-5 lg:px-6 lg:pt-6 lg:pb-6 h-[110px] sm:h-[125px] lg:h-[140px]",
         "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
@@ -377,7 +377,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       )}
     >
       {/* Header - Made more compact */}
-      <div className="flex items-center justify-between px-2 pt-0.5 pb-0 sm:px-3 sm:pt-1 sm:pb-0 lg:px-4 lg:pt-1 lg:pb-0 border-b border-gray-100 flex-shrink-0">
+      <div className="flex items-center justify-between px-2 pt-0.5 pb-0.5 sm:px-3 sm:pt-1 sm:pb-0.5 lg:px-4 lg:pt-1 lg:pb-0.5 border-b border-gray-100 flex-shrink-0">
         <div className="flex flex-col">
           <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
@@ -496,7 +496,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5 h-[90px] sm:h-[105px] lg:h-[120px]",
+        "px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5 h-[110px] sm:h-[125px] lg:h-[140px]",
         "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
