@@ -333,88 +333,68 @@ const EmployeeOfTheMonthCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "p-5 lg:p-6 min-w-[320px] w-auto max-w-[450px]",
-        "border border-gray-100",
+        "p-6 min-w-[320px] w-auto max-w-[400px]",
       )}
     >
       {/* Header */}
-      <div className="mb-8">
-        <h3 className="text-[#283C50] font-inter text-[18px] lg:text-[20px] font-normal leading-tight">
-          Employee of the month
+      <div className="mb-6">
+        <h3 className="text-[#283C50] font-inter text-[18px] font-normal leading-tight">
+          Employee of the month{" "}
           <span className="text-[#4766E5] font-normal">- Sept 2024</span>
         </h3>
       </div>
 
       {/* Employee Info */}
       <div className="flex items-start gap-4">
-        {/* Avatar with Position Icon */}
-        <div className="flex-shrink-0 relative">
+        {/* Avatar */}
+        <div className="flex-shrink-0">
           <div
             className={cn(
-              "flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20",
-              "bg-[#283C50] rounded-full text-white font-bold text-xl lg:text-2xl",
+              "flex items-center justify-center w-16 h-16",
+              "bg-[#1F2937] rounded-full text-white font-bold text-xl",
             )}
           >
             SP
-          </div>
-          {/* Small position icon */}
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#4766E5] rounded-full flex items-center justify-center">
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="text-white"
-            >
-              <path
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-                fill="currentColor"
-              />
-            </svg>
           </div>
         </div>
 
         {/* Employee Details */}
         <div className="flex flex-col flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-3">
-            <h4 className="text-[#283C50] font-inter text-[20px] lg:text-[22px] font-bold leading-tight">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="text-[#1F2937] font-inter text-[20px] font-bold leading-tight">
               Sanjay Patel
             </h4>
             <div className="flex items-center gap-1">
               <svg
-                width="18"
-                height="18"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
+                className="w-4 h-4"
               >
                 <path
                   d="M12 2L14.09 8.26L21 9L15.5 14.74L17 21.5L12 18.27L7 21.5L8.5 14.74L3 9L9.91 8.26L12 2Z"
-                  stroke="#22C55E"
+                  stroke="#10B981"
                   fill="none"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-[#22C55E] font-inter text-[16px] font-medium">
+              <span className="text-[#10B981] font-inter text-[14px] font-medium">
                 (0)
               </span>
             </div>
           </div>
 
-          <p className="text-[#6B7280] font-inter text-[16px] font-normal leading-relaxed mb-3">
+          <p className="text-[#6B7280] font-inter text-[14px] font-normal leading-relaxed mb-2">
             Ahmedabad office Branch
           </p>
 
-          <div className="flex items-center gap-1">
-            <span className="text-[#6B7280] font-inter text-[16px] font-normal">
-              Overall Employee Score:
-            </span>
-            <span className="text-[#283C50] font-inter text-[16px] font-bold">
-              2.76
-            </span>
+          <div className="text-[#6B7280] font-inter text-[14px] font-normal">
+            Overall Employee Score:{" "}
+            <span className="text-[#1F2937] font-bold">2.76</span>
           </div>
         </div>
       </div>
