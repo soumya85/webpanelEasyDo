@@ -844,6 +844,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Ontime",
     totalWorkingHour: "10:45 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2018-03-15",
   },
   {
     id: "2",
@@ -856,6 +857,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Ontime",
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2020-07-22",
   },
   {
     id: "3",
@@ -868,6 +870,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "N/A",
     totalWorkingHour: "N/A",
     status: "CASUAL LEAVE",
+    dateOfJoining: "2019-11-08",
   },
   {
     id: "4",
@@ -880,6 +883,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Ontime",
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2021-01-10",
   },
   {
     id: "5",
@@ -892,6 +896,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "N/A",
     totalWorkingHour: "N/A",
     status: "ABSENT",
+    dateOfJoining: "2017-05-20",
   },
   {
     id: "6",
@@ -904,6 +909,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Late",
     totalWorkingHour: "8 Hrs",
     status: "HALF-DAY",
+    dateOfJoining: "2022-09-12",
   },
   {
     id: "7",
@@ -916,6 +922,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "N/A",
     totalWorkingHour: "N/A",
     status: "ABSENT",
+    dateOfJoining: "2020-02-28",
   },
   {
     id: "8",
