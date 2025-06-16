@@ -377,7 +377,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       )}
     >
       {/* Header - Made more compact */}
-      <div className="flex items-center justify-between px-2 pt-0.5 pb-2 sm:px-3 sm:pt-1 sm:pb-2 lg:px-4 lg:pt-1 lg:pb-2 border-b border-gray-100 flex-shrink-0">
+      <div className="flex items-center justify-between px-2 pt-0.5 pb-3 sm:px-3 sm:pt-1 sm:pb-3 lg:px-4 lg:pt-1 lg:pb-3 border-b border-gray-100 flex-shrink-0">
         <div className="flex flex-col">
           <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
