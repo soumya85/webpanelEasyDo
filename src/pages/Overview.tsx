@@ -222,28 +222,29 @@ const generateEmployeeOfTheMonthData = (dateRange: DateRange) => {
 
 // Working Hour Trends Data Generator
 const generateWorkingHourTrendsData = (dateRange: DateRange) => {
-  const daysDiff =
-    Math.ceil(
-      (dateRange.end.getTime() - dateRange.start.getTime()) /
-        (1000 * 60 * 60 * 24),
-    ) + 1;
+  // Always use the same day markers as shown in the design: 1, 8, 15, 22, 29
+  const fixedDays = [1, 8, 15, 22, 29];
 
-  // Generate data points based on date range
-  const dataPoints = Math.min(Math.max(3, Math.floor(daysDiff / 7)), 5);
-  const data = [];
+  // Generate data for each fixed day marker
+  const data = fixedDays.map((day, index) => {
+    // Create a seed based on the date range to ensure data changes with filter
+    const dateSeed =
+      dateRange.start.getTime() + dateRange.end.getTime() + index;
+    const random = () => {
+      const x = Math.sin(dateSeed + index * 1000) * 10000;
+      return x - Math.floor(x);
+    };
 
-  for (let i = 0; i < dataPoints; i++) {
-    const day = Math.floor((i + 1) * (daysDiff / dataPoints));
-    data.push({
+    return {
       day: day,
-      Present: Math.floor(4 + Math.random() * 4), // 4-8 hours
-      Leave: Math.floor(Math.random() * 3), // 0-3 hours
-      Absent: Math.floor(Math.random() * 2), // 0-2 hours
-      Holiday: i === 2 ? Math.floor(Math.random() * 3) : 0, // Holiday in middle
-      OT: Math.floor(Math.random() * 3), // 0-3 OT hours
-      RedFlags: Math.floor(Math.random() * 2), // 0-2 red flags
-    });
-  }
+      Present: Math.floor(4 + random() * 4), // 4-8 hours
+      Leave: Math.floor(random() * 3), // 0-3 hours
+      Absent: Math.floor(random() * 2), // 0-2 hours
+      Holiday: index === 2 ? Math.floor(random() * 3) : 0, // Holiday in middle
+      OT: Math.floor(random() * 3), // 0-3 OT hours
+      RedFlags: Math.floor(random() * 2), // 0-2 red flags
+    };
+  });
 
   return data;
 };
