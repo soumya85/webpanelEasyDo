@@ -942,7 +942,7 @@ const Overview: React.FC = () => {
         >
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-5 flex-1">
             <KPICard
-              icon={<TotalHolidayIcon />}
+              icon={<AnnouncementsIcon />}
               value="7"
               label="Announcements"
             />
