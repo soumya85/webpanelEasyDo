@@ -405,26 +405,44 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* Legend */}
-        <div className="flex flex-col gap-1 flex-shrink-0">
-          {[
-            { name: "Present", color: "#22C55E" },
-            { name: "Leave", color: "#FB923C" },
-            { name: "Absent", color: "#9CA3AF" },
-            { name: "Holiday", color: "#EF4444" },
-            { name: "OT", color: "#3B82F6" },
-            { name: "Red Flags", color: "#DC2626" },
-          ].map((entry, index) => (
-            <div key={index} className="flex items-center gap-1">
-              <div
-                className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm flex-shrink-0"
-                style={{ backgroundColor: entry.color }}
-              />
-              <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#283C50] font-inter font-medium">
-                {entry.name}
-              </span>
-            </div>
-          ))}
+        {/* Legend - 2 Column Layout */}
+        <div className="flex gap-2 flex-shrink-0">
+          {/* Column 1 */}
+          <div className="flex flex-col gap-1">
+            {[
+              { name: "Present", color: "#22C55E" },
+              { name: "Absent", color: "#9CA3AF" },
+              { name: "OT", color: "#3B82F6" },
+            ].map((entry, index) => (
+              <div key={index} className="flex items-center gap-1">
+                <div
+                  className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm flex-shrink-0"
+                  style={{ backgroundColor: entry.color }}
+                />
+                <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#283C50] font-inter font-medium">
+                  {entry.name}
+                </span>
+              </div>
+            ))}
+          </div>
+          {/* Column 2 */}
+          <div className="flex flex-col gap-1">
+            {[
+              { name: "Leave", color: "#FB923C" },
+              { name: "Holiday", color: "#EF4444" },
+              { name: "Red Flags", color: "#DC2626" },
+            ].map((entry, index) => (
+              <div key={index} className="flex items-center gap-1">
+                <div
+                  className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm flex-shrink-0"
+                  style={{ backgroundColor: entry.color }}
+                />
+                <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#283C50] font-inter font-medium">
+                  {entry.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
