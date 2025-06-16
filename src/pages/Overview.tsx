@@ -1486,7 +1486,7 @@ const EmployeeAttendanceLog: React.FC = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" ref={tableRef}>
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
