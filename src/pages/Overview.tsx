@@ -1339,9 +1339,14 @@ const EmployeeAttendanceLog: React.FC = () => {
   // Scroll to table function
   const scrollToTable = () => {
     if (tableRef.current) {
-      tableRef.current.scrollIntoView({
+      // Get the position of the table relative to the page
+      const tablePosition =
+        tableRef.current.getBoundingClientRect().top + window.pageYOffset;
+
+      // Scroll to the table with some offset for better positioning
+      window.scrollTo({
+        top: tablePosition - 20, // 20px offset from top
         behavior: "smooth",
-        block: "start",
       });
     }
   };
