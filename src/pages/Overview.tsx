@@ -426,7 +426,9 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
                 tick={{ fontSize: 7, fill: "#1a1a1a", fontWeight: "bold" }}
                 axisLine={false}
                 tickLine={false}
-                width={15}
+                width={20}
+                interval={0}
+                tickCount={5}
                 ticks={[0, 4, 8, 12]}
               />
               <Tooltip
