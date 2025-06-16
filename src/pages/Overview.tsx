@@ -13,7 +13,13 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-import { ChevronDown, Trophy } from "lucide-react";
+import {
+  ChevronDown,
+  Trophy,
+  CheckSquare,
+  Calendar,
+  CheckCircle,
+} from "lucide-react";
 
 // Date Range Types
 type DateRangeOption =
