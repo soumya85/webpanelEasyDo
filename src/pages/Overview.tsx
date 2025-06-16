@@ -1192,7 +1192,7 @@ const EmployeeAttendanceLog: React.FC = () => {
                     >
                       <path
                         d="M1.4 13L0 11.6L9.6 2H1V0H13V12H11V3.4L1.4 13Z"
-                        fill="#838799"
+                        fill="#4766E5"
                       />
                     </svg>
                   </button>
