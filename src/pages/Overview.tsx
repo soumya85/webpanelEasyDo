@@ -13,7 +13,13 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-import { ChevronDown } from "lucide-react";
+import {
+  ChevronDown,
+  Trophy,
+  CheckSquare,
+  Calendar,
+  CheckCircle,
+} from "lucide-react";
 
 // Date Range Types
 type DateRangeOption =
@@ -520,20 +526,9 @@ const EmployeeOfTheMonthCard: React.FC = () => {
           >
             SP
           </div>
-          {/* Person Badge Icon */}
-          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#6B7280] rounded-full flex items-center justify-center">
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="text-white w-3 h-3"
-            >
-              <path
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-                fill="currentColor"
-              />
-            </svg>
+          {/* Trophy Badge Icon */}
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-5 h-5 bg-[#4766E5] rounded-full flex items-center justify-center">
+            <Trophy className="w-3 h-3 text-white" />
           </div>
         </div>
 
@@ -569,18 +564,6 @@ const EmployeeOfTheMonthCard: React.FC = () => {
             <div className="text-[#6B7280] font-inter text-[12px] font-normal">
               Overall Employee Score:{" "}
               <span className="font-bold text-[#1a1a1a]">2.76</span>
-            </div>
-            <div className="flex-shrink-0">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="#4766E5"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
-              >
-                <path d="M12 2L15.09 8.5L22 9.5L17 14.5L18.18 21.5L12 18.5L5.82 21.5L7 14.5L2 9.5L8.91 8.5L12 2Z" />
-              </svg>
             </div>
           </div>
         </div>
@@ -749,6 +732,48 @@ const TotalHolidayIcon = () => (
   </div>
 );
 
+const PendingTasksIcon = () => (
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
+    <CheckSquare className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#4766E5]" />
+  </div>
+);
+
+const PendingApprovalsIcon = () => (
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
+    <svg
+      width="22"
+      height="28"
+      viewBox="0 0 22 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-[24px] h-[30px] sm:w-[28px] sm:h-[35px] lg:w-[32px] lg:h-[40px]"
+    >
+      <path
+        d="M0.333321 27.3333V19.3333C0.333321 18.6 0.594432 17.9722 1.11665 17.45C1.63888 16.9277 2.26665 16.6666 2.99999 16.6666H19C19.7333 16.6666 20.3611 16.9277 20.8833 17.45C21.4055 17.9722 21.6667 18.6 21.6667 19.3333V27.3333H0.333321ZM2.99999 22H19V19.3333H2.99999V22ZM11 16.6666L4.33332 7.3333C4.33332 5.48886 4.98332 3.91663 6.28332 2.61663C7.58332 1.31663 9.15554 0.666635 11 0.666635C12.8444 0.666635 14.4167 1.31663 15.7167 2.61663C17.0167 3.91663 17.6667 5.48886 17.6667 7.3333L11 16.6666ZM11 12.9333L15 7.3333C15 6.22219 14.6111 5.27775 13.8333 4.49997C13.0555 3.72219 12.1111 3.3333 11 3.3333C9.88888 3.3333 8.94443 3.72219 8.16665 4.49997C7.38888 5.27775 6.99999 6.22219 6.99999 7.3333L11 12.9333Z"
+        fill="#4766E5"
+      />
+    </svg>
+  </div>
+);
+
+const AnnouncementsIcon = () => (
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
+    <svg
+      width="40"
+      height="32"
+      viewBox="0 0 40 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-[30px] h-[24px] sm:w-[35px] sm:h-[28px] lg:w-[40px] lg:h-[32px]"
+    >
+      <path
+        d="M32 18V14H40V18H32ZM34.4 32L28 27.2L30.4 24L36.8 28.8L34.4 32ZM30.4 8.00003L28 4.80003L34.4 3.05176e-05L36.8 3.20003L30.4 8.00003ZM6 30V22H4C2.9 22 1.95833 21.6084 1.175 20.825C0.391667 20.0417 0 19.1 0 18V14C0 12.9 0.391667 11.9584 1.175 11.175C1.95833 10.3917 2.9 10 4 10H12L22 4.00003V28L12 22H10V30H6ZM18 20.9V11.1L13.1 14H4V18H13.1L18 20.9ZM24 22.7V9.30003C24.9 10.1 25.625 11.075 26.175 12.225C26.725 13.375 27 14.6334 27 16C27 17.3667 26.725 18.625 26.175 19.775C25.625 20.925 24.9 21.9 24 22.7Z"
+        fill="#4766E5"
+      />
+    </svg>
+  </div>
+);
+
 const ChevronRightIcon = () => (
   <svg
     width="6"
@@ -891,7 +916,7 @@ const Overview: React.FC = () => {
             label="Total Attendance"
           />
           <KPICard
-            icon={<TotalHolidayIcon />}
+            icon={<PendingTasksIcon />}
             value="40"
             label="Pending Tasks"
           />
@@ -901,7 +926,7 @@ const Overview: React.FC = () => {
             label="Upcoming Meetings"
           />
           <KPICard
-            icon={<TotalHolidayIcon />}
+            icon={<PendingApprovalsIcon />}
             value="18"
             label="Pending Approvals"
           />
@@ -917,7 +942,7 @@ const Overview: React.FC = () => {
         >
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-5 flex-1">
             <KPICard
-              icon={<TotalHolidayIcon />}
+              icon={<AnnouncementsIcon />}
               value="7"
               label="Announcements"
             />
