@@ -373,13 +373,13 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "w-full min-w-0 h-[90px] sm:h-[105px] lg:h-[120px]",
+        "w-full min-w-0 h-[130px] sm:h-[145px] lg:h-[160px]",
       )}
     >
       {/* Header - Made more compact */}
-      <div className="flex items-center justify-between px-2 py-0.5 sm:px-3 sm:py-1 lg:px-4 lg:py-1 border-b border-gray-100 flex-shrink-0">
+      <div className="flex items-center justify-between px-2 pt-0.5 pb-0 sm:px-3 sm:pt-1 sm:pb-0 lg:px-4 lg:pt-1 lg:pb-0 border-b border-gray-100 flex-shrink-0">
         <div className="flex flex-col">
-          <h3 className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold leading-tight">
+          <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
             <span className="text-[#4766E5] font-bold">- Sept 2024</span>
           </h3>
@@ -401,11 +401,11 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       {/* Chart Content - Expanded to take more space */}
       <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1 lg:px-4 lg:py-1 flex-1">
         {/* Chart - Increased height */}
-        <div className="flex-1" style={{ minHeight: "65px", height: "65px" }}>
+        <div className="flex-1" style={{ minHeight: "100px", height: "100px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
-              margin={{ top: 2, right: 2, left: 15, bottom: 10 }}
+              margin={{ top: 35, right: 2, left: 15, bottom: 10 }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"
@@ -415,7 +415,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               />
               <XAxis
                 dataKey="day"
-                tick={{ fontSize: 7, fill: "#1a1a1a", fontWeight: "bold" }}
+                tick={{ fontSize: 10, fill: "#1a1a1a", fontWeight: "bold" }}
                 axisLine={{ stroke: "#E5E7EB" }}
                 tickLine={false}
                 height={12}
@@ -423,7 +423,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               <YAxis
                 domain={[0, 12]}
                 tickFormatter={(value) => `${value}h`}
-                tick={{ fontSize: 7, fill: "#1a1a1a", fontWeight: "bold" }}
+                tick={{ fontSize: 10, fill: "#1a1a1a", fontWeight: "bold" }}
                 axisLine={false}
                 tickLine={false}
                 width={20}
