@@ -199,6 +199,74 @@ const generateAttendanceStatusData = (dateRange: DateRange) => {
   ];
 };
 
+// Employee of the Month Data Generator
+const generateEmployeeOfTheMonthData = (dateRange: DateRange) => {
+  const employees = [
+    { name: "Sanjay Patel", initials: "SP", office: "Ahmedabad", score: 2.76 },
+    { name: "Priya Sharma", initials: "PS", office: "Mumbai", score: 2.85 },
+    { name: "Rajesh Kumar", initials: "RK", office: "Delhi", score: 2.69 },
+    { name: "Anita Singh", initials: "AS", office: "Bangalore", score: 2.91 },
+    { name: "Vikram Mehta", initials: "VM", office: "Chennai", score: 2.73 },
+  ];
+
+  // Use the start date of the range to determine which month's employee to show
+  // This allows different employees for "This Month", "Last Month", "Last 30 Days" etc.
+  const referenceDate = dateRange.start;
+  const monthYear = `${referenceDate.getFullYear()}-${referenceDate.getMonth()}`;
+  const index =
+    Math.abs(monthYear.split("").reduce((a, b) => a + b.charCodeAt(0), 0)) %
+    employees.length;
+
+  return employees[index];
+};
+
+// Working Hour Trends Data Generator
+const generateWorkingHourTrendsData = (dateRange: DateRange) => {
+  // Always use the same day markers as shown in the design: 1, 8, 15, 22, 29
+  const fixedDays = [1, 8, 15, 22, 29];
+
+  // Create a unique identifier for the date range to generate different data
+  // This ensures data changes for different meaningful date ranges
+  const rangeIdentifier = `${dateRange.start.getTime()}-${dateRange.end.getTime()}`;
+
+  // Generate data for each fixed day marker
+  const data = fixedDays.map((day, index) => {
+    // Create a seed based on the date range to ensure data changes with meaningful filter changes
+    const rangeSeed =
+      rangeIdentifier.split("").reduce((a, b) => a + b.charCodeAt(0), 0) +
+      index;
+    const random = () => {
+      const x = Math.sin(rangeSeed + index * 1000) * 10000;
+      return x - Math.floor(x);
+    };
+
+    return {
+      day: day,
+      Present: Math.floor(4 + random() * 4), // 4-8 hours
+      Leave: Math.floor(random() * 3), // 0-3 hours
+      Absent: Math.floor(random() * 2), // 0-2 hours
+      Holiday: index === 2 ? Math.floor(random() * 3) : 0, // Holiday in middle
+      OT: Math.floor(random() * 3), // 0-3 OT hours
+      RedFlags: Math.floor(random() * 2), // 0-2 red flags
+    };
+  });
+
+  return data;
+};
+
+// Calculate working hour summary based on trends data
+const calculateWorkingHourSummary = (trendsData: any[]) => {
+  const totalWorked = trendsData.reduce((sum, day) => sum + day.Present, 0);
+  const totalOT = trendsData.reduce((sum, day) => sum + day.OT, 0);
+  const totalPossibleHours = trendsData.length * 8; // 8 hours per day
+
+  return {
+    totalHours: totalPossibleHours,
+    workedHours: totalWorked,
+    overtimeHours: totalOT,
+  };
+};
+
 const generateSalaryRangeData = (dateRange: DateRange) => {
   return [
     {
@@ -352,46 +420,34 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
 };
 
 // Employee Working Hour Trends Card Component
-const EmployeeWorkingHourTrendsCard: React.FC = () => {
-  const workingHourData = [
-    { day: 1, Present: 6, Leave: 1, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
-    {
-      day: 8,
-      Present: 5,
-      Leave: 2,
-      Absent: 1,
-      Holiday: 0,
-      OT: 1.5,
-      RedFlags: 0.5,
-    },
-    {
-      day: 15,
-      Present: 4,
-      Leave: 0,
-      Absent: 2,
-      Holiday: 2,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 22,
-      Present: 7,
-      Leave: 0.5,
-      Absent: 0,
-      Holiday: 0,
-      OT: 2,
-      RedFlags: 0.5,
-    },
-    {
-      day: 29,
-      Present: 5.5,
-      Leave: 1.5,
-      Absent: 0.5,
-      Holiday: 0,
-      OT: 1.5,
-      RedFlags: 1,
-    },
-  ];
+interface EmployeeWorkingHourTrendsCardProps {
+  dateRange: DateRange;
+}
+
+const EmployeeWorkingHourTrendsCard: React.FC<
+  EmployeeWorkingHourTrendsCardProps
+> = ({ dateRange }) => {
+  const workingHourData = useMemo(
+    () => generateWorkingHourTrendsData(dateRange),
+    [dateRange],
+  );
+  const summary = useMemo(
+    () => calculateWorkingHourSummary(workingHourData),
+    [workingHourData],
+  );
+
+  // Format date range for display
+  const formatDateForDisplay = (date: Date) => {
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    });
+  };
+
+  const dateRangeDisplay =
+    dateRange.start.getTime() === dateRange.end.getTime()
+      ? formatDateForDisplay(dateRange.start)
+      : `${formatDateForDisplay(dateRange.start)} - ${formatDateForDisplay(dateRange.end)}`;
 
   return (
     <div
@@ -406,19 +462,28 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         <div className="flex flex-col">
           <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
-            <span className="text-[#4766E5] font-bold">- Sept 2024</span>
+            <span className="text-[#4766E5] font-bold">
+              - {dateRangeDisplay}
+            </span>
           </h3>
         </div>
         <div className="flex flex-col items-end text-right">
           <div className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold">
             Total Hour :{" "}
             <span className="text-[11px] sm:text-[12px] lg:text-[13px]">
-              208
+              {summary.totalHours}
             </span>
           </div>
           <div className="text-[#1a1a1a] font-inter text-[8px] sm:text-[9px] lg:text-[10px] font-normal">
-            Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
-            OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
+            Worked :{" "}
+            <span className="text-[#22C55E] font-semibold">
+              {summary.workedHours}
+            </span>{" "}
+            OT :{" "}
+            <span className="text-[#3B82F6] font-semibold">
+              {summary.overtimeHours}
+            </span>{" "}
+            Hrs
           </div>
         </div>
       </div>
@@ -515,7 +580,28 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
 };
 
 // Employee of the Month Card Component
-const EmployeeOfTheMonthCard: React.FC = () => {
+interface EmployeeOfTheMonthCardProps {
+  dateRange: DateRange;
+}
+
+const EmployeeOfTheMonthCard: React.FC<EmployeeOfTheMonthCardProps> = ({
+  dateRange,
+}) => {
+  const employeeData = useMemo(
+    () => generateEmployeeOfTheMonthData(dateRange),
+    [dateRange],
+  );
+
+  // Format date range for display - show the reference month for Employee of the Month
+  const formatDateForDisplay = (date: Date) => {
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    });
+  };
+
+  const monthDisplay = formatDateForDisplay(dateRange.start).toUpperCase();
+
   return (
     <div
       className={cn(
@@ -529,7 +615,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
       <div className="mb-3">
         <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
           Employee of the month{" "}
-          <span className="text-[#4766E5] font-bold">- Sept 2024</span>
+          <span className="text-[#4766E5] font-bold">- {monthDisplay}</span>
         </h3>
       </div>
 
@@ -543,7 +629,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
               "bg-[#1a1a1a] rounded-full text-white font-bold text-lg",
             )}
           >
-            SP
+            {employeeData.initials}
           </div>
           {/* Trophy Badge Icon */}
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-5 h-5 bg-[#4766E5] rounded-full flex items-center justify-center">
@@ -555,7 +641,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
         <div className="flex flex-col flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1">
             <h4 className="text-[#1a1a1a] font-inter text-[16px] font-bold leading-tight">
-              Sanjay Patel
+              {employeeData.name}
             </h4>
             <div className="flex items-center gap-1 flex-shrink-0">
               <svg
@@ -575,14 +661,16 @@ const EmployeeOfTheMonthCard: React.FC = () => {
           </div>
 
           <div className="text-[#6B7280] font-inter text-[12px] font-normal mb-1">
-            Ahmedabad office{" "}
+            {employeeData.office} office{" "}
             <span className="font-semibold text-[#1a1a1a]">Branch</span>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="text-[#6B7280] font-inter text-[12px] font-normal">
               Overall Employee Score:{" "}
-              <span className="font-bold text-[#1a1a1a]">2.76</span>
+              <span className="font-bold text-[#1a1a1a]">
+                {employeeData.score}
+              </span>
             </div>
           </div>
         </div>
@@ -1701,6 +1789,14 @@ const Overview: React.FC = () => {
     () => generateMonthlyAttendanceData(currentDateRange),
     [currentDateRange],
   );
+  const workingHourTrendsData = useMemo(
+    () => generateWorkingHourTrendsData(currentDateRange),
+    [currentDateRange],
+  );
+  const employeeOfTheMonthData = useMemo(
+    () => generateEmployeeOfTheMonthData(currentDateRange),
+    [currentDateRange],
+  );
 
   return (
     <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
@@ -1824,10 +1920,10 @@ const Overview: React.FC = () => {
               value="7"
               label="Announcements"
             />
-            <EmployeeOfTheMonthCard />
+            <EmployeeOfTheMonthCard dateRange={currentDateRange} />
           </div>
           <div className="flex-1">
-            <EmployeeWorkingHourTrendsCard />
+            <EmployeeWorkingHourTrendsCard dateRange={currentDateRange} />
           </div>
         </div>
 
