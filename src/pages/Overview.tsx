@@ -829,6 +829,7 @@ interface EmployeeAttendanceData {
   arrival: "Ontime" | "Late" | "N/A";
   totalWorkingHour: string;
   status: "PRESENT" | "HALF-DAY" | "CASUAL LEAVE" | "SICK LEAVE" | "ABSENT";
+  dateOfJoining: string;
 }
 
 const employeeAttendanceData: EmployeeAttendanceData[] = [
