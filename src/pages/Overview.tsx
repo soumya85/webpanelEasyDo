@@ -1102,6 +1102,8 @@ const EmployeeAttendanceLog: React.FC = () => {
             <input
               type="text"
               placeholder="Enter employee name"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors placeholder:text-gray-600"
             />
           </div>
