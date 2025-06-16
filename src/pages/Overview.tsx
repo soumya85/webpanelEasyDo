@@ -1099,6 +1099,9 @@ const EmployeeAttendanceLog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
+  // Create ref for scrolling to table
+  const tableRef = React.useRef<HTMLDivElement>(null);
+
   // Get current date in the format shown in the UI
   const getCurrentDateString = () => {
     const date = selectedDate;
@@ -1330,6 +1333,53 @@ const EmployeeAttendanceLog: React.FC = () => {
   const handleRowsPerPageChange = (newRowsPerPage: number) => {
     setRowsPerPage(newRowsPerPage);
     setCurrentPage(1);
+    scrollToTable();
+  };
+
+  // Scroll to table function
+  const scrollToTable = () => {
+    // Use setTimeout to ensure DOM has updated before scrolling
+    setTimeout(() => {
+      if (tableRef.current) {
+        // Try multiple scroll methods for better compatibility
+
+        // Method 1: scrollIntoView
+        tableRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+
+        // Method 2: Fallback with window.scrollTo
+        setTimeout(() => {
+          const tablePosition =
+            tableRef.current?.getBoundingClientRect().top ?? 0;
+          const currentScrollY = window.pageYOffset;
+
+          if (tablePosition !== 0) {
+            window.scrollTo({
+              top: currentScrollY + tablePosition - 100, // 100px offset from top
+              behavior: "smooth",
+            });
+          }
+        }, 100);
+      }
+    }, 50);
+  };
+
+  // Handle pagination navigation
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      scrollToTable();
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      scrollToTable();
+    }
   };
 
   return (
@@ -1452,7 +1502,7 @@ const EmployeeAttendanceLog: React.FC = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" ref={tableRef}>
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
@@ -1579,7 +1629,7 @@ const EmployeeAttendanceLog: React.FC = () => {
           </span>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              onClick={handlePreviousPage}
               disabled={currentPage === 1}
               className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -1589,9 +1639,7 @@ const EmployeeAttendanceLog: React.FC = () => {
               {currentPage}/{totalPages}
             </span>
             <button
-              onClick={() =>
-                setCurrentPage(Math.min(totalPages, currentPage + 1))
-              }
+              onClick={handleNextPage}
               disabled={currentPage === totalPages}
               className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
