@@ -1099,6 +1099,9 @@ const EmployeeAttendanceLog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
+  // Create ref for scrolling to table
+  const tableRef = React.useRef<HTMLDivElement>(null);
+
   // Get current date in the format shown in the UI
   const getCurrentDateString = () => {
     const date = selectedDate;
