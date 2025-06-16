@@ -1033,42 +1033,99 @@ const EmployeeAttendanceLog: React.FC = () => {
     return `${day}/${month}/${year}`;
   };
 
-  // Generate some date options for the dropdown
-  const getDateOptions = () => {
+  // Generate dynamic attendance data based on selected date
+  const generateAttendanceDataForDate = (date: Date) => {
     const today = new Date();
-    const options = [];
+    const isToday = date.toDateString() === today.toDateString();
+    const daysDiff = Math.floor(
+      (today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
+    );
 
-    // Add today
-    options.push({
-      label: "Today",
-      date: new Date(today),
-      value: "today",
+    return employeeAttendanceData.map((employee, index) => {
+      // Create variation based on date and employee
+      const dateKey = date.getDate() + date.getMonth() + index;
+      const randomSeed = dateKey % 10;
+
+      // Weekend handling
+      const dayOfWeek = date.getDay();
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        // Sunday or Saturday
+        return {
+          ...employee,
+          status: "ABSENT" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      }
+
+      // Future dates
+      if (date > today) {
+        return {
+          ...employee,
+          status: "ABSENT" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      }
+
+      // Generate realistic variations for past dates
+      if (randomSeed < 2) {
+        // 20% absent
+        return {
+          ...employee,
+          status: "ABSENT" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      } else if (randomSeed === 2) {
+        // 10% casual leave
+        return {
+          ...employee,
+          status: "CASUAL LEAVE" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      } else if (randomSeed === 3) {
+        // 10% half day
+        return {
+          ...employee,
+          status: "HALF-DAY" as const,
+          checkInTime: "10:15 A.M",
+          checkoutTime: "2:30 P.M",
+          arrival: "Ontime" as const,
+          totalWorkingHour: "4:15 Hrs",
+        };
+      } else if (randomSeed === 4) {
+        // 10% late
+        return {
+          ...employee,
+          status: "PRESENT" as const,
+          checkInTime: "11:30 A.M",
+          checkoutTime: "7:15 P.M",
+          arrival: "Late" as const,
+          totalWorkingHour: "7:45 Hrs",
+        };
+      } else {
+        // 50% normal present
+        return {
+          ...employee,
+          status: "PRESENT" as const,
+          checkInTime: "10:15 A.M",
+          checkoutTime: "7:15 P.M",
+          arrival: "Ontime" as const,
+          totalWorkingHour: "9 Hrs",
+        };
+      }
     });
-
-    // Add yesterday
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    options.push({
-      label: "Yesterday",
-      date: yesterday,
-      value: "yesterday",
-    });
-
-    // Add last 7 days
-    for (let i = 2; i <= 7; i++) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - i);
-      options.push({
-        label: `${i} days ago`,
-        date: date,
-        value: `${i}-days-ago`,
-      });
-    }
-
-    return options;
   };
-
-  const dateOptions = getDateOptions();
 
   // Filter and sort employees
   const filteredAndSortedEmployees = useMemo(() => {
