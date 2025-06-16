@@ -1066,7 +1066,32 @@ const EmployeeAttendanceLog: React.FC = () => {
 
   // Filter and sort employees
   const filteredAndSortedEmployees = useMemo(() => {
-    let filtered = employeeAttendanceData.filter(
+    // Simulate different data based on selected date
+    let dataToFilter = employeeAttendanceData;
+
+    // For demo purposes, modify some employee data based on the selected date
+    const today = new Date();
+    const isToday = selectedDate.toDateString() === today.toDateString();
+
+    if (!isToday) {
+      // Simulate different attendance patterns for previous dates
+      dataToFilter = employeeAttendanceData.map((employee, index) => {
+        // Simulate some employees being absent on previous dates
+        if (index % 3 === 0 && selectedDate < today) {
+          return {
+            ...employee,
+            status: "ABSENT" as const,
+            checkInTime: "N/A",
+            checkoutTime: "N/A",
+            arrival: "N/A" as const,
+            totalWorkingHour: "N/A",
+          };
+        }
+        return employee;
+      });
+    }
+
+    let filtered = dataToFilter.filter(
       (employee) =>
         employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.designation.toLowerCase().includes(searchTerm.toLowerCase()) ||
