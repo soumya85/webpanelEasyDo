@@ -1051,6 +1051,7 @@ const StatusBadge: React.FC<{ status: EmployeeAttendanceData["status"] }> = ({
     "CASUAL LEAVE": "border-orange-500 text-orange-600 bg-orange-50",
     "SICK LEAVE": "border-yellow-500 text-yellow-600 bg-yellow-50",
     ABSENT: "border-gray-500 text-gray-600 bg-gray-50",
+    "WEEK OFF": "border-blue-500 text-blue-600 bg-blue-50",
   };
 
   return (
