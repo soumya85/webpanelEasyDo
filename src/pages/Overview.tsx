@@ -329,34 +329,42 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
 // Employee Working Hour Trends Card Component
 const EmployeeWorkingHourTrendsCard: React.FC = () => {
   const workingHourData = [
-    { day: 1, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 8, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 1, Present: 6, Leave: 1, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
+    {
+      day: 8,
+      Present: 5,
+      Leave: 2,
+      Absent: 1,
+      Holiday: 0,
+      OT: 1.5,
+      RedFlags: 0.5,
+    },
     {
       day: 15,
       Present: 4,
       Leave: 0,
-      Absent: 4,
-      Holiday: 0,
+      Absent: 2,
+      Holiday: 2,
       OT: 0,
       RedFlags: 0,
     },
     {
       day: 22,
-      Present: 8,
-      Leave: 0,
+      Present: 7,
+      Leave: 0.5,
       Absent: 0,
       Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
+      OT: 2,
+      RedFlags: 0.5,
     },
     {
       day: 29,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
+      Present: 5.5,
+      Leave: 1.5,
+      Absent: 0.5,
       Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
+      OT: 1.5,
+      RedFlags: 1,
     },
   ];
 
@@ -368,12 +376,12 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         "w-full min-w-0 h-[90px] sm:h-[105px] lg:h-[120px]",
       )}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 border-b border-gray-100">
+      {/* Header - Made more compact */}
+      <div className="flex items-center justify-between px-2 py-0.5 sm:px-3 sm:py-1 lg:px-4 lg:py-1 border-b border-gray-100 flex-shrink-0">
         <div className="flex flex-col">
-          <h3 className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal leading-tight">
+          <h3 className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold leading-tight">
             Employee Working Hour Trends{" "}
-            <span className="text-[#4766E5] font-normal">- Sept 2024</span>
+            <span className="text-[#4766E5] font-bold">- Sept 2024</span>
           </h3>
         </div>
         <div className="flex flex-col items-end text-right">
@@ -390,10 +398,10 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         </div>
       </div>
 
-      {/* Chart Content */}
-      <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 flex-1">
-        {/* Chart */}
-        <div className="flex-1" style={{ minHeight: "50px", height: "50px" }}>
+      {/* Chart Content - Expanded to take more space */}
+      <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1 lg:px-4 lg:py-1 flex-1">
+        {/* Chart - Increased height */}
+        <div className="flex-1" style={{ minHeight: "65px", height: "65px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
@@ -407,7 +415,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               />
               <XAxis
                 dataKey="day"
-                tick={{ fontSize: 7, fill: "#6B7280" }}
+                tick={{ fontSize: 7, fill: "#1a1a1a", fontWeight: "bold" }}
                 axisLine={{ stroke: "#E5E7EB" }}
                 tickLine={false}
                 height={12}
@@ -415,11 +423,11 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               <YAxis
                 domain={[0, 12]}
                 tickFormatter={(value) => `${value}h`}
-                tick={{ fontSize: 7, fill: "#6B7280" }}
+                tick={{ fontSize: 7, fill: "#1a1a1a", fontWeight: "bold" }}
                 axisLine={false}
                 tickLine={false}
                 width={15}
-                ticks={[0, 4, 8, 12]}
+                ticks={[0, 2, 4, 6, 8, 10, 12]}
               />
               <Tooltip
                 formatter={(value) => [`${value}h`, ""]}
@@ -646,7 +654,7 @@ const formatCurrency = (value: number) => {
   if (value >= 100000) {
     return `₹${(value / 100000).toFixed(0)}L`;
   }
-  return `₹${value.toLocaleString()}`;
+  return `���${value.toLocaleString()}`;
 };
 
 // Icon Components (Responsive)
