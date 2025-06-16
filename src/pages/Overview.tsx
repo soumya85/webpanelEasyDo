@@ -20,7 +20,7 @@ import {
   Calendar,
   CheckCircle,
   Search,
-  Settings,
+  SlidersHorizontal,
   ChevronDown as ChevronDownIcon,
   ChevronLeft,
   ChevronRight,
