@@ -338,7 +338,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
     >
       {/* Header */}
       <div className="mb-6">
-        <h3 className="text-[#283C50] font-inter text-[18px] font-normal leading-tight">
+        <h3 className="text-[#1a1a1a] font-inter text-[18px] font-normal leading-tight">
           Employee of the month{" "}
           <span className="text-[#4766E5] font-normal">- Sept 2024</span>
         </h3>
@@ -346,22 +346,37 @@ const EmployeeOfTheMonthCard: React.FC = () => {
 
       {/* Employee Info */}
       <div className="flex items-start gap-4">
-        {/* Avatar */}
-        <div className="flex-shrink-0">
+        {/* Avatar with Badge */}
+        <div className="flex-shrink-0 relative">
           <div
             className={cn(
               "flex items-center justify-center w-16 h-16",
-              "bg-[#1F2937] rounded-full text-white font-bold text-xl",
+              "bg-[#1a1a1a] rounded-full text-white font-bold text-xl",
             )}
           >
             SP
+          </div>
+          {/* Person Badge Icon */}
+          <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#4766E5] rounded-full flex items-center justify-center">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="text-white"
+            >
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                fill="currentColor"
+              />
+            </svg>
           </div>
         </div>
 
         {/* Employee Details */}
         <div className="flex flex-col flex-1 min-w-0">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-[#1F2937] font-inter text-[20px] font-bold leading-tight">
+            <h4 className="text-[#1a1a1a] font-inter text-[20px] font-bold leading-tight">
               Sanjay Patel
             </h4>
             <div className="flex items-center gap-1">
@@ -394,7 +409,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
 
           <div className="text-[#6B7280] font-inter text-[14px] font-normal">
             Overall Employee Score:{" "}
-            <span className="text-[#1F2937] font-bold">2.76</span>
+            <span className="text-[#1a1a1a] font-bold">2.76</span>
           </div>
         </div>
       </div>
@@ -478,7 +493,7 @@ const formatCurrency = (value: number) => {
   if (value >= 100000) {
     return `₹${(value / 100000).toFixed(0)}L`;
   }
-  return `₹${value.toLocaleString()}`;
+  return `���${value.toLocaleString()}`;
 };
 
 // Icon Components (Responsive)
