@@ -407,7 +407,7 @@ const formatCurrency = (value: number) => {
 
 // Icon Components (Responsive)
 const TotalEmployeesIcon = () => (
-  <div className="flex justify-center items-center flex-shrink-0 w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] lg:w-[80px] lg:h-[80px]">
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
     <svg
       width="50"
       height="51"
