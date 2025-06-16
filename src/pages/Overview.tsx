@@ -642,11 +642,6 @@ const Overview: React.FC = () => {
             value="18"
             label="Pending Approvals"
           />
-          <KPICard
-            icon={<TotalHolidayIcon />}
-            value="7"
-            label="Announcements"
-          />
         </div>
 
         {/* Analytics Section */}
