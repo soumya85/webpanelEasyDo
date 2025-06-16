@@ -330,119 +330,13 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
 const EmployeeWorkingHourTrendsCard: React.FC = () => {
   const workingHourData = [
     { day: 1, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 2, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 3, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
-    { day: 4, Present: 6, Leave: 2, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 5, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
-    { day: 6, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 7, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
     { day: 8, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 9, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    {
-      day: 10,
-      Present: 11,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 1,
-      RedFlags: 0,
-    },
-    {
-      day: 11,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 2,
-      RedFlags: 0,
-    },
-    {
-      day: 12,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 13,
-      Present: 0,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 8,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 14,
-      Present: 0,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 8,
-      OT: 0,
-      RedFlags: 0,
-    },
     {
       day: 15,
       Present: 4,
       Leave: 0,
       Absent: 4,
       Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 16,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 17,
-      Present: 11,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 1,
-      RedFlags: 0,
-    },
-    {
-      day: 18,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 2,
-      RedFlags: 0,
-    },
-    {
-      day: 19,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 20,
-      Present: 0,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 8,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 21,
-      Present: 0,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 8,
       OT: 0,
       RedFlags: 0,
     },
@@ -456,60 +350,6 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       RedFlags: 0,
     },
     {
-      day: 23,
-      Present: 7,
-      Leave: 1,
-      Absent: 0,
-      Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 24,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 1,
-      RedFlags: 0,
-    },
-    {
-      day: 25,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 2,
-      RedFlags: 0,
-    },
-    {
-      day: 26,
-      Present: 8,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 27,
-      Present: 0,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 8,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 28,
-      Present: 0,
-      Leave: 0,
-      Absent: 0,
-      Holiday: 8,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
       day: 29,
       Present: 8,
       Leave: 0,
@@ -518,69 +358,6 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       OT: 0,
       RedFlags: 0,
     },
-    {
-      day: 30,
-      Present: 7,
-      Leave: 1,
-      Absent: 0,
-      Holiday: 0,
-      OT: 0,
-      RedFlags: 0,
-    },
-  ];
-
-  return (
-    <div
-      className={cn(
-        "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "flex-1 min-w-0 sm:min-w-[320px] lg:min-w-[400px]",
-        "h-[180px] sm:h-[200px] lg:h-[220px]",
-      )}
-    >
-      {/* Header */}
-      <div
-        className={cn(
-          "flex items-start sm:items-center justify-between px-4 py-3 sm:px-[20px] sm:py-[15px] lg:px-[20px] lg:py-[15px]",
-          "border-b border-[#E5E7EB] rounded-t-[5px] flex-shrink-0",
-          "flex-col sm:flex-row gap-2 sm:gap-0",
-        )}
-      >
-        <div className="flex flex-col items-start min-w-0 flex-1">
-          <h3 className="text-[#283C50] font-inter text-[14px] sm:text-[16px] lg:text-[18px] font-bold leading-tight">
-// Employee Working Hour Trends Card Component
-const EmployeeWorkingHourTrendsCard: React.FC = () => {
-  const workingHourData = [
-    { day: 1, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 2, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 3, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
-    { day: 4, Present: 6, Leave: 2, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 5, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
-    { day: 6, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 7, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 8, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 9, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 10, Present: 11, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
-    { day: 11, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
-    { day: 12, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 13, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 14, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 15, Present: 4, Leave: 0, Absent: 4, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 16, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 17, Present: 11, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
-    { day: 18, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
-    { day: 19, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 20, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 21, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 22, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 23, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 24, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
-    { day: 25, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
-    { day: 26, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 27, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 28, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
-    { day: 29, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-    { day: 30, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
   ];
 
   return (
@@ -588,7 +365,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[320px]",
+        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
         "border border-gray-100",
       )}
     >
@@ -618,13 +395,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
           <div className="flex-1 w-full mb-3" style={{ minHeight: "120px" }}>
             <ResponsiveContainer width="100%" height="100%" minHeight={120}>
               <BarChart
-                data={[
-                  { day: 1, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-                  { day: 8, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-                  { day: 15, Present: 4, Leave: 0, Absent: 4, Holiday: 0, OT: 0, RedFlags: 0 },
-                  { day: 22, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-                  { day: 29, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
-                ]}
+                data={workingHourData}
                 margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
