@@ -570,18 +570,6 @@ const EmployeeOfTheMonthCard: React.FC = () => {
               Overall Employee Score:{" "}
               <span className="font-bold text-[#1a1a1a]">2.76</span>
             </div>
-            <div className="flex-shrink-0">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="#4766E5"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
-              >
-                <path d="M12 2L15.09 8.5L22 9.5L17 14.5L18.18 21.5L12 18.5L5.82 21.5L7 14.5L2 9.5L8.91 8.5L12 2Z" />
-              </svg>
-            </div>
           </div>
         </div>
       </div>
