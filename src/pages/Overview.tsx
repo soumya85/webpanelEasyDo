@@ -552,9 +552,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-3.5 h-3.5"
               >
-                <path
-                  d="M12 2L14.09 8.26L21 9L15.5 14.74L17 21.5L12 18.27L7 21.5L8.5 14.74L3 9L9.91 8.26L12 2Z"
-                />
+                <path d="M12 2L14.09 8.26L21 9L15.5 14.74L17 21.5L12 18.27L7 21.5L8.5 14.74L3 9L9.91 8.26L12 2Z" />
               </svg>
               <span className="text-[#6B7280] font-inter text-[12px] font-medium">
                 (0)
@@ -563,12 +561,14 @@ const EmployeeOfTheMonthCard: React.FC = () => {
           </div>
 
           <div className="text-[#6B7280] font-inter text-[12px] font-normal mb-1">
-            Ahmedabad office <span className="font-semibold text-[#1a1a1a]">Branch</span>
+            Ahmedabad office{" "}
+            <span className="font-semibold text-[#1a1a1a]">Branch</span>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="text-[#6B7280] font-inter text-[12px] font-normal">
-              Overall Employee Score: <span className="font-bold text-[#1a1a1a]">2.76</span>
+              Overall Employee Score:{" "}
+              <span className="font-bold text-[#1a1a1a]">2.76</span>
             </div>
             <div className="flex-shrink-0">
               <svg
@@ -579,21 +579,9 @@ const EmployeeOfTheMonthCard: React.FC = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-4 h-4"
               >
-                <path
-                  d="M12 2L15.09 8.5L22 9.5L17 14.5L18.18 21.5L12 18.5L5.82 21.5L7 14.5L2 9.5L8.91 8.5L12 2Z"
-                />
+                <path d="M12 2L15.09 8.5L22 9.5L17 14.5L18.18 21.5L12 18.5L5.82 21.5L7 14.5L2 9.5L8.91 8.5L12 2Z" />
               </svg>
             </div>
-          </div>
-        </div>
-      </div>
-
-          <p className="text-[#6B7280] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal leading-tight mb-1 truncate">
-            Ahmedabad office Branch
-          </p>
-
-          <div className="text-[#6B7280] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal">
-            Score: <span className="text-[#1a1a1a] font-bold">2.76</span>
           </div>
         </div>
       </div>
