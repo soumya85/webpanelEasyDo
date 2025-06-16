@@ -326,6 +326,312 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   );
 };
 
+// Employee Working Hour Trends Card Component
+const EmployeeWorkingHourTrendsCard: React.FC = () => {
+  const workingHourData = [
+    { day: 1, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 2, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 3, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
+    { day: 4, Present: 6, Leave: 2, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 5, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 2, RedFlags: 0 },
+    { day: 6, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 7, Present: 0, Leave: 0, Absent: 0, Holiday: 8, OT: 0, RedFlags: 0 },
+    { day: 8, Present: 8, Leave: 0, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    { day: 9, Present: 7, Leave: 1, Absent: 0, Holiday: 0, OT: 0, RedFlags: 0 },
+    {
+      day: 10,
+      Present: 11,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 1,
+      RedFlags: 0,
+    },
+    {
+      day: 11,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 2,
+      RedFlags: 0,
+    },
+    {
+      day: 12,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 13,
+      Present: 0,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 8,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 14,
+      Present: 0,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 8,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 15,
+      Present: 4,
+      Leave: 0,
+      Absent: 4,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 16,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 17,
+      Present: 11,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 1,
+      RedFlags: 0,
+    },
+    {
+      day: 18,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 2,
+      RedFlags: 0,
+    },
+    {
+      day: 19,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 20,
+      Present: 0,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 8,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 21,
+      Present: 0,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 8,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 22,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 23,
+      Present: 7,
+      Leave: 1,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 24,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 1,
+      RedFlags: 0,
+    },
+    {
+      day: 25,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 2,
+      RedFlags: 0,
+    },
+    {
+      day: 26,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 27,
+      Present: 0,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 8,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 28,
+      Present: 0,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 8,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 29,
+      Present: 8,
+      Leave: 0,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+    {
+      day: 30,
+      Present: 7,
+      Leave: 1,
+      Absent: 0,
+      Holiday: 0,
+      OT: 0,
+      RedFlags: 0,
+    },
+  ];
+
+  return (
+    <div
+      className={cn(
+        "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+        "flex-1 min-w-0 sm:min-w-[320px] lg:min-w-[400px]",
+        "h-[180px] sm:h-[200px] lg:h-[220px]",
+      )}
+    >
+      {/* Header */}
+      <div
+        className={cn(
+          "flex items-start sm:items-center justify-between px-4 py-3 sm:px-[20px] sm:py-[15px] lg:px-[20px] lg:py-[15px]",
+          "border-b border-[#E5E7EB] rounded-t-[5px] flex-shrink-0",
+          "flex-col sm:flex-row gap-2 sm:gap-0",
+        )}
+      >
+        <div className="flex flex-col items-start min-w-0 flex-1">
+          <h3 className="text-[#283C50] font-inter text-[14px] sm:text-[16px] lg:text-[18px] font-bold leading-tight">
+            Employee Working Hour Trends
+          </h3>
+          <span className="text-[#4766E5] font-inter text-[12px] sm:text-[13px] lg:text-[14px] font-normal leading-tight">
+            - Sept 2024
+          </span>
+        </div>
+        <div className="flex flex-col items-end text-right">
+          <div className="text-[#283C50] font-inter text-[14px] sm:text-[16px] font-bold">
+            Total Hour: <span className="text-[18px] sm:text-[20px]">208</span>
+          </div>
+          <div className="text-[#283C50] font-inter text-[11px] sm:text-[12px] font-normal">
+            Worked: <span className="text-[#22C55E] font-semibold">160</span>{" "}
+            OT: <span className="text-[#3B82F6] font-semibold">14</span> Hrs
+          </div>
+        </div>
+      </div>
+
+      {/* Chart Content */}
+      <div className="flex-1 px-3 py-2 sm:px-4 sm:py-3 min-h-0 w-full relative">
+        <div className="h-full flex flex-col w-full">
+          {/* Legend */}
+          <div className="mb-2 flex-shrink-0">
+            <div className="flex flex-wrap gap-2 sm:gap-3 justify-start">
+              {[
+                { name: "Present", color: "#22C55E" },
+                { name: "Leave", color: "#FB923C" },
+                { name: "Absent", color: "#9CA3AF" },
+                { name: "Holiday", color: "#EF4444" },
+                { name: "OT", color: "#3B82F6" },
+                { name: "Red Flags", color: "#DC2626" },
+              ].map((entry, index) => (
+                <div key={index} className="flex items-center gap-1">
+                  <div
+                    className="w-2 h-2 sm:w-3 sm:h-3 rounded-sm flex-shrink-0"
+                    style={{ backgroundColor: entry.color }}
+                  />
+                  <span className="text-[9px] sm:text-[10px] lg:text-[11px] text-[#283C50] font-inter">
+                    {entry.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Chart */}
+          <div className="flex-1 w-full" style={{ minHeight: "80px" }}>
+            <ResponsiveContainer width="100%" height="100%" minHeight={80}>
+              <BarChart
+                data={workingHourData.filter((_, index) => index % 7 === 0)} // Show every 7th day
+                margin={{ top: 5, right: 5, left: 5, bottom: 15 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                <XAxis
+                  dataKey="day"
+                  tick={{ fontSize: 8, fill: "#6B7280" }}
+                  axisLine={{ stroke: "#E5E7EB" }}
+                  height={20}
+                />
+                <YAxis
+                  domain={[0, 12]}
+                  tickFormatter={(value) => `${value}h`}
+                  tick={{ fontSize: 8, fill: "#6B7280" }}
+                  axisLine={{ stroke: "#E5E7EB" }}
+                  width={25}
+                />
+                <Tooltip
+                  formatter={(value) => [`${value}h`, ""]}
+                  labelFormatter={(label) => `Day ${label}`}
+                />
+                <Bar dataKey="Present" stackId="a" fill="#22C55E" />
+                <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
+                <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
+                <Bar dataKey="Holiday" stackId="a" fill="#EF4444" />
+                <Bar dataKey="OT" stackId="a" fill="#3B82F6" />
+                <Bar dataKey="RedFlags" stackId="a" fill="#DC2626" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Employee of the Month Card Component
 const EmployeeOfTheMonthCard: React.FC = () => {
   return (
@@ -749,6 +1055,7 @@ const Overview: React.FC = () => {
             label="Announcements"
           />
           <EmployeeOfTheMonthCard />
+          <EmployeeWorkingHourTrendsCard />
         </div>
 
         {/* Analytics Section */}
