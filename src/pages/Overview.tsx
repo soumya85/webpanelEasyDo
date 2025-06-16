@@ -13,7 +13,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-import { ChevronDown, Trophy } from "lucide-react";
+import { ChevronDown, Trophy, CheckSquare } from "lucide-react";
 
 // Date Range Types
 type DateRangeOption =
@@ -642,7 +642,7 @@ const formatCurrency = (value: number) => {
   if (value >= 100000) {
     return `₹${(value / 100000).toFixed(0)}L`;
   }
-  return `���${value.toLocaleString()}`;
+  return `₹${value.toLocaleString()}`;
 };
 
 // Icon Components (Responsive)
