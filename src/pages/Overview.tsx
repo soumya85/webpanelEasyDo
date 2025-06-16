@@ -1173,8 +1173,10 @@ const EmployeeAttendanceLog: React.FC = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg">
-            <span className="text-sm text-gray-700">19/9/2024</span>
+          <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+            <span className="text-sm text-gray-700">
+              {getCurrentDateString()}
+            </span>
             <ChevronDownIcon className="h-4 w-4 text-gray-700" />
           </div>
         </div>
