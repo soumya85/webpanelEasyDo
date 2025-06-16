@@ -1060,12 +1060,10 @@ const EmployeeAttendanceLog: React.FC = () => {
               >
                 <td className="py-4 px-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden">
-                      <img
-                        src={employee.avatar}
-                        alt={employee.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-10 h-10 rounded-full bg-[#374151] flex-shrink-0 flex items-center justify-center">
+                      <span className="text-white text-sm font-semibold">
+                        {employee.initials}
+                      </span>
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
