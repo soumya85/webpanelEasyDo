@@ -1279,13 +1279,35 @@ const EmployeeAttendanceLog: React.FC = () => {
       <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600">Rows per page:</span>
-          <div className="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md">
-            <span className="text-sm text-gray-700">10</span>
-            <ChevronDownIcon className="h-3 w-3 text-gray-400" />
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-sm text-gray-700">{rowsPerPage}</span>
+                <ChevronDownIcon className="h-3 w-3 text-gray-400" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              {[5, 10, 20, 50].map((rows) => (
+                <DropdownMenuItem
+                  key={rows}
+                  onClick={() => handleRowsPerPageChange(rows)}
+                  className={cn(
+                    "cursor-pointer",
+                    rowsPerPage === rows && "bg-gray-100",
+                  )}
+                >
+                  {rows}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-600">1-10 of 97</span>
+          <span className="text-sm text-gray-600">
+            {startIndex + 1}-
+            {Math.min(endIndex, filteredAndSortedEmployees.length)} of{" "}
+            {filteredAndSortedEmployees.length}
+          </span>
           <div className="flex items-center gap-2">
             <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
               <ChevronLeft className="h-4 w-4" />
