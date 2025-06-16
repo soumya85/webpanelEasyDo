@@ -428,8 +428,8 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
                 tickLine={false}
                 width={20}
                 interval={0}
-                tickCount={5}
-                ticks={[0, 4, 8, 12]}
+                tickCount={3}
+                ticks={[0, 6, 12]}
               />
               <Tooltip
                 formatter={(value) => [`${value}h`, ""]}
