@@ -365,29 +365,33 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "w-full min-w-0 h-[90px] sm:h-[105px] lg:h-[120px]",
+        "w-full min-w-0",
       )}
     >
-      {/* Compact Content */}
-      <div className="flex items-center gap-3 sm:gap-4 flex-1 px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5">
-        {/* Left Section - Title and Stats */}
-        <div className="flex flex-col justify-center min-w-0 flex-1">
-          <h3 className="text-[#283C50] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight mb-1">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100">
+        <div className="flex flex-col">
+          <h3 className="text-[#1a1a1a] font-inter text-[14px] sm:text-[15px] lg:text-[16px] font-normal leading-tight">
             Employee Working Hour Trends{" "}
             <span className="text-[#4766E5] font-normal">- Sept 2024</span>
           </h3>
-          <div className="text-[#283C50] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold mb-1">
+        </div>
+        <div className="flex flex-col items-end text-right">
+          <div className="text-[#1a1a1a] font-inter text-[14px] sm:text-[15px] lg:text-[16px] font-bold">
             Total Hour :{" "}
-            <span className="text-[12px] sm:text-[13px] lg:text-[14px]">
+            <span className="text-[16px] sm:text-[17px] lg:text-[18px]">
               208
             </span>
           </div>
-          <div className="text-[#283C50] font-inter text-[9px] sm:text-[10px] lg:text-[11px] font-normal">
+          <div className="text-[#1a1a1a] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal">
             Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
             OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
           </div>
         </div>
+      </div>
 
+      {/* Content */}
+      <div className="flex items-center gap-3 sm:gap-4 flex-1 px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5">
         {/* Right Section - Mini Chart */}
         <div className="flex-shrink-0 w-24 sm:w-32 lg:w-40 h-12 sm:h-16 lg:h-20">
           <ResponsiveContainer width="100%" height="100%">
