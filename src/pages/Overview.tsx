@@ -1148,12 +1148,7 @@ const EmployeeAttendanceLog: React.FC = () => {
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => {
-                  setSortBy("date");
-                  setSortOrder(
-                    sortBy === "date" && sortOrder === "asc" ? "desc" : "asc",
-                  );
-                }}
+                onClick={() => handleSortChange("date")}
                 className="flex items-center"
               >
                 <div className="flex items-center gap-2">
