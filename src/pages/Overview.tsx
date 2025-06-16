@@ -756,6 +756,24 @@ const PendingApprovalsIcon = () => (
   </div>
 );
 
+const AnnouncementsIcon = () => (
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
+    <svg
+      width="40"
+      height="32"
+      viewBox="0 0 40 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-[30px] h-[24px] sm:w-[35px] sm:h-[28px] lg:w-[40px] lg:h-[32px]"
+    >
+      <path
+        d="M32 18V14H40V18H32ZM34.4 32L28 27.2L30.4 24L36.8 28.8L34.4 32ZM30.4 8.00003L28 4.80003L34.4 3.05176e-05L36.8 3.20003L30.4 8.00003ZM6 30V22H4C2.9 22 1.95833 21.6084 1.175 20.825C0.391667 20.0417 0 19.1 0 18V14C0 12.9 0.391667 11.9584 1.175 11.175C1.95833 10.3917 2.9 10 4 10H12L22 4.00003V28L12 22H10V30H6ZM18 20.9V11.1L13.1 14H4V18H13.1L18 20.9ZM24 22.7V9.30003C24.9 10.1 25.625 11.075 26.175 12.225C26.725 13.375 27 14.6334 27 16C27 17.3667 26.725 18.625 26.175 19.775C25.625 20.925 24.9 21.9 24 22.7Z"
+        fill="#4766E5"
+      />
+    </svg>
+  </div>
+);
+
 const ChevronRightIcon = () => (
   <svg
     width="6"
