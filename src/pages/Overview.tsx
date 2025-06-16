@@ -1785,6 +1785,10 @@ const Overview: React.FC = () => {
     () => generateMonthlyAttendanceData(currentDateRange),
     [currentDateRange],
   );
+  const workingHourTrendsData = useMemo(
+    () => generateWorkingHourTrendsData(currentDateRange),
+    [currentDateRange],
+  );
 
   return (
     <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
