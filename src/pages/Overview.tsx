@@ -365,25 +365,25 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "w-full min-w-0",
+        "w-full min-w-0 h-[90px] sm:h-[105px] lg:h-[120px]",
       )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100">
+      <div className="flex items-center justify-between px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 border-b border-gray-100">
         <div className="flex flex-col">
-          <h3 className="text-[#1a1a1a] font-inter text-[14px] sm:text-[15px] lg:text-[16px] font-normal leading-tight">
+          <h3 className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal leading-tight">
             Employee Working Hour Trends{" "}
             <span className="text-[#4766E5] font-normal">- Sept 2024</span>
           </h3>
         </div>
         <div className="flex flex-col items-end text-right">
-          <div className="text-[#1a1a1a] font-inter text-[14px] sm:text-[15px] lg:text-[16px] font-bold">
+          <div className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold">
             Total Hour :{" "}
-            <span className="text-[16px] sm:text-[17px] lg:text-[18px]">
+            <span className="text-[11px] sm:text-[12px] lg:text-[13px]">
               208
             </span>
           </div>
-          <div className="text-[#1a1a1a] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal">
+          <div className="text-[#1a1a1a] font-inter text-[8px] sm:text-[9px] lg:text-[10px] font-normal">
             Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
             OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
           </div>
@@ -391,13 +391,13 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       </div>
 
       {/* Chart Content */}
-      <div className="flex items-start gap-4 px-5 py-4">
+      <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 flex-1">
         {/* Chart */}
-        <div className="flex-1" style={{ minHeight: "120px", height: "120px" }}>
+        <div className="flex-1" style={{ minHeight: "50px", height: "50px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
-              margin={{ top: 10, right: 10, left: 25, bottom: 20 }}
+              margin={{ top: 2, right: 2, left: 15, bottom: 10 }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"
@@ -407,18 +407,18 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
               />
               <XAxis
                 dataKey="day"
-                tick={{ fontSize: 10, fill: "#6B7280" }}
+                tick={{ fontSize: 7, fill: "#6B7280" }}
                 axisLine={{ stroke: "#E5E7EB" }}
                 tickLine={false}
-                height={25}
+                height={12}
               />
               <YAxis
                 domain={[0, 12]}
                 tickFormatter={(value) => `${value}h`}
-                tick={{ fontSize: 10, fill: "#6B7280" }}
+                tick={{ fontSize: 7, fill: "#6B7280" }}
                 axisLine={false}
                 tickLine={false}
-                width={25}
+                width={15}
                 ticks={[0, 4, 8, 12]}
               />
               <Tooltip
@@ -436,38 +436,38 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         </div>
 
         {/* Legend - 2 Column Layout */}
-        <div className="flex gap-3 flex-shrink-0">
+        <div className="flex gap-1.5 flex-shrink-0">
           {/* Column 1 */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-0.5">
             {[
               { name: "Present", color: "#22C55E" },
               { name: "Absent", color: "#9CA3AF" },
               { name: "OT", color: "#3B82F6" },
             ].map((entry, index) => (
-              <div key={index} className="flex items-center gap-2">
+              <div key={index} className="flex items-center gap-1">
                 <div
-                  className="w-3 h-3 rounded-sm flex-shrink-0"
+                  className="w-2 h-2 rounded-sm flex-shrink-0"
                   style={{ backgroundColor: entry.color }}
                 />
-                <span className="text-[11px] text-[#1a1a1a] font-inter font-medium">
+                <span className="text-[7px] sm:text-[8px] lg:text-[9px] text-[#1a1a1a] font-inter font-medium">
                   {entry.name}
                 </span>
               </div>
             ))}
           </div>
           {/* Column 2 */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-0.5">
             {[
               { name: "Leave", color: "#FB923C" },
               { name: "Holiday", color: "#EF4444" },
               { name: "Red Flags", color: "#DC2626" },
             ].map((entry, index) => (
-              <div key={index} className="flex items-center gap-2">
+              <div key={index} className="flex items-center gap-1">
                 <div
-                  className="w-3 h-3 rounded-sm flex-shrink-0"
+                  className="w-2 h-2 rounded-sm flex-shrink-0"
                   style={{ backgroundColor: entry.color }}
                 />
-                <span className="text-[11px] text-[#1a1a1a] font-inter font-medium">
+                <span className="text-[7px] sm:text-[8px] lg:text-[9px] text-[#1a1a1a] font-inter font-medium">
                   {entry.name}
                 </span>
               </div>
