@@ -1012,6 +1012,78 @@ const ArrivalBadge: React.FC<{
 const EmployeeAttendanceLog: React.FC = () => {
   const [sortBy, setSortBy] = useState<"alphabetical" | "date">("alphabetical");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Get current date in the format shown in the UI
+  const getCurrentDateString = () => {
+    const date = selectedDate;
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  // Filter and sort employees
+  const filteredAndSortedEmployees = useMemo(() => {
+    let filtered = employeeAttendanceData.filter(
+      (employee) =>
+        employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.designation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.location.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+
+    // Sort based on selected criteria
+    filtered.sort((a, b) => {
+      if (sortBy === "alphabetical") {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        if (sortOrder === "asc") {
+          return nameA.localeCompare(nameB);
+        } else {
+          return nameB.localeCompare(nameA);
+        }
+      } else if (sortBy === "date") {
+        const dateA = new Date(a.dateOfJoining);
+        const dateB = new Date(b.dateOfJoining);
+        if (sortOrder === "asc") {
+          return dateA.getTime() - dateB.getTime();
+        } else {
+          return dateB.getTime() - dateA.getTime();
+        }
+      }
+      return 0;
+    });
+
+    return filtered;
+  }, [searchTerm, sortBy, sortOrder]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredAndSortedEmployees.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentEmployees = filteredAndSortedEmployees.slice(
+    startIndex,
+    endIndex,
+  );
+
+  // Handle sort change
+  const handleSortChange = (newSortBy: "alphabetical" | "date") => {
+    if (sortBy === newSortBy) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(newSortBy);
+      setSortOrder("asc");
+    }
+  };
+
+  // Handle rows per page change
+  const handleRowsPerPageChange = (newRowsPerPage: number) => {
+    setRowsPerPage(newRowsPerPage);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-6 w-full">
