@@ -521,7 +521,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
             SP
           </div>
           {/* Person Badge Icon */}
-          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#6B7280] rounded-full flex items-center justify-center">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-[#6B7280] rounded-full flex items-center justify-center">
             <svg
               width="12"
               height="12"
