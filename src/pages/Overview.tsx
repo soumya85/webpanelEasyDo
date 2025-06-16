@@ -365,7 +365,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
+        "w-full min-w-0",
         "border border-gray-100",
       )}
     >
@@ -867,18 +867,22 @@ const Overview: React.FC = () => {
         {/* Third KPI Cards Row */}
         <div
           className={cn(
-            "grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap lg:flex-nowrap",
+            "flex flex-row flex-wrap lg:flex-nowrap",
             "gap-3 sm:gap-4 lg:gap-5 w-full",
-            "sm:justify-start sm:items-stretch self-stretch",
+            "justify-start items-stretch",
           )}
         >
-          <KPICard
-            icon={<TotalHolidayIcon />}
-            value="7"
-            label="Announcements"
-          />
-          <EmployeeOfTheMonthCard />
-          <EmployeeWorkingHourTrendsCard />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-5 flex-1">
+            <KPICard
+              icon={<TotalHolidayIcon />}
+              value="7"
+              label="Announcements"
+            />
+            <EmployeeOfTheMonthCard />
+          </div>
+          <div className="flex-1">
+            <EmployeeWorkingHourTrendsCard />
+          </div>
         </div>
 
         {/* Analytics Section */}
