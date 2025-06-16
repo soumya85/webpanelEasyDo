@@ -1022,7 +1022,7 @@ const EmployeeAttendanceLog: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   // Get current date in the format shown in the UI
   const getCurrentDateString = () => {
