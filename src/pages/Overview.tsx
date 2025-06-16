@@ -614,6 +614,53 @@ const Overview: React.FC = () => {
           />
         </div>
 
+        {/* Second KPI Cards Row */}
+        <div
+          className={cn(
+            "grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap lg:flex-nowrap",
+            "gap-3 sm:gap-4 lg:gap-5 w-full",
+            "sm:justify-start sm:items-stretch self-stretch",
+          )}
+        >
+          <KPICard
+            icon={<TotalHolidayIcon />}
+            value="100"
+            label="Total Attendance"
+          />
+          <KPICard
+            icon={<TotalHolidayIcon />}
+            value="40"
+            label="Pending Tasks"
+          />
+          <KPICard
+            icon={<TotalHolidayIcon />}
+            value="20"
+            label="Upcoming Meetings"
+          />
+          <KPICard
+            icon={<TotalHolidayIcon />}
+            value="18"
+            label="Pending Approvals"
+          />
+        </div>
+
+        {/* Third KPI Cards Row */}
+        <div
+          className={cn(
+            "flex flex-row flex-wrap",
+            "gap-3 sm:gap-4 lg:gap-5 w-full",
+            "justify-start items-stretch",
+          )}
+        >
+          <div className="w-full sm:w-auto sm:flex-none">
+            <KPICard
+              icon={<TotalHolidayIcon />}
+              value="7"
+              label="Announcements"
+            />
+          </div>
+        </div>
+
         {/* Analytics Section */}
         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
           {/* First Row of Charts */}
