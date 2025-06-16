@@ -1401,7 +1401,7 @@ const EmployeeAttendanceLog: React.FC = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Popover>
+          <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
             <PopoverTrigger asChild>
               <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                 <CalendarIcon className="h-4 w-4 text-gray-600" />
@@ -1419,6 +1419,7 @@ const EmployeeAttendanceLog: React.FC = () => {
                   if (date) {
                     setSelectedDate(date);
                     setCurrentPage(1); // Reset to first page when date changes
+                    setIsCalendarOpen(false); // Close calendar immediately after selection
                   }
                 }}
                 initialFocus
