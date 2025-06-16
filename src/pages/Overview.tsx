@@ -326,6 +326,92 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   );
 };
 
+// Employee of the Month Card Component
+const EmployeeOfTheMonthCard: React.FC = () => {
+  return (
+    <div
+      className={cn(
+        "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
+        "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
+        "px-4 py-5 sm:px-5 sm:py-6 lg:px-6 lg:py-6",
+        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
+        "h-auto",
+      )}
+    >
+      {/* Header */}
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex flex-col">
+          <h3 className="text-[#283C50] font-inter text-[16px] sm:text-[18px] font-bold leading-tight">
+            Employee of the month
+          </h3>
+          <span className="text-[#4766E5] font-inter text-[13px] sm:text-[14px] font-normal leading-tight">
+            Sept 2024
+          </span>
+        </div>
+      </div>
+
+      {/* Employee Info */}
+      <div className="flex items-start gap-3 sm:gap-4">
+        {/* Avatar */}
+        <div className="flex-shrink-0">
+          <div
+            className={cn(
+              "flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14",
+              "bg-[#283C50] rounded-full text-white font-bold text-lg sm:text-xl",
+            )}
+          >
+            SP
+          </div>
+        </div>
+
+        {/* Employee Details */}
+        <div className="flex flex-col flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <h4 className="text-[#283C50] font-inter text-[16px] sm:text-[18px] font-bold leading-tight">
+              Sanjay Patel
+            </h4>
+            <div className="flex items-center gap-1">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+              >
+                <path
+                  d="M12 2L14.09 8.26L21 9L15.5 14.74L17 21.5L12 18.27L7 21.5L8.5 14.74L3 9L9.91 8.26L12 2Z"
+                  stroke="#22C55E"
+                  fill="none"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-[#6B7280] font-inter text-[12px] sm:text-[13px] font-normal">
+                (0)
+              </span>
+            </div>
+          </div>
+
+          <p className="text-[#6B7280] font-inter text-[13px] sm:text-[14px] font-normal leading-tight mb-2">
+            Ahmedabad office Branch
+          </p>
+
+          <div className="flex items-center gap-1">
+            <span className="text-[#6B7280] font-inter text-[12px] sm:text-[13px] font-normal">
+              Overall Employee Score:
+            </span>
+            <span className="text-[#283C50] font-inter text-[12px] sm:text-[13px] font-bold">
+              2.76
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Chart Card Component
 interface ChartCardProps {
   title: string;
@@ -647,7 +733,7 @@ const Overview: React.FC = () => {
         {/* Third KPI Cards Row */}
         <div
           className={cn(
-            "flex flex-row",
+            "flex flex-row flex-wrap",
             "gap-3 sm:gap-4 lg:gap-5",
             "justify-start items-stretch",
           )}
@@ -657,6 +743,7 @@ const Overview: React.FC = () => {
             value="7"
             label="Announcements"
           />
+          <EmployeeOfTheMonthCard />
         </div>
 
         {/* Analytics Section */}
