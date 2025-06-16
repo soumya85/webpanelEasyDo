@@ -815,7 +815,7 @@ interface EmployeeAttendanceData {
   name: string;
   designation: string;
   location: string;
-  avatar: string;
+  initials: string;
   checkInTime: string;
   checkoutTime: string;
   arrival: "Ontime" | "Late" | "N/A";
@@ -829,7 +829,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Amulya Kr Kar",
     designation: "Chief Accountant",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "AK",
     checkInTime: "10:15 A.M",
     checkoutTime: "9:00 P.M",
     arrival: "Ontime",
@@ -841,7 +841,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Abhijit Mukherjee",
     designation: "Operation Executive",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "AM",
     checkInTime: "10:15 A.M",
     checkoutTime: "7:15 P.M",
     arrival: "Ontime",
@@ -853,7 +853,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Abhijit Mondal",
     designation: "Jetty Sincer",
     location: "Haldia Branch",
-    avatar: "/placeholder.svg",
+    initials: "AM",
     checkInTime: "N/A",
     checkoutTime: "N/A",
     arrival: "N/A",
@@ -865,7 +865,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Amit Parmer",
     designation: "IOS Developer",
     location: "Ahmedabad Branch",
-    avatar: "/placeholder.svg",
+    initials: "AP",
     checkInTime: "10:15 A.M",
     checkoutTime: "7:15 P.M",
     arrival: "Ontime",
@@ -877,7 +877,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Bholanath Paul",
     designation: "Office Boy",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "BP",
     checkInTime: "N/A",
     checkoutTime: "N/A",
     arrival: "N/A",
@@ -889,7 +889,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Chandan Bose",
     designation: "Airport Executive",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "CB",
     checkInTime: "11:15 A.M",
     checkoutTime: "7:15 P.M",
     arrival: "Late",
@@ -901,7 +901,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Chinmay Bannerjee",
     designation: "Operation Staff",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "CB",
     checkInTime: "N/A",
     checkoutTime: "N/A",
     arrival: "N/A",
@@ -913,7 +913,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Nital Samanta",
     designation: "Accounts Manager",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "NS",
     checkInTime: "10:15 A.M",
     checkoutTime: "7:15 P.M",
     arrival: "Ontime",
@@ -925,7 +925,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Rupkumar Saha",
     designation: "Accounts Executive",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "RS",
     checkInTime: "10:40 A.M",
     checkoutTime: "7:15P.M",
     arrival: "Late",
@@ -937,7 +937,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     name: "Smita Chakraborty",
     designation: "Customs Executive",
     location: "Head Office",
-    avatar: "/placeholder.svg",
+    initials: "SC",
     checkInTime: "N/A",
     checkoutTime: "N/A",
     arrival: "N/A",
