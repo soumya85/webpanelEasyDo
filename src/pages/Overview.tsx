@@ -405,7 +405,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
-              margin={{ top: 35, right: 2, left: 15, bottom: 10 }}
+              margin={{ top: 15, right: 2, left: 15, bottom: 10 }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"
