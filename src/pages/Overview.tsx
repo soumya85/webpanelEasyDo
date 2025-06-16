@@ -426,27 +426,17 @@ interface EmployeeWorkingHourTrendsCardProps {
 const EmployeeWorkingHourTrendsCard: React.FC<
   EmployeeWorkingHourTrendsCardProps
 > = ({ dateRange }) => {
-  const workingHourData = useMemo(
-    () => generateWorkingHourTrendsData(dateRange),
-    [dateRange],
-  );
+  const workingHourData = useMemo(() => generateWorkingHourTrendsData(), []);
   const summary = useMemo(
     () => calculateWorkingHourSummary(workingHourData),
     [workingHourData],
   );
 
-  // Format date range for display
-  const formatDateForDisplay = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      year: "2-digit",
-    });
-  };
-
-  const dateRangeDisplay =
-    dateRange.start.getTime() === dateRange.end.getTime()
-      ? formatDateForDisplay(dateRange.start)
-      : `${formatDateForDisplay(dateRange.start)} - ${formatDateForDisplay(dateRange.end)}`;
+  // Always show current month for Working Hour Trends (changes only monthly)
+  const currentDate = new Date();
+  const monthDisplay = currentDate
+    .toLocaleDateString("en-US", { month: "short", year: "2-digit" })
+    .toUpperCase();
 
   return (
     <div
