@@ -647,16 +647,18 @@ const Overview: React.FC = () => {
         {/* Third KPI Cards Row */}
         <div
           className={cn(
-            "grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap lg:flex-nowrap",
+            "flex flex-row flex-wrap",
             "gap-3 sm:gap-4 lg:gap-5 w-full",
-            "sm:justify-start sm:items-stretch self-stretch",
+            "justify-start items-stretch",
           )}
         >
-          <KPICard
-            icon={<TotalHolidayIcon />}
-            value="7"
-            label="Announcements"
-          />
+          <div className="w-full sm:w-auto sm:flex-none">
+            <KPICard
+              icon={<TotalHolidayIcon />}
+              value="7"
+              label="Announcements"
+            />
+          </div>
         </div>
 
         {/* Analytics Section */}
