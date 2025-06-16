@@ -496,7 +496,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5 h-[90px] sm:h-[105px] lg:h-[120px]",
+        "px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5 h-[110px] sm:h-[125px] lg:h-[140px]",
         "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
