@@ -209,10 +209,10 @@ const generateEmployeeOfTheMonthData = (dateRange: DateRange) => {
     { name: "Vikram Mehta", initials: "VM", office: "Chennai", score: 2.73 },
   ];
 
-  // Use the current month/year to determine employee, not the full date range
-  // This ensures the employee only changes monthly, not with date filter changes
-  const currentDate = new Date();
-  const monthYear = `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
+  // Use the start date of the range to determine which month's employee to show
+  // This allows different employees for "This Month", "Last Month", "Last 30 Days" etc.
+  const referenceDate = dateRange.start;
+  const monthYear = `${referenceDate.getFullYear()}-${referenceDate.getMonth()}`;
   const index =
     Math.abs(monthYear.split("").reduce((a, b) => a + b.charCodeAt(0), 0)) %
     employees.length;
