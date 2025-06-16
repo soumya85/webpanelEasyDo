@@ -1003,6 +1003,9 @@ const ArrivalBadge: React.FC<{
 };
 
 const EmployeeAttendanceLog: React.FC = () => {
+  const [sortBy, setSortBy] = useState<"alphabetical" | "date">("alphabetical");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
   return (
     <div className="bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-6 w-full">
       {/* Header */}
@@ -1015,7 +1018,7 @@ const EmployeeAttendanceLog: React.FC = () => {
         <div className="flex items-center gap-4 mb-4">
           <div className="flex-1 relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-4 w-4 text-gray-400" />
+              <Search className="h-4 w-4 text-gray-700" />
             </div>
             <input
               type="text"
@@ -1023,6 +1026,86 @@ const EmployeeAttendanceLog: React.FC = () => {
               className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors placeholder:text-gray-600"
             />
           </div>
+
+          {/* Sort Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 text-gray-700 hover:text-gray-900 transition-colors hover:bg-gray-100 rounded-lg">
+                <AudioLines className="h-5 w-5" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem
+                onClick={() => {
+                  setSortBy("alphabetical");
+                  setSortOrder(
+                    sortBy === "alphabetical" && sortOrder === "asc"
+                      ? "desc"
+                      : "asc",
+                  );
+                }}
+                className="flex items-center justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 flex items-center justify-center">
+                    <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                  </div>
+                  <span>Alphabetically</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <ArrowUp
+                    className={cn(
+                      "h-3 w-3",
+                      sortBy === "alphabetical" && sortOrder === "asc"
+                        ? "text-blue-600"
+                        : "text-gray-400",
+                    )}
+                  />
+                  <ArrowDown
+                    className={cn(
+                      "h-3 w-3",
+                      sortBy === "alphabetical" && sortOrder === "desc"
+                        ? "text-blue-600"
+                        : "text-gray-400",
+                    )}
+                  />
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  setSortBy("date");
+                  setSortOrder(
+                    sortBy === "date" && sortOrder === "asc" ? "desc" : "asc",
+                  );
+                }}
+                className="flex items-center justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-gray-600" />
+                  <span>Date of Joining</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <ArrowUp
+                    className={cn(
+                      "h-3 w-3",
+                      sortBy === "date" && sortOrder === "asc"
+                        ? "text-blue-600"
+                        : "text-gray-400",
+                    )}
+                  />
+                  <ArrowDown
+                    className={cn(
+                      "h-3 w-3",
+                      sortBy === "date" && sortOrder === "desc"
+                        ? "text-blue-600"
+                        : "text-gray-400",
+                    )}
+                  />
+                </div>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <button className="p-2 text-gray-700 hover:text-gray-900 transition-colors">
             <SlidersHorizontal className="h-5 w-5" />
           </button>
