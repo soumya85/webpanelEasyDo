@@ -307,18 +307,18 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
   return (
     <div
       className={cn(
-        "flex flex-col bg-white rounded-[10px] border-b-[4px] border-[#4766E5]",
+        "flex items-center gap-4 sm:gap-5 lg:gap-6 bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "p-4 sm:p-5 lg:p-6 h-[85px] sm:h-[95px] lg:h-[105px]",
-        "flex-1 min-w-0 sm:min-w-[180px] lg:min-w-[200px]",
+        "px-3 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6 h-[90px] sm:h-[105px] lg:h-[120px]",
+        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
-      <div className="flex-shrink-0 mb-2">{icon}</div>
-      <div className="flex flex-col justify-start items-start flex-1">
-        <div className="text-[#283C50] text-[24px] sm:text-[28px] lg:text-[32px] font-bold leading-tight font-inter mb-1">
+      <div className="flex-shrink-0">{icon}</div>
+      <div className="flex flex-col justify-center items-start min-w-0 flex-1">
+        <div className="text-[#283C50] text-[24px] sm:text-[32px] lg:text-[40px] font-bold leading-tight lg:leading-[64px] font-inter">
           {value}
         </div>
-        <div className="text-[#6B7280] text-[11px] sm:text-[12px] lg:text-[13px] font-medium leading-tight font-inter">
+        <div className="text-[#4B5563] text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
           {label}
         </div>
       </div>
