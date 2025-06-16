@@ -1043,7 +1043,7 @@ const EmployeeAttendanceLog: React.FC = () => {
                       : "asc",
                   );
                 }}
-                className="flex items-center justify-between"
+                className="flex items-center"
               >
                 <div className="flex items-center gap-2">
                   <div className="w-5 h-5 flex items-center justify-center">
@@ -1070,24 +1070,6 @@ const EmployeeAttendanceLog: React.FC = () => {
                     </svg>
                   </div>
                   <span>Alphabetically</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <ArrowUp
-                    className={cn(
-                      "h-3 w-3",
-                      sortBy === "alphabetical" && sortOrder === "asc"
-                        ? "text-blue-600"
-                        : "text-gray-400",
-                    )}
-                  />
-                  <ArrowDown
-                    className={cn(
-                      "h-3 w-3",
-                      sortBy === "alphabetical" && sortOrder === "desc"
-                        ? "text-blue-600"
-                        : "text-gray-400",
-                    )}
-                  />
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
