@@ -1104,18 +1104,16 @@ const EmployeeAttendanceLog: React.FC = () => {
   // Generate dynamic attendance data based on selected date
   const generateAttendanceDataForDate = (date: Date) => {
     const today = new Date();
-    const isToday = date.toDateString() === today.toDateString();
     const daysDiff = Math.floor(
       (today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
     );
 
     return employeeAttendanceData.map((employee, index) => {
-      // Create variation based on date and employee
-      const dateKey = date.getDate() + date.getMonth() + index;
-      const randomSeed = dateKey % 10;
+      // Create more complex variation based on date and employee
+      const dateKey = (date.getDate() * date.getMonth() * (index + 1)) % 100;
+      const dayOfWeek = date.getDay();
 
       // Weekend handling
-      const dayOfWeek = date.getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
         // Sunday or Saturday
         return {
@@ -1140,9 +1138,37 @@ const EmployeeAttendanceLog: React.FC = () => {
         };
       }
 
-      // Generate realistic variations for past dates
-      if (randomSeed < 2) {
-        // 20% absent
+      // Create different patterns based on date
+      const pattern = dateKey % 20;
+
+      // Monday patterns (more absences after weekend)
+      if (dayOfWeek === 1 && pattern < 6) {
+        // 30% higher absence on Mondays
+        return {
+          ...employee,
+          status: pattern < 3 ? "ABSENT" : ("CASUAL LEAVE" as const),
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      }
+
+      // Friday patterns (some half days)
+      if (dayOfWeek === 5 && pattern < 4) {
+        return {
+          ...employee,
+          status: "HALF-DAY" as const,
+          checkInTime: "10:15 A.M",
+          checkoutTime: pattern < 2 ? "1:00 P.M" : "2:30 P.M",
+          arrival: "Ontime" as const,
+          totalWorkingHour: pattern < 2 ? "2:45 Hrs" : "4:15 Hrs",
+        };
+      }
+
+      // Mid-week patterns vary by date
+      if (pattern < 3) {
+        // 15% absent
         return {
           ...employee,
           status: "ABSENT" as const,
@@ -1151,7 +1177,7 @@ const EmployeeAttendanceLog: React.FC = () => {
           arrival: "N/A" as const,
           totalWorkingHour: "N/A",
         };
-      } else if (randomSeed === 2) {
+      } else if (pattern < 5) {
         // 10% casual leave
         return {
           ...employee,
@@ -1161,35 +1187,65 @@ const EmployeeAttendanceLog: React.FC = () => {
           arrival: "N/A" as const,
           totalWorkingHour: "N/A",
         };
-      } else if (randomSeed === 3) {
+      } else if (pattern < 7) {
+        // 10% sick leave
+        return {
+          ...employee,
+          status: "SICK LEAVE" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      } else if (pattern < 11) {
+        // 20% late arrivals with varied times
+        const lateMinutes = (pattern - 7) * 15; // 0, 15, 30, 45 minutes late
+        const checkInTimes = [
+          "10:30 A.M",
+          "10:45 A.M",
+          "11:00 A.M",
+          "11:15 A.M",
+        ];
+        const workingHours = ["8:30 Hrs", "8:15 Hrs", "8 Hrs", "7:45 Hrs"];
+        const timeIndex = (pattern - 7) % 4;
+
+        return {
+          ...employee,
+          status: "PRESENT" as const,
+          checkInTime: checkInTimes[timeIndex],
+          checkoutTime: "7:15 P.M",
+          arrival: "Late" as const,
+          totalWorkingHour: workingHours[timeIndex],
+        };
+      } else if (pattern < 13) {
         // 10% half day
         return {
           ...employee,
           status: "HALF-DAY" as const,
           checkInTime: "10:15 A.M",
-          checkoutTime: "2:30 P.M",
+          checkoutTime: pattern < 12 ? "2:00 P.M" : "3:00 P.M",
           arrival: "Ontime" as const,
-          totalWorkingHour: "4:15 Hrs",
-        };
-      } else if (randomSeed === 4) {
-        // 10% late
-        return {
-          ...employee,
-          status: "PRESENT" as const,
-          checkInTime: "11:30 A.M",
-          checkoutTime: "7:15 P.M",
-          arrival: "Late" as const,
-          totalWorkingHour: "7:45 Hrs",
+          totalWorkingHour: pattern < 12 ? "3:45 Hrs" : "4:45 Hrs",
         };
       } else {
-        // 50% normal present
+        // 35% normal present with slight time variations
+        const checkInTimes = [
+          "9:45 A.M",
+          "10:00 A.M",
+          "10:15 A.M",
+          "10:30 A.M",
+        ];
+        const checkOutTimes = ["6:45 P.M", "7:00 P.M", "7:15 P.M", "7:30 P.M"];
+        const workingHours = ["9 Hrs", "9 Hrs", "9 Hrs", "9 Hrs"];
+        const timeIndex = pattern % 4;
+
         return {
           ...employee,
           status: "PRESENT" as const,
-          checkInTime: "10:15 A.M",
-          checkoutTime: "7:15 P.M",
-          arrival: "Ontime" as const,
-          totalWorkingHour: "9 Hrs",
+          checkInTime: checkInTimes[timeIndex],
+          checkoutTime: checkOutTimes[timeIndex],
+          arrival: timeIndex > 2 ? "Late" : ("Ontime" as const),
+          totalWorkingHour: workingHours[timeIndex],
         };
       }
     });
