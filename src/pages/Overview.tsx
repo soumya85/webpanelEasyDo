@@ -834,7 +834,13 @@ interface EmployeeAttendanceData {
   checkoutTime: string;
   arrival: "Ontime" | "Late" | "N/A";
   totalWorkingHour: string;
-  status: "PRESENT" | "HALF-DAY" | "CASUAL LEAVE" | "SICK LEAVE" | "ABSENT";
+  status:
+    | "PRESENT"
+    | "HALF-DAY"
+    | "CASUAL LEAVE"
+    | "SICK LEAVE"
+    | "ABSENT"
+    | "WEEK OFF";
   dateOfJoining: string;
 }
 
