@@ -1011,11 +1011,11 @@ const EmployeeAttendanceLog: React.FC = () => {
             <input
               type="text"
               placeholder="Enter employee name"
-              className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors"
+              className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors placeholder:text-gray-600"
             />
           </div>
           <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
-            <Settings className="h-5 w-5" />
+            <SlidersHorizontal className="h-5 w-5" />
           </button>
           <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg">
             <span className="text-sm text-gray-700">19/9/2024</span>
