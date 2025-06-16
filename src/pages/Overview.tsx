@@ -1367,10 +1367,7 @@ const EmployeeAttendanceLog: React.FC = () => {
   };
 
   return (
-    <div
-      ref={tableRef}
-      className="bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-6 w-full"
-    >
+    <div className="bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-6 w-full">
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-[#1a1a1a] font-inter text-[18px] font-semibold mb-4">
