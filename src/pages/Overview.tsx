@@ -1211,12 +1211,38 @@ const EmployeeAttendanceLog: React.FC = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-            <span className="text-sm text-gray-700">
-              {getCurrentDateString()}
-            </span>
-            <ChevronDownIcon className="h-4 w-4 text-gray-700" />
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-sm text-gray-700">
+                  {getCurrentDateString()}
+                </span>
+                <ChevronDownIcon className="h-4 w-4 text-gray-700" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              {dateOptions.map((option) => (
+                <DropdownMenuItem
+                  key={option.value}
+                  onClick={() => {
+                    setSelectedDate(option.date);
+                    setCurrentPage(1); // Reset to first page when date changes
+                  }}
+                  className={cn(
+                    "cursor-pointer flex items-center justify-between",
+                    option.date.toDateString() ===
+                      selectedDate.toDateString() && "bg-blue-50 text-blue-700",
+                  )}
+                >
+                  <span>{option.label}</span>
+                  <span className="text-xs text-gray-500">
+                    {option.date.getDate()}/{option.date.getMonth() + 1}/
+                    {option.date.getFullYear()}
+                  </span>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
