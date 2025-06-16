@@ -572,7 +572,31 @@ const EmployeeWorkingHourTrendsCard: React.FC<
 };
 
 // Employee of the Month Card Component
-const EmployeeOfTheMonthCard: React.FC = () => {
+interface EmployeeOfTheMonthCardProps {
+  dateRange: DateRange;
+}
+
+const EmployeeOfTheMonthCard: React.FC<EmployeeOfTheMonthCardProps> = ({
+  dateRange,
+}) => {
+  const employeeData = useMemo(
+    () => generateEmployeeOfTheMonthData(dateRange),
+    [dateRange],
+  );
+
+  // Format date range for display
+  const formatDateForDisplay = (date: Date) => {
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    });
+  };
+
+  const dateRangeDisplay =
+    dateRange.start.getTime() === dateRange.end.getTime()
+      ? formatDateForDisplay(dateRange.start)
+      : `${formatDateForDisplay(dateRange.start)} - ${formatDateForDisplay(dateRange.end)}`;
+
   return (
     <div
       className={cn(
@@ -586,7 +610,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
       <div className="mb-3">
         <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
           Employee of the month{" "}
-          <span className="text-[#4766E5] font-bold">- Sept 2024</span>
+          <span className="text-[#4766E5] font-bold">- {dateRangeDisplay}</span>
         </h3>
       </div>
 
@@ -600,7 +624,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
               "bg-[#1a1a1a] rounded-full text-white font-bold text-lg",
             )}
           >
-            SP
+            {employeeData.initials}
           </div>
           {/* Trophy Badge Icon */}
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-5 h-5 bg-[#4766E5] rounded-full flex items-center justify-center">
@@ -612,7 +636,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
         <div className="flex flex-col flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1">
             <h4 className="text-[#1a1a1a] font-inter text-[16px] font-bold leading-tight">
-              Sanjay Patel
+              {employeeData.name}
             </h4>
             <div className="flex items-center gap-1 flex-shrink-0">
               <svg
@@ -632,14 +656,16 @@ const EmployeeOfTheMonthCard: React.FC = () => {
           </div>
 
           <div className="text-[#6B7280] font-inter text-[12px] font-normal mb-1">
-            Ahmedabad office{" "}
+            {employeeData.office} office{" "}
             <span className="font-semibold text-[#1a1a1a]">Branch</span>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="text-[#6B7280] font-inter text-[12px] font-normal">
               Overall Employee Score:{" "}
-              <span className="font-bold text-[#1a1a1a]">2.76</span>
+              <span className="font-bold text-[#1a1a1a]">
+                {employeeData.score}
+              </span>
             </div>
           </div>
         </div>
