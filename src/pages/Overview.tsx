@@ -17,7 +17,7 @@ import {
   ChevronDown,
   Trophy,
   CheckSquare,
-  Calendar,
+  Calendar as CalendarIcon,
   CheckCircle,
   Search,
   SlidersHorizontal,
@@ -33,6 +33,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 
 // Date Range Types
 type DateRangeOption =
@@ -829,6 +835,7 @@ interface EmployeeAttendanceData {
   arrival: "Ontime" | "Late" | "N/A";
   totalWorkingHour: string;
   status: "PRESENT" | "HALF-DAY" | "CASUAL LEAVE" | "SICK LEAVE" | "ABSENT";
+  dateOfJoining: string;
 }
 
 const employeeAttendanceData: EmployeeAttendanceData[] = [
@@ -843,6 +850,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Ontime",
     totalWorkingHour: "10:45 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2018-03-15",
   },
   {
     id: "2",
@@ -855,6 +863,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Ontime",
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2020-07-22",
   },
   {
     id: "3",
@@ -867,6 +876,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "N/A",
     totalWorkingHour: "N/A",
     status: "CASUAL LEAVE",
+    dateOfJoining: "2019-11-08",
   },
   {
     id: "4",
@@ -879,6 +889,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Ontime",
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2021-01-10",
   },
   {
     id: "5",
@@ -891,6 +902,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "N/A",
     totalWorkingHour: "N/A",
     status: "ABSENT",
+    dateOfJoining: "2017-05-20",
   },
   {
     id: "6",
@@ -903,6 +915,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Late",
     totalWorkingHour: "8 Hrs",
     status: "HALF-DAY",
+    dateOfJoining: "2022-09-12",
   },
   {
     id: "7",
@@ -915,6 +928,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "N/A",
     totalWorkingHour: "N/A",
     status: "ABSENT",
+    dateOfJoining: "2020-02-28",
   },
   {
     id: "8",
@@ -927,6 +941,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Ontime",
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2019-06-15",
   },
   {
     id: "9",
@@ -939,6 +954,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "Late",
     totalWorkingHour: "8:35 Hrs",
     status: "PRESENT",
+    dateOfJoining: "2021-08-22",
   },
   {
     id: "10",
@@ -951,6 +967,72 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     arrival: "N/A",
     totalWorkingHour: "N/A",
     status: "SICK LEAVE",
+    dateOfJoining: "2020-11-30",
+  },
+  {
+    id: "11",
+    name: "Rahul Sharma",
+    designation: "Software Developer",
+    location: "Bangalore Branch",
+    initials: "RS",
+    checkInTime: "9:30 A.M",
+    checkoutTime: "6:30 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "9 Hrs",
+    status: "PRESENT",
+    dateOfJoining: "2022-01-15",
+  },
+  {
+    id: "12",
+    name: "Priya Patel",
+    designation: "HR Executive",
+    location: "Mumbai Branch",
+    initials: "PP",
+    checkInTime: "10:00 A.M",
+    checkoutTime: "7:00 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "9 Hrs",
+    status: "PRESENT",
+    dateOfJoining: "2021-03-10",
+  },
+  {
+    id: "13",
+    name: "Vikram Singh",
+    designation: "Marketing Manager",
+    location: "Delhi Branch",
+    initials: "VS",
+    checkInTime: "10:30 A.M",
+    checkoutTime: "8:00 P.M",
+    arrival: "Late",
+    totalWorkingHour: "9:30 Hrs",
+    status: "PRESENT",
+    dateOfJoining: "2018-09-05",
+  },
+  {
+    id: "14",
+    name: "Anita Das",
+    designation: "Finance Executive",
+    location: "Kolkata Branch",
+    initials: "AD",
+    checkInTime: "N/A",
+    checkoutTime: "N/A",
+    arrival: "N/A",
+    totalWorkingHour: "N/A",
+    status: "CASUAL LEAVE",
+    dateOfJoining: "2020-05-18",
+  },
+  {
+    id: "15",
+    name: "Suresh Kumar",
+    designation: "Operations Head",
+    location: "Chennai Branch",
+    initials: "SK",
+    checkInTime: "9:00 A.M",
+    checkoutTime: "6:00 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "9 Hrs",
+    status: "PRESENT",
+    dateOfJoining: "2017-12-08",
   },
 ];
 
@@ -1004,6 +1086,232 @@ const ArrivalBadge: React.FC<{
 const EmployeeAttendanceLog: React.FC = () => {
   const [sortBy, setSortBy] = useState<"alphabetical" | "date">("alphabetical");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+  // Get current date in the format shown in the UI
+  const getCurrentDateString = () => {
+    const date = selectedDate;
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  // Generate dynamic attendance data based on selected date
+  const generateAttendanceDataForDate = (date: Date) => {
+    const today = new Date();
+    const daysDiff = Math.floor(
+      (today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
+    );
+
+    return employeeAttendanceData.map((employee, index) => {
+      // Create more complex variation based on date and employee
+      const dateKey = (date.getDate() * date.getMonth() * (index + 1)) % 100;
+      const dayOfWeek = date.getDay();
+
+      // Weekend handling
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        // Sunday or Saturday
+        return {
+          ...employee,
+          status: "ABSENT" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      }
+
+      // Future dates
+      if (date > today) {
+        return {
+          ...employee,
+          status: "ABSENT" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      }
+
+      // Create different patterns based on date
+      const pattern = dateKey % 20;
+
+      // Monday patterns (more absences after weekend)
+      if (dayOfWeek === 1 && pattern < 6) {
+        // 30% higher absence on Mondays
+        return {
+          ...employee,
+          status: pattern < 3 ? "ABSENT" : ("CASUAL LEAVE" as const),
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      }
+
+      // Friday patterns (some half days)
+      if (dayOfWeek === 5 && pattern < 4) {
+        return {
+          ...employee,
+          status: "HALF-DAY" as const,
+          checkInTime: "10:15 A.M",
+          checkoutTime: pattern < 2 ? "1:00 P.M" : "2:30 P.M",
+          arrival: "Ontime" as const,
+          totalWorkingHour: pattern < 2 ? "2:45 Hrs" : "4:15 Hrs",
+        };
+      }
+
+      // Mid-week patterns vary by date
+      if (pattern < 3) {
+        // 15% absent
+        return {
+          ...employee,
+          status: "ABSENT" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      } else if (pattern < 5) {
+        // 10% casual leave
+        return {
+          ...employee,
+          status: "CASUAL LEAVE" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      } else if (pattern < 7) {
+        // 10% sick leave
+        return {
+          ...employee,
+          status: "SICK LEAVE" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      } else if (pattern < 11) {
+        // 20% late arrivals with varied times
+        const lateMinutes = (pattern - 7) * 15; // 0, 15, 30, 45 minutes late
+        const checkInTimes = [
+          "10:30 A.M",
+          "10:45 A.M",
+          "11:00 A.M",
+          "11:15 A.M",
+        ];
+        const workingHours = ["8:30 Hrs", "8:15 Hrs", "8 Hrs", "7:45 Hrs"];
+        const timeIndex = (pattern - 7) % 4;
+
+        return {
+          ...employee,
+          status: "PRESENT" as const,
+          checkInTime: checkInTimes[timeIndex],
+          checkoutTime: "7:15 P.M",
+          arrival: "Late" as const,
+          totalWorkingHour: workingHours[timeIndex],
+        };
+      } else if (pattern < 13) {
+        // 10% half day
+        return {
+          ...employee,
+          status: "HALF-DAY" as const,
+          checkInTime: "10:15 A.M",
+          checkoutTime: pattern < 12 ? "2:00 P.M" : "3:00 P.M",
+          arrival: "Ontime" as const,
+          totalWorkingHour: pattern < 12 ? "3:45 Hrs" : "4:45 Hrs",
+        };
+      } else {
+        // 35% normal present with slight time variations
+        const checkInTimes = [
+          "9:45 A.M",
+          "10:00 A.M",
+          "10:15 A.M",
+          "10:30 A.M",
+        ];
+        const checkOutTimes = ["6:45 P.M", "7:00 P.M", "7:15 P.M", "7:30 P.M"];
+        const workingHours = ["9 Hrs", "9 Hrs", "9 Hrs", "9 Hrs"];
+        const timeIndex = pattern % 4;
+
+        return {
+          ...employee,
+          status: "PRESENT" as const,
+          checkInTime: checkInTimes[timeIndex],
+          checkoutTime: checkOutTimes[timeIndex],
+          arrival: timeIndex > 2 ? "Late" : ("Ontime" as const),
+          totalWorkingHour: workingHours[timeIndex],
+        };
+      }
+    });
+  };
+
+  // Filter and sort employees
+  const filteredAndSortedEmployees = useMemo(() => {
+    // Generate dynamic data based on selected date
+    const dataToFilter = generateAttendanceDataForDate(selectedDate);
+
+    let filtered = dataToFilter.filter(
+      (employee) =>
+        employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.designation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.location.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+
+    // Sort based on selected criteria
+    filtered.sort((a, b) => {
+      if (sortBy === "alphabetical") {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        if (sortOrder === "asc") {
+          return nameA.localeCompare(nameB);
+        } else {
+          return nameB.localeCompare(nameA);
+        }
+      } else if (sortBy === "date") {
+        const dateA = new Date(a.dateOfJoining);
+        const dateB = new Date(b.dateOfJoining);
+        if (sortOrder === "asc") {
+          return dateA.getTime() - dateB.getTime();
+        } else {
+          return dateB.getTime() - dateA.getTime();
+        }
+      }
+      return 0;
+    });
+
+    return filtered;
+  }, [searchTerm, sortBy, sortOrder, selectedDate]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredAndSortedEmployees.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentEmployees = filteredAndSortedEmployees.slice(
+    startIndex,
+    endIndex,
+  );
+
+  // Handle sort change
+  const handleSortChange = (newSortBy: "alphabetical" | "date") => {
+    if (sortBy === newSortBy) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(newSortBy);
+      setSortOrder("asc");
+    }
+  };
+
+  // Handle rows per page change
+  const handleRowsPerPageChange = (newRowsPerPage: number) => {
+    setRowsPerPage(newRowsPerPage);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-6 w-full">
@@ -1022,6 +1330,8 @@ const EmployeeAttendanceLog: React.FC = () => {
             <input
               type="text"
               placeholder="Enter employee name"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors placeholder:text-gray-600"
             />
           </div>
@@ -1035,14 +1345,7 @@ const EmployeeAttendanceLog: React.FC = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuItem
-                onClick={() => {
-                  setSortBy("alphabetical");
-                  setSortOrder(
-                    sortBy === "alphabetical" && sortOrder === "asc"
-                      ? "desc"
-                      : "asc",
-                  );
-                }}
+                onClick={() => handleSortChange("alphabetical")}
                 className="flex items-center"
               >
                 <div className="flex items-center gap-2">
@@ -1073,12 +1376,7 @@ const EmployeeAttendanceLog: React.FC = () => {
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => {
-                  setSortBy("date");
-                  setSortOrder(
-                    sortBy === "date" && sortOrder === "asc" ? "desc" : "asc",
-                  );
-                }}
+                onClick={() => handleSortChange("date")}
                 className="flex items-center"
               >
                 <div className="flex items-center gap-2">
@@ -1103,10 +1401,34 @@ const EmployeeAttendanceLog: React.FC = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg">
-            <span className="text-sm text-gray-700">19/9/2024</span>
-            <ChevronDownIcon className="h-4 w-4 text-gray-700" />
-          </div>
+          <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+            <PopoverTrigger asChild>
+              <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                <CalendarIcon className="h-4 w-4 text-gray-600" />
+                <span className="text-sm text-gray-700">
+                  {getCurrentDateString()}
+                </span>
+                <ChevronDownIcon className="h-4 w-4 text-gray-700" />
+              </div>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="end">
+              <Calendar
+                mode="single"
+                selected={selectedDate}
+                onSelect={(date) => {
+                  if (date) {
+                    setSelectedDate(date);
+                    setCurrentPage(1); // Reset to first page when date changes
+                    setIsCalendarOpen(false); // Close calendar immediately after selection
+                  }
+                }}
+                initialFocus
+                disabled={(date) =>
+                  date > new Date() || date < new Date("1900-01-01")
+                }
+              />
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
 
@@ -1136,7 +1458,7 @@ const EmployeeAttendanceLog: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {employeeAttendanceData.map((employee, index) => (
+            {currentEmployees.map((employee, index) => (
               <tr
                 key={employee.id}
                 className={cn(
@@ -1207,19 +1529,53 @@ const EmployeeAttendanceLog: React.FC = () => {
       <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600">Rows per page:</span>
-          <div className="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md">
-            <span className="text-sm text-gray-700">10</span>
-            <ChevronDownIcon className="h-3 w-3 text-gray-400" />
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-sm text-gray-700">{rowsPerPage}</span>
+                <ChevronDownIcon className="h-3 w-3 text-gray-400" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              {[5, 10, 20, 50].map((rows) => (
+                <DropdownMenuItem
+                  key={rows}
+                  onClick={() => handleRowsPerPageChange(rows)}
+                  className={cn(
+                    "cursor-pointer",
+                    rowsPerPage === rows && "bg-gray-100",
+                  )}
+                >
+                  {rows}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-600">1-10 of 97</span>
+          <span className="text-sm text-gray-600">
+            {startIndex + 1}-
+            {Math.min(endIndex, filteredAndSortedEmployees.length)} of{" "}
+            {filteredAndSortedEmployees.length}
+          </span>
           <div className="flex items-center gap-2">
-            <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <span className="text-sm text-gray-600">1/10</span>
-            <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+            <span className="text-sm text-gray-600">
+              {currentPage}/{totalPages}
+            </span>
+            <button
+              onClick={() =>
+                setCurrentPage(Math.min(totalPages, currentPage + 1))
+              }
+              disabled={currentPage === totalPages}
+              className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
