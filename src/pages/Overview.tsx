@@ -363,92 +363,68 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
   return (
     <div
       className={cn(
-        "flex flex-col bg-white rounded-[10px]",
+        "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "w-full min-w-0",
-        "border border-gray-100",
+        "w-full min-w-0 h-[90px] sm:h-[105px] lg:h-[120px]",
       )}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-        <div className="flex flex-col">
-          <h3 className="text-[#1a1a1a] font-inter text-[16px] font-normal leading-tight">
+      {/* Compact Content */}
+      <div className="flex items-center gap-3 sm:gap-4 flex-1 px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5">
+        {/* Left Section - Title and Stats */}
+        <div className="flex flex-col justify-center min-w-0 flex-1">
+          <h3 className="text-[#283C50] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight mb-1">
             Employee Working Hour Trends{" "}
             <span className="text-[#4766E5] font-normal">- Sept 2024</span>
           </h3>
-        </div>
-        <div className="flex flex-col items-end text-right">
-          <div className="text-[#1a1a1a] font-inter text-[16px] font-bold">
-            Total Hour : <span className="text-[18px]">208</span>
+          <div className="text-[#283C50] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold mb-1">
+            Total Hour :{" "}
+            <span className="text-[12px] sm:text-[13px] lg:text-[14px]">
+              208
+            </span>
           </div>
-          <div className="text-[#1a1a1a] font-inter text-[12px] font-normal">
+          <div className="text-[#283C50] font-inter text-[9px] sm:text-[10px] lg:text-[11px] font-normal">
             Worked : <span className="text-[#22C55E] font-semibold">160</span>{" "}
             OT : <span className="text-[#3B82F6] font-semibold">14</span> Hrs
           </div>
         </div>
-      </div>
 
-      {/* Chart Content */}
-      <div className="flex-1 px-4 py-3 min-h-0 w-full relative">
-        <div className="h-full flex flex-col w-full">
-          {/* Chart */}
-          <div className="flex-1 w-full mb-3" style={{ minHeight: "120px" }}>
-            <ResponsiveContainer width="100%" height="100%" minHeight={120}>
-              <BarChart
-                data={workingHourData}
-                margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis
-                  dataKey="day"
-                  tick={{ fontSize: 10, fill: "#6B7280" }}
-                  axisLine={{ stroke: "#E5E7EB" }}
-                  height={25}
-                />
-                <YAxis
-                  domain={[0, 12]}
-                  tickFormatter={(value) => `${value}h`}
-                  tick={{ fontSize: 10, fill: "#6B7280" }}
-                  axisLine={{ stroke: "#E5E7EB" }}
-                  width={30}
-                />
-                <Tooltip
-                  formatter={(value) => [`${value}h`, ""]}
-                  labelFormatter={(label) => `Day ${label}`}
-                />
-                <Bar dataKey="Present" stackId="a" fill="#22C55E" />
-                <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
-                <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
-                <Bar dataKey="Holiday" stackId="a" fill="#EF4444" />
-                <Bar dataKey="OT" stackId="a" fill="#3B82F6" />
-                <Bar dataKey="RedFlags" stackId="a" fill="#DC2626" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+        {/* Right Section - Mini Chart */}
+        <div className="flex-shrink-0 w-24 sm:w-32 lg:w-40 h-12 sm:h-16 lg:h-20">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={workingHourData}
+              margin={{ top: 2, right: 2, left: 2, bottom: 2 }}
+            >
+              <Bar dataKey="Present" stackId="a" fill="#22C55E" />
+              <Bar dataKey="Leave" stackId="a" fill="#FB923C" />
+              <Bar dataKey="Absent" stackId="a" fill="#9CA3AF" />
+              <Bar dataKey="Holiday" stackId="a" fill="#EF4444" />
+              <Bar dataKey="OT" stackId="a" fill="#3B82F6" />
+              <Bar dataKey="RedFlags" stackId="a" fill="#DC2626" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-          {/* Legend */}
-          <div className="flex-shrink-0">
-            <div className="flex flex-wrap gap-4 justify-center">
-              {[
-                { name: "Present", color: "#22C55E" },
-                { name: "Leave", color: "#FB923C" },
-                { name: "Absent", color: "#9CA3AF" },
-                { name: "Holiday", color: "#EF4444" },
-                { name: "OT", color: "#3B82F6" },
-                { name: "Red Flags", color: "#DC2626" },
-              ].map((entry, index) => (
-                <div key={index} className="flex items-center gap-1">
-                  <div
-                    className="w-3 h-3 rounded-sm flex-shrink-0"
-                    style={{ backgroundColor: entry.color }}
-                  />
-                  <span className="text-[11px] text-[#1a1a1a] font-inter font-medium">
-                    {entry.name}
-                  </span>
-                </div>
-              ))}
+        {/* Legend */}
+        <div className="flex flex-col gap-1 flex-shrink-0">
+          {[
+            { name: "Present", color: "#22C55E" },
+            { name: "Leave", color: "#FB923C" },
+            { name: "Absent", color: "#9CA3AF" },
+            { name: "Holiday", color: "#EF4444" },
+            { name: "OT", color: "#3B82F6" },
+            { name: "Red Flags", color: "#DC2626" },
+          ].map((entry, index) => (
+            <div key={index} className="flex items-center gap-1">
+              <div
+                className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm flex-shrink-0"
+                style={{ backgroundColor: entry.color }}
+              />
+              <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#283C50] font-inter font-medium">
+                {entry.name}
+              </span>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
