@@ -333,30 +333,27 @@ const EmployeeOfTheMonthCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "px-3 pt-4 pb-4 sm:px-5 sm:pt-5 sm:pb-5 lg:px-6 lg:pt-6 lg:pb-6 h-[90px] sm:h-[105px] lg:h-[120px]",
-        "min-w-0 w-auto max-w-[400px]",
+        "p-5 lg:p-6 min-w-[300px] w-auto max-w-[400px]",
       )}
     >
       {/* Header */}
-      <div className="flex items-start justify-between mb-2 sm:mb-3">
-        <div className="flex flex-col min-w-0">
-          <h3 className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-tight whitespace-nowrap">
-            Employee of the month
-          </h3>
-          <span className="text-[#4766E5] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight whitespace-nowrap">
-            Sept 2024
-          </span>
-        </div>
+      <div className="mb-6">
+        <h3 className="text-[#283C50] font-inter text-[18px] lg:text-[20px] font-bold leading-tight">
+          Employee of the month
+        </h3>
+        <span className="text-[#4766E5] font-inter text-[16px] lg:text-[18px] font-normal leading-tight">
+          - Sept 2024
+        </span>
       </div>
 
       {/* Employee Info */}
-      <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+      <div className="flex items-start gap-4">
         {/* Avatar */}
         <div className="flex-shrink-0">
           <div
             className={cn(
-              "flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12",
-              "bg-[#283C50] rounded-full text-white font-bold text-xs sm:text-sm lg:text-base",
+              "flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20",
+              "bg-[#283C50] rounded-full text-white font-bold text-xl lg:text-2xl",
             )}
           >
             SP
@@ -364,19 +361,19 @@ const EmployeeOfTheMonthCard: React.FC = () => {
         </div>
 
         {/* Employee Details */}
-        <div className="flex flex-col flex-1 min-w-0 justify-center">
-          <div className="flex items-center gap-1 mb-1 min-w-0">
-            <h4 className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-tight whitespace-nowrap">
+        <div className="flex flex-col flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-2">
+            <h4 className="text-[#283C50] font-inter text-[18px] lg:text-[20px] font-bold leading-tight">
               Sanjay Patel
             </h4>
-            <div className="flex items-center gap-1 flex-shrink-0">
+            <div className="flex items-center gap-1 ml-auto">
               <svg
-                width="12"
-                height="12"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-3 h-3 sm:w-3.5 sm:h-3.5"
+                className="w-4 h-4 lg:w-5 lg:h-5"
               >
                 <path
                   d="M12 2L14.09 8.26L21 9L15.5 14.74L17 21.5L12 18.27L7 21.5L8.5 14.74L3 9L9.91 8.26L12 2Z"
@@ -387,21 +384,21 @@ const EmployeeOfTheMonthCard: React.FC = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-[#6B7280] font-inter text-[10px] sm:text-[11px] font-normal">
+              <span className="text-[#6B7280] font-inter text-[14px] lg:text-[16px] font-normal">
                 (0)
               </span>
             </div>
           </div>
 
-          <p className="text-[#6B7280] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight mb-1 whitespace-nowrap">
+          <p className="text-[#6B7280] font-inter text-[14px] lg:text-[16px] font-normal leading-tight mb-2">
             Ahmedabad office Branch
           </p>
 
-          <div className="flex items-center gap-1 whitespace-nowrap">
-            <span className="text-[#6B7280] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal">
-              Score:
+          <div className="flex items-center gap-1">
+            <span className="text-[#6B7280] font-inter text-[14px] lg:text-[16px] font-normal">
+              Overall Employee Score:
             </span>
-            <span className="text-[#283C50] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-bold">
+            <span className="text-[#283C50] font-inter text-[14px] lg:text-[16px] font-bold">
               2.76
             </span>
           </div>
