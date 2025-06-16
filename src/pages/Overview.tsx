@@ -199,6 +199,66 @@ const generateAttendanceStatusData = (dateRange: DateRange) => {
   ];
 };
 
+// Employee of the Month Data Generator
+const generateEmployeeOfTheMonthData = (dateRange: DateRange) => {
+  const employees = [
+    { name: "Sanjay Patel", initials: "SP", office: "Ahmedabad", score: 2.76 },
+    { name: "Priya Sharma", initials: "PS", office: "Mumbai", score: 2.85 },
+    { name: "Rajesh Kumar", initials: "RK", office: "Delhi", score: 2.69 },
+    { name: "Anita Singh", initials: "AS", office: "Bangalore", score: 2.91 },
+    { name: "Vikram Mehta", initials: "VM", office: "Chennai", score: 2.73 },
+  ];
+
+  // Select employee based on date range
+  const dateStr = dateRange.start.toISOString().slice(0, 10);
+  const index =
+    Math.abs(dateStr.split("").reduce((a, b) => a + b.charCodeAt(0), 0)) %
+    employees.length;
+
+  return employees[index];
+};
+
+// Working Hour Trends Data Generator
+const generateWorkingHourTrendsData = (dateRange: DateRange) => {
+  const daysDiff =
+    Math.ceil(
+      (dateRange.end.getTime() - dateRange.start.getTime()) /
+        (1000 * 60 * 60 * 24),
+    ) + 1;
+
+  // Generate data points based on date range
+  const dataPoints = Math.min(Math.max(3, Math.floor(daysDiff / 7)), 5);
+  const data = [];
+
+  for (let i = 0; i < dataPoints; i++) {
+    const day = Math.floor((i + 1) * (daysDiff / dataPoints));
+    data.push({
+      day: day,
+      Present: Math.floor(4 + Math.random() * 4), // 4-8 hours
+      Leave: Math.floor(Math.random() * 3), // 0-3 hours
+      Absent: Math.floor(Math.random() * 2), // 0-2 hours
+      Holiday: i === 2 ? Math.floor(Math.random() * 3) : 0, // Holiday in middle
+      OT: Math.floor(Math.random() * 3), // 0-3 OT hours
+      RedFlags: Math.floor(Math.random() * 2), // 0-2 red flags
+    });
+  }
+
+  return data;
+};
+
+// Calculate working hour summary based on trends data
+const calculateWorkingHourSummary = (trendsData: any[]) => {
+  const totalWorked = trendsData.reduce((sum, day) => sum + day.Present, 0);
+  const totalOT = trendsData.reduce((sum, day) => sum + day.OT, 0);
+  const totalPossibleHours = trendsData.length * 8; // 8 hours per day
+
+  return {
+    totalHours: totalPossibleHours,
+    workedHours: totalWorked,
+    overtimeHours: totalOT,
+  };
+};
+
 const generateSalaryRangeData = (dateRange: DateRange) => {
   return [
     {
