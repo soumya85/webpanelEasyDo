@@ -1309,11 +1309,23 @@ const EmployeeAttendanceLog: React.FC = () => {
             {filteredAndSortedEmployees.length}
           </span>
           <div className="flex items-center gap-2">
-            <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <span className="text-sm text-gray-600">1/10</span>
-            <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+            <span className="text-sm text-gray-600">
+              {currentPage}/{totalPages}
+            </span>
+            <button
+              onClick={() =>
+                setCurrentPage(Math.min(totalPages, currentPage + 1))
+              }
+              disabled={currentPage === totalPages}
+              className="p-1 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
