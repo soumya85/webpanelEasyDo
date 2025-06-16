@@ -368,8 +368,8 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         "w-full min-w-0 h-[90px] sm:h-[105px] lg:h-[120px]",
       )}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 border-b border-gray-100">
+      {/* Header - Made more compact */}
+      <div className="flex items-center justify-between px-2 py-0.5 sm:px-3 sm:py-1 lg:px-4 lg:py-1 border-b border-gray-100 flex-shrink-0">
         <div className="flex flex-col">
           <h3 className="text-[#1a1a1a] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal leading-tight">
             Employee Working Hour Trends{" "}
@@ -390,10 +390,10 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
         </div>
       </div>
 
-      {/* Chart Content */}
-      <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 flex-1">
-        {/* Chart */}
-        <div className="flex-1" style={{ minHeight: "50px", height: "50px" }}>
+      {/* Chart Content - Expanded to take more space */}
+      <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1 lg:px-4 lg:py-1 flex-1">
+        {/* Chart - Increased height */}
+        <div className="flex-1" style={{ minHeight: "65px", height: "65px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
