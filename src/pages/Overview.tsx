@@ -1280,7 +1280,7 @@ const EmployeeAttendanceLog: React.FC = () => {
           <Popover>
             <PopoverTrigger asChild>
               <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                <Calendar className="h-4 w-4 text-gray-600" />
+                <CalendarIcon className="h-4 w-4 text-gray-600" />
                 <span className="text-sm text-gray-700">
                   {getCurrentDateString()}
                 </span>
