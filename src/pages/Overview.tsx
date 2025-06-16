@@ -373,7 +373,7 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       className={cn(
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-        "w-full min-w-0 h-[130px] sm:h-[145px] lg:h-[160px]",
+        "w-full min-w-0 h-[110px] sm:h-[125px] lg:h-[140px]",
       )}
     >
       {/* Header - Made more compact */}
@@ -401,11 +401,11 @@ const EmployeeWorkingHourTrendsCard: React.FC = () => {
       {/* Chart Content - Expanded to take more space */}
       <div className="flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-1 lg:px-4 lg:py-1 flex-1">
         {/* Chart - Increased height */}
-        <div className="flex-1" style={{ minHeight: "100px", height: "100px" }}>
+        <div className="flex-1" style={{ minHeight: "90px", height: "90px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={workingHourData}
-              margin={{ top: 35, right: 2, left: 15, bottom: 10 }}
+              margin={{ top: 15, right: 2, left: 15, bottom: 10 }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"
