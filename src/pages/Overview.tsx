@@ -334,7 +334,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
         "flex flex-col bg-white rounded-[10px]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
         "px-3 pt-3 pb-3 sm:px-4 sm:pt-4 sm:pb-4 lg:px-5 lg:pt-5 lg:pb-5 h-[90px] sm:h-[105px] lg:h-[120px]",
-        "min-w-[280px] w-auto max-w-[380px]",
+        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
       )}
     >
       {/* Header */}
@@ -738,9 +738,9 @@ const Overview: React.FC = () => {
         {/* Third KPI Cards Row */}
         <div
           className={cn(
-            "flex flex-row flex-wrap",
-            "gap-3 sm:gap-4 lg:gap-5",
-            "justify-start items-stretch",
+            "grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap lg:flex-nowrap",
+            "gap-3 sm:gap-4 lg:gap-5 w-full",
+            "sm:justify-start sm:items-stretch self-stretch",
           )}
         >
           <KPICard
