@@ -834,7 +834,13 @@ interface EmployeeAttendanceData {
   checkoutTime: string;
   arrival: "Ontime" | "Late" | "N/A";
   totalWorkingHour: string;
-  status: "PRESENT" | "HALF-DAY" | "CASUAL LEAVE" | "SICK LEAVE" | "ABSENT";
+  status:
+    | "PRESENT"
+    | "HALF-DAY"
+    | "CASUAL LEAVE"
+    | "SICK LEAVE"
+    | "ABSENT"
+    | "WEEK OFF";
   dateOfJoining: string;
 }
 
@@ -1045,6 +1051,7 @@ const StatusBadge: React.FC<{ status: EmployeeAttendanceData["status"] }> = ({
     "CASUAL LEAVE": "border-orange-500 text-orange-600 bg-orange-50",
     "SICK LEAVE": "border-yellow-500 text-yellow-600 bg-yellow-50",
     ABSENT: "border-gray-500 text-gray-600 bg-gray-50",
+    "WEEK OFF": "border-blue-500 text-blue-600 bg-blue-50",
   };
 
   return (
@@ -1104,9 +1111,6 @@ const EmployeeAttendanceLog: React.FC = () => {
   // Generate dynamic attendance data based on selected date
   const generateAttendanceDataForDate = (date: Date) => {
     const today = new Date();
-    const daysDiff = Math.floor(
-      (today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
-    );
 
     return employeeAttendanceData.map((employee, index) => {
       // Create more complex variation based on date and employee
@@ -1114,11 +1118,21 @@ const EmployeeAttendanceLog: React.FC = () => {
       const dayOfWeek = date.getDay();
 
       // Weekend handling
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        // Sunday or Saturday
+      if (dayOfWeek === 0) {
+        // Sunday
         return {
           ...employee,
-          status: "ABSENT" as const,
+          status: "WEEK OFF" as const,
+          checkInTime: "N/A",
+          checkoutTime: "N/A",
+          arrival: "N/A" as const,
+          totalWorkingHour: "N/A",
+        };
+      } else if (dayOfWeek === 6) {
+        // Saturday
+        return {
+          ...employee,
+          status: "WEEK OFF" as const,
           checkInTime: "N/A",
           checkoutTime: "N/A",
           arrival: "N/A" as const,
@@ -1126,49 +1140,38 @@ const EmployeeAttendanceLog: React.FC = () => {
         };
       }
 
-      // Future dates
-      if (date > today) {
-        return {
-          ...employee,
-          status: "ABSENT" as const,
-          checkInTime: "N/A",
-          checkoutTime: "N/A",
-          arrival: "N/A" as const,
-          totalWorkingHour: "N/A",
-        };
-      }
+      // Create better balanced patterns based on date and employee
+      const pattern = (dateKey + index * 7) % 100; // Better distribution
 
-      // Create different patterns based on date
-      const pattern = dateKey % 20;
+      // Special day patterns with reduced impact
+      let adjustedPattern = pattern;
 
-      // Monday patterns (more absences after weekend)
-      if (dayOfWeek === 1 && pattern < 6) {
-        // 30% higher absence on Mondays
-        return {
-          ...employee,
-          status: pattern < 3 ? "ABSENT" : ("CASUAL LEAVE" as const),
-          checkInTime: "N/A",
-          checkoutTime: "N/A",
-          arrival: "N/A" as const,
-          totalWorkingHour: "N/A",
-        };
+      // Monday patterns (slightly more absences, but not too many)
+      if (dayOfWeek === 1) {
+        // Only 10% extra chance for absence/leave on Mondays
+        if (pattern < 5) {
+          adjustedPattern = pattern + 2; // Shift some people to absent/leave categories
+        }
       }
 
       // Friday patterns (some half days)
-      if (dayOfWeek === 5 && pattern < 4) {
-        return {
-          ...employee,
-          status: "HALF-DAY" as const,
-          checkInTime: "10:15 A.M",
-          checkoutTime: pattern < 2 ? "1:00 P.M" : "2:30 P.M",
-          arrival: "Ontime" as const,
-          totalWorkingHour: pattern < 2 ? "2:45 Hrs" : "4:15 Hrs",
-        };
+      if (dayOfWeek === 5) {
+        // 15% chance for half days on Fridays
+        if (pattern >= 85 && pattern < 100) {
+          return {
+            ...employee,
+            status: "HALF-DAY" as const,
+            checkInTime: "10:15 A.M",
+            checkoutTime: pattern < 92 ? "1:00 P.M" : "2:30 P.M",
+            arrival: "Ontime" as const,
+            totalWorkingHour: pattern < 92 ? "2:45 Hrs" : "4:15 Hrs",
+          };
+        }
       }
 
-      // Mid-week patterns vary by date
-      if (pattern < 3) {
-        // 15% absent
+      // Main distribution logic (applies to all days)
+      if (adjustedPattern < 8) {
+        // 8% absent
         return {
           ...employee,
           status: "ABSENT" as const,
@@ -1177,8 +1180,8 @@ const EmployeeAttendanceLog: React.FC = () => {
           arrival: "N/A" as const,
           totalWorkingHour: "N/A",
         };
-      } else if (pattern < 5) {
-        // 10% casual leave
+      } else if (adjustedPattern < 15) {
+        // 7% casual leave
         return {
           ...employee,
           status: "CASUAL LEAVE" as const,
@@ -1187,8 +1190,8 @@ const EmployeeAttendanceLog: React.FC = () => {
           arrival: "N/A" as const,
           totalWorkingHour: "N/A",
         };
-      } else if (pattern < 7) {
-        // 10% sick leave
+      } else if (adjustedPattern < 20) {
+        // 5% sick leave
         return {
           ...employee,
           status: "SICK LEAVE" as const,
@@ -1197,9 +1200,9 @@ const EmployeeAttendanceLog: React.FC = () => {
           arrival: "N/A" as const,
           totalWorkingHour: "N/A",
         };
-      } else if (pattern < 11) {
-        // 20% late arrivals with varied times
-        const lateMinutes = (pattern - 7) * 15; // 0, 15, 30, 45 minutes late
+      } else if (adjustedPattern < 35) {
+        // 15% late arrivals with varied times
+        const lateIndex = adjustedPattern % 4;
         const checkInTimes = [
           "10:30 A.M",
           "10:45 A.M",
@@ -1207,44 +1210,60 @@ const EmployeeAttendanceLog: React.FC = () => {
           "11:15 A.M",
         ];
         const workingHours = ["8:30 Hrs", "8:15 Hrs", "8 Hrs", "7:45 Hrs"];
-        const timeIndex = (pattern - 7) % 4;
 
         return {
           ...employee,
           status: "PRESENT" as const,
-          checkInTime: checkInTimes[timeIndex],
+          checkInTime: checkInTimes[lateIndex],
           checkoutTime: "7:15 P.M",
           arrival: "Late" as const,
-          totalWorkingHour: workingHours[timeIndex],
+          totalWorkingHour: workingHours[lateIndex],
         };
-      } else if (pattern < 13) {
+      } else if (adjustedPattern < 45) {
         // 10% half day
         return {
           ...employee,
           status: "HALF-DAY" as const,
           checkInTime: "10:15 A.M",
-          checkoutTime: pattern < 12 ? "2:00 P.M" : "3:00 P.M",
+          checkoutTime: adjustedPattern < 40 ? "2:00 P.M" : "3:00 P.M",
           arrival: "Ontime" as const,
-          totalWorkingHour: pattern < 12 ? "3:45 Hrs" : "4:45 Hrs",
+          totalWorkingHour: adjustedPattern < 40 ? "3:45 Hrs" : "4:45 Hrs",
         };
       } else {
-        // 35% normal present with slight time variations
+        // 55% normal present with slight time variations
+        const timeIndex = adjustedPattern % 6;
         const checkInTimes = [
+          "9:30 A.M",
           "9:45 A.M",
           "10:00 A.M",
           "10:15 A.M",
-          "10:30 A.M",
+          "10:15 A.M",
+          "10:15 A.M",
         ];
-        const checkOutTimes = ["6:45 P.M", "7:00 P.M", "7:15 P.M", "7:30 P.M"];
-        const workingHours = ["9 Hrs", "9 Hrs", "9 Hrs", "9 Hrs"];
-        const timeIndex = pattern % 4;
+        const checkOutTimes = [
+          "6:30 P.M",
+          "6:45 P.M",
+          "7:00 P.M",
+          "7:15 P.M",
+          "7:30 P.M",
+          "7:45 P.M",
+        ];
+        const workingHours = [
+          "9 Hrs",
+          "9 Hrs",
+          "9 Hrs",
+          "9 Hrs",
+          "9:15 Hrs",
+          "9:30 Hrs",
+        ];
 
         return {
           ...employee,
           status: "PRESENT" as const,
           checkInTime: checkInTimes[timeIndex],
           checkoutTime: checkOutTimes[timeIndex],
-          arrival: timeIndex > 2 ? "Late" : ("Ontime" as const),
+          arrival:
+            timeIndex === 0 || timeIndex >= 3 ? "Ontime" : ("Ontime" as const),
           totalWorkingHour: workingHours[timeIndex],
         };
       }
