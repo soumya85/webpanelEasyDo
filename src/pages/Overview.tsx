@@ -1208,7 +1208,7 @@ const EmployeeAttendanceLog: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {employeeAttendanceData.map((employee, index) => (
+            {currentEmployees.map((employee, index) => (
               <tr
                 key={employee.id}
                 className={cn(
