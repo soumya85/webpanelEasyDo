@@ -412,46 +412,34 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
 };
 
 // Employee Working Hour Trends Card Component
-const EmployeeWorkingHourTrendsCard: React.FC = () => {
-  const workingHourData = [
-    { day: 1, Present: 6, Leave: 1, Absent: 0, Holiday: 0, OT: 1, RedFlags: 0 },
-    {
-      day: 8,
-      Present: 5,
-      Leave: 2,
-      Absent: 1,
-      Holiday: 0,
-      OT: 1.5,
-      RedFlags: 0.5,
-    },
-    {
-      day: 15,
-      Present: 4,
-      Leave: 0,
-      Absent: 2,
-      Holiday: 2,
-      OT: 0,
-      RedFlags: 0,
-    },
-    {
-      day: 22,
-      Present: 7,
-      Leave: 0.5,
-      Absent: 0,
-      Holiday: 0,
-      OT: 2,
-      RedFlags: 0.5,
-    },
-    {
-      day: 29,
-      Present: 5.5,
-      Leave: 1.5,
-      Absent: 0.5,
-      Holiday: 0,
-      OT: 1.5,
-      RedFlags: 1,
-    },
-  ];
+interface EmployeeWorkingHourTrendsCardProps {
+  dateRange: DateRange;
+}
+
+const EmployeeWorkingHourTrendsCard: React.FC<
+  EmployeeWorkingHourTrendsCardProps
+> = ({ dateRange }) => {
+  const workingHourData = useMemo(
+    () => generateWorkingHourTrendsData(dateRange),
+    [dateRange],
+  );
+  const summary = useMemo(
+    () => calculateWorkingHourSummary(workingHourData),
+    [workingHourData],
+  );
+
+  // Format date range for display
+  const formatDateForDisplay = (date: Date) => {
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    });
+  };
+
+  const dateRangeDisplay =
+    dateRange.start.getTime() === dateRange.end.getTime()
+      ? formatDateForDisplay(dateRange.start)
+      : `${formatDateForDisplay(dateRange.start)} - ${formatDateForDisplay(dateRange.end)}`;
 
   return (
     <div
