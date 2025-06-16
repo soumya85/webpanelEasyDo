@@ -221,17 +221,21 @@ const generateEmployeeOfTheMonthData = (dateRange: DateRange) => {
 };
 
 // Working Hour Trends Data Generator
-const generateWorkingHourTrendsData = (dateRange: DateRange) => {
+const generateWorkingHourTrendsData = () => {
   // Always use the same day markers as shown in the design: 1, 8, 15, 22, 29
   const fixedDays = [1, 8, 15, 22, 29];
 
+  // Use current month/year to generate data, so it only changes monthly
+  const currentDate = new Date();
+  const monthYear = `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
+
   // Generate data for each fixed day marker
   const data = fixedDays.map((day, index) => {
-    // Create a seed based on the date range to ensure data changes with filter
-    const dateSeed =
-      dateRange.start.getTime() + dateRange.end.getTime() + index;
+    // Create a seed based on the current month/year to ensure data changes only monthly
+    const monthlySeed =
+      monthYear.split("").reduce((a, b) => a + b.charCodeAt(0), 0) + index;
     const random = () => {
-      const x = Math.sin(dateSeed + index * 1000) * 10000;
+      const x = Math.sin(monthlySeed + index * 1000) * 10000;
       return x - Math.floor(x);
     };
 
