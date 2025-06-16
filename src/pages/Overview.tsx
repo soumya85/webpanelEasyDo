@@ -605,7 +605,7 @@ const EmployeeOfTheMonthCard: React.FC<EmployeeOfTheMonthCardProps> = ({
       <div className="mb-3">
         <h3 className="text-[#1a1a1a] font-inter text-[14px] font-bold leading-tight">
           Employee of the month{" "}
-          <span className="text-[#4766E5] font-bold">- {dateRangeDisplay}</span>
+          <span className="text-[#4766E5] font-bold">- {monthDisplay}</span>
         </h3>
       </div>
 
