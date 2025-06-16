@@ -318,7 +318,7 @@ const KPICard: React.FC<KPICardProps> = ({ icon, value, label }) => {
         <div className="text-[#283C50] text-[24px] sm:text-[32px] lg:text-[40px] font-bold leading-tight lg:leading-[64px] font-inter">
           {value}
         </div>
-        <div className="text-[#4B5563] text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-[16px] sm:leading-[18px] lg:leading-[19.2px] font-inter">
+        <div className="text-[#4B5563] text-[13px] sm:text-[14px] lg:text-[15px] font-medium leading-[16px] sm:leading-[18px] lg:leading-[19.2px] font-inter -mt-3">
           {label}
         </div>
       </div>
