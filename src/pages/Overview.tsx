@@ -521,7 +521,7 @@ const EmployeeOfTheMonthCard: React.FC = () => {
             SP
           </div>
           {/* Trophy Badge Icon */}
-          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-5 bg-[#4766E5] rounded-full flex items-center justify-center">
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-5 h-5 bg-[#4766E5] rounded-full flex items-center justify-center">
             <Trophy className="w-3 h-3 text-white" />
           </div>
         </div>
@@ -642,7 +642,7 @@ const formatCurrency = (value: number) => {
   if (value >= 100000) {
     return `₹${(value / 100000).toFixed(0)}L`;
   }
-  return `₹${value.toLocaleString()}`;
+  return `���${value.toLocaleString()}`;
 };
 
 // Icon Components (Responsive)
