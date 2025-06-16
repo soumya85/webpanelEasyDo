@@ -1027,85 +1027,9 @@ const EmployeeAttendanceLog: React.FC = () => {
             />
           </div>
 
-          {/* Sort Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="p-2 text-gray-700 hover:text-gray-900 transition-colors hover:bg-gray-100 rounded-lg">
-                <AudioLines className="h-5 w-5" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem
-                onClick={() => {
-                  setSortBy("alphabetical");
-                  setSortOrder(
-                    sortBy === "alphabetical" && sortOrder === "asc"
-                      ? "desc"
-                      : "asc",
-                  );
-                }}
-                className="flex items-center justify-between"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 flex items-center justify-center">
-                    <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
-                  </div>
-                  <span>Alphabetically</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <ArrowUp
-                    className={cn(
-                      "h-3 w-3",
-                      sortBy === "alphabetical" && sortOrder === "asc"
-                        ? "text-blue-600"
-                        : "text-gray-400",
-                    )}
-                  />
-                  <ArrowDown
-                    className={cn(
-                      "h-3 w-3",
-                      sortBy === "alphabetical" && sortOrder === "desc"
-                        ? "text-blue-600"
-                        : "text-gray-400",
-                    )}
-                  />
-                </div>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => {
-                  setSortBy("date");
-                  setSortOrder(
-                    sortBy === "date" && sortOrder === "asc" ? "desc" : "asc",
-                  );
-                }}
-                className="flex items-center justify-between"
-              >
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-gray-600" />
-                  <span>Date of Joining</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <ArrowUp
-                    className={cn(
-                      "h-3 w-3",
-                      sortBy === "date" && sortOrder === "asc"
-                        ? "text-blue-600"
-                        : "text-gray-400",
-                    )}
-                  />
-                  <ArrowDown
-                    className={cn(
-                      "h-3 w-3",
-                      sortBy === "date" && sortOrder === "desc"
-                        ? "text-blue-600"
-                        : "text-gray-400",
-                    )}
-                  />
-                </div>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
+          <button className="p-2 text-gray-700 hover:text-gray-900 transition-colors">
+            <SlidersHorizontal className="h-5 w-5" />
+          </button>
           <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg">
             <span className="text-sm text-gray-700">19/9/2024</span>
             <ChevronDownIcon className="h-4 w-4 text-gray-700" />
