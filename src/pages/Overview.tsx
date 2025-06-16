@@ -1106,9 +1106,6 @@ const EmployeeAttendanceLog: React.FC = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <button className="p-2 text-gray-700 hover:text-gray-900 transition-colors">
-            <SlidersHorizontal className="h-5 w-5" />
-          </button>
           <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg">
             <span className="text-sm text-gray-700">19/9/2024</span>
             <ChevronDownIcon className="h-4 w-4 text-gray-700" />
