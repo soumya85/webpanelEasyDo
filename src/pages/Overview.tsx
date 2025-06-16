@@ -334,23 +334,23 @@ const EmployeeOfTheMonthCard: React.FC = () => {
         "flex flex-col bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
         "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
         "px-3 pt-4 pb-4 sm:px-5 sm:pt-5 sm:pb-5 lg:px-6 lg:pt-6 lg:pb-6 h-[90px] sm:h-[105px] lg:h-[120px]",
-        "flex-1 min-w-0 sm:min-w-[280px] lg:min-w-[257px]",
+        "min-w-0 w-auto max-w-[400px]",
       )}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-2 sm:mb-3">
-        <div className="flex flex-col">
-          <h3 className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-tight">
+        <div className="flex flex-col min-w-0">
+          <h3 className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-tight whitespace-nowrap">
             Employee of the month
           </h3>
-          <span className="text-[#4766E5] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight">
+          <span className="text-[#4766E5] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight whitespace-nowrap">
             Sept 2024
           </span>
         </div>
       </div>
 
       {/* Employee Info */}
-      <div className="flex items-center gap-2 sm:gap-3 flex-1">
+      <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
         {/* Avatar */}
         <div className="flex-shrink-0">
           <div
@@ -365,8 +365,8 @@ const EmployeeOfTheMonthCard: React.FC = () => {
 
         {/* Employee Details */}
         <div className="flex flex-col flex-1 min-w-0 justify-center">
-          <div className="flex items-center gap-1 mb-1">
-            <h4 className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-tight truncate">
+          <div className="flex items-center gap-1 mb-1 min-w-0">
+            <h4 className="text-[#283C50] font-inter text-[13px] sm:text-[14px] lg:text-[15px] font-bold leading-tight whitespace-nowrap">
               Sanjay Patel
             </h4>
             <div className="flex items-center gap-1 flex-shrink-0">
@@ -393,11 +393,11 @@ const EmployeeOfTheMonthCard: React.FC = () => {
             </div>
           </div>
 
-          <p className="text-[#6B7280] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight mb-1 truncate">
+          <p className="text-[#6B7280] font-inter text-[11px] sm:text-[12px] lg:text-[13px] font-normal leading-tight mb-1 whitespace-nowrap">
             Ahmedabad office Branch
           </p>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 whitespace-nowrap">
             <span className="text-[#6B7280] font-inter text-[10px] sm:text-[11px] lg:text-[12px] font-normal">
               Score:
             </span>
