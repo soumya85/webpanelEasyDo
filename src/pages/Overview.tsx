@@ -732,6 +732,18 @@ const TotalHolidayIcon = () => (
   </div>
 );
 
+const PendingTasksIcon = () => (
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
+    <CheckSquare className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#4766E5]" />
+  </div>
+);
+
+const PendingApprovalsIcon = () => (
+  <div className="flex justify-center items-center flex-shrink-0 w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] lg:w-[50px] lg:h-[50px]">
+    <CheckCircle className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#4766E5]" />
+  </div>
+);
+
 const ChevronRightIcon = () => (
   <svg
     width="6"
