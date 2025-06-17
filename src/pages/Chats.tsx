@@ -2497,6 +2497,7 @@ const ChatContactsList: React.FC<{
   onSearchChange: (query: string) => void;
   selectedFilter: string;
   onFilterChange: (filter: string) => void;
+  hideHeader?: boolean;
 }> = ({
   chatItems,
   selectedChat,
@@ -2505,6 +2506,7 @@ const ChatContactsList: React.FC<{
   onSearchChange,
   selectedFilter,
   onFilterChange,
+  hideHeader = false,
 }) => {
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
