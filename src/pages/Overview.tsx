@@ -8,6 +8,8 @@ import {
   ChevronDownIcon,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  Trophy,
   Clock,
   MapPin,
   User,
