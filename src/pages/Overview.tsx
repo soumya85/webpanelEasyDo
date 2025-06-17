@@ -2153,8 +2153,52 @@ const Overview: React.FC = () => {
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
           {selectedEmployee && (
             <div className="bg-white rounded-lg overflow-hidden">
+              {/* Modal Header */}
+              <div className="flex items-start justify-between p-6 border-b border-gray-200">
+                <div className="flex items-center gap-4">
+                  {/* Employee Avatar */}
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                      {selectedEmployee.initials}
+                    </div>
+                    {/* Online indicator */}
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
+                  </div>
+
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-900 mb-1">
+                      {selectedEmployee.name}
+                    </h2>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {selectedEmployee.designation}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      ( {selectedEmployee.location} )
+                    </p>
+                  </div>
+                </div>
+
+                {/* Status Badge */}
+                <div className="flex items-center gap-3">
+                  <span
+                    className={cn(
+                      "px-3 py-1 rounded-md text-sm font-medium",
+                      selectedEmployee.status === "PRESENT"
+                        ? "bg-green-100 text-green-800 border border-green-200"
+                        : selectedEmployee.status === "ABSENT"
+                          ? "bg-red-100 text-red-800 border border-red-200"
+                          : selectedEmployee.status === "HALF-DAY"
+                            ? "bg-yellow-100 text-yellow-800 border border-yellow-200"
+                            : "bg-blue-100 text-blue-800 border border-blue-200",
+                    )}
+                  >
+                    {selectedEmployee.status.replace("_", " ")}
+                  </span>
+                </div>
+              </div>
+
               {/* Content Area */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
                 {/* Left Column - Attendance Details */}
                 <div className="space-y-6">
                   {/* Date Display */}
