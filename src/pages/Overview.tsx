@@ -961,6 +961,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Bhaskar Ghosh",
     overtimeApprovedAt: "7:15 P.M",
     branch: "Head Office",
+    authorityLevel: 1,
   },
   {
     id: "2",
@@ -975,6 +976,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2020-07-22",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "3",
@@ -989,6 +991,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "CASUAL LEAVE",
     dateOfJoining: "2019-11-08",
     branch: "Haldia",
+    authorityLevel: 4,
   },
   {
     id: "4",
@@ -1006,6 +1009,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Rajesh Mehta",
     overtimeApprovedAt: "8:30 P.M",
     branch: "Ahmedabad",
+    authorityLevel: 3,
   },
   {
     id: "5",
@@ -1020,6 +1024,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "ABSENT",
     dateOfJoining: "2017-05-20",
     branch: "Head Office",
+    authorityLevel: 5,
   },
   {
     id: "6",
@@ -1034,6 +1039,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "HALF-DAY",
     dateOfJoining: "2022-09-12",
     branch: "Head Office",
+    authorityLevel: 4,
   },
   {
     id: "7",
@@ -1048,6 +1054,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "ABSENT",
     dateOfJoining: "2020-02-28",
     branch: "Head Office",
+    authorityLevel: 4,
   },
   {
     id: "8",
@@ -1062,6 +1069,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2019-06-15",
     branch: "Head Office",
+    authorityLevel: 2,
   },
   {
     id: "9",
@@ -1076,6 +1084,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2021-08-22",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "10",
@@ -1090,6 +1099,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "SICK LEAVE",
     dateOfJoining: "2020-11-30",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "11",
@@ -1107,6 +1117,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Suresh Nair",
     overtimeApprovedAt: "8:00 P.M",
     branch: "Bangalore",
+    authorityLevel: 3,
   },
   {
     id: "12",
@@ -1121,6 +1132,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2021-03-10",
     branch: "Mumbai",
+    authorityLevel: 3,
   },
   {
     id: "13",
@@ -1138,6 +1150,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Anjali Verma",
     overtimeApprovedAt: "8:30 P.M",
     branch: "Delhi",
+    authorityLevel: 2,
   },
   {
     id: "14",
@@ -1152,6 +1165,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "CASUAL LEAVE",
     dateOfJoining: "2020-05-18",
     branch: "Kolkata",
+    authorityLevel: 3,
   },
   {
     id: "15",
@@ -1166,6 +1180,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2017-12-08",
     branch: "Chennai",
+    authorityLevel: 2,
   },
   {
     id: "16",
@@ -1183,6 +1198,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Mohit Agarwal",
     overtimeApprovedAt: "9:15 P.M",
     branch: "Jaipur",
+    authorityLevel: 3,
   },
   {
     id: "17",
@@ -1197,6 +1213,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2021-11-20",
     branch: "Pune",
+    authorityLevel: 3,
   },
 ];
 
