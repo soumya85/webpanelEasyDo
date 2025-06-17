@@ -2056,6 +2056,29 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
             </svg>
           </button>
         </div>
+
+        {/* Back to attendance log button */}
+        <div className="px-4 pb-4">
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            back to attendance log
+          </button>
+        </div>
       </div>
 
       {/* Profile Header */}
