@@ -582,6 +582,29 @@ const EmployeeWorkingHourTrendsCard: React.FC<
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+// Employee of the Month Card Component
+interface EmployeeOfTheMonthCardProps {
+  dateRange: DateRange;
+}
+
+const EmployeeOfTheMonthCard: React.FC<EmployeeOfTheMonthCardProps> = ({
+  dateRange,
+}) => {
+  const employeeData = useMemo(
+    () => generateEmployeeOfTheMonthData(dateRange),
+    [dateRange],
+  );
+
+  // Format date range for display
+  const formatDateForDisplay = (date: Date) => {
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    });
   };
 
   const monthDisplay = formatDateForDisplay(dateRange.start).toUpperCase();
@@ -1786,7 +1809,8 @@ const Overview: React.FC = () => {
   );
 
   // Modal state management
-  const [selectedEmployee, setSelectedEmployee] = useState<EmployeeAttendanceData | null>(null);
+  const [selectedEmployee, setSelectedEmployee] =
+    useState<EmployeeAttendanceData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Handle modal opening
@@ -2145,8 +2169,12 @@ const Overview: React.FC = () => {
                   <h3 className="text-lg font-semibold text-gray-900">
                     {selectedEmployee.name}
                   </h3>
-                  <p className="text-gray-600">{selectedEmployee.designation}</p>
-                  <p className="text-sm text-gray-500">{selectedEmployee.location}</p>
+                  <p className="text-gray-600">
+                    {selectedEmployee.designation}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {selectedEmployee.location}
+                  </p>
                 </div>
               </div>
 
@@ -2160,41 +2188,51 @@ const Overview: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Check-in Time:</span>
-                      <span className="font-medium">{selectedEmployee.checkInTime}</span>
+                      <span className="font-medium">
+                        {selectedEmployee.checkInTime}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Check-out Time:</span>
-                      <span className="font-medium">{selectedEmployee.checkoutTime}</span>
+                      <span className="font-medium">
+                        {selectedEmployee.checkoutTime}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Total Hours:</span>
-                      <span className="font-medium">{selectedEmployee.totalWorkingHour}</span>
+                      <span className="font-medium">
+                        {selectedEmployee.totalWorkingHour}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Arrival Status:</span>
-                      <span className={cn(
-                        "px-2 py-1 rounded-full text-xs font-medium",
-                        selectedEmployee.arrival === "Ontime"
-                          ? "bg-green-100 text-green-800"
-                          : selectedEmployee.arrival === "Late"
-                          ? "bg-red-100 text-red-800"
-                          : "bg-gray-100 text-gray-800"
-                      )}>
+                      <span
+                        className={cn(
+                          "px-2 py-1 rounded-full text-xs font-medium",
+                          selectedEmployee.arrival === "Ontime"
+                            ? "bg-green-100 text-green-800"
+                            : selectedEmployee.arrival === "Late"
+                              ? "bg-red-100 text-red-800"
+                              : "bg-gray-100 text-gray-800",
+                        )}
+                      >
                         {selectedEmployee.arrival}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Status:</span>
-                      <span className={cn(
-                        "px-2 py-1 rounded-full text-xs font-medium",
-                        selectedEmployee.status === "PRESENT"
-                          ? "bg-green-100 text-green-800"
-                          : selectedEmployee.status === "ABSENT"
-                          ? "bg-red-100 text-red-800"
-                          : selectedEmployee.status === "HALF-DAY"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-blue-100 text-blue-800"
-                      )}>
+                      <span
+                        className={cn(
+                          "px-2 py-1 rounded-full text-xs font-medium",
+                          selectedEmployee.status === "PRESENT"
+                            ? "bg-green-100 text-green-800"
+                            : selectedEmployee.status === "ABSENT"
+                              ? "bg-red-100 text-red-800"
+                              : selectedEmployee.status === "HALF-DAY"
+                                ? "bg-yellow-100 text-yellow-800"
+                                : "bg-blue-100 text-blue-800",
+                        )}
+                      >
                         {selectedEmployee.status.replace("_", " ")}
                       </span>
                     </div>
@@ -2214,13 +2252,22 @@ const Overview: React.FC = () => {
                     <div className="flex justify-between">
                       <span className="text-gray-600">Date of Joining:</span>
                       <span className="font-medium">
-                        {new Date(selectedEmployee.dateOfJoining).toLocaleDateString()}
+                        {new Date(
+                          selectedEmployee.dateOfJoining,
+                        ).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Experience:</span>
                       <span className="font-medium">
-                        {Math.floor((new Date().getTime() - new Date(selectedEmployee.dateOfJoining).getTime()) / (1000 * 60 * 60 * 24 * 365))} years
+                        {Math.floor(
+                          (new Date().getTime() -
+                            new Date(
+                              selectedEmployee.dateOfJoining,
+                            ).getTime()) /
+                            (1000 * 60 * 60 * 24 * 365),
+                        )}{" "}
+                        years
                       </span>
                     </div>
                     <div className="flex justify-between">
@@ -2229,10 +2276,10 @@ const Overview: React.FC = () => {
                         {selectedEmployee.designation.includes("Accountant")
                           ? "Finance"
                           : selectedEmployee.designation.includes("Developer")
-                          ? "Technology"
-                          : selectedEmployee.designation.includes("Manager")
-                          ? "Management"
-                          : "Operations"}
+                            ? "Technology"
+                            : selectedEmployee.designation.includes("Manager")
+                              ? "Management"
+                              : "Operations"}
                       </span>
                     </div>
                   </div>
