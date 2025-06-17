@@ -2699,7 +2699,15 @@ const Overview: React.FC = () => {
       </div>
 
       {/* Employee Details Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Dialog
+        open={isModalOpen}
+        onOpenChange={(open) => {
+          setIsModalOpen(open);
+          if (!open) {
+            setModalView("attendance");
+          }
+        }}
+      >
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
           <DialogHeader className="sr-only">
             <DialogTitle>Employee Details</DialogTitle>
