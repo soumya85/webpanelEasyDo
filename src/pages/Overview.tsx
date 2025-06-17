@@ -2040,8 +2040,16 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
             </svg>
             back to attendance log
           </button>
-          <h2 className="text-lg font-bold text-gray-900">Profile</h2>
-          <button className="p-2 text-gray-400">
+          <h2 className="text-lg font-bold text-gray-900 absolute left-1/2 transform -translate-x-1/2">
+            Profile
+          </h2>
+          <button
+            onClick={() => {
+              setIsModalOpen(false);
+              setModalView("attendance");
+            }}
+            className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
             <svg
               className="w-4 h-4"
               fill="none"
@@ -2052,7 +2060,7 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           </button>
