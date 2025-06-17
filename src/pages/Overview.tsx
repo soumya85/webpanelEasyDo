@@ -2172,9 +2172,26 @@ const Overview: React.FC = () => {
                   </div>
 
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-1">
-                      {selectedEmployee.name}
-                    </h2>
+                    <div className="flex items-center gap-3 mb-1">
+                      <h2 className="text-xl font-bold text-gray-900">
+                        {selectedEmployee.name}
+                      </h2>
+                      {/* Status Badge beside name */}
+                      <span
+                        className={cn(
+                          "px-3 py-1 rounded-md text-sm font-medium",
+                          selectedEmployee.status === "PRESENT"
+                            ? "bg-green-100 text-green-800 border border-green-200"
+                            : selectedEmployee.status === "ABSENT"
+                              ? "bg-red-100 text-red-800 border border-red-200"
+                              : selectedEmployee.status === "HALF-DAY"
+                                ? "bg-yellow-100 text-yellow-800 border border-yellow-200"
+                                : "bg-blue-100 text-blue-800 border border-blue-200",
+                        )}
+                      >
+                        {selectedEmployee.status.replace("_", " ")}
+                      </span>
+                    </div>
                     <p className="text-sm text-gray-600 mb-2">
                       {selectedEmployee.designation}
                     </p>
@@ -2182,24 +2199,6 @@ const Overview: React.FC = () => {
                       ( {selectedEmployee.location} )
                     </p>
                   </div>
-                </div>
-
-                {/* Status Badge */}
-                <div className="flex items-center gap-3">
-                  <span
-                    className={cn(
-                      "px-3 py-1 rounded-md text-sm font-medium",
-                      selectedEmployee.status === "PRESENT"
-                        ? "bg-green-100 text-green-800 border border-green-200"
-                        : selectedEmployee.status === "ABSENT"
-                          ? "bg-red-100 text-red-800 border border-red-200"
-                          : selectedEmployee.status === "HALF-DAY"
-                            ? "bg-yellow-100 text-yellow-800 border border-yellow-200"
-                            : "bg-blue-100 text-blue-800 border border-blue-200",
-                    )}
-                  >
-                    {selectedEmployee.status.replace("_", " ")}
-                  </span>
                 </div>
               </div>
 
