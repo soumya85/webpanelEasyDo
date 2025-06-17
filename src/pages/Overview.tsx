@@ -941,6 +941,7 @@ interface EmployeeAttendanceData {
   overtimeApprovedBy?: string;
   overtimeApprovedAt?: string;
   branch: string;
+  authorityLevel: number;
 }
 
 const employeeAttendanceData: EmployeeAttendanceData[] = [
@@ -960,6 +961,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Bhaskar Ghosh",
     overtimeApprovedAt: "7:15 P.M",
     branch: "Head Office",
+    authorityLevel: 1,
   },
   {
     id: "2",
@@ -974,6 +976,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2020-07-22",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "3",
@@ -988,6 +991,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "CASUAL LEAVE",
     dateOfJoining: "2019-11-08",
     branch: "Haldia",
+    authorityLevel: 3,
   },
   {
     id: "4",
@@ -1005,6 +1009,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Rajesh Mehta",
     overtimeApprovedAt: "8:30 P.M",
     branch: "Ahmedabad",
+    authorityLevel: 3,
   },
   {
     id: "5",
@@ -1019,6 +1024,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "ABSENT",
     dateOfJoining: "2017-05-20",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "6",
@@ -1033,6 +1039,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "HALF-DAY",
     dateOfJoining: "2022-09-12",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "7",
@@ -1047,6 +1054,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "ABSENT",
     dateOfJoining: "2020-02-28",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "8",
@@ -1061,6 +1069,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2019-06-15",
     branch: "Head Office",
+    authorityLevel: 2,
   },
   {
     id: "9",
@@ -1075,6 +1084,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2021-08-22",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "10",
@@ -1089,6 +1099,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "SICK LEAVE",
     dateOfJoining: "2020-11-30",
     branch: "Head Office",
+    authorityLevel: 3,
   },
   {
     id: "11",
@@ -1106,6 +1117,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Suresh Nair",
     overtimeApprovedAt: "8:00 P.M",
     branch: "Bangalore",
+    authorityLevel: 3,
   },
   {
     id: "12",
@@ -1120,6 +1132,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2021-03-10",
     branch: "Mumbai",
+    authorityLevel: 3,
   },
   {
     id: "13",
@@ -1137,6 +1150,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Anjali Verma",
     overtimeApprovedAt: "8:30 P.M",
     branch: "Delhi",
+    authorityLevel: 2,
   },
   {
     id: "14",
@@ -1151,6 +1165,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "CASUAL LEAVE",
     dateOfJoining: "2020-05-18",
     branch: "Kolkata",
+    authorityLevel: 3,
   },
   {
     id: "15",
@@ -1165,6 +1180,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2017-12-08",
     branch: "Chennai",
+    authorityLevel: 2,
   },
   {
     id: "16",
@@ -1182,6 +1198,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     overtimeApprovedBy: "Mohit Agarwal",
     overtimeApprovedAt: "9:15 P.M",
     branch: "Jaipur",
+    authorityLevel: 3,
   },
   {
     id: "17",
@@ -1196,6 +1213,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "PRESENT",
     dateOfJoining: "2021-11-20",
     branch: "Pune",
+    authorityLevel: 3,
   },
 ];
 
@@ -2005,7 +2023,32 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
         <div className="flex items-center justify-between p-4">
           <button
             onClick={onBack}
-            className="p-2 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors font-bold"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            back to attendance log
+          </button>
+          <h2 className="text-lg font-bold text-gray-900 absolute left-1/2 transform -translate-x-1/2">
+            Profile
+          </h2>
+          <button
+            onClick={() => {
+              setIsModalOpen(false);
+              setModalView("attendance");
+            }}
+            className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
           >
             <svg
               className="w-4 h-4"
@@ -2018,22 +2061,6 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
                 strokeLinejoin="round"
                 strokeWidth={2}
                 d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <h2 className="text-lg font-bold text-gray-900">Profile</h2>
-          <button className="p-2 text-gray-400">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
               />
             </svg>
           </button>
@@ -2073,7 +2100,7 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
 
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                Authority Level 1
+                Authority Level {employee.authorityLevel}
               </span>
               <div className="flex items-center gap-1 text-sm text-gray-600">
                 <span>OA Score : 0</span>
