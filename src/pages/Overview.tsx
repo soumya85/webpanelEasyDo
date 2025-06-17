@@ -2016,11 +2016,24 @@ const Overview: React.FC = () => {
   const [selectedEmployee, setSelectedEmployee] =
     useState<EmployeeAttendanceData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalView, setModalView] = useState<"attendance" | "profile">(
+    "attendance",
+  );
 
   // Handle modal opening
   const handleViewEmployee = (employee: EmployeeAttendanceData) => {
     setSelectedEmployee(employee);
+    setModalView("attendance");
     setIsModalOpen(true);
+  };
+
+  // Handle view switching
+  const handleViewFullProfile = () => {
+    setModalView("profile");
+  };
+
+  const handleBackToAttendance = () => {
+    setModalView("attendance");
   };
 
   return (
