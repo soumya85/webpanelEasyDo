@@ -3473,29 +3473,7 @@ const Chats: React.FC = () => {
       >
         {/* Full Width Controls Section */}
         <div className="w-full p-4 border-b border-gray-200 bg-white">
-          {/* Task Summary Cards Row */}
-          <div className="flex justify-end mb-3">
-            <div className="flex gap-3">
-              {taskSummaries.map((task) => (
-                <div
-                  key={task.id}
-                  className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
-                  style={{ minWidth: "70px" }}
-                >
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-gray-900 mb-1">
-                      {task.count}
-                    </div>
-                    <div className="text-xs text-gray-600 leading-tight">
-                      {task.title}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Main Row: Title, Search, and Filters */}
+          {/* Single Row: Title, Search, Filters, and Task Cards */}
           <div className="flex items-center gap-4">
             {/* Chats Title */}
             <h1 className="text-xl font-semibold text-gray-900 flex-shrink-0">
@@ -3503,7 +3481,7 @@ const Chats: React.FC = () => {
             </h1>
 
             {/* Search Bar */}
-            <div className="relative flex-shrink-0" style={{ width: "200px" }}>
+            <div className="relative flex-shrink-0" style={{ width: "180px" }}>
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 value={searchQuery}
@@ -3542,6 +3520,26 @@ const Chats: React.FC = () => {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Task Summary Cards */}
+            <div className="flex gap-2 flex-shrink-0">
+              {taskSummaries.map((task) => (
+                <div
+                  key={task.id}
+                  className="bg-white rounded-lg p-2 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
+                  style={{ minWidth: "60px" }}
+                >
+                  <div className="text-center">
+                    <div className="text-sm font-bold text-gray-900 mb-0.5">
+                      {task.count}
+                    </div>
+                    <div className="text-xs text-gray-600 leading-tight">
+                      {task.title}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
