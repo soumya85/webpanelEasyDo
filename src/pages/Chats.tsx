@@ -3492,7 +3492,7 @@ const Chats: React.FC = () => {
             </div>
 
             {/* Filter Buttons */}
-            <div className="flex gap-1 flex-1">
+            <div className="flex gap-2 flex-1">
               {filterTabs.map((filter) => {
                 const count = getFilterCount(filter);
                 return (
@@ -3500,7 +3500,7 @@ const Chats: React.FC = () => {
                     key={filter}
                     onClick={() => setSelectedFilter(filter)}
                     className={cn(
-                      "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1 whitespace-nowrap",
+                      "px-3 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-2 whitespace-nowrap",
                       selectedFilter === filter
                         ? "bg-blue-500 text-white"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200",
@@ -3509,7 +3509,7 @@ const Chats: React.FC = () => {
                     <span>{filter}</span>
                     <span
                       className={cn(
-                        "text-xs font-semibold px-1 py-0.5 rounded-full min-w-[18px] text-center",
+                        "text-xs font-bold px-2 py-0.5 rounded-full min-w-[20px] text-center",
                         selectedFilter === filter
                           ? "bg-white/20 text-white"
                           : "bg-blue-500 text-white",
@@ -3527,14 +3527,14 @@ const Chats: React.FC = () => {
               {taskSummaries.map((task) => (
                 <div
                   key={task.id}
-                  className="bg-white rounded-lg p-2 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
-                  style={{ minWidth: "60px" }}
+                  className="bg-gray-50 rounded-xl p-3 cursor-pointer hover:bg-gray-100 transition-colors border border-gray-200"
+                  style={{ minWidth: "65px" }}
                 >
                   <div className="text-center">
-                    <div className="text-sm font-bold text-gray-900 mb-0.5">
+                    <div className="text-xl font-bold text-blue-600 mb-1">
                       {task.count}
                     </div>
-                    <div className="text-xs text-gray-600 leading-tight">
+                    <div className="text-xs text-gray-600 leading-tight font-medium">
                       {task.title}
                     </div>
                   </div>
