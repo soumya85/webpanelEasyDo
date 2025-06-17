@@ -3350,6 +3350,9 @@ const CompanyActionDrawer: React.FC<{
 // ============================================================
 
 const Chats: React.FC = () => {
+  // Hooks
+  const location = useLocation();
+
   // For mobile: start with no chat selected (show list)
   // For desktop: start with first chat selected (show conversation)
   const [selectedChat, setSelectedChat] = useState<ChatItem | null>(null);
