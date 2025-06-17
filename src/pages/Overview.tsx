@@ -1805,6 +1805,17 @@ const Overview: React.FC = () => {
     [currentDateRange],
   );
 
+  // Modal state management
+  const [selectedEmployee, setSelectedEmployee] =
+    useState<EmployeeAttendanceData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Handle modal opening
+  const handleViewEmployee = (employee: EmployeeAttendanceData) => {
+    setSelectedEmployee(employee);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
       {/* Page Area */}
