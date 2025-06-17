@@ -937,6 +937,10 @@ interface EmployeeAttendanceData {
     | "ABSENT"
     | "WEEK OFF";
   dateOfJoining: string;
+  overtimeHours?: string;
+  overtimeApprovedBy?: string;
+  overtimeApprovedAt?: string;
+  branch: string;
 }
 
 const employeeAttendanceData: EmployeeAttendanceData[] = [
@@ -952,6 +956,10 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "10:45 Hrs",
     status: "PRESENT",
     dateOfJoining: "2018-03-15",
+    overtimeHours: "1:45 Hrs",
+    overtimeApprovedBy: "Bhaskar Ghosh",
+    overtimeApprovedAt: "7:15 P.M",
+    branch: "Head Office",
   },
   {
     id: "2",
@@ -965,6 +973,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2020-07-22",
+    branch: "Head Office",
   },
   {
     id: "3",
@@ -978,6 +987,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "CASUAL LEAVE",
     dateOfJoining: "2019-11-08",
+    branch: "Haldia",
   },
   {
     id: "4",
@@ -986,11 +996,15 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Ahmedabad Branch",
     initials: "AP",
     checkInTime: "10:15 A.M",
-    checkoutTime: "7:15 P.M",
+    checkoutTime: "8:30 P.M",
     arrival: "Ontime",
-    totalWorkingHour: "9 Hrs",
+    totalWorkingHour: "10:15 Hrs",
     status: "PRESENT",
     dateOfJoining: "2021-01-10",
+    overtimeHours: "1:15 Hrs",
+    overtimeApprovedBy: "Rajesh Mehta",
+    overtimeApprovedAt: "8:30 P.M",
+    branch: "Ahmedabad",
   },
   {
     id: "5",
@@ -1004,6 +1018,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "ABSENT",
     dateOfJoining: "2017-05-20",
+    branch: "Head Office",
   },
   {
     id: "6",
@@ -1017,6 +1032,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "8 Hrs",
     status: "HALF-DAY",
     dateOfJoining: "2022-09-12",
+    branch: "Head Office",
   },
   {
     id: "7",
@@ -1030,6 +1046,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "ABSENT",
     dateOfJoining: "2020-02-28",
+    branch: "Head Office",
   },
   {
     id: "8",
@@ -1043,6 +1060,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2019-06-15",
+    branch: "Head Office",
   },
   {
     id: "9",
@@ -1051,11 +1069,12 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Head Office",
     initials: "RS",
     checkInTime: "10:40 A.M",
-    checkoutTime: "7:15P.M",
+    checkoutTime: "7:15 P.M",
     arrival: "Late",
     totalWorkingHour: "8:35 Hrs",
     status: "PRESENT",
     dateOfJoining: "2021-08-22",
+    branch: "Head Office",
   },
   {
     id: "10",
@@ -1069,6 +1088,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "SICK LEAVE",
     dateOfJoining: "2020-11-30",
+    branch: "Head Office",
   },
   {
     id: "11",
@@ -1077,11 +1097,15 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Bangalore Branch",
     initials: "RS",
     checkInTime: "9:30 A.M",
-    checkoutTime: "6:30 P.M",
+    checkoutTime: "8:00 P.M",
     arrival: "Ontime",
-    totalWorkingHour: "9 Hrs",
+    totalWorkingHour: "10:30 Hrs",
     status: "PRESENT",
     dateOfJoining: "2022-01-15",
+    overtimeHours: "1:30 Hrs",
+    overtimeApprovedBy: "Suresh Nair",
+    overtimeApprovedAt: "8:00 P.M",
+    branch: "Bangalore",
   },
   {
     id: "12",
@@ -1095,6 +1119,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2021-03-10",
+    branch: "Mumbai",
   },
   {
     id: "13",
@@ -1103,11 +1128,15 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Delhi Branch",
     initials: "VS",
     checkInTime: "10:30 A.M",
-    checkoutTime: "8:00 P.M",
+    checkoutTime: "8:30 P.M",
     arrival: "Late",
-    totalWorkingHour: "9:30 Hrs",
+    totalWorkingHour: "10 Hrs",
     status: "PRESENT",
     dateOfJoining: "2018-09-05",
+    overtimeHours: "1:00 Hr",
+    overtimeApprovedBy: "Anjali Verma",
+    overtimeApprovedAt: "8:30 P.M",
+    branch: "Delhi",
   },
   {
     id: "14",
@@ -1121,6 +1150,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "CASUAL LEAVE",
     dateOfJoining: "2020-05-18",
+    branch: "Kolkata",
   },
   {
     id: "15",
@@ -1134,8 +1164,180 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2017-12-08",
+    branch: "Chennai",
+  },
+  {
+    id: "16",
+    name: "Deepak Jain",
+    designation: "Sales Executive",
+    location: "Jaipur Branch",
+    initials: "DJ",
+    checkInTime: "10:00 A.M",
+    checkoutTime: "9:15 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "11:15 Hrs",
+    status: "PRESENT",
+    dateOfJoining: "2019-04-12",
+    overtimeHours: "2:15 Hrs",
+    overtimeApprovedBy: "Mohit Agarwal",
+    overtimeApprovedAt: "9:15 P.M",
+    branch: "Jaipur",
+  },
+  {
+    id: "17",
+    name: "Kavita Sharma",
+    designation: "Data Analyst",
+    location: "Pune Branch",
+    initials: "KS",
+    checkInTime: "9:45 A.M",
+    checkoutTime: "6:30 P.M",
+    arrival: "Ontime",
+    totalWorkingHour: "8:45 Hrs",
+    status: "PRESENT",
+    dateOfJoining: "2021-11-20",
+    branch: "Pune",
   },
 ];
+
+// Branch-specific overtime approvers mapping
+const getBranchApprover = (branch: string): string => {
+  const approvers: Record<string, string> = {
+    "Head Office": "Bhaskar Ghosh",
+    Haldia: "Subrata Roy",
+    Ahmedabad: "Rajesh Mehta",
+    Bangalore: "Suresh Nair",
+    Mumbai: "Pradeep Joshi",
+    Delhi: "Anjali Verma",
+    Kolkata: "Ravi Banerjee",
+    Chennai: "Lakshmi Subramanian",
+    Jaipur: "Mohit Agarwal",
+    Pune: "Sanjay Patil",
+  };
+  return approvers[branch] || "Branch Manager";
+};
+
+// Overtime Section Component
+interface OvertimeSectionProps {
+  employee: EmployeeAttendanceData;
+}
+
+const OvertimeSection: React.FC<OvertimeSectionProps> = ({ employee }) => {
+  const hasOvertime =
+    employee.overtimeHours && employee.overtimeHours !== "0 Hrs";
+
+  if (!hasOvertime) {
+    return (
+      <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
+        {/* Total Working Hours Section */}
+        <div className="bg-blue-100 border-b border-gray-300 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-5 h-5 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="font-bold text-gray-900">
+              Total Working Hours: {employee.totalWorkingHour}
+            </span>
+          </div>
+        </div>
+
+        {/* No Overtime Section */}
+        <div className="bg-gray-50 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-5 h-5 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="font-bold text-gray-600">
+              No Overtime Recorded
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
+      {/* Total Working Hours Section */}
+      <div className="bg-blue-100 border-b border-gray-300 px-4 py-3">
+        <div className="flex items-center gap-3">
+          <svg
+            className="w-5 h-5 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span className="font-bold text-gray-900">
+            Total Working Hours: {employee.totalWorkingHour}
+          </span>
+        </div>
+      </div>
+
+      {/* Overtime Section */}
+      <div className="bg-white border-b border-gray-300 px-4 py-3">
+        <div className="flex items-center gap-3">
+          <svg
+            className="w-5 h-5 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span className="font-bold text-gray-900">
+            Overtime: {employee.overtimeHours}
+          </span>
+        </div>
+      </div>
+
+      {/* Approval Section */}
+      {employee.overtimeApprovedBy && employee.overtimeApprovedAt && (
+        <div className="bg-blue-200 px-4 py-3">
+          <div className="text-center">
+            <p className="text-sm font-medium text-gray-800">
+              Overtime at {employee.overtimeApprovedAt} approved
+            </p>
+            <p className="text-sm font-medium text-gray-800">
+              by{" "}
+              <span className="font-bold">{employee.overtimeApprovedBy}</span>
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const StatusBadge: React.FC<{ status: EmployeeAttendanceData["status"] }> = ({
   status,
@@ -2295,64 +2497,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Working Hours Summary */}
-                  <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
-                    {/* Total Working Hours Section */}
-                    <div className="bg-blue-100 border-b border-gray-300 px-4 py-3">
-                      <div className="flex items-center gap-3">
-                        <svg
-                          className="w-5 h-5 text-gray-700"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <span className="font-bold text-gray-900">
-                          Total Working Hours :{" "}
-                          {selectedEmployee.totalWorkingHour}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Overtime Section */}
-                    <div className="bg-white border-b border-gray-300 px-4 py-3">
-                      <div className="flex items-center gap-3">
-                        <svg
-                          className="w-5 h-5 text-gray-700"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <span className="font-bold text-gray-900">
-                          Overtime : 1:45 Hrs
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Approval Section */}
-                    <div className="bg-blue-200 px-4 py-3">
-                      <div className="text-center">
-                        <p className="text-sm font-medium text-gray-800">
-                          Overtime at 7:15 P.M approved
-                        </p>
-                        <p className="text-sm font-medium text-gray-800">
-                          by <span className="font-bold">Bhaskar Ghosh</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <OvertimeSection employee={selectedEmployee} />
 
                   {/* Employee Details */}
                   <div className="space-y-3">
