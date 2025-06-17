@@ -1210,6 +1210,8 @@ const getBranchApprover = (branch: string): string => {
     Delhi: "Anjali Verma",
     Kolkata: "Ravi Banerjee",
     Chennai: "Lakshmi Subramanian",
+    Jaipur: "Mohit Agarwal",
+    Pune: "Sanjay Patil",
   };
   return approvers[branch] || "Branch Manager";
 };
