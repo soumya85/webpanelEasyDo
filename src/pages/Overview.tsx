@@ -1615,8 +1615,10 @@ const EmployeeAttendanceLog: React.FC = () => {
 
   // Handle opening employee detail modal
   const handleViewEmployee = (employee: EmployeeAttendanceData) => {
+    console.log("View button clicked for employee:", employee.name);
     setSelectedEmployee(employee);
     setIsModalOpen(true);
+    console.log("Modal should now be open");
   };
 
   return (
