@@ -582,6 +582,160 @@ const EmployeeWorkingHourTrendsCard: React.FC<
           </div>
         </div>
       </div>
+
+      {/* Employee Details Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold text-gray-900">
+              Employee Details
+            </DialogTitle>
+            <DialogDescription className="text-gray-600">
+              Complete information about the selected employee
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedEmployee && (
+            <div className="space-y-6">
+              {/* Employee Header */}
+              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center justify-center w-16 h-16 bg-blue-500 text-white rounded-full font-semibold text-lg">
+                  {selectedEmployee.initials}
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {selectedEmployee.name}
+                  </h3>
+                  <p className="text-gray-600">
+                    {selectedEmployee.designation}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {selectedEmployee.location}
+                  </p>
+                </div>
+              </div>
+
+              {/* Employee Information Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Attendance Information */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-gray-900 border-b pb-2">
+                    Today's Attendance
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Check-in Time:</span>
+                      <span className="font-medium">
+                        {selectedEmployee.checkInTime}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Check-out Time:</span>
+                      <span className="font-medium">
+                        {selectedEmployee.checkoutTime}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Total Hours:</span>
+                      <span className="font-medium">
+                        {selectedEmployee.totalWorkingHour}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Arrival Status:</span>
+                      <span
+                        className={cn(
+                          "px-2 py-1 rounded-full text-xs font-medium",
+                          selectedEmployee.arrival === "Ontime"
+                            ? "bg-green-100 text-green-800"
+                            : selectedEmployee.arrival === "Late"
+                              ? "bg-red-100 text-red-800"
+                              : "bg-gray-100 text-gray-800",
+                        )}
+                      >
+                        {selectedEmployee.arrival}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Status:</span>
+                      <span
+                        className={cn(
+                          "px-2 py-1 rounded-full text-xs font-medium",
+                          selectedEmployee.status === "PRESENT"
+                            ? "bg-green-100 text-green-800"
+                            : selectedEmployee.status === "ABSENT"
+                              ? "bg-red-100 text-red-800"
+                              : selectedEmployee.status === "HALF-DAY"
+                                ? "bg-yellow-100 text-yellow-800"
+                                : "bg-blue-100 text-blue-800",
+                        )}
+                      >
+                        {selectedEmployee.status.replace("_", " ")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Employment Information */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-gray-900 border-b pb-2">
+                    Employment Details
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Employee ID:</span>
+                      <span className="font-medium">{selectedEmployee.id}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Date of Joining:</span>
+                      <span className="font-medium">
+                        {new Date(
+                          selectedEmployee.dateOfJoining,
+                        ).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Experience:</span>
+                      <span className="font-medium">
+                        {Math.floor(
+                          (new Date().getTime() -
+                            new Date(
+                              selectedEmployee.dateOfJoining,
+                            ).getTime()) /
+                            (1000 * 60 * 60 * 24 * 365),
+                        )}{" "}
+                        years
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Department:</span>
+                      <span className="font-medium">
+                        {selectedEmployee.designation.includes("Accountant")
+                          ? "Finance"
+                          : selectedEmployee.designation.includes("Developer")
+                            ? "Technology"
+                            : selectedEmployee.designation.includes("Manager")
+                              ? "Management"
+                              : "Operations"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="flex gap-3 pt-4 border-t">
+                <button className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+                  View Full Profile
+                </button>
+                <button className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors">
+                  Contact Employee
+                </button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
