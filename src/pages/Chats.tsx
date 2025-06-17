@@ -3366,6 +3366,44 @@ const Chats: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("All");
 
+  // Handle employee chat from navigation state
+  useEffect(() => {
+    const state = location.state as any;
+    if (state?.openChatWithEmployee) {
+      const employeeChat = state.openChatWithEmployee;
+
+      // Check if chat already exists in chatItems
+      const existingChat = chatItems.find(
+        (chat) => chat.id === employeeChat.id,
+      );
+
+      if (existingChat) {
+        // If chat exists, select it
+        setSelectedChat(existingChat);
+      } else {
+        // If chat doesn't exist, create a new chat item and add it to the list
+        const newEmployeeChat: ChatItem = {
+          ...employeeChat,
+          // Ensure all required fields are present
+          isArchived: false,
+        };
+
+        // Add to chat items (you might want to persist this)
+        chatItems.unshift(newEmployeeChat);
+        setSelectedChat(newEmployeeChat);
+
+        // Initialize empty conversation for this new chat
+        setChatConversations((prev) => ({
+          ...prev,
+          [newEmployeeChat.id]: [],
+        }));
+      }
+
+      // Clear the navigation state to prevent re-triggering
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
   // Set default chat for desktop on mount
   useEffect(() => {
     const setDefaultChatForDesktop = () => {
