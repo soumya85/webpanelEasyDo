@@ -1168,6 +1168,144 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
   },
 ];
 
+// Branch-specific overtime approvers mapping
+const getBranchApprover = (branch: string): string => {
+  const approvers: Record<string, string> = {
+    "Head Office": "Bhaskar Ghosh",
+    Haldia: "Subrata Roy",
+    Ahmedabad: "Rajesh Mehta",
+    Bangalore: "Suresh Nair",
+    Mumbai: "Pradeep Joshi",
+    Delhi: "Anjali Verma",
+    Kolkata: "Ravi Banerjee",
+    Chennai: "Lakshmi Subramanian",
+  };
+  return approvers[branch] || "Branch Manager";
+};
+
+// Overtime Section Component
+interface OvertimeSectionProps {
+  employee: EmployeeAttendanceData;
+}
+
+const OvertimeSection: React.FC<OvertimeSectionProps> = ({ employee }) => {
+  const hasOvertime =
+    employee.overtimeHours && employee.overtimeHours !== "0 Hrs";
+
+  if (!hasOvertime) {
+    return (
+      <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
+        {/* Total Working Hours Section */}
+        <div className="bg-blue-100 border-b border-gray-300 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-5 h-5 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="font-bold text-gray-900">
+              Total Working Hours: {employee.totalWorkingHour}
+            </span>
+          </div>
+        </div>
+
+        {/* No Overtime Section */}
+        <div className="bg-gray-50 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-5 h-5 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="font-bold text-gray-600">
+              No Overtime Recorded
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
+      {/* Total Working Hours Section */}
+      <div className="bg-blue-100 border-b border-gray-300 px-4 py-3">
+        <div className="flex items-center gap-3">
+          <svg
+            className="w-5 h-5 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span className="font-bold text-gray-900">
+            Total Working Hours: {employee.totalWorkingHour}
+          </span>
+        </div>
+      </div>
+
+      {/* Overtime Section */}
+      <div className="bg-white border-b border-gray-300 px-4 py-3">
+        <div className="flex items-center gap-3">
+          <svg
+            className="w-5 h-5 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span className="font-bold text-gray-900">
+            Overtime: {employee.overtimeHours}
+          </span>
+        </div>
+      </div>
+
+      {/* Approval Section */}
+      {employee.overtimeApprovedBy && employee.overtimeApprovedAt && (
+        <div className="bg-blue-200 px-4 py-3">
+          <div className="text-center">
+            <p className="text-sm font-medium text-gray-800">
+              Overtime at {employee.overtimeApprovedAt} approved
+            </p>
+            <p className="text-sm font-medium text-gray-800">
+              by{" "}
+              <span className="font-bold">{employee.overtimeApprovedBy}</span>
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const StatusBadge: React.FC<{ status: EmployeeAttendanceData["status"] }> = ({
   status,
 }) => {
