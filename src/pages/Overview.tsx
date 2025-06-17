@@ -2156,12 +2156,12 @@ const Overview: React.FC = () => {
               {/* Content Area */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Left Column - Employee Details */}
-                <div className="p-6 space-y-6">
+                <div className="p-6 space-y-6 bg-white">
                   {/* Employee Header */}
                   <div className="flex items-start gap-4">
                     {/* Employee Avatar */}
                     <div className="relative flex-shrink-0">
-                      <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg overflow-hidden">
+                      <div className="w-20 h-20 rounded-full overflow-hidden shadow-lg">
                         <img
                           src="https://cdn.builder.io/api/v1/assets/b6764255a0504630b0a5f74d92d39b20/image-94aaae?format=webp&width=800"
                           alt={selectedEmployee.name}
@@ -2179,34 +2179,32 @@ const Overview: React.FC = () => {
                           {selectedEmployee.initials}
                         </div>
                       </div>
-                      {/* Online indicator */}
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
                     </div>
 
                     <div className="flex-1">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-1">
+                      <h2 className="text-3xl font-bold text-gray-900 mb-1">
                         {selectedEmployee.name}
                       </h2>
-                      <p className="text-gray-600 mb-2">
+                      <p className="text-lg text-gray-700 mb-1">
                         {selectedEmployee.designation}
                       </p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-base text-gray-600">
                         ( {selectedEmployee.location} )
                       </p>
                     </div>
 
                     {/* Status Badge */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center">
                       <span
                         className={cn(
-                          "px-4 py-2 rounded-lg text-sm font-semibold border flex items-center gap-2",
+                          "px-4 py-2 rounded-lg text-sm font-bold border-2 flex items-center gap-2",
                           selectedEmployee.status === "PRESENT"
-                            ? "bg-green-50 text-green-700 border-green-200"
+                            ? "bg-white text-green-700 border-green-300"
                             : selectedEmployee.status === "ABSENT"
-                              ? "bg-red-50 text-red-700 border-red-200"
+                              ? "bg-white text-red-700 border-red-300"
                               : selectedEmployee.status === "HALF-DAY"
-                                ? "bg-yellow-50 text-yellow-700 border-yellow-200"
-                                : "bg-blue-50 text-blue-700 border-blue-200",
+                                ? "bg-white text-yellow-700 border-yellow-300"
+                                : "bg-white text-blue-700 border-blue-300",
                         )}
                       >
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -2216,10 +2214,10 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Dynamic Date Display */}
-                  <div className="flex items-center gap-3 text-gray-700">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="flex items-center gap-3 text-gray-800">
+                    <div className="w-4 h-4 bg-green-500 rounded-full"></div>
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5 text-gray-700"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -2231,7 +2229,7 @@ const Overview: React.FC = () => {
                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                       />
                     </svg>
-                    <span className="font-medium">
+                    <span className="text-lg font-semibold">
                       {new Date().toLocaleDateString("en-GB", {
                         weekday: "long",
                         day: "numeric",
@@ -2243,63 +2241,67 @@ const Overview: React.FC = () => {
 
                   {/* Company Section */}
                   <div className="space-y-6">
-                    <h3 className="text-xl font-bold text-gray-900">
+                    <h3 className="text-2xl font-bold text-blue-900">
                       Liberty Highrise Pvt Ltd
                     </h3>
 
                     {/* Check-in Section */}
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded">
+                        <span className="text-sm font-bold text-gray-700 bg-gray-200 px-3 py-2 rounded">
                           CHECK IN
                         </span>
-                        <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded font-medium">
+                        <span className="text-xs bg-green-500 text-white px-3 py-2 rounded font-bold">
                           VERIFIED
                         </span>
                       </div>
 
-                      <div className="ml-0">
-                        <p className="text-2xl font-bold text-gray-900 mb-1">
-                          {selectedEmployee.checkInTime}
+                      <div>
+                        <p className="text-3xl font-bold text-gray-900 mb-2">
+                          {selectedEmployee.checkInTime} ( IST )
                         </p>
-                        <p className="text-gray-600 mb-2">
+                        <p className="text-lg text-gray-700 mb-3">
                           {selectedEmployee.location}
                         </p>
-                        <span
-                          className={cn(
-                            "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                            selectedEmployee.arrival === "Ontime"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-orange-100 text-orange-700",
-                          )}
-                        >
-                          {selectedEmployee.arrival.toUpperCase()}
-                        </span>
-                        <span className="ml-3 text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full font-medium">
-                          HEAD OFFICE
-                        </span>
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={cn(
+                              "px-3 py-2 rounded text-sm font-bold",
+                              selectedEmployee.arrival === "Ontime"
+                                ? "bg-green-200 text-green-800"
+                                : "bg-orange-200 text-orange-800",
+                            )}
+                          >
+                            {selectedEmployee.arrival.toUpperCase()}
+                          </span>
+                          <span className="text-sm bg-gray-200 text-gray-700 px-3 py-2 rounded font-semibold">
+                            HEAD OFFICE
+                          </span>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Dotted separator */}
-                    <div className="border-l-2 border-dotted border-gray-300 h-8 ml-8"></div>
+                    {/* Dotted separator line */}
+                    <div className="relative">
+                      <div className="border-t-2 border-dotted border-gray-400 w-full"></div>
+                    </div>
 
                     {/* Check-out Section */}
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded">
+                        <span className="text-sm font-bold text-gray-700 bg-gray-200 px-3 py-2 rounded">
                           CHECK OUT
                         </span>
-                        <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded font-medium">
+                        <span className="text-xs bg-green-500 text-white px-3 py-2 rounded font-bold">
                           VERIFIED
                         </span>
                       </div>
 
-                      <div className="ml-0">
-                        <p className="text-2xl font-bold text-gray-900 mb-1">
-                          {selectedEmployee.checkoutTime}
+                      <div>
+                        <p className="text-3xl font-bold text-gray-900 mb-2">
+                          {selectedEmployee.checkoutTime} ( IST )
                         </p>
-                        <p className="text-gray-600">
+                        <p className="text-lg text-gray-700">
                           {selectedEmployee.location}
                         </p>
                       </div>
@@ -2307,11 +2309,11 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Working Hours Summary Box */}
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 border border-blue-200">
-                    <div className="space-y-3">
+                  <div className="bg-white border-2 border-gray-300 rounded-lg overflow-hidden">
+                    <div className="bg-blue-100 border-b border-gray-300 py-3 px-4">
                       <div className="flex items-center gap-3">
                         <svg
-                          className="w-5 h-5 text-blue-600"
+                          className="w-5 h-5 text-gray-700"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -2323,15 +2325,17 @@ const Overview: React.FC = () => {
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                         </svg>
-                        <span className="font-bold text-gray-900">
+                        <span className="text-lg font-bold text-gray-900">
                           Total Working Hours :{" "}
                           {selectedEmployee.totalWorkingHour}
                         </span>
                       </div>
+                    </div>
 
+                    <div className="bg-white border-b border-gray-300 py-3 px-4">
                       <div className="flex items-center gap-3">
                         <svg
-                          className="w-5 h-5 text-purple-600"
+                          className="w-5 h-5 text-gray-700"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -2343,21 +2347,21 @@ const Overview: React.FC = () => {
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                         </svg>
-                        <span className="font-bold text-gray-900">
+                        <span className="text-lg font-bold text-gray-900">
                           Overtime : 1:45 Hrs
                         </span>
                       </div>
+                    </div>
 
-                      <div className="bg-blue-100 rounded-lg p-3 mt-3">
-                        <p className="text-sm text-center text-gray-700">
-                          <span className="font-medium">
-                            Overtime at 7:15 P.M approved
-                          </span>
-                          <br />
-                          <span className="text-xs">by </span>
-                          <span className="font-semibold">Bhaskar Ghosh</span>
-                        </p>
-                      </div>
+                    <div className="bg-blue-200 py-4 px-4">
+                      <p className="text-sm text-center text-gray-800 font-medium">
+                        <span className="block">
+                          Overtime at 7:15 P.M approved
+                        </span>
+                        <span className="block">
+                          by <span className="font-bold">Bhaskar Ghosh</span>
+                        </span>
+                      </p>
                     </div>
                   </div>
                 </div>
