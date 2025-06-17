@@ -3439,6 +3439,31 @@ const Chats: React.FC = () => {
     }
   });
 
+  // Define filter tabs and count function for the desktop layout
+  const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
+
+  const getFilterCount = (filter: string) => {
+    switch (filter) {
+      case "All":
+        return chatItems.filter((chat) => !chat.isArchived).length;
+      case "Unread":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.unreadCount > 0,
+        ).length;
+      case "Groups":
+        return chatItems.filter((chat) => !chat.isArchived && chat.isGroup)
+          .length;
+      case "Labels":
+        return chatItems.filter(
+          (chat) => !chat.isArchived && chat.tags && chat.tags.length > 0,
+        ).length;
+      case "Archived":
+        return chatItems.filter((chat) => chat.isArchived === true).length;
+      default:
+        return 0;
+    }
+  };
+
   return (
     <>
       {/* DESKTOP LAYOUT - WhatsApp Style (Only for large screens 1024px+) */}
