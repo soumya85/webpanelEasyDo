@@ -1972,6 +1972,341 @@ const ChevronRightIcon = () => (
   </svg>
 );
 
+// Full Profile Component
+interface FullProfileProps {
+  employee: EmployeeAttendanceData;
+  onBack: () => void;
+}
+
+const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
+  const calculateExperience = (dateOfJoining: string) => {
+    const joiningDate = new Date(dateOfJoining);
+    const currentDate = new Date();
+    const diffTime = Math.abs(currentDate.getTime() - joiningDate.getTime());
+    const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
+    const diffMonths = Math.floor(
+      (diffTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30),
+    );
+    return { years: diffYears, months: diffMonths };
+  };
+
+  const experience = calculateExperience(employee.dateOfJoining);
+  const department =
+    employee.designation.includes("Accountant") ||
+    employee.designation.includes("Finance")
+      ? "Finance"
+      : employee.designation.includes("Developer") ||
+          employee.designation.includes("IOS")
+        ? "Technology"
+        : employee.designation.includes("Manager") ||
+            employee.designation.includes("Head")
+          ? "Management"
+          : employee.designation.includes("HR")
+            ? "Human Resources"
+            : employee.designation.includes("Marketing")
+              ? "Marketing"
+              : "Operations";
+
+  return (
+    <div className="bg-white">
+      {/* Header with Back Button */}
+      <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Back to attendance log
+        </button>
+        <h2 className="text-xl font-bold text-gray-900">Employee Profile</h2>
+        <div></div> {/* Spacer for alignment */}
+      </div>
+
+      <div className="p-6 space-y-8">
+        {/* Employee Header */}
+        <div className="flex items-start gap-6">
+          <div className="relative">
+            <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+              {employee.initials}
+            </div>
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-2xl font-bold text-gray-900">
+                {employee.name}
+              </h1>
+              <span
+                className={cn(
+                  "px-3 py-1 rounded-md text-sm font-medium",
+                  employee.status === "PRESENT"
+                    ? "bg-green-100 text-green-800 border border-green-200"
+                    : employee.status === "ABSENT"
+                      ? "bg-red-100 text-red-800 border border-red-200"
+                      : employee.status === "HALF-DAY"
+                        ? "bg-yellow-100 text-yellow-800 border border-yellow-200"
+                        : "bg-blue-100 text-blue-800 border border-blue-200",
+                )}
+              >
+                {employee.status.replace("_", " ")}
+              </span>
+            </div>
+            <p className="text-lg text-gray-700 mb-1">{employee.designation}</p>
+            <p className="text-sm text-gray-500">
+              {employee.location} • {department} Department
+            </p>
+          </div>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <h3 className="text-sm font-medium text-blue-600 uppercase tracking-wide">
+              Experience
+            </h3>
+            <p className="text-2xl font-bold text-blue-900 mt-1">
+              {experience.years}y {experience.months}m
+            </p>
+          </div>
+          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <h3 className="text-sm font-medium text-green-600 uppercase tracking-wide">
+              Today's Hours
+            </h3>
+            <p className="text-2xl font-bold text-green-900 mt-1">
+              {employee.totalWorkingHour}
+            </p>
+          </div>
+          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+            <h3 className="text-sm font-medium text-purple-600 uppercase tracking-wide">
+              Overtime
+            </h3>
+            <p className="text-2xl font-bold text-purple-900 mt-1">
+              {employee.overtimeHours || "0 Hrs"}
+            </p>
+          </div>
+        </div>
+
+        {/* Detailed Information */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Personal Information */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+              Personal Information
+            </h3>
+            <div className="space-y-4">
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Employee ID:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {employee.id}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Full Name:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {employee.name}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Email:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {employee.name
+                    .toLowerCase()
+                    .replace(/\s+/g, ".")
+                    .replace(/[^a-z.]/g, "")}
+                  @libertyhighrise.com
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Phone:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  +91 {Math.floor(Math.random() * 9000000000) + 1000000000}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Department:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {department}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Branch:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {employee.branch}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Work Information */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+              Work Information
+            </h3>
+            <div className="space-y-4">
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Designation:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {employee.designation}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Date of Joining:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {new Date(employee.dateOfJoining).toLocaleDateString(
+                    "en-US",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    },
+                  )}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Experience:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {experience.years} years, {experience.months} months
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Employment Type:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  Full-time
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Manager:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {getBranchApprover(employee.branch)}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">
+                  Work Location:
+                </span>
+                <span className="col-span-2 text-sm text-gray-900">
+                  {employee.location}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Today's Attendance */}
+        <div className="space-y-6">
+          <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+            Today's Attendance Summary
+          </h3>
+          <div className="bg-gray-50 rounded-lg p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-600">Check-in</p>
+                <p className="text-xl font-bold text-gray-900 mt-1">
+                  {employee.checkInTime}
+                </p>
+                <span
+                  className={cn(
+                    "inline-block mt-2 px-2 py-1 rounded text-xs font-medium",
+                    employee.arrival === "Ontime"
+                      ? "bg-green-100 text-green-800"
+                      : employee.arrival === "Late"
+                        ? "bg-red-100 text-red-800"
+                        : "bg-gray-100 text-gray-800",
+                  )}
+                >
+                  {employee.arrival}
+                </span>
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-600">Check-out</p>
+                <p className="text-xl font-bold text-gray-900 mt-1">
+                  {employee.checkoutTime}
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-600">Total Hours</p>
+                <p className="text-xl font-bold text-gray-900 mt-1">
+                  {employee.totalWorkingHour}
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-600">Overtime</p>
+                <p className="text-xl font-bold text-gray-900 mt-1">
+                  {employee.overtimeHours || "0 Hrs"}
+                </p>
+                {employee.overtimeApprovedBy && (
+                  <p className="text-xs text-gray-500 mt-1">
+                    Approved by {employee.overtimeApprovedBy}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Information */}
+        <div className="space-y-6">
+          <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+            Emergency Contact
+          </h3>
+          <div className="bg-gray-50 rounded-lg p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-sm font-medium text-gray-600">
+                  Contact Person
+                </p>
+                <p className="text-lg text-gray-900 mt-1">John Doe (Spouse)</p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-600">
+                  Phone Number
+                </p>
+                <p className="text-lg text-gray-900 mt-1">
+                  +91 {Math.floor(Math.random() * 9000000000) + 1000000000}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Overview: React.FC = () => {
   // State Management
   const [selectedDateRange, setSelectedDateRange] =
