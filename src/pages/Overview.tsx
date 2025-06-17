@@ -1972,6 +1972,486 @@ const ChevronRightIcon = () => (
   </svg>
 );
 
+// Full Profile Component
+interface FullProfileProps {
+  employee: EmployeeAttendanceData;
+  onBack: () => void;
+}
+
+const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
+  const [activeTab, setActiveTab] = useState<
+    "personal" | "professional" | "verify" | "documents"
+  >("personal");
+
+  const calculateExperience = (dateOfJoining: string) => {
+    const joiningDate = new Date(dateOfJoining);
+    const currentDate = new Date();
+    const diffTime = Math.abs(currentDate.getTime() - joiningDate.getTime());
+    const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
+    const diffMonths = Math.floor(
+      (diffTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30),
+    );
+    return { years: diffYears, months: diffMonths };
+  };
+
+  const experience = calculateExperience(employee.dateOfJoining);
+  const age =
+    new Date().getFullYear() - new Date(employee.dateOfJoining).getFullYear();
+
+  return (
+    <div className="bg-gray-50 min-h-full">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="flex items-center justify-between p-4">
+          <button
+            onClick={onBack}
+            className="p-2 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+          <h2 className="text-lg font-bold text-gray-900">Profile</h2>
+          <button className="p-2 text-gray-400">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Profile Header */}
+      <div className="bg-white p-6 border-b border-gray-200">
+        <div className="flex items-start gap-4">
+          <div className="relative">
+            <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+              {employee.initials}
+            </div>
+            <div className="absolute -bottom-1 -right-1">
+              <svg
+                className="w-6 h-6 text-green-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <h1 className="text-xl font-bold text-gray-900 mb-1">
+              {employee.name}
+            </h1>
+            <p className="text-sm text-gray-600 mb-2">
+              {employee.designation}{" "}
+              <span className="text-blue-500">({employee.location})</span>
+            </p>
+
+            <div className="flex items-center gap-3 mb-3">
+              <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-medium">
+                Authority Level 1
+              </span>
+              <div className="flex items-center gap-1 text-sm text-gray-600">
+                <span>OA Score : 0</span>
+                <svg
+                  className="w-4 h-4 text-blue-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span>0 (0)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tab Navigation */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="flex">
+          {[
+            { key: "personal", label: "Personal" },
+            { key: "professional", label: "Professional" },
+            { key: "verify", label: "Verify" },
+            { key: "documents", label: "Documents" },
+          ].map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key as any)}
+              className={cn(
+                "flex-1 py-3 px-4 text-sm font-medium text-center border-b-2 transition-colors",
+                activeTab === tab.key
+                  ? "border-blue-500 text-blue-600 bg-blue-50"
+                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+              )}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tab Content */}
+      <div className="p-6">
+        {activeTab === "personal" && (
+          <div className="space-y-6">
+            <h3 className="text-lg font-bold text-gray-900">General Detail</h3>
+
+            <div className="bg-white rounded-lg">
+              <div className="space-y-0">
+                {[
+                  {
+                    label: "Mobile No",
+                    value: `+91 ${Math.floor(Math.random() * 9000000000) + 1000000000}`,
+                  },
+                  {
+                    label: "Email",
+                    value: `${employee.name
+                      .toLowerCase()
+                      .replace(/\s+/g, ".")
+                      .replace(/[^a-z.]/g, "")}@easydotasks.com`,
+                  },
+                  { label: "DOB", value: "10 December, 1989" },
+                  { label: "Age", value: "34" },
+                  {
+                    label: "DOJ App",
+                    value: new Date(employee.dateOfJoining).toLocaleDateString(
+                      "en-US",
+                      { day: "numeric", month: "long", year: "numeric" },
+                    ),
+                  },
+                  { label: "Gender", value: "Male" },
+                  { label: "M. Status", value: "Married" },
+                  { label: "Adhar No", value: "" },
+                  { label: "Pan No", value: "" },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "flex justify-between items-center py-4 px-4",
+                      index !== 8 && "border-b border-gray-100",
+                    )}
+                  >
+                    <span className="font-medium text-gray-900">
+                      {item.label}
+                    </span>
+                    <span className="text-gray-600">: {item.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "professional" && (
+          <div className="space-y-6">
+            <div className="bg-white rounded-lg p-4">
+              <div className="text-center mb-4">
+                <p className="font-medium text-gray-900">
+                  Office Timing : 10:00 AM to 07:00 PM
+                </p>
+                <p className="text-sm text-gray-600 mt-2">
+                  MON,TUE,WED,THU,FRI,SAT
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold text-gray-900">
+                Your Working Hours
+              </h3>
+              <p className="text-sm text-gray-600">
+                ( on Half-day leaves & days when special punch-in approval is
+                obtained - working time slot is as per flexible Hours algorithm
+                )
+              </p>
+
+              <div className="bg-white rounded-lg">
+                <div className="space-y-0">
+                  {[
+                    {
+                      label: "General Shift",
+                      value: "10:00 AM to 07:00 PM",
+                      status: "allowed",
+                    },
+                    {
+                      label: "Flexible",
+                      value: "Ristricted",
+                      status: "restricted",
+                    },
+                    {
+                      label: "Shift 1",
+                      value: "6:00 AM to 2:00 PM",
+                      status: "denied",
+                    },
+                    {
+                      label: "Shift 2",
+                      value: "2:00 PM to 10:00 PM",
+                      status: "denied",
+                    },
+                    {
+                      label: "Shift 3",
+                      value: "10:00 PM to 6:00 AM",
+                      status: "denied",
+                    },
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className={cn(
+                        "flex justify-between items-center py-4 px-4",
+                        index !== 4 && "border-b border-gray-100",
+                      )}
+                    >
+                      <span className="font-medium text-gray-900">
+                        {item.label}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={cn(
+                            "text-sm",
+                            item.status === "restricted"
+                              ? "text-red-500 font-medium"
+                              : "text-gray-600",
+                          )}
+                        >
+                          : {item.value}
+                        </span>
+                        {item.status === "allowed" && (
+                          <svg
+                            className="w-5 h-5 text-green-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        )}
+                        {item.status === "denied" && (
+                          <svg
+                            className="w-5 h-5 text-red-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <h4 className="font-bold text-gray-900">Reporting Manager</h4>
+                <p className="text-gray-600 mt-1">
+                  {getBranchApprover(employee.branch)}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "verify" && (
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold text-gray-900">
+                User e-mail Verification.
+              </h3>
+              <p className="text-sm text-gray-600">( Free for all users )</p>
+              <p className="text-sm text-gray-600">
+                Once completed, Green tick will show beside e...
+              </p>
+
+              <div className="bg-white rounded-lg p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <svg
+                    className="w-6 h-6 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span className="text-sm text-gray-900">
+                    {employee.name
+                      .toLowerCase()
+                      .replace(/\s+/g, ".")
+                      .replace(/[^a-z.]/g, "")}
+                    @easydotasks.com
+                  </span>
+                </div>
+                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
+                  VERIFIED
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <h4 className="font-bold text-gray-900">Stage 2 :</h4>
+                <svg
+                  className="w-5 h-5 text-blue-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+
+              <h5 className="font-bold text-gray-900">
+                Aadhar Number Verification.
+              </h5>
+              <p className="text-sm text-gray-600">
+                ( Productivity Module subscribers, will be able to get their
+                Aadhar card scanned and verified. )
+              </p>
+              <p className="text-sm text-gray-600">
+                Once Done, Blue tick will show against, email I'd, phone number,
+                Chat Threads. Same will continue to show as long as the
+                productivity subscription is active.
+              </p>
+
+              <div className="bg-white rounded-lg p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-orange-100 rounded flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 text-orange-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span className="text-sm text-gray-900">Aadhar Number</span>
+                </div>
+                <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">
+                  PENDING
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <h4 className="font-bold text-gray-900">Stage 3 :</h4>
+                <svg
+                  className="w-5 h-5 text-green-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="text-sm text-gray-600">(0% Completed)</span>
+              </div>
+
+              <h5 className="font-bold text-gray-900">
+                Employee Onboarding Background Verification.
+              </h5>
+              <p className="text-sm text-gray-600">
+                ( Company Module subscribers will be able to get the following
+                additions verifications done online. Self service by employees.
+                )
+              </p>
+              <p className="text-sm text-gray-600">
+                Once employee completes the onboarding background verifications
+                steps, Green Shield will show against employee's email I'd,
+                phone number, address, Chat thread, profile photo etc., denoting
+                Employee Background is verified.
+              </p>
+
+              <div className="space-y-3">
+                {[
+                  "Profile face verification",
+                  "PAN number verification",
+                  "UAN number verification",
+                  "Education certificates",
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-lg p-4 flex items-center justify-between"
+                  >
+                    <span className="text-sm text-gray-900">{item}</span>
+                    <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">
+                      PENDING
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "documents" && (
+          <div className="flex flex-col items-center justify-center py-16">
+            <div className="w-32 h-32 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+              <svg
+                className="w-16 h-16 text-yellow-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <p className="text-lg font-medium text-gray-900 text-center">
+              No documents are available at the moment.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Overview: React.FC = () => {
   // State Management
   const [selectedDateRange, setSelectedDateRange] =
@@ -2016,11 +2496,24 @@ const Overview: React.FC = () => {
   const [selectedEmployee, setSelectedEmployee] =
     useState<EmployeeAttendanceData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalView, setModalView] = useState<"attendance" | "profile">(
+    "attendance",
+  );
 
   // Handle modal opening
   const handleViewEmployee = (employee: EmployeeAttendanceData) => {
     setSelectedEmployee(employee);
+    setModalView("attendance");
     setIsModalOpen(true);
+  };
+
+  // Handle view switching
+  const handleViewFullProfile = () => {
+    setModalView("profile");
+  };
+
+  const handleBackToAttendance = () => {
+    setModalView("attendance");
   };
 
   return (
@@ -2351,7 +2844,15 @@ const Overview: React.FC = () => {
       </div>
 
       {/* Employee Details Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Dialog
+        open={isModalOpen}
+        onOpenChange={(open) => {
+          setIsModalOpen(open);
+          if (!open) {
+            setModalView("attendance");
+          }
+        }}
+      >
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
           <DialogHeader className="sr-only">
             <DialogTitle>Employee Details</DialogTitle>
@@ -2360,367 +2861,395 @@ const Overview: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           {selectedEmployee && (
-            <div className="bg-white rounded-lg overflow-hidden">
-              {/* Modal Header */}
-              <div className="flex items-start justify-between p-6 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  {/* Employee Avatar */}
-                  <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                      {selectedEmployee.initials}
-                    </div>
-                    {/* Online indicator */}
-                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
-                  </div>
-
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <h2 className="text-xl font-bold text-gray-900">
-                        {selectedEmployee.name}
-                      </h2>
-                      {/* Status Badge beside name */}
-                      <span
-                        className={cn(
-                          "px-3 py-1 rounded-md text-sm font-medium",
-                          selectedEmployee.status === "PRESENT"
-                            ? "bg-green-100 text-green-800 border border-green-200"
-                            : selectedEmployee.status === "ABSENT"
-                              ? "bg-red-100 text-red-800 border border-red-200"
-                              : selectedEmployee.status === "HALF-DAY"
-                                ? "bg-yellow-100 text-yellow-800 border border-yellow-200"
-                                : "bg-blue-100 text-blue-800 border border-blue-200",
-                        )}
-                      >
-                        {selectedEmployee.status.replace("_", " ")}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-2">
-                      {selectedEmployee.designation}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      ( {selectedEmployee.location} )
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Content Area */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
-                {/* Left Column - Attendance Details */}
-                <div className="space-y-6">
-                  {/* Date Display */}
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                    Thursday, 19 Sept 2024
-                  </div>
-
-                  {/* Company Info */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">
-                      Liberty Highrise Pvt Ltd
-                    </h3>
-
-                    {/* Check-in Details */}
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-sm font-medium text-gray-700">
-                              CHECK IN
-                            </span>
-                            <span className="text-xs bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
-                              VERIFIED
-                            </span>
-                          </div>
-                          <p className="text-lg font-bold text-gray-900">
-                            {selectedEmployee.checkInTime}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            {selectedEmployee.location}
-                          </p>
-                          <div className="flex items-center gap-2 mt-2">
-                            <span
-                              className={cn(
-                                "inline-block px-3 py-1 rounded-lg text-xs font-semibold",
-                                selectedEmployee.arrival === "Ontime"
-                                  ? "bg-green-100 text-green-800"
-                                  : "bg-orange-100 text-orange-800",
-                              )}
-                            >
-                              {selectedEmployee.arrival.toUpperCase()}
-                            </span>
-                            <span className="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-lg font-semibold">
-                              {selectedEmployee.location
-                                .toLowerCase()
-                                .includes("branch")
-                                ? "BRANCH"
-                                : "HEAD OFFICE"}
-                            </span>
-                          </div>
+            <>
+              {modalView === "attendance" ? (
+                <div className="bg-white rounded-lg overflow-hidden">
+                  {/* Modal Header */}
+                  <div className="flex items-start justify-between p-6 border-b border-gray-200">
+                    <div className="flex items-center gap-4">
+                      {/* Employee Avatar */}
+                      <div className="relative">
+                        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                          {selectedEmployee.initials}
                         </div>
+                        {/* Online indicator */}
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
                       </div>
 
-                      {/* Check-out Details */}
-                      <div className="border-t pt-4">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-sm font-medium text-gray-700">
-                                CHECK OUT
-                              </span>
-                              <span className="text-xs bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
-                                VERIFIED
-                              </span>
-                            </div>
-                            <p className="text-lg font-bold text-gray-900">
-                              {selectedEmployee.checkoutTime}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                              {selectedEmployee.location}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Working Hours Summary */}
-                  <OvertimeSection employee={selectedEmployee} />
-
-                  {/* Employee Details */}
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-900">
-                      Employee Information
-                    </h4>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="text-gray-600">Employee ID:</span>
-                        <p className="font-medium">{selectedEmployee.id}</p>
-                      </div>
-                      <div>
-                        <span className="text-gray-600">Date of Joining:</span>
-                        <p className="font-medium">
-                          {new Date(
-                            selectedEmployee.dateOfJoining,
-                          ).toLocaleDateString()}
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-gray-600">Experience:</span>
-                        <p className="font-medium">
-                          {Math.floor(
-                            (new Date().getTime() -
-                              new Date(
-                                selectedEmployee.dateOfJoining,
-                              ).getTime()) /
-                              (1000 * 60 * 60 * 24 * 365),
-                          )}{" "}
-                          years
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-gray-600">Department:</span>
-                        <p className="font-medium">
-                          {selectedEmployee.designation.includes("Accountant")
-                            ? "Finance"
-                            : selectedEmployee.designation.includes("Developer")
-                              ? "Technology"
-                              : selectedEmployee.designation.includes("Manager")
-                                ? "Management"
-                                : "Operations"}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column - Location Timeline */}
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900 flex items-center gap-2">
-                    <svg
-                      className="w-5 h-5 text-blue-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                    Location Timeline
-                  </h3>
-
-                  {/* Map Placeholder */}
-                  <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-lg h-64 relative overflow-hidden">
-                    {/* Map Background Pattern */}
-                    <div className="absolute inset-0 opacity-20">
-                      <svg
-                        className="w-full h-full"
-                        viewBox="0 0 400 250"
-                        fill="none"
-                      >
-                        {/* Grid pattern */}
-                        <defs>
-                          <pattern
-                            id="grid"
-                            width="20"
-                            height="20"
-                            patternUnits="userSpaceOnUse"
+                        <div className="flex items-center gap-3 mb-1">
+                          <h2 className="text-xl font-bold text-gray-900">
+                            {selectedEmployee.name}
+                          </h2>
+                          {/* Status Badge beside name */}
+                          <span
+                            className={cn(
+                              "px-3 py-1 rounded-md text-sm font-medium",
+                              selectedEmployee.status === "PRESENT"
+                                ? "bg-green-100 text-green-800 border border-green-200"
+                                : selectedEmployee.status === "ABSENT"
+                                  ? "bg-red-100 text-red-800 border border-red-200"
+                                  : selectedEmployee.status === "HALF-DAY"
+                                    ? "bg-yellow-100 text-yellow-800 border border-yellow-200"
+                                    : "bg-blue-100 text-blue-800 border border-blue-200",
+                            )}
                           >
-                            <path
-                              d="M 20 0 L 0 0 0 20"
-                              fill="none"
-                              stroke="#94a3b8"
-                              strokeWidth="0.5"
-                            />
-                          </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#grid)" />
-
-                        {/* Roads */}
-                        <path
-                          d="M0,120 Q200,100 400,120"
-                          stroke="#64748b"
-                          strokeWidth="3"
-                          fill="none"
-                          opacity="0.6"
-                        />
-                        <path
-                          d="M150,0 L150,250"
-                          stroke="#64748b"
-                          strokeWidth="2"
-                          fill="none"
-                          opacity="0.4"
-                        />
-                        <path
-                          d="M250,0 L250,250"
-                          stroke="#64748b"
-                          strokeWidth="2"
-                          fill="none"
-                          opacity="0.4"
-                        />
-                      </svg>
-                    </div>
-
-                    {/* Location Markers */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {/* Home marker */}
-                      <div className="absolute top-16 left-16 flex flex-col items-center">
-                        <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
-                          H
+                            {selectedEmployee.status.replace("_", " ")}
+                          </span>
                         </div>
-                        <span className="text-xs font-medium text-gray-700 mt-1">
-                          Home
-                        </span>
-                      </div>
-
-                      {/* Office marker */}
-                      <div className="absolute bottom-16 right-16 flex flex-col items-center">
-                        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
-                          O
-                        </div>
-                        <span className="text-xs font-medium text-gray-700 mt-1">
-                          Head Office
-                        </span>
-                      </div>
-
-                      {/* Route indicators */}
-                      <div className="absolute top-24 left-32 w-4 h-4 bg-orange-400 rounded-full"></div>
-                      <div className="absolute top-32 left-48 w-4 h-4 bg-orange-400 rounded-full"></div>
-                      <div className="absolute bottom-32 right-32 w-4 h-4 bg-orange-400 rounded-full"></div>
-                    </div>
-
-                    {/* Legend */}
-                    <div className="absolute bottom-2 left-2 bg-white bg-opacity-90 rounded px-2 py-1">
-                      <div className="flex items-center gap-1 text-xs">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span>Check-in</span>
-                        <div className="w-2 h-2 bg-blue-600 rounded-full ml-2"></div>
-                        <span>Check-out</span>
+                        <p className="text-sm text-gray-600 mb-2">
+                          {selectedEmployee.designation}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          ( {selectedEmployee.location} )
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Timeline Events */}
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border-l-4 border-green-400">
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">
-                          Checked in at Head Office
-                        </p>
-                        <p className="text-xs text-gray-600">
-                          {selectedEmployee.checkInTime} • Verified location
-                        </p>
+                  {/* Content Area */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+                    {/* Left Column - Attendance Details */}
+                    <div className="space-y-6">
+                      {/* Date Display */}
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        Thursday, 19 Sept 2024
                       </div>
-                    </div>
 
-                    <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">
-                          Currently at Head Office
-                        </p>
-                        <p className="text-xs text-gray-600">
-                          Active work session
-                        </p>
-                      </div>
-                    </div>
+                      {/* Company Info */}
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h3 className="font-semibold text-gray-900 mb-3">
+                          Liberty Highrise Pvt Ltd
+                        </h3>
 
-                    {selectedEmployee.checkoutTime !== "N/A" && (
-                      <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border-l-4 border-orange-400">
-                        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            Checked out
-                          </p>
-                          <p className="text-xs text-gray-600">
-                            {selectedEmployee.checkoutTime} • Verified location
-                          </p>
+                        {/* Check-in Details */}
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="text-sm font-medium text-gray-700">
+                                  CHECK IN
+                                </span>
+                                <span className="text-xs bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
+                                  VERIFIED
+                                </span>
+                              </div>
+                              <p className="text-lg font-bold text-gray-900">
+                                {selectedEmployee.checkInTime}
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                {selectedEmployee.location}
+                              </p>
+                              <div className="flex items-center gap-2 mt-2">
+                                <span
+                                  className={cn(
+                                    "inline-block px-3 py-1 rounded-lg text-xs font-semibold",
+                                    selectedEmployee.arrival === "Ontime"
+                                      ? "bg-green-100 text-green-800"
+                                      : "bg-orange-100 text-orange-800",
+                                  )}
+                                >
+                                  {selectedEmployee.arrival.toUpperCase()}
+                                </span>
+                                <span className="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-lg font-semibold">
+                                  {selectedEmployee.location
+                                    .toLowerCase()
+                                    .includes("branch")
+                                    ? "BRANCH"
+                                    : "HEAD OFFICE"}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Check-out Details */}
+                          <div className="border-t pt-4">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="text-sm font-medium text-gray-700">
+                                    CHECK OUT
+                                  </span>
+                                  <span className="text-xs bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
+                                    VERIFIED
+                                  </span>
+                                </div>
+                                <p className="text-lg font-bold text-gray-900">
+                                  {selectedEmployee.checkoutTime}
+                                </p>
+                                <p className="text-sm text-gray-600">
+                                  {selectedEmployee.location}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    )}
+
+                      {/* Working Hours Summary */}
+                      <OvertimeSection employee={selectedEmployee} />
+
+                      {/* Employee Details */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-gray-900">
+                          Employee Information
+                        </h4>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <span className="text-gray-600">Employee ID:</span>
+                            <p className="font-medium">{selectedEmployee.id}</p>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">
+                              Date of Joining:
+                            </span>
+                            <p className="font-medium">
+                              {new Date(
+                                selectedEmployee.dateOfJoining,
+                              ).toLocaleDateString()}
+                            </p>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Experience:</span>
+                            <p className="font-medium">
+                              {Math.floor(
+                                (new Date().getTime() -
+                                  new Date(
+                                    selectedEmployee.dateOfJoining,
+                                  ).getTime()) /
+                                  (1000 * 60 * 60 * 24 * 365),
+                              )}{" "}
+                              years
+                            </p>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Department:</span>
+                            <p className="font-medium">
+                              {selectedEmployee.designation.includes(
+                                "Accountant",
+                              )
+                                ? "Finance"
+                                : selectedEmployee.designation.includes(
+                                      "Developer",
+                                    )
+                                  ? "Technology"
+                                  : selectedEmployee.designation.includes(
+                                        "Manager",
+                                      )
+                                    ? "Management"
+                                    : "Operations"}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Column - Location Timeline */}
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+                        <svg
+                          className="w-5 h-5 text-blue-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                        Location Timeline
+                      </h3>
+
+                      {/* Map Placeholder */}
+                      <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-lg h-64 relative overflow-hidden">
+                        {/* Map Background Pattern */}
+                        <div className="absolute inset-0 opacity-20">
+                          <svg
+                            className="w-full h-full"
+                            viewBox="0 0 400 250"
+                            fill="none"
+                          >
+                            {/* Grid pattern */}
+                            <defs>
+                              <pattern
+                                id="grid"
+                                width="20"
+                                height="20"
+                                patternUnits="userSpaceOnUse"
+                              >
+                                <path
+                                  d="M 20 0 L 0 0 0 20"
+                                  fill="none"
+                                  stroke="#94a3b8"
+                                  strokeWidth="0.5"
+                                />
+                              </pattern>
+                            </defs>
+                            <rect
+                              width="100%"
+                              height="100%"
+                              fill="url(#grid)"
+                            />
+
+                            {/* Roads */}
+                            <path
+                              d="M0,120 Q200,100 400,120"
+                              stroke="#64748b"
+                              strokeWidth="3"
+                              fill="none"
+                              opacity="0.6"
+                            />
+                            <path
+                              d="M150,0 L150,250"
+                              stroke="#64748b"
+                              strokeWidth="2"
+                              fill="none"
+                              opacity="0.4"
+                            />
+                            <path
+                              d="M250,0 L250,250"
+                              stroke="#64748b"
+                              strokeWidth="2"
+                              fill="none"
+                              opacity="0.4"
+                            />
+                          </svg>
+                        </div>
+
+                        {/* Location Markers */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          {/* Home marker */}
+                          <div className="absolute top-16 left-16 flex flex-col items-center">
+                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                              H
+                            </div>
+                            <span className="text-xs font-medium text-gray-700 mt-1">
+                              Home
+                            </span>
+                          </div>
+
+                          {/* Office marker */}
+                          <div className="absolute bottom-16 right-16 flex flex-col items-center">
+                            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                              O
+                            </div>
+                            <span className="text-xs font-medium text-gray-700 mt-1">
+                              Head Office
+                            </span>
+                          </div>
+
+                          {/* Route indicators */}
+                          <div className="absolute top-24 left-32 w-4 h-4 bg-orange-400 rounded-full"></div>
+                          <div className="absolute top-32 left-48 w-4 h-4 bg-orange-400 rounded-full"></div>
+                          <div className="absolute bottom-32 right-32 w-4 h-4 bg-orange-400 rounded-full"></div>
+                        </div>
+
+                        {/* Legend */}
+                        <div className="absolute bottom-2 left-2 bg-white bg-opacity-90 rounded px-2 py-1">
+                          <div className="flex items-center gap-1 text-xs">
+                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                            <span>Check-in</span>
+                            <div className="w-2 h-2 bg-blue-600 rounded-full ml-2"></div>
+                            <span>Check-out</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Timeline Events */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border-l-4 border-green-400">
+                          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-gray-900">
+                              Checked in at Head Office
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              {selectedEmployee.checkInTime} • Verified location
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                          <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-gray-900">
+                              Currently at Head Office
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              Active work session
+                            </p>
+                          </div>
+                        </div>
+
+                        {selectedEmployee.checkoutTime !== "N/A" && (
+                          <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+                            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <div className="flex-1">
+                              <p className="text-sm font-medium text-gray-900">
+                                Checked out
+                              </p>
+                              <p className="text-xs text-gray-600">
+                                {selectedEmployee.checkoutTime} • Verified
+                                location
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Modal Footer */}
+                  <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+                    <button
+                      onClick={() => {
+                        setIsModalOpen(false);
+                        setModalView("attendance");
+                      }}
+                      className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                    >
+                      Close
+                    </button>
+                    <button
+                      onClick={handleViewFullProfile}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      View Full Profile
+                    </button>
+                    <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                      Contact Employee
+                    </button>
                   </div>
                 </div>
-              </div>
-
-              {/* Modal Footer */}
-              <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                >
-                  Close
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                  View Full Profile
-                </button>
-                <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
-                  Contact Employee
-                </button>
-              </div>
-            </div>
+              ) : (
+                <FullProfile
+                  employee={selectedEmployee}
+                  onBack={handleBackToAttendance}
+                />
+              )}
+            </>
           )}
         </DialogContent>
       </Dialog>
