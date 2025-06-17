@@ -3471,43 +3471,6 @@ const Chats: React.FC = () => {
         className="hidden lg:flex flex-col h-full bg-white"
         style={{ height: "calc(100vh - 86px)" }}
       >
-        {/* Full Width Chat Header - Only show when chat is selected */}
-        {selectedChat && (
-          <div className="w-full border-b border-gray-200 bg-white">
-            <div className="flex items-center gap-3 p-4">
-              <Avatar className="h-10 w-10">
-                <AvatarImage
-                  src={selectedChat.avatar}
-                  alt={selectedChat.name}
-                />
-                <AvatarFallback className="bg-gray-300 text-gray-700 text-sm">
-                  {selectedChat.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")
-                    .slice(0, 2)}
-                </AvatarFallback>
-              </Avatar>
-
-              <div className="flex-1">
-                <h2 className="font-semibold text-gray-900">
-                  {selectedChat.name}
-                </h2>
-                <p className="text-sm text-gray-500">Online</p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <Phone className="h-4 w-4 text-gray-600" />
-                </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <MoreHorizontal className="h-4 w-4 text-gray-600" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Full Width Controls Section */}
         <div className="w-full p-4 border-b border-gray-200 bg-white">
           {/* Task Summary Cards Row */}
@@ -3607,7 +3570,6 @@ const Chats: React.FC = () => {
             onMessageChange={setMessageText}
             onSendMessage={handleSendMessage}
             onOpenActions={() => setIsActionDrawerOpen(true)}
-            hideHeader={true}
           />
         </div>
       </div>
