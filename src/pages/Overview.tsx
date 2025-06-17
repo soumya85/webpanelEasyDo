@@ -2021,30 +2021,9 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="flex items-center justify-between p-4">
-          <div></div> {/* Empty space for layout balance */}
-          <h2 className="text-lg font-bold text-gray-900">Profile</h2>
-          <button className="p-2 text-gray-400">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* Back to attendance log button */}
-        <div className="px-4 pb-4">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors font-bold"
           >
             <svg
               className="w-4 h-4"
@@ -2060,6 +2039,22 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
               />
             </svg>
             back to attendance log
+          </button>
+          <h2 className="text-lg font-bold text-gray-900">Profile</h2>
+          <button className="p-2 text-gray-400">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+              />
+            </svg>
           </button>
         </div>
       </div>
