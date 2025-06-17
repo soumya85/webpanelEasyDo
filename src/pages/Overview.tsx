@@ -1203,15 +1203,15 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
 const getBranchApprover = (branch: string): string => {
   const approvers: Record<string, string> = {
     "Head Office": "Bhaskar Ghosh",
-    Haldia: "Subrata Roy",
-    Ahmedabad: "Rajesh Mehta",
-    Bangalore: "Suresh Nair",
-    Mumbai: "Pradeep Joshi",
-    Delhi: "Anjali Verma",
-    Kolkata: "Ravi Banerjee",
-    Chennai: "Lakshmi Subramanian",
-    Jaipur: "Mohit Agarwal",
-    Pune: "Sanjay Patil",
+    "Haldia": "Subrata Roy",
+    "Ahmedabad": "Rajesh Mehta",
+    "Bangalore": "Suresh Nair",
+    "Mumbai": "Pradeep Joshi",
+    "Delhi": "Anjali Verma",
+    "Kolkata": "Ravi Banerjee",
+    "Chennai": "Lakshmi Subramanian",
+    "Jaipur": "Mohit Agarwal",
+    "Pune": "Sanjay Patil",
   };
   return approvers[branch] || "Branch Manager";
 };
@@ -1222,8 +1222,7 @@ interface OvertimeSectionProps {
 }
 
 const OvertimeSection: React.FC<OvertimeSectionProps> = ({ employee }) => {
-  const hasOvertime =
-    employee.overtimeHours && employee.overtimeHours !== "0 Hrs";
+  const hasOvertime = employee.overtimeHours && employee.overtimeHours !== "0 Hrs";
 
   if (!hasOvertime) {
     return (
@@ -1329,8 +1328,7 @@ const OvertimeSection: React.FC<OvertimeSectionProps> = ({ employee }) => {
               Overtime at {employee.overtimeApprovedAt} approved
             </p>
             <p className="text-sm font-medium text-gray-800">
-              by{" "}
-              <span className="font-bold">{employee.overtimeApprovedBy}</span>
+              by <span className="font-bold">{employee.overtimeApprovedBy}</span>
             </p>
           </div>
         </div>
@@ -1984,28 +1982,22 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
     const currentDate = new Date();
     const diffTime = Math.abs(currentDate.getTime() - joiningDate.getTime());
     const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
-    const diffMonths = Math.floor(
-      (diffTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30),
-    );
+    const diffMonths = Math.floor((diffTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
     return { years: diffYears, months: diffMonths };
   };
 
   const experience = calculateExperience(employee.dateOfJoining);
-  const department =
-    employee.designation.includes("Accountant") ||
-    employee.designation.includes("Finance")
-      ? "Finance"
-      : employee.designation.includes("Developer") ||
-          employee.designation.includes("IOS")
-        ? "Technology"
-        : employee.designation.includes("Manager") ||
-            employee.designation.includes("Head")
-          ? "Management"
-          : employee.designation.includes("HR")
-            ? "Human Resources"
-            : employee.designation.includes("Marketing")
-              ? "Marketing"
-              : "Operations";
+  const department = employee.designation.includes("Accountant") || employee.designation.includes("Finance")
+    ? "Finance"
+    : employee.designation.includes("Developer") || employee.designation.includes("IOS")
+      ? "Technology"
+      : employee.designation.includes("Manager") || employee.designation.includes("Head")
+        ? "Management"
+        : employee.designation.includes("HR")
+          ? "Human Resources"
+          : employee.designation.includes("Marketing")
+            ? "Marketing"
+            : "Operations";
 
   return (
     <div className="bg-white">
@@ -2015,18 +2007,8 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
           onClick={onBack}
           className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-50 rounded-lg transition-colors"
         >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           Back to attendance log
         </button>
@@ -2045,9 +2027,7 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-2xl font-bold text-gray-900">
-                {employee.name}
-              </h1>
+              <h1 className="text-2xl font-bold text-gray-900">{employee.name}</h1>
               <span
                 className={cn(
                   "px-3 py-1 rounded-md text-sm font-medium",
@@ -2064,34 +2044,24 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
               </span>
             </div>
             <p className="text-lg text-gray-700 mb-1">{employee.designation}</p>
-            <p className="text-sm text-gray-500">
-              {employee.location} • {department} Department
-            </p>
+            <p className="text-sm text-gray-500">{employee.location} • {department} Department</p>
           </div>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-            <h3 className="text-sm font-medium text-blue-600 uppercase tracking-wide">
-              Experience
-            </h3>
+            <h3 className="text-sm font-medium text-blue-600 uppercase tracking-wide">Experience</h3>
             <p className="text-2xl font-bold text-blue-900 mt-1">
               {experience.years}y {experience.months}m
             </p>
           </div>
           <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-            <h3 className="text-sm font-medium text-green-600 uppercase tracking-wide">
-              Today's Hours
-            </h3>
-            <p className="text-2xl font-bold text-green-900 mt-1">
-              {employee.totalWorkingHour}
-            </p>
+            <h3 className="text-sm font-medium text-green-600 uppercase tracking-wide">Today's Hours</h3>
+            <p className="text-2xl font-bold text-green-900 mt-1">{employee.totalWorkingHour}</p>
           </div>
           <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-            <h3 className="text-sm font-medium text-purple-600 uppercase tracking-wide">
-              Overtime
-            </h3>
+            <h3 className="text-sm font-medium text-purple-600 uppercase tracking-wide">Overtime</h3>
             <p className="text-2xl font-bold text-purple-900 mt-1">
               {employee.overtimeHours || "0 Hrs"}
             </p>
@@ -2107,56 +2077,30 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
             </h3>
             <div className="space-y-4">
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Employee ID:
-                </span>
+                <span className="text-sm font-medium text-gray-600">Employee ID:</span>
+                <span className="col-span-2 text-sm text-gray-900">{employee.id}</span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">Full Name:</span>
+                <span className="col-span-2 text-sm text-gray-900">{employee.name}</span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">Email:</span>
                 <span className="col-span-2 text-sm text-gray-900">
-                  {employee.id}
+                  {employee.name.toLowerCase().replace(/\s+/g, '.').replace(/[^a-z.]/g, '')}@libertyhighrise.com
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Full Name:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  {employee.name}
-                </span>
+                <span className="text-sm font-medium text-gray-600">Phone:</span>
+                <span className="col-span-2 text-sm text-gray-900">+91 {Math.floor(Math.random() * 9000000000) + 1000000000}</span>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Email:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  {employee.name
-                    .toLowerCase()
-                    .replace(/\s+/g, ".")
-                    .replace(/[^a-z.]/g, "")}
-                  @libertyhighrise.com
-                </span>
+                <span className="text-sm font-medium text-gray-600">Department:</span>
+                <span className="col-span-2 text-sm text-gray-900">{department}</span>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Phone:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  +91 {Math.floor(Math.random() * 9000000000) + 1000000000}
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Department:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  {department}
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Branch:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  {employee.branch}
-                </span>
+                <span className="text-sm font-medium text-gray-600">Branch:</span>
+                <span className="col-span-2 text-sm text-gray-900">{employee.branch}</span>
               </div>
             </div>
           </div>
@@ -2168,59 +2112,36 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
             </h3>
             <div className="space-y-4">
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Designation:
-                </span>
+                <span className="text-sm font-medium text-gray-600">Designation:</span>
+                <span className="col-span-2 text-sm text-gray-900">{employee.designation}</span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <span className="text-sm font-medium text-gray-600">Date of Joining:</span>
                 <span className="col-span-2 text-sm text-gray-900">
-                  {employee.designation}
+                  {new Date(employee.dateOfJoining).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Date of Joining:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  {new Date(employee.dateOfJoining).toLocaleDateString(
-                    "en-US",
-                    {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    },
-                  )}
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Experience:
-                </span>
+                <span className="text-sm font-medium text-gray-600">Experience:</span>
                 <span className="col-span-2 text-sm text-gray-900">
                   {experience.years} years, {experience.months} months
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Employment Type:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  Full-time
-                </span>
+                <span className="text-sm font-medium text-gray-600">Employment Type:</span>
+                <span className="col-span-2 text-sm text-gray-900">Full-time</span>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Manager:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  {getBranchApprover(employee.branch)}
-                </span>
+                <span className="text-sm font-medium text-gray-600">Manager:</span>
+                <span className="col-span-2 text-sm text-gray-900">{getBranchApprover(employee.branch)}</span>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <span className="text-sm font-medium text-gray-600">
-                  Work Location:
-                </span>
-                <span className="col-span-2 text-sm text-gray-900">
-                  {employee.location}
-                </span>
+                <span className="text-sm font-medium text-gray-600">Work Location:</span>
+                <span className="col-span-2 text-sm text-gray-900">{employee.location}</span>
               </div>
             </div>
           </div>
@@ -2235,39 +2156,29 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
                 <p className="text-sm font-medium text-gray-600">Check-in</p>
-                <p className="text-xl font-bold text-gray-900 mt-1">
-                  {employee.checkInTime}
-                </p>
-                <span
-                  className={cn(
-                    "inline-block mt-2 px-2 py-1 rounded text-xs font-medium",
-                    employee.arrival === "Ontime"
-                      ? "bg-green-100 text-green-800"
-                      : employee.arrival === "Late"
-                        ? "bg-red-100 text-red-800"
-                        : "bg-gray-100 text-gray-800",
-                  )}
-                >
+                <p className="text-xl font-bold text-gray-900 mt-1">{employee.checkInTime}</p>
+                <span className={cn(
+                  "inline-block mt-2 px-2 py-1 rounded text-xs font-medium",
+                  employee.arrival === "Ontime"
+                    ? "bg-green-100 text-green-800"
+                    : employee.arrival === "Late"
+                      ? "bg-red-100 text-red-800"
+                      : "bg-gray-100 text-gray-800"
+                )}>
                   {employee.arrival}
                 </span>
               </div>
               <div className="text-center">
                 <p className="text-sm font-medium text-gray-600">Check-out</p>
-                <p className="text-xl font-bold text-gray-900 mt-1">
-                  {employee.checkoutTime}
-                </p>
+                <p className="text-xl font-bold text-gray-900 mt-1">{employee.checkoutTime}</p>
               </div>
               <div className="text-center">
                 <p className="text-sm font-medium text-gray-600">Total Hours</p>
-                <p className="text-xl font-bold text-gray-900 mt-1">
-                  {employee.totalWorkingHour}
-                </p>
+                <p className="text-xl font-bold text-gray-900 mt-1">{employee.totalWorkingHour}</p>
               </div>
               <div className="text-center">
                 <p className="text-sm font-medium text-gray-600">Overtime</p>
-                <p className="text-xl font-bold text-gray-900 mt-1">
-                  {employee.overtimeHours || "0 Hrs"}
-                </p>
+                <p className="text-xl font-bold text-gray-900 mt-1">{employee.overtimeHours || "0 Hrs"}</p>
                 {employee.overtimeApprovedBy && (
                   <p className="text-xs text-gray-500 mt-1">
                     Approved by {employee.overtimeApprovedBy}
@@ -2286,18 +2197,12 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
           <div className="bg-gray-50 rounded-lg p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <p className="text-sm font-medium text-gray-600">
-                  Contact Person
-                </p>
+                <p className="text-sm font-medium text-gray-600">Contact Person</p>
                 <p className="text-lg text-gray-900 mt-1">John Doe (Spouse)</p>
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-600">
-                  Phone Number
-                </p>
-                <p className="text-lg text-gray-900 mt-1">
-                  +91 {Math.floor(Math.random() * 9000000000) + 1000000000}
-                </p>
+                <p className="text-sm font-medium text-gray-600">Phone Number</p>
+                <p className="text-lg text-gray-900 mt-1">+91 {Math.floor(Math.random() * 9000000000) + 1000000000}</p>
               </div>
             </div>
           </div>
@@ -2351,9 +2256,7 @@ const Overview: React.FC = () => {
   const [selectedEmployee, setSelectedEmployee] =
     useState<EmployeeAttendanceData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalView, setModalView] = useState<"attendance" | "profile">(
-    "attendance",
-  );
+  const [modalView, setModalView] = useState<"attendance" | "profile">("attendance");
 
   // Handle modal opening
   const handleViewEmployee = (employee: EmployeeAttendanceData) => {
@@ -2708,9 +2611,11 @@ const Overview: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           {selectedEmployee && (
-            <div className="bg-white rounded-lg overflow-hidden">
-              {/* Modal Header */}
-              <div className="flex items-start justify-between p-6 border-b border-gray-200">
+            <>
+              {modalView === "attendance" ? (
+                <div className="bg-white rounded-lg overflow-hidden">
+                  {/* Modal Header */}
+                  <div className="flex items-start justify-between p-6 border-b border-gray-200">
                 <div className="flex items-center gap-4">
                   {/* Employee Avatar */}
                   <div className="relative">
