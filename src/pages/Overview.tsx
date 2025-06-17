@@ -991,7 +991,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "CASUAL LEAVE",
     dateOfJoining: "2019-11-08",
     branch: "Haldia",
-    authorityLevel: 4,
+    authorityLevel: 3,
   },
   {
     id: "4",
@@ -1024,7 +1024,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "ABSENT",
     dateOfJoining: "2017-05-20",
     branch: "Head Office",
-    authorityLevel: 5,
+    authorityLevel: 3,
   },
   {
     id: "6",
@@ -1039,7 +1039,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "HALF-DAY",
     dateOfJoining: "2022-09-12",
     branch: "Head Office",
-    authorityLevel: 4,
+    authorityLevel: 3,
   },
   {
     id: "7",
@@ -1054,7 +1054,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     status: "ABSENT",
     dateOfJoining: "2020-02-28",
     branch: "Head Office",
-    authorityLevel: 4,
+    authorityLevel: 3,
   },
   {
     id: "8",
