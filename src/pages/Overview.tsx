@@ -2038,7 +2038,7 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            back to attendance log
+            Back to attendance log
           </button>
           <h2 className="text-lg font-bold text-gray-900 absolute left-1/2 transform -translate-x-1/2">
             Profile
