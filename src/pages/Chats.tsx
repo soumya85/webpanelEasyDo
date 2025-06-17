@@ -3481,7 +3481,7 @@ const Chats: React.FC = () => {
             </h1>
 
             {/* Search Bar */}
-            <div className="relative flex-shrink-0" style={{ width: "180px" }}>
+            <div className="relative flex-shrink-0" style={{ width: "350px" }}>
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 value={searchQuery}
@@ -3492,7 +3492,7 @@ const Chats: React.FC = () => {
             </div>
 
             {/* Filter Buttons */}
-            <div className="flex gap-1 flex-1">
+            <div className="flex gap-1.5 flex-1">
               {filterTabs.map((filter) => {
                 const count = getFilterCount(filter);
                 return (
@@ -3500,16 +3500,16 @@ const Chats: React.FC = () => {
                     key={filter}
                     onClick={() => setSelectedFilter(filter)}
                     className={cn(
-                      "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1 whitespace-nowrap",
+                      "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap",
                       selectedFilter === filter
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-150 border border-gray-200",
                     )}
                   >
                     <span>{filter}</span>
                     <span
                       className={cn(
-                        "text-xs font-semibold px-1 py-0.5 rounded-full min-w-[18px] text-center",
+                        "text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center",
                         selectedFilter === filter
                           ? "bg-white/20 text-white"
                           : "bg-blue-500 text-white",
@@ -3523,18 +3523,18 @@ const Chats: React.FC = () => {
             </div>
 
             {/* Task Summary Cards */}
-            <div className="flex gap-2 flex-shrink-0">
+            <div className="flex gap-1.5 flex-shrink-0">
               {taskSummaries.map((task) => (
                 <div
                   key={task.id}
-                  className="bg-white rounded-lg p-2 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
-                  style={{ minWidth: "60px" }}
+                  className="bg-gray-100 rounded-lg p-2 cursor-pointer hover:bg-gray-150 transition-colors border border-gray-200"
+                  style={{ minWidth: "50px" }}
                 >
                   <div className="text-center">
-                    <div className="text-sm font-bold text-gray-900 mb-0.5">
+                    <div className="text-sm font-bold text-blue-600 mb-0.5">
                       {task.count}
                     </div>
-                    <div className="text-xs text-gray-600 leading-tight">
+                    <div className="text-xs text-gray-600 leading-tight font-medium">
                       {task.title}
                     </div>
                   </div>
