@@ -2155,69 +2155,12 @@ const Overview: React.FC = () => {
             <div className="bg-white rounded-lg overflow-hidden">
               {/* Content Area */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                {/* Left Column - Employee Details */}
-                <div className="p-6 space-y-6 bg-white">
-                  {/* Employee Header */}
-                  <div className="flex items-start gap-4">
-                    {/* Employee Avatar */}
-                    <div className="relative flex-shrink-0">
-                      <div className="w-20 h-20 rounded-full overflow-hidden shadow-lg">
-                        <img
-                          src="https://cdn.builder.io/api/v1/assets/b6764255a0504630b0a5f74d92d39b20/image-94aaae?format=webp&width=800"
-                          alt={selectedEmployee.name}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                            e.currentTarget.nextElementSibling.style.display =
-                              "flex";
-                          }}
-                        />
-                        <div
-                          className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl"
-                          style={{ display: "none" }}
-                        >
-                          {selectedEmployee.initials}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex-1">
-                      <h2 className="text-3xl font-bold text-gray-900 mb-1">
-                        {selectedEmployee.name}
-                      </h2>
-                      <p className="text-lg text-gray-700 mb-1">
-                        {selectedEmployee.designation}
-                      </p>
-                      <p className="text-base text-gray-600">
-                        ( {selectedEmployee.location} )
-                      </p>
-                    </div>
-
-                    {/* Status Badge */}
-                    <div className="flex items-center">
-                      <span
-                        className={cn(
-                          "px-4 py-2 rounded-lg text-sm font-bold border-2 flex items-center gap-2",
-                          selectedEmployee.status === "PRESENT"
-                            ? "bg-white text-green-700 border-green-300"
-                            : selectedEmployee.status === "ABSENT"
-                              ? "bg-white text-red-700 border-red-300"
-                              : selectedEmployee.status === "HALF-DAY"
-                                ? "bg-white text-yellow-700 border-yellow-300"
-                                : "bg-white text-blue-700 border-blue-300",
-                        )}
-                      >
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        {selectedEmployee.status.replace("_", " ")}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Dynamic Date Display */}
-                  <div className="flex items-center gap-3 text-gray-800">
-                    <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                {/* Left Column - Attendance Details */}
+                <div className="space-y-6">
+                  {/* Date Display */}
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <svg
-                      className="w-5 h-5 text-gray-700"
+                      className="w-4 h-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -2229,139 +2172,151 @@ const Overview: React.FC = () => {
                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                       />
                     </svg>
-                    <span className="text-lg font-semibold">
-                      {new Date().toLocaleDateString("en-GB", {
-                        weekday: "long",
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </span>
+                    Thursday, 19 Sept 2024
                   </div>
 
-                  {/* Company Section */}
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-blue-900">
+                  {/* Company Info */}
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-gray-900 mb-3">
                       Liberty Highrise Pvt Ltd
                     </h3>
 
-                    {/* Check-in Section */}
+                    {/* Check-in Details */}
                     <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-bold text-gray-700 bg-gray-200 px-3 py-2 rounded">
-                          CHECK IN
-                        </span>
-                        <span className="text-xs bg-green-500 text-white px-3 py-2 rounded font-bold">
-                          VERIFIED
-                        </span>
-                      </div>
-
-                      <div>
-                        <p className="text-3xl font-bold text-gray-900 mb-2">
-                          {selectedEmployee.checkInTime} ( IST )
-                        </p>
-                        <p className="text-lg text-gray-700 mb-3">
-                          {selectedEmployee.location}
-                        </p>
-                        <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-sm font-medium text-gray-700">
+                              CHECK IN
+                            </span>
+                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                              VERIFIED
+                            </span>
+                          </div>
+                          <p className="text-lg font-bold text-gray-900">
+                            {selectedEmployee.checkInTime}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            {selectedEmployee.location}
+                          </p>
                           <span
                             className={cn(
-                              "px-3 py-2 rounded text-sm font-bold",
+                              "inline-block mt-1 px-2 py-1 rounded text-xs font-medium",
                               selectedEmployee.arrival === "Ontime"
-                                ? "bg-green-200 text-green-800"
-                                : "bg-orange-200 text-orange-800",
+                                ? "bg-green-100 text-green-700"
+                                : "bg-red-100 text-red-700",
                             )}
                           >
                             {selectedEmployee.arrival.toUpperCase()}
                           </span>
-                          <span className="text-sm bg-gray-200 text-gray-700 px-3 py-2 rounded font-semibold">
-                            HEAD OFFICE
-                          </span>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Dotted separator line */}
-                    <div className="relative">
-                      <div className="border-t-2 border-dotted border-gray-400 w-full"></div>
-                    </div>
-
-                    {/* Check-out Section */}
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-bold text-gray-700 bg-gray-200 px-3 py-2 rounded">
-                          CHECK OUT
-                        </span>
-                        <span className="text-xs bg-green-500 text-white px-3 py-2 rounded font-bold">
-                          VERIFIED
-                        </span>
-                      </div>
-
-                      <div>
-                        <p className="text-3xl font-bold text-gray-900 mb-2">
-                          {selectedEmployee.checkoutTime} ( IST )
-                        </p>
-                        <p className="text-lg text-gray-700">
-                          {selectedEmployee.location}
-                        </p>
+                      {/* Check-out Details */}
+                      <div className="border-t pt-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-sm font-medium text-gray-700">
+                                CHECK OUT
+                              </span>
+                              <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                                VERIFIED
+                              </span>
+                            </div>
+                            <p className="text-lg font-bold text-gray-900">
+                              {selectedEmployee.checkoutTime}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {selectedEmployee.location}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Working Hours Summary Box */}
-                  <div className="bg-white border-2 border-gray-300 rounded-lg overflow-hidden">
-                    <div className="bg-blue-100 border-b border-gray-300 py-3 px-4">
-                      <div className="flex items-center gap-3">
-                        <svg
-                          className="w-5 h-5 text-gray-700"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <span className="text-lg font-bold text-gray-900">
-                          Total Working Hours :{" "}
-                          {selectedEmployee.totalWorkingHour}
-                        </span>
-                      </div>
+                  {/* Working Hours Summary */}
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <svg
+                        className="w-5 h-5 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span className="font-semibold text-gray-900">
+                        Total Working Hours: {selectedEmployee.totalWorkingHour}
+                      </span>
                     </div>
 
-                    <div className="bg-white border-b border-gray-300 py-3 px-4">
-                      <div className="flex items-center gap-3">
-                        <svg
-                          className="w-5 h-5 text-gray-700"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <span className="text-lg font-bold text-gray-900">
-                          Overtime : 1:45 Hrs
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-gray-600">Overtime: </span>
+                        <span className="font-semibold text-blue-600">
+                          1:45 Hrs
                         </span>
                       </div>
-                    </div>
-
-                    <div className="bg-blue-200 py-4 px-4">
-                      <p className="text-sm text-center text-gray-800 font-medium">
-                        <span className="block">
+                      <div className="text-right">
+                        <div className="text-xs text-gray-600">
                           Overtime at 7:15 P.M approved
-                        </span>
-                        <span className="block">
-                          by <span className="font-bold">Bhaskar Ghosh</span>
-                        </span>
-                      </p>
+                          <br />
+                          by <span className="font-medium">Bhaskar Ghosh</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Employee Details */}
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-gray-900">
+                      Employee Information
+                    </h4>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-gray-600">Employee ID:</span>
+                        <p className="font-medium">{selectedEmployee.id}</p>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Date of Joining:</span>
+                        <p className="font-medium">
+                          {new Date(
+                            selectedEmployee.dateOfJoining,
+                          ).toLocaleDateString()}
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Experience:</span>
+                        <p className="font-medium">
+                          {Math.floor(
+                            (new Date().getTime() -
+                              new Date(
+                                selectedEmployee.dateOfJoining,
+                              ).getTime()) /
+                              (1000 * 60 * 60 * 24 * 365),
+                          )}{" "}
+                          years
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Department:</span>
+                        <p className="font-medium">
+                          {selectedEmployee.designation.includes("Accountant")
+                            ? "Finance"
+                            : selectedEmployee.designation.includes("Developer")
+                              ? "Technology"
+                              : selectedEmployee.designation.includes("Manager")
+                                ? "Management"
+                                : "Operations"}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
