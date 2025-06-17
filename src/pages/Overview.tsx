@@ -1193,6 +1193,9 @@ const EmployeeAttendanceLog: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] =
+    useState<EmployeeAttendanceData | null>(null);
 
   // Create ref for scrolling to table
   const tableRef = React.useRef<HTMLDivElement>(null);
