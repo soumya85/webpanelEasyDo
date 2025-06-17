@@ -45,6 +45,7 @@ import {
   Pie,
   PieChart,
   Cell,
+  Tooltip,
 } from "recharts";
 
 // Date Range Types
