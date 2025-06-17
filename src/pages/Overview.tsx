@@ -1480,6 +1480,12 @@ const EmployeeAttendanceLog: React.FC = () => {
     }
   };
 
+  // Handle opening employee detail modal
+  const handleViewEmployee = (employee: EmployeeAttendanceData) => {
+    setSelectedEmployee(employee);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-6 w-full">
       {/* Header */}
