@@ -3503,7 +3503,7 @@ const Chats: React.FC = () => {
                       "px-3 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-2 whitespace-nowrap",
                       selectedFilter === filter
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                        : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200",
                     )}
                   >
                     <span>{filter}</span>
@@ -3527,7 +3527,7 @@ const Chats: React.FC = () => {
               {taskSummaries.map((task) => (
                 <div
                   key={task.id}
-                  className="bg-gray-50 rounded-xl p-3 cursor-pointer hover:bg-gray-100 transition-colors border border-gray-200"
+                  className="bg-white rounded-xl p-3 cursor-pointer hover:bg-gray-50 transition-colors border border-gray-200"
                   style={{ minWidth: "65px" }}
                 >
                   <div className="text-center">
