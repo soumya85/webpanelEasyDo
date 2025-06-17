@@ -1185,7 +1185,9 @@ const ArrivalBadge: React.FC<{
   );
 };
 
-const EmployeeAttendanceLog: React.FC = () => {
+const EmployeeAttendanceLog: React.FC<{
+  onViewEmployee: (employee: EmployeeAttendanceData) => void;
+}> = ({ onViewEmployee }) => {
   const [sortBy, setSortBy] = useState<"alphabetical" | "date">("alphabetical");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [searchTerm, setSearchTerm] = useState("");
