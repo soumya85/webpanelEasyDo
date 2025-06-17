@@ -3472,7 +3472,7 @@ const Chats: React.FC = () => {
         style={{ height: "calc(100vh - 86px)" }}
       >
         {/* Full Width Controls Section */}
-        <div className="w-full p-4 border-b border-gray-200 bg-white space-y-1">
+        <div className="w-full p-4 border-b border-gray-200 bg-white space-y-3">
           {/* Top Row: Title, Search, and Task Cards */}
           <div className="flex items-center gap-4">
             {/* Chats Title */}
