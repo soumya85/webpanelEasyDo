@@ -1,36 +1,47 @@
 import React, { useState, useMemo } from "react";
+import { format, addDays, subDays, startOfWeek, endOfWeek } from "date-fns";
 import { cn } from "@/lib/utils";
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-} from "recharts";
-import {
-  ChevronDown,
-  Trophy,
-  CheckSquare,
-  Calendar as CalendarIcon,
-  CheckCircle,
   Search,
   SlidersHorizontal,
-  ChevronDown as ChevronDownIcon,
+  CalendarIcon,
+  ChevronDownIcon,
   ChevronLeft,
   ChevronRight,
-  ArrowUp,
-  ArrowDown,
+  Clock,
+  MapPin,
+  User,
+  Calendar as CalendarDays,
 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  Pie,
+  PieChart,
+  Cell,
+} from "recharts";
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
