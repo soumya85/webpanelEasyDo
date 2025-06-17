@@ -2153,58 +2153,73 @@ const Overview: React.FC = () => {
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
           {selectedEmployee && (
             <div className="bg-white rounded-lg overflow-hidden">
-              {/* Modal Header */}
-              <div className="flex items-start justify-between p-6 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  {/* Employee Avatar */}
-                  <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                      {selectedEmployee.initials}
-                    </div>
-                    {/* Online indicator */}
-                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
-                  </div>
-
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-1">
-                      {selectedEmployee.name}
-                    </h2>
-                    <p className="text-sm text-gray-600 mb-2">
-                      {selectedEmployee.designation}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      ( {selectedEmployee.location} )
-                    </p>
-                  </div>
-                </div>
-
-                {/* Status Badge */}
-                <div className="flex items-center gap-3">
-                  <span
-                    className={cn(
-                      "px-3 py-1 rounded-md text-sm font-medium",
-                      selectedEmployee.status === "PRESENT"
-                        ? "bg-green-100 text-green-800 border border-green-200"
-                        : selectedEmployee.status === "ABSENT"
-                          ? "bg-red-100 text-red-800 border border-red-200"
-                          : selectedEmployee.status === "HALF-DAY"
-                            ? "bg-yellow-100 text-yellow-800 border border-yellow-200"
-                            : "bg-blue-100 text-blue-800 border border-blue-200",
-                    )}
-                  >
-                    {selectedEmployee.status.replace("_", " ")}
-                  </span>
-                </div>
-              </div>
-
               {/* Content Area */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
-                {/* Left Column - Attendance Details */}
-                <div className="space-y-6">
-                  {/* Date Display */}
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Left Column - Employee Details */}
+                <div className="p-6 space-y-6">
+                  {/* Employee Header */}
+                  <div className="flex items-start gap-4">
+                    {/* Employee Avatar */}
+                    <div className="relative flex-shrink-0">
+                      <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg overflow-hidden">
+                        <img
+                          src="https://cdn.builder.io/api/v1/assets/b6764255a0504630b0a5f74d92d39b20/image-94aaae?format=webp&width=800"
+                          alt={selectedEmployee.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                            e.currentTarget.nextElementSibling.style.display =
+                              "flex";
+                          }}
+                        />
+                        <div
+                          className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl"
+                          style={{ display: "none" }}
+                        >
+                          {selectedEmployee.initials}
+                        </div>
+                      </div>
+                      {/* Online indicator */}
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
+
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-1">
+                        {selectedEmployee.name}
+                      </h2>
+                      <p className="text-gray-600 mb-2">
+                        {selectedEmployee.designation}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        ( {selectedEmployee.location} )
+                      </p>
+                    </div>
+
+                    {/* Status Badge */}
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={cn(
+                          "px-4 py-2 rounded-lg text-sm font-semibold border flex items-center gap-2",
+                          selectedEmployee.status === "PRESENT"
+                            ? "bg-green-50 text-green-700 border-green-200"
+                            : selectedEmployee.status === "ABSENT"
+                              ? "bg-red-50 text-red-700 border-red-200"
+                              : selectedEmployee.status === "HALF-DAY"
+                                ? "bg-yellow-50 text-yellow-700 border-yellow-200"
+                                : "bg-blue-50 text-blue-700 border-blue-200",
+                        )}
+                      >
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        {selectedEmployee.status.replace("_", " ")}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Dynamic Date Display */}
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     <svg
-                      className="w-4 h-4"
+                      className="w-5 h-5 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -2216,149 +2231,131 @@ const Overview: React.FC = () => {
                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                       />
                     </svg>
-                    Thursday, 19 Sept 2024
+                    <span className="font-medium">
+                      {new Date().toLocaleDateString("en-GB", {
+                        weekday: "long",
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
                   </div>
 
-                  {/* Company Info */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">
+                  {/* Company Section */}
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-bold text-gray-900">
                       Liberty Highrise Pvt Ltd
                     </h3>
 
-                    {/* Check-in Details */}
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-sm font-medium text-gray-700">
-                              CHECK IN
-                            </span>
-                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                              VERIFIED
-                            </span>
-                          </div>
-                          <p className="text-lg font-bold text-gray-900">
-                            {selectedEmployee.checkInTime}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            {selectedEmployee.location}
-                          </p>
-                          <span
-                            className={cn(
-                              "inline-block mt-1 px-2 py-1 rounded text-xs font-medium",
-                              selectedEmployee.arrival === "Ontime"
-                                ? "bg-green-100 text-green-700"
-                                : "bg-red-100 text-red-700",
-                            )}
-                          >
-                            {selectedEmployee.arrival.toUpperCase()}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Check-out Details */}
-                      <div className="border-t pt-4">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-sm font-medium text-gray-700">
-                                CHECK OUT
-                              </span>
-                              <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                                VERIFIED
-                              </span>
-                            </div>
-                            <p className="text-lg font-bold text-gray-900">
-                              {selectedEmployee.checkoutTime}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                              {selectedEmployee.location}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Working Hours Summary */}
-                  <div className="bg-blue-50 rounded-lg p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <svg
-                        className="w-5 h-5 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      <span className="font-semibold text-gray-900">
-                        Total Working Hours: {selectedEmployee.totalWorkingHour}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="text-gray-600">Overtime: </span>
-                        <span className="font-semibold text-blue-600">
-                          1:45 Hrs
+                    {/* Check-in Section */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded">
+                          CHECK IN
+                        </span>
+                        <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded font-medium">
+                          VERIFIED
                         </span>
                       </div>
-                      <div className="text-right">
-                        <div className="text-xs text-gray-600">
-                          Overtime at 7:15 P.M approved
-                          <br />
-                          by <span className="font-medium">Bhaskar Ghosh</span>
-                        </div>
+
+                      <div className="ml-0">
+                        <p className="text-2xl font-bold text-gray-900 mb-1">
+                          {selectedEmployee.checkInTime}
+                        </p>
+                        <p className="text-gray-600 mb-2">
+                          {selectedEmployee.location}
+                        </p>
+                        <span
+                          className={cn(
+                            "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                            selectedEmployee.arrival === "Ontime"
+                              ? "bg-green-100 text-green-700"
+                              : "bg-orange-100 text-orange-700",
+                          )}
+                        >
+                          {selectedEmployee.arrival.toUpperCase()}
+                        </span>
+                        <span className="ml-3 text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full font-medium">
+                          HEAD OFFICE
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Dotted separator */}
+                    <div className="border-l-2 border-dotted border-gray-300 h-8 ml-8"></div>
+
+                    {/* Check-out Section */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded">
+                          CHECK OUT
+                        </span>
+                        <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded font-medium">
+                          VERIFIED
+                        </span>
+                      </div>
+
+                      <div className="ml-0">
+                        <p className="text-2xl font-bold text-gray-900 mb-1">
+                          {selectedEmployee.checkoutTime}
+                        </p>
+                        <p className="text-gray-600">
+                          {selectedEmployee.location}
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Employee Details */}
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-900">
-                      Employee Information
-                    </h4>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="text-gray-600">Employee ID:</span>
-                        <p className="font-medium">{selectedEmployee.id}</p>
+                  {/* Working Hours Summary Box */}
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 border border-blue-200">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <svg
+                          className="w-5 h-5 text-blue-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span className="font-bold text-gray-900">
+                          Total Working Hours :{" "}
+                          {selectedEmployee.totalWorkingHour}
+                        </span>
                       </div>
-                      <div>
-                        <span className="text-gray-600">Date of Joining:</span>
-                        <p className="font-medium">
-                          {new Date(
-                            selectedEmployee.dateOfJoining,
-                          ).toLocaleDateString()}
-                        </p>
+
+                      <div className="flex items-center gap-3">
+                        <svg
+                          className="w-5 h-5 text-purple-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span className="font-bold text-gray-900">
+                          Overtime : 1:45 Hrs
+                        </span>
                       </div>
-                      <div>
-                        <span className="text-gray-600">Experience:</span>
-                        <p className="font-medium">
-                          {Math.floor(
-                            (new Date().getTime() -
-                              new Date(
-                                selectedEmployee.dateOfJoining,
-                              ).getTime()) /
-                              (1000 * 60 * 60 * 24 * 365),
-                          )}{" "}
-                          years
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-gray-600">Department:</span>
-                        <p className="font-medium">
-                          {selectedEmployee.designation.includes("Accountant")
-                            ? "Finance"
-                            : selectedEmployee.designation.includes("Developer")
-                              ? "Technology"
-                              : selectedEmployee.designation.includes("Manager")
-                                ? "Management"
-                                : "Operations"}
+
+                      <div className="bg-blue-100 rounded-lg p-3 mt-3">
+                        <p className="text-sm text-center text-gray-700">
+                          <span className="font-medium">
+                            Overtime at 7:15 P.M approved
+                          </span>
+                          <br />
+                          <span className="text-xs">by </span>
+                          <span className="font-semibold">Bhaskar Ghosh</span>
                         </p>
                       </div>
                     </div>
