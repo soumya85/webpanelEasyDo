@@ -3468,7 +3468,7 @@ const Chats: React.FC = () => {
     <>
       {/* DESKTOP LAYOUT - WhatsApp Style (Only for large screens 1024px+) */}
       <div
-        className="hidden md:flex flex-col h-full bg-white"
+        className="hidden lg:flex flex-col h-full bg-white"
         style={{ height: "calc(100vh - 86px)" }}
       >
         {/* Full Width Controls Section */}
