@@ -2537,79 +2537,81 @@ const ChatContactsList: React.FC<{
   return (
     <div className="flex flex-col h-full bg-white border-r border-gray-200">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 bg-white">
-        {/* Task Summary Cards Row */}
-        <div className="flex justify-end mb-3">
-          <div className="flex gap-3">
-            {taskSummaries.map((task) => (
-              <div
-                key={task.id}
-                className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
-                style={{ minWidth: "70px" }}
-              >
-                <div className="text-center">
-                  <div className="text-lg font-bold text-gray-900 mb-1">
-                    {task.count}
-                  </div>
-                  <div className="text-xs text-gray-600 leading-tight">
-                    {task.title}
+      {!hideHeader && (
+        <div className="p-4 border-b border-gray-200 bg-white">
+          {/* Task Summary Cards Row */}
+          <div className="flex justify-end mb-3">
+            <div className="flex gap-3">
+              {taskSummaries.map((task) => (
+                <div
+                  key={task.id}
+                  className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
+                  style={{ minWidth: "70px" }}
+                >
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-gray-900 mb-1">
+                      {task.count}
+                    </div>
+                    <div className="text-xs text-gray-600 leading-tight">
+                      {task.title}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Main Header Row: Title, Search, and Filters */}
-        <div className="flex items-center gap-4">
-          {/* Chats Title */}
-          <h1 className="text-xl font-semibold text-gray-900 flex-shrink-0">
-            Chats
-          </h1>
-
-          {/* Search Bar */}
-          <div className="relative flex-shrink-0" style={{ width: "200px" }}>
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search or start a new chat"
-              className="pl-10 bg-gray-50 border-gray-200 h-9"
-            />
+              ))}
+            </div>
           </div>
 
-          {/* Filter Buttons */}
-          <div className="flex gap-2 flex-1">
-            {filterTabs.map((filter) => {
-              const count = getFilterCount(filter);
-              return (
-                <button
-                  key={filter}
-                  onClick={() => onFilterChange(filter)}
-                  className={cn(
-                    "px-3 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap",
-                    selectedFilter === filter
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                  )}
-                >
-                  <span>{filter}</span>
-                  <span
+          {/* Main Header Row: Title, Search, and Filters */}
+          <div className="flex items-center gap-4">
+            {/* Chats Title */}
+            <h1 className="text-xl font-semibold text-gray-900 flex-shrink-0">
+              Chats
+            </h1>
+
+            {/* Search Bar */}
+            <div className="relative flex-shrink-0" style={{ width: "200px" }}>
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
+                placeholder="Search or start a new chat"
+                className="pl-10 bg-gray-50 border-gray-200 h-9"
+              />
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="flex gap-2 flex-1">
+              {filterTabs.map((filter) => {
+                const count = getFilterCount(filter);
+                return (
+                  <button
+                    key={filter}
+                    onClick={() => onFilterChange(filter)}
                     className={cn(
-                      "text-xs font-semibold px-1.5 py-0.5 rounded-full",
+                      "px-3 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap",
                       selectedFilter === filter
-                        ? "bg-white/20 text-white"
-                        : "bg-blue-500 text-white",
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200",
                     )}
                   >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
+                    <span>{filter}</span>
+                    <span
+                      className={cn(
+                        "text-xs font-semibold px-1.5 py-0.5 rounded-full",
+                        selectedFilter === filter
+                          ? "bg-white/20 text-white"
+                          : "bg-blue-500 text-white",
+                      )}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Chat List */}
       <div className="flex-1 overflow-y-auto">
