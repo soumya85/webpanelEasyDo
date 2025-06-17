@@ -2689,7 +2689,6 @@ const ChatConversation: React.FC<{
   onMessageChange: (text: string) => void;
   onSendMessage: () => void;
   onOpenActions: () => void;
-  hideHeader?: boolean;
 }> = ({
   selectedChat,
   messages,
@@ -2697,7 +2696,6 @@ const ChatConversation: React.FC<{
   onMessageChange,
   onSendMessage,
   onOpenActions,
-  hideHeader = false,
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
