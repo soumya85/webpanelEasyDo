@@ -937,6 +937,10 @@ interface EmployeeAttendanceData {
     | "ABSENT"
     | "WEEK OFF";
   dateOfJoining: string;
+  overtimeHours?: string;
+  overtimeApprovedBy?: string;
+  overtimeApprovedAt?: string;
+  branch: string;
 }
 
 const employeeAttendanceData: EmployeeAttendanceData[] = [
