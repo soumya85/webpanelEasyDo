@@ -3306,7 +3306,10 @@ const Overview: React.FC = () => {
                     >
                       View Full Profile
                     </button>
-                    <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                    <button
+                      onClick={() => handleContactEmployee(selectedEmployee)}
+                      className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                    >
                       Contact Employee
                     </button>
                   </div>
