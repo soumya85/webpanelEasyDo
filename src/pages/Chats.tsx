@@ -3481,7 +3481,7 @@ const Chats: React.FC = () => {
             </h1>
 
             {/* Search Bar */}
-            <div className="relative flex-shrink-0" style={{ width: "280px" }}>
+            <div className="relative flex-shrink-0" style={{ width: "350px" }}>
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 value={searchQuery}
