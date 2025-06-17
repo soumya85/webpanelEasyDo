@@ -2537,6 +2537,16 @@ const Overview: React.FC = () => {
   // Handle view switching
   const handleViewFullProfile = () => {
     setModalView("profile");
+    // Scroll to top of modal content when switching to profile view
+    setTimeout(() => {
+      const modalContent =
+        document.querySelector("[data-radix-scroll-area-viewport]") ||
+        document.querySelector(".max-w-4xl.max-h-\\[90vh\\].overflow-y-auto") ||
+        document.querySelector('[role="dialog"] > div');
+      if (modalContent) {
+        modalContent.scrollTop = 0;
+      }
+    }, 0);
   };
 
   const handleBackToAttendance = () => {
