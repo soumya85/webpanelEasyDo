@@ -2238,7 +2238,7 @@ const Overview: React.FC = () => {
                             <span className="text-sm font-medium text-gray-700">
                               CHECK IN
                             </span>
-                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                            <span className="text-xs bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
                               VERIFIED
                             </span>
                           </div>
@@ -2248,16 +2248,21 @@ const Overview: React.FC = () => {
                           <p className="text-sm text-gray-600">
                             {selectedEmployee.location}
                           </p>
-                          <span
-                            className={cn(
-                              "inline-block mt-1 px-2 py-1 rounded text-xs font-medium",
-                              selectedEmployee.arrival === "Ontime"
-                                ? "bg-green-100 text-green-700"
-                                : "bg-red-100 text-red-700",
-                            )}
-                          >
-                            {selectedEmployee.arrival.toUpperCase()}
-                          </span>
+                          <div className="flex items-center gap-2 mt-2">
+                            <span
+                              className={cn(
+                                "inline-block px-3 py-1 rounded-lg text-xs font-semibold",
+                                selectedEmployee.arrival === "Ontime"
+                                  ? "bg-green-100 text-green-800"
+                                  : "bg-orange-100 text-orange-800",
+                              )}
+                            >
+                              {selectedEmployee.arrival.toUpperCase()}
+                            </span>
+                            <span className="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-lg font-semibold">
+                              HEAD OFFICE
+                            </span>
+                          </div>
                         </div>
                       </div>
 
@@ -2269,7 +2274,7 @@ const Overview: React.FC = () => {
                               <span className="text-sm font-medium text-gray-700">
                                 CHECK OUT
                               </span>
-                              <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                              <span className="text-xs bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
                                 VERIFIED
                               </span>
                             </div>
