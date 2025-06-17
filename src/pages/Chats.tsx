@@ -3514,7 +3514,7 @@ const Chats: React.FC = () => {
             </div>
 
             {/* Filter Buttons */}
-            <div className="flex gap-2 flex-1">
+            <div className="flex gap-1 flex-1">
               {filterTabs.map((filter) => {
                 const count = getFilterCount(filter);
                 return (
@@ -3522,7 +3522,7 @@ const Chats: React.FC = () => {
                     key={filter}
                     onClick={() => setSelectedFilter(filter)}
                     className={cn(
-                      "px-3 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap",
+                      "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1 whitespace-nowrap",
                       selectedFilter === filter
                         ? "bg-blue-500 text-white"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200",
@@ -3531,7 +3531,7 @@ const Chats: React.FC = () => {
                     <span>{filter}</span>
                     <span
                       className={cn(
-                        "text-xs font-semibold px-1.5 py-0.5 rounded-full",
+                        "text-xs font-semibold px-1 py-0.5 rounded-full min-w-[18px] text-center",
                         selectedFilter === filter
                           ? "bg-white/20 text-white"
                           : "bg-blue-500 text-white",
