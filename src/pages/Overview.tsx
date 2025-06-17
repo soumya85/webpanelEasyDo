@@ -585,6 +585,136 @@ const EmployeeWorkingHourTrendsCard: React.FC<
           </div>
         </div>
       </div>
+
+      {/* Employee Detail Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-[#374151] flex-shrink-0 flex items-center justify-center">
+                <span className="text-white text-lg font-semibold">
+                  {selectedEmployee?.initials}
+                </span>
+              </div>
+              <div>
+                <div className="text-xl font-semibold text-gray-900">
+                  {selectedEmployee?.name}
+                </div>
+                <div className="text-sm text-gray-600">
+                  {selectedEmployee?.designation}
+                </div>
+              </div>
+            </DialogTitle>
+            <DialogDescription>
+              Attendance details for {getCurrentDateString()}
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedEmployee && (
+            <div className="space-y-6">
+              {/* Employee Info Section */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                  Employee Information
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-2">
+                    <User className="h-4 w-4 text-gray-500" />
+                    <div>
+                      <div className="text-xs text-gray-500">Employee ID</div>
+                      <div className="text-sm font-medium">
+                        {selectedEmployee.id}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-gray-500" />
+                    <div>
+                      <div className="text-xs text-gray-500">Location</div>
+                      <div className="text-sm font-medium">
+                        {selectedEmployee.location}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4 text-gray-500" />
+                    <div>
+                      <div className="text-xs text-gray-500">
+                        Date of Joining
+                      </div>
+                      <div className="text-sm font-medium">
+                        {selectedEmployee.dateOfJoining}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 flex items-center justify-center">
+                      <StatusBadge status={selectedEmployee.status} />
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-500">
+                        Today's Status
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Attendance Details Section */}
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  Attendance Details
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">
+                      Check-in Time
+                    </div>
+                    <div className="text-lg font-semibold text-gray-900">
+                      {selectedEmployee.checkInTime}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">
+                      Check-out Time
+                    </div>
+                    <div className="text-lg font-semibold text-gray-900">
+                      {selectedEmployee.checkoutTime}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">
+                      Arrival Status
+                    </div>
+                    <div className="flex items-center">
+                      <ArrivalBadge arrival={selectedEmployee.arrival} />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">
+                      Total Working Hours
+                    </div>
+                    <div className="text-lg font-semibold text-gray-900">
+                      {selectedEmployee.totalWorkingHour}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Actions */}
+              <div className="flex gap-2 pt-2">
+                <button className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium">
+                  View Full History
+                </button>
+                <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium">
+                  Export Report
+                </button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
