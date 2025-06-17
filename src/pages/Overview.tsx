@@ -941,6 +941,7 @@ interface EmployeeAttendanceData {
   overtimeApprovedBy?: string;
   overtimeApprovedAt?: string;
   branch: string;
+  authorityLevel: number;
 }
 
 const employeeAttendanceData: EmployeeAttendanceData[] = [
