@@ -2481,6 +2481,9 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
 };
 
 const Overview: React.FC = () => {
+  // Hooks
+  const navigate = useNavigate();
+
   // State Management
   const [selectedDateRange, setSelectedDateRange] =
     useState<DateRangeOption>("CUSTOM_RANGE");
