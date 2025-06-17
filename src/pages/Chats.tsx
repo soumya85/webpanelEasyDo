@@ -3472,8 +3472,8 @@ const Chats: React.FC = () => {
         style={{ height: "calc(100vh - 86px)" }}
       >
         {/* Full Width Controls Section */}
-        <div className="w-full p-4 border-b border-gray-200 bg-white space-y-3">
-          {/* Top Row: Title, Search, and Task Cards */}
+        <div className="w-full p-4 border-b border-gray-200 bg-white">
+          {/* Single Row: Title, Search, Filters, and Task Cards */}
           <div className="flex items-center gap-4">
             {/* Chats Title */}
             <h1 className="text-xl font-semibold text-gray-900 flex-shrink-0">
@@ -3491,8 +3491,39 @@ const Chats: React.FC = () => {
               />
             </div>
 
+            {/* Filter Buttons */}
+            <div className="flex gap-1.5 flex-1">
+              {filterTabs.map((filter) => {
+                const count = getFilterCount(filter);
+                return (
+                  <button
+                    key={filter}
+                    onClick={() => setSelectedFilter(filter)}
+                    className={cn(
+                      "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap",
+                      selectedFilter === filter
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-150 border border-gray-200",
+                    )}
+                  >
+                    <span>{filter}</span>
+                    <span
+                      className={cn(
+                        "text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center",
+                        selectedFilter === filter
+                          ? "bg-white/20 text-white"
+                          : "bg-blue-500 text-white",
+                      )}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
             {/* Task Summary Cards */}
-            <div className="flex gap-2 flex-shrink-0 ml-auto">
+            <div className="flex gap-2 flex-shrink-0">
               {taskSummaries.map((task) => (
                 <div
                   key={task.id}
@@ -3510,37 +3541,6 @@ const Chats: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Bottom Row: Filter Buttons */}
-          <div className="flex gap-1.5">
-            {filterTabs.map((filter) => {
-              const count = getFilterCount(filter);
-              return (
-                <button
-                  key={filter}
-                  onClick={() => setSelectedFilter(filter)}
-                  className={cn(
-                    "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap",
-                    selectedFilter === filter
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-150 border border-gray-200",
-                  )}
-                >
-                  <span>{filter}</span>
-                  <span
-                    className={cn(
-                      "text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center",
-                      selectedFilter === filter
-                        ? "bg-white/20 text-white"
-                        : "bg-blue-500 text-white",
-                    )}
-                  >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
           </div>
         </div>
 
