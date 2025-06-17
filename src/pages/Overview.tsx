@@ -1669,7 +1669,7 @@ const EmployeeAttendanceLog: React.FC<{
                 </td>
                 <td className="py-4 px-4">
                   <button
-                    onClick={() => handleViewEmployee(employee)}
+                    onClick={() => onViewEmployee(employee)}
                     className="flex items-center gap-1 px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-600 hover:bg-gray-50 transition-colors"
                   >
                     View
