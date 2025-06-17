@@ -3523,15 +3523,15 @@ const Chats: React.FC = () => {
             </div>
 
             {/* Task Summary Cards */}
-            <div className="flex gap-2 flex-shrink-0">
+            <div className="flex gap-1.5 flex-shrink-0">
               {taskSummaries.map((task) => (
                 <div
                   key={task.id}
-                  className="bg-gray-100 rounded-xl p-3 cursor-pointer hover:bg-gray-150 transition-colors border border-gray-200"
-                  style={{ minWidth: "65px" }}
+                  className="bg-gray-100 rounded-lg p-2 cursor-pointer hover:bg-gray-150 transition-colors border border-gray-200"
+                  style={{ minWidth: "50px" }}
                 >
                   <div className="text-center">
-                    <div className="text-xl font-bold text-blue-600 mb-1">
+                    <div className="text-sm font-bold text-blue-600 mb-0.5">
                       {task.count}
                     </div>
                     <div className="text-xs text-gray-600 leading-tight font-medium">
