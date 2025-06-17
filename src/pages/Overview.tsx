@@ -2260,7 +2260,11 @@ const Overview: React.FC = () => {
                               {selectedEmployee.arrival.toUpperCase()}
                             </span>
                             <span className="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-lg font-semibold">
-                              HEAD OFFICE
+                              {selectedEmployee.location
+                                .toLowerCase()
+                                .includes("branch")
+                                ? "BRANCH"
+                                : "HEAD OFFICE"}
                             </span>
                           </div>
                         </div>
