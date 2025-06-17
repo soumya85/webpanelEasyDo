@@ -2151,6 +2151,12 @@ const Overview: React.FC = () => {
       {/* Employee Details Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+          <DialogHeader className="sr-only">
+            <DialogTitle>Employee Details</DialogTitle>
+            <DialogDescription>
+              Detailed information about {selectedEmployee?.name}
+            </DialogDescription>
+          </DialogHeader>
           {selectedEmployee && (
             <div className="bg-white rounded-lg overflow-hidden">
               {/* Modal Header */}
