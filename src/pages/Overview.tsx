@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   BarChart,
@@ -2038,7 +2039,7 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            back to attendance log
+            Back to attendance log
           </button>
           <h2 className="text-lg font-bold text-gray-900 absolute left-1/2 transform -translate-x-1/2">
             Profile
@@ -2480,6 +2481,9 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
 };
 
 const Overview: React.FC = () => {
+  // Hooks
+  const navigate = useNavigate();
+
   // State Management
   const [selectedDateRange, setSelectedDateRange] =
     useState<DateRangeOption>("CUSTOM_RANGE");
@@ -2537,10 +2541,47 @@ const Overview: React.FC = () => {
   // Handle view switching
   const handleViewFullProfile = () => {
     setModalView("profile");
+    // Scroll to top of modal content when switching to profile view
+    setTimeout(() => {
+      const modalContent =
+        document.querySelector("[data-radix-scroll-area-viewport]") ||
+        document.querySelector(".max-w-4xl.max-h-\\[90vh\\].overflow-y-auto") ||
+        document.querySelector('[role="dialog"] > div');
+      if (modalContent) {
+        modalContent.scrollTop = 0;
+      }
+    }, 0);
   };
 
   const handleBackToAttendance = () => {
     setModalView("attendance");
+  };
+
+  // Handle contact employee
+  const handleContactEmployee = (employee: EmployeeAttendanceData) => {
+    // Close the modal first
+    setIsModalOpen(false);
+    setModalView("attendance");
+
+    // Navigate to chat page with employee data
+    navigate("/chats", {
+      state: {
+        openChatWithEmployee: {
+          id: `employee-${employee.id}`,
+          name: employee.name,
+          avatar: "", // Could be generated or stored elsewhere
+          lastMessage: "Start a new conversation",
+          timestamp: new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          unreadCount: 0,
+          isGroup: false,
+          phone: `+91 ${Math.floor(Math.random() * 9000000000) + 1000000000}`,
+          tags: [employee.designation],
+        },
+      },
+    });
   };
 
   return (
@@ -3265,7 +3306,10 @@ const Overview: React.FC = () => {
                     >
                       View Full Profile
                     </button>
-                    <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                    <button
+                      onClick={() => handleContactEmployee(selectedEmployee)}
+                      className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                    >
                       Contact Employee
                     </button>
                   </div>
