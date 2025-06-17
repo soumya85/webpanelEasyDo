@@ -2557,6 +2557,33 @@ const Overview: React.FC = () => {
     setModalView("attendance");
   };
 
+  // Handle contact employee
+  const handleContactEmployee = (employee: EmployeeAttendanceData) => {
+    // Close the modal first
+    setIsModalOpen(false);
+    setModalView("attendance");
+
+    // Navigate to chat page with employee data
+    navigate("/chats", {
+      state: {
+        openChatWithEmployee: {
+          id: `employee-${employee.id}`,
+          name: employee.name,
+          avatar: "", // Could be generated or stored elsewhere
+          lastMessage: "Start a new conversation",
+          timestamp: new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          unreadCount: 0,
+          isGroup: false,
+          phone: `+91 ${Math.floor(Math.random() * 9000000000) + 1000000000}`,
+          tags: [employee.designation],
+        },
+      },
+    });
+  };
+
   return (
     <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
       {/* Page Area */}
