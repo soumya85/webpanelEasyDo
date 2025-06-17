@@ -3573,7 +3573,7 @@ const Chats: React.FC = () => {
       </div>
 
       {/* MOBILE/TABLET LAYOUT - Original Design with Task Cards & Filters */}
-      <div className="lg:hidden">
+      <div className="md:hidden">
         {selectedChat ? (
           <MobileChatView
             selectedChat={selectedChat}
