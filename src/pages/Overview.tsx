@@ -956,6 +956,10 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "10:45 Hrs",
     status: "PRESENT",
     dateOfJoining: "2018-03-15",
+    overtimeHours: "1:45 Hrs",
+    overtimeApprovedBy: "Bhaskar Ghosh",
+    overtimeApprovedAt: "7:15 P.M",
+    branch: "Head Office",
   },
   {
     id: "2",
@@ -969,6 +973,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2020-07-22",
+    branch: "Head Office",
   },
   {
     id: "3",
@@ -982,6 +987,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "CASUAL LEAVE",
     dateOfJoining: "2019-11-08",
+    branch: "Haldia",
   },
   {
     id: "4",
@@ -990,11 +996,15 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Ahmedabad Branch",
     initials: "AP",
     checkInTime: "10:15 A.M",
-    checkoutTime: "7:15 P.M",
+    checkoutTime: "8:30 P.M",
     arrival: "Ontime",
-    totalWorkingHour: "9 Hrs",
+    totalWorkingHour: "10:15 Hrs",
     status: "PRESENT",
     dateOfJoining: "2021-01-10",
+    overtimeHours: "1:15 Hrs",
+    overtimeApprovedBy: "Rajesh Mehta",
+    overtimeApprovedAt: "8:30 P.M",
+    branch: "Ahmedabad",
   },
   {
     id: "5",
@@ -1008,6 +1018,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "ABSENT",
     dateOfJoining: "2017-05-20",
+    branch: "Head Office",
   },
   {
     id: "6",
@@ -1021,6 +1032,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "8 Hrs",
     status: "HALF-DAY",
     dateOfJoining: "2022-09-12",
+    branch: "Head Office",
   },
   {
     id: "7",
@@ -1034,6 +1046,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "ABSENT",
     dateOfJoining: "2020-02-28",
+    branch: "Head Office",
   },
   {
     id: "8",
@@ -1047,6 +1060,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2019-06-15",
+    branch: "Head Office",
   },
   {
     id: "9",
@@ -1055,11 +1069,12 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Head Office",
     initials: "RS",
     checkInTime: "10:40 A.M",
-    checkoutTime: "7:15P.M",
+    checkoutTime: "7:15 P.M",
     arrival: "Late",
     totalWorkingHour: "8:35 Hrs",
     status: "PRESENT",
     dateOfJoining: "2021-08-22",
+    branch: "Head Office",
   },
   {
     id: "10",
@@ -1073,6 +1088,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "SICK LEAVE",
     dateOfJoining: "2020-11-30",
+    branch: "Head Office",
   },
   {
     id: "11",
@@ -1081,11 +1097,15 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Bangalore Branch",
     initials: "RS",
     checkInTime: "9:30 A.M",
-    checkoutTime: "6:30 P.M",
+    checkoutTime: "8:00 P.M",
     arrival: "Ontime",
-    totalWorkingHour: "9 Hrs",
+    totalWorkingHour: "10:30 Hrs",
     status: "PRESENT",
     dateOfJoining: "2022-01-15",
+    overtimeHours: "1:30 Hrs",
+    overtimeApprovedBy: "Suresh Nair",
+    overtimeApprovedAt: "8:00 P.M",
+    branch: "Bangalore",
   },
   {
     id: "12",
@@ -1099,6 +1119,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2021-03-10",
+    branch: "Mumbai",
   },
   {
     id: "13",
@@ -1107,11 +1128,15 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     location: "Delhi Branch",
     initials: "VS",
     checkInTime: "10:30 A.M",
-    checkoutTime: "8:00 P.M",
+    checkoutTime: "8:30 P.M",
     arrival: "Late",
-    totalWorkingHour: "9:30 Hrs",
+    totalWorkingHour: "10 Hrs",
     status: "PRESENT",
     dateOfJoining: "2018-09-05",
+    overtimeHours: "1:00 Hr",
+    overtimeApprovedBy: "Anjali Verma",
+    overtimeApprovedAt: "8:30 P.M",
+    branch: "Delhi",
   },
   {
     id: "14",
@@ -1125,6 +1150,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "N/A",
     status: "CASUAL LEAVE",
     dateOfJoining: "2020-05-18",
+    branch: "Kolkata",
   },
   {
     id: "15",
@@ -1138,6 +1164,7 @@ const employeeAttendanceData: EmployeeAttendanceData[] = [
     totalWorkingHour: "9 Hrs",
     status: "PRESENT",
     dateOfJoining: "2017-12-08",
+    branch: "Chennai",
   },
 ];
 
