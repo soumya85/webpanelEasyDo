@@ -536,19 +536,19 @@ export default function EmployeeDashboard() {
             </div>
           </div>
 
-          <DialogFooter className="mt-6">
+          <DialogFooter className="mt-6 justify-start">
+            <Button
+              onClick={handleLeaveSubmit}
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+            >
+              Submit Request
+            </Button>
             <Button
               variant="outline"
               onClick={() => setIsLeaveRequestModalOpen(false)}
               className="h-12 px-8"
             >
               Cancel
-            </Button>
-            <Button
-              onClick={handleLeaveSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
-            >
-              Submit Request
             </Button>
           </DialogFooter>
         </DialogContent>
