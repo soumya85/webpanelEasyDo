@@ -852,30 +852,31 @@ export default function EmployeeDashboard() {
                 </div>
 
                 {/* Tab Content */}
-                {selectedTab === "pending" && (
-                  <div className="text-center py-16">
-                    <div className="mb-6">
-                      <img
-                        src="/placeholder.svg"
-                        alt="No pending items"
-                        className="w-64 h-64 mx-auto opacity-50"
-                      />
+                <div className="min-h-[400px]">
+                  {selectedTab === "pending" && (
+                    <div className="text-center py-16">
+                      <div className="mb-6">
+                        <img
+                          src="/placeholder.svg"
+                          alt="No pending items"
+                          className="w-64 h-64 mx-auto opacity-50"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold text-[#283C50] mb-2">
+                        Nothing's Pending
+                      </h3>
+                      <p className="text-gray-600">
+                        No PENDING approval available
+                      </p>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#283C50] mb-2">
-                      Nothing's Pending
-                    </h3>
-                    <p className="text-gray-600">
-                      No PENDING approval available
-                    </p>
-                  </div>
-                )}
+                  )}
 
-                {selectedTab === "approved" && (
-                  <div className="space-y-4">
-                    <div className="bg-[#E3F2FD] text-[#4766E5] px-4 py-2 rounded-t-lg font-semibold">
-                      LEAVE APPROVAL
-                    </div>
-                    <div className="bg-white border rounded-lg p-6">
+                  {selectedTab === "approved" && (
+                    <div className="space-y-4">
+                      <div className="bg-[#E3F2FD] text-[#4766E5] px-4 py-2 rounded-t-lg font-semibold">
+                        LEAVE APPROVAL
+                      </div>
+                      <div className="bg-white border rounded-lg p-6">
                       <div className="flex items-start space-x-4">
                         <div className="w-12 h-12 bg-[#283C50] rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-white text-sm font-semibold">
