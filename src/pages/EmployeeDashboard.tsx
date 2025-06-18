@@ -47,6 +47,7 @@ const ChevronRightIcon = () => (
 export default function EmployeeDashboard() {
   const [isLeaveRequestModalOpen, setIsLeaveRequestModalOpen] = useState(false);
   const [isLeaveCalendarOpen, setIsLeaveCalendarOpen] = useState(false);
+  const [isLeaveBalanceInfoOpen, setIsLeaveBalanceInfoOpen] = useState(false);
   const [isNotesExpanded, setIsNotesExpanded] = useState(false);
   const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
   const [calendarView, setCalendarView] = useState<"day" | "list">("day");
