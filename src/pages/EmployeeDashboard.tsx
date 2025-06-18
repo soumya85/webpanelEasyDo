@@ -125,8 +125,8 @@ export default function EmployeeDashboard() {
     // Reset form with new attachment structure
     setLeaveFormData({
       leaveType: "",
-      startDate: "2025-06-19",
-      endDate: "2025-06-19",
+      startDate: "",
+      endDate: "",
       notes: "",
       firstHalfDay: false,
       secondHalfDay: false,
