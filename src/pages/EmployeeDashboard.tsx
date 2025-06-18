@@ -46,8 +46,15 @@ const ChevronRightIcon = () => (
 
 export default function EmployeeDashboard() {
   const [isLeaveRequestModalOpen, setIsLeaveRequestModalOpen] = useState(false);
+  const [isLeaveCalendarOpen, setIsLeaveCalendarOpen] = useState(false);
   const [isNotesExpanded, setIsNotesExpanded] = useState(false);
   const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
+  const [calendarView, setCalendarView] = useState<"day" | "list">("day");
+  const [selectedTab, setSelectedTab] = useState<
+    "pending" | "approved" | "denied"
+  >("pending");
+  const [currentMonth, setCurrentMonth] = useState(new Date(2025, 4)); // May 2025
+  const [selectedDate, setSelectedDate] = useState(new Date(2025, 4, 14)); // May 14, 2025
   const [leaveFormData, setLeaveFormData] = useState({
     leaveType: "",
     startDate: "2025-06-19",
