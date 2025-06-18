@@ -276,16 +276,16 @@ export default function EmployeeDashboard() {
         open={isLeaveRequestModalOpen}
         onOpenChange={setIsLeaveRequestModalOpen}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
-          <DialogHeader>
+        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto">
+          <DialogHeader className="flex-shrink-0 pb-4">
             <DialogTitle className="text-xl font-bold text-[#283C50]">
               Leave Request
             </DialogTitle>
           </DialogHeader>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-y-auto max-h-[70vh]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Form Fields */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-6 pb-8">
               {/* Leave Type */}
               <div className="space-y-2">
                 <Label
@@ -330,7 +330,7 @@ export default function EmployeeDashboard() {
                     onChange={(e) =>
                       handleLeaveFormChange("startDate", e.target.value)
                     }
-                    className="h-12"
+                    className="h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                   />
                 </div>
                 <div className="space-y-2">
@@ -347,7 +347,7 @@ export default function EmployeeDashboard() {
                     onChange={(e) =>
                       handleLeaveFormChange("endDate", e.target.value)
                     }
-                    className="h-12"
+                    className="h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                   />
                 </div>
               </div>
@@ -417,7 +417,7 @@ export default function EmployeeDashboard() {
                       onChange={(e) =>
                         handleLeaveFormChange("notes", e.target.value)
                       }
-                      className="min-h-[120px] resize-none"
+                      className="h-[80px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                     />
                   </div>
                 )}
@@ -526,7 +526,7 @@ export default function EmployeeDashboard() {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-row justify-start space-x-2">
+          <div className="mt-6 pt-4 pb-6 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleLeaveSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
@@ -546,7 +546,7 @@ export default function EmployeeDashboard() {
 
       {/* Leave Calendar Modal */}
       <Dialog open={isLeaveCalendarOpen} onOpenChange={setIsLeaveCalendarOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0">
+        <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col">
           <VisuallyHidden>
             <DialogTitle>Leave Calendar</DialogTitle>
           </VisuallyHidden>
@@ -608,7 +608,7 @@ export default function EmployeeDashboard() {
           </div>
 
           {/* Content */}
-          <div className="p-6 overflow-y-auto max-h-[75vh]">
+          <div className="p-6 flex-1 min-h-0 overflow-y-auto">
             {calendarView === "day" ? (
               <>
                 {/* Month Navigation */}
@@ -852,73 +852,75 @@ export default function EmployeeDashboard() {
                 </div>
 
                 {/* Tab Content */}
-                {selectedTab === "pending" && (
-                  <div className="text-center py-16">
-                    <div className="mb-6">
-                      <img
-                        src="/placeholder.svg"
-                        alt="No pending items"
-                        className="w-64 h-64 mx-auto opacity-50"
-                      />
+                <div className="min-h-[400px]">
+                  {selectedTab === "pending" && (
+                    <div className="text-center py-16">
+                      <div className="mb-6">
+                        <img
+                          src="/placeholder.svg"
+                          alt="No pending items"
+                          className="w-64 h-64 mx-auto opacity-50"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold text-[#283C50] mb-2">
+                        Nothing's Pending
+                      </h3>
+                      <p className="text-gray-600">
+                        No PENDING approval available
+                      </p>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#283C50] mb-2">
-                      Nothing's Pending
-                    </h3>
-                    <p className="text-gray-600">
-                      No PENDING approval available
-                    </p>
-                  </div>
-                )}
+                  )}
 
-                {selectedTab === "approved" && (
-                  <div className="space-y-4">
-                    <div className="bg-[#E3F2FD] text-[#4766E5] px-4 py-2 rounded-t-lg font-semibold">
-                      LEAVE APPROVAL
-                    </div>
-                    <div className="bg-white border rounded-lg p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-[#283C50] rounded-full flex items-center justify-center flex-shrink-0">
-                          <span className="text-white text-sm font-semibold">
-                            SG
-                          </span>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-bold text-[#283C50] mb-1">
-                            Soumyadeep Goswami
-                          </h4>
-                          <p className="text-xl font-bold text-[#283C50] mb-2">
-                            1 day May 14
-                          </p>
-                          <p className="text-gray-600 mb-1">Head office</p>
-                          <p className="text-[#283C50] font-medium mb-2">
-                            CASUAL LEAVE (CL)
-                          </p>
-                          <p className="text-gray-600 text-sm">
-                            12 May, 2025 8:14 PM
-                          </p>
+                  {selectedTab === "approved" && (
+                    <div className="space-y-4">
+                      <div className="bg-[#E3F2FD] text-[#4766E5] px-4 py-2 rounded-t-lg font-semibold">
+                        LEAVE APPROVAL
+                      </div>
+                      <div className="bg-white border rounded-lg p-6">
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 bg-[#283C50] rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-white text-sm font-semibold">
+                              SG
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-lg font-bold text-[#283C50] mb-1">
+                              Soumyadeep Goswami
+                            </h4>
+                            <p className="text-xl font-bold text-[#283C50] mb-2">
+                              1 day May 14
+                            </p>
+                            <p className="text-gray-600 mb-1">Head office</p>
+                            <p className="text-[#283C50] font-medium mb-2">
+                              CASUAL LEAVE (CL)
+                            </p>
+                            <p className="text-gray-600 text-sm">
+                              12 May, 2025 8:14 PM
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {selectedTab === "denied" && (
-                  <div className="text-center py-16">
-                    <div className="mb-6">
-                      <img
-                        src="/placeholder.svg"
-                        alt="No denied items"
-                        className="w-64 h-64 mx-auto opacity-50"
-                      />
+                  {selectedTab === "denied" && (
+                    <div className="text-center py-16">
+                      <div className="mb-6">
+                        <img
+                          src="/placeholder.svg"
+                          alt="No denied items"
+                          className="w-64 h-64 mx-auto opacity-50"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold text-[#283C50] mb-2">
+                        No Denied Requests
+                      </h3>
+                      <p className="text-gray-600">
+                        No DENIED approval available
+                      </p>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#283C50] mb-2">
-                      No Denied Requests
-                    </h3>
-                    <p className="text-gray-600">
-                      No DENIED approval available
-                    </p>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </div>

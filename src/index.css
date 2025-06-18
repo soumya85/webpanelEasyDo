@@ -138,4 +138,25 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /* Mobile viewport handling for modals */
+  .modal-mobile-safe {
+    max-height: 95vh;
+  }
+
+  @media (max-width: 640px) {
+    .modal-mobile-safe {
+      max-height: 100vh;
+    }
+  }
+
+  /* Ensure inputs don't get clipped on focus */
+  .input-focus-safe {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .input-focus-safe:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(71, 102, 229, 0.15);
+  }
 }
