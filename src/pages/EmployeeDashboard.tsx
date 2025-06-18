@@ -347,6 +347,8 @@ export default function EmployeeDashboard() {
                 onClick={() => {
                   if (card.id === "leave-request") {
                     setIsLeaveRequestModalOpen(true);
+                  } else if (card.id === "ot-request") {
+                    setIsOTRequestModalOpen(true);
                   }
                 }}
                 className={cn(
