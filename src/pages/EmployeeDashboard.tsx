@@ -1401,13 +1401,34 @@ export default function EmployeeDashboard() {
 
                 {/* Tabs */}
                 <div className="flex border-b">
-                  <button className="px-4 py-2 border-b-2 border-gray-300 bg-gray-100 text-gray-700 font-medium rounded-t">
+                  <button
+                    onClick={() => setSelectedLeaveTab("approved")}
+                    className={`px-4 py-2 border-b-2 font-medium rounded-t transition-colors ${
+                      selectedLeaveTab === "approved"
+                        ? "border-gray-300 bg-gray-100 text-gray-700"
+                        : "border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
                     Approved
                   </button>
-                  <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
+                  <button
+                    onClick={() => setSelectedLeaveTab("pending")}
+                    className={`px-4 py-2 border-b-2 font-medium rounded-t transition-colors ${
+                      selectedLeaveTab === "pending"
+                        ? "border-gray-300 bg-gray-100 text-gray-700"
+                        : "border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
                     Pending
                   </button>
-                  <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
+                  <button
+                    onClick={() => setSelectedLeaveTab("availed")}
+                    className={`px-4 py-2 border-b-2 font-medium rounded-t transition-colors ${
+                      selectedLeaveTab === "availed"
+                        ? "border-gray-300 bg-gray-100 text-gray-700"
+                        : "border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
                     Availed/Taken
                   </button>
                 </div>
