@@ -608,7 +608,7 @@ export default function EmployeeDashboard() {
           </div>
 
           {/* Content */}
-          <div className="p-6 overflow-y-auto max-h-[75vh]">
+          <div className="p-6 flex-1 min-h-0 overflow-y-auto">
             {calendarView === "day" ? (
               <>
                 {/* Month Navigation */}
