@@ -337,26 +337,21 @@ export default function EmployeeDashboard() {
                   >
                     End Date *
                   </Label>
-                  <div className="relative">
-                    <Input
-                      id="end-date"
-                      type="date"
-                      value="2025-06-19"
-                      onChange={(e) => {
-                        const date = new Date(e.target.value);
-                        const formatted = date.toLocaleDateString("en-GB", {
-                          day: "2-digit",
-                          month: "short",
-                          year: "numeric",
-                        });
-                        handleLeaveFormChange("endDate", formatted);
-                      }}
-                      className="h-12"
-                    />
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4766E5] pointer-events-none">
-                      {leaveFormData.endDate}
-                    </div>
-                  </div>
+                  <Input
+                    id="end-date"
+                    type="date"
+                    value="2025-06-19"
+                    onChange={(e) => {
+                      const date = new Date(e.target.value);
+                      const formatted = date.toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      });
+                      handleLeaveFormChange("endDate", formatted);
+                    }}
+                    className="h-12"
+                  />
                 </div>
               </div>
 
