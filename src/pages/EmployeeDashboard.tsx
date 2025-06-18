@@ -45,12 +45,14 @@ const ChevronRightIcon = () => (
 
 export default function EmployeeDashboard() {
   const [isLeaveRequestModalOpen, setIsLeaveRequestModalOpen] = useState(false);
+  const [isNotesExpanded, setIsNotesExpanded] = useState(false);
+  const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
   const [leaveFormData, setLeaveFormData] = useState({
     leaveType: "",
-    startDate: "",
-    endDate: "",
-    reason: "",
-    totalDays: "",
+    startDate: "26 Jun 2025",
+    endDate: "29 Jun 2025",
+    notes: "",
+    attachments: [] as string[],
   });
 
   const handleLeaveFormChange = (field: string, value: string) => {
@@ -64,14 +66,22 @@ export default function EmployeeDashboard() {
     // Handle form submission logic here
     console.log("Leave request submitted:", leaveFormData);
     setIsLeaveRequestModalOpen(false);
+    setIsNotesExpanded(false);
+    setIsAttachmentModalOpen(false);
     // Reset form
     setLeaveFormData({
       leaveType: "",
-      startDate: "",
-      endDate: "",
-      reason: "",
-      totalDays: "",
+      startDate: "26 Jun 2025",
+      endDate: "29 Jun 2025",
+      notes: "",
+      attachments: [],
     });
+  };
+
+  const handleAttachmentSelect = (type: string) => {
+    console.log("Selected attachment type:", type);
+    setIsAttachmentModalOpen(false);
+    // Handle attachment logic here
   };
 
   const cardData = [
