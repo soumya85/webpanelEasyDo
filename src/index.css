@@ -141,8 +141,13 @@
 
   /* Mobile viewport handling for modals */
   .modal-mobile-safe {
-    height: calc(100vh - env(keyboard-inset-height, 0px));
-    max-height: calc(100vh - env(keyboard-inset-height, 0px));
+    max-height: 95vh;
+  }
+
+  @media (max-width: 640px) {
+    .modal-mobile-safe {
+      max-height: 100vh;
+    }
   }
 
   /* Ensure inputs don't get clipped on focus */
