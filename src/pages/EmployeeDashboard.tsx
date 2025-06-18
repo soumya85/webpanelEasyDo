@@ -1329,7 +1329,13 @@ export default function EmployeeDashboard() {
                   : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
               }`}
             >
-              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
+              <div
+                className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-colors ${
+                  leaveFormData.attachments.length >= 5
+                    ? "bg-gray-300"
+                    : "bg-[#4766E5] group-hover:bg-[#4766E5]/90"
+                }`}
+              >
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -1350,12 +1356,28 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[#283C50]">Camera</span>
+              <span
+                className={`text-sm font-medium ${
+                  leaveFormData.attachments.length >= 5
+                    ? "text-gray-400"
+                    : "text-[#283C50]"
+                }`}
+              >
+                Camera
+              </span>
+              <span className="text-xs text-gray-400 mt-1 text-center">
+                Take a photo
+              </span>
             </button>
 
             <button
               onClick={() => handleAttachmentSelect("photos")}
-              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
+              disabled={leaveFormData.attachments.length >= 5}
+              className={`flex flex-col items-center p-6 border-2 rounded-lg transition-all group ${
+                leaveFormData.attachments.length >= 5
+                  ? "border-gray-200 bg-gray-50 cursor-not-allowed"
+                  : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
+              }`}
             >
               <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
                 <svg
