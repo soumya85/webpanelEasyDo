@@ -515,6 +515,9 @@ export default function EmployeeDashboard() {
         onOpenChange={setIsAttachmentModalOpen}
       >
         <DialogContent className="sm:max-w-[400px] p-0 gap-0 rounded-t-xl sm:rounded-xl">
+          <VisuallyHidden>
+            <DialogTitle>Attachment Options</DialogTitle>
+          </VisuallyHidden>
           <div className="bg-white rounded-t-xl p-4 space-y-1">
             <button
               onClick={() => handleAttachmentSelect("scan")}
