@@ -318,7 +318,7 @@ export default function EmployeeDashboard() {
                     <Input
                       id="start-date"
                       type="date"
-                      value="2025-06-26"
+                      value="2025-06-19"
                       onChange={(e) => {
                         const date = new Date(e.target.value);
                         const formatted = date.toLocaleDateString("en-GB", {
