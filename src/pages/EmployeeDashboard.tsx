@@ -1228,9 +1228,9 @@ export default function EmployeeDashboard() {
         open={isLeaveBalanceInfoOpen}
         onOpenChange={setIsLeaveBalanceInfoOpen}
       >
-        <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col">
+        <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
           <VisuallyHidden>
-            <DialogTitle>Leave Balance Information</DialogTitle>
+            <DialogTitle>Leave Balance Summary</DialogTitle>
           </VisuallyHidden>
 
           {/* Header */}
@@ -1259,7 +1259,7 @@ export default function EmployeeDashboard() {
             {/* Center - Title */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <h1 className="text-lg font-semibold text-[#283C50]">
-                Leave Balance Details
+                Leave Balance Summary
               </h1>
             </div>
 
