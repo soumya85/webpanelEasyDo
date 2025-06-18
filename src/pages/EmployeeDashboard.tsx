@@ -877,12 +877,10 @@ export default function EmployeeDashboard() {
                     </div>
                     <div className="bg-white border rounded-lg p-6">
                       <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
-                          <img
-                            src="/placeholder.svg"
-                            alt="Profile"
-                            className="w-full h-full object-cover"
-                          />
+                        <div className="w-12 h-12 bg-[#283C50] rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-sm font-semibold">
+                            SG
+                          </span>
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-bold text-[#283C50] mb-1">
