@@ -24,16 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Calendar,
-  Clock,
-  DollarSign,
-  RefreshCw,
-  BarChart3,
-  Plane,
-  PartyPopper,
-  FileText,
-} from "lucide-react";
 
 // Custom ChevronRight Icon to match Overview page
 const ChevronRightIcon = () => (
