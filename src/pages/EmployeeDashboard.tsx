@@ -62,7 +62,14 @@ export default function EmployeeDashboard() {
     notes: "",
     firstHalfDay: false,
     secondHalfDay: false,
-    attachments: [] as string[],
+    attachments: [] as Array<{
+      id: string;
+      name: string;
+      type: string;
+      size: number;
+      url: string;
+      source: "scan" | "documents" | "camera" | "photos";
+    }>,
   });
 
   const handleLeaveFormChange = (field: string, value: string | boolean) => {
