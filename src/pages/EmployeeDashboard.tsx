@@ -526,7 +526,7 @@ export default function EmployeeDashboard() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t bg-white sticky bottom-0 -mx-6 px-6 pb-2">
+          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleLeaveSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
