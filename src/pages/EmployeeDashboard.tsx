@@ -1,9 +1,28 @@
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import PerformanceMeter from "@/components/PerformanceMeter";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Custom ChevronRight Icon to match Overview page
 const ChevronRightIcon = () => (
