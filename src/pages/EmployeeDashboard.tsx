@@ -480,6 +480,7 @@ export default function EmployeeDashboard() {
                     onChange={(e) =>
                       handleLeaveFormChange("startDate", e.target.value)
                     }
+                    placeholder="dd-mm-yyyy"
                     className="h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                   />
                 </div>
@@ -497,6 +498,7 @@ export default function EmployeeDashboard() {
                     onChange={(e) =>
                       handleLeaveFormChange("endDate", e.target.value)
                     }
+                    placeholder="dd-mm-yyyy"
                     className="h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                   />
                 </div>
