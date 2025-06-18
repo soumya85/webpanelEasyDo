@@ -346,7 +346,7 @@ export default function EmployeeDashboard() {
                     <Input
                       id="end-date"
                       type="date"
-                      value="2025-06-29"
+                      value="2025-06-19"
                       onChange={(e) => {
                         const date = new Date(e.target.value);
                         const formatted = date.toLocaleDateString("en-GB", {
@@ -365,15 +365,41 @@ export default function EmployeeDashboard() {
                 </div>
               </div>
 
-              {/* Duration Calculation */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-[#283C50]">
-                    Duration
-                  </span>
-                  <span className="text-lg font-bold text-[#4766E5]">
-                    4 Days
-                  </span>
+              {/* Half Day Options */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    id="first-half-day"
+                    checked={leaveFormData.firstHalfDay}
+                    onChange={(e) =>
+                      handleLeaveFormChange("firstHalfDay", e.target.checked)
+                    }
+                    className="w-5 h-5 rounded border-2 border-gray-300 text-[#4766E5] focus:ring-[#4766E5] focus:ring-2"
+                  />
+                  <Label
+                    htmlFor="first-half-day"
+                    className="text-base font-medium text-[#283C50]"
+                  >
+                    First Half Day
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    id="second-half-day"
+                    checked={leaveFormData.secondHalfDay}
+                    onChange={(e) =>
+                      handleLeaveFormChange("secondHalfDay", e.target.checked)
+                    }
+                    className="w-5 h-5 rounded border-2 border-gray-300 text-[#4766E5] focus:ring-[#4766E5] focus:ring-2"
+                  />
+                  <Label
+                    htmlFor="second-half-day"
+                    className="text-base font-medium text-[#283C50]"
+                  >
+                    Second Half Day
+                  </Label>
                 </div>
               </div>
 
