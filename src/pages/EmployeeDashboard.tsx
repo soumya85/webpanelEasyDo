@@ -757,12 +757,10 @@ export default function EmployeeDashboard() {
                 <div className="mt-6 bg-white rounded-lg border p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gray-200 rounded-full overflow-hidden">
-                        <img
-                          src="/placeholder.svg"
-                          alt="Profile"
-                          className="w-full h-full object-cover"
-                        />
+                      <div className="w-16 h-16 bg-[#283C50] rounded-full flex items-center justify-center">
+                        <span className="text-white text-xl font-semibold">
+                          SG
+                        </span>
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-[#283C50]">
