@@ -893,7 +893,7 @@ export default function EmployeeDashboard() {
                           <p className="text-[#283C50] font-medium mb-2">
                             CASUAL LEAVE (CL)
                           </p>
-                          <p className="text-gray-400 text-sm">
+                          <p className="text-gray-600 text-sm">
                             12 May, 2025 8:14 PM
                           </p>
                         </div>
