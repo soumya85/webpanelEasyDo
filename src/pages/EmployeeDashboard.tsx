@@ -1497,6 +1497,313 @@ export default function EmployeeDashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* Employee Leave Rules Modal */}
+      <Dialog open={isLeaveRulesOpen} onOpenChange={setIsLeaveRulesOpen}>
+        <DialogContent className="max-w-4xl h-[85vh] max-h-[85vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+          <VisuallyHidden>
+            <DialogTitle>Leave Rules</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center px-4 py-3 bg-[#F8F9FA] border-b">
+            <button
+              onClick={() => setIsLeaveRulesOpen(false)}
+              className="flex items-center text-[#4766E5] text-sm font-medium hover:text-[#4766E5]/80 transition-colors mr-4"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <h1 className="text-lg font-semibold text-[#283C50] flex-1 text-center">
+              Leave Rules
+            </h1>
+          </div>
+
+          {/* Content */}
+          <div className="p-6 flex-1 overflow-y-auto bg-white">
+            {/* Leave Management Rules */}
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-[#283C50] mb-6">
+                Leave Management Rules
+              </h2>
+
+              {/* Leave Types */}
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-[#4A5568] mb-4">
+                  Leave Types
+                </h3>
+                <ul className="space-y-2 text-lg">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                    Earn Leave
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                    Casual Leave
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                    Sick Leave
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                    Other Leave
+                  </li>
+                </ul>
+              </div>
+
+              {/* Leave Assignment */}
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-[#4A5568] mb-6">
+                  Leave Assignment
+                </h3>
+
+                {/* On Employee Creation */}
+                <div className="mb-6">
+                  <h4 className="text-xl font-bold text-[#4A5568] mb-3">
+                    On Employee Creation
+                  </h4>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    When a new employee is created in the application, we assign
+                    leaves based on the employee's branch leave rules.
+                  </p>
+                </div>
+
+                {/* On Employee Update */}
+                <div className="mb-6">
+                  <h4 className="text-xl font-bold text-[#4A5568] mb-3">
+                    On Employee Update
+                  </h4>
+                  <p className="text-lg text-gray-700 leading-relaxed mb-3">
+                    When an employee is updated, we check if the employee has
+                    added an application join date.
+                  </p>
+                  <ul className="space-y-2 text-lg ml-4">
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                      If yes, set leave balance based on it.
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                      If no, leave balance remains unchanged.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Leave Balance Rules for Joined Employees */}
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-[#4A5568] mb-6">
+                  Leave Balance Rules for Joined Employees
+                </h3>
+
+                {/* Probation Period Status */}
+                <div className="mb-6">
+                  <h4 className="text-xl font-bold text-[#4A5568] mb-4">
+                    Probation Period Status
+                  </h4>
+
+                  {/* If probation period is ON */}
+                  <div className="mb-6">
+                    <div className="flex items-center mb-3">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                      <span className="text-lg">
+                        If the probation period is <strong>ON</strong>:
+                      </span>
+                    </div>
+                    <div className="ml-6 space-y-3">
+                      <div className="flex items-start">
+                        <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 mt-2"></span>
+                        <p className="text-lg text-gray-700">
+                          Check if the employee's join date is before or after
+                          the current date.
+                        </p>
+                      </div>
+                      <div className="flex items-start">
+                        <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 mt-2"></span>
+                        <div>
+                          <p className="text-lg text-gray-700 mb-2">
+                            If before:
+                          </p>
+                          <div className="ml-4 space-y-3">
+                            <div className="flex items-start">
+                              <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                              <p className="text-lg text-gray-700">
+                                Check if the probation period is completed:
+                              </p>
+                            </div>
+                            <div className="ml-8 space-y-2">
+                              <div className="flex items-start">
+                                <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                                <p className="text-lg text-gray-700">
+                                  If completed, count the months after
+                                  completion and add to earn and casual leave
+                                  balance.
+                                </p>
+                              </div>
+                              <div className="flex items-start">
+                                <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                                <p className="text-lg text-gray-700">
+                                  Sick and other leave will follow branch rules.
+                                </p>
+                              </div>
+                            </div>
+                            <div className="flex items-start">
+                              <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                              <p className="text-lg text-gray-700">
+                                If not completed:
+                              </p>
+                            </div>
+                            <div className="ml-8 space-y-2">
+                              <div className="flex items-start">
+                                <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                                <p className="text-lg text-gray-700">
+                                  Earn and casual leave balance is{" "}
+                                  <strong>0</strong>.
+                                </p>
+                              </div>
+                              <div className="flex items-start">
+                                <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                                <p className="text-lg text-gray-700">
+                                  Transfer opening balance to earn leave, sick
+                                  and other leave balance is <strong>0</strong>.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                        <div>
+                          <p className="text-lg text-gray-700 mb-2">
+                            If the probation period is <strong>OFF</strong>:
+                          </p>
+                          <div className="ml-4 space-y-2">
+                            <div className="flex items-start">
+                              <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                              <p className="text-lg text-gray-700">
+                                Check the current month to the date of joining
+                                and add the earn and casual leave balance.
+                              </p>
+                            </div>
+                            <div className="flex items-start">
+                              <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                              <p className="text-lg text-gray-700">
+                                Sick and other leave are added based on branch
+                                rules.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Note */}
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <p className="text-lg text-blue-800">
+                      <strong>NOTE:</strong> Sick and other leave follow branch
+                      rules.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Leave Approval Process */}
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-[#4A5568] mb-6">
+                  Leave Approval Process
+                </h3>
+
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  When an employee requests leave for 3 days and it is approved,
+                  the following rules apply:
+                </p>
+
+                <ul className="space-y-3 text-lg mb-6">
+                  <li className="flex items-start">
+                    <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                    Count week offs and holidays.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-1 h-1 bg-black rounded-full mr-3 mt-3"></span>
+                    If the employee is present on leave dates, they will be
+                    counted as a present for those dates.
+                  </li>
+                </ul>
+
+                {/* Example */}
+                <div className="mb-6">
+                  <h4 className="text-xl font-bold text-[#4A5568] mb-4">
+                    Example:
+                  </h4>
+
+                  <p className="text-lg text-gray-700 mb-4">
+                    If an employee adds leave for:
+                  </p>
+
+                  <ul className="space-y-2 text-lg mb-6 ml-4">
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                      10-02-2024 [SATURDAY]
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                      11-02-2024 [SUNDAY]
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3"></span>
+                      12-02-2024 [MONDAY]
+                    </li>
+                  </ul>
+
+                  <p className="text-lg text-gray-700 mb-4">
+                    In this case, we count only <strong>2 days of leave</strong>{" "}
+                    because 11-02-2024 is a holiday (Sunday).
+                  </p>
+
+                  <p className="text-lg text-gray-700 mb-6">
+                    If the employee is present on 12-02-2024 (Monday), then only{" "}
+                    <strong>1 day of leave</strong> will be counted.
+                  </p>
+
+                  {/* Leave calculation rules */}
+                  <ul className="space-y-3 text-lg">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3 mt-2"></span>
+                      <div>
+                        <strong>Earned Leave (EL/PL)</strong>: 0.83 days per
+                        continuous month worked, Added on last day of every
+                        Month.
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3 mt-2"></span>
+                      <div>
+                        <strong>Casual Leave (CL)</strong>: 0.83 days per
+                        continuous month worked, Added on last day of every
+                        Month.
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Attachment Options Modal */}
       <Dialog
         open={isAttachmentModalOpen}
