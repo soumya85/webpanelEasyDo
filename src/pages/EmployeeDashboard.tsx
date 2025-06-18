@@ -1286,242 +1286,150 @@ export default function EmployeeDashboard() {
           </div>
 
           {/* Content */}
-          <div className="p-6 flex-1 overflow-y-auto">
-            {/* Leave Balance Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {/* Current Balance Summary */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border">
-                <h3 className="text-lg font-semibold text-[#283C50] mb-4">
-                  Current Balance
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-[#E4D9FF] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#283C50]">0</div>
-                    <div className="text-xs font-medium text-[#283C50] mt-1">
-                      EARNED
-                    </div>
-                  </div>
-                  <div className="bg-[#FFD9D9] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#283C50]">4</div>
-                    <div className="text-xs font-medium text-[#283C50] mt-1">
-                      SICK
-                    </div>
-                  </div>
-                  <div className="bg-[#FFF5CC] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#283C50]">
-                      2.16
-                    </div>
-                    <div className="text-xs font-medium text-[#283C50] mt-1">
-                      CASUAL
-                    </div>
-                  </div>
-                  <div className="bg-[#FFE4F0] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#283C50]">6</div>
-                    <div className="text-xs font-medium text-[#283C50] mt-1">
-                      OTHER
-                    </div>
-                  </div>
+          <div className="p-6 flex-1 overflow-y-auto bg-gray-50">
+            {/* Date Header */}
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-[#283C50] mb-4">
+                As on 18 Jun 2025
+              </h2>
+
+              {/* Policy Information */}
+              <div className="space-y-3 text-sm text-gray-700 mb-6">
+                <p>
+                  <strong>1.</strong> For 12 months of the current calendar year
+                  2025.
+                </p>
+                <p>
+                  <strong>2.</strong> For continuous months in service, since
+                  DOJ (Date of joining) - 30 May 2025.
+                </p>
+                <p>
+                  <strong>3.</strong> Earned leave Carried Forward from last
+                  year 2024 - 5.83 Days.
+                </p>
+                <p>
+                  <strong>4.</strong> Earned leave Opening Balance (added
+                  manually, if Any) - 0 Days.
+                </p>
+                <p>
+                  <strong>5.</strong> Figures below, are inclusive of carried
+                  forward & opening balance Earned leaves (SI no 3 & 4)
+                </p>
+              </div>
+            </div>
+
+            {/* Leave Balance Table */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+              {/* Table Header */}
+              <div className="bg-[#4766E5] text-white">
+                <div className="grid grid-cols-4 gap-4 p-4 font-semibold">
+                  <div>TYPE</div>
+                  <div className="text-center">ACCUMULATED</div>
+                  <div className="text-center">USED</div>
+                  <div className="text-center">AVAILABLE</div>
                 </div>
               </div>
 
-              {/* Leave Statistics */}
-              <div className="bg-white p-6 rounded-lg border">
-                <h3 className="text-lg font-semibold text-[#283C50] mb-4">
-                  Leave Statistics
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Total Allocated</span>
-                    <span className="font-semibold text-[#283C50]">
-                      12.16 days
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Used This Year</span>
-                    <span className="font-semibold text-red-600">
-                      3.00 days
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Pending Approval</span>
-                    <span className="font-semibold text-amber-600">0 days</span>
-                  </div>
-                  <div className="flex justify-between items-center pt-2 border-t">
-                    <span className="text-gray-600 font-medium">
-                      Remaining Balance
-                    </span>
-                    <span className="font-bold text-green-600 text-lg">
-                      9.16 days
-                    </span>
-                  </div>
+              {/* Table Rows */}
+              <div className="divide-y">
+                <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50">
+                  <div className="font-medium text-[#283C50]">Earned</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center font-semibold">9.99</div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 p-4">
+                  <div className="font-medium text-[#283C50]">Sick</div>
+                  <div className="text-center">5</div>
+                  <div className="text-center">1</div>
+                  <div className="text-center font-semibold">4</div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50">
+                  <div className="font-medium text-[#283C50]">Casual</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center">2</div>
+                  <div className="text-center font-semibold">2.16</div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 p-4">
+                  <div className="font-medium text-[#283C50]">Other</div>
+                  <div className="text-center">6</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center font-semibold">6</div>
+                </div>
+              </div>
+
+              {/* Total Bar */}
+              <div className="bg-[#4766E5] text-white p-4">
+                <div className="text-right">
+                  <span className="text-xl font-bold">22.15 Days</span>
                 </div>
               </div>
             </div>
 
-            {/* Leave Types Breakdown */}
-            <div className="bg-white rounded-lg border">
-              <div className="p-6 border-b">
-                <h3 className="text-lg font-semibold text-[#283C50]">
-                  Leave Types Breakdown
-                </h3>
-              </div>
-              <div className="p-6">
-                <div className="space-y-6">
-                  {/* Sick Leave */}
-                  <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                        <svg
-                          className="w-6 h-6 text-red-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#283C50]">
-                          Sick Leave
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          Medical emergencies and health issues
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-[#283C50]">4</div>
-                      <div className="text-sm text-gray-600">
-                        days available
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Casual Leave */}
-                  <div className="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                        <svg
-                          className="w-6 h-6 text-yellow-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#283C50]">
-                          Casual Leave
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          Personal time off and relaxation
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-[#283C50]">
-                        2.16
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        days available
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Other Leave */}
-                  <div className="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                        <svg
-                          className="w-6 h-6 text-purple-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#283C50]">
-                          Other Leave
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          Special circumstances and occasions
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-[#283C50]">6</div>
-                      <div className="text-sm text-gray-600">
-                        days available
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* Employee Leave Rules */}
+            <div className="mb-6">
+              <button className="flex items-center justify-between w-full text-left text-[#4766E5] font-medium hover:text-[#4766E5]/80 transition-colors">
+                <span>Employee Leave Rules</span>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
             </div>
 
-            {/* Recent Leave History */}
-            <div className="mt-8 bg-white rounded-lg border">
-              <div className="p-6 border-b">
-                <h3 className="text-lg font-semibold text-[#283C50]">
-                  Recent Leave History
+            {/* List of Upcoming Leaves */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="p-4 border-b">
+                <h3 className="text-lg font-bold text-[#283C50] mb-4">
+                  List of Upcoming leaves:
                 </h3>
-              </div>
-              <div className="p-6">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                        <svg
-                          className="w-5 h-5 text-green-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#283C50]">
-                          Casual Leave
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          May 14, 2025 (1 day)
-                        </p>
-                      </div>
-                    </div>
-                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
-                      Approved
-                    </span>
-                  </div>
 
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                {/* Tabs */}
+                <div className="flex border-b">
+                  <button className="px-4 py-2 border-b-2 border-gray-300 bg-gray-100 text-gray-700 font-medium rounded-t">
+                    Approved
+                  </button>
+                  <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
+                    Pending
+                  </button>
+                  <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
+                    Availed/Taken
+                  </button>
+                </div>
+              </div>
+
+              {/* Table Header */}
+              <div className="bg-[#4766E5] text-white">
+                <div className="grid grid-cols-5 gap-4 p-3 text-sm font-semibold">
+                  <div>Start Date</div>
+                  <div>End Date</div>
+                  <div>Status</div>
+                  <div>approved by</div>
+                  <div>Days</div>
+                </div>
+              </div>
+
+              {/* No Data State */}
+              <div className="p-8 text-center">
+                <div className="mb-6">
+                  <div className="w-32 h-32 mx-auto mb-4 relative">
+                    {/* Illustration placeholder */}
+                    <div className="w-full h-full bg-gradient-to-br from-yellow-200 to-orange-300 rounded-full flex items-center justify-center">
+                      <div className="w-20 h-20 bg-blue-400 rounded-lg flex items-center justify-center">
                         <svg
-                          className="w-5 h-5 text-gray-600"
+                          className="w-8 h-8 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1530,21 +1438,19 @@ export default function EmployeeDashboard() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth={2}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                           />
                         </svg>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#283C50]">
-                          No other leave records
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          This is your first approved leave
-                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
+                <h3 className="text-xl font-bold text-[#283C50] mb-2">
+                  No Data Found
+                </h3>
+                <p className="text-gray-600">
+                  No approved leave requests found
+                </p>
               </div>
             </div>
           </div>
