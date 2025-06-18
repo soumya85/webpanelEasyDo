@@ -50,8 +50,8 @@ export default function EmployeeDashboard() {
   const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
   const [leaveFormData, setLeaveFormData] = useState({
     leaveType: "",
-    startDate: "19 Jun 2025",
-    endDate: "19 Jun 2025",
+    startDate: "2025-06-19",
+    endDate: "2025-06-19",
     notes: "",
     firstHalfDay: false,
     secondHalfDay: false,
