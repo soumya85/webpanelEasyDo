@@ -1841,9 +1841,30 @@ export default function EmployeeDashboard() {
       >
         <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
           <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
-            <DialogTitle className="text-xl font-bold text-[#283C50]">
-              OT Request
-            </DialogTitle>
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                OT Request
+              </DialogTitle>
+              <button
+                onClick={() => setIsOTRequestModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+                aria-label="Close"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
           </DialogHeader>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
