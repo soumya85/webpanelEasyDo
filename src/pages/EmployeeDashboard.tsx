@@ -80,12 +80,44 @@ export default function EmployeeDashboard() {
   };
 
   const handleLeaveSubmit = () => {
-    // Handle form submission logic here
-    console.log("Leave request submitted:", leaveFormData);
+    // Validate required fields
+    if (!leaveFormData.leaveType) {
+      alert("Please select a leave type");
+      return;
+    }
+
+    if (!leaveFormData.startDate || !leaveFormData.endDate) {
+      alert("Please select start and end dates");
+      return;
+    }
+
+    // Prepare submission data
+    const submissionData = {
+      ...leaveFormData,
+      attachmentCount: leaveFormData.attachments.length,
+      attachmentSummary: leaveFormData.attachments.map((att) => ({
+        name: att.name,
+        type: att.type,
+        size: att.size,
+        source: att.source,
+      })),
+    };
+
+    console.log("Leave request submitted:", submissionData);
+
+    // Clean up attachment URLs to prevent memory leaks
+    leaveFormData.attachments.forEach((att) => {
+      if (att.url.startsWith("blob:")) {
+        URL.revokeObjectURL(att.url);
+      }
+    });
+
+    // Close modals and reset form
     setIsLeaveRequestModalOpen(false);
     setIsNotesExpanded(false);
     setIsAttachmentModalOpen(false);
-    // Reset form
+
+    // Reset form with new attachment structure
     setLeaveFormData({
       leaveType: "",
       startDate: "2025-06-19",
@@ -95,6 +127,11 @@ export default function EmployeeDashboard() {
       secondHalfDay: false,
       attachments: [],
     });
+
+    // Show success message
+    alert(
+      `Leave request submitted successfully with ${submissionData.attachmentCount} attachment${submissionData.attachmentCount !== 1 ? "s" : ""}!`,
+    );
   };
 
   const handleAttachmentSelect = (
