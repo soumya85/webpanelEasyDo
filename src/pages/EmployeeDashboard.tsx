@@ -330,7 +330,7 @@ export default function EmployeeDashboard() {
                     onChange={(e) =>
                       handleLeaveFormChange("startDate", e.target.value)
                     }
-                    className="h-12 focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5] transition-all"
+                    className="h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                   />
                 </div>
                 <div className="space-y-2">
