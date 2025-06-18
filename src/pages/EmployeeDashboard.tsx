@@ -704,10 +704,10 @@ export default function EmployeeDashboard() {
                 <button
                   onClick={() => setIsAttachmentModalOpen(true)}
                   disabled={leaveFormData.attachments.length >= 5}
-                  className={`w-full border-2 border-dashed rounded-lg p-6 transition-colors ${
+                  className={`w-full border-2 border-dashed rounded-lg p-6 transition-all duration-200 ${
                     leaveFormData.attachments.length >= 5
                       ? "border-gray-200 bg-gray-50 cursor-not-allowed"
-                      : "border-gray-300 hover:border-[#4766E5] hover:bg-gray-50"
+                      : "border-gray-300 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-sm active:scale-[0.99]"
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
