@@ -138,4 +138,20 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /* Mobile viewport handling for modals */
+  .modal-mobile-safe {
+    height: calc(100vh - env(keyboard-inset-height, 0px));
+    max-height: calc(100vh - env(keyboard-inset-height, 0px));
+  }
+
+  /* Ensure inputs don't get clipped on focus */
+  .input-focus-safe {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .input-focus-safe:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(71, 102, 229, 0.15);
+  }
 }
