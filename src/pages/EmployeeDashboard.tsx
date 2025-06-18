@@ -55,6 +55,21 @@ export default function EmployeeDashboard() {
   >("approved");
   const [isLeaveRulesOpen, setIsLeaveRulesOpen] = useState(false);
   const [isOTRequestModalOpen, setIsOTRequestModalOpen] = useState(false);
+  const [otFormData, setOtFormData] = useState({
+    title: "",
+    startDate: "2025-06-18",
+    notes: "",
+    attachments: [] as Array<{
+      id: string;
+      name: string;
+      type: string;
+      size: number;
+      url: string;
+      source: "scan" | "documents" | "camera" | "photos";
+    }>,
+  });
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
   const [calendarView, setCalendarView] = useState<"day" | "list">("day");
   const [selectedTab, setSelectedTab] = useState<
     "pending" | "approved" | "denied"
