@@ -554,18 +554,21 @@ export default function EmployeeDashboard() {
         open={isAttachmentModalOpen}
         onOpenChange={setIsAttachmentModalOpen}
       >
-        <DialogContent className="sm:max-w-[400px] p-0 gap-0 rounded-t-xl sm:rounded-xl">
-          <VisuallyHidden>
-            <DialogTitle>Attachment Options</DialogTitle>
-          </VisuallyHidden>
-          <div className="bg-white rounded-t-xl p-4 space-y-1">
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-lg font-semibold text-[#283C50]">
+              Choose Attachment Source
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="grid grid-cols-2 gap-4 py-4">
             <button
               onClick={() => handleAttachmentSelect("scan")}
-              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
             >
-              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
                 <svg
-                  className="w-4 h-4 text-white"
+                  className="w-6 h-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -578,16 +581,18 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-base text-[#007AFF]">Scan</span>
+              <span className="text-sm font-medium text-[#283C50]">
+                Scan Document
+              </span>
             </button>
 
             <button
               onClick={() => handleAttachmentSelect("documents")}
-              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
             >
-              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
                 <svg
-                  className="w-4 h-4 text-white"
+                  className="w-6 h-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -600,16 +605,18 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-base text-[#007AFF]">Documents</span>
+              <span className="text-sm font-medium text-[#283C50]">
+                Documents
+              </span>
             </button>
 
             <button
               onClick={() => handleAttachmentSelect("camera")}
-              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
             >
-              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
                 <svg
-                  className="w-4 h-4 text-white"
+                  className="w-6 h-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -628,16 +635,16 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-base text-[#007AFF]">Camera</span>
+              <span className="text-sm font-medium text-[#283C50]">Camera</span>
             </button>
 
             <button
               onClick={() => handleAttachmentSelect("photos")}
-              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
             >
-              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
                 <svg
-                  className="w-4 h-4 text-white"
+                  className="w-6 h-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -650,18 +657,21 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-base text-[#007AFF]">Photos</span>
+              <span className="text-sm font-medium text-[#283C50]">
+                Photo Gallery
+              </span>
             </button>
           </div>
 
-          <div className="bg-white rounded-b-xl p-4 border-t border-gray-200">
-            <button
+          <DialogFooter>
+            <Button
+              variant="outline"
               onClick={() => setIsAttachmentModalOpen(false)}
-              className="w-full py-3 text-[#007AFF] text-base font-medium"
+              className="w-full"
             >
               Cancel
-            </button>
-          </div>
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
