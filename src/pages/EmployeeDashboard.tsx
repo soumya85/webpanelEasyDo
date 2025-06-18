@@ -171,6 +171,11 @@ export default function EmployeeDashboard() {
             {cardData.slice(0, 4).map((card, index) => (
               <div
                 key={card.id}
+                onClick={() => {
+                  if (card.id === "leave-request") {
+                    setIsLeaveRequestModalOpen(true);
+                  }
+                }}
                 className={cn(
                   "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
                   "px-3 sm:px-4 justify-center items-center flex-shrink-0",
