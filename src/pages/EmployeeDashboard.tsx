@@ -62,8 +62,8 @@ export default function EmployeeDashboard() {
   const [selectedDate, setSelectedDate] = useState(new Date(2025, 4, 14)); // May 14, 2025
   const [leaveFormData, setLeaveFormData] = useState({
     leaveType: "",
-    startDate: "2025-06-19",
-    endDate: "2025-06-19",
+    startDate: "",
+    endDate: "",
     notes: "",
     firstHalfDay: false,
     secondHalfDay: false,
