@@ -259,136 +259,362 @@ export default function EmployeeDashboard() {
         </div>
       </div>
 
-      {/* Leave Request Modal */}
+      {/* Leave Request Modal - Mobile First Design */}
       <Dialog
         open={isLeaveRequestModalOpen}
         onOpenChange={setIsLeaveRequestModalOpen}
       >
-        <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-[#283C50]">
+        <DialogContent className="sm:max-w-[430px] h-[100vh] sm:h-auto p-0 gap-0 rounded-none sm:rounded-lg overflow-hidden">
+          {/* Mobile Header */}
+          <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
+            <button
+              onClick={() => setIsLeaveRequestModalOpen(false)}
+              className="flex items-center text-[#007AFF] text-base font-normal"
+            >
+              <svg
+                className="w-5 h-5 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              EDB
+            </button>
+            <h1 className="text-base font-semibold text-black">
               Leave Request
-            </DialogTitle>
-          </DialogHeader>
-
-          <div className="grid gap-4 py-4">
-            {/* Leave Type */}
-            <div className="grid gap-2">
-              <Label
-                htmlFor="leave-type"
-                className="text-sm font-medium text-[#283C50]"
-              >
-                Leave Type *
-              </Label>
-              <Select
-                value={leaveFormData.leaveType}
-                onValueChange={(value) =>
-                  handleLeaveFormChange("leaveType", value)
-                }
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select leave type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="annual">Annual Leave</SelectItem>
-                  <SelectItem value="sick">Sick Leave</SelectItem>
-                  <SelectItem value="personal">Personal Leave</SelectItem>
-                  <SelectItem value="maternity">Maternity Leave</SelectItem>
-                  <SelectItem value="paternity">Paternity Leave</SelectItem>
-                  <SelectItem value="emergency">Emergency Leave</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Date Range */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label
-                  htmlFor="start-date"
-                  className="text-sm font-medium text-[#283C50]"
-                >
-                  Start Date *
-                </Label>
-                <Input
-                  id="start-date"
-                  type="date"
-                  value={leaveFormData.startDate}
-                  onChange={(e) =>
-                    handleLeaveFormChange("startDate", e.target.value)
-                  }
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label
-                  htmlFor="end-date"
-                  className="text-sm font-medium text-[#283C50]"
-                >
-                  End Date *
-                </Label>
-                <Input
-                  id="end-date"
-                  type="date"
-                  value={leaveFormData.endDate}
-                  onChange={(e) =>
-                    handleLeaveFormChange("endDate", e.target.value)
-                  }
-                />
-              </div>
-            </div>
-
-            {/* Total Days */}
-            <div className="grid gap-2">
-              <Label
-                htmlFor="total-days"
-                className="text-sm font-medium text-[#283C50]"
-              >
-                Total Days
-              </Label>
-              <Input
-                id="total-days"
-                type="number"
-                placeholder="Enter total days"
-                value={leaveFormData.totalDays}
-                onChange={(e) =>
-                  handleLeaveFormChange("totalDays", e.target.value)
-                }
-              />
-            </div>
-
-            {/* Reason */}
-            <div className="grid gap-2">
-              <Label
-                htmlFor="reason"
-                className="text-sm font-medium text-[#283C50]"
-              >
-                Reason *
-              </Label>
-              <Textarea
-                id="reason"
-                placeholder="Please provide a reason for your leave request..."
-                value={leaveFormData.reason}
-                onChange={(e) =>
-                  handleLeaveFormChange("reason", e.target.value)
-                }
-                className="min-h-[100px]"
-              />
-            </div>
+            </h1>
+            <button
+              onClick={handleLeaveSubmit}
+              className="text-[#007AFF] text-base font-normal"
+            >
+              Submit
+            </button>
           </div>
 
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => setIsLeaveRequestModalOpen(false)}
+          <div className="flex-1 bg-[#F2F2F7] overflow-y-auto">
+            <div className="space-y-4 p-4">
+              {/* Leave Type */}
+              <div className="bg-white rounded-lg">
+                <Select
+                  value={leaveFormData.leaveType}
+                  onValueChange={(value) =>
+                    handleLeaveFormChange("leaveType", value)
+                  }
+                >
+                  <SelectTrigger className="h-12 border-none shadow-none text-[#007AFF] justify-between px-4">
+                    <SelectValue placeholder="Leave type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="annual">Annual Leave</SelectItem>
+                    <SelectItem value="sick">Sick Leave</SelectItem>
+                    <SelectItem value="personal">Personal Leave</SelectItem>
+                    <SelectItem value="maternity">Maternity Leave</SelectItem>
+                    <SelectItem value="paternity">Paternity Leave</SelectItem>
+                    <SelectItem value="emergency">Emergency Leave</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Start Date */}
+              <div className="bg-white rounded-lg">
+                <div className="flex items-center justify-between px-4 py-3 h-12">
+                  <span className="text-black text-base">Start date</span>
+                  <div className="flex items-center text-[#007AFF] text-base">
+                    <span>{leaveFormData.startDate}</span>
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div className="border-t border-gray-200 mx-4"></div>
+              </div>
+
+              {/* End Date */}
+              <div className="bg-white rounded-lg">
+                <div className="flex items-center justify-between px-4 py-3 h-12">
+                  <span className="text-black text-base">End date</span>
+                  <div className="flex items-center text-[#007AFF] text-base">
+                    <span>{leaveFormData.endDate}</span>
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Notes Section */}
+              <div className="bg-white rounded-lg">
+                <button
+                  onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                  className="w-full flex items-center justify-between px-4 py-3 h-12"
+                >
+                  <div className="flex items-center">
+                    <span className="text-xl mr-2">+</span>
+                    <span className="text-black text-base">
+                      Notes (Optional)
+                    </span>
+                  </div>
+                  <div className="flex items-center text-[#007AFF] text-base">
+                    <span>{leaveFormData.notes ? "Added" : "None"}</span>
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </button>
+
+                {isNotesExpanded && (
+                  <>
+                    <div className="border-t border-gray-200 mx-4"></div>
+                    <div className="p-4">
+                      <Textarea
+                        placeholder="Notes (Optional)"
+                        value={leaveFormData.notes}
+                        onChange={(e) =>
+                          handleLeaveFormChange("notes", e.target.value)
+                        }
+                        className="min-h-[100px] border-none shadow-none resize-none bg-transparent placeholder:text-gray-400"
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Add Attachment */}
+              <div className="bg-white rounded-lg">
+                <button
+                  onClick={() => setIsAttachmentModalOpen(true)}
+                  className="w-full flex items-center justify-between px-4 py-3 h-12"
+                >
+                  <div className="flex items-center text-[#007AFF] text-base">
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                      />
+                    </svg>
+                    <span>Add Attachment</span>
+                  </div>
+                  <div className="w-10 h-6 bg-black rounded flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+
+              {/* Leave Balance Section */}
+              <div className="bg-white rounded-lg p-4 mt-8">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-base font-medium text-black">
+                    Leave Balance
+                  </h3>
+                  <button className="flex items-center text-[#007AFF] text-sm">
+                    <span>More Info</span>
+                    <svg
+                      className="w-4 h-4 ml-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-4 gap-2 mb-4">
+                  <div className="bg-[#E4D9FF] rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-black">0</div>
+                    <div className="text-xs text-black">EARNED</div>
+                  </div>
+                  <div className="bg-[#FFD9D9] rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-black">4</div>
+                    <div className="text-xs text-black">SICK</div>
+                  </div>
+                  <div className="bg-[#FFF5CC] rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-black">2.16</div>
+                    <div className="text-xs text-black">CASUAL</div>
+                  </div>
+                  <div className="bg-[#FFE4F0] rounded-lg p-3 text-center">
+                    <div className="text-lg font-bold text-black">6</div>
+                    <div className="text-xs text-black">OTHER</div>
+                  </div>
+                </div>
+
+                <div className="text-center text-sm text-gray-600 mb-4">
+                  3.00 Approved • 0 Pending
+                </div>
+
+                <button className="w-full bg-[#007AFF] text-white py-3 rounded-lg text-base font-medium">
+                  Leave Calendar
+                </button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Attachment Options Modal */}
+      <Dialog
+        open={isAttachmentModalOpen}
+        onOpenChange={setIsAttachmentModalOpen}
+      >
+        <DialogContent className="sm:max-w-[400px] p-0 gap-0 rounded-t-xl sm:rounded-xl">
+          <div className="bg-white rounded-t-xl p-4 space-y-1">
+            <button
+              onClick={() => handleAttachmentSelect("scan")}
+              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+            >
+              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-base text-[#007AFF]">Scan</span>
+            </button>
+
+            <button
+              onClick={() => handleAttachmentSelect("documents")}
+              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+            >
+              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-base text-[#007AFF]">Documents</span>
+            </button>
+
+            <button
+              onClick={() => handleAttachmentSelect("camera")}
+              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+            >
+              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <span className="text-base text-[#007AFF]">Camera</span>
+            </button>
+
+            <button
+              onClick={() => handleAttachmentSelect("photos")}
+              className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 rounded-lg"
+            >
+              <div className="w-8 h-8 bg-[#007AFF] rounded flex items-center justify-center mr-3">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-base text-[#007AFF]">Photos</span>
+            </button>
+          </div>
+
+          <div className="bg-white rounded-b-xl p-4 border-t border-gray-200">
+            <button
+              onClick={() => setIsAttachmentModalOpen(false)}
+              className="w-full py-3 text-[#007AFF] text-base font-medium"
             >
               Cancel
-            </Button>
-            <Button
-              onClick={handleLeaveSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90"
-            >
-              Submit Request
-            </Button>
-          </DialogFooter>
+            </button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
