@@ -536,7 +536,7 @@ export default function EmployeeDashboard() {
             </div>
           </div>
 
-          <DialogFooter className="mt-6 justify-start">
+          <div className="mt-6 flex flex-row justify-start space-x-2">
             <Button
               onClick={handleLeaveSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
@@ -550,7 +550,7 @@ export default function EmployeeDashboard() {
             >
               Cancel
             </Button>
-          </DialogFooter>
+          </div>
         </DialogContent>
       </Dialog>
 
