@@ -276,7 +276,7 @@ export default function EmployeeDashboard() {
         open={isLeaveRequestModalOpen}
         onOpenChange={setIsLeaveRequestModalOpen}
       >
-        <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl modal-mobile-safe sm:max-h-[90vh] overflow-y-auto">
           <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
             <DialogTitle className="text-xl font-bold text-[#283C50]">
               Leave Request
