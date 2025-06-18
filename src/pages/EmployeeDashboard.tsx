@@ -285,7 +285,7 @@ export default function EmployeeDashboard() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 overflow-y-auto pr-2 -mr-2">
             {/* Left Column - Form Fields */}
-            <div className="lg:col-span-2 space-y-6 pb-4">
+            <div className="lg:col-span-2 space-y-6 pb-4 overflow-y-auto max-h-[60vh]">
               {/* Leave Type */}
               <div className="space-y-2">
                 <Label
