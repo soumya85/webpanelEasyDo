@@ -546,7 +546,7 @@ export default function EmployeeDashboard() {
 
       {/* Leave Calendar Modal */}
       <Dialog open={isLeaveCalendarOpen} onOpenChange={setIsLeaveCalendarOpen}>
-        <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto p-0 flex flex-col">
+        <DialogContent className="max-w-4xl modal-mobile-safe sm:max-h-[90vh] overflow-y-auto p-0 flex flex-col">
           <VisuallyHidden>
             <DialogTitle>Leave Calendar</DialogTitle>
           </VisuallyHidden>
