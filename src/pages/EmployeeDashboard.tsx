@@ -707,7 +707,7 @@ export default function EmployeeDashboard() {
                   className={`w-full border-2 border-dashed rounded-lg p-6 transition-all duration-200 ${
                     leaveFormData.attachments.length >= 5
                       ? "border-gray-300 bg-gray-50 cursor-not-allowed"
-                      : "border-[#4766E5] bg-blue-50/30 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-sm active:scale-[0.99]"
+                      : "border-blue-300 bg-blue-50/20 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-sm active:scale-[0.99]"
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
