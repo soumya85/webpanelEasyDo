@@ -800,7 +800,7 @@ export default function EmployeeDashboard() {
                       <p className="text-gray-600 mb-1">
                         Reporting Manager - Amulya Kumar Kar
                       </p>
-                      <p className="text-gray-400 text-sm">
+                      <p className="text-gray-600 text-sm">
                         12 May 2025, 08:14 PM
                       </p>
                     </div>
