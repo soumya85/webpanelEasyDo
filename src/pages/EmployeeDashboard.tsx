@@ -266,6 +266,9 @@ export default function EmployeeDashboard() {
         onOpenChange={setIsLeaveRequestModalOpen}
       >
         <DialogContent className="sm:max-w-[430px] h-[100vh] sm:h-auto p-0 gap-0 rounded-none sm:rounded-lg overflow-hidden">
+          <VisuallyHidden>
+            <DialogTitle>Leave Request Form</DialogTitle>
+          </VisuallyHidden>
           {/* Mobile Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
             <button
