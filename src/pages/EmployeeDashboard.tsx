@@ -503,7 +503,10 @@ export default function EmployeeDashboard() {
                   <span>0 Pending</span>
                 </div>
 
-                <Button className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 h-12">
+                <Button
+                  onClick={() => setIsLeaveCalendarOpen(true)}
+                  className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 h-12"
+                >
                   <svg
                     className="w-4 h-4 mr-2"
                     fill="none"
