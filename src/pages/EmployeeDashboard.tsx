@@ -62,8 +62,8 @@ export default function EmployeeDashboard() {
   const [selectedDate, setSelectedDate] = useState(new Date(2025, 4, 14)); // May 14, 2025
   const [leaveFormData, setLeaveFormData] = useState({
     leaveType: "",
-    startDate: "2025-06-19",
-    endDate: "2025-06-19",
+    startDate: "",
+    endDate: "",
     notes: "",
     firstHalfDay: false,
     secondHalfDay: false,
@@ -125,8 +125,8 @@ export default function EmployeeDashboard() {
     // Reset form with new attachment structure
     setLeaveFormData({
       leaveType: "",
-      startDate: "2025-06-19",
-      endDate: "2025-06-19",
+      startDate: "",
+      endDate: "",
       notes: "",
       firstHalfDay: false,
       secondHalfDay: false,
@@ -480,6 +480,7 @@ export default function EmployeeDashboard() {
                     onChange={(e) =>
                       handleLeaveFormChange("startDate", e.target.value)
                     }
+                    placeholder="dd-mm-yyyy"
                     className="h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                   />
                 </div>
@@ -497,6 +498,7 @@ export default function EmployeeDashboard() {
                     onChange={(e) =>
                       handleLeaveFormChange("endDate", e.target.value)
                     }
+                    placeholder="dd-mm-yyyy"
                     className="h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                   />
                 </div>
