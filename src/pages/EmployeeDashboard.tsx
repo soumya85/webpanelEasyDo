@@ -582,10 +582,10 @@ export default function EmployeeDashboard() {
             </div>
 
             <div className="flex items-center flex-1 justify-end">
-              <div className="flex bg-white rounded-lg p-1 border mr-8">
+              <div className="flex bg-white rounded-lg p-1 border mr-12">
                 <button
                   onClick={() => setCalendarView("day")}
-                  className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                     calendarView === "day"
                       ? "bg-[#4766E5] text-white"
                       : "text-[#283C50] hover:bg-gray-100"
@@ -595,7 +595,7 @@ export default function EmployeeDashboard() {
                 </button>
                 <button
                   onClick={() => setCalendarView("list")}
-                  className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                     calendarView === "list"
                       ? "bg-[#4766E5] text-white"
                       : "text-[#283C50] hover:bg-gray-100"
