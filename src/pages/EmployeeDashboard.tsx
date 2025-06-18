@@ -54,6 +54,22 @@ export default function EmployeeDashboard() {
     "approved" | "pending" | "availed"
   >("approved");
   const [isLeaveRulesOpen, setIsLeaveRulesOpen] = useState(false);
+  const [isOTRequestModalOpen, setIsOTRequestModalOpen] = useState(false);
+  const [otFormData, setOtFormData] = useState({
+    title: "",
+    startDate: "2025-06-18",
+    notes: "",
+    attachments: [] as Array<{
+      id: string;
+      name: string;
+      type: string;
+      size: number;
+      url: string;
+      source: "scan" | "documents" | "camera" | "photos";
+    }>,
+  });
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
   const [calendarView, setCalendarView] = useState<"day" | "list">("day");
   const [selectedTab, setSelectedTab] = useState<
     "pending" | "approved" | "denied"
@@ -346,6 +362,8 @@ export default function EmployeeDashboard() {
                 onClick={() => {
                   if (card.id === "leave-request") {
                     setIsLeaveRequestModalOpen(true);
+                  } else if (card.id === "ot-request") {
+                    setIsOTRequestModalOpen(true);
                   }
                 }}
                 className={cn(
@@ -1827,6 +1845,187 @@ export default function EmployeeDashboard() {
                 </div>
               </div>
             </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* OT Request Modal */}
+      <Dialog
+        open={isOTRequestModalOpen}
+        onOpenChange={setIsOTRequestModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
+          <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                OT Request
+              </DialogTitle>
+              <button
+                onClick={() => setIsOTRequestModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </DialogHeader>
+
+          {/* Company Name Display */}
+          <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <p className="text-[#4766E5] text-lg font-medium">
+              Liberty Righrise Pvt Ltd
+            </p>
+          </div>
+
+          <div className="space-y-6 pb-8 max-w-2xl">
+            {/* Title Field */}
+            <div className="space-y-2">
+              <Input
+                placeholder="Title"
+                className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+              />
+            </div>
+
+            {/* Start Date */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border">
+                <span className="text-base text-[#283C50] font-medium">
+                  Start date
+                </span>
+                <div className="flex items-center space-x-2">
+                  <span className="text-[#4766E5] text-base font-medium">
+                    18 Jun 2025
+                  </span>
+                  <svg
+                    className="w-5 h-5 text-[#4766E5]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Notes (Optional) */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border">
+                <div className="flex items-center space-x-2">
+                  <svg
+                    className="w-5 h-5 text-[#283C50]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
+                  </svg>
+                  <span className="text-base text-[#283C50] font-medium">
+                    Notes (Optional)
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-[#4766E5] text-base font-medium">
+                    None
+                  </span>
+                  <svg
+                    className="w-5 h-5 text-[#4766E5]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Add Attachment */}
+            <div className="space-y-2">
+              <button
+                onClick={() => setIsAttachmentModalOpen(true)}
+                className="flex items-center space-x-3 text-[#4766E5] text-base w-full text-left font-medium"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                  />
+                </svg>
+                <span>Add attachment</span>
+              </button>
+            </div>
+
+            {/* Camera Icon - Attachment Preview Area */}
+            <div className="flex justify-center py-8">
+              <div className="w-20 h-20 bg-black rounded-lg flex items-center justify-center">
+                <svg
+                  className="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8">
+              Submit OT Request
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsOTRequestModalOpen(false)}
+              className="h-12 px-8"
+            >
+              Cancel
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
