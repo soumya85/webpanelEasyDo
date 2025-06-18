@@ -58,7 +58,7 @@ export default function EmployeeDashboard() {
     attachments: [] as string[],
   });
 
-  const handleLeaveFormChange = (field: string, value: string) => {
+  const handleLeaveFormChange = (field: string, value: string | boolean) => {
     setLeaveFormData((prev) => ({
       ...prev,
       [field]: value,
