@@ -50,6 +50,9 @@ export default function EmployeeDashboard() {
   const [isLeaveBalanceInfoOpen, setIsLeaveBalanceInfoOpen] = useState(false);
   const [isNotesExpanded, setIsNotesExpanded] = useState(false);
   const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
+  const [selectedLeaveTab, setSelectedLeaveTab] = useState<
+    "approved" | "pending" | "availed"
+  >("approved");
   const [calendarView, setCalendarView] = useState<"day" | "list">("day");
   const [selectedTab, setSelectedTab] = useState<
     "pending" | "approved" | "denied"
