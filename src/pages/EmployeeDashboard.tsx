@@ -1445,7 +1445,7 @@ export default function EmployeeDashboard() {
                 </div>
               </div>
 
-              {/* No Data State */}
+              {/* Tab Content */}
               <div className="p-8 text-center">
                 <div className="mb-6">
                   <div className="w-32 h-32 mx-auto mb-4 relative">
@@ -1472,9 +1472,21 @@ export default function EmployeeDashboard() {
                 <h3 className="text-xl font-bold text-[#283C50] mb-2">
                   No Data Found
                 </h3>
-                <p className="text-gray-600">
-                  No approved leave requests found
-                </p>
+                {selectedLeaveTab === "approved" && (
+                  <p className="text-gray-600">
+                    No approved leave requests found
+                  </p>
+                )}
+                {selectedLeaveTab === "pending" && (
+                  <p className="text-gray-600">
+                    No pending leave requests found
+                  </p>
+                )}
+                {selectedLeaveTab === "availed" && (
+                  <p className="text-gray-600">
+                    No availed/taken leave requests found
+                  </p>
+                )}
               </div>
             </div>
           </div>
