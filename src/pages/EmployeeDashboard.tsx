@@ -544,6 +544,381 @@ export default function EmployeeDashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* Leave Calendar Modal */}
+      <Dialog open={isLeaveCalendarOpen} onOpenChange={setIsLeaveCalendarOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0">
+          <VisuallyHidden>
+            <DialogTitle>Leave Calendar</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 bg-[#F8F9FA] border-b">
+            <button
+              onClick={() => setIsLeaveCalendarOpen(false)}
+              className="flex items-center text-[#4766E5] text-sm font-medium hover:text-[#4766E5]/80"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back to Leave Request
+            </button>
+            <h1 className="text-lg font-semibold text-[#283C50]">Your Leave</h1>
+            <div className="flex bg-white rounded-lg p-1 border">
+              <button
+                onClick={() => setCalendarView("day")}
+                className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                  calendarView === "day"
+                    ? "bg-[#4766E5] text-white"
+                    : "text-[#283C50] hover:bg-gray-100"
+                }`}
+              >
+                Day
+              </button>
+              <button
+                onClick={() => setCalendarView("list")}
+                className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                  calendarView === "list"
+                    ? "bg-[#4766E5] text-white"
+                    : "text-[#283C50] hover:bg-gray-100"
+                }`}
+              >
+                List
+              </button>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="p-6 overflow-y-auto max-h-[75vh]">
+            {calendarView === "day" ? (
+              <>
+                {/* Month Navigation */}
+                <div className="flex items-center justify-between mb-6">
+                  <button
+                    onClick={() =>
+                      setCurrentMonth(
+                        new Date(
+                          currentMonth.getFullYear(),
+                          currentMonth.getMonth() - 1,
+                        ),
+                      )
+                    }
+                    className="p-2 rounded-lg border hover:bg-gray-50"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">
+                      {currentMonth.toLocaleDateString("en-US", {
+                        month: "long",
+                      })}
+                    </div>
+                    <div className="text-lg text-red-500 font-medium">
+                      {currentMonth.getFullYear()}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() =>
+                      setCurrentMonth(
+                        new Date(
+                          currentMonth.getFullYear(),
+                          currentMonth.getMonth() + 1,
+                        ),
+                      )
+                    }
+                    className="p-2 rounded-lg border hover:bg-gray-50"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Selected Date Display */}
+                <div className="text-center mb-6">
+                  <div className="text-xl font-medium text-[#4766E5]">
+                    {selectedDate.toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </div>
+                </div>
+
+                {/* Calendar Grid */}
+                <div className="bg-white rounded-lg border">
+                  {/* Days of Week Header */}
+                  <div className="grid grid-cols-7 gap-0 border-b">
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                      (day) => (
+                        <div
+                          key={day}
+                          className="p-3 text-center font-semibold text-[#283C50] border-r last:border-r-0"
+                        >
+                          {day}
+                        </div>
+                      ),
+                    )}
+                  </div>
+
+                  {/* Calendar Days */}
+                  <div className="grid grid-cols-7 gap-0">
+                    {Array.from({ length: 42 }, (_, i) => {
+                      const firstDay = new Date(
+                        currentMonth.getFullYear(),
+                        currentMonth.getMonth(),
+                        1,
+                      );
+                      const startDate = new Date(firstDay);
+                      startDate.setDate(
+                        startDate.getDate() - firstDay.getDay(),
+                      );
+                      const currentDate = new Date(startDate);
+                      currentDate.setDate(currentDate.getDate() + i);
+
+                      const isCurrentMonth =
+                        currentDate.getMonth() === currentMonth.getMonth();
+                      const isSelected =
+                        currentDate.toDateString() ===
+                        selectedDate.toDateString();
+                      const isToday =
+                        currentDate.toDateString() ===
+                        new Date().toDateString();
+
+                      return (
+                        <button
+                          key={i}
+                          onClick={() => setSelectedDate(currentDate)}
+                          className={`relative p-3 h-16 border-r border-b last:border-r-0 hover:bg-gray-50 transition-colors ${
+                            !isCurrentMonth ? "text-gray-400" : "text-[#283C50]"
+                          }`}
+                        >
+                          <div
+                            className={`w-8 h-8 rounded-lg flex items-center justify-center mx-auto ${
+                              isSelected
+                                ? "bg-[#4766E5] text-white"
+                                : isToday
+                                  ? "bg-red-100 text-red-600"
+                                  : ""
+                            }`}
+                          >
+                            {currentDate.getDate()}
+                          </div>
+                          {/* Green dot for leave days */}
+                          <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Leave Details Card */}
+                <div className="mt-6 bg-white rounded-lg border p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 bg-gray-200 rounded-full overflow-hidden">
+                        <img
+                          src="/placeholder.svg"
+                          alt="Profile"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-[#283C50]">
+                          Soumyadeep Goswami
+                        </h3>
+                        <p className="text-gray-600">
+                          Liberty Righrise Pvt Ltd
+                        </p>
+                      </div>
+                    </div>
+                    <span className="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                      Approved
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-xl font-bold text-[#283C50] mb-2">
+                        Casual Leave
+                      </h4>
+                      <div className="flex items-center text-[#283C50] mb-2">
+                        <svg
+                          className="w-5 h-5 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <span className="font-bold">1 day May 14</span>
+                      </div>
+                      <p className="text-gray-600 mb-1">
+                        Reporting Manager - Amulya Kumar Kar
+                      </p>
+                      <p className="text-gray-400 text-sm">
+                        12 May 2025, 08:14 PM
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-red-500 font-bold text-lg">
+                        On Leave
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* List View - Tabs */}
+                <div className="flex border-b mb-6">
+                  <button
+                    onClick={() => setSelectedTab("pending")}
+                    className={`px-4 py-3 font-semibold border-b-2 transition-colors ${
+                      selectedTab === "pending"
+                        ? "border-[#283C50] text-[#283C50]"
+                        : "border-transparent text-gray-500 hover:text-[#283C50]"
+                    }`}
+                  >
+                    PENDING
+                  </button>
+                  <button
+                    onClick={() => setSelectedTab("approved")}
+                    className={`px-4 py-3 font-semibold border-b-2 transition-colors relative ${
+                      selectedTab === "approved"
+                        ? "border-[#283C50] text-[#283C50]"
+                        : "border-transparent text-gray-500 hover:text-[#283C50]"
+                    }`}
+                  >
+                    APPROVED
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-xs rounded-full flex items-center justify-center">
+                      1
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => setSelectedTab("denied")}
+                    className={`px-4 py-3 font-semibold border-b-2 transition-colors ${
+                      selectedTab === "denied"
+                        ? "border-[#283C50] text-[#283C50]"
+                        : "border-transparent text-gray-500 hover:text-[#283C50]"
+                    }`}
+                  >
+                    DENIED
+                  </button>
+                </div>
+
+                {/* Tab Content */}
+                {selectedTab === "pending" && (
+                  <div className="text-center py-16">
+                    <div className="mb-6">
+                      <img
+                        src="/placeholder.svg"
+                        alt="No pending items"
+                        className="w-64 h-64 mx-auto opacity-50"
+                      />
+                    </div>
+                    <h3 className="text-2xl font-bold text-[#283C50] mb-2">
+                      Nothing's Pending
+                    </h3>
+                    <p className="text-gray-600">
+                      No PENDING approval available
+                    </p>
+                  </div>
+                )}
+
+                {selectedTab === "approved" && (
+                  <div className="space-y-4">
+                    <div className="bg-[#E3F2FD] text-[#4766E5] px-4 py-2 rounded-t-lg font-semibold">
+                      LEAVE APPROVAL
+                    </div>
+                    <div className="bg-white border rounded-lg p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
+                          <img
+                            src="/placeholder.svg"
+                            alt="Profile"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-bold text-[#283C50] mb-1">
+                            Soumyadeep Goswami
+                          </h4>
+                          <p className="text-xl font-bold text-[#283C50] mb-2">
+                            1 day May 14
+                          </p>
+                          <p className="text-gray-600 mb-1">Head office</p>
+                          <p className="text-[#283C50] font-medium mb-2">
+                            CASUAL LEAVE (CL)
+                          </p>
+                          <p className="text-gray-400 text-sm">
+                            12 May, 2025 8:14 PM
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedTab === "denied" && (
+                  <div className="text-center py-16">
+                    <div className="mb-6">
+                      <img
+                        src="/placeholder.svg"
+                        alt="No denied items"
+                        className="w-64 h-64 mx-auto opacity-50"
+                      />
+                    </div>
+                    <h3 className="text-2xl font-bold text-[#283C50] mb-2">
+                      No Denied Requests
+                    </h3>
+                    <p className="text-gray-600">
+                      No DENIED approval available
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Attachment Options Modal */}
       <Dialog
         open={isAttachmentModalOpen}
