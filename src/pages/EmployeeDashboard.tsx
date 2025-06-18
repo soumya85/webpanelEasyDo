@@ -248,6 +248,139 @@ export default function EmployeeDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Leave Request Modal */}
+      <Dialog
+        open={isLeaveRequestModalOpen}
+        onOpenChange={setIsLeaveRequestModalOpen}
+      >
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-[#283C50]">
+              Leave Request
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="grid gap-4 py-4">
+            {/* Leave Type */}
+            <div className="grid gap-2">
+              <Label
+                htmlFor="leave-type"
+                className="text-sm font-medium text-[#283C50]"
+              >
+                Leave Type *
+              </Label>
+              <Select
+                value={leaveFormData.leaveType}
+                onValueChange={(value) =>
+                  handleLeaveFormChange("leaveType", value)
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select leave type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="annual">Annual Leave</SelectItem>
+                  <SelectItem value="sick">Sick Leave</SelectItem>
+                  <SelectItem value="personal">Personal Leave</SelectItem>
+                  <SelectItem value="maternity">Maternity Leave</SelectItem>
+                  <SelectItem value="paternity">Paternity Leave</SelectItem>
+                  <SelectItem value="emergency">Emergency Leave</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Date Range */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <Label
+                  htmlFor="start-date"
+                  className="text-sm font-medium text-[#283C50]"
+                >
+                  Start Date *
+                </Label>
+                <Input
+                  id="start-date"
+                  type="date"
+                  value={leaveFormData.startDate}
+                  onChange={(e) =>
+                    handleLeaveFormChange("startDate", e.target.value)
+                  }
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label
+                  htmlFor="end-date"
+                  className="text-sm font-medium text-[#283C50]"
+                >
+                  End Date *
+                </Label>
+                <Input
+                  id="end-date"
+                  type="date"
+                  value={leaveFormData.endDate}
+                  onChange={(e) =>
+                    handleLeaveFormChange("endDate", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+
+            {/* Total Days */}
+            <div className="grid gap-2">
+              <Label
+                htmlFor="total-days"
+                className="text-sm font-medium text-[#283C50]"
+              >
+                Total Days
+              </Label>
+              <Input
+                id="total-days"
+                type="number"
+                placeholder="Enter total days"
+                value={leaveFormData.totalDays}
+                onChange={(e) =>
+                  handleLeaveFormChange("totalDays", e.target.value)
+                }
+              />
+            </div>
+
+            {/* Reason */}
+            <div className="grid gap-2">
+              <Label
+                htmlFor="reason"
+                className="text-sm font-medium text-[#283C50]"
+              >
+                Reason *
+              </Label>
+              <Textarea
+                id="reason"
+                placeholder="Please provide a reason for your leave request..."
+                value={leaveFormData.reason}
+                onChange={(e) =>
+                  handleLeaveFormChange("reason", e.target.value)
+                }
+                className="min-h-[100px]"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsLeaveRequestModalOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleLeaveSubmit}
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90"
+            >
+              Submit Request
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
