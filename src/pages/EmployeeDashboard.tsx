@@ -260,59 +260,37 @@ export default function EmployeeDashboard() {
         </div>
       </div>
 
-      {/* Leave Request Modal - Mobile First Design */}
+      {/* Leave Request Modal - Web App Style */}
       <Dialog
         open={isLeaveRequestModalOpen}
         onOpenChange={setIsLeaveRequestModalOpen}
       >
-        <DialogContent className="sm:max-w-[430px] h-[100vh] sm:h-auto p-0 gap-0 rounded-none sm:rounded-lg overflow-hidden">
-          <VisuallyHidden>
-            <DialogTitle>Leave Request Form</DialogTitle>
-          </VisuallyHidden>
-          {/* Mobile Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
-            <button
-              onClick={() => setIsLeaveRequestModalOpen(false)}
-              className="flex items-center text-[#007AFF] text-base font-normal"
-            >
-              <svg
-                className="w-5 h-5 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              EDB
-            </button>
-            <h1 className="text-base font-semibold text-black">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-[#283C50]">
               Leave Request
-            </h1>
-            <button
-              onClick={handleLeaveSubmit}
-              className="text-[#007AFF] text-base font-normal"
-            >
-              Submit
-            </button>
-          </div>
+            </DialogTitle>
+          </DialogHeader>
 
-          <div className="flex-1 bg-[#F2F2F7] overflow-y-auto">
-            <div className="space-y-4 p-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-y-auto max-h-[70vh]">
+            {/* Left Column - Form Fields */}
+            <div className="lg:col-span-2 space-y-6">
               {/* Leave Type */}
-              <div className="bg-white rounded-lg">
+              <div className="space-y-2">
+                <Label
+                  htmlFor="leave-type"
+                  className="text-sm font-medium text-[#283C50]"
+                >
+                  Leave Type *
+                </Label>
                 <Select
                   value={leaveFormData.leaveType}
                   onValueChange={(value) =>
                     handleLeaveFormChange("leaveType", value)
                   }
                 >
-                  <SelectTrigger className="h-12 border-none shadow-none text-[#007AFF] justify-between px-4">
-                    <SelectValue placeholder="Leave type" />
+                  <SelectTrigger className="w-full h-12">
+                    <SelectValue placeholder="Select leave type" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="annual">Annual Leave</SelectItem>
@@ -325,109 +303,123 @@ export default function EmployeeDashboard() {
                 </Select>
               </div>
 
-              {/* Start Date */}
-              <div className="bg-white rounded-lg">
-                <div className="flex items-center justify-between px-4 py-3 h-12">
-                  <span className="text-black text-base">Start date</span>
-                  <div className="flex items-center text-[#007AFF] text-base">
-                    <span>{leaveFormData.startDate}</span>
-                    <svg
-                      className="w-4 h-4 ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+              {/* Date Range */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="start-date"
+                    className="text-sm font-medium text-[#283C50]"
+                  >
+                    Start Date *
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      id="start-date"
+                      type="date"
+                      value="2025-06-26"
+                      onChange={(e) => {
+                        const date = new Date(e.target.value);
+                        const formatted = date.toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        });
+                        handleLeaveFormChange("startDate", formatted);
+                      }}
+                      className="h-12"
+                    />
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4766E5] pointer-events-none">
+                      {leaveFormData.startDate}
+                    </div>
                   </div>
                 </div>
-                <div className="border-t border-gray-200 mx-4"></div>
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="end-date"
+                    className="text-sm font-medium text-[#283C50]"
+                  >
+                    End Date *
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      id="end-date"
+                      type="date"
+                      value="2025-06-29"
+                      onChange={(e) => {
+                        const date = new Date(e.target.value);
+                        const formatted = date.toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        });
+                        handleLeaveFormChange("endDate", formatted);
+                      }}
+                      className="h-12"
+                    />
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4766E5] pointer-events-none">
+                      {leaveFormData.endDate}
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* End Date */}
-              <div className="bg-white rounded-lg">
-                <div className="flex items-center justify-between px-4 py-3 h-12">
-                  <span className="text-black text-base">End date</span>
-                  <div className="flex items-center text-[#007AFF] text-base">
-                    <span>{leaveFormData.endDate}</span>
-                    <svg
-                      className="w-4 h-4 ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
+              {/* Duration Calculation */}
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-[#283C50]">
+                    Duration
+                  </span>
+                  <span className="text-lg font-bold text-[#4766E5]">
+                    4 Days
+                  </span>
                 </div>
               </div>
 
               {/* Notes Section */}
-              <div className="bg-white rounded-lg">
-                <button
-                  onClick={() => setIsNotesExpanded(!isNotesExpanded)}
-                  className="w-full flex items-center justify-between px-4 py-3 h-12"
-                >
-                  <div className="flex items-center">
-                    <span className="text-xl mr-2">+</span>
-                    <span className="text-black text-base">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                    className="flex items-center space-x-2 text-[#4766E5] hover:text-[#4766E5]/80"
+                  >
+                    <span className="text-lg">
+                      {isNotesExpanded ? "−" : "+"}
+                    </span>
+                    <span className="text-sm font-medium">
                       Notes (Optional)
                     </span>
-                  </div>
-                  <div className="flex items-center text-[#007AFF] text-base">
-                    <span>{leaveFormData.notes ? "Added" : "None"}</span>
-                    <svg
-                      className="w-4 h-4 ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </button>
+                  </button>
+                  <span className="text-xs text-gray-500">
+                    {leaveFormData.notes ? "Added" : "None"}
+                  </span>
+                </div>
 
                 {isNotesExpanded && (
-                  <>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div className="p-4">
-                      <Textarea
-                        placeholder="Notes (Optional)"
-                        value={leaveFormData.notes}
-                        onChange={(e) =>
-                          handleLeaveFormChange("notes", e.target.value)
-                        }
-                        className="min-h-[100px] border-none shadow-none resize-none bg-transparent placeholder:text-gray-400"
-                      />
-                    </div>
-                  </>
+                  <div className="space-y-2">
+                    <Textarea
+                      placeholder="Add any additional notes for your leave request..."
+                      value={leaveFormData.notes}
+                      onChange={(e) =>
+                        handleLeaveFormChange("notes", e.target.value)
+                      }
+                      className="min-h-[120px] resize-none"
+                    />
+                  </div>
                 )}
               </div>
 
-              {/* Add Attachment */}
-              <div className="bg-white rounded-lg">
+              {/* Attachment Section */}
+              <div className="space-y-3">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  Attachments
+                </Label>
                 <button
                   onClick={() => setIsAttachmentModalOpen(true)}
-                  className="w-full flex items-center justify-between px-4 py-3 h-12"
+                  className="w-full border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-[#4766E5] hover:bg-gray-50 transition-colors"
                 >
-                  <div className="flex items-center text-[#007AFF] text-base">
+                  <div className="flex flex-col items-center space-y-2">
                     <svg
-                      className="w-5 h-5 mr-2"
+                      className="w-8 h-8 text-gray-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -439,73 +431,121 @@ export default function EmployeeDashboard() {
                         d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
                       />
                     </svg>
-                    <span>Add Attachment</span>
-                  </div>
-                  <div className="w-10 h-6 bg-black rounded flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <span className="text-sm text-gray-600">
+                      Click to add attachments
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      Scan, Documents, Camera, or Photos
+                    </span>
                   </div>
                 </button>
               </div>
+            </div>
 
-              {/* Leave Balance Section */}
-              <div className="bg-white rounded-lg p-4 mt-8">
+            {/* Right Column - Leave Balance */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-base font-medium text-black">
+                  <h3 className="text-lg font-semibold text-[#283C50]">
                     Leave Balance
                   </h3>
-                  <button className="flex items-center text-[#007AFF] text-sm">
-                    <span>More Info</span>
-                    <svg
-                      className="w-4 h-4 ml-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                  <button className="text-[#4766E5] text-sm hover:underline">
+                    More Info →
                   </button>
                 </div>
 
-                <div className="grid grid-cols-4 gap-2 mb-4">
-                  <div className="bg-[#E4D9FF] rounded-lg p-3 text-center">
-                    <div className="text-lg font-bold text-black">0</div>
-                    <div className="text-xs text-black">EARNED</div>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="bg-[#E4D9FF] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">0</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      EARNED
+                    </div>
                   </div>
-                  <div className="bg-[#FFD9D9] rounded-lg p-3 text-center">
-                    <div className="text-lg font-bold text-black">4</div>
-                    <div className="text-xs text-black">SICK</div>
+                  <div className="bg-[#FFD9D9] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">4</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      SICK
+                    </div>
                   </div>
-                  <div className="bg-[#FFF5CC] rounded-lg p-3 text-center">
-                    <div className="text-lg font-bold text-black">2.16</div>
-                    <div className="text-xs text-black">CASUAL</div>
+                  <div className="bg-[#FFF5CC] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">
+                      2.16
+                    </div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      CASUAL
+                    </div>
                   </div>
-                  <div className="bg-[#FFE4F0] rounded-lg p-3 text-center">
-                    <div className="text-lg font-bold text-black">6</div>
-                    <div className="text-xs text-black">OTHER</div>
+                  <div className="bg-[#FFE4F0] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">6</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      OTHER
+                    </div>
                   </div>
                 </div>
 
                 <div className="text-center text-sm text-gray-600 mb-4">
-                  3.00 Approved • 0 Pending
+                  <span className="font-medium">3.00 Approved</span> •{" "}
+                  <span>0 Pending</span>
                 </div>
 
-                <button className="w-full bg-[#007AFF] text-white py-3 rounded-lg text-base font-medium">
+                <Button className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 h-12">
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
                   Leave Calendar
-                </button>
+                </Button>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="bg-white border rounded-lg p-4">
+                <h4 className="text-sm font-semibold text-[#283C50] mb-3">
+                  Quick Stats
+                </h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">This Month</span>
+                    <span className="font-medium">2 days used</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">This Year</span>
+                    <span className="font-medium">8 days used</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Available</span>
+                    <span className="font-medium text-green-600">
+                      12.16 days
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+          <DialogFooter className="mt-6">
+            <Button
+              variant="outline"
+              onClick={() => setIsLeaveRequestModalOpen(false)}
+              className="h-12 px-8"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleLeaveSubmit}
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+            >
+              Submit Request
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 
