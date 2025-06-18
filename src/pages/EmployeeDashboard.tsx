@@ -1779,7 +1779,7 @@ export default function EmployeeDashboard() {
                   </p>
 
                   {/* Leave calculation rules */}
-                  <ul className="space-y-3 text-lg">
+                  <ul className="space-y-4 text-lg">
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3 mt-2"></span>
                       <div>
@@ -1794,6 +1794,31 @@ export default function EmployeeDashboard() {
                         <strong>Casual Leave (CL)</strong>: 0.83 days per
                         continuous month worked, Added on last day of every
                         Month.
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3 mt-2"></span>
+                      <div>
+                        <strong>Sick Leaves (SL)</strong>: for 0.42 month of
+                        continuous service, Added on 1st day of the current
+                        financial year.
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3 mt-2"></span>
+                      <div>
+                        <strong>Other Leaves (OL)</strong>: for 0.5 month of
+                        continuous service, Added on 1st day of the current
+                        financial year.
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-[#283C50] rounded-full mr-3 mt-2"></span>
+                      <div>
+                        <strong>
+                          Earned and Casual leaves are added on last day of the
+                          month. Click here to check all leave rules.
+                        </strong>
                       </div>
                     </li>
                   </ul>
