@@ -877,49 +877,50 @@ export default function EmployeeDashboard() {
                         LEAVE APPROVAL
                       </div>
                       <div className="bg-white border rounded-lg p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-[#283C50] rounded-full flex items-center justify-center flex-shrink-0">
-                          <span className="text-white text-sm font-semibold">
-                            SG
-                          </span>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-bold text-[#283C50] mb-1">
-                            Soumyadeep Goswami
-                          </h4>
-                          <p className="text-xl font-bold text-[#283C50] mb-2">
-                            1 day May 14
-                          </p>
-                          <p className="text-gray-600 mb-1">Head office</p>
-                          <p className="text-[#283C50] font-medium mb-2">
-                            CASUAL LEAVE (CL)
-                          </p>
-                          <p className="text-gray-600 text-sm">
-                            12 May, 2025 8:14 PM
-                          </p>
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 bg-[#283C50] rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-white text-sm font-semibold">
+                              SG
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-lg font-bold text-[#283C50] mb-1">
+                              Soumyadeep Goswami
+                            </h4>
+                            <p className="text-xl font-bold text-[#283C50] mb-2">
+                              1 day May 14
+                            </p>
+                            <p className="text-gray-600 mb-1">Head office</p>
+                            <p className="text-[#283C50] font-medium mb-2">
+                              CASUAL LEAVE (CL)
+                            </p>
+                            <p className="text-gray-600 text-sm">
+                              12 May, 2025 8:14 PM
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {selectedTab === "denied" && (
-                  <div className="text-center py-16">
-                    <div className="mb-6">
-                      <img
-                        src="/placeholder.svg"
-                        alt="No denied items"
-                        className="w-64 h-64 mx-auto opacity-50"
-                      />
+                  {selectedTab === "denied" && (
+                    <div className="text-center py-16">
+                      <div className="mb-6">
+                        <img
+                          src="/placeholder.svg"
+                          alt="No denied items"
+                          className="w-64 h-64 mx-auto opacity-50"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold text-[#283C50] mb-2">
+                        No Denied Requests
+                      </h3>
+                      <p className="text-gray-600">
+                        No DENIED approval available
+                      </p>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#283C50] mb-2">
-                      No Denied Requests
-                    </h3>
-                    <p className="text-gray-600">
-                      No DENIED approval available
-                    </p>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </div>
