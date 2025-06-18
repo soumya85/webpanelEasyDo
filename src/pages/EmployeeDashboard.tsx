@@ -276,14 +276,14 @@ export default function EmployeeDashboard() {
         open={isLeaveRequestModalOpen}
         onOpenChange={setIsLeaveRequestModalOpen}
       >
-        <DialogContent className="max-w-4xl modal-mobile-safe sm:max-h-[90vh] overflow-y-auto">
-          <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+          <DialogHeader className="flex-shrink-0 pb-2">
             <DialogTitle className="text-xl font-bold text-[#283C50]">
               Leave Request
             </DialogTitle>
           </DialogHeader>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-0 flex-1">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 overflow-y-auto pr-2 -mr-2">
             {/* Left Column - Form Fields */}
             <div className="lg:col-span-2 space-y-6 pb-4">
               {/* Leave Type */}
