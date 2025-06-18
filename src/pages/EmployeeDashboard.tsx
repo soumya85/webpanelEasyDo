@@ -581,8 +581,8 @@ export default function EmployeeDashboard() {
               </h1>
             </div>
 
-            <div className="flex items-center flex-1 justify-end">
-              <div className="flex bg-white rounded-lg p-1 border mr-12">
+            <div className="flex items-center flex-1 justify-end pr-12">
+              <div className="flex bg-white rounded-lg p-1 border">
                 <button
                   onClick={() => setCalendarView("day")}
                   className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
