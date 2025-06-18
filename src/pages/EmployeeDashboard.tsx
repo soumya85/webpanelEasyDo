@@ -1223,6 +1223,334 @@ export default function EmployeeDashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* Leave Balance Info Modal */}
+      <Dialog
+        open={isLeaveBalanceInfoOpen}
+        onOpenChange={setIsLeaveBalanceInfoOpen}
+      >
+        <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col">
+          <VisuallyHidden>
+            <DialogTitle>Leave Balance Information</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 bg-[#F8F9FA] border-b relative">
+            {/* Left - Back Button */}
+            <button
+              onClick={() => setIsLeaveBalanceInfoOpen(false)}
+              className="flex items-center text-[#4766E5] text-sm font-medium hover:text-[#4766E5]/80 transition-colors"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back to Leave Request
+            </button>
+
+            {/* Center - Title */}
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <h1 className="text-lg font-semibold text-[#283C50]">
+                Leave Balance Details
+              </h1>
+            </div>
+
+            {/* Right - Close Button */}
+            <button
+              onClick={() => setIsLeaveBalanceInfoOpen(false)}
+              className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              aria-label="Close"
+            >
+              <svg
+                className="w-5 h-5 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="p-6 flex-1 overflow-y-auto">
+            {/* Leave Balance Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              {/* Current Balance Summary */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border">
+                <h3 className="text-lg font-semibold text-[#283C50] mb-4">
+                  Current Balance
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-[#E4D9FF] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">0</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      EARNED
+                    </div>
+                  </div>
+                  <div className="bg-[#FFD9D9] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">4</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      SICK
+                    </div>
+                  </div>
+                  <div className="bg-[#FFF5CC] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">
+                      2.16
+                    </div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      CASUAL
+                    </div>
+                  </div>
+                  <div className="bg-[#FFE4F0] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">6</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      OTHER
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Leave Statistics */}
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="text-lg font-semibold text-[#283C50] mb-4">
+                  Leave Statistics
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Total Allocated</span>
+                    <span className="font-semibold text-[#283C50]">
+                      12.16 days
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Used This Year</span>
+                    <span className="font-semibold text-red-600">
+                      3.00 days
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Pending Approval</span>
+                    <span className="font-semibold text-amber-600">0 days</span>
+                  </div>
+                  <div className="flex justify-between items-center pt-2 border-t">
+                    <span className="text-gray-600 font-medium">
+                      Remaining Balance
+                    </span>
+                    <span className="font-bold text-green-600 text-lg">
+                      9.16 days
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Leave Types Breakdown */}
+            <div className="bg-white rounded-lg border">
+              <div className="p-6 border-b">
+                <h3 className="text-lg font-semibold text-[#283C50]">
+                  Leave Types Breakdown
+                </h3>
+              </div>
+              <div className="p-6">
+                <div className="space-y-6">
+                  {/* Sick Leave */}
+                  <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-6 h-6 text-red-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#283C50]">
+                          Sick Leave
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Medical emergencies and health issues
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-[#283C50]">4</div>
+                      <div className="text-sm text-gray-600">
+                        days available
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Casual Leave */}
+                  <div className="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-6 h-6 text-yellow-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#283C50]">
+                          Casual Leave
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Personal time off and relaxation
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-[#283C50]">
+                        2.16
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        days available
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Other Leave */}
+                  <div className="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-6 h-6 text-purple-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#283C50]">
+                          Other Leave
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Special circumstances and occasions
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-[#283C50]">6</div>
+                      <div className="text-sm text-gray-600">
+                        days available
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Recent Leave History */}
+            <div className="mt-8 bg-white rounded-lg border">
+              <div className="p-6 border-b">
+                <h3 className="text-lg font-semibold text-[#283C50]">
+                  Recent Leave History
+                </h3>
+              </div>
+              <div className="p-6">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#283C50]">
+                          Casual Leave
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          May 14, 2025 (1 day)
+                        </p>
+                      </div>
+                    </div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                      Approved
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-gray-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#283C50]">
+                          No other leave records
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          This is your first approved leave
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Attachment Options Modal */}
       <Dialog
         open={isAttachmentModalOpen}
