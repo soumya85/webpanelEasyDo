@@ -1375,7 +1375,10 @@ export default function EmployeeDashboard() {
 
             {/* Employee Leave Rules */}
             <div className="mb-6">
-              <button className="flex items-center justify-between w-full text-left text-[#4766E5] font-medium hover:text-[#4766E5]/80 transition-colors">
+              <button
+                onClick={() => setIsLeaveRulesOpen(true)}
+                className="flex items-center justify-between w-full text-left text-[#4766E5] font-medium hover:text-[#4766E5]/80 transition-colors"
+              >
                 <span>Employee Leave Rules</span>
                 <svg
                   className="w-5 h-5"
