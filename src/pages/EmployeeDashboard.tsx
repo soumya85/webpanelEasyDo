@@ -44,6 +44,36 @@ const ChevronRightIcon = () => (
 );
 
 export default function EmployeeDashboard() {
+  const [isLeaveRequestModalOpen, setIsLeaveRequestModalOpen] = useState(false);
+  const [leaveFormData, setLeaveFormData] = useState({
+    leaveType: "",
+    startDate: "",
+    endDate: "",
+    reason: "",
+    totalDays: "",
+  });
+
+  const handleLeaveFormChange = (field: string, value: string) => {
+    setLeaveFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleLeaveSubmit = () => {
+    // Handle form submission logic here
+    console.log("Leave request submitted:", leaveFormData);
+    setIsLeaveRequestModalOpen(false);
+    // Reset form
+    setLeaveFormData({
+      leaveType: "",
+      startDate: "",
+      endDate: "",
+      reason: "",
+      totalDays: "",
+    });
+  };
+
   const cardData = [
     // Row 1
     {
