@@ -1839,127 +1839,18 @@ export default function EmployeeDashboard() {
         open={isOTRequestModalOpen}
         onOpenChange={setIsOTRequestModalOpen}
       >
-        <DialogContent className="max-w-md mx-auto max-h-[95vh] overflow-y-auto p-0 [&>button]:hidden">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b bg-gray-50">
-            <button
-              onClick={() => setIsOTRequestModalOpen(false)}
-              className="flex items-center text-[#4766E5] text-lg font-medium"
-            >
-              <svg
-                className="w-5 h-5 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              EDB
-            </button>
-            <h1 className="text-lg font-semibold text-[#283C50]">
-              Overtime Request
-            </h1>
-            <button
-              onClick={() => setIsOTRequestModalOpen(false)}
-              className="text-[#4766E5] text-lg font-medium"
-            >
-              Submit
-            </button>
-          </div>
-
-          {/* Content */}
-          <div className="p-4 space-y-4">
-            {/* Company Name */}
-            <div className="bg-white p-4 rounded-lg border border-gray-200">
-              <p className="text-[#4766E5] text-lg font-medium">
-                Liberty Righrise Pvt Ltd
-              </p>
-            </div>
-
-            {/* Title Field */}
-            <div className="space-y-2">
-              <Input
-                placeholder="Title"
-                className="w-full h-12 text-base border-gray-300 rounded-lg"
-              />
-            </div>
-
-            {/* Start Date */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
-                <span className="text-base text-[#283C50]">Start date</span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-[#4766E5] text-base">18 Jun 2025</span>
-                  <svg
-                    className="w-5 h-5 text-[#4766E5]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* Notes (Optional) */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <svg
-                    className="w-5 h-5 text-[#283C50]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                    />
-                  </svg>
-                  <span className="text-base text-[#283C50]">
-                    Notes (Optional)
-                  </span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-[#4766E5] text-base">None</span>
-                  <svg
-                    className="w-5 h-5 text-[#4766E5]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* Add Attachment */}
-            <div className="space-y-2">
+        <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
+          <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                OT Request
+              </DialogTitle>
               <button
-                onClick={() => setIsAttachmentModalOpen(true)}
-                className="flex items-center space-x-3 text-[#4766E5] text-base w-full text-left"
+                onClick={() => setIsOTRequestModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 text-gray-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1968,37 +1859,254 @@ export default function EmployeeDashboard() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                    d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-                <span>Add attachment</span>
               </button>
             </div>
+          </DialogHeader>
 
-            {/* Camera Icon - Attachment Preview Area */}
-            <div className="flex justify-center py-8">
-              <div className="w-20 h-20 bg-black rounded-lg flex items-center justify-center">
-                <svg
-                  className="w-10 h-10 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+          {/* Company Name Display */}
+          <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <p className="text-[#4766E5] text-lg font-medium">
+              Liberty Righrise Pvt Ltd
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8 pb-4">
+            {/* Left Column - Form Fields */}
+            <div className="lg:col-span-2 space-y-6 pb-8">
+              {/* OT Type */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  OT Type *
+                </Label>
+                <Select>
+                  <SelectTrigger className="w-full h-12">
+                    <SelectValue placeholder="Select OT type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="weekday">Weekday OT</SelectItem>
+                    <SelectItem value="weekend">Weekend OT</SelectItem>
+                    <SelectItem value="holiday">Holiday OT</SelectItem>
+                    <SelectItem value="night">Night Shift OT</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* OT Date */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  OT Date *
+                </Label>
+                <Input
+                  type="date"
+                  defaultValue="2025-06-18"
+                  className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                />
+              </div>
+
+              {/* Total Hours */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  Total Hours *
+                </Label>
+                <Input
+                  type="number"
+                  placeholder="e.g., 2.5"
+                  min="0.5"
+                  max="12"
+                  step="0.5"
+                  className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                />
+              </div>
+
+              {/* Time Range */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-[#283C50]">
+                    Start Time *
+                  </Label>
+                  <Input
+                    type="time"
+                    className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-[#283C50]">
+                    End Time *
+                  </Label>
+                  <Input
+                    type="time"
+                    className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                  />
+                </div>
+              </div>
+
+              {/* Project/Task */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  Project/Task *
+                </Label>
+                <Input
+                  placeholder="Enter project or task name..."
+                  className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                />
+              </div>
+
+              {/* Reason for OT */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  Reason for OT *
+                </Label>
+                <Textarea
+                  placeholder="Please explain why overtime is required..."
+                  className="min-h-[100px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                />
+              </div>
+
+              {/* Urgency Level */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  Urgency Level
+                </Label>
+                <Select>
+                  <SelectTrigger className="w-full h-12">
+                    <SelectValue placeholder="Select urgency level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="low">Low</SelectItem>
+                    <SelectItem value="medium">Medium</SelectItem>
+                    <SelectItem value="high">High</SelectItem>
+                    <SelectItem value="critical">Critical</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Expected Deliverables */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  Expected Deliverables
+                </Label>
+                <Textarea
+                  placeholder="What will be completed during this overtime..."
+                  className="min-h-[80px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                />
+              </div>
+
+              {/* Pre-approval checkbox */}
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  id="pre-approved"
+                  className="w-5 h-5 rounded border-2 border-gray-300 text-[#4766E5] focus:ring-[#4766E5] focus:ring-2"
+                />
+                <Label
+                  htmlFor="pre-approved"
+                  className="text-sm text-[#283C50]"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+                  This overtime has been pre-approved by my supervisor
+                </Label>
               </div>
             </div>
+
+            {/* Right Column - OT Summary */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-lg border">
+                <h3 className="text-lg font-semibold text-[#283C50] mb-4">
+                  OT Summary
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-600">
+                      Requested Hours
+                    </span>
+                    <span className="font-semibold text-[#283C50]">
+                      0.0 hrs
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-600">
+                      OT Rate Multiplier
+                    </span>
+                    <span className="font-semibold text-[#283C50]">1.5x</span>
+                  </div>
+
+                  <div className="flex justify-between items-center pt-2 border-t">
+                    <span className="text-sm font-medium text-gray-600">
+                      Estimated Pay
+                    </span>
+                    <span className="font-bold text-green-600 text-lg">
+                      ₹0.00
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <h4 className="font-semibold text-blue-800 mb-2">
+                    OT Policy Reminder
+                  </h4>
+                  <ul className="text-xs text-blue-700 space-y-1">
+                    <li>• OT must be pre-approved by supervisor</li>
+                    <li>• Maximum 4 hours OT per day</li>
+                    <li>• Weekend OT requires 48hr advance notice</li>
+                    <li>• Meal allowance provided for 4+ hours</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Recent OT History */}
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="text-lg font-semibold text-[#283C50] mb-4">
+                  Recent OT Requests
+                </h3>
+
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-green-50 rounded border border-green-200">
+                    <div>
+                      <p className="text-sm font-medium text-[#283C50]">
+                        Weekend Work
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        June 15, 2025 • 4 hrs
+                      </p>
+                    </div>
+                    <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                      Approved
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-yellow-50 rounded border border-yellow-200">
+                    <div>
+                      <p className="text-sm font-medium text-[#283C50]">
+                        Project Deadline
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        June 12, 2025 • 2.5 hrs
+                      </p>
+                    </div>
+                    <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
+                      Pending
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8">
+              Submit OT Request
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsOTRequestModalOpen(false)}
+              className="h-12 px-8"
+            >
+              Cancel
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
