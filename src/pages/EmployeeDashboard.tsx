@@ -97,10 +97,111 @@ export default function EmployeeDashboard() {
     });
   };
 
-  const handleAttachmentSelect = (type: string) => {
-    console.log("Selected attachment type:", type);
+  const handleAttachmentSelect = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
     setIsAttachmentModalOpen(false);
-    // Handle attachment logic here
+
+    // Create file input element dynamically
+    const input = document.createElement("input");
+    input.type = "file";
+    input.style.display = "none";
+
+    // Set file type constraints based on attachment type
+    switch (type) {
+      case "scan":
+      case "documents":
+        input.accept = ".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png";
+        break;
+      case "camera":
+        input.accept = "image/*";
+        input.capture = "environment"; // Use rear camera
+        break;
+      case "photos":
+        input.accept = "image/*";
+        break;
+    }
+
+    input.multiple = true; // Allow multiple file selection
+
+    input.onchange = (e) => {
+      const files = (e.target as HTMLInputElement).files;
+      if (files) {
+        handleFileUpload(Array.from(files), type);
+      }
+      document.body.removeChild(input);
+    };
+
+    document.body.appendChild(input);
+    input.click();
+  };
+
+  const handleFileUpload = (
+    files: File[],
+    source: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    const maxFileSize = 10 * 1024 * 1024; // 10MB limit
+    const maxFiles = 5; // Maximum 5 files
+
+    // Validate file count
+    if (leaveFormData.attachments.length + files.length > maxFiles) {
+      alert(
+        `Maximum ${maxFiles} files allowed. You currently have ${leaveFormData.attachments.length} files.`,
+      );
+      return;
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > maxFileSize) {
+        alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    // Simulate file upload and create attachment objects
+    const newAttachments = validFiles.map((file) => ({
+      id: Date.now() + Math.random().toString(36).substr(2, 9),
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      url: URL.createObjectURL(file), // In real app, this would be upload URL
+      source: source,
+    }));
+
+    setLeaveFormData((prev) => ({
+      ...prev,
+      attachments: [...prev.attachments, ...newAttachments],
+    }));
+
+    // Show success message
+    const sourceLabel = {
+      scan: "Scanned document",
+      documents: "Document",
+      camera: "Photo",
+      photos: "Photo",
+    }[source];
+
+    alert(
+      `${validFiles.length} ${sourceLabel}${validFiles.length > 1 ? "s" : ""} uploaded successfully!`,
+    );
+  };
+
+  const handleRemoveAttachment = (id: string) => {
+    setLeaveFormData((prev) => ({
+      ...prev,
+      attachments: prev.attachments.filter((att) => att.id !== id),
+    }));
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return "0 B";
+    const k = 1024;
+    const sizes = ["B", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   };
 
   const cardData = [
