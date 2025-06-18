@@ -1,9 +1,29 @@
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import PerformanceMeter from "@/components/PerformanceMeter";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Custom ChevronRight Icon to match Overview page
 const ChevronRightIcon = () => (
@@ -25,6 +45,50 @@ const ChevronRightIcon = () => (
 );
 
 export default function EmployeeDashboard() {
+  const [isLeaveRequestModalOpen, setIsLeaveRequestModalOpen] = useState(false);
+  const [isNotesExpanded, setIsNotesExpanded] = useState(false);
+  const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
+  const [leaveFormData, setLeaveFormData] = useState({
+    leaveType: "",
+    startDate: "2025-06-19",
+    endDate: "2025-06-19",
+    notes: "",
+    firstHalfDay: false,
+    secondHalfDay: false,
+    attachments: [] as string[],
+  });
+
+  const handleLeaveFormChange = (field: string, value: string | boolean) => {
+    setLeaveFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleLeaveSubmit = () => {
+    // Handle form submission logic here
+    console.log("Leave request submitted:", leaveFormData);
+    setIsLeaveRequestModalOpen(false);
+    setIsNotesExpanded(false);
+    setIsAttachmentModalOpen(false);
+    // Reset form
+    setLeaveFormData({
+      leaveType: "",
+      startDate: "2025-06-19",
+      endDate: "2025-06-19",
+      notes: "",
+      firstHalfDay: false,
+      secondHalfDay: false,
+      attachments: [],
+    });
+  };
+
+  const handleAttachmentSelect = (type: string) => {
+    console.log("Selected attachment type:", type);
+    setIsAttachmentModalOpen(false);
+    // Handle attachment logic here
+  };
+
   const cardData = [
     // Row 1
     {
@@ -122,6 +186,11 @@ export default function EmployeeDashboard() {
             {cardData.slice(0, 4).map((card, index) => (
               <div
                 key={card.id}
+                onClick={() => {
+                  if (card.id === "leave-request") {
+                    setIsLeaveRequestModalOpen(true);
+                  }
+                }}
                 className={cn(
                   "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
                   "px-3 sm:px-4 justify-center items-center flex-shrink-0",
@@ -194,6 +263,402 @@ export default function EmployeeDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Leave Request Modal - Web App Style */}
+      <Dialog
+        open={isLeaveRequestModalOpen}
+        onOpenChange={setIsLeaveRequestModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-[#283C50]">
+              Leave Request
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-y-auto max-h-[70vh]">
+            {/* Left Column - Form Fields */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Leave Type */}
+              <div className="space-y-2">
+                <Label
+                  htmlFor="leave-type"
+                  className="text-sm font-medium text-[#283C50]"
+                >
+                  Leave Type *
+                </Label>
+                <Select
+                  value={leaveFormData.leaveType}
+                  onValueChange={(value) =>
+                    handleLeaveFormChange("leaveType", value)
+                  }
+                >
+                  <SelectTrigger className="w-full h-12">
+                    <SelectValue placeholder="Select leave type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="annual">Annual Leave</SelectItem>
+                    <SelectItem value="sick">Sick Leave</SelectItem>
+                    <SelectItem value="personal">Personal Leave</SelectItem>
+                    <SelectItem value="maternity">Maternity Leave</SelectItem>
+                    <SelectItem value="paternity">Paternity Leave</SelectItem>
+                    <SelectItem value="emergency">Emergency Leave</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="start-date"
+                    className="text-sm font-medium text-[#283C50]"
+                  >
+                    Start Date *
+                  </Label>
+                  <Input
+                    id="start-date"
+                    type="date"
+                    value={leaveFormData.startDate}
+                    onChange={(e) =>
+                      handleLeaveFormChange("startDate", e.target.value)
+                    }
+                    className="h-12"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="end-date"
+                    className="text-sm font-medium text-[#283C50]"
+                  >
+                    End Date *
+                  </Label>
+                  <Input
+                    id="end-date"
+                    type="date"
+                    value={leaveFormData.endDate}
+                    onChange={(e) =>
+                      handleLeaveFormChange("endDate", e.target.value)
+                    }
+                    className="h-12"
+                  />
+                </div>
+              </div>
+
+              {/* Half Day Options */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    id="first-half-day"
+                    checked={leaveFormData.firstHalfDay}
+                    onChange={(e) =>
+                      handleLeaveFormChange("firstHalfDay", e.target.checked)
+                    }
+                    className="w-5 h-5 rounded border-2 border-gray-300 text-[#4766E5] focus:ring-[#4766E5] focus:ring-2"
+                  />
+                  <Label
+                    htmlFor="first-half-day"
+                    className="text-base font-medium text-[#283C50]"
+                  >
+                    First Half Day
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    id="second-half-day"
+                    checked={leaveFormData.secondHalfDay}
+                    onChange={(e) =>
+                      handleLeaveFormChange("secondHalfDay", e.target.checked)
+                    }
+                    className="w-5 h-5 rounded border-2 border-gray-300 text-[#4766E5] focus:ring-[#4766E5] focus:ring-2"
+                  />
+                  <Label
+                    htmlFor="second-half-day"
+                    className="text-base font-medium text-[#283C50]"
+                  >
+                    Second Half Day
+                  </Label>
+                </div>
+              </div>
+
+              {/* Notes Section */}
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                    className="flex items-center space-x-2 text-[#4766E5] hover:text-[#4766E5]/80"
+                  >
+                    <span className="text-lg">
+                      {isNotesExpanded ? "−" : "+"}
+                    </span>
+                    <span className="text-sm font-medium">
+                      Notes (Optional)
+                    </span>
+                  </button>
+                  <span className="text-xs text-gray-500">
+                    {leaveFormData.notes ? "Added" : "None"}
+                  </span>
+                </div>
+
+                {isNotesExpanded && (
+                  <div className="space-y-2">
+                    <Textarea
+                      placeholder="Add any additional notes for your leave request..."
+                      value={leaveFormData.notes}
+                      onChange={(e) =>
+                        handleLeaveFormChange("notes", e.target.value)
+                      }
+                      className="min-h-[120px] resize-none"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Attachment Section */}
+              <div className="space-y-3">
+                <Label className="text-sm font-medium text-[#283C50]">
+                  Attachments
+                </Label>
+                <button
+                  onClick={() => setIsAttachmentModalOpen(true)}
+                  className="w-full border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-[#4766E5] hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex flex-col items-center space-y-2">
+                    <svg
+                      className="w-8 h-8 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                      />
+                    </svg>
+                    <span className="text-sm text-gray-600">
+                      Click to add attachments
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      Scan, Documents, Camera, or Photos
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column - Leave Balance */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-[#283C50]">
+                    Leave Balance
+                  </h3>
+                  <button className="text-[#4766E5] text-sm hover:underline">
+                    More Info →
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="bg-[#E4D9FF] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">0</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      EARNED
+                    </div>
+                  </div>
+                  <div className="bg-[#FFD9D9] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">4</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      SICK
+                    </div>
+                  </div>
+                  <div className="bg-[#FFF5CC] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">
+                      2.16
+                    </div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      CASUAL
+                    </div>
+                  </div>
+                  <div className="bg-[#FFE4F0] rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">6</div>
+                    <div className="text-xs font-medium text-[#283C50] mt-1">
+                      OTHER
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center text-sm text-gray-600 mb-4">
+                  <span className="font-medium">3.00 Approved</span> •{" "}
+                  <span>0 Pending</span>
+                </div>
+
+                <Button className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 h-12">
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Leave Calendar
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-row justify-start space-x-2">
+            <Button
+              onClick={handleLeaveSubmit}
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+            >
+              Submit Request
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsLeaveRequestModalOpen(false)}
+              className="h-12 px-8"
+            >
+              Cancel
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Attachment Options Modal */}
+      <Dialog
+        open={isAttachmentModalOpen}
+        onOpenChange={setIsAttachmentModalOpen}
+      >
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-lg font-semibold text-[#283C50]">
+              Choose Attachment Source
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="grid grid-cols-2 gap-4 py-4">
+            <button
+              onClick={() => handleAttachmentSelect("scan")}
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
+            >
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm font-medium text-[#283C50]">
+                Scan Document
+              </span>
+            </button>
+
+            <button
+              onClick={() => handleAttachmentSelect("documents")}
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
+            >
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm font-medium text-[#283C50]">
+                Documents
+              </span>
+            </button>
+
+            <button
+              onClick={() => handleAttachmentSelect("camera")}
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
+            >
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm font-medium text-[#283C50]">Camera</span>
+            </button>
+
+            <button
+              onClick={() => handleAttachmentSelect("photos")}
+              className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-lg hover:border-[#4766E5] hover:bg-blue-50 transition-colors group"
+            >
+              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm font-medium text-[#283C50]">
+                Photo Gallery
+              </span>
+            </button>
+          </div>
+
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsAttachmentModalOpen(false)}
+              className="w-full"
+            >
+              Cancel
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
