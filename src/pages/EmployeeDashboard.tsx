@@ -533,16 +533,153 @@ export default function EmployeeDashboard() {
 
               {/* Attachment Section */}
               <div className="space-y-3">
-                <Label className="text-sm font-medium text-[#283C50]">
-                  Attachments
-                </Label>
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm font-medium text-[#283C50]">
+                    Attachments
+                  </Label>
+                  {leaveFormData.attachments.length > 0 && (
+                    <span className="text-xs text-gray-500">
+                      {leaveFormData.attachments.length}/5 files
+                    </span>
+                  )}
+                </div>
+
+                {/* Uploaded Files Display */}
+                {leaveFormData.attachments.length > 0 && (
+                  <div className="space-y-2 mb-3">
+                    {leaveFormData.attachments.map((attachment) => (
+                      <div
+                        key={attachment.id}
+                        className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                      >
+                        <div className="flex items-center space-x-3 flex-1 min-w-0">
+                          {/* File Icon */}
+                          <div className="flex-shrink-0">
+                            {attachment.type.startsWith("image/") ? (
+                              <div className="w-8 h-8 bg-green-100 rounded flex items-center justify-center">
+                                <svg
+                                  className="w-4 h-4 text-green-600"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                  />
+                                </svg>
+                              </div>
+                            ) : (
+                              <div className="w-8 h-8 bg-blue-100 rounded flex items-center justify-center">
+                                <svg
+                                  className="w-4 h-4 text-blue-600"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                  />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* File Info */}
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-[#283C50] truncate">
+                              {attachment.name}
+                            </p>
+                            <div className="flex items-center space-x-2 text-xs text-gray-500">
+                              <span>{formatFileSize(attachment.size)}</span>
+                              <span>•</span>
+                              <span className="capitalize">
+                                {attachment.source}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Preview and Remove Buttons */}
+                        <div className="flex items-center space-x-2 ml-2">
+                          {attachment.type.startsWith("image/") && (
+                            <button
+                              onClick={() =>
+                                window.open(attachment.url, "_blank")
+                              }
+                              className="p-1 text-gray-400 hover:text-[#4766E5] transition-colors"
+                              title="Preview image"
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                />
+                              </svg>
+                            </button>
+                          )}
+                          <button
+                            onClick={() =>
+                              handleRemoveAttachment(attachment.id)
+                            }
+                            className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                            title="Remove file"
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Add Attachment Button */}
                 <button
                   onClick={() => setIsAttachmentModalOpen(true)}
-                  className="w-full border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-[#4766E5] hover:bg-gray-50 transition-colors"
+                  disabled={leaveFormData.attachments.length >= 5}
+                  className={`w-full border-2 border-dashed rounded-lg p-6 transition-colors ${
+                    leaveFormData.attachments.length >= 5
+                      ? "border-gray-200 bg-gray-50 cursor-not-allowed"
+                      : "border-gray-300 hover:border-[#4766E5] hover:bg-gray-50"
+                  }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
                     <svg
-                      className="w-8 h-8 text-gray-400"
+                      className={`w-8 h-8 ${
+                        leaveFormData.attachments.length >= 5
+                          ? "text-gray-300"
+                          : "text-gray-400"
+                      }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -554,12 +691,22 @@ export default function EmployeeDashboard() {
                         d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
                       />
                     </svg>
-                    <span className="text-sm text-gray-600">
-                      Click to add attachments
+                    <span
+                      className={`text-sm ${
+                        leaveFormData.attachments.length >= 5
+                          ? "text-gray-400"
+                          : "text-gray-600"
+                      }`}
+                    >
+                      {leaveFormData.attachments.length >= 5
+                        ? "Maximum files reached (5/5)"
+                        : "Click to add attachments"}
                     </span>
-                    <span className="text-xs text-gray-400">
-                      Scan, Documents, Camera, or Photos
-                    </span>
+                    {leaveFormData.attachments.length < 5 && (
+                      <span className="text-xs text-gray-400">
+                        Scan, Documents, Camera, or Photos
+                      </span>
+                    )}
                   </div>
                 </button>
               </div>
