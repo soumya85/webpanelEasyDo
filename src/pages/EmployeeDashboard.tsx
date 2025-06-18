@@ -552,48 +552,58 @@ export default function EmployeeDashboard() {
           </VisuallyHidden>
 
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-[#F8F9FA] border-b">
-            <button
-              onClick={() => setIsLeaveCalendarOpen(false)}
-              className="flex items-center text-[#4766E5] text-sm font-medium hover:text-[#4766E5]/80"
-            >
-              <svg
-                className="w-4 h-4 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              Back to Leave Request
-            </button>
-            <h1 className="text-lg font-semibold text-[#283C50]">Your Leave</h1>
-            <div className="flex bg-white rounded-lg p-1 border">
+          <div className="flex items-center px-4 py-3 bg-[#F8F9FA] border-b relative">
+            <div className="flex items-center flex-1">
               <button
-                onClick={() => setCalendarView("day")}
-                className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
-                  calendarView === "day"
-                    ? "bg-[#4766E5] text-white"
-                    : "text-[#283C50] hover:bg-gray-100"
-                }`}
+                onClick={() => setIsLeaveCalendarOpen(false)}
+                className="flex items-center text-[#4766E5] text-sm font-medium hover:text-[#4766E5]/80"
               >
-                Day
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+                Back to Leave Request
               </button>
-              <button
-                onClick={() => setCalendarView("list")}
-                className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
-                  calendarView === "list"
-                    ? "bg-[#4766E5] text-white"
-                    : "text-[#283C50] hover:bg-gray-100"
-                }`}
-              >
-                List
-              </button>
+            </div>
+
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <h1 className="text-lg font-semibold text-[#283C50]">
+                Your Leave
+              </h1>
+            </div>
+
+            <div className="flex items-center flex-1 justify-end">
+              <div className="flex bg-white rounded-lg p-1 border mr-8">
+                <button
+                  onClick={() => setCalendarView("day")}
+                  className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                    calendarView === "day"
+                      ? "bg-[#4766E5] text-white"
+                      : "text-[#283C50] hover:bg-gray-100"
+                  }`}
+                >
+                  Day
+                </button>
+                <button
+                  onClick={() => setCalendarView("list")}
+                  className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                    calendarView === "list"
+                      ? "bg-[#4766E5] text-white"
+                      : "text-[#283C50] hover:bg-gray-100"
+                  }`}
+                >
+                  List
+                </button>
+              </div>
             </div>
           </div>
 
