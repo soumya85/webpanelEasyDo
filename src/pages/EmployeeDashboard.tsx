@@ -74,9 +74,11 @@ export default function EmployeeDashboard() {
     // Reset form
     setLeaveFormData({
       leaveType: "",
-      startDate: "26 Jun 2025",
-      endDate: "29 Jun 2025",
+      startDate: "2025-06-19",
+      endDate: "2025-06-19",
       notes: "",
+      firstHalfDay: false,
+      secondHalfDay: false,
       attachments: [],
     });
   };
