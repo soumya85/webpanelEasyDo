@@ -569,7 +569,7 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Attachment Section */}
-              <div className="space-y-3 p-4 border border-gray-200 rounded-lg bg-gray-50/50">
+              <div className="space-y-3 p-4 border-2 border-gray-200 rounded-lg bg-gray-50/30 hover:border-gray-300 transition-colors">
                 <div className="flex items-center justify-between">
                   <Label className="text-sm font-medium text-[#283C50]">
                     Attachments
