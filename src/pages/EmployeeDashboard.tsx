@@ -417,7 +417,7 @@ export default function EmployeeDashboard() {
                       onChange={(e) =>
                         handleLeaveFormChange("notes", e.target.value)
                       }
-                      className="min-h-[120px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                      className="h-[80px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
                     />
                   </div>
                 )}
