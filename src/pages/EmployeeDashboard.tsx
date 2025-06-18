@@ -336,16 +336,10 @@ export default function EmployeeDashboard() {
                   <Input
                     id="end-date"
                     type="date"
-                    value="2025-06-19"
-                    onChange={(e) => {
-                      const date = new Date(e.target.value);
-                      const formatted = date.toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      });
-                      handleLeaveFormChange("endDate", formatted);
-                    }}
+                    value={leaveFormData.endDate}
+                    onChange={(e) =>
+                      handleLeaveFormChange("endDate", e.target.value)
+                    }
                     className="h-12"
                   />
                 </div>
