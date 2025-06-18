@@ -1379,7 +1379,13 @@ export default function EmployeeDashboard() {
                   : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
               }`}
             >
-              <div className="w-12 h-12 bg-[#4766E5] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#4766E5]/90">
+              <div
+                className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-colors ${
+                  leaveFormData.attachments.length >= 5
+                    ? "bg-gray-300"
+                    : "bg-[#4766E5] group-hover:bg-[#4766E5]/90"
+                }`}
+              >
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -1394,13 +1400,42 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[#283C50]">
+              <span
+                className={`text-sm font-medium ${
+                  leaveFormData.attachments.length >= 5
+                    ? "text-gray-400"
+                    : "text-[#283C50]"
+                }`}
+              >
                 Photo Gallery
+              </span>
+              <span className="text-xs text-gray-400 mt-1 text-center">
+                Choose from gallery
               </span>
             </button>
           </div>
 
-          <DialogFooter>
+          {/* File count info */}
+          {leaveFormData.attachments.length > 0 && (
+            <div className="px-4 py-2 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-blue-700 font-medium">
+                  {leaveFormData.attachments.length} file
+                  {leaveFormData.attachments.length !== 1 ? "s" : ""} attached
+                </span>
+                <span className="text-blue-600">
+                  {5 - leaveFormData.attachments.length} remaining
+                </span>
+              </div>
+            </div>
+          )}
+
+          <DialogFooter className="flex flex-col space-y-2 sm:space-y-0">
+            {leaveFormData.attachments.length >= 5 && (
+              <p className="text-xs text-amber-600 bg-amber-50 p-2 rounded border border-amber-200">
+                ⚠️ Maximum file limit reached (5/5)
+              </p>
+            )}
             <Button
               variant="outline"
               onClick={() => setIsAttachmentModalOpen(false)}
