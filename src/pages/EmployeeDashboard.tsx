@@ -757,7 +757,10 @@ export default function EmployeeDashboard() {
                   <h3 className="text-lg font-semibold text-[#283C50]">
                     Leave Balance
                   </h3>
-                  <button className="text-[#4766E5] text-sm hover:underline">
+                  <button
+                    onClick={() => setIsLeaveBalanceInfoOpen(true)}
+                    className="text-[#4766E5] text-sm hover:underline transition-colors"
+                  >
                     More Info →
                   </button>
                 </div>
