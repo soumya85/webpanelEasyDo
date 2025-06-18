@@ -533,29 +533,6 @@ export default function EmployeeDashboard() {
                   Leave Calendar
                 </Button>
               </div>
-
-              {/* Quick Stats */}
-              <div className="bg-white border rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-[#283C50] mb-3">
-                  Quick Stats
-                </h4>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">This Month</span>
-                    <span className="font-medium">2 days used</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">This Year</span>
-                    <span className="font-medium">8 days used</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Available</span>
-                    <span className="font-medium text-green-600">
-                      12.16 days
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
