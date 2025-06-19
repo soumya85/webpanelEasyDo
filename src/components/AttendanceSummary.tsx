@@ -86,10 +86,10 @@ export default function AttendanceSummary() {
                     item.borderColor,
                   )}
                 >
-                  <div className={cn("text-3xl font-bold mb-2", item.color)}>
+                  <div className={cn("text-2xl font-bold mb-1", item.color)}>
                     {item.value}
                   </div>
-                  <div className="text-sm text-gray-700 text-center font-medium">
+                  <div className="text-xs text-gray-700 text-center font-medium">
                     {item.label}
                   </div>
 
