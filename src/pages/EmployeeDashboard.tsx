@@ -1124,8 +1124,8 @@ export default function EmployeeDashboard() {
                   }
                 }}
                 className={cn(
-                  "flex w-full h-[70px] sm:h-[75px] lg:h-[80px]",
-                  "px-1 sm:px-2 lg:px-3 justify-center items-center flex-shrink-0",
+                  "flex w-full h-[90px] sm:h-[95px] lg:h-[100px]",
+                  "px-1 sm:px-2 lg:px-3 py-3 sm:py-4 lg:py-5 justify-center items-center flex-shrink-0",
                   "rounded-[8px] sm:rounded-[10px] border-b-[4px] sm:border-b-[6px] border-[#4766E5] bg-white",
                   "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
