@@ -3907,8 +3907,8 @@ export default function EmployeeDashboard() {
               if (currentMonth === 4 && currentDay === 14) {
                 // May 14
                 return "leave";
-              } else if (currentMonth === 5 && currentDay === 19) {
-                // June 19
+              } else if (currentMonth === 5 && currentDay === 18) {
+                // June 18
                 return "absent";
               } else {
                 return "present";
