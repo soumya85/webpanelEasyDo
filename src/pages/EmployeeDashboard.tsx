@@ -70,9 +70,7 @@ export default function EmployeeDashboard() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
-  const [leaveSelectedDate, setLeaveSelectedDate] = useState(
-    new Date(2025, 4, 14),
-  ); // May 14, 2025
+  const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
@@ -3904,11 +3902,16 @@ export default function EmployeeDashboard() {
 
             // Determine current date state
             const getDateState = () => {
-              if (currentMonth === 4 && currentDay === 14) {
-                // May 14
+              // Create a date string for comparison (YYYY-MM-DD format)
+              const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
+
+              // Define specific dates for different states
+              const leaveDates = ["2025-05-14"]; // May 14, 2025
+              const absentDates = ["2025-06-18"]; // June 18, 2025
+
+              if (leaveDates.includes(dateString)) {
                 return "leave";
-              } else if (currentMonth === 5 && currentDay === 18) {
-                // June 18
+              } else if (absentDates.includes(dateString)) {
                 return "absent";
               } else {
                 return "present";
@@ -4207,76 +4210,28 @@ export default function EmployeeDashboard() {
                     )}
 
                     {dateState === "absent" && (
-                      <div className="bg-white rounded-lg border p-4">
-                        {/* Employee Info Row */}
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
-                              <span className="text-white font-semibold text-sm">
-                                SG
-                              </span>
-                            </div>
-                            <div>
-                              <div className="font-semibold text-gray-900 text-base">
-                                Soumyadeep Goswami
-                              </div>
-                              <div className="text-sm text-gray-600">
-                                Liberty Righrise Pvt Ltd
-                              </div>
+                      <div className="text-center py-8">
+                        {/* Absent Illustration */}
+                        <div className="mb-6 flex justify-center">
+                          <div className="relative">
+                            <div className="w-32 h-32 bg-gradient-to-r from-yellow-300 to-orange-300 rounded-full flex items-center justify-center">
+                              <div className="text-6xl">🤷‍♀️</div>
                             </div>
                           </div>
-                          <div className="px-3 py-1 bg-red-100 text-red-700 text-sm font-medium rounded-md">
-                            Absent
-                          </div>
                         </div>
-
-                        {/* Absent Status Row */}
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="text-lg font-bold text-gray-900">
-                            Unauthorized Absence
-                          </div>
-                          <div className="text-red-600 font-bold text-sm">
-                            Absent
-                          </div>
-                        </div>
-
-                        {/* Date Row */}
-                        <div className="flex items-center gap-2 mb-3">
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            className="w-4 h-4 text-gray-600"
-                          >
-                            <rect
-                              x="3"
-                              y="4"
-                              width="18"
-                              height="18"
-                              rx="2"
-                              ry="2"
-                            />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
-                          </svg>
-                          <span className="font-bold text-gray-900">
-                            1 day {monthNames[currentMonth]} {currentDay}
-                          </span>
-                        </div>
-
-                        {/* Reporting Manager Row */}
-                        <div className="text-sm text-gray-600 mb-2">
-                          Reporting Manager -{" "}
-                          <span className="font-semibold text-gray-900">
-                            Amulya Kumar Kar
-                          </span>
-                        </div>
-
-                        {/* Action Required */}
-                        <div className="text-sm text-red-600 font-medium">
-                          Action Required: Contact HR for absence clarification
+                        <div className="text-lg font-semibold text-gray-900">
+                          You are <span className="text-red-600">Absent</span>{" "}
+                          on {currentDay} {monthNames[currentMonth]}{" "}
+                          {currentYear} -{" "}
+                          {
+                            dayNames[
+                              new Date(
+                                currentYear,
+                                currentMonth,
+                                currentDay,
+                              ).getDay()
+                            ]
+                          }
                         </div>
                       </div>
                     )}
