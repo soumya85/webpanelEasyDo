@@ -87,6 +87,22 @@ export default function EmployeeDashboard() {
       source: "scan" | "documents" | "camera" | "photos";
     }>,
   });
+  const [reimburseFormData, setReimburseFormData] = useState({
+    title: "",
+    amount: "",
+    category: "",
+    date: "",
+    description: "",
+    notes: "",
+    attachments: [] as Array<{
+      id: string;
+      name: string;
+      type: string;
+      size: number;
+      url: string;
+      source: "scan" | "documents" | "camera" | "photos";
+    }>,
+  });
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
   const [calendarView, setCalendarView] = useState<"day" | "list">("day");
