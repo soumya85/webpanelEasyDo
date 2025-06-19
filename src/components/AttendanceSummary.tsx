@@ -114,7 +114,7 @@ export default function AttendanceSummary() {
             </div>
 
             {/* Footer with additional information */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-6">
                   <span className="text-gray-700 font-medium">
