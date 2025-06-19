@@ -2343,10 +2343,7 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => {
-                // Handle scan attachment
-                setIsAttachmentModalOpen(false);
-              }}
+              onClick={() => handleSalaryAdvanceAttachment("scan")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -2369,10 +2366,7 @@ export default function EmployeeDashboard() {
 
             {/* Documents Option */}
             <button
-              onClick={() => {
-                // Handle documents attachment
-                setIsAttachmentModalOpen(false);
-              }}
+              onClick={() => handleSalaryAdvanceAttachment("documents")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -2397,10 +2391,7 @@ export default function EmployeeDashboard() {
 
             {/* Camera Option */}
             <button
-              onClick={() => {
-                // Handle camera attachment
-                setIsAttachmentModalOpen(false);
-              }}
+              onClick={() => handleSalaryAdvanceAttachment("camera")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -2429,10 +2420,7 @@ export default function EmployeeDashboard() {
 
             {/* Photos Option */}
             <button
-              onClick={() => {
-                // Handle photos attachment
-                setIsAttachmentModalOpen(false);
-              }}
+              onClick={() => handleSalaryAdvanceAttachment("photos")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
               <div className="w-8 h-8 flex items-center justify-center">
