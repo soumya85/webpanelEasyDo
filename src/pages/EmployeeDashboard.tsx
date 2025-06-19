@@ -57,6 +57,8 @@ export default function EmployeeDashboard() {
   const [isOTRequestModalOpen, setIsOTRequestModalOpen] = useState(false);
   const [isSalaryAdvanceModalOpen, setIsSalaryAdvanceModalOpen] =
     useState(false);
+  const [isReimburseRequestModalOpen, setIsReimburseRequestModalOpen] =
+    useState(false);
   const [otFormData, setOtFormData] = useState({
     title: "",
     startDate: "2025-06-18",
