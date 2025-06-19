@@ -709,6 +709,8 @@ export default function EmployeeDashboard() {
                     setIsSalaryAdvanceModalOpen(true);
                   } else if (card.id === "reimburse-request") {
                     setIsReimburseRequestModalOpen(true);
+                  } else if (card.id === "holiday") {
+                    setIsHolidayModalOpen(true);
                   }
                 }}
                 className={cn(
