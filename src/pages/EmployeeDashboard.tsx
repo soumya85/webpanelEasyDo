@@ -1131,11 +1131,11 @@ export default function EmployeeDashboard() {
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
                 )}
               >
-                <div className="flex flex-col lg:flex-row items-center gap-1 lg:gap-1.5">
+                <div className="flex flex-col items-center justify-center gap-1 sm:gap-1.5">
                   <div className="flex w-[20px] sm:w-[24px] lg:w-[28px] flex-col items-center justify-center flex-shrink-0">
                     {card.icon}
                   </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-xs lg:text-sm leading-[12px] sm:leading-[14px] lg:leading-[16px] text-center lg:text-left">
+                  <h3 className="text-[#283C50] font-inter font-bold text-xs lg:text-sm leading-[12px] sm:leading-[14px] lg:leading-[16px] text-center">
                     {card.title}
                   </h3>
                 </div>
