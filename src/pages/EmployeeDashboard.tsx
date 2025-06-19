@@ -3042,7 +3042,7 @@ export default function EmployeeDashboard() {
 
       {/* Holiday List Modal */}
       <Dialog open={isHolidayModalOpen} onOpenChange={setIsHolidayModalOpen}>
-        <DialogContent className="max-w-lg h-[85vh] max-h-[85vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+        <DialogContent className="max-w-2xl h-[90vh] max-h-[90vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
           <VisuallyHidden>
             <DialogTitle>Holiday List</DialogTitle>
           </VisuallyHidden>
@@ -3085,25 +3085,25 @@ export default function EmployeeDashboard() {
 
           {/* Statistics Cards */}
           <div className="grid grid-cols-4 gap-3 p-4 bg-gray-50">
-            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500">
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
               <div className="text-2xl font-bold text-gray-900">17</div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 TOTAL
               </div>
             </div>
-            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500">
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
               <div className="text-2xl font-bold text-gray-900">12</div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 PUBLIC
               </div>
             </div>
-            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500">
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
               <div className="text-2xl font-bold text-gray-900">1</div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 COMPANY
               </div>
             </div>
-            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500">
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
               <div className="text-2xl font-bold text-gray-900">0</div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 REGIONAL
