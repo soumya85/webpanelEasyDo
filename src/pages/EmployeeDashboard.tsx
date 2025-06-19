@@ -3839,9 +3839,9 @@ export default function EmployeeDashboard() {
             ];
             const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-            const currentMonth = selectedDate.getMonth();
-            const currentYear = selectedDate.getFullYear();
-            const currentDay = selectedDate.getDate();
+            const currentMonth = leaveSelectedDate.getMonth();
+            const currentYear = leaveSelectedDate.getFullYear();
+            const currentDay = leaveSelectedDate.getDate();
 
             const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
             const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
