@@ -3049,24 +3049,26 @@ export default function EmployeeDashboard() {
 
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-white">
-            <button
-              onClick={() => setIsHolidayModalOpen(false)}
-              className="flex items-center text-blue-600 font-medium"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="w-5 h-5 mr-1"
+            <div className="flex items-center gap-3">
+              <h1 className="text-lg font-semibold text-gray-900">
+                Holiday list
+              </h1>
+              <button
+                onClick={() => setIsHolidayModalOpen(false)}
+                className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100 transition-colors"
               >
-                <polyline points="15,18 9,12 15,6" />
-              </svg>
-              EDB
-            </button>
-            <h1 className="text-lg font-semibold text-gray-900">
-              Holiday list
-            </h1>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="w-4 h-4 text-gray-600"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
             <button className="flex items-center text-blue-600 font-medium">
               Head office
               <svg
