@@ -3027,7 +3027,13 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => handleSalaryAdvanceAttachment("scan")}
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("scan");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("scan");
+                }
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3050,7 +3056,13 @@ export default function EmployeeDashboard() {
 
             {/* Documents Option */}
             <button
-              onClick={() => handleSalaryAdvanceAttachment("documents")}
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("documents");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("documents");
+                }
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3075,7 +3087,13 @@ export default function EmployeeDashboard() {
 
             {/* Camera Option */}
             <button
-              onClick={() => handleSalaryAdvanceAttachment("camera")}
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("camera");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("camera");
+                }
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3104,7 +3122,13 @@ export default function EmployeeDashboard() {
 
             {/* Photos Option */}
             <button
-              onClick={() => handleSalaryAdvanceAttachment("photos")}
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("photos");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("photos");
+                }
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3118,7 +3142,7 @@ export default function EmployeeDashboard() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
               </div>
