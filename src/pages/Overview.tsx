@@ -2921,7 +2921,7 @@ const Overview: React.FC = () => {
           }
         }}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] p-0">
+        <DialogContent className="max-w-4xl max-h-[85vh] p-0">
           <DialogHeader className="sr-only">
             <DialogTitle>Employee Details</DialogTitle>
             <DialogDescription>
@@ -2931,7 +2931,7 @@ const Overview: React.FC = () => {
           {selectedEmployee && (
             <>
               {modalView === "attendance" ? (
-                <div className="bg-white rounded-lg relative">
+                <>
                   {/* Modal Header */}
                   <div className="flex items-start justify-between p-6 border-b border-gray-200">
                     <div className="flex items-center gap-4">
@@ -2976,7 +2976,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Content Area */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[30vh] overflow-y-auto">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[50vh] overflow-y-auto">
                     {/* Left Column - Attendance Details */}
                     <div className="space-y-6">
                       {/* Date Display */}
@@ -3288,32 +3288,33 @@ const Overview: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                  </div>
 
-                {/* Modal Footer - Moved outside main content */}
-                <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
-                  <button
-                    onClick={() => {
-                      setIsModalOpen(false);
-                      setModalView("attendance");
-                    }}
-                    className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                  >
-                    Close
-                  </button>
-                  <button
-                    onClick={handleViewFullProfile}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                  >
-                    View Full Profile
-                  </button>
-                  <button
-                    onClick={() => handleContactEmployee(selectedEmployee)}
-                    className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
-                  >
-                    Contact Employee
-                  </button>
-                </div>
+                  {/* Modal Footer */}
+                  <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+                    <button
+                      onClick={() => {
+                        setIsModalOpen(false);
+                        setModalView("attendance");
+                      }}
+                      className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                    >
+                      Close
+                    </button>
+                    <button
+                      onClick={handleViewFullProfile}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      View Full Profile
+                    </button>
+                    <button
+                      onClick={() => handleContactEmployee(selectedEmployee)}
+                      className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                    >
+                      Contact Employee
+                    </button>
+                  </div>
+                </>
               ) : (
                 <FullProfile
                   employee={selectedEmployee}
