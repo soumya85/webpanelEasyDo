@@ -1148,6 +1148,8 @@ export default function EmployeeDashboard() {
                 onClick={() => {
                   if (card.id === "holiday") {
                     setIsHolidayModalOpen(true);
+                  } else if (card.id === "leave") {
+                    setIsLeaveModalOpen(true);
                   }
                 }}
                 className={cn(
