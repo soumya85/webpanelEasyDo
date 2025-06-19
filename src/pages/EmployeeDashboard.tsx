@@ -24,6 +24,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 // Custom ChevronRight Icon to match Overview page
 const ChevronRightIcon = () => (
@@ -60,6 +68,404 @@ export default function EmployeeDashboard() {
   const [isReimburseRequestModalOpen, setIsReimburseRequestModalOpen] =
     useState(false);
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState("Head Office");
+
+  // Holiday data for different branches
+  const getBranchHolidayData = (branch: string) => {
+    const holidayData = {
+      "All Branches": {
+        stats: { total: 25, public: 18, company: 3, regional: 4 },
+        holidays: [
+          {
+            day: "Wed",
+            date: "01",
+            month: "JAN 25",
+            name: "ENGLISH NEW YEAR",
+            location: "All Branches",
+            type: "Company",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Sun",
+            date: "26",
+            month: "JAN 25",
+            name: "REPUBLIC DAY",
+            location: "All Branches",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "03",
+            month: "FEB 25",
+            name: "SARASWATI PUJA",
+            location: "All Branches",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "14",
+            month: "MAR 25",
+            name: "DOLYATRA / HOLI",
+            location: "All Branches",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "31",
+            month: "MAR 25",
+            name: "ID UL FITAR",
+            location: "All Branches",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Tue",
+            date: "15",
+            month: "APR 25",
+            name: "BENGALI NEW YEARS DAY",
+            location: "All Branches",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "18",
+            month: "APR 25",
+            name: "GOODFRIDAY",
+            location: "All Branches",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Thu",
+            date: "01",
+            month: "MAY 25",
+            name: "LABOUR DAY",
+            location: "All Branches",
+            type: "Regional",
+            typeColor: "bg-green-600",
+          },
+          {
+            day: "Sat",
+            date: "07",
+            month: "JUN 25",
+            name: "BAKRID",
+            location: "All Branches",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "15",
+            month: "AUG 25",
+            name: "INDEPENDENCE DAY",
+            location: "All Branches",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+        ],
+      },
+      "Head Office": {
+        stats: { total: 17, public: 12, company: 1, regional: 0 },
+        holidays: [
+          {
+            day: "Wed",
+            date: "01",
+            month: "JAN 25",
+            name: "ENGLISH NEW YEAR",
+            location: "Head office",
+            type: "Company",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Sun",
+            date: "26",
+            month: "JAN 25",
+            name: "REPUBLIC DAY",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "03",
+            month: "FEB 25",
+            name: "SARASWATI PUJA",
+            location: "Head office",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "14",
+            month: "MAR 25",
+            name: "DOLYATRA / HOLI",
+            location: "Head office",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "31",
+            month: "MAR 25",
+            name: "ID UL FITAR",
+            location: "Head office",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Tue",
+            date: "15",
+            month: "APR 25",
+            name: "BENGALI NEW YEARS DAY",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "18",
+            month: "APR 25",
+            name: "GOODFRIDAY",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Sat",
+            date: "07",
+            month: "JUN 25",
+            name: "BAKRID",
+            location: "Head office",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "15",
+            month: "AUG 25",
+            name: "INDEPENDENCE DAY",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "29",
+            month: "SEP 25",
+            name: "MAHA SAPTAMI",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Tue",
+            date: "30",
+            month: "SEP 25",
+            name: "MAHA ASTAMI",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Wed",
+            date: "01",
+            month: "OCT 25",
+            name: "MAHA NABAMI",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Thu",
+            date: "02",
+            month: "OCT 25",
+            name: "DUSSHERA / GANDHI BIRTHDAY",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "06",
+            month: "OCT 25",
+            name: "LAXMI PUJA",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "20",
+            month: "OCT 25",
+            name: "KALI PUJA",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Wed",
+            date: "05",
+            month: "NOV 25",
+            name: "GURU NANAK BIRTHDAY",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Thu",
+            date: "25",
+            month: "DEC 25",
+            name: "X MAS DAY",
+            location: "Head office",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+        ],
+      },
+      "Second Branch": {
+        stats: { total: 14, public: 10, company: 2, regional: 2 },
+        holidays: [
+          {
+            day: "Wed",
+            date: "01",
+            month: "JAN 25",
+            name: "ENGLISH NEW YEAR",
+            location: "Second Branch",
+            type: "Company",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Sun",
+            date: "26",
+            month: "JAN 25",
+            name: "REPUBLIC DAY",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "03",
+            month: "FEB 25",
+            name: "SARASWATI PUJA",
+            location: "Second Branch",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "14",
+            month: "MAR 25",
+            name: "DOLYATRA / HOLI",
+            location: "Second Branch",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Thu",
+            date: "01",
+            month: "MAY 25",
+            name: "LABOUR DAY",
+            location: "Second Branch",
+            type: "Regional",
+            typeColor: "bg-green-600",
+          },
+          {
+            day: "Fri",
+            date: "18",
+            month: "APR 25",
+            name: "GOODFRIDAY",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Sat",
+            date: "07",
+            month: "JUN 25",
+            name: "BAKRID",
+            location: "Second Branch",
+            type: "General",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "15",
+            month: "AUG 25",
+            name: "INDEPENDENCE DAY",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "29",
+            month: "SEP 25",
+            name: "MAHA SAPTAMI",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Thu",
+            date: "02",
+            month: "OCT 25",
+            name: "DUSSHERA / GANDHI BIRTHDAY",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Mon",
+            date: "20",
+            month: "OCT 25",
+            name: "KALI PUJA",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Wed",
+            date: "05",
+            month: "NOV 25",
+            name: "GURU NANAK BIRTHDAY",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Thu",
+            date: "25",
+            month: "DEC 25",
+            name: "X MAS DAY",
+            location: "Second Branch",
+            type: "Public",
+            typeColor: "bg-blue-600",
+          },
+          {
+            day: "Fri",
+            date: "13",
+            month: "DEC 25",
+            name: "BRANCH ANNIVERSARY",
+            location: "Second Branch",
+            type: "Company",
+            typeColor: "bg-purple-600",
+          },
+        ],
+      },
+    };
+
+    return (
+      holidayData[branch as keyof typeof holidayData] ||
+      holidayData["Head Office"]
+    );
+  };
+
+  const currentBranchData = getBranchHolidayData(selectedBranch);
   const [otFormData, setOtFormData] = useState({
     title: "",
     startDate: "2025-06-18",
@@ -3051,20 +3457,107 @@ export default function EmployeeDashboard() {
           <div className="flex items-center justify-between p-4 border-b bg-white">
             <div className="flex items-center gap-4">
               <h1 className="text-lg font-semibold text-gray-900">
-                Holiday list
+                Holiday List
               </h1>
-              <button className="flex items-center text-blue-600 font-medium">
-                Head office
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-1"
-                >
-                  <polyline points="6,9 12,15 18,9" />
-                </svg>
-              </button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                    {selectedBranch}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="w-4 h-4 ml-1"
+                    >
+                      <polyline points="6,9 12,15 18,9" />
+                    </svg>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-80">
+                  <DropdownMenuLabel className="px-3 py-2 text-sm font-semibold text-gray-900">
+                    Branches
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("All Branches")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          All Branches
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Manage/View all the branches
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("Head Office")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          Head Office
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Business Cinema, 9SK, Shyama Prasad Mukherjee Rd,
+                          More, Hazra, Kalighat, Kolkata, West Bengal 700026,
+                          India
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("Second Branch")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          Second Branch
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          9S, Shyam Prasad Mukherjee Rd, Hazra, Kalighat,
+                          Kolkata, West Bengal 700026, India
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <button
               onClick={() => setIsHolidayModalOpen(false)}
@@ -3086,25 +3579,33 @@ export default function EmployeeDashboard() {
           {/* Statistics Cards */}
           <div className="grid grid-cols-4 gap-3 p-4 bg-gray-50">
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">17</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.total}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 TOTAL
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">12</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.public}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 PUBLIC
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">1</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.company}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 COMPANY
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">0</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.regional}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 REGIONAL
               </div>
