@@ -3886,13 +3886,13 @@ export default function EmployeeDashboard() {
             }
 
             const navigateMonth = (direction: "prev" | "next") => {
-              const newDate = new Date(selectedDate);
+              const newDate = new Date(leaveSelectedDate);
               if (direction === "prev") {
                 newDate.setMonth(currentMonth - 1);
               } else {
                 newDate.setMonth(currentMonth + 1);
               }
-              setSelectedDate(newDate);
+              setLeaveSelectedDate(newDate);
             };
 
             const selectDate = (date: number, isCurrentMonth: boolean) => {
