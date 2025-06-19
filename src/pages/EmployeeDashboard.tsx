@@ -3579,25 +3579,33 @@ export default function EmployeeDashboard() {
           {/* Statistics Cards */}
           <div className="grid grid-cols-4 gap-3 p-4 bg-gray-50">
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">17</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.total}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 TOTAL
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">12</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.public}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 PUBLIC
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">1</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.company}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 COMPANY
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
-              <div className="text-2xl font-bold text-gray-900">0</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {currentBranchData.stats.regional}
+              </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
                 REGIONAL
               </div>
