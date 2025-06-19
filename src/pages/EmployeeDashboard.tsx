@@ -267,18 +267,106 @@ export default function EmployeeDashboard() {
   const handleRemoveAttachment = (id: string) => {
     setLeaveFormData((prev) => ({
       ...prev,
-      attachments: prev.attachments.filter((att) => att.id !== id),
+      attachments: [...prev.attachments, ...newAttachments],
     }));
+
+    // Success feedback
+    const successMessage =
+      validFiles.length === 1
+        ? `"${validFiles[0].name}" uploaded successfully`
+        : `${validFiles.length} files uploaded successfully`;
+
+    // Show success notification (in real app, you'd use a toast/notification system)
+    console.log(successMessage);
   };
 
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return "0 B";
-    const k = 1024;
-    const sizes = ["B", "KB", "MB", "GB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+  const handleSalaryAdvanceAttachment = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    setIsAttachmentModalOpen(false);
+
+    // Create file input element dynamically
+    const input = document.createElement("input");
+    input.type = "file";
+    input.style.display = "none";
+
+    // Set file type constraints based on attachment type
+    switch (type) {
+      case "scan":
+      case "documents":
+        input.accept = ".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png";
+        break;
+      case "camera":
+        input.accept = "image/*";
+        input.capture = "environment"; // Use rear camera
+        break;
+      case "photos":
+        input.accept = "image/*";
+        break;
+    }
+
+    input.multiple = true; // Allow multiple file selection
+
+    input.onchange = (e) => {
+      const files = (e.target as HTMLInputElement).files;
+      if (files) {
+        handleSalaryAdvanceFileUpload(Array.from(files), type);
+      }
+      document.body.removeChild(input);
+    };
+
+    document.body.appendChild(input);
+    input.click();
   };
 
+  const handleSalaryAdvanceFileUpload = (
+    files: File[],
+    source: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    const maxFileSize = 10 * 1024 * 1024; // 10MB limit
+    const maxFiles = 5; // Maximum 5 files
+
+    // Validate file count
+    if (salaryAdvanceFormData.attachments.length + files.length > maxFiles) {
+      alert(
+        `Maximum ${maxFiles} files allowed. You currently have ${salaryAdvanceFormData.attachments.length} files.`,
+      );
+      return;
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > maxFileSize) {
+        alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    // Create attachment objects
+    const newAttachments = validFiles.map((file) => ({
+      id: Date.now() + Math.random().toString(36).substr(2, 9),
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      url: URL.createObjectURL(file),
+      source: source,
+    }));
+
+    setSalaryAdvanceFormData((prev) => ({
+      ...prev,
+      attachments: [...prev.attachments, ...newAttachments],
+    }));
+
+    // Success feedback
+    const successMessage =
+      validFiles.length === 1
+        ? `"${validFiles[0].name}" uploaded successfully`
+        : `${validFiles.length} files uploaded successfully`;
+
+    console.log(successMessage);
+  };
   const cardData = [
     // Row 1
     {
