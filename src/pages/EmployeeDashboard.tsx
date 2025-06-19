@@ -2458,25 +2458,6 @@ export default function EmployeeDashboard() {
           </div>
         </DialogContent>
       </Dialog>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <span
-                className={`text-sm font-medium ${
-                  leaveFormData.attachments.length >= 5
-                    ? "text-gray-400"
-                    : "text-[#283C50]"
-                }`}
-              >
-                Camera
-              </span>
-              <span className="text-xs text-gray-400 mt-1 text-center">
-                Take a photo
               </span>
             </button>
 
