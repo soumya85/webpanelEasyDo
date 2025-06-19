@@ -2713,6 +2713,306 @@ export default function EmployeeDashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* Reimburse Request Modal */}
+      <Dialog
+        open={isReimburseRequestModalOpen}
+        onOpenChange={setIsReimburseRequestModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
+          <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                Reimbursement Request
+              </DialogTitle>
+              <button
+                onClick={() => setIsReimburseRequestModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </DialogHeader>
+
+          {/* Company Name Display */}
+          <div className="mb-6 p-4 bg-gray-100 rounded-lg">
+            <p className="text-[#4766E5] text-lg font-medium">
+              Liberty Highrise Pvt Ltd
+            </p>
+          </div>
+
+          <div className="space-y-4 pb-8 max-w-2xl">
+            {/* Title Field */}
+            <div className="space-y-2">
+              <Input
+                placeholder="Title"
+                value={reimburseFormData.title || ""}
+                onChange={(e) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
+              />
+            </div>
+
+            {/* Amount Field */}
+            <div className="space-y-2">
+              <Input
+                placeholder="Amount/Total"
+                type="number"
+                value={reimburseFormData.amount}
+                onChange={(e) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    amount: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
+              />
+            </div>
+
+            {/* Category Field */}
+            <div className="space-y-2">
+              <Select
+                value={reimburseFormData.category || ""}
+                onValueChange={(value) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    category: value,
+                  }))
+                }
+              >
+                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="travel">
+                    Travel & Transportation
+                  </SelectItem>
+                  <SelectItem value="meals">Meals & Entertainment</SelectItem>
+                  <SelectItem value="office-supplies">
+                    Office Supplies
+                  </SelectItem>
+                  <SelectItem value="training">
+                    Training & Development
+                  </SelectItem>
+                  <SelectItem value="medical">Medical Expenses</SelectItem>
+                  <SelectItem value="communication">Communication</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Date Field */}
+            <div className="space-y-2">
+              <Input
+                type="date"
+                value={reimburseFormData.date}
+                onChange={(e) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    date: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+              />
+            </div>
+
+            {/* Description Field */}
+            <div className="space-y-2">
+              <Textarea
+                placeholder="Description of expense"
+                value={reimburseFormData.description}
+                onChange={(e) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
+                className="w-full min-h-[80px] bg-gray-100 border-0 text-gray-500 placeholder-gray-400 resize-none focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
+              />
+            </div>
+
+            {/* Notes Section - Collapsible */}
+            <div className="space-y-2">
+              <button
+                onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                className="w-full flex items-center justify-between p-3 bg-gray-100 rounded-lg text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <svg
+                    className="w-5 h-5 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  <span className="text-gray-900 font-medium">Notes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#4766E5]">
+                    {reimburseFormData.notes ? "Added" : "None"}
+                  </span>
+                  <svg
+                    className={`w-5 h-5 text-[#4766E5] transition-transform ${
+                      isNotesExpanded ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </button>
+
+              {isNotesExpanded && (
+                <div className="mt-2">
+                  <Textarea
+                    placeholder="Add any additional notes or information about this reimbursement request..."
+                    value={reimburseFormData.notes}
+                    onChange={(e) =>
+                      setReimburseFormData((prev) => ({
+                        ...prev,
+                        notes: e.target.value,
+                      }))
+                    }
+                    className="w-full min-h-[100px] resize-none focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Add Attachment Button */}
+            <div className="space-y-3">
+              <button
+                onClick={() => setIsAttachmentModalOpen(true)}
+                className="flex items-center gap-3 text-[#4766E5] hover:bg-blue-50 p-2 rounded-lg transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                  />
+                </svg>
+                <span className="font-medium">Add attachment</span>
+              </button>
+
+              {/* Attachment List */}
+              {reimburseFormData.attachments.length > 0 && (
+                <div className="space-y-2 mt-3">
+                  {reimburseFormData.attachments.map((attachment) => (
+                    <div
+                      key={attachment.id}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-100 rounded">
+                          <svg
+                            className="w-4 h-4 text-blue-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">
+                            {attachment.name}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {(attachment.size / 1024 / 1024).toFixed(2)} MB •{" "}
+                            {attachment.source}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setReimburseFormData((prev) => ({
+                            ...prev,
+                            attachments: prev.attachments.filter(
+                              (a) => a.id !== attachment.id,
+                            ),
+                          }));
+                        }}
+                        className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+            <Button
+              onClick={handleReimburseSubmit}
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+            >
+              Submit Reimbursement Request
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsReimburseRequestModalOpen(false)}
+              className="h-12 px-8"
+            >
+              Cancel
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Attachment Options Modal */}
       <Dialog
         open={isAttachmentModalOpen}
