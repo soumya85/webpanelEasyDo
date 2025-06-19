@@ -72,9 +72,10 @@ export default function EmployeeDashboard() {
     }>,
   });
   const [salaryAdvanceFormData, setSalaryAdvanceFormData] = useState({
+    title: "",
     amount: "",
-    reason: "",
-    repaymentDate: "2025-07-18",
+    startDate: "",
+    duration: "1-month",
     notes: "",
     attachments: [] as Array<{
       id: string;
