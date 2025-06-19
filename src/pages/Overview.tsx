@@ -2713,9 +2713,6 @@ const Overview: React.FC = () => {
           </div>
         </div>
 
-        {/* Employee Attendance Log Section */}
-        <EmployeeAttendanceLog onViewEmployee={handleViewEmployee} />
-
         {/* Analytics Section */}
         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
           {/* First Row of Charts */}
@@ -2909,6 +2906,9 @@ const Overview: React.FC = () => {
             </ChartCard>
           </div>
         </div>
+
+        {/* Employee Attendance Log Section */}
+        <EmployeeAttendanceLog onViewEmployee={handleViewEmployee} />
       </div>
 
       {/* Employee Details Modal */}
@@ -2921,7 +2921,7 @@ const Overview: React.FC = () => {
           }
         }}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+        <DialogContent className="max-w-4xl max-h-[95vh] p-0">
           <DialogHeader className="sr-only">
             <DialogTitle>Employee Details</DialogTitle>
             <DialogDescription>
@@ -2931,7 +2931,7 @@ const Overview: React.FC = () => {
           {selectedEmployee && (
             <>
               {modalView === "attendance" ? (
-                <div className="bg-white rounded-lg overflow-hidden">
+                <>
                   {/* Modal Header */}
                   <div className="flex items-start justify-between p-6 border-b border-gray-200">
                     <div className="flex items-center gap-4">
@@ -2976,7 +2976,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Content Area */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[70vh] overflow-y-auto">
                     {/* Left Column - Attendance Details */}
                     <div className="space-y-6">
                       {/* Date Display */}
@@ -3069,60 +3069,6 @@ const Overview: React.FC = () => {
 
                       {/* Working Hours Summary */}
                       <OvertimeSection employee={selectedEmployee} />
-
-                      {/* Employee Details */}
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-900">
-                          Employee Information
-                        </h4>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                          <div>
-                            <span className="text-gray-600">Employee ID:</span>
-                            <p className="font-medium">{selectedEmployee.id}</p>
-                          </div>
-                          <div>
-                            <span className="text-gray-600">
-                              Date of Joining:
-                            </span>
-                            <p className="font-medium">
-                              {new Date(
-                                selectedEmployee.dateOfJoining,
-                              ).toLocaleDateString()}
-                            </p>
-                          </div>
-                          <div>
-                            <span className="text-gray-600">Experience:</span>
-                            <p className="font-medium">
-                              {Math.floor(
-                                (new Date().getTime() -
-                                  new Date(
-                                    selectedEmployee.dateOfJoining,
-                                  ).getTime()) /
-                                  (1000 * 60 * 60 * 24 * 365),
-                              )}{" "}
-                              years
-                            </p>
-                          </div>
-                          <div>
-                            <span className="text-gray-600">Department:</span>
-                            <p className="font-medium">
-                              {selectedEmployee.designation.includes(
-                                "Accountant",
-                              )
-                                ? "Finance"
-                                : selectedEmployee.designation.includes(
-                                      "Developer",
-                                    )
-                                  ? "Technology"
-                                  : selectedEmployee.designation.includes(
-                                        "Manager",
-                                      )
-                                    ? "Management"
-                                    : "Operations"}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
 
                     {/* Right Column - Location Timeline */}
@@ -3313,7 +3259,7 @@ const Overview: React.FC = () => {
                       Contact Employee
                     </button>
                   </div>
-                </div>
+                </>
               ) : (
                 <FullProfile
                   employee={selectedEmployee}
