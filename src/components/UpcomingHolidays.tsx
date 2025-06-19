@@ -21,8 +21,6 @@ import { cn } from "@/lib/utils";
 
 export default function UpcomingHolidays() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  console.log("UpcomingHolidays component rendered, modal state:", isModalOpen);
   return (
     <div className="w-full h-full">
       {/* Card with background starting from title */}
