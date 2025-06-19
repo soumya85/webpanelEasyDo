@@ -4077,40 +4077,40 @@ export default function EmployeeDashboard() {
                   <div className="p-4">
                     {dateState === "leave" && (
                       <div className="bg-white rounded-lg border p-4">
-                        {/* Employee Info */}
-                        <div className="flex items-center justify-between mb-4">
+                        {/* Employee Info Row */}
+                        <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                              <img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-                                alt="Soumyadeep Goswami"
-                                className="w-12 h-12 rounded-full object-cover"
-                              />
+                            <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                SG
+                              </span>
                             </div>
                             <div>
-                              <div className="font-semibold text-gray-900">
+                              <div className="font-semibold text-gray-900 text-base">
                                 Soumyadeep Goswami
                               </div>
                               <div className="text-sm text-gray-600">
-                                Liberty Highrise Pvt Ltd
+                                Liberty Righrise Pvt Ltd
                               </div>
                             </div>
                           </div>
-                          <div className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                          <div className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-md">
                             Approved
                           </div>
                         </div>
 
-                        {/* Leave Type and Status */}
-                        <div className="flex items-center justify-between mb-2">
+                        {/* Leave Type Row */}
+                        <div className="flex items-center justify-between mb-3">
                           <div className="text-lg font-bold text-gray-900">
                             Casual Leave
                           </div>
-                          <div className="text-red-600 font-bold">On Leave</div>
+                          <div className="text-red-600 font-bold text-sm">
+                            On Leave
+                          </div>
                         </div>
 
-                        {/* Leave Duration */}
-                        <div className="flex items-center gap-2 mb-2">
+                        {/* Leave Duration Row */}
+                        <div className="flex items-center gap-2 mb-3">
                           <svg
                             viewBox="0 0 24 24"
                             fill="none"
@@ -4135,16 +4135,16 @@ export default function EmployeeDashboard() {
                           </span>
                         </div>
 
-                        {/* Reporting Manager */}
-                        <div className="text-sm text-gray-600 mb-1">
+                        {/* Reporting Manager Row */}
+                        <div className="text-sm text-gray-600 mb-2">
                           Reporting Manager -{" "}
-                          <span className="font-semibold">
+                          <span className="font-semibold text-gray-900">
                             Amulya Kumar Kar
                           </span>
                         </div>
 
-                        {/* Timestamp */}
-                        <div className="text-xs text-gray-500">
+                        {/* Timestamp Row */}
+                        <div className="text-sm text-gray-500">
                           12 May 2025, 08:14 PM
                         </div>
                       </div>
