@@ -27,10 +27,7 @@ export default function UpcomingHolidays() {
 
           {/* Holiday Card Content */}
           <div className="flex-1 flex flex-col justify-center">
-            <div
-              className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors duration-200 group"
-              onClick={() => setIsModalOpen(true)}
-            >
+            <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
               {/* Date Section */}
               <div className="flex flex-col items-center justify-center bg-blue-50 rounded-lg p-4 min-w-[80px] border-b-4 border-blue-500 group-hover:bg-blue-100 transition-colors duration-200">
                 <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">
