@@ -3062,18 +3062,105 @@ export default function EmployeeDashboard() {
               <h1 className="text-lg font-semibold text-gray-900">
                 Holiday List
               </h1>
-              <button className="flex items-center text-blue-600 font-medium">
-                Head office
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-1"
-                >
-                  <polyline points="6,9 12,15 18,9" />
-                </svg>
-              </button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                    {selectedBranch}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="w-4 h-4 ml-1"
+                    >
+                      <polyline points="6,9 12,15 18,9" />
+                    </svg>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-80">
+                  <DropdownMenuLabel className="px-3 py-2 text-sm font-semibold text-gray-900">
+                    Branches
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("All Branches")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          All Branches
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Manage/View all the branches
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("Head Office")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          Head Office
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Business Cinema, 9SK, Shyama Prasad Mukherjee Rd,
+                          More, Hazra, Kalighat, Kolkata, West Bengal 700026,
+                          India
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("Second Branch")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          Second Branch
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          9S, Shyam Prasad Mukherjee Rd, Hazra, Kalighat,
+                          Kolkata, West Bengal 700026, India
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <button
               onClick={() => setIsHolidayModalOpen(false)}
