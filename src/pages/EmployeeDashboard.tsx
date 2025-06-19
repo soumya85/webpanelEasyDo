@@ -3049,36 +3049,36 @@ export default function EmployeeDashboard() {
 
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-white">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <h1 className="text-lg font-semibold text-gray-900">
                 Holiday list
               </h1>
-              <button
-                onClick={() => setIsHolidayModalOpen(false)}
-                className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100 transition-colors"
-              >
+              <button className="flex items-center text-blue-600 font-medium">
+                Head office
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
-                  className="w-4 h-4 text-gray-600"
+                  className="w-4 h-4 ml-1"
                 >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <polyline points="6,9 12,15 18,9" />
                 </svg>
               </button>
             </div>
-            <button className="flex items-center text-blue-600 font-medium">
-              Head office
+            <button
+              onClick={() => setIsHolidayModalOpen(false)}
+              className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100 transition-colors"
+            >
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className="w-4 h-4 ml-1"
+                className="w-4 h-4 text-gray-600"
               >
-                <polyline points="6,9 12,15 18,9" />
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
           </div>
