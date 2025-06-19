@@ -1092,7 +1092,7 @@ export default function EmployeeDashboard() {
               <ChevronRightIcon />
             </div>
             <span className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
-              All Branch
+              Head Office Kolkata
             </span>
           </div>
           <div className="flex justify-end items-center gap-2 lg:gap-[10px] flex-shrink-0">
