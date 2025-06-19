@@ -75,13 +75,13 @@ export default function AttendanceSummary() {
 
           {/* Attendance Cards Grid */}
           <div className="flex-1 flex flex-col">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6 flex-1">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-4 flex-1">
               {attendanceData.map((item, index) => (
                 <div
                   key={item.label}
                   className={cn(
-                    "flex flex-col items-center justify-center p-4 rounded-lg border",
-                    "min-h-[100px] transition-all duration-200 hover:scale-105 hover:shadow-md",
+                    "flex flex-col items-center justify-center p-3 rounded-lg border",
+                    "min-h-[80px] transition-all duration-200 hover:scale-105 hover:shadow-md",
                     item.bgColor,
                     item.borderColor,
                   )}
