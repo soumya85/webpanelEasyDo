@@ -2271,24 +2271,17 @@ export default function EmployeeDashboard() {
 
             {/* Start Date Field */}
             <div className="space-y-2">
-              <div className="relative">
-                <Input
-                  type="date"
-                  value={salaryAdvanceFormData.startDate}
-                  onChange={(e) =>
-                    setSalaryAdvanceFormData((prev) => ({
-                      ...prev,
-                      startDate: e.target.value,
-                    }))
-                  }
-                  className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-datetime-edit-text]:text-gray-500 [&::-webkit-datetime-edit-month-field]:text-gray-500 [&::-webkit-datetime-edit-day-field]:text-gray-500 [&::-webkit-datetime-edit-year-field]:text-gray-500"
-                />
-                {!salaryAdvanceFormData.startDate && (
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 z-10">
-                    Start date
-                  </div>
-                )}
-              </div>
+              <Input
+                type="date"
+                value={salaryAdvanceFormData.startDate}
+                onChange={(e) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    startDate: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+              />
             </div>
 
             {/* Duration Field */}
