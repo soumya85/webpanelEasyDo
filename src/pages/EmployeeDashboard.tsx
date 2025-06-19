@@ -70,6 +70,8 @@ export default function EmployeeDashboard() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
+  const [selectedDate, setSelectedDate] = useState(new Date(2025, 4, 14)); // May 14, 2025
+  const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
   const getBranchHolidayData = (branch: string) => {
