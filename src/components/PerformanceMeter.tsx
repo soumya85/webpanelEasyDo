@@ -76,14 +76,14 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="flex-1 min-h-[60px]">
+          <div className="flex-1 min-h-[40px] max-h-[80px]">
             <h3 className="text-center text-xs font-semibold text-gray-700 mb-1">
               Category Breakdown
             </h3>
-            <ChartContainer config={chartConfig} className="h-full w-full">
+            <ChartContainer config={chartConfig} className="h-12 w-full">
               <BarChart
                 data={performanceData}
-                margin={{ top: 5, right: 5, left: 5, bottom: 25 }}
+                margin={{ top: 2, right: 3, left: 3, bottom: 15 }}
               >
                 <XAxis
                   dataKey="category"
