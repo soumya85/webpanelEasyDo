@@ -3051,7 +3051,7 @@ export default function EmployeeDashboard() {
           <div className="flex items-center justify-between p-4 border-b bg-white">
             <div className="flex items-center gap-4">
               <h1 className="text-lg font-semibold text-gray-900">
-                Holiday list
+                Holiday List
               </h1>
               <button className="flex items-center text-blue-600 font-medium">
                 Head office
