@@ -2618,7 +2618,7 @@ const Overview: React.FC = () => {
               <ChevronRightIcon />
             </div>
             <div className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
-              All Branch
+              That Head Office Kolkata
             </div>
           </div>
 
