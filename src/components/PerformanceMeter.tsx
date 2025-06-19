@@ -87,16 +87,17 @@ export default function PerformanceMeter() {
               >
                 <XAxis
                   dataKey="category"
-                  tick={{ fontSize: 8 }}
+                  tick={{ fontSize: 6 }}
                   angle={-45}
                   textAnchor="end"
-                  height={35}
+                  height={15}
                   interval={0}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 9 }}
+                  tick={{ fontSize: 7 }}
                   tickFormatter={(value) => `${value}%`}
+                  width={20}
                 />
                 <ChartTooltip
                   content={<ChartTooltipContent />}
