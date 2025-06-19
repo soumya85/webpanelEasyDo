@@ -40,6 +40,7 @@ export default function UpcomingHolidays() {
                 className="text-red-500 hover:text-red-600"
                 onClick={() => {
                   console.log("Test button clicked");
+                  alert("Test button clicked!");
                   setIsModalOpen(true);
                 }}
               >
