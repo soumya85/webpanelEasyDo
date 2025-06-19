@@ -2931,9 +2931,9 @@ const Overview: React.FC = () => {
           {selectedEmployee && (
             <>
               {modalView === "attendance" ? (
-                <div className="bg-white rounded-lg flex flex-col max-h-[90vh]">
+                <div className="bg-white rounded-lg relative">
                   {/* Modal Header */}
-                  <div className="flex items-start justify-between p-6 border-b border-gray-200 flex-shrink-0">
+                  <div className="flex items-start justify-between p-6 border-b border-gray-200">
                     <div className="flex items-center gap-4">
                       {/* Employee Avatar */}
                       <div className="relative">
@@ -2976,7 +2976,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Content Area */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 flex-1 min-h-0 overflow-y-auto">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[60vh] overflow-y-auto pb-20">
                     {/* Left Column - Attendance Details */}
                     <div className="space-y-6">
                       {/* Date Display */}
@@ -3290,7 +3290,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Modal Footer */}
-                  <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50 flex-shrink-0">
+                  <div className="absolute bottom-0 left-0 right-0 flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50 rounded-b-lg">
                     <button
                       onClick={() => {
                         setIsModalOpen(false);
