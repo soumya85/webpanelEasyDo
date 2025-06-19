@@ -2081,20 +2081,32 @@ export default function EmployeeDashboard() {
           </DialogHeader>
 
           {/* Company Name Display */}
-          <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mb-6 p-4 bg-gray-100 rounded-lg">
             <p className="text-[#4766E5] text-lg font-medium">
-              Liberty Righrise Pvt Ltd
+              Liberty Highrise Pvt Ltd
             </p>
           </div>
 
-          <div className="space-y-6 pb-8 max-w-2xl">
-            {/* Amount Field */}
+          <div className="space-y-4 pb-8 max-w-2xl">
+            {/* Title Field */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Advance Amount *
-              </label>
               <Input
-                placeholder="Enter amount (e.g., 50000)"
+                placeholder="Title"
+                value={salaryAdvanceFormData.title || ""}
+                onChange={(e) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
+              />
+            </div>
+
+            {/* Amount/Total Field */}
+            <div className="space-y-2">
+              <Input
+                placeholder="Amount/Total"
                 type="number"
                 value={salaryAdvanceFormData.amount}
                 onChange={(e) =>
@@ -2103,93 +2115,65 @@ export default function EmployeeDashboard() {
                     amount: e.target.value,
                   }))
                 }
-                className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
               />
             </div>
 
-            {/* Reason Field */}
+            {/* Start Date Field */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Reason for Advance *
-              </label>
               <Select
-                value={salaryAdvanceFormData.reason}
+                value={salaryAdvanceFormData.startDate || ""}
                 onValueChange={(value) =>
                   setSalaryAdvanceFormData((prev) => ({
                     ...prev,
-                    reason: value,
+                    startDate: value,
                   }))
                 }
               >
-                <SelectTrigger className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]">
-                  <SelectValue placeholder="Select reason for advance" />
+                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
+                  <SelectValue placeholder="Start date" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="medical-emergency">
-                    Medical Emergency
-                  </SelectItem>
-                  <SelectItem value="education-fees">Education Fees</SelectItem>
-                  <SelectItem value="home-loan-emi">Home Loan EMI</SelectItem>
-                  <SelectItem value="wedding-expenses">
-                    Wedding Expenses
-                  </SelectItem>
-                  <SelectItem value="debt-clearance">Debt Clearance</SelectItem>
-                  <SelectItem value="travel-expenses">
-                    Travel Expenses
-                  </SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="today">Today</SelectItem>
+                  <SelectItem value="tomorrow">Tomorrow</SelectItem>
+                  <SelectItem value="next-week">Next Week</SelectItem>
+                  <SelectItem value="next-month">Next Month</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Repayment Date Field */}
+            {/* Duration Field */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Preferred Repayment Date *
-              </label>
-              <Input
-                type="date"
-                value={salaryAdvanceFormData.repaymentDate}
-                onChange={(e) =>
+              <Select
+                value={salaryAdvanceFormData.duration || "1-month"}
+                onValueChange={(value) =>
                   setSalaryAdvanceFormData((prev) => ({
                     ...prev,
-                    repaymentDate: e.target.value,
+                    duration: value,
                   }))
                 }
-                className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
-              />
+              >
+                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-[#4766E5] focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
+                  <SelectValue placeholder="Duration" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1-month">1 Month</SelectItem>
+                  <SelectItem value="2-months">2 Months</SelectItem>
+                  <SelectItem value="3-months">3 Months</SelectItem>
+                  <SelectItem value="6-months">6 Months</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
-            {/* Additional Notes */}
+            {/* Notes Section - Collapsible */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Additional Notes
-              </label>
-              <Textarea
-                placeholder="Add any additional information or justification for your salary advance request..."
-                value={salaryAdvanceFormData.notes}
-                onChange={(e) =>
-                  setSalaryAdvanceFormData((prev) => ({
-                    ...prev,
-                    notes: e.target.value,
-                  }))
-                }
-                className="w-full min-h-[100px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
-              />
-            </div>
-
-            {/* Attachments Section */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-gray-700">
-                  Supporting Documents
-                </label>
-                <button
-                  onClick={() => setIsAttachmentModalOpen(true)}
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm text-[#4766E5] hover:bg-blue-50 rounded-md transition-colors"
-                >
+              <button
+                onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                className="w-full flex items-center justify-between p-3 bg-gray-100 rounded-lg text-left"
+              >
+                <div className="flex items-center gap-3">
                   <svg
-                    className="w-4 h-4"
+                    className="w-5 h-5 text-gray-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -2201,9 +2185,68 @@ export default function EmployeeDashboard() {
                       d="M12 4v16m8-8H4"
                     />
                   </svg>
-                  Add Document
-                </button>
-              </div>
+                  <span className="text-gray-900 font-medium">Notes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#4766E5]">
+                    {salaryAdvanceFormData.notes ? "Added" : "None"}
+                  </span>
+                  <svg
+                    className={`w-5 h-5 text-[#4766E5] transition-transform ${
+                      isNotesExpanded ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </button>
+
+              {isNotesExpanded && (
+                <div className="mt-2">
+                  <Textarea
+                    placeholder="Add any additional information or justification for your salary advance request..."
+                    value={salaryAdvanceFormData.notes}
+                    onChange={(e) =>
+                      setSalaryAdvanceFormData((prev) => ({
+                        ...prev,
+                        notes: e.target.value,
+                      }))
+                    }
+                    className="w-full min-h-[100px] resize-none focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Add Attachment Button */}
+            <div className="space-y-3">
+              <button
+                onClick={() => setIsAttachmentModalOpen(true)}
+                className="flex items-center gap-3 text-[#4766E5] hover:bg-blue-50 p-2 rounded-lg transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                  />
+                </svg>
+                <span className="font-medium">Add attachment</span>
+              </button>
 
               {/* Attachment List */}
               {salaryAdvanceFormData.attachments.length > 0 && (
