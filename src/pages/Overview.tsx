@@ -2921,7 +2921,7 @@ const Overview: React.FC = () => {
           }
         }}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+        <DialogContent className="max-w-4xl max-h-[90vh] p-0 flex flex-col">
           <DialogHeader className="sr-only">
             <DialogTitle>Employee Details</DialogTitle>
             <DialogDescription>
@@ -2931,9 +2931,9 @@ const Overview: React.FC = () => {
           {selectedEmployee && (
             <>
               {modalView === "attendance" ? (
-                <div className="bg-white rounded-lg">
+                <div className="bg-white rounded-lg flex flex-col h-full">
                   {/* Modal Header */}
-                  <div className="flex items-start justify-between p-6 border-b border-gray-200">
+                  <div className="flex items-start justify-between p-6 border-b border-gray-200 flex-shrink-0">
                     <div className="flex items-center gap-4">
                       {/* Employee Avatar */}
                       <div className="relative">
