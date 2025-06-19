@@ -550,6 +550,8 @@ export default function EmployeeDashboard() {
                     setIsOTRequestModalOpen(true);
                   } else if (card.id === "salary-request") {
                     setIsSalaryAdvanceModalOpen(true);
+                  } else if (card.id === "reimburse-request") {
+                    setIsReimburseRequestModalOpen(true);
                   }
                 }}
                 className={cn(
