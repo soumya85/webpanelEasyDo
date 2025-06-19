@@ -2931,7 +2931,7 @@ const Overview: React.FC = () => {
           {selectedEmployee && (
             <>
               {modalView === "attendance" ? (
-                <div className="bg-white rounded-lg overflow-hidden">
+                <div className="bg-white rounded-lg">
                   {/* Modal Header */}
                   <div className="flex items-start justify-between p-6 border-b border-gray-200">
                     <div className="flex items-center gap-4">
