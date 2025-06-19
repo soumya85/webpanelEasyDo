@@ -40,13 +40,13 @@ export default function PerformanceMeter() {
     <div className="w-full h-full">
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
-        <CardContent className="p-4 flex-1 flex flex-col">
+        <CardContent className="p-3 flex-1 flex flex-col">
           {/* Section Header - Title at top */}
-          <div className="text-center mb-4">
-            <h2 className="text-[#283C50] font-inter text-xl font-bold mb-2">
+          <div className="text-center mb-2">
+            <h2 className="text-[#283C50] font-inter text-lg font-bold mb-1">
               Performance Meter
             </h2>
-            <p className="text-sm text-gray-600">
+            <p className="text-xs text-gray-600">
               ( Overall Score : {overallScore}% )
             </p>
           </div>
