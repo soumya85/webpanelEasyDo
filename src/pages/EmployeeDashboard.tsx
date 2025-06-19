@@ -3922,26 +3922,14 @@ export default function EmployeeDashboard() {
               <>
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b bg-white">
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => setIsLeaveModalOpen(false)}
-                      className="text-blue-600 hover:text-blue-700"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        className="w-5 h-5"
-                      >
-                        <polyline points="15,18 9,12 15,6" />
-                      </svg>
-                    </button>
+                  <div className="flex items-center">
                     <h1 className="text-lg font-semibold text-gray-900">
                       Your Leave
                     </h1>
                   </div>
-                  <div className="flex items-center gap-2">
+
+                  {/* Centered Day/List Toggle */}
+                  <div className="flex items-center gap-2 absolute left-1/2 transform -translate-x-1/2">
                     <button
                       onClick={() => setViewMode("day")}
                       className={`px-4 py-2 text-sm font-medium rounded-lg ${
@@ -3963,6 +3951,23 @@ export default function EmployeeDashboard() {
                       List
                     </button>
                   </div>
+
+                  {/* Close Icon */}
+                  <button
+                    onClick={() => setIsLeaveModalOpen(false)}
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="w-5 h-5 text-gray-600"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
                 </div>
 
                 {/* Calendar Section */}
