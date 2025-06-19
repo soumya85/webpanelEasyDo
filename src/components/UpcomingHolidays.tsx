@@ -31,28 +31,14 @@ export default function UpcomingHolidays() {
             <h2 className="text-[#283C50] font-inter text-xl font-bold">
               Upcoming Holidays
             </h2>
-            <div className="flex gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-red-500 hover:text-red-600"
-                onClick={() => {
-                  console.log("Test button clicked");
-                  alert("Test button clicked!");
-                  setIsModalOpen(true);
-                }}
-              >
-                Test Modal
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-[#4766E5] hover:text-[#4766E5]/80"
-              >
-                View All
-                <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
-            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#4766E5] hover:text-[#4766E5]/80"
+            >
+              View All
+              <ChevronRight className="w-4 h-4 ml-1" />
+            </Button>
           </div>
 
           {/* Holiday Card Content */}
