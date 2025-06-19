@@ -2753,25 +2753,25 @@ export default function EmployeeDashboard() {
           </div>
 
           <div className="space-y-4 pb-8 max-w-2xl">
-            {/* Title Field */}
+            {/* Vendor/Paid to Field */}
             <div className="space-y-2">
               <Input
-                placeholder="Title"
-                value={reimburseFormData.title || ""}
+                placeholder="Vendor/Paid to"
+                value={reimburseFormData.vendor || ""}
                 onChange={(e) =>
                   setReimburseFormData((prev) => ({
                     ...prev,
-                    title: e.target.value,
+                    vendor: e.target.value,
                   }))
                 }
                 className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
               />
             </div>
 
-            {/* Amount Field */}
+            {/* Total Amount Field */}
             <div className="space-y-2">
               <Input
-                placeholder="Amount/Total"
+                placeholder="Total Amount"
                 type="number"
                 value={reimburseFormData.amount}
                 onChange={(e) =>
@@ -2784,127 +2784,28 @@ export default function EmployeeDashboard() {
               />
             </div>
 
-            {/* Category Field */}
+            {/* Approval No. (Optional) Field */}
             <div className="space-y-2">
               <Select
-                value={reimburseFormData.category || ""}
+                value={reimburseFormData.approvalNo || ""}
                 onValueChange={(value) =>
                   setReimburseFormData((prev) => ({
                     ...prev,
-                    category: value,
+                    approvalNo: value,
                   }))
                 }
               >
-                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
-                  <SelectValue placeholder="Category" />
+                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-500 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
+                  <SelectValue placeholder="Approval No. (Optional)" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="travel">
-                    Travel & Transportation
-                  </SelectItem>
-                  <SelectItem value="meals">Meals & Entertainment</SelectItem>
-                  <SelectItem value="office-supplies">
-                    Office Supplies
-                  </SelectItem>
-                  <SelectItem value="training">
-                    Training & Development
-                  </SelectItem>
-                  <SelectItem value="medical">Medical Expenses</SelectItem>
-                  <SelectItem value="communication">Communication</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="pending">Pending Approval</SelectItem>
+                  <SelectItem value="approved">Pre-approved</SelectItem>
+                  <SelectItem value="manager">Manager Approval</SelectItem>
+                  <SelectItem value="finance">Finance Approval</SelectItem>
+                  <SelectItem value="none">No Approval Required</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
-
-            {/* Date Field */}
-            <div className="space-y-2">
-              <Input
-                type="date"
-                value={reimburseFormData.date}
-                onChange={(e) =>
-                  setReimburseFormData((prev) => ({
-                    ...prev,
-                    date: e.target.value,
-                  }))
-                }
-                className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
-              />
-            </div>
-
-            {/* Description Field */}
-            <div className="space-y-2">
-              <Textarea
-                placeholder="Description of expense"
-                value={reimburseFormData.description}
-                onChange={(e) =>
-                  setReimburseFormData((prev) => ({
-                    ...prev,
-                    description: e.target.value,
-                  }))
-                }
-                className="w-full min-h-[80px] bg-gray-100 border-0 text-gray-500 placeholder-gray-400 resize-none focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
-              />
-            </div>
-
-            {/* Notes Section - Collapsible */}
-            <div className="space-y-2">
-              <button
-                onClick={() => setIsNotesExpanded(!isNotesExpanded)}
-                className="w-full flex items-center justify-between p-3 bg-gray-100 rounded-lg text-left"
-              >
-                <div className="flex items-center gap-3">
-                  <svg
-                    className="w-5 h-5 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 4v16m8-8H4"
-                    />
-                  </svg>
-                  <span className="text-gray-900 font-medium">Notes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#4766E5]">
-                    {reimburseFormData.notes ? "Added" : "None"}
-                  </span>
-                  <svg
-                    className={`w-5 h-5 text-[#4766E5] transition-transform ${
-                      isNotesExpanded ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </div>
-              </button>
-
-              {isNotesExpanded && (
-                <div className="mt-2">
-                  <Textarea
-                    placeholder="Add any additional notes or information about this reimbursement request..."
-                    value={reimburseFormData.notes}
-                    onChange={(e) =>
-                      setReimburseFormData((prev) => ({
-                        ...prev,
-                        notes: e.target.value,
-                      }))
-                    }
-                    className="w-full min-h-[100px] resize-none focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
-                  />
-                </div>
-              )}
             </div>
 
             {/* Add Attachment Button */}
