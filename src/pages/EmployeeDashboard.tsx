@@ -2281,11 +2281,10 @@ export default function EmployeeDashboard() {
                       startDate: e.target.value,
                     }))
                   }
-                  className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
-                  placeholder="Start date"
+                  className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-datetime-edit-text]:text-gray-500 [&::-webkit-datetime-edit-month-field]:text-gray-500 [&::-webkit-datetime-edit-day-field]:text-gray-500 [&::-webkit-datetime-edit-year-field]:text-gray-500"
                 />
                 {!salaryAdvanceFormData.startDate && (
-                  <div className="absolute inset-0 flex items-center px-3 pointer-events-none text-gray-500">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 z-10">
                     Start date
                   </div>
                 )}
