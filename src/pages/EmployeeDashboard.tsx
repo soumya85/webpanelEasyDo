@@ -2122,25 +2122,25 @@ export default function EmployeeDashboard() {
 
             {/* Start Date Field */}
             <div className="space-y-2">
-              <Select
-                value={salaryAdvanceFormData.startDate || ""}
-                onValueChange={(value) =>
-                  setSalaryAdvanceFormData((prev) => ({
-                    ...prev,
-                    startDate: value,
-                  }))
-                }
-              >
-                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
-                  <SelectValue placeholder="Start date" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="today">Today</SelectItem>
-                  <SelectItem value="tomorrow">Tomorrow</SelectItem>
-                  <SelectItem value="next-week">Next Week</SelectItem>
-                  <SelectItem value="next-month">Next Month</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="relative">
+                <Input
+                  type="date"
+                  value={salaryAdvanceFormData.startDate}
+                  onChange={(e) =>
+                    setSalaryAdvanceFormData((prev) => ({
+                      ...prev,
+                      startDate: e.target.value,
+                    }))
+                  }
+                  className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                  placeholder="Start date"
+                />
+                {!salaryAdvanceFormData.startDate && (
+                  <div className="absolute inset-0 flex items-center px-3 pointer-events-none text-gray-500">
+                    Start date
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Duration Field */}
@@ -2159,9 +2159,9 @@ export default function EmployeeDashboard() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="1-month">1 Month</SelectItem>
-                  <SelectItem value="2-months">2 Months</SelectItem>
                   <SelectItem value="3-months">3 Months</SelectItem>
                   <SelectItem value="6-months">6 Months</SelectItem>
+                  <SelectItem value="12-months">12 Months</SelectItem>
                 </SelectContent>
               </Select>
             </div>
