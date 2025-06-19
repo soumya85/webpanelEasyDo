@@ -70,7 +70,9 @@ export default function EmployeeDashboard() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
-  const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
+  const [leaveSelectedDate, setLeaveSelectedDate] = useState(
+    new Date(),
+  ); // Current date
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
@@ -3903,11 +3905,11 @@ export default function EmployeeDashboard() {
             // Determine current date state
             const getDateState = () => {
               // Create a date string for comparison (YYYY-MM-DD format)
-              const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
+              const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(currentDay).padStart(2, '0')}`;
 
               // Define specific dates for different states
-              const leaveDates = ["2025-05-14"]; // May 14, 2025
-              const absentDates = ["2025-06-18"]; // June 18, 2025
+              const leaveDates = ['2025-05-14']; // May 14, 2025
+              const absentDates = ['2025-06-18']; // June 18, 2025
 
               if (leaveDates.includes(dateString)) {
                 return "leave";
@@ -3973,8 +3975,11 @@ export default function EmployeeDashboard() {
                   </button>
                 </div>
 
-                {/* Calendar Section */}
+                {/* Content Section - conditional based on viewMode */}
                 <div className="flex-1 overflow-y-auto bg-gray-50">
+                  {viewMode === "day" ? (
+                    <>
+                      {/* Day View - Calendar Section */}
                   {/* Month Navigation */}
                   <div className="flex items-center justify-between px-6 py-4 bg-white border-b">
                     <button
@@ -4220,9 +4225,10 @@ export default function EmployeeDashboard() {
                           </div>
                         </div>
                         <div className="text-lg font-semibold text-gray-900">
-                          You are <span className="text-red-600">Absent</span>{" "}
-                          on {currentDay} {monthNames[currentMonth]}{" "}
-                          {currentYear} -{" "}
+                          You are{" "}
+                          <span className="text-red-600">Absent</span> on{" "}
+                          {currentDay} {monthNames[currentMonth]} {currentYear}{" "}
+                          -{" "}
                           {
                             dayNames[
                               new Date(
