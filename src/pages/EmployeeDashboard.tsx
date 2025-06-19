@@ -1102,11 +1102,10 @@ export default function EmployeeDashboard() {
           </div>
         </div>
 
-        {/* Quick Action Cards Grid */}
-        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
-          {/* Row 1 */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full">
-            {cardData.slice(0, 4).map((card, index) => (
+        {/* Quick Action Cards Grid - Single Row */}
+        <div className="w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3 lg:gap-4 w-full">
+            {cardData.map((card, index) => (
               <div
                 key={card.id}
                 onClick={() => {
@@ -1120,53 +1119,23 @@ export default function EmployeeDashboard() {
                     setIsReimburseRequestModalOpen(true);
                   } else if (card.id === "holiday") {
                     setIsHolidayModalOpen(true);
-                  }
-                }}
-                className={cn(
-                  "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
-                  "px-3 sm:px-4 justify-center items-center flex-shrink-0",
-                  "rounded-[10px] border-b-[6px] border-[#4766E5] bg-white",
-                  "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                  "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
-                )}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="flex w-[35px] sm:w-[41px] flex-col items-center justify-center flex-shrink-0">
-                    {card.icon}
-                  </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px]">
-                    {card.title}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2 */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full">
-            {cardData.slice(4, 8).map((card, index) => (
-              <div
-                key={card.id}
-                onClick={() => {
-                  if (card.id === "holiday") {
-                    setIsHolidayModalOpen(true);
                   } else if (card.id === "leave") {
                     setIsLeaveModalOpen(true);
                   }
                 }}
                 className={cn(
-                  "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
-                  "px-3 sm:px-4 justify-center items-center flex-shrink-0",
-                  "rounded-[10px] border-b-[6px] border-[#4766E5] bg-white",
+                  "flex w-full h-[70px] sm:h-[75px] lg:h-[80px]",
+                  "px-1 sm:px-2 lg:px-3 justify-center items-center flex-shrink-0",
+                  "rounded-[8px] sm:rounded-[10px] border-b-[4px] sm:border-b-[6px] border-[#4766E5] bg-white",
                   "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
                 )}
               >
-                <div className="flex items-center gap-2">
-                  <div className="flex w-[35px] sm:w-[41px] flex-col items-center justify-center flex-shrink-0">
+                <div className="flex flex-col items-center justify-center gap-1 sm:gap-1.5">
+                  <div className="flex w-[20px] sm:w-[24px] lg:w-[28px] flex-col items-center justify-center flex-shrink-0">
                     {card.icon}
                   </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px]">
+                  <h3 className="text-[#283C50] font-inter font-bold text-xs lg:text-sm leading-[12px] sm:leading-[14px] lg:leading-[16px] text-center">
                     {card.title}
                   </h3>
                 </div>
@@ -1179,10 +1148,10 @@ export default function EmployeeDashboard() {
         <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12 w-full">
           {/* First Row: Attendance Summary and Performance Meter - Equal Heights */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="min-h-[400px] lg:min-h-[450px]">
+            <div className="min-h-[250px] lg:min-h-[280px]">
               <AttendanceSummary />
             </div>
-            <div className="min-h-[400px] lg:min-h-[450px]">
+            <div className="min-h-[200px] lg:min-h-[220px]">
               <PerformanceMeter />
             </div>
           </div>

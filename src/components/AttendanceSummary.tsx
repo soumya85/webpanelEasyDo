@@ -59,9 +59,9 @@ export default function AttendanceSummary() {
     <div className="w-full h-full">
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
-        <CardContent className="p-6 flex-1 flex flex-col">
+        <CardContent className="p-4 flex-1 flex flex-col">
           {/* Section Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4">
             <h2 className="text-[#283C50] font-inter text-xl font-bold">
               Attendance
             </h2>
@@ -75,21 +75,21 @@ export default function AttendanceSummary() {
 
           {/* Attendance Cards Grid */}
           <div className="flex-1 flex flex-col">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6 flex-1">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-4 flex-1">
               {attendanceData.map((item, index) => (
                 <div
                   key={item.label}
                   className={cn(
-                    "flex flex-col items-center justify-center p-4 rounded-lg border",
-                    "min-h-[100px] transition-all duration-200 hover:scale-105 hover:shadow-md",
+                    "flex flex-col items-center justify-center p-3 rounded-lg border",
+                    "min-h-[80px] transition-all duration-200 hover:scale-105 hover:shadow-md",
                     item.bgColor,
                     item.borderColor,
                   )}
                 >
-                  <div className={cn("text-3xl font-bold mb-2", item.color)}>
+                  <div className={cn("text-2xl font-bold mb-1", item.color)}>
                     {item.value}
                   </div>
-                  <div className="text-sm text-gray-700 text-center font-medium">
+                  <div className="text-xs text-gray-700 text-center font-medium">
                     {item.label}
                   </div>
 
@@ -114,7 +114,7 @@ export default function AttendanceSummary() {
             </div>
 
             {/* Footer with additional information */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-6">
                   <span className="text-gray-700 font-medium">
