@@ -68,6 +68,7 @@ export default function EmployeeDashboard() {
   const [isReimburseRequestModalOpen, setIsReimburseRequestModalOpen] =
     useState(false);
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [otFormData, setOtFormData] = useState({
     title: "",
     startDate: "2025-06-18",
