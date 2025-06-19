@@ -2976,7 +2976,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Content Area */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[60vh] overflow-y-auto pb-20">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[45vh] overflow-y-auto pb-6">
                     {/* Left Column - Attendance Details */}
                     <div className="space-y-6">
                       {/* Date Display */}
@@ -3290,7 +3290,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Modal Footer */}
-                  <div className="absolute bottom-0 left-0 right-0 flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50 rounded-b-lg">
+                  <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50 mt-4">
                     <button
                       onClick={() => {
                         setIsModalOpen(false);
