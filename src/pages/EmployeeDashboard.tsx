@@ -3034,6 +3034,152 @@ export default function EmployeeDashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Holiday Details Modal */}
+      <Dialog open={isHolidayModalOpen} onOpenChange={setIsHolidayModalOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-gray-800 flex items-center gap-2">
+              <div className="w-5 h-5">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-blue-600"
+                >
+                  <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" />
+                </svg>
+              </div>
+              Holiday Details
+            </DialogTitle>
+            <div className="text-gray-600">
+              Complete information about the upcoming holiday
+            </div>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Holiday Header */}
+            <div className="text-center space-y-2">
+              <h2 className="text-2xl font-bold text-gray-800">BAKRID</h2>
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#4766E5] text-white text-sm font-medium">
+                General Holiday
+              </div>
+            </div>
+
+            {/* Date and Time Information */}
+            <div className="bg-blue-50 rounded-lg p-4 space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-blue-600"
+                  >
+                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800">Date</div>
+                  <div className="text-gray-600">Saturday, June 07, 2025</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-blue-600"
+                  >
+                    <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800">Duration</div>
+                  <div className="text-gray-600">Full Day</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Location and Coverage */}
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 mt-0.5">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-gray-600"
+                  >
+                    <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-gray-800">Location</div>
+                  <div className="text-gray-600">Head Office</div>
+                  <div className="text-sm text-gray-500 mt-1">
+                    All departments included
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 mt-0.5">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-gray-600"
+                  >
+                    <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25Z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-gray-800">
+                    Applicable To
+                  </div>
+                  <div className="text-gray-600">All employees</div>
+                  <div className="text-sm text-gray-500 mt-1">
+                    No exceptions
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 mt-0.5">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-gray-600"
+                  >
+                    <path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-gray-800">
+                    Additional Information
+                  </div>
+                  <div className="text-gray-600 text-sm">
+                    Bakrid (Eid al-Adha) is a significant Islamic holiday
+                    celebrating the willingness of Ibrahim to sacrifice his son
+                    as an act of obedience to God.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 pt-4">
+              <button
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                onClick={() => setIsHolidayModalOpen(false)}
+              >
+                Close
+              </button>
+              <button className="flex-1 px-4 py-2 bg-[#4766E5] text-white rounded-lg hover:bg-[#4766E5]/90 transition-colors">
+                Add to Calendar
+              </button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
