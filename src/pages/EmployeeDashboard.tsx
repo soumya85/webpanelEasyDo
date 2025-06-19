@@ -59,6 +59,7 @@ export default function EmployeeDashboard() {
     useState(false);
   const [isReimburseRequestModalOpen, setIsReimburseRequestModalOpen] =
     useState(false);
+  const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [otFormData, setOtFormData] = useState({
     title: "",
     startDate: "2025-06-18",
@@ -708,6 +709,8 @@ export default function EmployeeDashboard() {
                     setIsSalaryAdvanceModalOpen(true);
                   } else if (card.id === "reimburse-request") {
                     setIsReimburseRequestModalOpen(true);
+                  } else if (card.id === "holiday") {
+                    setIsHolidayModalOpen(true);
                   }
                 }}
                 className={cn(
@@ -735,6 +738,11 @@ export default function EmployeeDashboard() {
             {cardData.slice(4, 8).map((card, index) => (
               <div
                 key={card.id}
+                onClick={() => {
+                  if (card.id === "holiday") {
+                    setIsHolidayModalOpen(true);
+                  }
+                }}
                 className={cn(
                   "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
                   "px-3 sm:px-4 justify-center items-center flex-shrink-0",
@@ -3028,6 +3036,273 @@ export default function EmployeeDashboard() {
             >
               Cancel
             </button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Holiday List Modal */}
+      <Dialog open={isHolidayModalOpen} onOpenChange={setIsHolidayModalOpen}>
+        <DialogContent className="max-w-2xl h-[90vh] max-h-[90vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+          <VisuallyHidden>
+            <DialogTitle>Holiday List</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b bg-white">
+            <div className="flex items-center gap-4">
+              <h1 className="text-lg font-semibold text-gray-900">
+                Holiday list
+              </h1>
+              <button className="flex items-center text-blue-600 font-medium">
+                Head office
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="w-4 h-4 ml-1"
+                >
+                  <polyline points="6,9 12,15 18,9" />
+                </svg>
+              </button>
+            </div>
+            <button
+              onClick={() => setIsHolidayModalOpen(false)}
+              className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="w-4 h-4 text-gray-600"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Statistics Cards */}
+          <div className="grid grid-cols-4 gap-3 p-4 bg-gray-50">
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">17</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                TOTAL
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">12</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                PUBLIC
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">1</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                COMPANY
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">0</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                REGIONAL
+              </div>
+            </div>
+          </div>
+
+          {/* Holiday List */}
+          <div className="flex-1 overflow-y-auto bg-gray-50">
+            {[
+              {
+                day: "Wed",
+                date: "01",
+                month: "JAN 25",
+                name: "ENGLISH NEW YEAR",
+                location: "Head office",
+                type: "Company",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Sun",
+                date: "26",
+                month: "JAN 25",
+                name: "REPUBLIC DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "03",
+                month: "FEB 25",
+                name: "SARASWATI PUJA",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Fri",
+                date: "14",
+                month: "MAR 25",
+                name: "DOLYATRA / HOLI",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "31",
+                month: "MAR 25",
+                name: "ID UL FITAR",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Tue",
+                date: "15",
+                month: "APR 25",
+                name: "BENGALI NEW YEARS DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Fri",
+                date: "18",
+                month: "APR 25",
+                name: "GOODFRIDAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Sat",
+                date: "07",
+                month: "JUN 25",
+                name: "BAKRID",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Fri",
+                date: "15",
+                month: "AUG 25",
+                name: "INDEPENDENCE DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "29",
+                month: "SEP 25",
+                name: "MAHA SAPTAMI",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Tue",
+                date: "30",
+                month: "SEP 25",
+                name: "MAHA ASTAMI",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Wed",
+                date: "01",
+                month: "OCT 25",
+                name: "MAHA NABAMI",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Thu",
+                date: "02",
+                month: "OCT 25",
+                name: "DUSSHERA / GANDHI BIRTHDAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "06",
+                month: "OCT 25",
+                name: "LAXMI PUJA",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "20",
+                month: "OCT 25",
+                name: "KALI PUJA",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Wed",
+                date: "05",
+                month: "NOV 25",
+                name: "GURU NANAK BIRTHDAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Thu",
+                date: "25",
+                month: "DEC 25",
+                name: "X MAS DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+            ].map((holiday, index) => (
+              <div
+                key={index}
+                className="bg-white mx-4 mb-3 rounded-lg border-b-4 border-blue-500 overflow-hidden shadow-md"
+              >
+                <div className="flex items-center p-4">
+                  {/* Date Section */}
+                  <div className="text-center mr-4 min-w-[60px]">
+                    <div className="text-sm text-gray-600 font-medium">
+                      {holiday.day}
+                    </div>
+                    <div className="text-2xl font-bold text-gray-900">
+                      {holiday.date}
+                    </div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      {holiday.month}
+                    </div>
+                  </div>
+
+                  {/* Holiday Details */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">
+                      {holiday.name}
+                    </h3>
+                    <p className="text-sm text-gray-600">{holiday.location}</p>
+                  </div>
+
+                  {/* Type Badge */}
+                  <div
+                    className={`px-3 py-1 rounded text-white text-sm font-medium ${holiday.typeColor}`}
+                  >
+                    {holiday.type}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </DialogContent>
       </Dialog>
