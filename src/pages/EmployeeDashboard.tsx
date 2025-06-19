@@ -3898,7 +3898,7 @@ export default function EmployeeDashboard() {
             const selectDate = (date: number, isCurrentMonth: boolean) => {
               if (isCurrentMonth) {
                 const newDate = new Date(currentYear, currentMonth, date);
-                setSelectedDate(newDate);
+                setLeaveSelectedDate(newDate);
               }
             };
 
