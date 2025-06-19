@@ -52,11 +52,11 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Large, Clear Score Display */}
-          <div className="text-center mb-8 py-6">
-            <div className="text-6xl font-bold text-red-500 mb-4">
+          <div className="text-center mb-4 py-3">
+            <div className="text-4xl font-bold text-red-500 mb-2">
               {overallScore}%
             </div>
-            <div className="text-lg font-medium text-gray-600 mb-4">
+            <div className="text-base font-medium text-gray-600 mb-3">
               Overall Performance Score
             </div>
 
