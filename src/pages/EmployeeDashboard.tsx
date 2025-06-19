@@ -3902,11 +3902,16 @@ export default function EmployeeDashboard() {
 
             // Determine current date state
             const getDateState = () => {
-              if (currentMonth === 4 && currentDay === 14) {
-                // May 14
+              // Create a date string for comparison (YYYY-MM-DD format)
+              const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
+
+              // Define specific dates for different states
+              const leaveDates = ["2025-05-14"]; // May 14, 2025
+              const absentDates = ["2025-06-18"]; // June 18, 2025
+
+              if (leaveDates.includes(dateString)) {
                 return "leave";
-              } else if (currentMonth === 5 && currentDay === 18) {
-                // June 18
+              } else if (absentDates.includes(dateString)) {
                 return "absent";
               } else {
                 return "present";
