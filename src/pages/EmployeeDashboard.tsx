@@ -2048,6 +2048,243 @@ export default function EmployeeDashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* Salary Advance Request Modal */}
+      <Dialog
+        open={isSalaryAdvanceModalOpen}
+        onOpenChange={setIsSalaryAdvanceModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
+          <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                Salary Advance Request
+              </DialogTitle>
+              <button
+                onClick={() => setIsSalaryAdvanceModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </DialogHeader>
+
+          {/* Company Name Display */}
+          <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <p className="text-[#4766E5] text-lg font-medium">
+              Liberty Righrise Pvt Ltd
+            </p>
+          </div>
+
+          <div className="space-y-6 pb-8 max-w-2xl">
+            {/* Amount Field */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Advance Amount *
+              </label>
+              <Input
+                placeholder="Enter amount (e.g., 50000)"
+                type="number"
+                value={salaryAdvanceFormData.amount}
+                onChange={(e) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    amount: e.target.value,
+                  }))
+                }
+                className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+              />
+            </div>
+
+            {/* Reason Field */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Reason for Advance *
+              </label>
+              <Select
+                value={salaryAdvanceFormData.reason}
+                onValueChange={(value) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    reason: value,
+                  }))
+                }
+              >
+                <SelectTrigger className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]">
+                  <SelectValue placeholder="Select reason for advance" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="medical-emergency">
+                    Medical Emergency
+                  </SelectItem>
+                  <SelectItem value="education-fees">Education Fees</SelectItem>
+                  <SelectItem value="home-loan-emi">Home Loan EMI</SelectItem>
+                  <SelectItem value="wedding-expenses">
+                    Wedding Expenses
+                  </SelectItem>
+                  <SelectItem value="debt-clearance">Debt Clearance</SelectItem>
+                  <SelectItem value="travel-expenses">
+                    Travel Expenses
+                  </SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Repayment Date Field */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Preferred Repayment Date *
+              </label>
+              <Input
+                type="date"
+                value={salaryAdvanceFormData.repaymentDate}
+                onChange={(e) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    repaymentDate: e.target.value,
+                  }))
+                }
+                className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+              />
+            </div>
+
+            {/* Additional Notes */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Additional Notes
+              </label>
+              <Textarea
+                placeholder="Add any additional information or justification for your salary advance request..."
+                value={salaryAdvanceFormData.notes}
+                onChange={(e) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    notes: e.target.value,
+                  }))
+                }
+                className="w-full min-h-[100px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+              />
+            </div>
+
+            {/* Attachments Section */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium text-gray-700">
+                  Supporting Documents
+                </label>
+                <button
+                  onClick={() => setIsAttachmentModalOpen(true)}
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm text-[#4766E5] hover:bg-blue-50 rounded-md transition-colors"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  Add Document
+                </button>
+              </div>
+
+              {/* Attachment List */}
+              {salaryAdvanceFormData.attachments.length > 0 && (
+                <div className="space-y-2">
+                  {salaryAdvanceFormData.attachments.map((attachment) => (
+                    <div
+                      key={attachment.id}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-100 rounded">
+                          <svg
+                            className="w-4 h-4 text-blue-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">
+                            {attachment.name}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {(attachment.size / 1024 / 1024).toFixed(2)} MB
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setSalaryAdvanceFormData((prev) => ({
+                            ...prev,
+                            attachments: prev.attachments.filter(
+                              (a) => a.id !== attachment.id,
+                            ),
+                          }));
+                        }}
+                        className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8">
+              Submit Advance Request
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsSalaryAdvanceModalOpen(false)}
+              className="h-12 px-8"
+            >
+              Cancel
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Attachment Options Modal */}
       <Dialog
         open={isAttachmentModalOpen}
