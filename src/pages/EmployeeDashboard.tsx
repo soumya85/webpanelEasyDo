@@ -1151,7 +1151,7 @@ export default function EmployeeDashboard() {
             <div className="min-h-[250px] lg:min-h-[280px]">
               <AttendanceSummary />
             </div>
-            <div className="min-h-[200px] lg:min-h-[220px]">
+            <div className="min-h-[300px] lg:min-h-[350px]">
               <PerformanceMeter />
             </div>
           </div>
