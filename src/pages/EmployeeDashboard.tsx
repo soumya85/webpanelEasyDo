@@ -3270,7 +3270,7 @@ export default function EmployeeDashboard() {
             ].map((holiday, index) => (
               <div
                 key={index}
-                className="bg-white mx-4 mb-3 rounded-lg border-b-2 border-blue-500 overflow-hidden"
+                className="bg-white mx-4 mb-3 rounded-lg border-b-4 border-blue-500 overflow-hidden shadow-md"
               >
                 <div className="flex items-center p-4">
                   {/* Date Section */}
