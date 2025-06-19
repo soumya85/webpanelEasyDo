@@ -2921,7 +2921,7 @@ const Overview: React.FC = () => {
           }
         }}
       >
-        <DialogContent className="max-w-4xl max-h-[85vh] p-0">
+        <DialogContent className="max-w-4xl max-h-[95vh] p-0">
           <DialogHeader className="sr-only">
             <DialogTitle>Employee Details</DialogTitle>
             <DialogDescription>
@@ -2976,7 +2976,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Content Area */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[50vh] overflow-y-auto">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 max-h-[70vh] overflow-y-auto">
                     {/* Left Column - Attendance Details */}
                     <div className="space-y-6">
                       {/* Date Display */}
