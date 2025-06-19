@@ -1,12 +1,10 @@
-import { CheckSquare } from "lucide-react";
-import { PlaceholderPage } from "@/components/PlaceholderPage";
 
-export default function Tasks() {
+import { TaskBoardContent } from "@/components/TaskBoardContent";
+
+export default function TaskBoard() {
   return (
-    <PlaceholderPage
-      title="Tasks"
-      description="Create, assign, and track tasks to keep your projects organized and on schedule."
-      icon={<CheckSquare className="h-8 w-8" />}
-    />
+    <div className="h-screen flex flex-col overflow-auto h-screen">
+      <TaskBoardContent />
+    </div>
   );
 }
