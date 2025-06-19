@@ -2335,6 +2335,11 @@ export default function EmployeeDashboard() {
         onOpenChange={setIsAttachmentModalOpen}
       >
         <DialogContent className="max-w-md [&>button]:hidden">
+          <DialogHeader>
+            <DialogTitle className="sr-only">
+              Select Attachment Source
+            </DialogTitle>
+          </DialogHeader>
           <div className="space-y-0">
             {/* Scan Option */}
             <button
