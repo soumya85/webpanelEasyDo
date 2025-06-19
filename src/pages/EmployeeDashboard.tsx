@@ -4246,14 +4246,261 @@ export default function EmployeeDashboard() {
                       </div>
                     </>
                   ) : (
-                    /* List View - Empty/Blank Page */
-                    <div className="flex-1 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-gray-500 text-lg">
-                          List view content will be added here
+                    /* List View */
+                    <>
+                      {/* Month Navigation */}
+                      <div className="flex items-center justify-between px-6 py-4 bg-white border-b">
+                        <button
+                          onClick={() => navigateMonth("prev")}
+                          className="p-2 hover:bg-gray-100 rounded-lg"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className="w-5 h-5"
+                          >
+                            <polyline points="15,18 9,12 15,6" />
+                          </svg>
+                        </button>
+                        <div className="text-center">
+                          <div className="text-xl font-bold text-gray-900">
+                            {monthNames[currentMonth]}
+                          </div>
+                          <div className="text-red-600 font-semibold">
+                            {currentYear}
+                          </div>
                         </div>
+                        <button
+                          onClick={() => navigateMonth("next")}
+                          className="p-2 hover:bg-gray-100 rounded-lg"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className="w-5 h-5"
+                          >
+                            <polyline points="9,18 15,12 9,6" />
+                          </svg>
+                        </button>
                       </div>
-                    </div>
+
+                      {/* Tabs */}
+                      <div className="flex bg-gray-100 px-4">
+                        <button
+                          onClick={() => setSelectedLeaveTab("pending")}
+                          className={`flex-1 px-4 py-3 text-sm font-semibold border-b-2 ${
+                            selectedLeaveTab === "pending"
+                              ? "border-black text-black"
+                              : "border-transparent text-gray-600"
+                          }`}
+                        >
+                          PENDING
+                        </button>
+                        <button
+                          onClick={() => setSelectedLeaveTab("approved")}
+                          className={`flex-1 px-4 py-3 text-sm font-semibold border-b-2 relative ${
+                            selectedLeaveTab === "approved"
+                              ? "border-black text-black"
+                              : "border-transparent text-gray-600"
+                          }`}
+                        >
+                          APPROVED
+                          <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                            1
+                          </span>
+                        </button>
+                        <button
+                          onClick={() => setSelectedLeaveTab("denied")}
+                          className={`flex-1 px-4 py-3 text-sm font-semibold border-b-2 ${
+                            selectedLeaveTab === "denied"
+                              ? "border-black text-black"
+                              : "border-transparent text-gray-600"
+                          }`}
+                        >
+                          DENIED
+                        </button>
+                      </div>
+
+                      {/* Content Area */}
+                      <div className="flex-1 overflow-y-auto">
+                        {selectedLeaveTab === "approved" ? (
+                          /* Approved Leave Requests */
+                          <div className="p-4">
+                            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+                              <div className="text-blue-600 font-semibold text-sm mb-3">
+                                LEAVE APPROVAL
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
+                                  <span className="text-white font-semibold text-sm">
+                                    SG
+                                  </span>
+                                </div>
+                                <div className="flex-1">
+                                  <div className="font-semibold text-gray-900 text-lg mb-1">
+                                    Soumyadeep Goswami
+                                  </div>
+                                  <div className="font-bold text-gray-900 text-base mb-1">
+                                    1 day May 14
+                                  </div>
+                                  <div className="text-gray-600 text-sm mb-1">
+                                    Head office
+                                  </div>
+                                  <div className="text-gray-900 font-semibold text-sm mb-3">
+                                    CASUAL LEAVE (CL)
+                                  </div>
+                                  <div className="text-gray-500 text-sm">
+                                    12 May, 2025 8:14 PM
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          /* Empty State for Pending/Denied */
+                          <div className="flex-1 flex items-center justify-center p-8">
+                            <div className="text-center">
+                              {/* Meeting Illustration */}
+                              <div className="mb-8 flex justify-center">
+                                <div className="w-64 h-48 flex items-center justify-center">
+                                  <svg
+                                    viewBox="0 0 300 200"
+                                    className="w-full h-full"
+                                  >
+                                    {/* Table */}
+                                    <rect
+                                      x="50"
+                                      y="120"
+                                      width="200"
+                                      height="60"
+                                      rx="8"
+                                      fill="#F59E0B"
+                                    />
+
+                                    {/* People around table */}
+                                    {/* Person 1 - Left */}
+                                    <circle
+                                      cx="30"
+                                      cy="100"
+                                      r="15"
+                                      fill="#FCD34D"
+                                    />
+                                    <rect
+                                      x="20"
+                                      y="115"
+                                      width="20"
+                                      height="30"
+                                      rx="10"
+                                      fill="#3B82F6"
+                                    />
+
+                                    {/* Person 2 - Top */}
+                                    <circle
+                                      cx="150"
+                                      cy="60"
+                                      r="15"
+                                      fill="#F87171"
+                                    />
+                                    <rect
+                                      x="140"
+                                      y="75"
+                                      width="20"
+                                      height="30"
+                                      rx="10"
+                                      fill="#10B981"
+                                    />
+
+                                    {/* Person 3 - Right */}
+                                    <circle
+                                      cx="270"
+                                      cy="100"
+                                      r="15"
+                                      fill="#A78BFA"
+                                    />
+                                    <rect
+                                      x="260"
+                                      y="115"
+                                      width="20"
+                                      height="30"
+                                      rx="10"
+                                      fill="#F59E0B"
+                                    />
+
+                                    {/* Person 4 - Bottom right */}
+                                    <circle
+                                      cx="220"
+                                      cy="160"
+                                      r="15"
+                                      fill="#34D399"
+                                    />
+                                    <rect
+                                      x="210"
+                                      y="175"
+                                      width="20"
+                                      height="30"
+                                      rx="10"
+                                      fill="#EF4444"
+                                    />
+
+                                    {/* Laptop on table */}
+                                    <rect
+                                      x="120"
+                                      y="130"
+                                      width="60"
+                                      height="40"
+                                      rx="4"
+                                      fill="#6B7280"
+                                    />
+                                    <rect
+                                      x="125"
+                                      y="135"
+                                      width="50"
+                                      height="30"
+                                      rx="2"
+                                      fill="#F3F4F6"
+                                    />
+
+                                    {/* Chat bubbles */}
+                                    <circle
+                                      cx="80"
+                                      cy="80"
+                                      r="8"
+                                      fill="#60A5FA"
+                                    />
+                                    <circle
+                                      cx="200"
+                                      cy="90"
+                                      r="6"
+                                      fill="#34D399"
+                                    />
+                                    <circle
+                                      cx="250"
+                                      cy="70"
+                                      r="7"
+                                      fill="#FBBF24"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+
+                              <div className="text-2xl font-bold text-gray-900 mb-4">
+                                Nothing's Pending
+                              </div>
+                              <div className="text-gray-600">
+                                {selectedLeaveTab === "pending" &&
+                                  "No PENDING approval available"}
+                                {selectedLeaveTab === "denied" &&
+                                  "No DENIED approval available"}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </>
                   )}
                 </div>
 
