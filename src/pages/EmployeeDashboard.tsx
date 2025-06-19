@@ -1179,10 +1179,10 @@ export default function EmployeeDashboard() {
         <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12 w-full">
           {/* First Row: Attendance Summary and Performance Meter - Equal Heights */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="min-h-[400px] lg:min-h-[450px]">
+            <div className="min-h-[250px] lg:min-h-[280px]">
               <AttendanceSummary />
             </div>
-            <div className="min-h-[400px] lg:min-h-[450px]">
+            <div className="min-h-[250px] lg:min-h-[280px]">
               <PerformanceMeter />
             </div>
           </div>
