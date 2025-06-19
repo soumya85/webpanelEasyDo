@@ -3288,31 +3288,31 @@ const Overview: React.FC = () => {
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Modal Footer */}
-                  <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-blue-50 mt-4 min-h-[80px]">
-                    <button
-                      onClick={() => {
-                        setIsModalOpen(false);
-                        setModalView("attendance");
-                      }}
-                      className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                    >
-                      Close
-                    </button>
-                    <button
-                      onClick={handleViewFullProfile}
-                      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                    >
-                      View Full Profile
-                    </button>
-                    <button
-                      onClick={() => handleContactEmployee(selectedEmployee)}
-                      className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
-                    >
-                      Contact Employee
-                    </button>
-                  </div>
+                {/* Modal Footer - Moved outside main content */}
+                <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+                  <button
+                    onClick={() => {
+                      setIsModalOpen(false);
+                      setModalView("attendance");
+                    }}
+                    className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                  >
+                    Close
+                  </button>
+                  <button
+                    onClick={handleViewFullProfile}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  >
+                    View Full Profile
+                  </button>
+                  <button
+                    onClick={() => handleContactEmployee(selectedEmployee)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                  >
+                    Contact Employee
+                  </button>
                 </div>
               ) : (
                 <FullProfile
