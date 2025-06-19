@@ -4045,6 +4045,30 @@ export default function EmployeeDashboard() {
                             dateObj.date,
                           ).getDay() === 0;
 
+                        // Determine dot color based on specific dates
+                        let dotColor = "bg-green-500"; // default present
+                        if (
+                          currentMonth === 4 &&
+                          dateObj.date === 14 &&
+                          dateObj.isCurrentMonth
+                        ) {
+                          // May 14 - leave
+                          dotColor = "bg-blue-500";
+                        } else if (
+                          currentMonth === 5 &&
+                          dateObj.date === 18 &&
+                          dateObj.isCurrentMonth
+                        ) {
+                          // June 18 - absent
+                          dotColor = "bg-red-500";
+                        } else if (
+                          currentMonth === 5 &&
+                          dateObj.isCurrentMonth
+                        ) {
+                          // Other June dates
+                          dotColor = "bg-green-500";
+                        }
+
                         return (
                           <div
                             key={index}
@@ -4063,9 +4087,7 @@ export default function EmployeeDashboard() {
                           >
                             {dateObj.date}
                             <div
-                              className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
-                                isAbsentMonth ? "bg-red-500" : "bg-green-500"
-                              }`}
+                              className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${dotColor}`}
                             ></div>
                           </div>
                         );
