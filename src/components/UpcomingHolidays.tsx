@@ -1,26 +1,10 @@
-import {
-  ChevronRight,
-  Calendar,
-  MapPin,
-  Users,
-  Info,
-  Clock,
-} from "lucide-react";
+import { ChevronRight, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function UpcomingHolidays() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="w-full h-full">
       {/* Card with background starting from title */}
