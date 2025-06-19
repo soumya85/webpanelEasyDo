@@ -3810,6 +3810,46 @@ export default function EmployeeDashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Leave Modal */}
+      <Dialog open={isLeaveModalOpen} onOpenChange={setIsLeaveModalOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+          <VisuallyHidden>
+            <DialogTitle>Leave</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b bg-white">
+            <div className="flex items-center gap-4">
+              <h1 className="text-lg font-semibold text-gray-900">Leave</h1>
+            </div>
+            <button
+              onClick={() => setIsLeaveModalOpen(false)}
+              className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="w-4 h-4 text-gray-600"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Modal Content - Currently Blank */}
+          <div className="flex-1 overflow-y-auto bg-gray-50 p-6">
+            <div className="flex items-center justify-center h-full">
+              <p className="text-gray-500 text-lg">
+                Leave modal content will be designed step by step
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
