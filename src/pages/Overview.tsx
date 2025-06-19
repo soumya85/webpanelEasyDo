@@ -2909,6 +2909,7 @@ const Overview: React.FC = () => {
 
         {/* Employee Attendance Log Section */}
         <EmployeeAttendanceLog onViewEmployee={handleViewEmployee} />
+      </div>
 
       {/* Employee Details Modal */}
       <Dialog
