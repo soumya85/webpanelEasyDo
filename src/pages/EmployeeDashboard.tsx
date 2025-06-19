@@ -3043,6 +3043,10 @@ export default function EmployeeDashboard() {
       {/* Holiday List Modal */}
       <Dialog open={isHolidayModalOpen} onOpenChange={setIsHolidayModalOpen}>
         <DialogContent className="max-w-lg h-[85vh] max-h-[85vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+          <VisuallyHidden>
+            <DialogTitle>Holiday List</DialogTitle>
+          </VisuallyHidden>
+
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-white">
             <button
