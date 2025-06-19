@@ -2458,15 +2458,6 @@ export default function EmployeeDashboard() {
           </div>
         </DialogContent>
       </Dialog>
-              </span>
-            </button>
-
-            <button
-              onClick={() => handleAttachmentSelect("photos")}
-              disabled={leaveFormData.attachments.length >= 5}
-              className={`flex flex-col items-center p-6 border-2 rounded-lg transition-all group ${
-                leaveFormData.attachments.length >= 5
-                  ? "border-gray-200 bg-gray-50 cursor-not-allowed"
                   : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
               }`}
             >
