@@ -3069,60 +3069,6 @@ const Overview: React.FC = () => {
 
                       {/* Working Hours Summary */}
                       <OvertimeSection employee={selectedEmployee} />
-
-                      {/* Employee Details */}
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-900">
-                          Employee Information
-                        </h4>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                          <div>
-                            <span className="text-gray-600">Employee ID:</span>
-                            <p className="font-medium">{selectedEmployee.id}</p>
-                          </div>
-                          <div>
-                            <span className="text-gray-600">
-                              Date of Joining:
-                            </span>
-                            <p className="font-medium">
-                              {new Date(
-                                selectedEmployee.dateOfJoining,
-                              ).toLocaleDateString()}
-                            </p>
-                          </div>
-                          <div>
-                            <span className="text-gray-600">Experience:</span>
-                            <p className="font-medium">
-                              {Math.floor(
-                                (new Date().getTime() -
-                                  new Date(
-                                    selectedEmployee.dateOfJoining,
-                                  ).getTime()) /
-                                  (1000 * 60 * 60 * 24 * 365),
-                              )}{" "}
-                              years
-                            </p>
-                          </div>
-                          <div>
-                            <span className="text-gray-600">Department:</span>
-                            <p className="font-medium">
-                              {selectedEmployee.designation.includes(
-                                "Accountant",
-                              )
-                                ? "Finance"
-                                : selectedEmployee.designation.includes(
-                                      "Developer",
-                                    )
-                                  ? "Technology"
-                                  : selectedEmployee.designation.includes(
-                                        "Manager",
-                                      )
-                                    ? "Management"
-                                    : "Operations"}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
 
                     {/* Right Column - Location Timeline */}
