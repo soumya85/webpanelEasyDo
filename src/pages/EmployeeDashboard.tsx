@@ -359,6 +359,162 @@ export default function EmployeeDashboard() {
     );
   };
 
+  const handleReimburseAttachment = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    setIsAttachmentModalOpen(false);
+
+    // Create file input element dynamically
+    const input = document.createElement("input");
+    input.type = "file";
+    input.style.display = "none";
+
+    // Set file type constraints based on attachment type
+    switch (type) {
+      case "scan":
+      case "documents":
+        input.accept = ".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png";
+        break;
+      case "camera":
+        input.accept = "image/*";
+        input.capture = "environment"; // Use rear camera
+        break;
+      case "photos":
+        input.accept = "image/*";
+        break;
+    }
+
+    input.multiple = true; // Allow multiple file selection
+
+    input.onchange = (e) => {
+      const files = (e.target as HTMLInputElement).files;
+      if (files) {
+        handleReimburseFileUpload(Array.from(files), type);
+      }
+      document.body.removeChild(input);
+    };
+
+    document.body.appendChild(input);
+    input.click();
+  };
+
+  const handleReimburseFileUpload = (
+    files: File[],
+    source: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    const maxFileSize = 10 * 1024 * 1024; // 10MB limit
+    const maxFiles = 5; // Maximum 5 files
+
+    // Validate file count
+    if (reimburseFormData.attachments.length + files.length > maxFiles) {
+      alert(
+        `Maximum ${maxFiles} files allowed. You currently have ${reimburseFormData.attachments.length} files.`,
+      );
+      return;
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > maxFileSize) {
+        alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    // Create attachment objects
+    const newAttachments = validFiles.map((file) => ({
+      id: Date.now() + Math.random().toString(36).substr(2, 9),
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      url: URL.createObjectURL(file),
+      source: source,
+    }));
+
+    setReimburseFormData((prev) => ({
+      ...prev,
+      attachments: [...prev.attachments, ...newAttachments],
+    }));
+
+    // Success feedback
+    const successMessage =
+      validFiles.length === 1
+        ? `"${validFiles[0].name}" uploaded successfully`
+        : `${validFiles.length} files uploaded successfully`;
+
+    console.log(successMessage);
+  };
+
+  const handleReimburseSubmit = () => {
+    // Validate required fields
+    if (!reimburseFormData.title.trim()) {
+      alert("Please enter a title for your reimbursement request.");
+      return;
+    }
+
+    if (
+      !reimburseFormData.amount ||
+      parseFloat(reimburseFormData.amount) <= 0
+    ) {
+      alert("Please enter a valid amount for your reimbursement.");
+      return;
+    }
+
+    if (!reimburseFormData.category) {
+      alert("Please select a category.");
+      return;
+    }
+
+    if (!reimburseFormData.date) {
+      alert("Please select a date.");
+      return;
+    }
+
+    // Create submission data
+    const submissionData = {
+      id: Date.now().toString(),
+      title: reimburseFormData.title,
+      amount: parseFloat(reimburseFormData.amount),
+      category: reimburseFormData.category,
+      date: reimburseFormData.date,
+      description: reimburseFormData.description,
+      notes: reimburseFormData.notes,
+      attachmentCount: reimburseFormData.attachments.length,
+      attachments: reimburseFormData.attachments.map((att) => ({
+        name: att.name,
+        size: att.size,
+        type: att.type,
+        source: att.source,
+      })),
+      submittedAt: new Date().toISOString(),
+      status: "pending",
+    };
+
+    // Here you would typically send this to your backend API
+    console.log("Reimbursement Request Submitted:", submissionData);
+
+    // Reset form
+    setReimburseFormData({
+      title: "",
+      amount: "",
+      category: "",
+      date: "",
+      description: "",
+      notes: "",
+      attachments: [],
+    });
+
+    // Close modal
+    setIsReimburseRequestModalOpen(false);
+
+    // Show success message
+    alert(
+      `Reimbursement request for $${submissionData.amount} submitted successfully! Reference ID: ${submissionData.id}`,
+    );
+  };
+
   const handleSalaryAdvanceAttachment = (
     type: "scan" | "documents" | "camera" | "photos",
   ) => {
