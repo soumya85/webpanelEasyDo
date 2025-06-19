@@ -2921,7 +2921,7 @@ const Overview: React.FC = () => {
           }
         }}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] p-0 flex flex-col">
+        <DialogContent className="max-w-4xl max-h-[90vh] p-0">
           <DialogHeader className="sr-only">
             <DialogTitle>Employee Details</DialogTitle>
             <DialogDescription>
@@ -2931,7 +2931,7 @@ const Overview: React.FC = () => {
           {selectedEmployee && (
             <>
               {modalView === "attendance" ? (
-                <div className="bg-white rounded-lg flex flex-col h-full">
+                <div className="bg-white rounded-lg flex flex-col max-h-[90vh]">
                   {/* Modal Header */}
                   <div className="flex items-start justify-between p-6 border-b border-gray-200 flex-shrink-0">
                     <div className="flex items-center gap-4">
@@ -2976,7 +2976,7 @@ const Overview: React.FC = () => {
                   </div>
 
                   {/* Content Area */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 flex-1 overflow-y-auto">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 flex-1 min-h-0 overflow-y-auto">
                     {/* Left Column - Attendance Details */}
                     <div className="space-y-6">
                       {/* Date Display */}
