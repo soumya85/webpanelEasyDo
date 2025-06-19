@@ -57,6 +57,8 @@ export default function EmployeeDashboard() {
   const [isOTRequestModalOpen, setIsOTRequestModalOpen] = useState(false);
   const [isSalaryAdvanceModalOpen, setIsSalaryAdvanceModalOpen] =
     useState(false);
+  const [isReimburseRequestModalOpen, setIsReimburseRequestModalOpen] =
+    useState(false);
   const [otFormData, setOtFormData] = useState({
     title: "",
     startDate: "2025-06-18",
@@ -75,6 +77,22 @@ export default function EmployeeDashboard() {
     amount: "",
     startDate: "",
     duration: "1-month",
+    notes: "",
+    attachments: [] as Array<{
+      id: string;
+      name: string;
+      type: string;
+      size: number;
+      url: string;
+      source: "scan" | "documents" | "camera" | "photos";
+    }>,
+  });
+  const [reimburseFormData, setReimburseFormData] = useState({
+    title: "",
+    amount: "",
+    category: "",
+    date: "",
+    description: "",
     notes: "",
     attachments: [] as Array<{
       id: string;
@@ -341,6 +359,162 @@ export default function EmployeeDashboard() {
     );
   };
 
+  const handleReimburseAttachment = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    setIsAttachmentModalOpen(false);
+
+    // Create file input element dynamically
+    const input = document.createElement("input");
+    input.type = "file";
+    input.style.display = "none";
+
+    // Set file type constraints based on attachment type
+    switch (type) {
+      case "scan":
+      case "documents":
+        input.accept = ".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png";
+        break;
+      case "camera":
+        input.accept = "image/*";
+        input.capture = "environment"; // Use rear camera
+        break;
+      case "photos":
+        input.accept = "image/*";
+        break;
+    }
+
+    input.multiple = true; // Allow multiple file selection
+
+    input.onchange = (e) => {
+      const files = (e.target as HTMLInputElement).files;
+      if (files) {
+        handleReimburseFileUpload(Array.from(files), type);
+      }
+      document.body.removeChild(input);
+    };
+
+    document.body.appendChild(input);
+    input.click();
+  };
+
+  const handleReimburseFileUpload = (
+    files: File[],
+    source: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    const maxFileSize = 10 * 1024 * 1024; // 10MB limit
+    const maxFiles = 5; // Maximum 5 files
+
+    // Validate file count
+    if (reimburseFormData.attachments.length + files.length > maxFiles) {
+      alert(
+        `Maximum ${maxFiles} files allowed. You currently have ${reimburseFormData.attachments.length} files.`,
+      );
+      return;
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > maxFileSize) {
+        alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    // Create attachment objects
+    const newAttachments = validFiles.map((file) => ({
+      id: Date.now() + Math.random().toString(36).substr(2, 9),
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      url: URL.createObjectURL(file),
+      source: source,
+    }));
+
+    setReimburseFormData((prev) => ({
+      ...prev,
+      attachments: [...prev.attachments, ...newAttachments],
+    }));
+
+    // Success feedback
+    const successMessage =
+      validFiles.length === 1
+        ? `"${validFiles[0].name}" uploaded successfully`
+        : `${validFiles.length} files uploaded successfully`;
+
+    console.log(successMessage);
+  };
+
+  const handleReimburseSubmit = () => {
+    // Validate required fields
+    if (!reimburseFormData.title.trim()) {
+      alert("Please enter a title for your reimbursement request.");
+      return;
+    }
+
+    if (
+      !reimburseFormData.amount ||
+      parseFloat(reimburseFormData.amount) <= 0
+    ) {
+      alert("Please enter a valid amount for your reimbursement.");
+      return;
+    }
+
+    if (!reimburseFormData.category) {
+      alert("Please select a category.");
+      return;
+    }
+
+    if (!reimburseFormData.date) {
+      alert("Please select a date.");
+      return;
+    }
+
+    // Create submission data
+    const submissionData = {
+      id: Date.now().toString(),
+      title: reimburseFormData.title,
+      amount: parseFloat(reimburseFormData.amount),
+      category: reimburseFormData.category,
+      date: reimburseFormData.date,
+      description: reimburseFormData.description,
+      notes: reimburseFormData.notes,
+      attachmentCount: reimburseFormData.attachments.length,
+      attachments: reimburseFormData.attachments.map((att) => ({
+        name: att.name,
+        size: att.size,
+        type: att.type,
+        source: att.source,
+      })),
+      submittedAt: new Date().toISOString(),
+      status: "pending",
+    };
+
+    // Here you would typically send this to your backend API
+    console.log("Reimbursement Request Submitted:", submissionData);
+
+    // Reset form
+    setReimburseFormData({
+      title: "",
+      amount: "",
+      category: "",
+      date: "",
+      description: "",
+      notes: "",
+      attachments: [],
+    });
+
+    // Close modal
+    setIsReimburseRequestModalOpen(false);
+
+    // Show success message
+    alert(
+      `Reimbursement request for $${submissionData.amount} submitted successfully! Reference ID: ${submissionData.id}`,
+    );
+  };
+
   const handleSalaryAdvanceAttachment = (
     type: "scan" | "documents" | "camera" | "photos",
   ) => {
@@ -532,6 +706,8 @@ export default function EmployeeDashboard() {
                     setIsOTRequestModalOpen(true);
                   } else if (card.id === "salary-request") {
                     setIsSalaryAdvanceModalOpen(true);
+                  } else if (card.id === "reimburse-request") {
+                    setIsReimburseRequestModalOpen(true);
                   }
                 }}
                 className={cn(
@@ -2537,6 +2713,207 @@ export default function EmployeeDashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* Reimburse Request Modal */}
+      <Dialog
+        open={isReimburseRequestModalOpen}
+        onOpenChange={setIsReimburseRequestModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
+          <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                Reimbursement Request
+              </DialogTitle>
+              <button
+                onClick={() => setIsReimburseRequestModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </DialogHeader>
+
+          {/* Company Name Display */}
+          <div className="mb-6 p-4 bg-gray-100 rounded-lg">
+            <p className="text-[#4766E5] text-lg font-medium">
+              Liberty Highrise Pvt Ltd
+            </p>
+          </div>
+
+          <div className="space-y-4 pb-8 max-w-2xl">
+            {/* Vendor/Paid to Field */}
+            <div className="space-y-2">
+              <Input
+                placeholder="Vendor/Paid to"
+                value={reimburseFormData.vendor || ""}
+                onChange={(e) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    vendor: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
+              />
+            </div>
+
+            {/* Total Amount Field */}
+            <div className="space-y-2">
+              <Input
+                placeholder="Total Amount"
+                type="number"
+                value={reimburseFormData.amount}
+                onChange={(e) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    amount: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
+              />
+            </div>
+
+            {/* Approval No. (Optional) Field */}
+            <div className="space-y-2">
+              <Select
+                value={reimburseFormData.approvalNo || ""}
+                onValueChange={(value) =>
+                  setReimburseFormData((prev) => ({
+                    ...prev,
+                    approvalNo: value,
+                  }))
+                }
+              >
+                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-500 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
+                  <SelectValue placeholder="Approval No. (Optional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="pending">Pending Approval</SelectItem>
+                  <SelectItem value="approved">Pre-approved</SelectItem>
+                  <SelectItem value="manager">Manager Approval</SelectItem>
+                  <SelectItem value="finance">Finance Approval</SelectItem>
+                  <SelectItem value="none">No Approval Required</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Add Attachment Button */}
+            <div className="space-y-3">
+              <button
+                onClick={() => setIsAttachmentModalOpen(true)}
+                className="flex items-center gap-3 text-[#4766E5] hover:bg-blue-50 p-2 rounded-lg transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                  />
+                </svg>
+                <span className="font-medium">Add attachment</span>
+              </button>
+
+              {/* Attachment List */}
+              {reimburseFormData.attachments.length > 0 && (
+                <div className="space-y-2 mt-3">
+                  {reimburseFormData.attachments.map((attachment) => (
+                    <div
+                      key={attachment.id}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-100 rounded">
+                          <svg
+                            className="w-4 h-4 text-blue-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">
+                            {attachment.name}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {(attachment.size / 1024 / 1024).toFixed(2)} MB •{" "}
+                            {attachment.source}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setReimburseFormData((prev) => ({
+                            ...prev,
+                            attachments: prev.attachments.filter(
+                              (a) => a.id !== attachment.id,
+                            ),
+                          }));
+                        }}
+                        className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+            <Button
+              onClick={handleReimburseSubmit}
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+            >
+              Submit Reimbursement Request
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsReimburseRequestModalOpen(false)}
+              className="h-12 px-8"
+            >
+              Cancel
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Attachment Options Modal */}
       <Dialog
         open={isAttachmentModalOpen}
@@ -2551,7 +2928,13 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => handleSalaryAdvanceAttachment("scan")}
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("scan");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("scan");
+                }
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -2572,34 +2955,15 @@ export default function EmployeeDashboard() {
               <span className="text-lg text-[#4766E5] font-medium">Scan</span>
             </button>
 
-            {/* Documents Option */}
-            <button
-              onClick={() => handleSalaryAdvanceAttachment("documents")}
-              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
-            >
-              <div className="w-8 h-8 flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-[#4766E5]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <span className="text-lg text-[#4766E5] font-medium">
-                Documents
-              </span>
-            </button>
-
             {/* Camera Option */}
             <button
-              onClick={() => handleSalaryAdvanceAttachment("camera")}
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("camera");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("camera");
+                }
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -2628,7 +2992,13 @@ export default function EmployeeDashboard() {
 
             {/* Photos Option */}
             <button
-              onClick={() => handleSalaryAdvanceAttachment("photos")}
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("photos");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("photos");
+                }
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
               <div className="w-8 h-8 flex items-center justify-center">
