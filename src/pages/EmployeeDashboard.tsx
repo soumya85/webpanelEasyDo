@@ -2385,7 +2385,9 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span className="text-lg text-[#4766E5] font-medium">Documents</span>
+              <span className="text-lg text-[#4766E5] font-medium">
+                Documents
+              </span>
             </button>
 
             {/* Camera Option */}
@@ -2456,76 +2458,6 @@ export default function EmployeeDashboard() {
               Cancel
             </button>
           </div>
-        </DialogContent>
-      </Dialog>
-                  : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
-              }`}
-            >
-              <div
-                className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-colors ${
-                  leaveFormData.attachments.length >= 5
-                    ? "bg-gray-300"
-                    : "bg-[#4766E5] group-hover:bg-[#4766E5]/90"
-                }`}
-              >
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <span
-                className={`text-sm font-medium ${
-                  leaveFormData.attachments.length >= 5
-                    ? "text-gray-400"
-                    : "text-[#283C50]"
-                }`}
-              >
-                Photo Gallery
-              </span>
-              <span className="text-xs text-gray-400 mt-1 text-center">
-                Choose from gallery
-              </span>
-            </button>
-          </div>
-
-          {/* File count info */}
-          {leaveFormData.attachments.length > 0 && (
-            <div className="px-4 py-2 bg-blue-50 rounded-lg border border-blue-200">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-blue-700 font-medium">
-                  {leaveFormData.attachments.length} file
-                  {leaveFormData.attachments.length !== 1 ? "s" : ""} attached
-                </span>
-                <span className="text-blue-600">
-                  {5 - leaveFormData.attachments.length} remaining
-                </span>
-              </div>
-            </div>
-          )}
-
-          <DialogFooter className="flex flex-col space-y-2 sm:space-y-0">
-            {leaveFormData.attachments.length >= 5 && (
-              <p className="text-xs text-amber-600 bg-amber-50 p-2 rounded border border-amber-200">
-                ⚠️ Maximum file limit reached (5/5)
-              </p>
-            )}
-            <Button
-              variant="outline"
-              onClick={() => setIsAttachmentModalOpen(false)}
-              className="w-full"
-            >
-              Cancel
-            </Button>
-          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
