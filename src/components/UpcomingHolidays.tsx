@@ -62,6 +62,7 @@ export default function UpcomingHolidays() {
               className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors duration-200 group"
               onClick={() => {
                 console.log("Holiday card clicked");
+                alert("Holiday card clicked!");
                 setIsModalOpen(true);
               }}
             >
