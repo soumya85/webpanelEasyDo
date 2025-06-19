@@ -2713,9 +2713,6 @@ const Overview: React.FC = () => {
           </div>
         </div>
 
-        {/* Employee Attendance Log Section */}
-        <EmployeeAttendanceLog onViewEmployee={handleViewEmployee} />
-
         {/* Analytics Section */}
         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
           {/* First Row of Charts */}
@@ -2909,6 +2906,9 @@ const Overview: React.FC = () => {
             </ChartCard>
           </div>
         </div>
+
+        {/* Employee Attendance Log Section */}
+        <EmployeeAttendanceLog onViewEmployee={handleViewEmployee} />
       </div>
 
       {/* Employee Details Modal */}
