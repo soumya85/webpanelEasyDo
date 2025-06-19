@@ -55,9 +55,25 @@ export default function EmployeeDashboard() {
   >("approved");
   const [isLeaveRulesOpen, setIsLeaveRulesOpen] = useState(false);
   const [isOTRequestModalOpen, setIsOTRequestModalOpen] = useState(false);
+  const [isSalaryAdvanceModalOpen, setIsSalaryAdvanceModalOpen] =
+    useState(false);
   const [otFormData, setOtFormData] = useState({
     title: "",
     startDate: "2025-06-18",
+    notes: "",
+    attachments: [] as Array<{
+      id: string;
+      name: string;
+      type: string;
+      size: number;
+      url: string;
+      source: "scan" | "documents" | "camera" | "photos";
+    }>,
+  });
+  const [salaryAdvanceFormData, setSalaryAdvanceFormData] = useState({
+    amount: "",
+    reason: "",
+    repaymentDate: "2025-07-18",
     notes: "",
     attachments: [] as Array<{
       id: string;
@@ -364,6 +380,8 @@ export default function EmployeeDashboard() {
                     setIsLeaveRequestModalOpen(true);
                   } else if (card.id === "ot-request") {
                     setIsOTRequestModalOpen(true);
+                  } else if (card.id === "salary-request") {
+                    setIsSalaryAdvanceModalOpen(true);
                   }
                 }}
                 className={cn(
