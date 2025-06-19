@@ -71,9 +71,10 @@ export default function EmployeeDashboard() {
     }>,
   });
   const [salaryAdvanceFormData, setSalaryAdvanceFormData] = useState({
+    title: "",
     amount: "",
-    reason: "",
-    repaymentDate: "2025-07-18",
+    startDate: "",
+    duration: "1-month",
     notes: "",
     attachments: [] as Array<{
       id: string;
@@ -266,18 +267,167 @@ export default function EmployeeDashboard() {
   const handleRemoveAttachment = (id: string) => {
     setLeaveFormData((prev) => ({
       ...prev,
-      attachments: prev.attachments.filter((att) => att.id !== id),
+      attachments: [...prev.attachments, ...newAttachments],
     }));
+
+    // Success feedback
+    const successMessage =
+      validFiles.length === 1
+        ? `"${validFiles[0].name}" uploaded successfully`
+        : `${validFiles.length} files uploaded successfully`;
+
+    // Show success notification (in real app, you'd use a toast/notification system)
+    console.log(successMessage);
   };
 
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return "0 B";
-    const k = 1024;
-    const sizes = ["B", "KB", "MB", "GB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+  const handleSalaryAdvanceSubmit = () => {
+    // Validate required fields
+    if (!salaryAdvanceFormData.title.trim()) {
+      alert("Please enter a title for your salary advance request.");
+      return;
+    }
+
+    if (
+      !salaryAdvanceFormData.amount ||
+      parseFloat(salaryAdvanceFormData.amount) <= 0
+    ) {
+      alert("Please enter a valid amount for your salary advance.");
+      return;
+    }
+
+    if (!salaryAdvanceFormData.startDate) {
+      alert("Please select a start date.");
+      return;
+    }
+
+    // Create submission data
+    const submissionData = {
+      id: Date.now().toString(),
+      title: salaryAdvanceFormData.title,
+      amount: parseFloat(salaryAdvanceFormData.amount),
+      startDate: salaryAdvanceFormData.startDate,
+      duration: salaryAdvanceFormData.duration,
+      notes: salaryAdvanceFormData.notes,
+      attachmentCount: salaryAdvanceFormData.attachments.length,
+      attachments: salaryAdvanceFormData.attachments.map((att) => ({
+        name: att.name,
+        size: att.size,
+        type: att.type,
+        source: att.source,
+      })),
+      submittedAt: new Date().toISOString(),
+      status: "pending",
+    };
+
+    // Here you would typically send this to your backend API
+    console.log("Salary Advance Request Submitted:", submissionData);
+
+    // Reset form
+    setSalaryAdvanceFormData({
+      title: "",
+      amount: "",
+      startDate: "",
+      duration: "1-month",
+      notes: "",
+      attachments: [],
+    });
+
+    // Close modal
+    setIsSalaryAdvanceModalOpen(false);
+
+    // Show success message
+    alert(
+      `Salary advance request for $${submissionData.amount} submitted successfully! Reference ID: ${submissionData.id}`,
+    );
   };
 
+  const handleSalaryAdvanceAttachment = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    setIsAttachmentModalOpen(false);
+
+    // Create file input element dynamically
+    const input = document.createElement("input");
+    input.type = "file";
+    input.style.display = "none";
+
+    // Set file type constraints based on attachment type
+    switch (type) {
+      case "scan":
+      case "documents":
+        input.accept = ".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png";
+        break;
+      case "camera":
+        input.accept = "image/*";
+        input.capture = "environment"; // Use rear camera
+        break;
+      case "photos":
+        input.accept = "image/*";
+        break;
+    }
+
+    input.multiple = true; // Allow multiple file selection
+
+    input.onchange = (e) => {
+      const files = (e.target as HTMLInputElement).files;
+      if (files) {
+        handleSalaryAdvanceFileUpload(Array.from(files), type);
+      }
+      document.body.removeChild(input);
+    };
+
+    document.body.appendChild(input);
+    input.click();
+  };
+
+  const handleSalaryAdvanceFileUpload = (
+    files: File[],
+    source: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    const maxFileSize = 10 * 1024 * 1024; // 10MB limit
+    const maxFiles = 5; // Maximum 5 files
+
+    // Validate file count
+    if (salaryAdvanceFormData.attachments.length + files.length > maxFiles) {
+      alert(
+        `Maximum ${maxFiles} files allowed. You currently have ${salaryAdvanceFormData.attachments.length} files.`,
+      );
+      return;
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > maxFileSize) {
+        alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    // Create attachment objects
+    const newAttachments = validFiles.map((file) => ({
+      id: Date.now() + Math.random().toString(36).substr(2, 9),
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      url: URL.createObjectURL(file),
+      source: source,
+    }));
+
+    setSalaryAdvanceFormData((prev) => ({
+      ...prev,
+      attachments: [...prev.attachments, ...newAttachments],
+    }));
+
+    // Success feedback
+    const successMessage =
+      validFiles.length === 1
+        ? `"${validFiles[0].name}" uploaded successfully`
+        : `${validFiles.length} files uploaded successfully`;
+
+    console.log(successMessage);
+  };
   const cardData = [
     // Row 1
     {
@@ -2081,20 +2231,32 @@ export default function EmployeeDashboard() {
           </DialogHeader>
 
           {/* Company Name Display */}
-          <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mb-6 p-4 bg-gray-100 rounded-lg">
             <p className="text-[#4766E5] text-lg font-medium">
-              Liberty Righrise Pvt Ltd
+              Liberty Highrise Pvt Ltd
             </p>
           </div>
 
-          <div className="space-y-6 pb-8 max-w-2xl">
-            {/* Amount Field */}
+          <div className="space-y-4 pb-8 max-w-2xl">
+            {/* Title Field */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Advance Amount *
-              </label>
               <Input
-                placeholder="Enter amount (e.g., 50000)"
+                placeholder="Title"
+                value={salaryAdvanceFormData.title || ""}
+                onChange={(e) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
+              />
+            </div>
+
+            {/* Amount/Total Field */}
+            <div className="space-y-2">
+              <Input
+                placeholder="Amount/Total"
                 type="number"
                 value={salaryAdvanceFormData.amount}
                 onChange={(e) =>
@@ -2103,93 +2265,57 @@ export default function EmployeeDashboard() {
                     amount: e.target.value,
                   }))
                 }
-                className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
               />
             </div>
 
-            {/* Reason Field */}
+            {/* Start Date Field */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Reason for Advance *
-              </label>
+              <Input
+                type="date"
+                value={salaryAdvanceFormData.startDate}
+                onChange={(e) =>
+                  setSalaryAdvanceFormData((prev) => ({
+                    ...prev,
+                    startDate: e.target.value,
+                  }))
+                }
+                className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+              />
+            </div>
+
+            {/* Duration Field */}
+            <div className="space-y-2">
               <Select
-                value={salaryAdvanceFormData.reason}
+                value={salaryAdvanceFormData.duration || "1-month"}
                 onValueChange={(value) =>
                   setSalaryAdvanceFormData((prev) => ({
                     ...prev,
-                    reason: value,
+                    duration: value,
                   }))
                 }
               >
-                <SelectTrigger className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]">
-                  <SelectValue placeholder="Select reason for advance" />
+                <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-[#4766E5] focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
+                  <SelectValue placeholder="Duration" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="medical-emergency">
-                    Medical Emergency
-                  </SelectItem>
-                  <SelectItem value="education-fees">Education Fees</SelectItem>
-                  <SelectItem value="home-loan-emi">Home Loan EMI</SelectItem>
-                  <SelectItem value="wedding-expenses">
-                    Wedding Expenses
-                  </SelectItem>
-                  <SelectItem value="debt-clearance">Debt Clearance</SelectItem>
-                  <SelectItem value="travel-expenses">
-                    Travel Expenses
-                  </SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="1-month">1 Month</SelectItem>
+                  <SelectItem value="3-months">3 Months</SelectItem>
+                  <SelectItem value="6-months">6 Months</SelectItem>
+                  <SelectItem value="12-months">12 Months</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Repayment Date Field */}
+            {/* Notes Section - Collapsible */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Preferred Repayment Date *
-              </label>
-              <Input
-                type="date"
-                value={salaryAdvanceFormData.repaymentDate}
-                onChange={(e) =>
-                  setSalaryAdvanceFormData((prev) => ({
-                    ...prev,
-                    repaymentDate: e.target.value,
-                  }))
-                }
-                className="w-full h-12 input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
-              />
-            </div>
-
-            {/* Additional Notes */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Additional Notes
-              </label>
-              <Textarea
-                placeholder="Add any additional information or justification for your salary advance request..."
-                value={salaryAdvanceFormData.notes}
-                onChange={(e) =>
-                  setSalaryAdvanceFormData((prev) => ({
-                    ...prev,
-                    notes: e.target.value,
-                  }))
-                }
-                className="w-full min-h-[100px] resize-none input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
-              />
-            </div>
-
-            {/* Attachments Section */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-gray-700">
-                  Supporting Documents
-                </label>
-                <button
-                  onClick={() => setIsAttachmentModalOpen(true)}
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm text-[#4766E5] hover:bg-blue-50 rounded-md transition-colors"
-                >
+              <button
+                onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                className="w-full flex items-center justify-between p-3 bg-gray-100 rounded-lg text-left"
+              >
+                <div className="flex items-center gap-3">
                   <svg
-                    className="w-4 h-4"
+                    className="w-5 h-5 text-gray-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -2201,9 +2327,132 @@ export default function EmployeeDashboard() {
                       d="M12 4v16m8-8H4"
                     />
                   </svg>
-                  Add Document
-                </button>
-              </div>
+                  <span className="text-gray-900 font-medium">Notes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#4766E5]">
+                    {salaryAdvanceFormData.notes ? "Added" : "None"}
+                  </span>
+                  <svg
+                    className={`w-5 h-5 text-[#4766E5] transition-transform ${
+                      isNotesExpanded ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </button>
+
+              {isNotesExpanded && (
+                <div className="mt-2">
+                  <Textarea
+                    placeholder="Add any additional information or justification for your salary advance request..."
+                    value={salaryAdvanceFormData.notes}
+                    onChange={(e) =>
+                      setSalaryAdvanceFormData((prev) => ({
+                        ...prev,
+                        notes: e.target.value,
+                      }))
+                    }
+                    className="w-full min-h-[100px] resize-none focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5]"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Add Attachment Button */}
+            <div className="space-y-3">
+              <button
+                onClick={() => setIsAttachmentModalOpen(true)}
+                className="flex items-center gap-3 text-[#4766E5] hover:bg-blue-50 p-2 rounded-lg transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                  />
+                </svg>
+                <span className="font-medium">Add attachment</span>
+              </button>
+
+              {/* Attachment List */}
+              {salaryAdvanceFormData.attachments.length > 0 && (
+                <div className="space-y-2 mt-3">
+                  {salaryAdvanceFormData.attachments.map((attachment) => (
+                    <div
+                      key={attachment.id}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-100 rounded">
+                          <svg
+                            className="w-4 h-4 text-blue-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">
+                            {attachment.name}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {(attachment.size / 1024 / 1024).toFixed(2)} MB •{" "}
+                            {attachment.source}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setSalaryAdvanceFormData((prev) => ({
+                            ...prev,
+                            attachments: prev.attachments.filter(
+                              (a) => a.id !== attachment.id,
+                            ),
+                          }));
+                        }}
+                        className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {/* Attachment List */}
               {salaryAdvanceFormData.attachments.length > 0 && (
@@ -2271,7 +2520,10 @@ export default function EmployeeDashboard() {
           </div>
 
           <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
-            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8">
+            <Button
+              onClick={handleSalaryAdvanceSubmit}
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+            >
               Submit Advance Request
             </Button>
             <Button
@@ -2290,32 +2542,21 @@ export default function EmployeeDashboard() {
         open={isAttachmentModalOpen}
         onOpenChange={setIsAttachmentModalOpen}
       >
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md [&>button]:hidden">
           <DialogHeader>
-            <DialogTitle className="text-lg font-semibold text-[#283C50]">
-              Choose Attachment Source
+            <DialogTitle className="sr-only">
+              Select Attachment Source
             </DialogTitle>
           </DialogHeader>
-
-          <div className="grid grid-cols-2 gap-4 py-4">
+          <div className="space-y-0">
+            {/* Scan Option */}
             <button
-              onClick={() => handleAttachmentSelect("scan")}
-              disabled={leaveFormData.attachments.length >= 5}
-              className={`flex flex-col items-center p-6 border-2 rounded-lg transition-all group ${
-                leaveFormData.attachments.length >= 5
-                  ? "border-gray-200 bg-gray-50 cursor-not-allowed"
-                  : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
-              }`}
+              onClick={() => handleSalaryAdvanceAttachment("scan")}
+              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
-              <div
-                className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-colors ${
-                  leaveFormData.attachments.length >= 5
-                    ? "bg-gray-300"
-                    : "bg-[#4766E5] group-hover:bg-[#4766E5]/90"
-                }`}
-              >
+              <div className="w-8 h-8 flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-[#4766E5]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2328,38 +2569,17 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span
-                className={`text-sm font-medium ${
-                  leaveFormData.attachments.length >= 5
-                    ? "text-gray-400"
-                    : "text-[#283C50]"
-                }`}
-              >
-                Scan Document
-              </span>
-              <span className="text-xs text-gray-400 mt-1 text-center">
-                PDF, DOC, Images
-              </span>
+              <span className="text-lg text-[#4766E5] font-medium">Scan</span>
             </button>
 
+            {/* Documents Option */}
             <button
-              onClick={() => handleAttachmentSelect("documents")}
-              disabled={leaveFormData.attachments.length >= 5}
-              className={`flex flex-col items-center p-6 border-2 rounded-lg transition-all group ${
-                leaveFormData.attachments.length >= 5
-                  ? "border-gray-200 bg-gray-50 cursor-not-allowed"
-                  : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
-              }`}
+              onClick={() => handleSalaryAdvanceAttachment("documents")}
+              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
-              <div
-                className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-colors ${
-                  leaveFormData.attachments.length >= 5
-                    ? "bg-gray-300"
-                    : "bg-[#4766E5] group-hover:bg-[#4766E5]/90"
-                }`}
-              >
+              <div className="w-8 h-8 flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-[#4766E5]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2372,38 +2592,19 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span
-                className={`text-sm font-medium ${
-                  leaveFormData.attachments.length >= 5
-                    ? "text-gray-400"
-                    : "text-[#283C50]"
-                }`}
-              >
+              <span className="text-lg text-[#4766E5] font-medium">
                 Documents
               </span>
-              <span className="text-xs text-gray-400 mt-1 text-center">
-                Files from device
-              </span>
             </button>
 
+            {/* Camera Option */}
             <button
-              onClick={() => handleAttachmentSelect("camera")}
-              disabled={leaveFormData.attachments.length >= 5}
-              className={`flex flex-col items-center p-6 border-2 rounded-lg transition-all group ${
-                leaveFormData.attachments.length >= 5
-                  ? "border-gray-200 bg-gray-50 cursor-not-allowed"
-                  : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
-              }`}
+              onClick={() => handleSalaryAdvanceAttachment("camera")}
+              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
-              <div
-                className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-colors ${
-                  leaveFormData.attachments.length >= 5
-                    ? "bg-gray-300"
-                    : "bg-[#4766E5] group-hover:bg-[#4766E5]/90"
-                }`}
-              >
+              <div className="w-8 h-8 flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-[#4766E5]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2422,38 +2623,17 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span
-                className={`text-sm font-medium ${
-                  leaveFormData.attachments.length >= 5
-                    ? "text-gray-400"
-                    : "text-[#283C50]"
-                }`}
-              >
-                Camera
-              </span>
-              <span className="text-xs text-gray-400 mt-1 text-center">
-                Take a photo
-              </span>
+              <span className="text-lg text-[#4766E5] font-medium">Camera</span>
             </button>
 
+            {/* Photos Option */}
             <button
-              onClick={() => handleAttachmentSelect("photos")}
-              disabled={leaveFormData.attachments.length >= 5}
-              className={`flex flex-col items-center p-6 border-2 rounded-lg transition-all group ${
-                leaveFormData.attachments.length >= 5
-                  ? "border-gray-200 bg-gray-50 cursor-not-allowed"
-                  : "border-gray-200 hover:border-[#4766E5] hover:bg-blue-50 hover:shadow-md active:scale-95"
-              }`}
+              onClick={() => handleSalaryAdvanceAttachment("photos")}
+              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
-              <div
-                className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-colors ${
-                  leaveFormData.attachments.length >= 5
-                    ? "bg-gray-300"
-                    : "bg-[#4766E5] group-hover:bg-[#4766E5]/90"
-                }`}
-              >
+              <div className="w-8 h-8 flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-[#4766E5]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2466,50 +2646,19 @@ export default function EmployeeDashboard() {
                   />
                 </svg>
               </div>
-              <span
-                className={`text-sm font-medium ${
-                  leaveFormData.attachments.length >= 5
-                    ? "text-gray-400"
-                    : "text-[#283C50]"
-                }`}
-              >
-                Photo Gallery
-              </span>
-              <span className="text-xs text-gray-400 mt-1 text-center">
-                Choose from gallery
-              </span>
+              <span className="text-lg text-[#4766E5] font-medium">Photos</span>
             </button>
           </div>
 
-          {/* File count info */}
-          {leaveFormData.attachments.length > 0 && (
-            <div className="px-4 py-2 bg-blue-50 rounded-lg border border-blue-200">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-blue-700 font-medium">
-                  {leaveFormData.attachments.length} file
-                  {leaveFormData.attachments.length !== 1 ? "s" : ""} attached
-                </span>
-                <span className="text-blue-600">
-                  {5 - leaveFormData.attachments.length} remaining
-                </span>
-              </div>
-            </div>
-          )}
-
-          <DialogFooter className="flex flex-col space-y-2 sm:space-y-0">
-            {leaveFormData.attachments.length >= 5 && (
-              <p className="text-xs text-amber-600 bg-amber-50 p-2 rounded border border-amber-200">
-                ⚠️ Maximum file limit reached (5/5)
-              </p>
-            )}
-            <Button
-              variant="outline"
+          {/* Cancel Button */}
+          <div className="mt-4 pt-4">
+            <button
               onClick={() => setIsAttachmentModalOpen(false)}
-              className="w-full"
+              className="w-full p-4 text-[#4766E5] text-lg font-medium bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
             >
               Cancel
-            </Button>
-          </DialogFooter>
+            </button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
