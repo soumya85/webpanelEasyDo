@@ -3820,223 +3820,413 @@ export default function EmployeeDashboard() {
             <DialogTitle>Your Leave</DialogTitle>
           </VisuallyHidden>
 
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b bg-white">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setIsLeaveModalOpen(false)}
-                className="text-blue-600 hover:text-blue-700"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="w-5 h-5"
-                >
-                  <polyline points="15,18 9,12 15,6" />
-                </svg>
-              </button>
-              <h1 className="text-lg font-semibold text-gray-900">
-                Your Leave
-              </h1>
-            </div>
-            <div className="flex items-center gap-2">
-              <button className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg">
-                Day
-              </button>
-              <button className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200">
-                List
-              </button>
-            </div>
-          </div>
+          {(() => {
+            const monthNames = [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December",
+            ];
+            const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-          {/* Calendar Section */}
-          <div className="flex-1 overflow-y-auto bg-gray-50">
-            {/* Month Navigation */}
-            <div className="flex items-center justify-between px-6 py-4 bg-white border-b">
-              <button className="p-2 hover:bg-gray-100 rounded-lg">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="w-5 h-5"
-                >
-                  <polyline points="15,18 9,12 15,6" />
-                </svg>
-              </button>
-              <div className="text-center">
-                <div className="text-xl font-bold text-gray-900">May</div>
-                <div className="text-red-600 font-semibold">2025</div>
-              </div>
-              <button className="p-2 hover:bg-gray-100 rounded-lg">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="w-5 h-5"
-                >
-                  <polyline points="9,18 15,12 9,6" />
-                </svg>
-              </button>
-            </div>
+            const currentMonth = selectedDate.getMonth();
+            const currentYear = selectedDate.getFullYear();
+            const currentDay = selectedDate.getDate();
 
-            {/* Current Date Display */}
-            <div className="text-center py-3 bg-white border-b">
-              <div className="text-blue-600 font-semibold">14 May 2025</div>
-            </div>
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+            const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
+            const firstDayWeekday = firstDayOfMonth.getDay();
+            const daysInMonth = lastDayOfMonth.getDate();
 
-            {/* Calendar Grid */}
-            <div className="bg-white p-4">
-              {/* Weekday Headers */}
-              <div className="grid grid-cols-7 gap-1 mb-2">
-                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
-                  (day) => (
-                    <div
-                      key={day}
-                      className="text-center text-sm font-semibold text-gray-700 py-2"
+            const prevMonth = new Date(currentYear, currentMonth - 1, 0);
+            const daysInPrevMonth = prevMonth.getDate();
+
+            // Generate calendar dates
+            const calendarDates = [];
+
+            // Previous month dates
+            for (let i = firstDayWeekday - 1; i >= 0; i--) {
+              calendarDates.push({
+                date: daysInPrevMonth - i,
+                isCurrentMonth: false,
+                isPrevMonth: true,
+                isNextMonth: false,
+              });
+            }
+
+            // Current month dates
+            for (let i = 1; i <= daysInMonth; i++) {
+              calendarDates.push({
+                date: i,
+                isCurrentMonth: true,
+                isPrevMonth: false,
+                isNextMonth: false,
+              });
+            }
+
+            // Next month dates to fill the grid
+            const remainingCells = 42 - calendarDates.length;
+            for (let i = 1; i <= remainingCells; i++) {
+              calendarDates.push({
+                date: i,
+                isCurrentMonth: false,
+                isPrevMonth: false,
+                isNextMonth: true,
+              });
+            }
+
+            const navigateMonth = (direction: "prev" | "next") => {
+              const newDate = new Date(selectedDate);
+              if (direction === "prev") {
+                newDate.setMonth(currentMonth - 1);
+              } else {
+                newDate.setMonth(currentMonth + 1);
+              }
+              setSelectedDate(newDate);
+            };
+
+            const selectDate = (date: number, isCurrentMonth: boolean) => {
+              if (isCurrentMonth) {
+                const newDate = new Date(currentYear, currentMonth, date);
+                setSelectedDate(newDate);
+              }
+            };
+
+            // Determine current date state
+            const getDateState = () => {
+              if (currentMonth === 4 && currentDay === 14) {
+                // May 14
+                return "leave";
+              } else if (currentMonth === 5 && currentDay === 19) {
+                // June 19
+                return "absent";
+              } else {
+                return "present";
+              }
+            };
+
+            const dateState = getDateState();
+            const isAbsentMonth = currentMonth === 5; // June - red dots
+
+            return (
+              <>
+                {/* Header */}
+                <div className="flex items-center justify-between p-4 border-b bg-white">
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => setIsLeaveModalOpen(false)}
+                      className="text-blue-600 hover:text-blue-700"
                     >
-                      {day}
-                    </div>
-                  ),
-                )}
-              </div>
-
-              {/* Calendar Dates */}
-              <div className="grid grid-cols-7 gap-1">
-                {/* Previous month dates */}
-                {[27, 28, 29, 30].map((date) => (
-                  <div
-                    key={`prev-${date}`}
-                    className="text-center py-3 text-gray-400 relative"
-                  >
-                    {date}
-                    <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-500 rounded-full"></div>
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="w-5 h-5"
+                      >
+                        <polyline points="15,18 9,12 15,6" />
+                      </svg>
+                    </button>
+                    <h1 className="text-lg font-semibold text-gray-900">
+                      Your Leave
+                    </h1>
                   </div>
-                ))}
-
-                {/* Current month dates */}
-                {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => {
-                  const isToday = date === 14;
-                  const isSunday = [4, 11, 18, 25].includes(date);
-                  const hasLeave = date === 14;
-
-                  return (
-                    <div
-                      key={date}
-                      className={`text-center py-3 relative cursor-pointer hover:bg-gray-100 rounded ${
-                        isToday
-                          ? "bg-blue-600 text-white rounded-lg"
-                          : isSunday
-                            ? "text-red-600"
-                            : "text-gray-900"
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setViewMode("day")}
+                      className={`px-4 py-2 text-sm font-medium rounded-lg ${
+                        viewMode === "day"
+                          ? "bg-blue-600 text-white"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      {date}
-                      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-500 rounded-full"></div>
-                    </div>
-                  );
-                })}
-
-                {/* Next month dates */}
-                {[1, 2, 3, 4, 5, 6, 7].map((date) => (
-                  <div
-                    key={`next-${date}`}
-                    className="text-center py-3 text-gray-400 relative"
-                  >
-                    {date}
-                    <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-500 rounded-full"></div>
+                      Day
+                    </button>
+                    <button
+                      onClick={() => setViewMode("list")}
+                      className={`px-4 py-2 text-sm font-medium rounded-lg ${
+                        viewMode === "list"
+                          ? "bg-blue-600 text-white"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      List
+                    </button>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
 
-            {/* Leave Details Card */}
-            <div className="p-4">
-              <div className="bg-white rounded-lg border p-4">
-                {/* Employee Info */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                      <img
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-                        alt="Soumyadeep Goswami"
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">
-                        Soumyadeep Goswami
+                {/* Calendar Section */}
+                <div className="flex-1 overflow-y-auto bg-gray-50">
+                  {/* Month Navigation */}
+                  <div className="flex items-center justify-between px-6 py-4 bg-white border-b">
+                    <button
+                      onClick={() => navigateMonth("prev")}
+                      className="p-2 hover:bg-gray-100 rounded-lg"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="w-5 h-5"
+                      >
+                        <polyline points="15,18 9,12 15,6" />
+                      </svg>
+                    </button>
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-gray-900">
+                        {monthNames[currentMonth]}
                       </div>
-                      <div className="text-sm text-gray-600">
-                        Liberty Highrise Pvt Ltd
+                      <div className="text-red-600 font-semibold">
+                        {currentYear}
                       </div>
                     </div>
+                    <button
+                      onClick={() => navigateMonth("next")}
+                      className="p-2 hover:bg-gray-100 rounded-lg"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="w-5 h-5"
+                      >
+                        <polyline points="9,18 15,12 9,6" />
+                      </svg>
+                    </button>
                   </div>
-                  <div className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
-                    Approved
+
+                  {/* Current Date Display */}
+                  <div className="text-center py-3 bg-white border-b">
+                    <div className="text-blue-600 font-semibold">
+                      {currentDay} {monthNames[currentMonth]} {currentYear}
+                    </div>
+                  </div>
+
+                  {/* Calendar Grid */}
+                  <div className="bg-white p-4">
+                    {/* Weekday Headers */}
+                    <div className="grid grid-cols-7 gap-1 mb-2">
+                      {dayNames.map((day) => (
+                        <div
+                          key={day}
+                          className="text-center text-sm font-semibold text-gray-700 py-2"
+                        >
+                          {day}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Calendar Dates */}
+                    <div className="grid grid-cols-7 gap-1">
+                      {calendarDates.map((dateObj, index) => {
+                        const isSelected =
+                          dateObj.isCurrentMonth && dateObj.date === currentDay;
+                        const isSunday =
+                          new Date(
+                            currentYear,
+                            currentMonth,
+                            dateObj.date,
+                          ).getDay() === 0;
+
+                        return (
+                          <div
+                            key={index}
+                            onClick={() =>
+                              selectDate(dateObj.date, dateObj.isCurrentMonth)
+                            }
+                            className={`text-center py-3 relative cursor-pointer hover:bg-gray-100 rounded ${
+                              isSelected
+                                ? "bg-blue-600 text-white rounded-lg"
+                                : dateObj.isCurrentMonth
+                                  ? isSunday
+                                    ? "text-red-600"
+                                    : "text-gray-900"
+                                  : "text-gray-400"
+                            }`}
+                          >
+                            {dateObj.date}
+                            <div
+                              className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
+                                isAbsentMonth ? "bg-red-500" : "bg-green-500"
+                              }`}
+                            ></div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Dynamic Bottom Content */}
+                  <div className="p-4">
+                    {dateState === "leave" && (
+                      <div className="bg-white rounded-lg border p-4">
+                        {/* Employee Info */}
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                              <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+                                alt="Soumyadeep Goswami"
+                                className="w-12 h-12 rounded-full object-cover"
+                              />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900">
+                                Soumyadeep Goswami
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Liberty Highrise Pvt Ltd
+                              </div>
+                            </div>
+                          </div>
+                          <div className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                            Approved
+                          </div>
+                        </div>
+
+                        {/* Leave Type and Status */}
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="text-lg font-bold text-gray-900">
+                            Casual Leave
+                          </div>
+                          <div className="text-red-600 font-bold">On Leave</div>
+                        </div>
+
+                        {/* Leave Duration */}
+                        <div className="flex items-center gap-2 mb-2">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className="w-4 h-4 text-gray-600"
+                          >
+                            <rect
+                              x="3"
+                              y="4"
+                              width="18"
+                              height="18"
+                              rx="2"
+                              ry="2"
+                            />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                          </svg>
+                          <span className="font-bold text-gray-900">
+                            1 day May 14
+                          </span>
+                        </div>
+
+                        {/* Reporting Manager */}
+                        <div className="text-sm text-gray-600 mb-1">
+                          Reporting Manager -{" "}
+                          <span className="font-semibold">
+                            Amulya Kumar Kar
+                          </span>
+                        </div>
+
+                        {/* Timestamp */}
+                        <div className="text-xs text-gray-500">
+                          12 May 2025, 08:14 PM
+                        </div>
+                      </div>
+                    )}
+
+                    {dateState === "present" && (
+                      <div className="text-center py-8">
+                        {/* Happy Illustration */}
+                        <div className="mb-6 flex justify-center">
+                          <div className="relative">
+                            <div className="w-32 h-32 bg-gradient-to-r from-blue-100 to-pink-100 rounded-full flex items-center justify-center">
+                              <div className="text-6xl">👩‍💼</div>
+                            </div>
+                            <div className="absolute -top-2 -right-2 text-2xl">
+                              ✨
+                            </div>
+                            <div className="absolute -bottom-2 -left-2 text-2xl">
+                              ✨
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-lg font-semibold text-gray-900">
+                          You are{" "}
+                          <span className="text-green-600">Present</span> on{" "}
+                          {currentDay} {monthNames[currentMonth]} {currentYear}{" "}
+                          -{" "}
+                          {
+                            dayNames[
+                              new Date(
+                                currentYear,
+                                currentMonth,
+                                currentDay,
+                              ).getDay()
+                            ]
+                          }
+                        </div>
+                      </div>
+                    )}
+
+                    {dateState === "absent" && (
+                      <div className="text-center py-8">
+                        {/* Confused Illustration */}
+                        <div className="mb-6 flex justify-center">
+                          <div className="relative">
+                            <div className="w-32 h-32 bg-gradient-to-r from-yellow-200 to-orange-200 rounded-full flex items-center justify-center">
+                              <div className="text-6xl">🤷‍♀️</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-lg font-semibold text-gray-900">
+                          You are <span className="text-red-600">Absent</span>{" "}
+                          on {currentDay} {monthNames[currentMonth]}{" "}
+                          {currentYear} -{" "}
+                          {
+                            dayNames[
+                              new Date(
+                                currentYear,
+                                currentMonth,
+                                currentDay,
+                              ).getDay()
+                            ]
+                          }
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                {/* Leave Type and Status */}
-                <div className="flex items-center justify-between mb-2">
-                  <div className="text-lg font-bold text-gray-900">
-                    Casual Leave
-                  </div>
-                  <div className="text-red-600 font-bold">On Leave</div>
+                {/* Bottom Buttons */}
+                <div className="flex items-center justify-between p-4 bg-white border-t">
+                  <button className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800">
+                    Leave Balance
+                  </button>
+                  <button className="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center hover:bg-gray-800">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="w-6 h-6"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
                 </div>
-
-                {/* Leave Duration */}
-                <div className="flex items-center gap-2 mb-2">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    className="w-4 h-4 text-gray-600"
-                  >
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                  </svg>
-                  <span className="font-bold text-gray-900">1 day May 14</span>
-                </div>
-
-                {/* Reporting Manager */}
-                <div className="text-sm text-gray-600 mb-1">
-                  Reporting Manager -{" "}
-                  <span className="font-semibold">Amulya Kumar Kar</span>
-                </div>
-
-                {/* Timestamp */}
-                <div className="text-xs text-gray-500">
-                  12 May 2025, 08:14 PM
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Buttons */}
-          <div className="flex items-center justify-between p-4 bg-white border-t">
-            <button className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800">
-              Leave Balance
-            </button>
-            <button className="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center hover:bg-gray-800">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="w-6 h-6"
-              >
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
-            </button>
-          </div>
+              </>
+            );
+          })()}
         </DialogContent>
       </Dialog>
     </div>
