@@ -726,7 +726,8 @@ export default function AttendanceSummary() {
               </div>
             )}
 
-            {/* Bottom Attendance Summary */}
+            {/* Bottom Attendance Summary - Only show when not collapsed */}
+            {!isBottomSummaryCollapsed && (
             <div className="bg-white border-t p-4 sticky bottom-0 shadow-2xl">
               {/* Collapse/Expand Arrow */}
               <div className="flex justify-center mb-2">
