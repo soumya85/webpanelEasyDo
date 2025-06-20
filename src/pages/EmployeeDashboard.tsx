@@ -1165,7 +1165,9 @@ export default function EmployeeDashboard() {
               <LeaveBalance />
             </div>
             <div className="min-h-[200px] lg:min-h-[220px]">
-              <UpcomingHolidays />
+              <UpcomingHolidays
+                onViewDetails={() => setIsLeaveBalanceInfoOpen(true)}
+              />
             </div>
           </div>
         </div>
