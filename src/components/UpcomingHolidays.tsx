@@ -40,12 +40,12 @@ export default function UpcomingHolidays() {
               </div>
 
               {/* Holiday Details */}
-              <div className="flex-1">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="space-y-2 flex-1 min-w-0">
                     <h3 className="text-lg font-bold text-gray-800">BAKRID</h3>
                     <div className="flex items-center gap-2 text-sm text-gray-600 whitespace-nowrap">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-4 h-4 flex-shrink-0" />
                       <span>Sat, 07 June 2025</span>
                     </div>
                     <div className="text-sm text-gray-600">
@@ -54,7 +54,7 @@ export default function UpcomingHolidays() {
                   </div>
 
                   {/* Holiday Type Badge */}
-                  <Badge className="bg-[#4766E5] text-white font-medium">
+                  <Badge className="bg-[#4766E5] text-white font-medium flex-shrink-0">
                     General
                   </Badge>
                 </div>
