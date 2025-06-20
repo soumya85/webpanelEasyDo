@@ -1,12 +1,94 @@
-import { ChevronRight, User } from "lucide-react";
+import { ChevronRight, User, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+// Mock attendance data generator
+const generateAttendanceEntry = (date: Date, index: number) => {
+  const statuses = ["Present", "Late", "On Time", "Half Day"];
+  const times = ["10:40 AM", "10:31 AM", "09:15 AM", "11:20 AM", "10:05 AM"];
+  const punchOutTimes = [
+    "09:20 PM",
+    "08:45 PM",
+    "07:30 PM",
+    "06:15 PM",
+    "09:00 PM",
+  ];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const dayName = days[date.getDay()];
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  const hasWorkingHours = index % 3 === 0; // Every 3rd entry has working hours
+  const isLate = index % 4 === 0; // Every 4th entry is late
+  const status = isLate ? "Late" : statuses[index % statuses.length];
+
+  return {
+    id: `attendance-${date.getTime()}`,
+    date: `${dayName}, ${day} ${month}, ${year}`,
+    shortDate: `${day} ${month}`,
+    status: status,
+    isPresent: status !== "Absent",
+    company: "Liberty Righrise Pvt Ltd",
+    punchIn: times[index % times.length],
+    punchOut: hasWorkingHours
+      ? punchOutTimes[index % punchOutTimes.length]
+      : null,
+    location: "Kolkata, West",
+    workingHours: hasWorkingHours
+      ? `${8 + (index % 3)}:${20 + (index % 40)}`
+      : null,
+    overtime: hasWorkingHours ? (index % 2 === 0 ? "0 Hrs" : "1.5 Hrs") : null,
+    isLate: isLate,
+    isOnTime: status === "On Time",
+  };
+};
+
+// Generate initial data (last 30 days)
+const generateInitialData = () => {
+  const entries = [];
+  const today = new Date();
+
+  for (let i = 0; i < 10; i++) {
+    // Start with 10 entries
+    const date = new Date(today);
+    date.setDate(today.getDate() - i);
+
+    // Skip weekends for some realism
+    if (date.getDay() !== 0 && date.getDay() !== 6) {
+      entries.push(generateAttendanceEntry(date, i));
+    }
+  }
+
+  return entries;
+};
 
 export default function AttendanceSummary() {
   const [isAttendanceModalOpen, setIsAttendanceModalOpen] = useState(false);
+  const [attendanceEntries, setAttendanceEntries] = useState(
+    generateInitialData(),
+  );
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [currentOffset, setCurrentOffset] = useState(10);
   const attendanceData = [
     {
       label: "Present",
