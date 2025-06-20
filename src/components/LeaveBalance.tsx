@@ -12,6 +12,7 @@ export default function LeaveBalance() {
   const [selectedLeaveTab, setSelectedLeaveTab] = useState<
     "approved" | "pending" | "availed"
   >("approved");
+  const [isLeaveRulesOpen, setIsLeaveRulesOpen] = useState(false);
   const leaveData = [
     {
       label: "EARNED",
