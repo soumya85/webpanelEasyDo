@@ -46,7 +46,9 @@ export default function UpcomingHolidays() {
                     <h3 className="text-lg font-bold text-gray-800">BAKRID</h3>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Calendar className="w-4 h-4" />
-                      <span>Sat, 07 June 2025</span>
+                      <span className="whitespace-nowrap">
+                        Sat, 07 June 2025
+                      </span>
                     </div>
                     <div className="text-sm text-gray-600">
                       <span className="font-medium">Location:</span> Head Office
