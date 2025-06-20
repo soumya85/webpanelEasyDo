@@ -816,6 +816,7 @@ export default function AttendanceSummary() {
                 </span>
               </div>
             </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
