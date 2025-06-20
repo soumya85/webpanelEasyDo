@@ -85,13 +85,13 @@ const generateInitialData = () => {
 const tabOptions = [
   {
     id: "thisMonth",
-    label: "This Month (Jun)",
-    fullLabel: "This Month (Jun)",
+    label: "This Month (June)",
+    fullLabel: "This Month (June)",
   },
   {
     id: "last30Days",
-    label: "Last 30 days (till 20 Jun)",
-    fullLabel: "Last 30 days (till 20 Jun)",
+    label: "Last 30 days (till 20 June)",
+    fullLabel: "Last 30 days (till 20 June)",
   },
   {
     id: "lastMonth",
