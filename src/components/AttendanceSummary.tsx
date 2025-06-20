@@ -138,6 +138,24 @@ export default function AttendanceSummary() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Attendance Detail Modal */}
+      <Dialog
+        open={isAttendanceModalOpen}
+        onOpenChange={setIsAttendanceModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Attendance Details - June 2025</DialogTitle>
+          </DialogHeader>
+          <div className="py-6">
+            {/* Blank modal content - to be designed later */}
+            <div className="text-center text-gray-500">
+              Attendance details content will be added here
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
