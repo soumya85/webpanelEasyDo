@@ -29,7 +29,7 @@ export default function UpcomingHolidays() {
           <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
               {/* Date Section */}
-              <div className="flex flex-col items-center justify-center bg-blue-50 rounded-lg p-3 min-w-[70px] border-b-4 border-blue-500">
+              <div className="flex flex-col items-center justify-center bg-blue-50 rounded-lg p-2 w-[60px] border-b-4 border-blue-500">
                 <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">
                   Sat
                 </div>
