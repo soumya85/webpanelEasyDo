@@ -324,279 +324,211 @@ export default function AttendanceSummary() {
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto bg-gray-50">
+          <div
+            className="flex-1 overflow-y-auto bg-gray-50"
+            onScroll={handleScroll}
+          >
             <div className="p-4 space-y-4">
-              {/* Attendance Entry - June 20 */}
-              <div className="bg-white rounded-lg shadow-sm border p-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <div className="flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4 text-gray-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="font-medium text-gray-900">
-                        Fri, 20 Jun, 2025
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Present
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Liberty Righrise Pvt Ltd
-                  </h3>
-
-                  <div className="flex items-center justify-between">
+              {/* Dynamic Attendance Entries */}
+              {attendanceEntries.map((entry, index) => (
+                <div
+                  key={entry.id}
+                  className="bg-white rounded-lg shadow-sm border p-4"
+                >
+                  <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-lg border border-green-300">
-                        Punch-In
-                      </span>
-                      <span className="text-lg font-medium text-gray-900">
-                        10:40 AM (IST)
-                      </span>
+                      <div
+                        className={cn(
+                          "w-3 h-3 rounded-full",
+                          entry.isPresent ? "bg-green-500" : "bg-red-500",
+                        )}
+                      ></div>
+                      <div className="flex items-center gap-2">
+                        <svg
+                          className="w-4 h-4 text-gray-600"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="font-medium text-gray-900">
+                          {entry.date}
+                        </span>
+                      </div>
                     </div>
-                    <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-lg">
-                      Verified
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Kolkata, West</span>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
-                      Branch
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-lg border border-red-300">
-                      Late
-                    </span>
-                    <span className="text-gray-600">
-                      Punch-in-Approval : NA
-                    </span>
-                  </div>
-
-                  <button className="text-blue-600 font-medium hover:text-blue-700 transition-colors flex items-center gap-1">
-                    Location Timeline
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              {/* Attendance Entry - June 19 */}
-              <div className="bg-white rounded-lg shadow-sm border p-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     <div className="flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4 text-gray-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="font-medium text-gray-900">
-                        Thu, 19 Jun, 2025
+                      <div
+                        className={cn(
+                          "w-3 h-3 rounded-sm",
+                          entry.isPresent ? "bg-red-500" : "bg-gray-500",
+                        )}
+                      ></div>
+                      <span className="text-sm font-medium text-gray-900">
+                        {entry.status}
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Present
-                    </span>
+
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-bold text-gray-900">
+                      {entry.company}
+                    </h3>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-lg border border-green-300">
+                          Punch-In
+                        </span>
+                        <span className="text-lg font-medium text-gray-900">
+                          {entry.punchIn} (IST)
+                        </span>
+                      </div>
+                      <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-lg">
+                        Verified
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-700">{entry.location}</span>
+                      <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
+                        Branch
+                      </span>
+                    </div>
+
+                    {entry.isLate && (
+                      <div className="flex items-center justify-between">
+                        <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-lg border border-red-300">
+                          Late
+                        </span>
+                        <span className="text-gray-600">
+                          Punch-in-Approval : NA
+                        </span>
+                      </div>
+                    )}
+
+                    {entry.punchOut && (
+                      <>
+                        <hr className="border-gray-200" />
+
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-lg border border-red-300">
+                              Punch-out
+                            </span>
+                            <span className="text-lg font-medium text-gray-900">
+                              {entry.punchOut} (IST)
+                            </span>
+                          </div>
+                          <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-lg">
+                            Verified
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-700">
+                            {entry.location}
+                          </span>
+                          <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
+                            Branch
+                          </span>
+                        </div>
+
+                        {/* Working Hours Summary */}
+                        <div className="border rounded-lg p-3 space-y-2">
+                          <div className="flex items-center justify-center gap-2 bg-gray-100 py-2 rounded">
+                            <svg
+                              className="w-4 h-4 text-gray-600"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span className="font-medium text-gray-900">
+                              Total Working Hours: {entry.workingHours}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-center gap-2 bg-blue-100 py-2 rounded">
+                            <svg
+                              className="w-4 h-4 text-gray-600"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span className="font-medium text-gray-900">
+                              Overtime : {entry.overtime}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-center gap-2 bg-blue-200 py-2 rounded">
+                            <span className="font-medium text-gray-900">
+                              Overtime : NA
+                            </span>
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {entry.isOnTime && (
+                      <div className="flex items-center justify-between">
+                        <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-lg border border-green-300">
+                          On Time
+                        </span>
+                        <span className="text-gray-600">
+                          Punch-in-Approval : NA
+                        </span>
+                      </div>
+                    )}
+
+                    <button className="text-blue-600 font-medium hover:text-blue-700 transition-colors flex items-center gap-1">
+                      Location Timeline
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
+              ))}
 
-                <div className="space-y-3">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Liberty Righrise Pvt Ltd
-                  </h3>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-lg border border-green-300">
-                        Punch-In
-                      </span>
-                      <span className="text-lg font-medium text-gray-900">
-                        10:31 AM (IST)
-                      </span>
-                    </div>
-                    <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-lg">
-                      Verified
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Kolkata, West</span>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
-                      Branch
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-lg border border-red-300">
-                      Late
-                    </span>
-                    <span className="text-gray-600">
-                      Punch-in-Approval : NA
-                    </span>
-                  </div>
-
-                  <hr className="border-gray-200" />
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-lg border border-red-300">
-                        Punch-out
-                      </span>
-                      <span className="text-lg font-medium text-gray-900">
-                        09:20 PM (IST)
-                      </span>
-                    </div>
-                    <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-lg">
-                      Verified
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Kolkata, West</span>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
-                      Branch
-                    </span>
-                  </div>
-
-                  {/* Working Hours Summary */}
-                  <div className="border rounded-lg p-3 space-y-2">
-                    <div className="flex items-center justify-center gap-2 bg-gray-100 py-2 rounded">
-                      <svg
-                        className="w-4 h-4 text-gray-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="font-medium text-gray-900">
-                        Total Working Hours: 10:49
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2 bg-blue-100 py-2 rounded">
-                      <svg
-                        className="w-4 h-4 text-gray-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="font-medium text-gray-900">
-                        Overtime : 0 Hrs
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2 bg-blue-200 py-2 rounded">
-                      <span className="font-medium text-gray-900">
-                        Overtime : NA
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-lg border border-green-300">
-                      On Time
-                    </span>
-                    <span className="text-gray-600">
-                      Punch-in-Approval : NA
-                    </span>
-                  </div>
-
-                  <button className="text-blue-600 font-medium hover:text-blue-700 transition-colors flex items-center gap-1">
-                    Location Timeline
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
+              {/* Loading indicator */}
+              {loading && (
+                <div className="flex items-center justify-center py-6">
+                  <Loader2 className="w-6 h-6 animate-spin text-blue-600 mr-2" />
+                  <span className="text-gray-600">
+                    Loading more attendance records...
+                  </span>
                 </div>
-              </div>
+              )}
 
-              {/* Attendance Entry - June 17 */}
-              <div className="bg-white rounded-lg shadow-sm border p-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <div className="flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4 text-gray-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="font-medium text-gray-900">
-                        Tue, 17 Jun, 2025
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Present
-                    </span>
-                  </div>
+              {/* End of data indicator */}
+              {!hasMore && attendanceEntries.length > 10 && (
+                <div className="text-center py-6">
+                  <span className="text-gray-500">
+                    No more attendance records to load
+                  </span>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Bottom Attendance Summary */}
