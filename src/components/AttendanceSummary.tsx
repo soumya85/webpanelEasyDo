@@ -141,6 +141,10 @@ export default function AttendanceSummary() {
         onOpenChange={setIsAttendanceModalOpen}
       >
         <DialogContent className="max-w-4xl h-[90vh] max-h-[90vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+          <VisuallyHidden>
+            <DialogTitle>Soumyadeep Goswami Attendance Details</DialogTitle>
+          </VisuallyHidden>
+
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-[#F8F9FA] border-b">
             <button
