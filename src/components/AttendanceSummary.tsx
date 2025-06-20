@@ -76,7 +76,7 @@ export default function AttendanceSummary() {
 
           {/* Attendance Cards Grid */}
           <div className="flex-1 flex flex-col">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-4 flex-1">
+            <div className="grid grid-cols-3 gap-3 mb-4 flex-1">
               {attendanceData.map((item, index) => (
                 <div
                   key={item.label}
@@ -87,8 +87,13 @@ export default function AttendanceSummary() {
                     item.borderColor,
                   )}
                 >
-                  <div className={cn("text-2xl font-bold mb-1", item.color)}>
-                    {item.value}
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className={cn("text-2xl font-bold", item.color)}>
+                      {item.value}
+                    </div>
+                    {item.showIcon && (
+                      <User className={cn("w-5 h-5", item.color)} />
+                    )}
                   </div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     {item.label}
@@ -103,12 +108,6 @@ export default function AttendanceSummary() {
                   )}
                   {item.label === "Leave" && (
                     <div className="w-full h-1 bg-orange-500 rounded-full mt-3" />
-                  )}
-                  {item.label === "Total Staff" && (
-                    <div className="w-full h-1 bg-blue-500 rounded-full mt-3" />
-                  )}
-                  {item.label === "Week Off" && (
-                    <div className="w-full h-1 bg-red-500 rounded-full mt-3" />
                   )}
                 </div>
               ))}
