@@ -248,13 +248,9 @@ export default function AttendanceSummary() {
     }
   }, [activeTab, isAttendanceModalOpen]);
 
-  // Toggle bottom summary and scroll to top
+  // Toggle bottom summary position
   const toggleBottomSummary = () => {
     setIsBottomSummaryCollapsed(!isBottomSummaryCollapsed);
-    if (!isBottomSummaryCollapsed && scrollContainerRef.current) {
-      // Scroll to top when collapsing
-      scrollContainerRef.current.scrollTop = 0;
-    }
   };
 
   const attendanceData = [
