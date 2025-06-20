@@ -1,4 +1,4 @@
-import { ChevronRight, User, Loader2 } from "lucide-react";
+import { ChevronRight, ChevronUp, User, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
