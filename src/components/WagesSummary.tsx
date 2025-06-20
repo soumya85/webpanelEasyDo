@@ -94,6 +94,24 @@ export default function WagesSummary() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Wages Detail Modal */}
+      <Dialog
+        open={isWagesDetailModalOpen}
+        onOpenChange={setIsWagesDetailModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Wages Detail - May 2025</DialogTitle>
+          </DialogHeader>
+          <div className="py-6">
+            {/* Blank modal content - to be designed later */}
+            <div className="text-center text-gray-500">
+              Wages detail content will be added here
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
