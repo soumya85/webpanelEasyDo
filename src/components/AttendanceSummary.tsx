@@ -89,6 +89,64 @@ export default function AttendanceSummary() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentOffset, setCurrentOffset] = useState(10);
+
+  // Load more data function
+  const loadMoreData = useCallback(async () => {
+    if (loading || !hasMore) return;
+
+    setLoading(true);
+
+    // Simulate API call delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const newEntries = [];
+    const today = new Date();
+
+    // Generate next 10 entries
+    for (let i = currentOffset; i < currentOffset + 10; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() - i);
+
+      // Skip weekends
+      if (date.getDay() !== 0 && date.getDay() !== 6) {
+        newEntries.push(generateAttendanceEntry(date, i));
+      }
+
+      // Stop after 60 days total
+      if (i >= 60) {
+        setHasMore(false);
+        break;
+      }
+    }
+
+    setAttendanceEntries((prev) => [...prev, ...newEntries]);
+    setCurrentOffset((prev) => prev + 10);
+    setLoading(false);
+  }, [loading, hasMore, currentOffset]);
+
+  // Scroll detection
+  const handleScroll = useCallback(
+    (e: React.UIEvent<HTMLDivElement>) => {
+      const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+
+      // Load more when scrolled to 80% of content
+      if (scrollHeight - scrollTop <= clientHeight * 1.2) {
+        loadMoreData();
+      }
+    },
+    [loadMoreData],
+  );
+
+  // Reset data when modal opens
+  useEffect(() => {
+    if (isAttendanceModalOpen) {
+      setAttendanceEntries(generateInitialData());
+      setCurrentOffset(10);
+      setHasMore(true);
+      setLoading(false);
+    }
+  }, [isAttendanceModalOpen]);
+
   const attendanceData = [
     {
       label: "Present",
