@@ -1165,7 +1165,9 @@ export default function EmployeeDashboard() {
               <LeaveBalance />
             </div>
             <div className="min-h-[200px] lg:min-h-[220px]">
-              <UpcomingHolidays />
+              <UpcomingHolidays
+                onViewDetails={() => setIsLeaveBalanceInfoOpen(true)}
+              />
             </div>
           </div>
         </div>
@@ -1990,34 +1992,11 @@ export default function EmployeeDashboard() {
           </VisuallyHidden>
 
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-[#F8F9FA] border-b relative">
-            {/* Left - Back Button */}
-            <button
-              onClick={() => setIsLeaveBalanceInfoOpen(false)}
-              className="flex items-center text-[#4766E5] text-sm font-medium hover:text-[#4766E5]/80 transition-colors"
-            >
-              <svg
-                className="w-4 h-4 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              Back to Leave Request
-            </button>
-
-            {/* Center - Title */}
-            <div className="absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-lg font-semibold text-[#283C50]">
-                Leave Balance Summary
-              </h1>
-            </div>
+          <div className="flex items-center justify-between px-4 py-3 bg-[#F8F9FA] border-b">
+            {/* Left - Title */}
+            <h1 className="text-lg font-semibold text-[#283C50]">
+              Leave Balance Summary
+            </h1>
 
             {/* Right - Close Button */}
             <button
