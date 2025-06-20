@@ -1,10 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function PerformanceMeter() {
@@ -41,23 +43,31 @@ export default function PerformanceMeter() {
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
         <CardContent className="p-3 flex-1 flex flex-col">
-          {/* Section Header - Title at top */}
-          <div className="text-center mb-2">
-            <h2 className="text-[#283C50] font-inter text-lg font-bold mb-1">
-              Performance Meter
+          {/* Section Header */}
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[#283C50] font-inter text-xl font-bold">
+              Employee Score
             </h2>
-            <p className="text-xs text-gray-600">
-              ( Overall Score : {overallScore}% )
-            </p>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#4766E5] hover:text-[#4766E5]/80"
+            >
+              More Info
+              <ChevronRight className="w-4 h-4 ml-1" />
+            </Button>
           </div>
 
           {/* Large, Clear Score Display */}
           <div className="text-center mb-2 py-2">
             <div className="text-3xl font-bold text-red-500 mb-1">
-              {overallScore}%
+              {overallScore}%{" "}
+              <span className="text-sm text-gray-600 font-normal">
+                ( Overall Score )
+              </span>
             </div>
-            <div className="text-sm font-medium text-gray-600 mb-2">
-              Overall Performance Score
+            <div className="text-lg font-bold text-gray-600 mb-2">
+              Performance Meter
             </div>
 
             {/* Simple Progress Bar */}
