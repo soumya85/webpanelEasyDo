@@ -415,7 +415,7 @@ export default function AttendanceSummary() {
                 key={tab.id}
                 onClick={() => handleTabChange(tab.id)}
                 className={cn(
-                  "flex-1 py-3 px-4 text-center font-medium transition-colors relative",
+                  "flex-1 py-1 px-4 text-center font-medium transition-colors relative",
                   activeTab === tab.id
                     ? "text-gray-900 border-b-2 border-gray-800"
                     : "text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-300",
@@ -644,7 +644,7 @@ export default function AttendanceSummary() {
             )}
 
             {/* Bottom Attendance Summary */}
-            <div className="bg-white border-t p-4 sticky bottom-0 shadow-lg">
+            <div className="bg-white border-t p-4 sticky bottom-0 shadow-2xl">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
                 <span className="text-blue-600 font-medium">
