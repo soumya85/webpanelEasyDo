@@ -1158,13 +1158,13 @@ export default function EmployeeDashboard() {
 
           {/* Second Row: Wages, Leave Balance, and Upcoming Holidays - Equal Heights */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="min-h-[280px] lg:min-h-[320px]">
+            <div className="min-h-[240px] lg:min-h-[260px]">
               <WagesSummary />
             </div>
-            <div className="min-h-[280px] lg:min-h-[320px]">
+            <div className="min-h-[240px] lg:min-h-[260px]">
               <LeaveBalance />
             </div>
-            <div className="min-h-[280px] lg:min-h-[320px]">
+            <div className="min-h-[240px] lg:min-h-[260px]">
               <UpcomingHolidays />
             </div>
           </div>
