@@ -415,7 +415,7 @@ export default function AttendanceSummary() {
                 key={tab.id}
                 onClick={() => handleTabChange(tab.id)}
                 className={cn(
-                  "flex-1 py-3 px-4 text-center font-medium transition-colors relative",
+                  "flex-1 py-2 px-4 text-center font-medium transition-colors relative",
                   activeTab === tab.id
                     ? "text-gray-900 border-b-2 border-gray-800"
                     : "text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-300",
