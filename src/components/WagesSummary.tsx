@@ -50,6 +50,7 @@ export default function WagesSummary() {
               variant="ghost"
               size="sm"
               className="text-[#4766E5] hover:text-[#4766E5]/80"
+              onClick={() => setIsWagesDetailModalOpen(true)}
             >
               View Detail
               <ChevronRight className="w-4 h-4 ml-1" />
