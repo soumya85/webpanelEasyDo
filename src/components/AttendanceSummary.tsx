@@ -644,7 +644,7 @@ export default function AttendanceSummary() {
             )}
 
             {/* Bottom Attendance Summary */}
-            <div className="bg-white border-t p-4 sticky bottom-0 shadow-lg">
+            <div className="bg-white border-t p-4 sticky bottom-0 shadow-2xl">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
                 <span className="text-blue-600 font-medium">
