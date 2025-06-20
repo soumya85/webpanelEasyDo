@@ -1,17 +1,19 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Download, Mail, Eye, ChevronLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 export default function WagesSummary() {
   const [isWagesDetailModalOpen, setIsWagesDetailModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<"current" | "year" | "issued">(
+    "current",
+  );
+  const [activeSubTab, setActiveSubTab] = useState<
+    "timesheet" | "earnings" | "allowance" | "deductions"
+  >("timesheet");
+  const [selectedMonth, setSelectedMonth] = useState("JUN");
   const wagesData = [
     {
       label: "Earning",
