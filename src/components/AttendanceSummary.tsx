@@ -244,7 +244,6 @@ export default function AttendanceSummary() {
       setHasMore(newData.length >= 10);
     }
   }, [activeTab, isAttendanceModalOpen]);
-  }, [isAttendanceModalOpen]);
 
   const attendanceData = [
     {
