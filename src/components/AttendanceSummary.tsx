@@ -511,8 +511,10 @@ export default function AttendanceSummary() {
 
           {/* Bottom Summary When Collapsed - Positioned Right After Tabs */}
           {isBottomSummaryCollapsed && (
-            <div className="bg-white border-b shadow-lg z-10">
-              <AttendanceSummaryContent />
+            <div className="bg-white border border-gray-200 shadow-lg z-10 rounded-b-lg">
+              <div className="border-b border-gray-100 bg-gray-50/50 rounded-t-lg">
+                <AttendanceSummaryContent />
+              </div>
             </div>
           )}
 
