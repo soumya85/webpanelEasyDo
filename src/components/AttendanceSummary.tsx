@@ -68,7 +68,7 @@ export default function AttendanceSummary() {
             </h2>
             <div className="flex items-center gap-2">
               <button className="text-[#4766E5] font-medium hover:text-[#3752D1] transition-colors cursor-pointer">
-                <span className="text-sm">Today (Fri, 13 Jun 2025)</span>
+                <span className="text-sm">June, 2025</span>
               </button>
               <ChevronRight className="w-4 h-4 text-[#4766E5]" />
             </div>
