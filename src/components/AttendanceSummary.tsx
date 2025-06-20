@@ -165,7 +165,8 @@ export default function AttendanceSummary() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentOffset, setCurrentOffset] = useState(10);
-  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] = useState(false);
+  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] =
+    useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Load more data function
@@ -662,12 +663,16 @@ export default function AttendanceSummary() {
                 <button
                   onClick={toggleBottomSummary}
                   className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                  aria-label={isBottomSummaryCollapsed ? "Expand summary" : "Collapse summary"}
+                  aria-label={
+                    isBottomSummaryCollapsed
+                      ? "Expand summary"
+                      : "Collapse summary"
+                  }
                 >
                   <ChevronUp
                     className={cn(
                       "w-5 h-5 text-gray-500 transition-transform duration-200",
-                      isBottomSummaryCollapsed ? "rotate-180" : ""
+                      isBottomSummaryCollapsed ? "rotate-180" : "",
                     )}
                   />
                 </button>
@@ -684,55 +689,63 @@ export default function AttendanceSummary() {
               {/* Collapsible Attendance Grid */}
               {!isBottomSummaryCollapsed && (
                 <div className="grid grid-cols-7 gap-2 mb-4">
-                <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
-                  <div className="flex items-center gap-1 mb-1">
-                    <div className="text-xl font-bold text-green-600">16</div>
-                    <User className="w-4 h-4 text-green-600" />
+                  <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
+                    <div className="flex items-center gap-1 mb-1">
+                      <div className="text-xl font-bold text-green-600">16</div>
+                      <User className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div className="text-xs text-gray-700 text-center font-medium">
+                      Present
+                    </div>
                   </div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Present
+                  <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                    <div className="text-xl font-bold text-gray-600 mb-1">
+                      0
+                    </div>
+                    <div className="text-xs text-gray-700 text-center font-medium">
+                      Absent
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
+                    <div className="text-xl font-bold text-orange-600 mb-1">
+                      0
+                    </div>
+                    <div className="text-xs text-gray-700 text-center font-medium">
+                      Leave
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                    <div className="text-xl font-bold text-gray-500 mb-1">
+                      2
+                    </div>
+                    <div className="text-xs text-gray-700 text-center font-medium">
+                      Late
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                    <div className="text-xl font-bold text-gray-500 mb-1">
+                      0
+                    </div>
+                    <div className="text-xs text-gray-700 text-center font-medium">
+                      Half Day
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                    <div className="text-xl font-bold text-red-600 mb-1">2</div>
+                    <div className="text-xs text-gray-700 text-center font-medium">
+                      Red Flags
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                    <div className="text-xl font-bold text-red-600 mb-1">4</div>
+                    <div className="text-xs text-gray-700 text-center font-medium">
+                      Holidays
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-xl font-bold text-gray-600 mb-1">0</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Absent
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
-                  <div className="text-xl font-bold text-orange-600 mb-1">
-                    0
-                  </div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Leave
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-xl font-bold text-gray-500 mb-1">2</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Late
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-xl font-bold text-gray-500 mb-1">0</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Half Day
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                  <div className="text-xl font-bold text-red-600 mb-1">2</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Red Flags
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                  <div className="text-xl font-bold text-red-600 mb-1">4</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Holidays
-                  </div>
-                </div>
-              </div>
+              )}
 
+              {/* Total Days Summary - Always Visible */}
               <div className="mt-4 text-center">
                 <span className="text-gray-700 font-medium">
                   Total Days{" "}
