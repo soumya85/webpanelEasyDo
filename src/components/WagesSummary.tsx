@@ -1,9 +1,17 @@
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 export default function WagesSummary() {
+  const [isWagesDetailModalOpen, setIsWagesDetailModalOpen] = useState(false);
   const wagesData = [
     {
       label: "Earning",
