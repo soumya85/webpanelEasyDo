@@ -418,7 +418,7 @@ export default function AttendanceSummary() {
                   "flex-1 py-3 px-4 text-center font-medium transition-colors relative",
                   activeTab === tab.id
                     ? "text-gray-900 border-b-2 border-gray-800"
-                    : "text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-300",
+                    : "text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-300"
                 )}
               >
                 {tab.label}
@@ -431,9 +431,17 @@ export default function AttendanceSummary() {
             className="flex-1 overflow-y-auto bg-gray-50"
             onScroll={handleScroll}
           >
-            <div className="p-4 space-y-4">
-              {/* Dynamic Attendance Entries */}
-              {attendanceEntries.map((entry, index) => (
+            {loading ? (
+              <div className="flex items-center justify-center h-64">
+                <div className="flex items-center gap-2 text-gray-600">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>Loading attendance data...</span>
+                </div>
+              </div>
+            ) : (
+              <div className="p-4 space-y-4">
+                {/* Dynamic Attendance Entries */}
+                {attendanceEntries.map((entry, index) => (
                 <div
                   key={entry.id}
                   className="bg-white rounded-lg shadow-sm border p-4"
