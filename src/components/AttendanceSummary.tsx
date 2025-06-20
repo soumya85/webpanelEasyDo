@@ -440,6 +440,7 @@ export default function AttendanceSummary() {
 
           {/* Content */}
           <div
+            ref={scrollContainerRef}
             className="flex-1 overflow-y-auto bg-gray-50"
             onScroll={handleScroll}
           >
