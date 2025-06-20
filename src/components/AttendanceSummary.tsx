@@ -165,8 +165,7 @@ export default function AttendanceSummary() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentOffset, setCurrentOffset] = useState(10);
-  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] =
-    useState(false);
+  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Load more data function
@@ -434,12 +433,87 @@ export default function AttendanceSummary() {
             ))}
           </div>
 
-          {/* Content */}
-          <div
-            ref={scrollContainerRef}
-            className="flex-1 overflow-y-auto bg-gray-50"
-            onScroll={handleScroll}
-          >
+          {/* Content Container */}
+          <div className="flex-1 relative overflow-hidden">
+            {/* Bottom Summary When Collapsed - Positioned at Top */}
+            {isBottomSummaryCollapsed && (
+              <div className="absolute top-0 left-0 right-0 z-10 bg-white border-b shadow-lg">
+                {/* Collapsed Summary Content */}
+                <div className="p-4">
+                  {/* Collapse/Expand Arrow */}
+                  <div className="flex justify-center mb-2">
+                    <button
+                      onClick={toggleBottomSummary}
+                      className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                      aria-label="Expand summary"
+                    >
+                      <ChevronUp className="w-5 h-5 text-gray-500 rotate-180 transition-transform duration-200" />
+                    </button>
+                  </div>
+
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
+                    <span className="text-blue-600 font-medium">
+                      {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
+                        "This Month (June)"}
+                    </span>
+                  </div>
+
+                  {/* Attendance Grid */}
+                  <div className="grid grid-cols-7 gap-2 mb-4">
+                    <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
+                      <div className="flex items-center gap-1 mb-1">
+                        <div className="text-xl font-bold text-green-600">16</div>
+                        <User className="w-4 h-4 text-green-600" />
+                      </div>
+                      <div className="text-xs text-gray-700 text-center font-medium">Present</div>
+                    </div>
+                    <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                      <div className="text-xl font-bold text-gray-600 mb-1">0</div>
+                      <div className="text-xs text-gray-700 text-center font-medium">Absent</div>
+                    </div>
+                    <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
+                      <div className="text-xl font-bold text-orange-600 mb-1">0</div>
+                      <div className="text-xs text-gray-700 text-center font-medium">Leave</div>
+                    </div>
+                    <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                      <div className="text-xl font-bold text-gray-500 mb-1">2</div>
+                      <div className="text-xs text-gray-700 text-center font-medium">Late</div>
+                    </div>
+                    <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                      <div className="text-xl font-bold text-gray-500 mb-1">0</div>
+                      <div className="text-xs text-gray-700 text-center font-medium">Half Day</div>
+                    </div>
+                    <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                      <div className="text-xl font-bold text-red-600 mb-1">2</div>
+                      <div className="text-xs text-gray-700 text-center font-medium">Red Flags</div>
+                    </div>
+                    <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                      <div className="text-xl font-bold text-red-600 mb-1">4</div>
+                      <div className="text-xs text-gray-700 text-center font-medium">Holidays</div>
+                    </div>
+                  </div>
+
+                  {/* Total Days Summary */}
+                  <div className="text-center">
+                    <span className="text-gray-700 font-medium">
+                      Total Days <span className="text-gray-800 font-semibold">20</span>,
+                      Working Days <span className="text-gray-800 font-semibold">16</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Scrollable Content Area */}
+            <div
+              ref={scrollContainerRef}
+              className={cn(
+                "h-full overflow-y-auto bg-gray-50",
+                isBottomSummaryCollapsed ? "opacity-0 pointer-events-none" : ""
+              )}
+              onScroll={handleScroll}
+            >
             {loading ? (
               <div className="flex items-center justify-center h-64">
                 <div className="flex items-center gap-2 text-gray-600">
@@ -659,16 +733,12 @@ export default function AttendanceSummary() {
                 <button
                   onClick={toggleBottomSummary}
                   className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                  aria-label={
-                    isBottomSummaryCollapsed
-                      ? "Expand summary"
-                      : "Collapse summary"
-                  }
+                  aria-label={isBottomSummaryCollapsed ? "Expand summary" : "Collapse summary"}
                 >
                   <ChevronUp
                     className={cn(
                       "w-5 h-5 text-gray-500 transition-transform duration-200",
-                      isBottomSummaryCollapsed ? "rotate-180" : "",
+                      isBottomSummaryCollapsed ? "rotate-180" : ""
                     )}
                   />
                 </button>
@@ -685,60 +755,54 @@ export default function AttendanceSummary() {
               {/* Collapsible Attendance Grid */}
               {!isBottomSummaryCollapsed && (
                 <div className="grid grid-cols-7 gap-2 mb-4">
-                  <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
-                    <div className="flex items-center gap-1 mb-1">
-                      <div className="text-xl font-bold text-green-600">16</div>
-                      <User className="w-4 h-4 text-green-600" />
-                    </div>
-                    <div className="text-xs text-gray-700 text-center font-medium">
-                      Present
-                    </div>
+                <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
+                  <div className="flex items-center gap-1 mb-1">
+                    <div className="text-xl font-bold text-green-600">16</div>
+                    <User className="w-4 h-4 text-green-600" />
                   </div>
-                  <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                    <div className="text-xl font-bold text-gray-600 mb-1">
-                      0
-                    </div>
-                    <div className="text-xs text-gray-700 text-center font-medium">
-                      Absent
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
-                    <div className="text-xl font-bold text-orange-600 mb-1">
-                      0
-                    </div>
-                    <div className="text-xs text-gray-700 text-center font-medium">
-                      Leave
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                    <div className="text-xl font-bold text-gray-500 mb-1">
-                      2
-                    </div>
-                    <div className="text-xs text-gray-700 text-center font-medium">
-                      Late
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                    <div className="text-xl font-bold text-gray-500 mb-1">
-                      0
-                    </div>
-                    <div className="text-xs text-gray-700 text-center font-medium">
-                      Half Day
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                    <div className="text-xl font-bold text-red-600 mb-1">2</div>
-                    <div className="text-xs text-gray-700 text-center font-medium">
-                      Red Flags
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                    <div className="text-xl font-bold text-red-600 mb-1">4</div>
-                    <div className="text-xs text-gray-700 text-center font-medium">
-                      Holidays
-                    </div>
+                  <div className="text-xs text-gray-700 text-center font-medium">
+                    Present
                   </div>
                 </div>
+                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                  <div className="text-xl font-bold text-gray-600 mb-1">0</div>
+                  <div className="text-xs text-gray-700 text-center font-medium">
+                    Absent
+                  </div>
+                </div>
+                <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
+                  <div className="text-xl font-bold text-orange-600 mb-1">
+                    0
+                  </div>
+                  <div className="text-xs text-gray-700 text-center font-medium">
+                    Leave
+                  </div>
+                </div>
+                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                  <div className="text-xl font-bold text-gray-500 mb-1">2</div>
+                  <div className="text-xs text-gray-700 text-center font-medium">
+                    Late
+                  </div>
+                </div>
+                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                  <div className="text-xl font-bold text-gray-500 mb-1">0</div>
+                  <div className="text-xs text-gray-700 text-center font-medium">
+                    Half Day
+                  </div>
+                </div>
+                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                  <div className="text-xl font-bold text-red-600 mb-1">2</div>
+                  <div className="text-xs text-gray-700 text-center font-medium">
+                    Red Flags
+                  </div>
+                </div>
+                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                  <div className="text-xl font-bold text-red-600 mb-1">4</div>
+                  <div className="text-xs text-gray-700 text-center font-medium">
+                    Holidays
+                  </div>
+                </div>
+              </div>
               )}
 
               {/* Total Days Summary - Always Visible */}
