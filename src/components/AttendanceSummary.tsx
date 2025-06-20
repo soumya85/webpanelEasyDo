@@ -47,110 +47,82 @@ const generateAttendanceEntry = (date: Date, index: number) => {
     shortDate: `${day} ${month}`,
     status: status,
     isPresent: status !== "Absent",
-    company: "Liberty Righrise Pvt Ltd",
-    punchIn: times[index % times.length],
-    punchOut: hasWorkingHours
-      ? punchOutTimes[index % punchOutTimes.length]
-      : null,
+    punchInTime: times[index % times.length],
+    punchOutTime: punchOutTimes[index % punchOutTimes.length],
     location: "Kolkata, West",
-    workingHours: hasWorkingHours
-      ? `${8 + (index % 3)}:${20 + (index % 40)}`
-      : null,
-    overtime: hasWorkingHours ? (index % 2 === 0 ? "0 Hrs" : "1.5 Hrs") : null,
+    company: "Liberty Righrise Pvt Ltd",
+    workingHours: hasWorkingHours ? "8:20" : null,
     isLate: isLate,
-    isOnTime: status === "On Time",
+    hasApproval: index % 2 === 0,
   };
 };
 
-// Generate initial data (last 30 days)
+// Generate initial data for "This Month"
 const generateInitialData = () => {
   const entries = [];
   const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentYear = today.getFullYear();
 
-  for (let i = 0; i < 10; i++) {
-    // Start with 10 entries
-    const date = new Date(today);
-    date.setDate(today.getDate() - i);
-
-    // Skip weekends for some realism
+  // Generate entries for the current month up to today
+  for (let i = 1; i <= today.getDate(); i++) {
+    const date = new Date(currentYear, currentMonth, i);
+    // Skip weekends (Saturday = 6, Sunday = 0)
     if (date.getDay() !== 0 && date.getDay() !== 6) {
       entries.push(generateAttendanceEntry(date, i));
     }
   }
 
-  return entries;
+  return entries.reverse(); // Most recent first
 };
 
-// Tab configuration
-const tabOptions = [
-  {
-    id: "thisMonth",
-    label: "This Month (June)",
-    fullLabel: "This Month (June)",
-  },
-  {
-    id: "last30Days",
-    label: "Last 30 days (till 20 June)",
-    fullLabel: "Last 30 days (till 20 June)",
-  },
-  {
-    id: "lastMonth",
-    label: "Last Month (May)",
-    fullLabel: "Last Month (May)",
-  },
-  {
-    id: "thisYear",
-    label: "This Year (2025)",
-    fullLabel: "This Year (2025)",
-  },
-];
-
-// Generate data based on tab selection
+// Generate data for different tabs
 const generateDataForTab = (tabId: string) => {
   const entries = [];
   const today = new Date();
-  let startDate, endDate, maxEntries;
 
-  switch (tabId) {
-    case "thisMonth":
-      // Current month (June 2025)
-      startDate = new Date(2025, 5, 1); // June 1st, 2025
-      endDate = new Date(2025, 5, 30); // June 30th, 2025
-      maxEntries = 20;
-      break;
-    case "last30Days":
-      // Last 30 days from today
-      endDate = new Date();
-      startDate = new Date();
-      startDate.setDate(today.getDate() - 30);
-      maxEntries = 25;
-      break;
-    case "lastMonth":
-      // Previous month (May 2025)
-      startDate = new Date(2025, 4, 1); // May 1st, 2025
-      endDate = new Date(2025, 4, 31); // May 31st, 2025
-      maxEntries = 22;
-      break;
-    case "thisYear":
-      // This year (2025) - show recent entries
-      startDate = new Date(2025, 0, 1); // January 1st, 2025
-      endDate = new Date();
-      maxEntries = 50;
-      break;
-    default:
-      return generateInitialData();
-  }
-
-  let currentDate = new Date(endDate);
-  let entryCount = 0;
-
-  while (currentDate >= startDate && entryCount < maxEntries) {
-    // Skip weekends for some realism
-    if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
-      entries.push(generateAttendanceEntry(new Date(currentDate), entryCount));
-      entryCount++;
+  if (tabId === "thisMonth") {
+    return generateInitialData();
+  } else if (tabId === "last30Days") {
+    // Generate data for last 30 days
+    for (let i = 0; i < 30; i++) {
+      const date = new Date();
+      date.setDate(today.getDate() - i);
+      // Skip weekends
+      if (date.getDay() !== 0 && date.getDay() !== 6) {
+        entries.push(generateAttendanceEntry(date, i));
+      }
     }
-    currentDate.setDate(currentDate.getDate() - 1);
+    return entries;
+  } else if (tabId === "lastMonth") {
+    // Generate data for last month
+    const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+    const lastMonthEnd = new Date(today.getFullYear(), today.getMonth(), 0);
+
+    for (let i = 1; i <= lastMonthEnd.getDate(); i++) {
+      const date = new Date(lastMonth.getFullYear(), lastMonth.getMonth(), i);
+      if (date.getDay() !== 0 && date.getDay() !== 6) {
+        entries.push(generateAttendanceEntry(date, i));
+      }
+    }
+    return entries.reverse();
+  } else if (tabId === "thisYear") {
+    // Generate data for this year (last 90 working days)
+    let entryCount = 0;
+    for (let i = 0; i < 365 && entryCount < 90; i++) {
+      const date = new Date();
+      date.setDate(today.getDate() - i);
+      if (date.getFullYear() === today.getFullYear()) {
+        const currentDate = new Date(date);
+        if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+          entries.push(
+            generateAttendanceEntry(new Date(currentDate), entryCount),
+          );
+          entryCount++;
+        }
+      }
+    }
+    return entries;
   }
 
   return entries;
@@ -165,50 +137,45 @@ export default function AttendanceSummary() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentOffset, setCurrentOffset] = useState(10);
-  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] = useState(false);
+  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] =
+    useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Load more data function
-  const loadMoreData = useCallback(async () => {
+  const loadMoreData = useCallback(() => {
     if (loading || !hasMore) return;
 
     setLoading(true);
+    setTimeout(() => {
+      const today = new Date();
+      const newEntries = [];
 
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    const newEntries = [];
-    const today = new Date();
-
-    // Generate next 10 entries
-    for (let i = currentOffset; i < currentOffset + 10; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() - i);
-
-      // Skip weekends
-      if (date.getDay() !== 0 && date.getDay() !== 6) {
-        newEntries.push(generateAttendanceEntry(date, i));
+      // Generate more entries based on current offset
+      for (let i = currentOffset; i < currentOffset + 10; i++) {
+        const date = new Date();
+        date.setDate(today.getDate() - i);
+        // Skip weekends
+        if (date.getDay() !== 0 && date.getDay() !== 6) {
+          newEntries.push(generateAttendanceEntry(date, i));
+        }
       }
 
-      // Stop after 60 days total
-      if (i >= 60) {
+      if (newEntries.length === 0) {
         setHasMore(false);
-        break;
+      } else {
+        setAttendanceEntries((prev) => [...prev, ...newEntries]);
+        setCurrentOffset((prev) => prev + 10);
       }
-    }
 
-    setAttendanceEntries((prev) => [...prev, ...newEntries]);
-    setCurrentOffset((prev) => prev + 10);
-    setLoading(false);
-  }, [loading, hasMore, currentOffset]);
+      setLoading(false);
+    }, 1000);
+  }, [currentOffset, loading, hasMore]);
 
-  // Scroll detection
+  // Handle scroll to load more data
   const handleScroll = useCallback(
     (e: React.UIEvent<HTMLDivElement>) => {
       const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-
-      // Load more when scrolled to 80% of content
-      if (scrollHeight - scrollTop <= clientHeight * 1.2) {
+      if (scrollHeight - scrollTop <= clientHeight * 1.5) {
         loadMoreData();
       }
     },
@@ -219,18 +186,16 @@ export default function AttendanceSummary() {
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
     setLoading(true);
-
-    // Simulate loading delay for better UX
     setTimeout(() => {
       const newData = generateDataForTab(tabId);
       setAttendanceEntries(newData);
       setCurrentOffset(newData.length);
-      setHasMore(newData.length >= 10); // Allow more loading if we have enough data
+      setHasMore(newData.length >= 10);
       setLoading(false);
-    }, 300);
+    }, 500);
   };
 
-  // Reset data when modal opens or tab changes
+  // Reset modal state when opened
   useEffect(() => {
     if (isAttendanceModalOpen) {
       handleTabChange(activeTab);
@@ -304,6 +269,117 @@ export default function AttendanceSummary() {
       borderColor: "border-red-200",
     },
   ];
+
+  const tabOptions = [
+    {
+      id: "thisMonth",
+      label: "This Month (June)",
+      fullLabel: "This Month (June)",
+    },
+    {
+      id: "last30Days",
+      label: "Last 30 days (till 20 June)",
+      fullLabel: "Last 30 days (till 20 June)",
+    },
+    {
+      id: "lastMonth",
+      label: "Last Month (May)",
+      fullLabel: "Last Month (May)",
+    },
+    {
+      id: "thisYear",
+      label: "This Year (2025)",
+      fullLabel: "This Year (2025)",
+    },
+  ];
+
+  // Attendance summary component
+  const AttendanceSummaryContent = () => (
+    <div className="p-4">
+      {/* Collapse/Expand Arrow */}
+      <div className="flex justify-center mb-2">
+        <button
+          onClick={toggleBottomSummary}
+          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+          aria-label={
+            isBottomSummaryCollapsed ? "Expand summary" : "Collapse summary"
+          }
+        >
+          <ChevronUp
+            className={cn(
+              "w-5 h-5 text-gray-500 transition-transform duration-200",
+              isBottomSummaryCollapsed ? "rotate-180" : "",
+            )}
+          />
+        </button>
+      </div>
+
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
+        <span className="text-blue-600 font-medium">
+          {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
+            "This Month (June)"}
+        </span>
+      </div>
+
+      {/* Attendance Grid */}
+      <div className="grid grid-cols-7 gap-2 mb-4">
+        <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
+          <div className="flex items-center gap-1 mb-1">
+            <div className="text-xl font-bold text-green-600">16</div>
+            <User className="w-4 h-4 text-green-600" />
+          </div>
+          <div className="text-xs text-gray-700 text-center font-medium">
+            Present
+          </div>
+        </div>
+        <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+          <div className="text-xl font-bold text-gray-600 mb-1">0</div>
+          <div className="text-xs text-gray-700 text-center font-medium">
+            Absent
+          </div>
+        </div>
+        <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
+          <div className="text-xl font-bold text-orange-600 mb-1">0</div>
+          <div className="text-xs text-gray-700 text-center font-medium">
+            Leave
+          </div>
+        </div>
+        <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+          <div className="text-xl font-bold text-gray-500 mb-1">2</div>
+          <div className="text-xs text-gray-700 text-center font-medium">
+            Late
+          </div>
+        </div>
+        <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+          <div className="text-xl font-bold text-gray-500 mb-1">0</div>
+          <div className="text-xs text-gray-700 text-center font-medium">
+            Half Day
+          </div>
+        </div>
+        <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+          <div className="text-xl font-bold text-red-600 mb-1">2</div>
+          <div className="text-xs text-gray-700 text-center font-medium">
+            Red Flags
+          </div>
+        </div>
+        <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+          <div className="text-xl font-bold text-red-600 mb-1">4</div>
+          <div className="text-xs text-gray-700 text-center font-medium">
+            Holidays
+          </div>
+        </div>
+      </div>
+
+      {/* Total Days Summary */}
+      <div className="text-center">
+        <span className="text-gray-700 font-medium">
+          Total Days <span className="text-gray-800 font-semibold">20</span>,
+          Working Days <span className="text-gray-800 font-semibold">16</span>
+        </span>
+      </div>
+    </div>
+  );
 
   return (
     <div className="w-full h-full">
@@ -438,70 +514,7 @@ export default function AttendanceSummary() {
             {/* Bottom Summary When Collapsed - Positioned at Top */}
             {isBottomSummaryCollapsed && (
               <div className="absolute top-0 left-0 right-0 z-10 bg-white border-b shadow-lg">
-                {/* Collapsed Summary Content */}
-                <div className="p-4">
-                  {/* Collapse/Expand Arrow */}
-                  <div className="flex justify-center mb-2">
-                    <button
-                      onClick={toggleBottomSummary}
-                      className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                      aria-label="Expand summary"
-                    >
-                      <ChevronUp className="w-5 h-5 text-gray-500 rotate-180 transition-transform duration-200" />
-                    </button>
-                  </div>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
-                    <span className="text-blue-600 font-medium">
-                      {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
-                        "This Month (June)"}
-                    </span>
-                  </div>
-
-                  {/* Attendance Grid */}
-                  <div className="grid grid-cols-7 gap-2 mb-4">
-                    <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
-                      <div className="flex items-center gap-1 mb-1">
-                        <div className="text-xl font-bold text-green-600">16</div>
-                        <User className="w-4 h-4 text-green-600" />
-                      </div>
-                      <div className="text-xs text-gray-700 text-center font-medium">Present</div>
-                    </div>
-                    <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                      <div className="text-xl font-bold text-gray-600 mb-1">0</div>
-                      <div className="text-xs text-gray-700 text-center font-medium">Absent</div>
-                    </div>
-                    <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
-                      <div className="text-xl font-bold text-orange-600 mb-1">0</div>
-                      <div className="text-xs text-gray-700 text-center font-medium">Leave</div>
-                    </div>
-                    <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                      <div className="text-xl font-bold text-gray-500 mb-1">2</div>
-                      <div className="text-xs text-gray-700 text-center font-medium">Late</div>
-                    </div>
-                    <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                      <div className="text-xl font-bold text-gray-500 mb-1">0</div>
-                      <div className="text-xs text-gray-700 text-center font-medium">Half Day</div>
-                    </div>
-                    <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                      <div className="text-xl font-bold text-red-600 mb-1">2</div>
-                      <div className="text-xs text-gray-700 text-center font-medium">Red Flags</div>
-                    </div>
-                    <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                      <div className="text-xl font-bold text-red-600 mb-1">4</div>
-                      <div className="text-xs text-gray-700 text-center font-medium">Holidays</div>
-                    </div>
-                  </div>
-
-                  {/* Total Days Summary */}
-                  <div className="text-center">
-                    <span className="text-gray-700 font-medium">
-                      Total Days <span className="text-gray-800 font-semibold">20</span>,
-                      Working Days <span className="text-gray-800 font-semibold">16</span>
-                    </span>
-                  </div>
-                </div>
+                <AttendanceSummaryContent />
               </div>
             )}
 
@@ -510,312 +523,157 @@ export default function AttendanceSummary() {
               ref={scrollContainerRef}
               className={cn(
                 "h-full overflow-y-auto bg-gray-50",
-                isBottomSummaryCollapsed ? "opacity-0 pointer-events-none" : ""
+                isBottomSummaryCollapsed ? "opacity-0 pointer-events-none" : "",
               )}
               onScroll={handleScroll}
             >
-            {loading ? (
-              <div className="flex items-center justify-center h-64">
-                <div className="flex items-center gap-2 text-gray-600">
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Loading attendance data...</span>
+              {loading ? (
+                <div className="flex items-center justify-center h-64">
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Loading attendance data...</span>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="p-4 space-y-4">
-                {/* Dynamic Attendance Entries */}
-                {attendanceEntries.map((entry, index) => (
-                  <div
-                    key={entry.id}
-                    className="bg-white rounded-lg shadow-sm border p-4"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className={cn(
-                            "w-3 h-3 rounded-full",
-                            entry.isPresent ? "bg-green-500" : "bg-red-500",
-                          )}
-                        ></div>
-                        <div className="flex items-center gap-2">
-                          <svg
-                            className="w-4 h-4 text-gray-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          <span className="font-medium text-gray-900">
-                            {entry.date}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div
-                          className={cn(
-                            "w-3 h-3 rounded-sm",
-                            entry.isPresent ? "bg-red-500" : "bg-gray-500",
-                          )}
-                        ></div>
-                        <span className="text-sm font-medium text-gray-900">
-                          {entry.status}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-bold text-gray-900">
-                        {entry.company}
-                      </h3>
-
-                      <div className="flex items-center justify-between">
+              ) : (
+                <div className="p-4 space-y-4">
+                  {/* Dynamic Attendance Entries */}
+                  {attendanceEntries.map((entry, index) => (
+                    <div
+                      key={entry.id}
+                      className="bg-white rounded-lg shadow-sm border p-4"
+                    >
+                      <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-3">
-                          <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-lg border border-green-300">
-                            Punch-In
-                          </span>
-                          <span className="text-lg font-medium text-gray-900">
-                            {entry.punchIn} (IST)
-                          </span>
+                          <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                          <div className="flex items-center gap-2">
+                            <svg
+                              className="w-4 h-4"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" />
+                            </svg>
+                            <span className="text-sm font-medium text-gray-900">
+                              {entry.date}
+                            </span>
+                          </div>
                         </div>
-                        <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-lg">
-                          Verified
-                        </span>
+                        <div className="flex items-center gap-2">
+                          {entry.isLate && (
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-50 text-red-700 border border-red-200">
+                              Late
+                            </span>
+                          )}
+                        </div>
                       </div>
 
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700">{entry.location}</span>
-                        <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
-                          Branch
-                        </span>
-                      </div>
+                      <div className="space-y-3">
+                        <div className="text-sm font-medium text-gray-900">
+                          {entry.company}
+                        </div>
 
-                      {entry.isLate && (
+                        {/* Punch In */}
                         <div className="flex items-center justify-between">
-                          <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-lg border border-red-300">
-                            Late
-                          </span>
-                          <span className="text-gray-600">
-                            Punch-in-Approval : NA
+                          <div className="flex items-center gap-3">
+                            <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-50 text-green-700 border border-green-200">
+                              Punch-in
+                            </span>
+                            <span className="text-sm font-medium">
+                              {entry.punchInTime} (IST)
+                            </span>
+                          </div>
+                          <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
+                            Verified
                           </span>
                         </div>
-                      )}
 
-                      {entry.punchOut && (
-                        <>
-                          <hr className="border-gray-200" />
+                        <div className="text-xs text-gray-600">
+                          {entry.location}
+                        </div>
 
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-lg border border-red-300">
-                                Punch-out
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            {entry.isLate && (
+                              <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-red-50 text-red-700 border border-red-200">
+                                Late
                               </span>
-                              <span className="text-lg font-medium text-gray-900">
-                                {entry.punchOut} (IST)
-                              </span>
-                            </div>
-                            <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-lg">
-                              Verified
+                            )}
+                          </div>
+                          <div className="text-xs text-gray-600">
+                            Punch-in-Approval:{" "}
+                            {entry.hasApproval ? "Approved" : "NA"}
+                          </div>
+                        </div>
+
+                        {/* Punch Out */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-red-50 text-red-700 border border-red-200">
+                              Punch-out
+                            </span>
+                            <span className="text-sm font-medium">
+                              {entry.punchOutTime} (IST)
                             </span>
                           </div>
+                          <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
+                            Verified
+                          </span>
+                        </div>
 
-                          <div className="flex items-center justify-between">
-                            <span className="text-gray-700">
-                              {entry.location}
-                            </span>
-                            <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
-                              Branch
-                            </span>
-                          </div>
+                        <div className="text-xs text-gray-600">
+                          {entry.location}
+                        </div>
 
-                          {/* Working Hours Summary */}
-                          <div className="border rounded-lg p-3 space-y-2">
-                            <div className="flex items-center justify-center gap-2 bg-gray-100 py-2 rounded">
+                        {entry.workingHours && (
+                          <div className="bg-gray-50 rounded-lg p-3 text-center">
+                            <div className="flex items-center justify-center gap-2">
                               <svg
-                                className="w-4 h-4 text-gray-600"
+                                className="w-4 h-4"
+                                viewBox="0 0 24 24"
                                 fill="currentColor"
-                                viewBox="0 0 20 20"
                               >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                  clipRule="evenodd"
-                                />
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12,6 12,12 16,14" />
                               </svg>
-                              <span className="font-medium text-gray-900">
+                              <span className="text-sm font-medium text-gray-900">
                                 Total Working Hours: {entry.workingHours}
                               </span>
                             </div>
-                            <div className="flex items-center justify-center gap-2 bg-blue-100 py-2 rounded">
-                              <svg
-                                className="w-4 h-4 text-gray-600"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                              <span className="font-medium text-gray-900">
-                                Overtime : {entry.overtime}
-                              </span>
-                            </div>
-                            <div className="flex items-center justify-center gap-2 bg-blue-200 py-2 rounded">
-                              <span className="font-medium text-gray-900">
-                                Overtime : NA
-                              </span>
-                            </div>
                           </div>
-                        </>
-                      )}
-
-                      {entry.isOnTime && (
-                        <div className="flex items-center justify-between">
-                          <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-lg border border-green-300">
-                            On Time
-                          </span>
-                          <span className="text-gray-600">
-                            Punch-in-Approval : NA
-                          </span>
-                        </div>
-                      )}
-
-                      <button className="text-blue-600 font-medium hover:text-blue-700 transition-colors flex items-center gap-1">
-                        Location Timeline
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
-                {/* Loading indicator */}
-                {loading && (
-                  <div className="flex items-center justify-center py-6">
-                    <Loader2 className="w-6 h-6 animate-spin text-blue-600 mr-2" />
-                    <span className="text-gray-600">
-                      Loading more attendance records...
-                    </span>
-                  </div>
-                )}
+                  {/* Loading indicator */}
+                  {loading && hasMore && (
+                    <div className="flex items-center justify-center py-6">
+                      <div className="flex items-center gap-2 text-gray-600">
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span className="text-gray-600">
+                          Loading more attendance records...
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
-                {/* End of data indicator */}
-                {!hasMore && attendanceEntries.length > 10 && (
-                  <div className="text-center py-6">
-                    <span className="text-gray-500">
-                      No more attendance records to load
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+                  {/* End of data indicator */}
+                  {!hasMore && attendanceEntries.length > 10 && (
+                    <div className="text-center py-6">
+                      <span className="text-gray-500">
+                        No more attendance records to load
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
             {/* Bottom Attendance Summary - Only show when not collapsed */}
             {!isBottomSummaryCollapsed && (
-            <div className="bg-white border-t p-4 sticky bottom-0 shadow-2xl">
-              {/* Collapse/Expand Arrow */}
-              <div className="flex justify-center mb-2">
-                <button
-                  onClick={toggleBottomSummary}
-                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                  aria-label={isBottomSummaryCollapsed ? "Expand summary" : "Collapse summary"}
-                >
-                  <ChevronUp
-                    className={cn(
-                      "w-5 h-5 text-gray-500 transition-transform duration-200",
-                      isBottomSummaryCollapsed ? "rotate-180" : ""
-                    )}
-                  />
-                </button>
+              <div className="bg-white border-t sticky bottom-0 shadow-2xl">
+                <AttendanceSummaryContent />
               </div>
-
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
-                <span className="text-blue-600 font-medium">
-                  {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
-                    "This Month (June)"}
-                </span>
-              </div>
-
-              {/* Collapsible Attendance Grid */}
-              {!isBottomSummaryCollapsed && (
-                <div className="grid grid-cols-7 gap-2 mb-4">
-                <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
-                  <div className="flex items-center gap-1 mb-1">
-                    <div className="text-xl font-bold text-green-600">16</div>
-                    <User className="w-4 h-4 text-green-600" />
-                  </div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Present
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-xl font-bold text-gray-600 mb-1">0</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Absent
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
-                  <div className="text-xl font-bold text-orange-600 mb-1">
-                    0
-                  </div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Leave
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-xl font-bold text-gray-500 mb-1">2</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Late
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-xl font-bold text-gray-500 mb-1">0</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Half Day
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                  <div className="text-xl font-bold text-red-600 mb-1">2</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Red Flags
-                  </div>
-                </div>
-                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-                  <div className="text-xl font-bold text-red-600 mb-1">4</div>
-                  <div className="text-xs text-gray-700 text-center font-medium">
-                    Holidays
-                  </div>
-                </div>
-              </div>
-              )}
-
-              {/* Total Days Summary - Always Visible */}
-              <div className="mt-4 text-center">
-                <span className="text-gray-700 font-medium">
-                  Total Days{" "}
-                  <span className="text-gray-800 font-semibold">20</span>,
-                  Working Days{" "}
-                  <span className="text-gray-800 font-semibold">16</span>
-                </span>
-              </div>
-            </div>
             )}
           </div>
         </DialogContent>
