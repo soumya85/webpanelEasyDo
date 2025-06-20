@@ -509,14 +509,18 @@ export default function AttendanceSummary() {
             ))}
           </div>
 
+          {/* Bottom Summary When Collapsed - Positioned Right After Tabs */}
+          {isBottomSummaryCollapsed && (
+            <div className="bg-white border-b shadow-lg z-10">
+              <AttendanceSummaryContent />
+            </div>
+          )}
+
           {/* Content Container */}
-          <div className="flex-1 relative overflow-hidden">
-            {/* Bottom Summary When Collapsed - Positioned at Top */}
-            {isBottomSummaryCollapsed && (
-              <div className="absolute top-0 left-0 right-0 z-10 bg-white border-b shadow-lg">
-                <AttendanceSummaryContent />
-              </div>
-            )}
+          <div className="flex-1 relative overflow-hidden">{isBottomSummaryCollapsed ? (
+            // Empty container when collapsed to maintain layout
+            <div className="h-full bg-gray-50" />
+          ) : (
 
             {/* Scrollable Content Area */}
             <div
