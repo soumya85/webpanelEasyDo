@@ -81,8 +81,84 @@ const generateInitialData = () => {
   return entries;
 };
 
+// Tab configuration
+const tabOptions = [
+  {
+    id: "thisMonth",
+    label: "This Month (Jun)",
+    fullLabel: "This Month (Jun)",
+  },
+  {
+    id: "last30Days",
+    label: "Last 30 days (till 20 Jun)",
+    fullLabel: "Last 30 days (till 20 Jun)",
+  },
+  {
+    id: "lastMonth",
+    label: "Last Month (May)",
+    fullLabel: "Last Month (May)",
+  },
+  {
+    id: "thisYear",
+    label: "This Year (2025)",
+    fullLabel: "This Year (2025)",
+  },
+];
+
+// Generate data based on tab selection
+const generateDataForTab = (tabId: string) => {
+  const entries = [];
+  const today = new Date();
+  let startDate, endDate, maxEntries;
+
+  switch (tabId) {
+    case "thisMonth":
+      // Current month (June 2025)
+      startDate = new Date(2025, 5, 1); // June 1st, 2025
+      endDate = new Date(2025, 5, 30); // June 30th, 2025
+      maxEntries = 20;
+      break;
+    case "last30Days":
+      // Last 30 days from today
+      endDate = new Date();
+      startDate = new Date();
+      startDate.setDate(today.getDate() - 30);
+      maxEntries = 25;
+      break;
+    case "lastMonth":
+      // Previous month (May 2025)
+      startDate = new Date(2025, 4, 1); // May 1st, 2025
+      endDate = new Date(2025, 4, 31); // May 31st, 2025
+      maxEntries = 22;
+      break;
+    case "thisYear":
+      // This year (2025) - show recent entries
+      startDate = new Date(2025, 0, 1); // January 1st, 2025
+      endDate = new Date();
+      maxEntries = 50;
+      break;
+    default:
+      return generateInitialData();
+  }
+
+  let currentDate = new Date(endDate);
+  let entryCount = 0;
+
+  while (currentDate >= startDate && entryCount < maxEntries) {
+    // Skip weekends for some realism
+    if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+      entries.push(generateAttendanceEntry(new Date(currentDate), entryCount));
+      entryCount++;
+    }
+    currentDate.setDate(currentDate.getDate() - 1);
+  }
+
+  return entries;
+};
+
 export default function AttendanceSummary() {
   const [isAttendanceModalOpen, setIsAttendanceModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("thisMonth");
   const [attendanceEntries, setAttendanceEntries] = useState(
     generateInitialData(),
   );
