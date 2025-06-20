@@ -11,7 +11,7 @@ export default function UpcomingHolidays() {
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
         <CardContent className="p-4 flex-1 flex flex-col">
           {/* Section Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-[#283C50] font-inter text-xl font-bold">
               Upcoming Holidays
             </h2>
