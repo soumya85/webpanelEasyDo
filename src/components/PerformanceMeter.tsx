@@ -63,7 +63,7 @@ export default function PerformanceMeter() {
             <div className="text-3xl font-bold text-red-500 mb-1">
               {overallScore}%
             </div>
-            <div className="text-sm font-bold text-gray-600 mb-2">
+            <div className="text-lg font-bold text-gray-600 mb-2">
               Performance Meter
             </div>
 
