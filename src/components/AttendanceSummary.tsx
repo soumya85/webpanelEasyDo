@@ -213,14 +213,37 @@ export default function AttendanceSummary() {
     [loadMoreData],
   );
 
-  // Reset data when modal opens
+  // Handle tab change
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    setLoading(true);
+
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      const newData = generateDataForTab(tabId);
+      setAttendanceEntries(newData);
+      setCurrentOffset(newData.length);
+      setHasMore(newData.length >= 10); // Allow more loading if we have enough data
+      setLoading(false);
+    }, 300);
+  };
+
+  // Reset data when modal opens or tab changes
   useEffect(() => {
     if (isAttendanceModalOpen) {
-      setAttendanceEntries(generateInitialData());
-      setCurrentOffset(10);
-      setHasMore(true);
-      setLoading(false);
+      handleTabChange(activeTab);
     }
+  }, [isAttendanceModalOpen]);
+
+  // Update data when tab changes
+  useEffect(() => {
+    if (isAttendanceModalOpen) {
+      const newData = generateDataForTab(activeTab);
+      setAttendanceEntries(newData);
+      setCurrentOffset(newData.length);
+      setHasMore(newData.length >= 10);
+    }
+  }, [activeTab, isAttendanceModalOpen]);
   }, [isAttendanceModalOpen]);
 
   const attendanceData = [
