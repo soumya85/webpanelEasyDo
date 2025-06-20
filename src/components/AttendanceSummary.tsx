@@ -649,7 +649,7 @@ export default function AttendanceSummary() {
                 <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
                 <span className="text-blue-600 font-medium">
                   {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
-                    "This Month (Jun)"}
+                    "This Month (June)"}
                 </span>
               </div>
 
