@@ -45,14 +45,9 @@ export default function PerformanceMeter() {
         <CardContent className="p-3 flex-1 flex flex-col">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="text-[#283C50] font-inter text-xl font-bold">
-                Employee Score
-              </h2>
-              <p className="text-xs text-gray-600 mt-1">
-                Overall Score: {overallScore}%
-              </p>
-            </div>
+            <h2 className="text-[#283C50] font-inter text-xl font-bold">
+              Employee Score
+            </h2>
             <Button
               variant="ghost"
               size="sm"
