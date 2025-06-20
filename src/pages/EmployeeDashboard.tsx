@@ -1124,8 +1124,8 @@ export default function EmployeeDashboard() {
                   }
                 }}
                 className={cn(
-                  "flex w-full h-[70px] sm:h-[75px] lg:h-[80px]",
-                  "px-1 sm:px-2 lg:px-3 justify-center items-center flex-shrink-0",
+                  "flex w-full h-[90px] sm:h-[95px] lg:h-[100px]",
+                  "px-1 sm:px-2 lg:px-3 py-3 sm:py-4 lg:py-5 justify-center items-center flex-shrink-0",
                   "rounded-[8px] sm:rounded-[10px] border-b-[4px] sm:border-b-[6px] border-[#4766E5] bg-white",
                   "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
@@ -1145,26 +1145,26 @@ export default function EmployeeDashboard() {
         </div>
 
         {/* New Dashboard Sections */}
-        <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12 w-full">
+        <div className="flex flex-col gap-6 w-full">
           {/* First Row: Attendance Summary and Performance Meter - Equal Heights */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="min-h-[250px] lg:min-h-[280px]">
               <AttendanceSummary />
             </div>
-            <div className="min-h-[200px] lg:min-h-[220px]">
+            <div className="min-h-[300px] lg:min-h-[350px]">
               <PerformanceMeter />
             </div>
           </div>
 
           {/* Second Row: Wages, Leave Balance, and Upcoming Holidays - Equal Heights */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="min-h-[350px] lg:min-h-[400px]">
+            <div className="min-h-[200px] lg:min-h-[220px]">
               <WagesSummary />
             </div>
-            <div className="min-h-[350px] lg:min-h-[400px]">
+            <div className="min-h-[200px] lg:min-h-[220px]">
               <LeaveBalance />
             </div>
-            <div className="min-h-[350px] lg:min-h-[400px]">
+            <div className="min-h-[200px] lg:min-h-[220px]">
               <UpcomingHolidays />
             </div>
           </div>
