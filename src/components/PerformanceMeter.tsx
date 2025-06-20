@@ -61,7 +61,10 @@ export default function PerformanceMeter() {
           {/* Large, Clear Score Display */}
           <div className="text-center mb-2 py-2">
             <div className="text-3xl font-bold text-red-500 mb-1">
-              {overallScore}%
+              {overallScore}%{" "}
+              <span className="text-sm text-gray-600 font-normal">
+                ( Overall Score )
+              </span>
             </div>
             <div className="text-lg font-bold text-gray-600 mb-2">
               Performance Meter
