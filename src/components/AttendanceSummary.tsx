@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -6,14 +6,29 @@ export default function AttendanceSummary() {
   const attendanceData = [
     {
       label: "Present",
-      value: 0,
+      value: 16,
       color: "text-green-600",
       bgColor: "bg-green-50",
       borderColor: "border-green-200",
+      showIcon: true,
+    },
+    {
+      label: "Absent",
+      value: 0,
+      color: "text-gray-600",
+      bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
+    },
+    {
+      label: "Leave",
+      value: 0,
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-200",
     },
     {
       label: "Late",
-      value: 0,
+      value: 2,
       color: "text-gray-500",
       bgColor: "bg-gray-50",
       borderColor: "border-gray-200",
@@ -26,32 +41,18 @@ export default function AttendanceSummary() {
       borderColor: "border-gray-200",
     },
     {
-      label: "Total Staff",
-      value: 120,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
-    },
-    {
-      label: "Week Off",
-      value: 0,
+      label: "Red Flags",
+      value: 2,
       color: "text-red-600",
       bgColor: "bg-red-50",
       borderColor: "border-red-200",
     },
     {
-      label: "Absent",
-      value: 3,
-      color: "text-gray-600",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Leave",
-      value: "0.0",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
+      label: "Holidays",
+      value: 4,
+      color: "text-red-600",
+      bgColor: "bg-red-50",
+      borderColor: "border-red-200",
     },
   ];
 
