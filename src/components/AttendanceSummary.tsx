@@ -165,6 +165,9 @@ export default function AttendanceSummary() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentOffset, setCurrentOffset] = useState(10);
+  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] =
+    useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Load more data function
   const loadMoreData = useCallback(async () => {
