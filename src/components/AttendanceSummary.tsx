@@ -165,8 +165,7 @@ export default function AttendanceSummary() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentOffset, setCurrentOffset] = useState(10);
-  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] =
-    useState(false);
+  const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Load more data function
@@ -663,16 +662,12 @@ export default function AttendanceSummary() {
                 <button
                   onClick={toggleBottomSummary}
                   className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                  aria-label={
-                    isBottomSummaryCollapsed
-                      ? "Expand summary"
-                      : "Collapse summary"
-                  }
+                  aria-label={isBottomSummaryCollapsed ? "Expand summary" : "Collapse summary"}
                 >
                   <ChevronUp
                     className={cn(
                       "w-5 h-5 text-gray-500 transition-transform duration-200",
-                      isBottomSummaryCollapsed ? "rotate-180" : "",
+                      isBottomSummaryCollapsed ? "rotate-180" : ""
                     )}
                   />
                 </button>
@@ -686,7 +681,9 @@ export default function AttendanceSummary() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-7 gap-2 mb-4">
+              {/* Collapsible Attendance Grid */}
+              {!isBottomSummaryCollapsed && (
+                <div className="grid grid-cols-7 gap-2 mb-4">
                 <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
                   <div className="flex items-center gap-1 mb-1">
                     <div className="text-xl font-bold text-green-600">16</div>
