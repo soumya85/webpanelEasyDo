@@ -1,8 +1,16 @@
 import { ChevronRight, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 export default function AttendanceSummary() {
+  const [isAttendanceModalOpen, setIsAttendanceModalOpen] = useState(false);
   const attendanceData = [
     {
       label: "Present",
