@@ -9,7 +9,7 @@ export default function UpcomingHolidays() {
     <div className="w-full h-full">
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
-        <CardContent className="p-6 flex-1 flex flex-col">
+        <CardContent className="p-4 flex-1 flex flex-col">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[#283C50] font-inter text-xl font-bold">
