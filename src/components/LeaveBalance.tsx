@@ -2,9 +2,16 @@ import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 export default function LeaveBalance() {
+  const [isLeaveBalanceModalOpen, setIsLeaveBalanceModalOpen] = useState(false);
+  const [selectedLeaveTab, setSelectedLeaveTab] = useState<
+    "approved" | "pending" | "availed"
+  >("approved");
   const leaveData = [
     {
       label: "EARNED",
