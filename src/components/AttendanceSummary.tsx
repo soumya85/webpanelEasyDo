@@ -85,13 +85,13 @@ const generateInitialData = () => {
 const tabOptions = [
   {
     id: "thisMonth",
-    label: "This Month (Jun)",
-    fullLabel: "This Month (Jun)",
+    label: "This Month (June)",
+    fullLabel: "This Month (June)",
   },
   {
     id: "last30Days",
-    label: "Last 30 days (till 20 Jun)",
-    fullLabel: "Last 30 days (till 20 Jun)",
+    label: "Last 30 days (till 20 June)",
+    fullLabel: "Last 30 days (till 20 June)",
   },
   {
     id: "lastMonth",
@@ -644,62 +644,59 @@ export default function AttendanceSummary() {
             )}
 
             {/* Bottom Attendance Summary */}
-            <div className="bg-white border-t p-4 sticky bottom-0">
+            <div className="bg-white border-t p-4 sticky bottom-0 shadow-lg">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
                 <span className="text-blue-600 font-medium">
                   {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
-                    "This Month (Jun)"}
+                    "This Month (June)"}
                 </span>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 mb-4">
-                <div className="flex flex-col items-center p-3 bg-green-50 rounded-lg border-b-4 border-green-500">
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="text-2xl font-bold text-green-600">16</div>
-                    <User className="w-5 h-5 text-green-600" />
+              <div className="grid grid-cols-7 gap-2 mb-4">
+                <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
+                  <div className="flex items-center gap-1 mb-1">
+                    <div className="text-xl font-bold text-green-600">16</div>
+                    <User className="w-4 h-4 text-green-600" />
                   </div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     Present
                   </div>
                 </div>
-                <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-2xl font-bold text-gray-600 mb-1">0</div>
+                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                  <div className="text-xl font-bold text-gray-600 mb-1">0</div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     Absent
                   </div>
                 </div>
-                <div className="flex flex-col items-center p-3 bg-orange-50 rounded-lg border-b-4 border-orange-500">
-                  <div className="text-2xl font-bold text-orange-600 mb-1">
+                <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
+                  <div className="text-xl font-bold text-orange-600 mb-1">
                     0
                   </div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     Leave
                   </div>
                 </div>
-                <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-2xl font-bold text-gray-500 mb-1">2</div>
+                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                  <div className="text-xl font-bold text-gray-500 mb-1">2</div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     Late
                   </div>
                 </div>
-                <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-                  <div className="text-2xl font-bold text-gray-500 mb-1">0</div>
+                <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+                  <div className="text-xl font-bold text-gray-500 mb-1">0</div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     Half Day
                   </div>
                 </div>
-                <div className="flex flex-col items-center p-3 bg-red-50 rounded-lg border-b-4 border-red-500">
-                  <div className="text-2xl font-bold text-red-600 mb-1">2</div>
+                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                  <div className="text-xl font-bold text-red-600 mb-1">2</div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     Red Flags
                   </div>
                 </div>
-              </div>
-
-              <div className="flex justify-center">
-                <div className="flex flex-col items-center p-3 bg-red-50 rounded-lg border-b-4 border-red-500">
-                  <div className="text-2xl font-bold text-red-600 mb-1">4</div>
+                <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+                  <div className="text-xl font-bold text-red-600 mb-1">4</div>
                   <div className="text-xs text-gray-700 text-center font-medium">
                     Holidays
                   </div>
