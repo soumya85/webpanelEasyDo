@@ -115,17 +115,13 @@ export default function AttendanceSummary() {
 
             {/* Footer with additional information */}
             <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center gap-6">
-                  <span className="text-gray-700 font-medium">
-                    <span className="text-gray-500">Work From Home:</span>
-                    <span className="text-gray-800 font-semibold ml-1">24</span>
-                  </span>
-                  <span className="text-gray-700 font-medium">
-                    <span className="text-gray-500">Work On Holiday:</span>
-                    <span className="text-gray-800 font-semibold ml-1">21</span>
-                  </span>
-                </div>
+              <div className="flex items-center justify-center text-sm">
+                <span className="text-gray-700 font-medium">
+                  Total Days{" "}
+                  <span className="text-gray-800 font-semibold">20</span>,
+                  Working Days{" "}
+                  <span className="text-gray-800 font-semibold">16</span>
+                </span>
               </div>
             </div>
           </div>
