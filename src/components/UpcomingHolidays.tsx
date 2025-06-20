@@ -26,7 +26,7 @@ export default function UpcomingHolidays() {
           </div>
 
           {/* Holiday Card Content */}
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
               {/* Date Section */}
               <div className="flex flex-col items-center justify-center bg-blue-50 rounded-lg p-4 min-w-[80px] border-b-4 border-blue-500">
