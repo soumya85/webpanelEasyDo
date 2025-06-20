@@ -658,6 +658,26 @@ export default function AttendanceSummary() {
 
             {/* Bottom Attendance Summary */}
             <div className="bg-white border-t p-4 sticky bottom-0 shadow-2xl">
+              {/* Collapse/Expand Arrow */}
+              <div className="flex justify-center mb-2">
+                <button
+                  onClick={toggleBottomSummary}
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  aria-label={
+                    isBottomSummaryCollapsed
+                      ? "Expand summary"
+                      : "Collapse summary"
+                  }
+                >
+                  <ChevronUp
+                    className={cn(
+                      "w-5 h-5 text-gray-500 transition-transform duration-200",
+                      isBottomSummaryCollapsed ? "rotate-180" : "",
+                    )}
+                  />
+                </button>
+              </div>
+
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
                 <span className="text-blue-600 font-medium">
