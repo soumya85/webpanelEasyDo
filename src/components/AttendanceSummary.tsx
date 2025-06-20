@@ -517,17 +517,13 @@ export default function AttendanceSummary() {
           )}
 
           {/* Content Container */}
-          <div className="flex-1 relative overflow-hidden">{isBottomSummaryCollapsed ? (
-            // Empty container when collapsed to maintain layout
-            <div className="h-full bg-gray-50" />
-          ) : (
-
+          <div className="flex-1 relative overflow-hidden">
             {/* Scrollable Content Area */}
             <div
               ref={scrollContainerRef}
               className={cn(
                 "h-full overflow-y-auto bg-gray-50",
-                isBottomSummaryCollapsed ? "opacity-0 pointer-events-none" : "",
+                isBottomSummaryCollapsed ? "hidden" : "",
               )}
               onScroll={handleScroll}
             >
