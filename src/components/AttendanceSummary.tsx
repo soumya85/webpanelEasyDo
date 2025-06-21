@@ -678,11 +678,42 @@ export default function AttendanceSummary() {
 
                       {/* X-axis day markers */}
                       <div className="absolute -bottom-6 left-0 right-0 flex justify-between text-xs text-gray-700 px-4">
-                        <span className="transform -translate-x-2">05</span>
-                        <span className="transform -translate-x-1">10</span>
-                        <span>15</span>
-                        <span className="transform translate-x-1">20</span>
-                        <span className="transform translate-x-2">25</span>
+                        {(() => {
+                          const getXAxisLabels = (tabId: string) => {
+                            switch (tabId) {
+                              case "thisMonth":
+                                return ["05", "10", "15", "20", "25"];
+                              case "last30Days":
+                                return ["27", "01", "06", "11", "16", "21"];
+                              case "lastMonth":
+                                return ["05", "10", "15", "20", "25", "30"];
+                              case "thisYear":
+                                return ["J", "F", "M", "A", "M", "J"];
+                              default:
+                                return ["05", "10", "15", "20", "25"];
+                            }
+                          };
+
+                          const labels = getXAxisLabels(activeTab);
+                          return labels.map((label, index) => (
+                            <span
+                              key={index}
+                              className={`transform ${
+                                index === 0
+                                  ? "-translate-x-2"
+                                  : index === 1
+                                    ? "-translate-x-1"
+                                    : index === labels.length - 2
+                                      ? "translate-x-1"
+                                      : index === labels.length - 1
+                                        ? "translate-x-2"
+                                        : ""
+                              }`}
+                            >
+                              {label}
+                            </span>
+                          ));
+                        })()}
                       </div>
                     </div>
                   </div>
