@@ -457,13 +457,13 @@ export default function AttendanceSummary() {
           </div>
 
           {/* Monthly Calendar */}
-          <div className="bg-white rounded-lg border p-4">
+          <div className="bg-white rounded-lg border p-4 min-h-[200px]">
             <div className="text-center text-sm font-semibold text-gray-900 mb-3">
               Jun 2025
             </div>
 
             {/* Calendar Header */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
+            <div className="grid grid-cols-7 gap-2 mb-3">
               {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
                 <div
                   key={day}
@@ -475,7 +475,7 @@ export default function AttendanceSummary() {
             </div>
 
             {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-1">
+            <div className="grid grid-cols-7 gap-2">
               {/* Generate full calendar grid - 6 weeks (42 days) */}
               {(() => {
                 const calendarDays = [];
