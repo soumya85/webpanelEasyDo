@@ -217,58 +217,140 @@ export default function AttendanceSummary() {
     setIsBottomSummaryCollapsed(!isBottomSummaryCollapsed);
   };
 
-  const attendanceData = [
-    {
-      label: "Present",
-      value: 16,
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
-      showIcon: true,
-    },
-    {
-      label: "Absent",
-      value: 0,
-      color: "text-gray-600",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Leave",
-      value: 0,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
-    },
-    {
-      label: "Late",
-      value: 2,
-      color: "text-gray-500",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Half Day",
-      value: 0,
-      color: "text-gray-500",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Red Flags",
-      value: 2,
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200",
-    },
-    {
-      label: "Holidays",
-      value: 4,
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200",
-    },
-  ];
+  // Dynamic attendance data based on active tab
+  const getAttendanceDataForTab = (tabId: string) => {
+    const baseConfig = [
+      {
+        label: "Present",
+        color: "text-green-600",
+        bgColor: "bg-green-50",
+        borderColor: "border-green-200",
+        showIcon: true,
+      },
+      {
+        label: "Absent",
+        color: "text-gray-600",
+        bgColor: "bg-gray-50",
+        borderColor: "border-gray-200",
+      },
+      {
+        label: "Leave",
+        color: "text-orange-600",
+        bgColor: "bg-orange-50",
+        borderColor: "border-orange-200",
+      },
+      {
+        label: "Late",
+        color: "text-gray-500",
+        bgColor: "bg-gray-50",
+        borderColor: "border-gray-200",
+      },
+      {
+        label: "Half Day",
+        color: "text-gray-500",
+        bgColor: "bg-gray-50",
+        borderColor: "border-gray-200",
+      },
+      {
+        label: "Red Flags",
+        color: "text-red-600",
+        bgColor: "bg-red-50",
+        borderColor: "border-red-200",
+      },
+      {
+        label: "Holidays",
+        color: "text-red-600",
+        bgColor: "bg-red-50",
+        borderColor: "border-red-200",
+      },
+    ];
+
+    switch (tabId) {
+      case "thisMonth":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [17, 0, 0, 2, 0, 2, 4][index],
+        }));
+      case "last30Days":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [25, 0, 0, 2, 0, 2, 5][index],
+        }));
+      case "lastMonth":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [26, 0, 1, 3, 0, 5, 4][index],
+        }));
+      case "thisYear":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [138, 0, 3, 14, 2, 41, 31][index],
+        }));
+      default:
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [17, 0, 0, 2, 0, 2, 4][index],
+        }));
+    }
+  };
+
+  // Get summary data for active tab
+  const getSummaryDataForTab = (tabId: string) => {
+    switch (tabId) {
+      case "thisMonth":
+        return {
+          totalDays: 21,
+          workingDays: 17,
+          totalHours: "153",
+          workedHours: "158.76",
+          otHours: "0.00",
+          punchInLocations: { value: 17, type: "BRANCH" },
+        };
+      case "last30Days":
+        return {
+          totalDays: 30,
+          workingDays: 25,
+          totalHours: "225",
+          workedHours: "231.89",
+          otHours: "0.00",
+          punchInLocations: { value: 25, type: "BRANCH" },
+        };
+      case "lastMonth":
+        return {
+          totalDays: 31,
+          workingDays: 27,
+          totalHours: "243",
+          workedHours: "240.27",
+          otHours: "0.00",
+          punchInLocations: {
+            value: 24,
+            type: "BRANCH",
+            additional: "2 UNVERIFIED",
+          },
+        };
+      case "thisYear":
+        return {
+          totalDays: 172,
+          workingDays: 141,
+          totalHours: "172.00",
+          workedHours: "141.00",
+          otHours: "0.00",
+          punchInLocations: { value: 17, type: "BRANCH" },
+        };
+      default:
+        return {
+          totalDays: 21,
+          workingDays: 17,
+          totalHours: "153",
+          workedHours: "158.76",
+          otHours: "0.00",
+          punchInLocations: { value: 17, type: "BRANCH" },
+        };
+    }
+  };
+
+  const attendanceData = getAttendanceDataForTab(activeTab);
+  const summaryData = getSummaryDataForTab(activeTab);
 
   const tabOptions = [
     {
