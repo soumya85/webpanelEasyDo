@@ -586,16 +586,20 @@ export default function AttendanceSummary() {
                     <span className="font-medium text-gray-900">
                       Total Hours :{" "}
                     </span>
-                    <span className="text-gray-600">153....</span>
+                    <span className="text-gray-600">
+                      {summaryData.totalHours}...
+                    </span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-900">Worked : </span>
-                    <span className="text-green-600 font-semibold">156.36</span>
+                    <span className="text-green-600 font-semibold">
+                      {summaryData.workedHours}
+                    </span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-900">OT : </span>
                     <span className="text-blue-600 font-semibold">
-                      0.00 Hrs
+                      {summaryData.otHours} Hrs
                     </span>
                   </div>
                 </div>
