@@ -672,7 +672,7 @@ export default function AttendanceSummary() {
           )}
 
           {/* Content Container */}
-          <div className="flex-1 relative overflow-hidden">
+          <div className="flex-1 relative flex flex-col overflow-hidden">
             {/* Scrollable Content Area */}
             <div
               ref={scrollContainerRef}
