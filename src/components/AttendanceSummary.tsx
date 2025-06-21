@@ -486,7 +486,7 @@ export default function AttendanceSummary() {
                   calendarDays.push(
                     <div
                       key={`prev-${day}`}
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
                     >
                       {day}
                     </div>,
