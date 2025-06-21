@@ -295,32 +295,38 @@ export default function AttendanceSummary() {
 
   // Attendance summary component
   const AttendanceSummaryContent = () => (
-    <div className="p-4">
-      {/* Collapse/Expand Arrow */}
-      <div className="flex justify-center mb-2">
-        <button
-          onClick={toggleBottomSummary}
-          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-          aria-label={
-            isBottomSummaryCollapsed ? "Expand analytics" : "Collapse analytics"
-          }
-        >
-          <ChevronUp
-            className={cn(
-              "w-5 h-5 text-gray-500 transition-transform duration-200",
-              isBottomSummaryCollapsed ? "" : "rotate-180",
-            )}
-          />
-        </button>
+    <div className="flex flex-col h-full">
+      {/* Fixed Header Section */}
+      <div className="flex-shrink-0 p-4 pb-0">
+        {/* Collapse/Expand Arrow */}
+        <div className="flex justify-center mb-2">
+          <button
+            onClick={toggleBottomSummary}
+            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            aria-label={
+              isBottomSummaryCollapsed ? "Expand analytics" : "Collapse analytics"
+            }
+          >
+            <ChevronUp
+              className={cn(
+                "w-5 h-5 text-gray-500 transition-transform duration-200",
+                isBottomSummaryCollapsed ? "" : "rotate-180",
+              )}
+            />
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200 bg-white rounded-t-lg shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
+          <span className="text-blue-600 font-medium">
+            {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
+              "This Month (June)"}
+          </span>
+        </div>
       </div>
 
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200 bg-white rounded-t-lg shadow-sm">
-        <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
-        <span className="text-blue-600 font-medium">
-          {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
-            "This Month (June)"}
-        </span>
-      </div>
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto px-4 pb-4">
 
       {/* Attendance Grid */}
       <div className="grid grid-cols-7 gap-2 mb-4">
