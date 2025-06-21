@@ -796,8 +796,8 @@ export default function AttendanceSummary() {
               )}
             </div>
 
-            {/* Bottom Attendance Summary - Only show when not collapsed */}
-            {!isBottomSummaryCollapsed && (
+            {/* Bottom Attendance Summary - Only show when collapsed */}
+            {isBottomSummaryCollapsed && (
               <div className="bg-white border-t sticky bottom-0 shadow-2xl">
                 <AttendanceSummaryContent />
               </div>
