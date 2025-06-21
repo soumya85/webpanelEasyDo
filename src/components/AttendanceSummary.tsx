@@ -474,9 +474,14 @@ export default function AttendanceSummary() {
           {/* Total Days Summary */}
           <div className="text-center mb-4">
             <span className="text-gray-700 font-medium">
-              Total Days <span className="text-gray-800 font-semibold">20</span>
+              Total Days{" "}
+              <span className="text-gray-800 font-semibold">
+                {summaryData.totalDays}
+              </span>
               , Working Days{" "}
-              <span className="text-gray-800 font-semibold">16</span>
+              <span className="text-gray-800 font-semibold">
+                {summaryData.workingDays}
+              </span>
             </span>
           </div>
 
