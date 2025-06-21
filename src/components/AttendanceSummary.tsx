@@ -825,58 +825,113 @@ export default function AttendanceSummary() {
 
                 {/* Calendar Grid */}
                 <div className="grid grid-cols-7 gap-2">
-                  {/* Generate full calendar grid - 6 weeks (42 days) */}
+                  {/* Generate full calendar grid based on active tab */}
                   {(() => {
-                    const calendarDays = [];
+                    const generateCalendarForTab = (tabId: string) => {
+                      const calendarDays = [];
 
-                    // Previous month end dates (May 2025 ends on 31st, June starts on Sunday)
-                    const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
-                    prevMonthDays.forEach((day) => {
-                      calendarDays.push(
-                        <div
-                          key={`prev-${day}`}
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
-                        >
-                          {day}
-                        </div>,
-                      );
-                    });
+                      if (tabId === "thisMonth" || tabId === "last30Days") {
+                        // June 2025 calendar
+                        const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
+                        prevMonthDays.forEach((day) => {
+                          calendarDays.push(
+                            <div
+                              key={`prev-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        });
 
-                    // Current month days (June 2025 - 30 days)
-                    for (let day = 1; day <= 30; day++) {
-                      // Determine if it's a weekend/holiday (red) or working day (green)
-                      // Sunday = 0, Saturday = 6 in JS Date
-                      const date = new Date(2025, 5, day); // Month is 0-indexed
-                      const dayOfWeek = date.getDay();
-                      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                        // June 2025 - 30 days
+                        for (let day = 1; day <= 30; day++) {
+                          const date = new Date(2025, 5, day); // June 2025
+                          const dayOfWeek = date.getDay();
+                          const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
 
-                      calendarDays.push(
-                        <div
-                          key={`current-${day}`}
-                          className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
-                            isWeekend
-                              ? "bg-red-500 text-white"
-                              : "bg-green-500 text-white"
-                          }`}
-                        >
-                          {day}
-                        </div>,
-                      );
-                    }
+                          calendarDays.push(
+                            <div
+                              key={`current-${day}`}
+                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
+                                isWeekend
+                                  ? "bg-red-500 text-white"
+                                  : "bg-green-500 text-white"
+                              }`}
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
 
-                    // Next month start dates to fill the grid (July 2025)
-                    for (let day = 1; day <= 5; day++) {
-                      calendarDays.push(
-                        <div
-                          key={`next-${day}`}
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
-                        >
-                          {day}
-                        </div>,
-                      );
-                    }
+                        // Next month days
+                        for (let day = 1; day <= 5; day++) {
+                          calendarDays.push(
+                            <div
+                              key={`next-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
+                      } else if (
+                        tabId === "lastMonth" ||
+                        tabId === "thisYear"
+                      ) {
+                        // May 2025 calendar
+                        const prevMonthDays = [27, 28, 29, 30]; // April end
+                        prevMonthDays.forEach((day) => {
+                          calendarDays.push(
+                            <div
+                              key={`prev-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        });
 
-                    return calendarDays;
+                        // May 2025 - 31 days
+                        for (let day = 1; day <= 31; day++) {
+                          const date = new Date(2025, 4, day); // May 2025
+                          const dayOfWeek = date.getDay();
+                          const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                          // Special case for day 14 (orange/half day) in May
+                          const isHalfDay = day === 14;
+
+                          let dayClass = "bg-green-500 text-white";
+                          if (isWeekend) dayClass = "bg-red-500 text-white";
+                          else if (isHalfDay)
+                            dayClass = "bg-orange-500 text-white";
+
+                          calendarDays.push(
+                            <div
+                              key={`current-${day}`}
+                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${dayClass}`}
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
+
+                        // Next month days (June start)
+                        for (let day = 1; day <= 7; day++) {
+                          calendarDays.push(
+                            <div
+                              key={`next-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
+                      }
+
+                      return calendarDays;
+                    };
+
+                    return generateCalendarForTab(activeTab);
                   })()}
                 </div>
               </div>
