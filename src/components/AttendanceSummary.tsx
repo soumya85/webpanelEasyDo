@@ -372,134 +372,139 @@ export default function AttendanceSummary() {
       </div>
 
       {/* Total Days Summary */}
-      <div className="text-center mb-6">
+      <div className="text-center">
         <span className="text-gray-700 font-medium">
           Total Days <span className="text-gray-800 font-semibold">20</span>,
           Working Days <span className="text-gray-800 font-semibold">16</span>
         </span>
       </div>
 
-      {/* Daily Hours Bar Chart */}
-      <div className="mb-6">
-        <div className="flex items-end justify-between h-20 px-2 bg-gray-50 rounded-lg border">
-          {/* Y-axis labels */}
-          <div className="flex flex-col justify-between h-full text-xs text-gray-500 pr-2">
-            <span>12h</span>
-            <span>10h</span>
-            <span>8h</span>
-            <span>6h</span>
-            <span>4h</span>
-            <span>2h</span>
-            <span>0h</span>
+      {/* Additional Analytics - Show only when expanded (not collapsed) */}
+      {!isBottomSummaryCollapsed && (
+        <>
+          {/* Daily Hours Bar Chart */}
+          <div className="mb-6 mt-6">
+            <div className="flex items-end justify-between h-20 px-2 bg-gray-50 rounded-lg border">
+              {/* Y-axis labels */}
+              <div className="flex flex-col justify-between h-full text-xs text-gray-500 pr-2">
+                <span>12h</span>
+                <span>10h</span>
+                <span>8h</span>
+                <span>6h</span>
+                <span>4h</span>
+                <span>2h</span>
+                <span>0h</span>
+              </div>
+
+              {/* Bars representing each day of the month */}
+              <div className="flex items-end gap-0.5 flex-1 h-full">
+                {Array.from({ length: 30 }, (_, i) => {
+                  const day = i + 1;
+                  // Weekend days (assuming Sundays and some Saturdays are red)
+                  const isWeekend =
+                    day % 7 === 0 ||
+                    day % 7 === 6 ||
+                    day === 1 ||
+                    day === 8 ||
+                    day === 15 ||
+                    day === 22 ||
+                    day === 29;
+                  const height = Math.random() * 60 + 20; // Random height between 20-80%
+
+                  return (
+                    <div
+                      key={day}
+                      className={`w-1 rounded-t-sm ${
+                        isWeekend ? "bg-red-500" : "bg-green-500"
+                      }`}
+                      style={{ height: `${height}%` }}
+                      title={`Day ${day}: ${isWeekend ? "Non-working" : "Working"} day`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          {/* Bars representing each day of the month */}
-          <div className="flex items-end gap-0.5 flex-1 h-full">
-            {Array.from({ length: 30 }, (_, i) => {
-              const day = i + 1;
-              // Weekend days (assuming Sundays and some Saturdays are red)
-              const isWeekend =
-                day % 7 === 0 ||
-                day % 7 === 6 ||
-                day === 1 ||
-                day === 8 ||
-                day === 15 ||
-                day === 22 ||
-                day === 29;
-              const height = Math.random() * 60 + 20; // Random height between 20-80%
+          {/* Hours Summary */}
+          <div className="mb-6 text-center">
+            <div className="text-sm text-gray-700">
+              <span className="font-medium">Total Hours: </span>
+              <span className="text-gray-600">153...</span>
+              <span className="font-medium ml-4">Worked: </span>
+              <span className="text-green-600 font-semibold">156.36</span>
+              <span className="font-medium ml-4">OT: </span>
+              <span className="text-blue-600 font-semibold">0:00 Hrs</span>
+            </div>
+          </div>
 
-              return (
+          {/* Punch-in Locations */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 text-gray-700 mb-2">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-sm font-medium">Punch-in Locations</span>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-900">17</div>
+              <div className="text-xs text-gray-600 font-medium">BRANCH</div>
+            </div>
+          </div>
+
+          {/* Monthly Calendar */}
+          <div className="bg-white rounded-lg border p-4">
+            <div className="text-center text-sm font-semibold text-gray-900 mb-3">
+              Jun 2025
+            </div>
+
+            {/* Calendar Header */}
+            <div className="grid grid-cols-7 gap-1 mb-2">
+              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
                 <div
                   key={day}
-                  className={`w-1 rounded-t-sm ${
-                    isWeekend ? "bg-red-500" : "bg-green-500"
-                  }`}
-                  style={{ height: `${height}%` }}
-                  title={`Day ${day}: ${isWeekend ? "Non-working" : "Working"} day`}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Hours Summary */}
-      <div className="mb-6 text-center">
-        <div className="text-sm text-gray-700">
-          <span className="font-medium">Total Hours: </span>
-          <span className="text-gray-600">153...</span>
-          <span className="font-medium ml-4">Worked: </span>
-          <span className="text-green-600 font-semibold">156.36</span>
-          <span className="font-medium ml-4">OT: </span>
-          <span className="text-blue-600 font-semibold">0:00 Hrs</span>
-        </div>
-      </div>
-
-      {/* Punch-in Locations */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 text-gray-700 mb-2">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              fillRule="evenodd"
-              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span className="text-sm font-medium">Punch-in Locations</span>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold text-gray-900">17</div>
-          <div className="text-xs text-gray-600 font-medium">BRANCH</div>
-        </div>
-      </div>
-
-      {/* Monthly Calendar */}
-      <div className="bg-white rounded-lg border p-4">
-        <div className="text-center text-sm font-semibold text-gray-900 mb-3">
-          Jun 2025
-        </div>
-
-        {/* Calendar Header */}
-        <div className="grid grid-cols-7 gap-1 mb-2">
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <div
-              key={day}
-              className="text-xs text-gray-600 text-center py-1 font-medium"
-            >
-              {day}
+                  className="text-xs text-gray-600 text-center py-1 font-medium"
+                >
+                  {day}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Calendar Grid */}
-        <div className="grid grid-cols-7 gap-1">
-          {Array.from({ length: 30 }, (_, i) => {
-            const day = i + 1;
-            // Determine if it's a weekend/holiday (red) or working day (green)
-            const isWeekend =
-              day % 7 === 0 ||
-              day % 7 === 6 ||
-              day === 1 ||
-              day === 8 ||
-              day === 15 ||
-              day === 22 ||
-              day === 29;
+            {/* Calendar Grid */}
+            <div className="grid grid-cols-7 gap-1">
+              {Array.from({ length: 30 }, (_, i) => {
+                const day = i + 1;
+                // Determine if it's a weekend/holiday (red) or working day (green)
+                const isWeekend =
+                  day % 7 === 0 ||
+                  day % 7 === 6 ||
+                  day === 1 ||
+                  day === 8 ||
+                  day === 15 ||
+                  day === 22 ||
+                  day === 29;
 
-            return (
-              <div
-                key={day}
-                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
-                  isWeekend
-                    ? "bg-red-500 text-white"
-                    : "bg-green-500 text-white"
-                }`}
-              >
-                {day}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+                return (
+                  <div
+                    key={day}
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
+                      isWeekend
+                        ? "bg-red-500 text-white"
+                        : "bg-green-500 text-white"
+                    }`}
+                  >
+                    {day}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 
