@@ -509,60 +509,170 @@ export default function AttendanceSummary() {
                       {/* Bars representing each day of the month */}
                       <div className="flex items-end gap-[2px] w-full h-full">
                         {(() => {
-                          // Define specific pattern matching the screenshot
-                          const barHeights = [
-                            75,
-                            85,
-                            80,
-                            85,
-                            85,
-                            90,
-                            0,
-                            0, // Days 1-8 (weekend on 7,8)
-                            95,
-                            85,
-                            85,
-                            85,
-                            95,
-                            75,
-                            0, // Days 9-15 (weekend on 15)
-                            85,
-                            95,
-                            95,
-                            95,
-                            85,
-                            85, // Days 16-21
-                            0,
-                            95,
-                            85,
-                            85,
-                            85,
-                            85,
-                            0, // Days 22-28 (weekends on 22, 29)
-                            5,
-                            0, // Days 29-30 (very short on 29, weekend on 30)
-                          ];
+                          // Get chart data based on active tab
+                          const getChartDataForTab = (tabId: string) => {
+                            switch (tabId) {
+                              case "thisMonth":
+                                // This Month (June) - data from first screenshot
+                                return {
+                                  heights: [
+                                    75,
+                                    85,
+                                    80,
+                                    85,
+                                    85,
+                                    90,
+                                    0,
+                                    0, // Days 1-8
+                                    95,
+                                    85,
+                                    85,
+                                    85,
+                                    95,
+                                    75,
+                                    0, // Days 9-15
+                                    85,
+                                    95,
+                                    95,
+                                    95,
+                                    85,
+                                    85, // Days 16-21
+                                    0,
+                                    95,
+                                    85,
+                                    85,
+                                    85,
+                                    85,
+                                    0, // Days 22-28
+                                    5,
+                                    0, // Days 29-30
+                                  ],
+                                  days: 30,
+                                  xAxisLabels: ["05", "10", "15", "20", "25"],
+                                };
+                              case "last30Days":
+                                // Last 30 days - more data points, data from second screenshot
+                                return {
+                                  heights: Array.from(
+                                    { length: 30 },
+                                    (_, i) => {
+                                      const dayIndex = i + 1;
+                                      // Pattern for 30 days with more working days
+                                      if (
+                                        dayIndex % 7 === 0 ||
+                                        dayIndex % 7 === 6
+                                      )
+                                        return 0; // Weekends
+                                      return (
+                                        Math.floor(Math.random() * 30) + 70
+                                      ); // Working days 70-100%
+                                    },
+                                  ),
+                                  days: 30,
+                                  xAxisLabels: [
+                                    "27",
+                                    "01",
+                                    "06",
+                                    "11",
+                                    "16",
+                                    "21",
+                                  ],
+                                };
+                              case "lastMonth":
+                                // Last Month (May) - data from third screenshot
+                                return {
+                                  heights: Array.from(
+                                    { length: 31 },
+                                    (_, i) => {
+                                      const dayIndex = i + 1;
+                                      // May pattern with some orange (half day) on 14th
+                                      if (
+                                        dayIndex % 7 === 0 ||
+                                        dayIndex % 7 === 6
+                                      )
+                                        return 0; // Weekends
+                                      if (dayIndex === 14) return 60; // Half day (orange in screenshot)
+                                      return (
+                                        Math.floor(Math.random() * 25) + 75
+                                      ); // Working days
+                                    },
+                                  ),
+                                  days: 31,
+                                  xAxisLabels: [
+                                    "05",
+                                    "10",
+                                    "15",
+                                    "20",
+                                    "25",
+                                    "30",
+                                  ],
+                                };
+                              case "thisYear":
+                                // This Year (2025) - yearly view with monthly bars
+                                return {
+                                  heights: [
+                                    95, 85, 75, 85, 90, 55, 0, 0, 0, 0, 0, 0,
+                                  ], // Monthly data (Jan-Dec)
+                                  days: 12,
+                                  xAxisLabels: [
+                                    "J",
+                                    "F",
+                                    "M",
+                                    "A",
+                                    "M",
+                                    "J",
+                                    "J",
+                                    "A",
+                                    "S",
+                                    "O",
+                                    "N",
+                                    "D",
+                                  ],
+                                  isYearly: true,
+                                };
+                              default:
+                                return {
+                                  heights: [
+                                    75, 85, 80, 85, 85, 90, 0, 0, 95, 85, 85,
+                                    85, 95, 75, 0, 85, 95, 95, 95, 85, 85, 0,
+                                    95, 85, 85, 85, 85, 0, 5, 0,
+                                  ],
+                                  days: 30,
+                                  xAxisLabels: ["05", "10", "15", "20", "25"],
+                                };
+                            }
+                          };
 
-                          return Array.from({ length: 30 }, (_, i) => {
-                            const day = i + 1;
-                            const height = barHeights[i] || 0;
-                            const isWeekend = height === 0 || height < 10;
+                          const chartData = getChartDataForTab(activeTab);
 
-                            return (
-                              <div
-                                key={day}
-                                className={`flex-1 min-w-[8px] ${
-                                  isWeekend ? "bg-red-500" : "bg-green-500"
-                                }`}
-                                style={{ height: `${height}%` }}
-                                title={`Day ${day}: ${
-                                  isWeekend
-                                    ? "Weekend/Holiday"
-                                    : `${Math.round((height / 100) * 12)} hours worked`
-                                }`}
-                              />
-                            );
-                          });
+                          return Array.from(
+                            { length: chartData.days },
+                            (_, i) => {
+                              const day = i + 1;
+                              const height = chartData.heights[i] || 0;
+                              const isWeekend = height === 0 || height < 10;
+                              const isHalfDay = height > 10 && height < 70; // For orange bars
+
+                              let barColor = "bg-green-500";
+                              if (isWeekend) barColor = "bg-red-500";
+                              else if (isHalfDay) barColor = "bg-orange-500";
+
+                              return (
+                                <div
+                                  key={day}
+                                  className={`flex-1 min-w-[8px] ${barColor}`}
+                                  style={{ height: `${height}%` }}
+                                  title={`${chartData.isYearly ? `Month ${day}` : `Day ${day}`}: ${
+                                    isWeekend
+                                      ? "Weekend/Holiday"
+                                      : isHalfDay
+                                        ? "Half Day"
+                                        : `${Math.round((height / 100) * 12)} hours worked`
+                                  }`}
+                                />
+                              );
+                            },
+                          );
                         })()}
                       </div>
 
