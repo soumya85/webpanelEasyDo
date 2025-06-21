@@ -823,7 +823,7 @@ export default function AttendanceSummary() {
 
             {/* Bottom Attendance Summary - Only show when collapsed */}
             {isBottomSummaryCollapsed && (
-              <div className="bg-white border-t sticky bottom-0 shadow-2xl">
+              <div className="bg-white border-t shadow-2xl overflow-visible">
                 <AttendanceSummaryContent />
               </div>
             )}
