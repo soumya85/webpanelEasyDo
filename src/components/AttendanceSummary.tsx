@@ -495,13 +495,24 @@ export default function AttendanceSummary() {
                   <div className="flex items-end h-40 border-l border-b border-gray-400 relative">
                     {/* Y-axis labels */}
                     <div className="flex flex-col justify-between h-full text-xs text-gray-700 pr-3 -ml-1">
-                      <span>12h</span>
-                      <span>10h</span>
-                      <span>8h</span>
-                      <span>6h</span>
-                      <span>4h</span>
-                      <span>2h</span>
-                      <span>0h</span>
+                      {activeTab === "thisYear" ? (
+                        <>
+                          <span>300h</span>
+                          <span>200h</span>
+                          <span>100h</span>
+                          <span>0h</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>12h</span>
+                          <span>10h</span>
+                          <span>8h</span>
+                          <span>6h</span>
+                          <span>4h</span>
+                          <span>2h</span>
+                          <span>0h</span>
+                        </>
+                      )}
                     </div>
 
                     {/* Chart Area */}
