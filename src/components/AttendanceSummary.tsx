@@ -405,9 +405,9 @@ export default function AttendanceSummary() {
               <div className="mb-6 mt-6">
                 <div className="relative bg-white p-4">
                   {/* Chart Container */}
-                  <div className="flex items-end h-32 border-l-2 border-b-2 border-gray-300">
+                  <div className="flex items-end h-40 border-l border-b border-gray-400 relative">
                     {/* Y-axis labels */}
-                    <div className="flex flex-col justify-between h-full text-xs text-gray-600 pr-4 -ml-2">
+                    <div className="flex flex-col justify-between h-full text-xs text-gray-700 pr-3 -ml-1">
                       <span>12h</span>
                       <span>10h</span>
                       <span>8h</span>
@@ -418,55 +418,74 @@ export default function AttendanceSummary() {
                     </div>
 
                     {/* Chart Area */}
-                    <div className="flex items-end flex-1 h-full relative">
+                    <div className="flex items-end flex-1 h-full relative ml-2">
                       {/* Bars representing each day of the month */}
-                      <div className="flex items-end gap-1 w-full h-full px-2">
-                        {Array.from({ length: 30 }, (_, i) => {
-                          const day = i + 1;
-                          // Define weekend pattern based on actual June 2025 calendar
-                          const date = new Date(2025, 5, day); // Month is 0-indexed
-                          const dayOfWeek = date.getDay();
-                          const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday
+                      <div className="flex items-end gap-[2px] w-full h-full">
+                        {(() => {
+                          // Define specific pattern matching the screenshot
+                          const barHeights = [
+                            75,
+                            85,
+                            80,
+                            85,
+                            85,
+                            90,
+                            0,
+                            0, // Days 1-8 (weekend on 7,8)
+                            95,
+                            85,
+                            85,
+                            85,
+                            95,
+                            75,
+                            0, // Days 9-15 (weekend on 15)
+                            85,
+                            95,
+                            95,
+                            95,
+                            85,
+                            85, // Days 16-21
+                            0,
+                            95,
+                            85,
+                            85,
+                            85,
+                            85,
+                            0, // Days 22-28 (weekends on 22, 29)
+                            5,
+                            0, // Days 29-30 (very short on 29, weekend on 30)
+                          ];
 
-                          // Generate realistic working hours data
-                          let height;
-                          if (isWeekend) {
-                            height = 0; // No work on weekends
-                          } else {
-                            // Varying work hours between 7-11 hours
-                            const baseHours = 8 + Math.sin(day * 0.3) * 2;
-                            const variation = Math.random() * 2 - 1; // -1 to +1 variation
-                            const workHours = Math.max(
-                              7,
-                              Math.min(11, baseHours + variation),
+                          return Array.from({ length: 30 }, (_, i) => {
+                            const day = i + 1;
+                            const height = barHeights[i] || 0;
+                            const isWeekend = height === 0 || height < 10;
+
+                            return (
+                              <div
+                                key={day}
+                                className={`flex-1 min-w-[8px] ${
+                                  isWeekend ? "bg-red-500" : "bg-green-500"
+                                }`}
+                                style={{ height: `${height}%` }}
+                                title={`Day ${day}: ${
+                                  isWeekend
+                                    ? "Weekend/Holiday"
+                                    : `${Math.round((height / 100) * 12)} hours worked`
+                                }`}
+                              />
                             );
-                            height = (workHours / 12) * 100; // Convert to percentage
-                          }
-
-                          return (
-                            <div
-                              key={day}
-                              className={`flex-1 min-w-[8px] max-w-[12px] ${
-                                isWeekend ? "bg-red-500" : "bg-green-500"
-                              }`}
-                              style={{ height: `${height}%` }}
-                              title={`Day ${day}: ${
-                                isWeekend
-                                  ? "Weekend"
-                                  : `${Math.round((height / 100) * 12)} hours worked`
-                              }`}
-                            />
-                          );
-                        })}
+                          });
+                        })()}
                       </div>
 
                       {/* X-axis day markers */}
-                      <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-600 pt-2 px-2">
-                        <span>05</span>
-                        <span>10</span>
+                      <div className="absolute -bottom-6 left-0 right-0 flex justify-between text-xs text-gray-700 px-4">
+                        <span className="transform -translate-x-2">05</span>
+                        <span className="transform -translate-x-1">10</span>
                         <span>15</span>
-                        <span>20</span>
-                        <span>25</span>
+                        <span className="transform translate-x-1">20</span>
+                        <span className="transform translate-x-2">25</span>
                       </div>
                     </div>
                   </div>
