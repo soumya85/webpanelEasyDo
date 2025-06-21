@@ -648,10 +648,7 @@ export default function AttendanceSummary() {
             {/* Scrollable Content Area */}
             <div
               ref={scrollContainerRef}
-              className={cn(
-                "h-full overflow-y-auto bg-gray-50",
-                isBottomSummaryCollapsed ? "hidden" : "",
-              )}
+              className="h-full overflow-y-auto bg-gray-50"
               onScroll={handleScroll}
             >
               {loading ? (
