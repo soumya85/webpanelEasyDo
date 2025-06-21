@@ -403,57 +403,114 @@ export default function AttendanceSummary() {
             <>
               {/* Daily Hours Bar Chart */}
               <div className="mb-6 mt-6">
-                <div className="flex items-end justify-between h-20 px-2 bg-gray-50 rounded-lg border">
-                  {/* Y-axis labels */}
-                  <div className="flex flex-col justify-between h-full text-xs text-gray-500 pr-2">
-                    <span>12h</span>
-                    <span>10h</span>
-                    <span>8h</span>
-                    <span>6h</span>
-                    <span>4h</span>
-                    <span>2h</span>
-                    <span>0h</span>
-                  </div>
+                <div className="relative bg-white p-4">
+                  {/* Chart Container */}
+                  <div className="flex items-end h-40 border-l border-b border-gray-400 relative">
+                    {/* Y-axis labels */}
+                    <div className="flex flex-col justify-between h-full text-xs text-gray-700 pr-3 -ml-1">
+                      <span>12h</span>
+                      <span>10h</span>
+                      <span>8h</span>
+                      <span>6h</span>
+                      <span>4h</span>
+                      <span>2h</span>
+                      <span>0h</span>
+                    </div>
 
-                  {/* Bars representing each day of the month */}
-                  <div className="flex items-end gap-0.5 flex-1 h-full">
-                    {Array.from({ length: 30 }, (_, i) => {
-                      const day = i + 1;
-                      // Weekend days (assuming Sundays and some Saturdays are red)
-                      const isWeekend =
-                        day % 7 === 0 ||
-                        day % 7 === 6 ||
-                        day === 1 ||
-                        day === 8 ||
-                        day === 15 ||
-                        day === 22 ||
-                        day === 29;
-                      const height = Math.random() * 60 + 20; // Random height between 20-80%
+                    {/* Chart Area */}
+                    <div className="flex items-end flex-1 h-full relative ml-2">
+                      {/* Bars representing each day of the month */}
+                      <div className="flex items-end gap-[2px] w-full h-full">
+                        {(() => {
+                          // Define specific pattern matching the screenshot
+                          const barHeights = [
+                            75,
+                            85,
+                            80,
+                            85,
+                            85,
+                            90,
+                            0,
+                            0, // Days 1-8 (weekend on 7,8)
+                            95,
+                            85,
+                            85,
+                            85,
+                            95,
+                            75,
+                            0, // Days 9-15 (weekend on 15)
+                            85,
+                            95,
+                            95,
+                            95,
+                            85,
+                            85, // Days 16-21
+                            0,
+                            95,
+                            85,
+                            85,
+                            85,
+                            85,
+                            0, // Days 22-28 (weekends on 22, 29)
+                            5,
+                            0, // Days 29-30 (very short on 29, weekend on 30)
+                          ];
 
-                      return (
-                        <div
-                          key={day}
-                          className={`w-1 rounded-t-sm ${
-                            isWeekend ? "bg-red-500" : "bg-green-500"
-                          }`}
-                          style={{ height: `${height}%` }}
-                          title={`Day ${day}: ${isWeekend ? "Non-working" : "Working"} day`}
-                        />
-                      );
-                    })}
+                          return Array.from({ length: 30 }, (_, i) => {
+                            const day = i + 1;
+                            const height = barHeights[i] || 0;
+                            const isWeekend = height === 0 || height < 10;
+
+                            return (
+                              <div
+                                key={day}
+                                className={`flex-1 min-w-[8px] ${
+                                  isWeekend ? "bg-red-500" : "bg-green-500"
+                                }`}
+                                style={{ height: `${height}%` }}
+                                title={`Day ${day}: ${
+                                  isWeekend
+                                    ? "Weekend/Holiday"
+                                    : `${Math.round((height / 100) * 12)} hours worked`
+                                }`}
+                              />
+                            );
+                          });
+                        })()}
+                      </div>
+
+                      {/* X-axis day markers */}
+                      <div className="absolute -bottom-6 left-0 right-0 flex justify-between text-xs text-gray-700 px-4">
+                        <span className="transform -translate-x-2">05</span>
+                        <span className="transform -translate-x-1">10</span>
+                        <span>15</span>
+                        <span className="transform translate-x-1">20</span>
+                        <span className="transform translate-x-2">25</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Hours Summary */}
-              <div className="mb-6 text-center">
-                <div className="text-sm text-gray-700">
-                  <span className="font-medium">Total Hours: </span>
-                  <span className="text-gray-600">153...</span>
-                  <span className="font-medium ml-4">Worked: </span>
-                  <span className="text-green-600 font-semibold">156.36</span>
-                  <span className="font-medium ml-4">OT: </span>
-                  <span className="text-blue-600 font-semibold">0:00 Hrs</span>
+              <div className="mb-6 px-4">
+                <div className="flex items-center gap-8 text-sm">
+                  <div>
+                    <span className="font-medium text-gray-900">
+                      Total Hours :{" "}
+                    </span>
+                    <span className="text-gray-600">153....</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-gray-900">Worked : </span>
+                    <span className="text-green-600 font-semibold">156.36</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-gray-900">OT : </span>
+                    <span className="text-blue-600 font-semibold">
+                      0.00 Hrs
+                    </span>
+                  </div>
                 </div>
               </div>
 
