@@ -666,7 +666,7 @@ export default function AttendanceSummary() {
 
           {/* Summary Section When Expanded - Positioned Right After Tabs */}
           {!isBottomSummaryCollapsed && (
-            <div className="bg-white border border-gray-200 shadow-lg z-10 mx-4 mt-2 rounded-lg overflow-visible">
+            <div className="bg-white border border-gray-200 shadow-lg z-10 mx-4 mt-2 rounded-lg overflow-visible max-h-[60vh] overflow-y-auto">
               <AttendanceSummaryContent />
             </div>
           )}
