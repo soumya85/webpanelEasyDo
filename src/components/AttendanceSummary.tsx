@@ -504,7 +504,7 @@ export default function AttendanceSummary() {
                   calendarDays.push(
                     <div
                       key={`current-${day}`}
-                      className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
                         isWeekend
                           ? "bg-red-500 text-white"
                           : "bg-green-500 text-white"
