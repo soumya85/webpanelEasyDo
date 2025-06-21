@@ -616,7 +616,7 @@ export default function AttendanceSummary() {
         open={isAttendanceModalOpen}
         onOpenChange={setIsAttendanceModalOpen}
       >
-        <DialogContent className="max-w-4xl h-[90vh] max-h-[90vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+        <DialogContent className="max-w-4xl h-[90vh] max-h-[90vh] p-0 flex flex-col [&>button]:hidden">
           <VisuallyHidden>
             <DialogTitle>Soumyadeep Goswami Attendance Details</DialogTitle>
           </VisuallyHidden>
