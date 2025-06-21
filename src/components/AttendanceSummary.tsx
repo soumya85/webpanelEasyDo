@@ -636,8 +636,8 @@ export default function AttendanceSummary() {
             ))}
           </div>
 
-          {/* Bottom Summary When Collapsed - Positioned Right After Tabs */}
-          {isBottomSummaryCollapsed && (
+          {/* Summary Section When Expanded - Positioned Right After Tabs */}
+          {!isBottomSummaryCollapsed && (
             <div className="bg-white border border-gray-200 shadow-lg z-10 mx-4 mt-2 rounded-lg">
               <AttendanceSummaryContent />
             </div>
