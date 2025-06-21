@@ -624,10 +624,17 @@ export default function AttendanceSummary() {
                   </span>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">17</div>
-                  <div className="text-xs text-gray-600 font-medium">
-                    BRANCH
+                  <div className="text-2xl font-bold text-gray-900">
+                    {summaryData.punchInLocations.value}
                   </div>
+                  <div className="text-xs text-gray-600 font-medium">
+                    {summaryData.punchInLocations.type}
+                  </div>
+                  {summaryData.punchInLocations.additional && (
+                    <div className="text-xs text-red-600 font-medium mt-1">
+                      {summaryData.punchInLocations.additional}
+                    </div>
+                  )}
                 </div>
               </div>
 
