@@ -217,58 +217,140 @@ export default function AttendanceSummary() {
     setIsBottomSummaryCollapsed(!isBottomSummaryCollapsed);
   };
 
-  const attendanceData = [
-    {
-      label: "Present",
-      value: 16,
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
-      showIcon: true,
-    },
-    {
-      label: "Absent",
-      value: 0,
-      color: "text-gray-600",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Leave",
-      value: 0,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
-    },
-    {
-      label: "Late",
-      value: 2,
-      color: "text-gray-500",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Half Day",
-      value: 0,
-      color: "text-gray-500",
-      bgColor: "bg-gray-50",
-      borderColor: "border-gray-200",
-    },
-    {
-      label: "Red Flags",
-      value: 2,
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200",
-    },
-    {
-      label: "Holidays",
-      value: 4,
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200",
-    },
-  ];
+  // Dynamic attendance data based on active tab
+  const getAttendanceDataForTab = (tabId: string) => {
+    const baseConfig = [
+      {
+        label: "Present",
+        color: "text-green-600",
+        bgColor: "bg-green-50",
+        borderColor: "border-green-200",
+        showIcon: true,
+      },
+      {
+        label: "Absent",
+        color: "text-gray-600",
+        bgColor: "bg-gray-50",
+        borderColor: "border-gray-200",
+      },
+      {
+        label: "Leave",
+        color: "text-orange-600",
+        bgColor: "bg-orange-50",
+        borderColor: "border-orange-200",
+      },
+      {
+        label: "Late",
+        color: "text-gray-500",
+        bgColor: "bg-gray-50",
+        borderColor: "border-gray-200",
+      },
+      {
+        label: "Half Day",
+        color: "text-gray-500",
+        bgColor: "bg-gray-50",
+        borderColor: "border-gray-200",
+      },
+      {
+        label: "Red Flags",
+        color: "text-red-600",
+        bgColor: "bg-red-50",
+        borderColor: "border-red-200",
+      },
+      {
+        label: "Holidays",
+        color: "text-red-600",
+        bgColor: "bg-red-50",
+        borderColor: "border-red-200",
+      },
+    ];
+
+    switch (tabId) {
+      case "thisMonth":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [17, 0, 0, 2, 0, 2, 4][index],
+        }));
+      case "last30Days":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [25, 0, 0, 2, 0, 2, 5][index],
+        }));
+      case "lastMonth":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [26, 0, 1, 3, 0, 5, 4][index],
+        }));
+      case "thisYear":
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [138, 0, 3, 14, 2, 41, 31][index],
+        }));
+      default:
+        return baseConfig.map((config, index) => ({
+          ...config,
+          value: [17, 0, 0, 2, 0, 2, 4][index],
+        }));
+    }
+  };
+
+  // Get summary data for active tab
+  const getSummaryDataForTab = (tabId: string) => {
+    switch (tabId) {
+      case "thisMonth":
+        return {
+          totalDays: 21,
+          workingDays: 17,
+          totalHours: "153",
+          workedHours: "158.76",
+          otHours: "0.00",
+          punchInLocations: { value: 17, type: "BRANCH" },
+        };
+      case "last30Days":
+        return {
+          totalDays: 30,
+          workingDays: 25,
+          totalHours: "225",
+          workedHours: "231.89",
+          otHours: "0.00",
+          punchInLocations: { value: 25, type: "BRANCH" },
+        };
+      case "lastMonth":
+        return {
+          totalDays: 31,
+          workingDays: 27,
+          totalHours: "243",
+          workedHours: "240.27",
+          otHours: "0.00",
+          punchInLocations: {
+            value: 24,
+            type: "BRANCH",
+            additional: "2 UNVERIFIED",
+          },
+        };
+      case "thisYear":
+        return {
+          totalDays: 172,
+          workingDays: 141,
+          totalHours: "172.00",
+          workedHours: "141.00",
+          otHours: "0.00",
+          punchInLocations: { value: 17, type: "BRANCH" },
+        };
+      default:
+        return {
+          totalDays: 21,
+          workingDays: 17,
+          totalHours: "153",
+          workedHours: "158.76",
+          otHours: "0.00",
+          punchInLocations: { value: 17, type: "BRANCH" },
+        };
+    }
+  };
+
+  const attendanceData = getAttendanceDataForTab(activeTab);
+  const summaryData = getSummaryDataForTab(activeTab);
 
   const tabOptions = [
     {
@@ -392,9 +474,14 @@ export default function AttendanceSummary() {
           {/* Total Days Summary */}
           <div className="text-center mb-4">
             <span className="text-gray-700 font-medium">
-              Total Days <span className="text-gray-800 font-semibold">20</span>
+              Total Days{" "}
+              <span className="text-gray-800 font-semibold">
+                {summaryData.totalDays}
+              </span>
               , Working Days{" "}
-              <span className="text-gray-800 font-semibold">16</span>
+              <span className="text-gray-800 font-semibold">
+                {summaryData.workingDays}
+              </span>
             </span>
           </div>
 
@@ -408,13 +495,24 @@ export default function AttendanceSummary() {
                   <div className="flex items-end h-40 border-l border-b border-gray-400 relative">
                     {/* Y-axis labels */}
                     <div className="flex flex-col justify-between h-full text-xs text-gray-700 pr-3 -ml-1">
-                      <span>12h</span>
-                      <span>10h</span>
-                      <span>8h</span>
-                      <span>6h</span>
-                      <span>4h</span>
-                      <span>2h</span>
-                      <span>0h</span>
+                      {activeTab === "thisYear" ? (
+                        <>
+                          <span>300h</span>
+                          <span>200h</span>
+                          <span>100h</span>
+                          <span>0h</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>12h</span>
+                          <span>10h</span>
+                          <span>8h</span>
+                          <span>6h</span>
+                          <span>4h</span>
+                          <span>2h</span>
+                          <span>0h</span>
+                        </>
+                      )}
                     </div>
 
                     {/* Chart Area */}
@@ -422,70 +520,211 @@ export default function AttendanceSummary() {
                       {/* Bars representing each day of the month */}
                       <div className="flex items-end gap-[2px] w-full h-full">
                         {(() => {
-                          // Define specific pattern matching the screenshot
-                          const barHeights = [
-                            75,
-                            85,
-                            80,
-                            85,
-                            85,
-                            90,
-                            0,
-                            0, // Days 1-8 (weekend on 7,8)
-                            95,
-                            85,
-                            85,
-                            85,
-                            95,
-                            75,
-                            0, // Days 9-15 (weekend on 15)
-                            85,
-                            95,
-                            95,
-                            95,
-                            85,
-                            85, // Days 16-21
-                            0,
-                            95,
-                            85,
-                            85,
-                            85,
-                            85,
-                            0, // Days 22-28 (weekends on 22, 29)
-                            5,
-                            0, // Days 29-30 (very short on 29, weekend on 30)
-                          ];
+                          // Get chart data based on active tab
+                          const getChartDataForTab = (tabId: string) => {
+                            switch (tabId) {
+                              case "thisMonth":
+                                // This Month (June) - data from first screenshot
+                                return {
+                                  heights: [
+                                    75,
+                                    85,
+                                    80,
+                                    85,
+                                    85,
+                                    90,
+                                    0,
+                                    0, // Days 1-8
+                                    95,
+                                    85,
+                                    85,
+                                    85,
+                                    95,
+                                    75,
+                                    0, // Days 9-15
+                                    85,
+                                    95,
+                                    95,
+                                    95,
+                                    85,
+                                    85, // Days 16-21
+                                    0,
+                                    95,
+                                    85,
+                                    85,
+                                    85,
+                                    85,
+                                    0, // Days 22-28
+                                    5,
+                                    0, // Days 29-30
+                                  ],
+                                  days: 30,
+                                  xAxisLabels: ["05", "10", "15", "20", "25"],
+                                };
+                              case "last30Days":
+                                // Last 30 days - more data points, data from second screenshot
+                                return {
+                                  heights: Array.from(
+                                    { length: 30 },
+                                    (_, i) => {
+                                      const dayIndex = i + 1;
+                                      // Pattern for 30 days with more working days
+                                      if (
+                                        dayIndex % 7 === 0 ||
+                                        dayIndex % 7 === 6
+                                      )
+                                        return 0; // Weekends
+                                      return (
+                                        Math.floor(Math.random() * 30) + 70
+                                      ); // Working days 70-100%
+                                    },
+                                  ),
+                                  days: 30,
+                                  xAxisLabels: [
+                                    "27",
+                                    "01",
+                                    "06",
+                                    "11",
+                                    "16",
+                                    "21",
+                                  ],
+                                };
+                              case "lastMonth":
+                                // Last Month (May) - data from third screenshot
+                                return {
+                                  heights: Array.from(
+                                    { length: 31 },
+                                    (_, i) => {
+                                      const dayIndex = i + 1;
+                                      // May pattern with some orange (half day) on 14th
+                                      if (
+                                        dayIndex % 7 === 0 ||
+                                        dayIndex % 7 === 6
+                                      )
+                                        return 0; // Weekends
+                                      if (dayIndex === 14) return 60; // Half day (orange in screenshot)
+                                      return (
+                                        Math.floor(Math.random() * 25) + 75
+                                      ); // Working days
+                                    },
+                                  ),
+                                  days: 31,
+                                  xAxisLabels: [
+                                    "05",
+                                    "10",
+                                    "15",
+                                    "20",
+                                    "25",
+                                    "30",
+                                  ],
+                                };
+                              case "thisYear":
+                                // This Year (2025) - yearly view with monthly bars
+                                return {
+                                  heights: [
+                                    95, 85, 75, 85, 90, 55, 0, 0, 0, 0, 0, 0,
+                                  ], // Monthly data (Jan-Dec)
+                                  days: 12,
+                                  xAxisLabels: [
+                                    "J",
+                                    "F",
+                                    "M",
+                                    "A",
+                                    "M",
+                                    "J",
+                                    "J",
+                                    "A",
+                                    "S",
+                                    "O",
+                                    "N",
+                                    "D",
+                                  ],
+                                  isYearly: true,
+                                };
+                              default:
+                                return {
+                                  heights: [
+                                    75, 85, 80, 85, 85, 90, 0, 0, 95, 85, 85,
+                                    85, 95, 75, 0, 85, 95, 95, 95, 85, 85, 0,
+                                    95, 85, 85, 85, 85, 0, 5, 0,
+                                  ],
+                                  days: 30,
+                                  xAxisLabels: ["05", "10", "15", "20", "25"],
+                                };
+                            }
+                          };
 
-                          return Array.from({ length: 30 }, (_, i) => {
-                            const day = i + 1;
-                            const height = barHeights[i] || 0;
-                            const isWeekend = height === 0 || height < 10;
+                          const chartData = getChartDataForTab(activeTab);
 
-                            return (
-                              <div
-                                key={day}
-                                className={`flex-1 min-w-[8px] ${
-                                  isWeekend ? "bg-red-500" : "bg-green-500"
-                                }`}
-                                style={{ height: `${height}%` }}
-                                title={`Day ${day}: ${
-                                  isWeekend
-                                    ? "Weekend/Holiday"
-                                    : `${Math.round((height / 100) * 12)} hours worked`
-                                }`}
-                              />
-                            );
-                          });
+                          return Array.from(
+                            { length: chartData.days },
+                            (_, i) => {
+                              const day = i + 1;
+                              const height = chartData.heights[i] || 0;
+                              const isWeekend = height === 0 || height < 10;
+                              const isHalfDay = height > 10 && height < 70; // For orange bars
+
+                              let barColor = "bg-green-500";
+                              if (isWeekend) barColor = "bg-red-500";
+                              else if (isHalfDay) barColor = "bg-orange-500";
+
+                              return (
+                                <div
+                                  key={day}
+                                  className={`flex-1 min-w-[8px] ${barColor}`}
+                                  style={{ height: `${height}%` }}
+                                  title={`${chartData.isYearly ? `Month ${day}` : `Day ${day}`}: ${
+                                    isWeekend
+                                      ? "Weekend/Holiday"
+                                      : isHalfDay
+                                        ? "Half Day"
+                                        : `${Math.round((height / 100) * 12)} hours worked`
+                                  }`}
+                                />
+                              );
+                            },
+                          );
                         })()}
                       </div>
 
                       {/* X-axis day markers */}
                       <div className="absolute -bottom-6 left-0 right-0 flex justify-between text-xs text-gray-700 px-4">
-                        <span className="transform -translate-x-2">05</span>
-                        <span className="transform -translate-x-1">10</span>
-                        <span>15</span>
-                        <span className="transform translate-x-1">20</span>
-                        <span className="transform translate-x-2">25</span>
+                        {(() => {
+                          const getXAxisLabels = (tabId: string) => {
+                            switch (tabId) {
+                              case "thisMonth":
+                                return ["05", "10", "15", "20", "25"];
+                              case "last30Days":
+                                return ["27", "01", "06", "11", "16", "21"];
+                              case "lastMonth":
+                                return ["05", "10", "15", "20", "25", "30"];
+                              case "thisYear":
+                                return ["J", "F", "M", "A", "M", "J"];
+                              default:
+                                return ["05", "10", "15", "20", "25"];
+                            }
+                          };
+
+                          const labels = getXAxisLabels(activeTab);
+                          return labels.map((label, index) => (
+                            <span
+                              key={index}
+                              className={`transform ${
+                                index === 0
+                                  ? "-translate-x-2"
+                                  : index === 1
+                                    ? "-translate-x-1"
+                                    : index === labels.length - 2
+                                      ? "translate-x-1"
+                                      : index === labels.length - 1
+                                        ? "translate-x-2"
+                                        : ""
+                              }`}
+                            >
+                              {label}
+                            </span>
+                          ));
+                        })()}
                       </div>
                     </div>
                   </div>
@@ -499,16 +738,20 @@ export default function AttendanceSummary() {
                     <span className="font-medium text-gray-900">
                       Total Hours :{" "}
                     </span>
-                    <span className="text-gray-600">153....</span>
+                    <span className="text-gray-600">
+                      {summaryData.totalHours}...
+                    </span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-900">Worked : </span>
-                    <span className="text-green-600 font-semibold">156.36</span>
+                    <span className="text-green-600 font-semibold">
+                      {summaryData.workedHours}
+                    </span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-900">OT : </span>
                     <span className="text-blue-600 font-semibold">
-                      0.00 Hrs
+                      {summaryData.otHours} Hrs
                     </span>
                   </div>
                 </div>
@@ -533,17 +776,37 @@ export default function AttendanceSummary() {
                   </span>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">17</div>
-                  <div className="text-xs text-gray-600 font-medium">
-                    BRANCH
+                  <div className="text-2xl font-bold text-gray-900">
+                    {summaryData.punchInLocations.value}
                   </div>
+                  <div className="text-xs text-gray-600 font-medium">
+                    {summaryData.punchInLocations.type}
+                  </div>
+                  {summaryData.punchInLocations.additional && (
+                    <div className="text-xs text-red-600 font-medium mt-1">
+                      {summaryData.punchInLocations.additional}
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Monthly Calendar */}
               <div className="bg-white rounded-lg border p-4 min-h-[200px]">
                 <div className="text-center text-sm font-semibold text-gray-900 mb-3">
-                  Jun 2025
+                  {(() => {
+                    switch (activeTab) {
+                      case "thisMonth":
+                        return "Jun 2025";
+                      case "lastMonth":
+                        return "May 2025";
+                      case "last30Days":
+                        return "Jun 2025"; // Shows current month for 30-day view
+                      case "thisYear":
+                        return "May 2025"; // Shows last month for yearly view
+                      default:
+                        return "Jun 2025";
+                    }
+                  })()}
                 </div>
 
                 {/* Calendar Header */}
@@ -562,58 +825,113 @@ export default function AttendanceSummary() {
 
                 {/* Calendar Grid */}
                 <div className="grid grid-cols-7 gap-2">
-                  {/* Generate full calendar grid - 6 weeks (42 days) */}
+                  {/* Generate full calendar grid based on active tab */}
                   {(() => {
-                    const calendarDays = [];
+                    const generateCalendarForTab = (tabId: string) => {
+                      const calendarDays = [];
 
-                    // Previous month end dates (May 2025 ends on 31st, June starts on Sunday)
-                    const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
-                    prevMonthDays.forEach((day) => {
-                      calendarDays.push(
-                        <div
-                          key={`prev-${day}`}
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
-                        >
-                          {day}
-                        </div>,
-                      );
-                    });
+                      if (tabId === "thisMonth" || tabId === "last30Days") {
+                        // June 2025 calendar
+                        const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
+                        prevMonthDays.forEach((day) => {
+                          calendarDays.push(
+                            <div
+                              key={`prev-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        });
 
-                    // Current month days (June 2025 - 30 days)
-                    for (let day = 1; day <= 30; day++) {
-                      // Determine if it's a weekend/holiday (red) or working day (green)
-                      // Sunday = 0, Saturday = 6 in JS Date
-                      const date = new Date(2025, 5, day); // Month is 0-indexed
-                      const dayOfWeek = date.getDay();
-                      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                        // June 2025 - 30 days
+                        for (let day = 1; day <= 30; day++) {
+                          const date = new Date(2025, 5, day); // June 2025
+                          const dayOfWeek = date.getDay();
+                          const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
 
-                      calendarDays.push(
-                        <div
-                          key={`current-${day}`}
-                          className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
-                            isWeekend
-                              ? "bg-red-500 text-white"
-                              : "bg-green-500 text-white"
-                          }`}
-                        >
-                          {day}
-                        </div>,
-                      );
-                    }
+                          calendarDays.push(
+                            <div
+                              key={`current-${day}`}
+                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
+                                isWeekend
+                                  ? "bg-red-500 text-white"
+                                  : "bg-green-500 text-white"
+                              }`}
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
 
-                    // Next month start dates to fill the grid (July 2025)
-                    for (let day = 1; day <= 5; day++) {
-                      calendarDays.push(
-                        <div
-                          key={`next-${day}`}
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
-                        >
-                          {day}
-                        </div>,
-                      );
-                    }
+                        // Next month days
+                        for (let day = 1; day <= 5; day++) {
+                          calendarDays.push(
+                            <div
+                              key={`next-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
+                      } else if (
+                        tabId === "lastMonth" ||
+                        tabId === "thisYear"
+                      ) {
+                        // May 2025 calendar
+                        const prevMonthDays = [27, 28, 29, 30]; // April end
+                        prevMonthDays.forEach((day) => {
+                          calendarDays.push(
+                            <div
+                              key={`prev-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        });
 
-                    return calendarDays;
+                        // May 2025 - 31 days
+                        for (let day = 1; day <= 31; day++) {
+                          const date = new Date(2025, 4, day); // May 2025
+                          const dayOfWeek = date.getDay();
+                          const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                          // Special case for day 14 (orange/half day) in May
+                          const isHalfDay = day === 14;
+
+                          let dayClass = "bg-green-500 text-white";
+                          if (isWeekend) dayClass = "bg-red-500 text-white";
+                          else if (isHalfDay)
+                            dayClass = "bg-orange-500 text-white";
+
+                          calendarDays.push(
+                            <div
+                              key={`current-${day}`}
+                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${dayClass}`}
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
+
+                        // Next month days (June start)
+                        for (let day = 1; day <= 7; day++) {
+                          calendarDays.push(
+                            <div
+                              key={`next-${day}`}
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                            >
+                              {day}
+                            </div>,
+                          );
+                        }
+                      }
+
+                      return calendarDays;
+                    };
+
+                    return generateCalendarForTab(activeTab);
                   })()}
                 </div>
               </div>
@@ -689,9 +1007,13 @@ export default function AttendanceSummary() {
               <div className="flex items-center justify-center text-sm">
                 <span className="text-gray-700 font-medium">
                   Total Days{" "}
-                  <span className="text-gray-800 font-semibold">20</span>,
-                  Working Days{" "}
-                  <span className="text-gray-800 font-semibold">16</span>
+                  <span className="text-gray-800 font-semibold">
+                    {summaryData.totalDays}
+                  </span>
+                  , Working Days{" "}
+                  <span className="text-gray-800 font-semibold">
+                    {summaryData.workingDays}
+                  </span>
                 </span>
               </div>
             </div>
