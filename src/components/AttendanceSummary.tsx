@@ -295,244 +295,275 @@ export default function AttendanceSummary() {
 
   // Attendance summary component
   const AttendanceSummaryContent = () => (
-    <div className="p-4">
-      {/* Collapse/Expand Arrow */}
-      <div className="flex justify-center mb-2">
-        <button
-          onClick={toggleBottomSummary}
-          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-          aria-label={
-            isBottomSummaryCollapsed ? "Expand analytics" : "Collapse analytics"
-          }
-        >
-          <ChevronUp
-            className={cn(
-              "w-5 h-5 text-gray-500 transition-transform duration-200",
-              isBottomSummaryCollapsed ? "" : "rotate-180",
-            )}
-          />
-        </button>
-      </div>
-
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200 bg-white rounded-t-lg shadow-sm">
-        <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
-        <span className="text-blue-600 font-medium">
-          {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
-            "This Month (June)"}
-        </span>
-      </div>
-
-      {/* Attendance Grid */}
-      <div className="grid grid-cols-7 gap-2 mb-4">
-        <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
-          <div className="flex items-center gap-1 mb-1">
-            <div className="text-xl font-bold text-green-600">16</div>
-            <User className="w-4 h-4 text-green-600" />
-          </div>
-          <div className="text-xs text-gray-700 text-center font-medium">
-            Present
-          </div>
-        </div>
-        <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-          <div className="text-xl font-bold text-gray-600 mb-1">0</div>
-          <div className="text-xs text-gray-700 text-center font-medium">
-            Absent
-          </div>
-        </div>
-        <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
-          <div className="text-xl font-bold text-orange-600 mb-1">0</div>
-          <div className="text-xs text-gray-700 text-center font-medium">
-            Leave
-          </div>
-        </div>
-        <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-          <div className="text-xl font-bold text-gray-500 mb-1">2</div>
-          <div className="text-xs text-gray-700 text-center font-medium">
-            Late
-          </div>
-        </div>
-        <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
-          <div className="text-xl font-bold text-gray-500 mb-1">0</div>
-          <div className="text-xs text-gray-700 text-center font-medium">
-            Half Day
-          </div>
-        </div>
-        <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-          <div className="text-xl font-bold text-red-600 mb-1">2</div>
-          <div className="text-xs text-gray-700 text-center font-medium">
-            Red Flags
-          </div>
-        </div>
-        <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
-          <div className="text-xl font-bold text-red-600 mb-1">4</div>
-          <div className="text-xs text-gray-700 text-center font-medium">
-            Holidays
-          </div>
-        </div>
-      </div>
-
-      {/* Total Days Summary */}
-      <div className="text-center">
-        <span className="text-gray-700 font-medium">
-          Total Days <span className="text-gray-800 font-semibold">20</span>,
-          Working Days <span className="text-gray-800 font-semibold">16</span>
-        </span>
-      </div>
-
-      {/* Additional Analytics - Show only when expanded (not collapsed) */}
-      {!isBottomSummaryCollapsed && (
-        <>
-          {/* Daily Hours Bar Chart */}
-          <div className="mb-6 mt-6">
-            <div className="flex items-end justify-between h-20 px-2 bg-gray-50 rounded-lg border">
-              {/* Y-axis labels */}
-              <div className="flex flex-col justify-between h-full text-xs text-gray-500 pr-2">
-                <span>12h</span>
-                <span>10h</span>
-                <span>8h</span>
-                <span>6h</span>
-                <span>4h</span>
-                <span>2h</span>
-                <span>0h</span>
-              </div>
-
-              {/* Bars representing each day of the month */}
-              <div className="flex items-end gap-0.5 flex-1 h-full">
-                {Array.from({ length: 30 }, (_, i) => {
-                  const day = i + 1;
-                  // Weekend days (assuming Sundays and some Saturdays are red)
-                  const isWeekend =
-                    day % 7 === 0 ||
-                    day % 7 === 6 ||
-                    day === 1 ||
-                    day === 8 ||
-                    day === 15 ||
-                    day === 22 ||
-                    day === 29;
-                  const height = Math.random() * 60 + 20; // Random height between 20-80%
-
-                  return (
-                    <div
-                      key={day}
-                      className={`w-1 rounded-t-sm ${
-                        isWeekend ? "bg-red-500" : "bg-green-500"
-                      }`}
-                      style={{ height: `${height}%` }}
-                      title={`Day ${day}: ${isWeekend ? "Non-working" : "Working"} day`}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Hours Summary */}
-          <div className="mb-6 text-center">
-            <div className="text-sm text-gray-700">
-              <span className="font-medium">Total Hours: </span>
-              <span className="text-gray-600">153...</span>
-              <span className="font-medium ml-4">Worked: </span>
-              <span className="text-green-600 font-semibold">156.36</span>
-              <span className="font-medium ml-4">OT: </span>
-              <span className="text-blue-600 font-semibold">0:00 Hrs</span>
-            </div>
-          </div>
-
-          {/* Punch-in Locations */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 text-gray-700 mb-2">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span className="text-sm font-medium">Punch-in Locations</span>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">17</div>
-              <div className="text-xs text-gray-600 font-medium">BRANCH</div>
-            </div>
-          </div>
-
-          {/* Monthly Calendar */}
-          <div className="bg-white rounded-lg border p-4 min-h-[200px]">
-            <div className="text-center text-sm font-semibold text-gray-900 mb-3">
-              Jun 2025
-            </div>
-
-            {/* Calendar Header */}
-            <div className="grid grid-cols-7 gap-2 mb-3">
-              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-                <div
-                  key={day}
-                  className="text-xs text-gray-600 text-center py-1 font-medium"
-                >
-                  {day}
-                </div>
-              ))}
-            </div>
-
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-2">
-              {/* Generate full calendar grid - 6 weeks (42 days) */}
-              {(() => {
-                const calendarDays = [];
-
-                // Previous month end dates (May 2025 ends on 31st, June starts on Sunday)
-                const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
-                prevMonthDays.forEach((day) => {
-                  calendarDays.push(
-                    <div
-                      key={`prev-${day}`}
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
-                    >
-                      {day}
-                    </div>,
-                  );
-                });
-
-                // Current month days (June 2025 - 30 days)
-                for (let day = 1; day <= 30; day++) {
-                  // Determine if it's a weekend/holiday (red) or working day (green)
-                  // Sunday = 0, Saturday = 6 in JS Date
-                  const date = new Date(2025, 5, day); // Month is 0-indexed
-                  const dayOfWeek = date.getDay();
-                  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-
-                  calendarDays.push(
-                    <div
-                      key={`current-${day}`}
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
-                        isWeekend
-                          ? "bg-red-500 text-white"
-                          : "bg-green-500 text-white"
-                      }`}
-                    >
-                      {day}
-                    </div>,
-                  );
-                }
-
-                // Next month start dates to fill the grid (July 2025)
-                for (let day = 1; day <= 5; day++) {
-                  calendarDays.push(
-                    <div
-                      key={`next-${day}`}
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
-                    >
-                      {day}
-                    </div>,
-                  );
-                }
-
-                return calendarDays;
-              })()}
-            </div>
-          </div>
-        </>
+    <div
+      className={cn(
+        "flex flex-col bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden",
+        !isBottomSummaryCollapsed ? "h-[70vh]" : "h-auto",
       )}
+    >
+      {/* Fixed Header Section */}
+      <div className="flex-shrink-0 bg-white">
+        {/* Collapse/Expand Arrow */}
+        <div className="flex justify-center pt-4 pb-2">
+          <button
+            onClick={toggleBottomSummary}
+            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            aria-label={
+              isBottomSummaryCollapsed
+                ? "Expand analytics"
+                : "Collapse analytics"
+            }
+          >
+            <ChevronUp
+              className={cn(
+                "w-5 h-5 text-gray-500 transition-transform duration-200",
+                isBottomSummaryCollapsed ? "" : "rotate-180",
+              )}
+            />
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between px-4 pb-3 border-b border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
+          <span className="text-blue-600 font-medium">
+            {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
+              "This Month (June)"}
+          </span>
+        </div>
+      </div>
+
+      {/* Scrollable Content */}
+      <div
+        className={cn(
+          "flex-1 overflow-y-auto",
+          !isBottomSummaryCollapsed ? "min-h-0" : "",
+        )}
+      >
+        <div className="p-4">
+          {/* Attendance Grid */}
+          <div className="grid grid-cols-7 gap-2 mb-4">
+            <div className="flex flex-col items-center p-2 bg-green-50 rounded-lg border-b-4 border-green-500">
+              <div className="flex items-center gap-1 mb-1">
+                <div className="text-xl font-bold text-green-600">16</div>
+                <User className="w-4 h-4 text-green-600" />
+              </div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                Present
+              </div>
+            </div>
+            <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+              <div className="text-xl font-bold text-gray-600 mb-1">0</div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                Absent
+              </div>
+            </div>
+            <div className="flex flex-col items-center p-2 bg-orange-50 rounded-lg border-b-4 border-orange-500">
+              <div className="text-xl font-bold text-orange-600 mb-1">0</div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                Leave
+              </div>
+            </div>
+            <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+              <div className="text-xl font-bold text-gray-500 mb-1">2</div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                Late
+              </div>
+            </div>
+            <div className="flex flex-col items-center p-2 bg-gray-50 rounded-lg border-b-4 border-gray-400">
+              <div className="text-xl font-bold text-gray-500 mb-1">0</div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                Half Day
+              </div>
+            </div>
+            <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+              <div className="text-xl font-bold text-red-600 mb-1">2</div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                Red Flags
+              </div>
+            </div>
+            <div className="flex flex-col items-center p-2 bg-red-50 rounded-lg border-b-4 border-red-500">
+              <div className="text-xl font-bold text-red-600 mb-1">4</div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                Holidays
+              </div>
+            </div>
+          </div>
+
+          {/* Total Days Summary */}
+          <div className="text-center mb-4">
+            <span className="text-gray-700 font-medium">
+              Total Days <span className="text-gray-800 font-semibold">20</span>
+              , Working Days{" "}
+              <span className="text-gray-800 font-semibold">16</span>
+            </span>
+          </div>
+
+          {/* Additional Analytics - Show only when expanded (not collapsed) */}
+          {!isBottomSummaryCollapsed && (
+            <>
+              {/* Daily Hours Bar Chart */}
+              <div className="mb-6 mt-6">
+                <div className="flex items-end justify-between h-20 px-2 bg-gray-50 rounded-lg border">
+                  {/* Y-axis labels */}
+                  <div className="flex flex-col justify-between h-full text-xs text-gray-500 pr-2">
+                    <span>12h</span>
+                    <span>10h</span>
+                    <span>8h</span>
+                    <span>6h</span>
+                    <span>4h</span>
+                    <span>2h</span>
+                    <span>0h</span>
+                  </div>
+
+                  {/* Bars representing each day of the month */}
+                  <div className="flex items-end gap-0.5 flex-1 h-full">
+                    {Array.from({ length: 30 }, (_, i) => {
+                      const day = i + 1;
+                      // Weekend days (assuming Sundays and some Saturdays are red)
+                      const isWeekend =
+                        day % 7 === 0 ||
+                        day % 7 === 6 ||
+                        day === 1 ||
+                        day === 8 ||
+                        day === 15 ||
+                        day === 22 ||
+                        day === 29;
+                      const height = Math.random() * 60 + 20; // Random height between 20-80%
+
+                      return (
+                        <div
+                          key={day}
+                          className={`w-1 rounded-t-sm ${
+                            isWeekend ? "bg-red-500" : "bg-green-500"
+                          }`}
+                          style={{ height: `${height}%` }}
+                          title={`Day ${day}: ${isWeekend ? "Non-working" : "Working"} day`}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Hours Summary */}
+              <div className="mb-6 text-center">
+                <div className="text-sm text-gray-700">
+                  <span className="font-medium">Total Hours: </span>
+                  <span className="text-gray-600">153...</span>
+                  <span className="font-medium ml-4">Worked: </span>
+                  <span className="text-green-600 font-semibold">156.36</span>
+                  <span className="font-medium ml-4">OT: </span>
+                  <span className="text-blue-600 font-semibold">0:00 Hrs</span>
+                </div>
+              </div>
+
+              {/* Punch-in Locations */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 text-gray-700 mb-2">
+                  <svg
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-sm font-medium">
+                    Punch-in Locations
+                  </span>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">17</div>
+                  <div className="text-xs text-gray-600 font-medium">
+                    BRANCH
+                  </div>
+                </div>
+              </div>
+
+              {/* Monthly Calendar */}
+              <div className="bg-white rounded-lg border p-4 min-h-[200px]">
+                <div className="text-center text-sm font-semibold text-gray-900 mb-3">
+                  Jun 2025
+                </div>
+
+                {/* Calendar Header */}
+                <div className="grid grid-cols-7 gap-2 mb-3">
+                  {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                    (day) => (
+                      <div
+                        key={day}
+                        className="text-xs text-gray-600 text-center py-1 font-medium"
+                      >
+                        {day}
+                      </div>
+                    ),
+                  )}
+                </div>
+
+                {/* Calendar Grid */}
+                <div className="grid grid-cols-7 gap-2">
+                  {/* Generate full calendar grid - 6 weeks (42 days) */}
+                  {(() => {
+                    const calendarDays = [];
+
+                    // Previous month end dates (May 2025 ends on 31st, June starts on Sunday)
+                    const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
+                    prevMonthDays.forEach((day) => {
+                      calendarDays.push(
+                        <div
+                          key={`prev-${day}`}
+                          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                        >
+                          {day}
+                        </div>,
+                      );
+                    });
+
+                    // Current month days (June 2025 - 30 days)
+                    for (let day = 1; day <= 30; day++) {
+                      // Determine if it's a weekend/holiday (red) or working day (green)
+                      // Sunday = 0, Saturday = 6 in JS Date
+                      const date = new Date(2025, 5, day); // Month is 0-indexed
+                      const dayOfWeek = date.getDay();
+                      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
+                      calendarDays.push(
+                        <div
+                          key={`current-${day}`}
+                          className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
+                            isWeekend
+                              ? "bg-red-500 text-white"
+                              : "bg-green-500 text-white"
+                          }`}
+                        >
+                          {day}
+                        </div>,
+                      );
+                    }
+
+                    // Next month start dates to fill the grid (July 2025)
+                    for (let day = 1; day <= 5; day++) {
+                      calendarDays.push(
+                        <div
+                          key={`next-${day}`}
+                          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                        >
+                          {day}
+                        </div>,
+                      );
+                    }
+
+                    return calendarDays;
+                  })()}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 
@@ -666,7 +697,7 @@ export default function AttendanceSummary() {
 
           {/* Summary Section When Expanded - Positioned Right After Tabs */}
           {!isBottomSummaryCollapsed && (
-            <div className="bg-white border border-gray-200 shadow-lg z-10 mx-4 mt-2 rounded-lg overflow-visible max-h-[60vh] overflow-y-auto">
+            <div className="mx-4 mt-2 z-10">
               <AttendanceSummaryContent />
             </div>
           )}
