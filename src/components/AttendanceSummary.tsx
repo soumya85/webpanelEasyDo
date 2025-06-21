@@ -138,7 +138,7 @@ export default function AttendanceSummary() {
   const [hasMore, setHasMore] = useState(true);
   const [currentOffset, setCurrentOffset] = useState(10);
   const [isBottomSummaryCollapsed, setIsBottomSummaryCollapsed] =
-    useState(false);
+    useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Load more data function
@@ -302,13 +302,13 @@ export default function AttendanceSummary() {
           onClick={toggleBottomSummary}
           className="p-1 hover:bg-gray-100 rounded-full transition-colors"
           aria-label={
-            isBottomSummaryCollapsed ? "Expand summary" : "Collapse summary"
+            isBottomSummaryCollapsed ? "Expand analytics" : "Collapse analytics"
           }
         >
           <ChevronUp
             className={cn(
               "w-5 h-5 text-gray-500 transition-transform duration-200",
-              isBottomSummaryCollapsed ? "rotate-180" : "",
+              isBottomSummaryCollapsed ? "" : "rotate-180",
             )}
           />
         </button>
@@ -378,6 +378,161 @@ export default function AttendanceSummary() {
           Working Days <span className="text-gray-800 font-semibold">16</span>
         </span>
       </div>
+
+      {/* Additional Analytics - Show only when expanded (not collapsed) */}
+      {!isBottomSummaryCollapsed && (
+        <>
+          {/* Daily Hours Bar Chart */}
+          <div className="mb-6 mt-6">
+            <div className="flex items-end justify-between h-20 px-2 bg-gray-50 rounded-lg border">
+              {/* Y-axis labels */}
+              <div className="flex flex-col justify-between h-full text-xs text-gray-500 pr-2">
+                <span>12h</span>
+                <span>10h</span>
+                <span>8h</span>
+                <span>6h</span>
+                <span>4h</span>
+                <span>2h</span>
+                <span>0h</span>
+              </div>
+
+              {/* Bars representing each day of the month */}
+              <div className="flex items-end gap-0.5 flex-1 h-full">
+                {Array.from({ length: 30 }, (_, i) => {
+                  const day = i + 1;
+                  // Weekend days (assuming Sundays and some Saturdays are red)
+                  const isWeekend =
+                    day % 7 === 0 ||
+                    day % 7 === 6 ||
+                    day === 1 ||
+                    day === 8 ||
+                    day === 15 ||
+                    day === 22 ||
+                    day === 29;
+                  const height = Math.random() * 60 + 20; // Random height between 20-80%
+
+                  return (
+                    <div
+                      key={day}
+                      className={`w-1 rounded-t-sm ${
+                        isWeekend ? "bg-red-500" : "bg-green-500"
+                      }`}
+                      style={{ height: `${height}%` }}
+                      title={`Day ${day}: ${isWeekend ? "Non-working" : "Working"} day`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Hours Summary */}
+          <div className="mb-6 text-center">
+            <div className="text-sm text-gray-700">
+              <span className="font-medium">Total Hours: </span>
+              <span className="text-gray-600">153...</span>
+              <span className="font-medium ml-4">Worked: </span>
+              <span className="text-green-600 font-semibold">156.36</span>
+              <span className="font-medium ml-4">OT: </span>
+              <span className="text-blue-600 font-semibold">0:00 Hrs</span>
+            </div>
+          </div>
+
+          {/* Punch-in Locations */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 text-gray-700 mb-2">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-sm font-medium">Punch-in Locations</span>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-900">17</div>
+              <div className="text-xs text-gray-600 font-medium">BRANCH</div>
+            </div>
+          </div>
+
+          {/* Monthly Calendar */}
+          <div className="bg-white rounded-lg border p-4 min-h-[200px]">
+            <div className="text-center text-sm font-semibold text-gray-900 mb-3">
+              Jun 2025
+            </div>
+
+            {/* Calendar Header */}
+            <div className="grid grid-cols-7 gap-2 mb-3">
+              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                <div
+                  key={day}
+                  className="text-xs text-gray-600 text-center py-1 font-medium"
+                >
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            {/* Calendar Grid */}
+            <div className="grid grid-cols-7 gap-2">
+              {/* Generate full calendar grid - 6 weeks (42 days) */}
+              {(() => {
+                const calendarDays = [];
+
+                // Previous month end dates (May 2025 ends on 31st, June starts on Sunday)
+                const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
+                prevMonthDays.forEach((day) => {
+                  calendarDays.push(
+                    <div
+                      key={`prev-${day}`}
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                    >
+                      {day}
+                    </div>,
+                  );
+                });
+
+                // Current month days (June 2025 - 30 days)
+                for (let day = 1; day <= 30; day++) {
+                  // Determine if it's a weekend/holiday (red) or working day (green)
+                  // Sunday = 0, Saturday = 6 in JS Date
+                  const date = new Date(2025, 5, day); // Month is 0-indexed
+                  const dayOfWeek = date.getDay();
+                  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
+                  calendarDays.push(
+                    <div
+                      key={`current-${day}`}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
+                        isWeekend
+                          ? "bg-red-500 text-white"
+                          : "bg-green-500 text-white"
+                      }`}
+                    >
+                      {day}
+                    </div>,
+                  );
+                }
+
+                // Next month start dates to fill the grid (July 2025)
+                for (let day = 1; day <= 5; day++) {
+                  calendarDays.push(
+                    <div
+                      key={`next-${day}`}
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                    >
+                      {day}
+                    </div>,
+                  );
+                }
+
+                return calendarDays;
+              })()}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 
@@ -461,7 +616,7 @@ export default function AttendanceSummary() {
         open={isAttendanceModalOpen}
         onOpenChange={setIsAttendanceModalOpen}
       >
-        <DialogContent className="max-w-4xl h-[90vh] max-h-[90vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+        <DialogContent className="max-w-4xl h-[90vh] max-h-[90vh] p-0 flex flex-col [&>button]:hidden">
           <VisuallyHidden>
             <DialogTitle>Soumyadeep Goswami Attendance Details</DialogTitle>
           </VisuallyHidden>
@@ -509,22 +664,19 @@ export default function AttendanceSummary() {
             ))}
           </div>
 
-          {/* Bottom Summary When Collapsed - Positioned Right After Tabs */}
-          {isBottomSummaryCollapsed && (
-            <div className="bg-white border border-gray-200 shadow-lg z-10 mx-4 mt-2 rounded-lg">
+          {/* Summary Section When Expanded - Positioned Right After Tabs */}
+          {!isBottomSummaryCollapsed && (
+            <div className="bg-white border border-gray-200 shadow-lg z-10 mx-4 mt-2 rounded-lg overflow-visible max-h-[60vh] overflow-y-auto">
               <AttendanceSummaryContent />
             </div>
           )}
 
           {/* Content Container */}
-          <div className="flex-1 relative overflow-hidden">
+          <div className="flex-1 relative flex flex-col overflow-hidden">
             {/* Scrollable Content Area */}
             <div
               ref={scrollContainerRef}
-              className={cn(
-                "h-full overflow-y-auto bg-gray-50",
-                isBottomSummaryCollapsed ? "hidden" : "",
-              )}
+              className="flex-1 overflow-y-auto bg-gray-50"
               onScroll={handleScroll}
             >
               {loading ? (
@@ -669,9 +821,9 @@ export default function AttendanceSummary() {
               )}
             </div>
 
-            {/* Bottom Attendance Summary - Only show when not collapsed */}
-            {!isBottomSummaryCollapsed && (
-              <div className="bg-white border-t sticky bottom-0 shadow-2xl">
+            {/* Bottom Attendance Summary - Only show when collapsed */}
+            {isBottomSummaryCollapsed && (
+              <div className="bg-white border-t shadow-2xl sticky bottom-0 z-10">
                 <AttendanceSummaryContent />
               </div>
             )}
