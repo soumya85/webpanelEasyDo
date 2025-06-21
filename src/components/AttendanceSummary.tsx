@@ -476,31 +476,59 @@ export default function AttendanceSummary() {
 
             {/* Calendar Grid */}
             <div className="grid grid-cols-7 gap-1">
-              {Array.from({ length: 30 }, (_, i) => {
-                const day = i + 1;
-                // Determine if it's a weekend/holiday (red) or working day (green)
-                const isWeekend =
-                  day % 7 === 0 ||
-                  day % 7 === 6 ||
-                  day === 1 ||
-                  day === 8 ||
-                  day === 15 ||
-                  day === 22 ||
-                  day === 29;
+              {/* Generate full calendar grid - 6 weeks (42 days) */}
+              {(() => {
+                const calendarDays = [];
 
-                return (
-                  <div
-                    key={day}
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
-                      isWeekend
-                        ? "bg-red-500 text-white"
-                        : "bg-green-500 text-white"
-                    }`}
-                  >
-                    {day}
-                  </div>
-                );
-              })}
+                // Previous month end dates (May 2025 ends on 31st, June starts on Sunday)
+                const prevMonthDays = [25, 26, 27, 28, 29, 30, 31];
+                prevMonthDays.forEach((day) => {
+                  calendarDays.push(
+                    <div
+                      key={`prev-${day}`}
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                    >
+                      {day}
+                    </div>,
+                  );
+                });
+
+                // Current month days (June 2025 - 30 days)
+                for (let day = 1; day <= 30; day++) {
+                  // Determine if it's a weekend/holiday (red) or working day (green)
+                  // Sunday = 0, Saturday = 6 in JS Date
+                  const date = new Date(2025, 5, day); // Month is 0-indexed
+                  const dayOfWeek = date.getDay();
+                  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
+                  calendarDays.push(
+                    <div
+                      key={`current-${day}`}
+                      className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
+                        isWeekend
+                          ? "bg-red-500 text-white"
+                          : "bg-green-500 text-white"
+                      }`}
+                    >
+                      {day}
+                    </div>,
+                  );
+                }
+
+                // Next month start dates to fill the grid (July 2025)
+                for (let day = 1; day <= 5; day++) {
+                  calendarDays.push(
+                    <div
+                      key={`next-${day}`}
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium bg-gray-300 text-gray-600"
+                    >
+                      {day}
+                    </div>,
+                  );
+                }
+
+                return calendarDays;
+              })()}
             </div>
           </div>
         </>
