@@ -793,7 +793,20 @@ export default function AttendanceSummary() {
               {/* Monthly Calendar */}
               <div className="bg-white rounded-lg border p-4 min-h-[200px]">
                 <div className="text-center text-sm font-semibold text-gray-900 mb-3">
-                  Jun 2025
+                  {(() => {
+                    switch (activeTab) {
+                      case "thisMonth":
+                        return "Jun 2025";
+                      case "lastMonth":
+                        return "May 2025";
+                      case "last30Days":
+                        return "Jun 2025"; // Shows current month for 30-day view
+                      case "thisYear":
+                        return "May 2025"; // Shows last month for yearly view
+                      default:
+                        return "Jun 2025";
+                    }
+                  })()}
                 </div>
 
                 {/* Calendar Header */}
