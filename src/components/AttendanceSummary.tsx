@@ -302,13 +302,13 @@ export default function AttendanceSummary() {
           onClick={toggleBottomSummary}
           className="p-1 hover:bg-gray-100 rounded-full transition-colors"
           aria-label={
-            isBottomSummaryCollapsed ? "Expand summary" : "Collapse summary"
+            isBottomSummaryCollapsed ? "Expand analytics" : "Collapse analytics"
           }
         >
           <ChevronUp
             className={cn(
               "w-5 h-5 text-gray-500 transition-transform duration-200",
-              isBottomSummaryCollapsed ? "rotate-180" : "",
+              isBottomSummaryCollapsed ? "" : "rotate-180",
             )}
           />
         </button>
