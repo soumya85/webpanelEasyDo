@@ -20,6 +20,10 @@ import HelpSupport from "./pages/HelpSupport";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import EmployeeRegister from "./pages/EmployeeRegister";
+import PerformanceReview from "@/pages/PerformanceReview";
+import EmployeeLocation from "@/pages/EmployeeLocation";
+import BranchManagement from "@/pages/BranchManagement";
+import Announcement from "@/pages/Announcement";
 
 const queryClient = new QueryClient();
 
@@ -43,7 +47,8 @@ const App = () => (
                 <Route
                   path="/company-dashboard"
                   element={<CompanyDashboard />}
-                /><Route
+                />
+                <Route
                   path="/employee-register"
                   element={<EmployeeRegister />}
                 />
@@ -54,6 +59,10 @@ const App = () => (
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/help-support" element={<HelpSupport />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/performance-review" element={<PerformanceReview />} />
+                <Route path="/location" element={<EmployeeLocation />} />
+                <Route path="/branch" element={<BranchManagement />} />
+                <Route path="/announcement" element={<Announcement />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

@@ -23,9 +23,21 @@ const ChevronRightIcon = () => (
 );
 
 export default function CompanyDashboard() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  // Branch options
+  const branchOptions = [
+    { label: "Head Office Kolkata", value: "kolkata" },
+    { label: "Delhi Branch", value: "delhi" },
+    { label: "Mumbai Branch", value: "mumbai" },
+    { label: "Bangalore Branch", value: "bangalore" },
+  ];
+  const [selectedBranch, setSelectedBranch] = React.useState("kolkata");
+  const selectedBranchLabel =
+    branchOptions.find((b) => b.value === selectedBranch)?.label || "";
+
+  // Example card data (add branch property if you want to filter by branch)
   const cardData = [
-    // Row 1
     {
       icon: <img src="/register-icon.png" alt="Register" />,
       title: "Register",
@@ -33,191 +45,135 @@ export default function CompanyDashboard() {
       route: "/employee-register",
     },
     {
-      icon: (
-        <img src="/backgroundcheck-icon.png" alt="Background Verification" />
-      ),
+      icon: <img src="/backgroundcheck-icon.png" alt="Background Verification" />,
       title: "Background Verification",
       id: "background-verification",
+      route: "/employee-register",
     },
     {
-      icon: (
-        <img src="/performamance_review-icon.png" alt="Performance Review" />
-      ),
+      icon: <img src="/performamance_review-icon.png" alt="Performance Review" />,
       title: "Performance Review",
       id: "performance-review",
+      route: "/performance-review",
     },
     {
       icon: <img src="/location-icon.png" alt="Location" />,
       title: "Location",
       id: "location",
+      route: "/location",
     },
-    // Row 2
     {
       icon: <img src="/branch-icon.png" alt="Branch" />,
       title: "Branch",
       id: "branch",
+      route: "/branch",
     },
     {
       icon: <img src="/announce-icon.png" alt="Announce" />,
-      title: "Announce",
-      id: "announce",
+      title: "Announcement",
+      id: "Announcement",
+      route: "/announcement",
     },
     {
       icon: <img src="/Documents-icon.png" alt="Documents" />,
       title: "Documents",
       id: "documents",
+      route: "/documents",
     },
     {
       icon: <img src="/leave-icon.png" alt="Leave" />,
       title: "Leave",
       id: "leave",
+      route: "/leave",
     },
-    // Row 3
     {
       icon: <img src="/holiday-icon.png" alt="Holiday" />,
       title: "Holiday",
       id: "holiday",
+      route: "/holiday",
     },
     {
       icon: <img src="/reports-icon.png" alt="Reports" />,
       title: "Reports",
       id: "reports",
+      route: "/reports",
     },
     {
       icon: <img src="/pendingapproval-icon.png" alt="Pending Approvals" />,
       title: "Pending Approvals",
       id: "pending-approvals",
+      route: "/pending-approvals",
     },
   ];
 
+  // Responsive: show all cards, or filter if needed
+  const filteredCards = cardData;
+
   return (
-    <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
-      {/* Page Area */}
-      <div
-        className={cn(
-          "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
-        )}
-      >
-        {/* Breadcrumb Section Row */}
-        <div
-          className={cn(
-            "flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px]",
-            "px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px]",
-            "justify-between items-center self-stretch",
-            "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
-            "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-            "flex-row gap-2 lg:gap-0",
-          )}
-        >
-          <div className="flex items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
-            <span className="text-[#283C50] font-inter text-base sm:text-xl lg:text-base font-bold leading-[20px] sm:leading-[24px] lg:leading-[19.2px]">
-              Company Dashboard
-            </span>
-            <span className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
-              |
-            </span>
-            <span className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px] hidden sm:block">
-              Liberty Highrise PVT Ltd
-            </span>
-            <div className="hidden sm:block">
-              <ChevronRightIcon />
-            </div>
-            <span className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
-              Head Office Kolkata
-            </span>
-          </div>
-          <div className="flex justify-end items-center gap-2 lg:gap-[10px] flex-shrink-0">
-            <div className="w-[171px] h-[41.19px] flex items-center justify-end">
-              <div className="h-full bg-transparent"></div>
+    <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-inter flex flex-col">
+      {/* Header - compact and sticky */}
+      <div className="w-full sticky top-0 z-30 bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 shadow">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-3">
+            
+            <div>
+              <h1 className="text-xl font-extrabold text-white tracking-tight drop-shadow">
+                Company Dashboard
+              </h1>
+              <div className="flex items-center gap-2 mt-0.5">
+                <span className="text-blue-100 font-semibold text-xs">
+                  Liberty Highrise PVT Ltd
+                </span>
+                <ChevronRightIcon />
+                <select
+                  className="ml-2 border border-indigo-200 rounded px-2 py-0.5 text-xs bg-white text-indigo-700 focus:border-indigo-400 transition"
+                  value={selectedBranch}
+                  onChange={(e) => setSelectedBranch(e.target.value)}
+                >
+                  {branchOptions.map((branch) => (
+                    <option key={branch.value} value={branch.value}>
+                      {branch.label}
+                    </option>
+                  ))}
+                </select>
+                
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Quick Action Cards Grid */}
-        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full">
-          {/* Row 1 */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full">
-            {cardData.slice(0, 4).map((card, index) => (
-              <div onClick={() => navigate(card.route)}
-                key={card.id}
-                className={cn(
-                  "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
-                  "px-3 sm:px-4 justify-center items-center flex-shrink-0",
-                  "rounded-[10px] border-b-[6px] border-[#4766E5] bg-white",
-                  "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                  "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
-                )}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="flex w-[35px] sm:w-[41px] flex-col items-center justify-center flex-shrink-0">
-                    {card.icon}
-                  </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px]">
-                    {card.title}
-                  </h3>
-                </div>
+      {/* Main Content: Grid and Dashboard, maximized for viewport */}
+      <div className="flex-1 flex flex-col max-w-7xl mx-auto w-full px-2 sm:px-4 lg:px-6 py-2">
+        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-3 overflow-auto">
+          {filteredCards.map((card) => (
+            <div
+              key={card.id}
+              onClick={() => card.route && navigate(card.route)}
+              className={cn(
+                "flex flex-col items-center justify-center h-[90px] sm:h-[110px] w-full rounded-xl bg-white border-b-4 border-indigo-500 shadow hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer group",
+                "relative overflow-hidden"
+              )}
+            >
+              <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition">
+                <ChevronRightIcon />
               </div>
-            ))}
-          </div>
-
-          {/* Row 2 */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full">
-            {cardData.slice(4, 8).map((card, index) => (
-              <div
-                key={card.id}
-                className={cn(
-                  "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
-                  "px-3 sm:px-4 justify-center items-center flex-shrink-0",
-                  "rounded-[10px] border-b-[6px] border-[#4766E5] bg-white",
-                  "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                  "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
-                )}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="flex w-[35px] sm:w-[41px] flex-col items-center justify-center flex-shrink-0">
-                    {card.icon}
-                  </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px]">
-                    {card.title}
-                  </h3>
-                </div>
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-50 mb-1 shadow group-hover:bg-indigo-100 transition">
+                {card.icon}
               </div>
-            ))}
-          </div>
-
-          {/* Row 3 */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full">
-            {cardData.slice(8, 11).map((card, index) => (
-              <div
-                key={card.id}
-                className={cn(
-                  "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",
-                  "px-3 sm:px-4 justify-center items-center flex-shrink-0",
-                  "rounded-[10px] border-b-[6px] border-[#4766E5] bg-white",
-                  "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                  "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
-                )}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="flex w-[35px] sm:w-[41px] flex-col items-center justify-center flex-shrink-0">
-                    {card.icon}
-                  </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-sm sm:text-base leading-[20px] sm:leading-[25.6px]">
-                    {card.title}
-                  </h3>
-                </div>
+              <div className="text-center">
+                <h3 className="text-xs sm:text-sm font-bold text-indigo-800 group-hover:text-indigo-600 transition">
+                  {card.title}
+                </h3>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
-        {/* Dashboard Section */}
-        <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12 w-full">
-          {/* Attendance Summary */}
-          <div className="grid grid-cols-1 gap-6">
-            <div className="min-h-[400px] lg:min-h-[450px]">
-              <AttendanceSummary />
-            </div>
+        {/* Dashboard Section - compact */}
+        <div className="mt-3">
+          <div className="rounded-xl bg-white shadow p-3 min-h-[180px]">
+            <AttendanceSummary />
           </div>
         </div>
       </div>
