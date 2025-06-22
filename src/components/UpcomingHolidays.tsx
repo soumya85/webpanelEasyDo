@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-export default function UpcomingHolidays() {
+interface UpcomingHolidaysProps {
+  onViewDetails?: () => void;
+}
+
+export default function UpcomingHolidays({
+  onViewDetails,
+}: UpcomingHolidaysProps) {
   return (
     <div className="w-full h-full">
       {/* Card with background starting from title */}
@@ -19,14 +25,15 @@ export default function UpcomingHolidays() {
               variant="ghost"
               size="sm"
               className="text-[#4766E5] hover:text-[#4766E5]/80"
+              onClick={onViewDetails}
             >
-              View All
+              View Details
               <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
           </div>
 
           {/* Holiday Card Content */}
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
               {/* Date Section */}
               <div className="flex flex-col items-center justify-center bg-blue-50 rounded-lg p-4 min-w-[80px] border-b-4 border-blue-500">

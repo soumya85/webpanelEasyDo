@@ -1,10 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function PerformanceMeter() {
@@ -40,24 +42,32 @@ export default function PerformanceMeter() {
     <div className="w-full h-full">
       {/* Card with background starting from title */}
       <Card className="bg-white border border-gray-200 shadow-sm h-full flex flex-col">
-        <CardContent className="p-6 flex-1 flex flex-col">
-          {/* Section Header - Title at top */}
-          <div className="text-center mb-6">
-            <h2 className="text-[#283C50] font-inter text-xl font-bold mb-2">
-              Performance Meter
+        <CardContent className="p-3 flex-1 flex flex-col">
+          {/* Section Header */}
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[#283C50] font-inter text-xl font-bold">
+              Employee Score
             </h2>
-            <p className="text-sm text-gray-600">
-              ( Overall Score : {overallScore}% )
-            </p>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#4766E5] hover:text-[#4766E5]/80"
+            >
+              More Info
+              <ChevronRight className="w-4 h-4 ml-1" />
+            </Button>
           </div>
 
           {/* Large, Clear Score Display */}
-          <div className="text-center mb-8 py-6">
-            <div className="text-6xl font-bold text-red-500 mb-4">
-              {overallScore}%
+          <div className="text-center mb-2 py-2">
+            <div className="text-3xl font-bold text-red-500 mb-1">
+              {overallScore}%{" "}
+              <span className="text-sm text-gray-600 font-normal">
+                ( Overall Score )
+              </span>
             </div>
-            <div className="text-lg font-medium text-gray-600 mb-4">
-              Overall Performance Score
+            <div className="text-lg font-bold text-gray-600 mb-2">
+              Performance Meter
             </div>
 
             {/* Simple Progress Bar */}
@@ -68,7 +78,7 @@ export default function PerformanceMeter() {
                   style={{ width: `${overallScore}%` }}
                 ></div>
               </div>
-              <div className="flex justify-between mt-2 text-sm">
+              <div className="flex justify-between mt-1 text-sm">
                 <span className="text-red-500 font-medium">Poor</span>
                 <span className="text-green-500 font-medium">Good</span>
               </div>
@@ -76,27 +86,28 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="flex-1 min-h-[100px]">
-            <h3 className="text-center text-sm font-semibold text-gray-700 mb-3">
+          <div className="flex-1 min-h-[40px] max-h-[80px]">
+            <h3 className="text-center text-xs font-semibold text-gray-700 mb-1">
               Category Breakdown
             </h3>
-            <ChartContainer config={chartConfig} className="h-full w-full">
+            <ChartContainer config={chartConfig} className="h-12 w-full">
               <BarChart
                 data={performanceData}
-                margin={{ top: 10, right: 10, left: 10, bottom: 35 }}
+                margin={{ top: 2, right: 3, left: 3, bottom: 15 }}
               >
                 <XAxis
                   dataKey="category"
-                  tick={{ fontSize: 8 }}
+                  tick={{ fontSize: 6 }}
                   angle={-45}
                   textAnchor="end"
-                  height={35}
+                  height={15}
                   interval={0}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 9 }}
+                  tick={{ fontSize: 7 }}
                   tickFormatter={(value) => `${value}%`}
+                  width={20}
                 />
                 <ChartTooltip
                   content={<ChartTooltipContent />}
@@ -115,11 +126,11 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-1">
             {performanceData.map((item, index) => (
               <div key={index} className="text-center">
                 <div
-                  className={cn("text-xs font-medium mb-1")}
+                  className={cn("text-xs font-medium")}
                   style={{ color: getBarColor(item.percentage) }}
                 >
                   {item.percentage}%
