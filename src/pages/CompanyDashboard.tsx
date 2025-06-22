@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import AttendanceSummary from "@/components/AttendanceSummary";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
 // Custom ChevronRight Icon to match Overview page
 const ChevronRightIcon = () => (
@@ -21,12 +23,14 @@ const ChevronRightIcon = () => (
 );
 
 export default function CompanyDashboard() {
+  const navigate = useNavigate()
   const cardData = [
     // Row 1
     {
       icon: <img src="/register-icon.png" alt="Register" />,
       title: "Register",
       id: "register",
+      route: "/employee-register",
     },
     {
       icon: (
@@ -134,7 +138,7 @@ export default function CompanyDashboard() {
           {/* Row 1 */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full">
             {cardData.slice(0, 4).map((card, index) => (
-              <div
+              <div onClick={() => navigate(card.route)}
                 key={card.id}
                 className={cn(
                   "flex w-full min-w-[200px] sm:min-w-[251px] h-[100px] sm:h-[116px]",

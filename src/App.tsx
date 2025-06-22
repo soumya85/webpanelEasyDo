@@ -19,6 +19,7 @@ import Settings from "./pages/Settings";
 import HelpSupport from "./pages/HelpSupport";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import EmployeeRegister from "./pages/EmployeeRegister";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,9 @@ const App = () => (
                 <Route
                   path="/company-dashboard"
                   element={<CompanyDashboard />}
+                /><Route
+                  path="/employee-register"
+                  element={<EmployeeRegister />}
                 />
                 <Route path="/tasks" element={<Tasks />} />
                 <Route path="/meet" element={<Meet />} />

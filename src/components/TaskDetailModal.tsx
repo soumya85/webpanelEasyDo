@@ -1,23 +1,14 @@
-
-import { useState, useRef } from "react";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Textarea } from "@/components/ui/textarea";
-import { SubTaskList } from "@/components/SubTaskList";
-import { Task, SubTask, Comment, Attachment } from "@/types/task";
-import { 
-  X, 
-  Calendar, 
-  Flag, 
-  User, 
-  Clock,
-  Plus,
-  MessageSquare,
-  Paperclip
-} from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Calendar as CalendarIcon, X, Edit3, Save, User, Flag } from "lucide-react";
+import { format } from "date-fns";
+import { useState, useEffect } from "react";
+import { Task } from "@/types/task";
 
 interface TaskDetailModalProps {
   task: Task | null;
@@ -26,388 +17,247 @@ interface TaskDetailModalProps {
   onUpdateTask: (taskId: string, updates: Partial<Task>) => void;
 }
 
-const getPriorityColor = (priority?: string) => {
-  switch (priority) {
-    case "urgent":
-      return "bg-red-500 text-white";
-    case "high":
-      return "bg-orange-500 text-white";
-    case "medium":
-      return "bg-yellow-500 text-white";
-    case "low":
-      return "bg-green-500 text-white";
-    default:
-      return "bg-gray-200 text-gray-600";
-  }
-};
+const statusOptions = [
+  "To Do",
+  "In Progress",
+  "Review",
+  "Done",
+  "Blocked",
+  "Cancelled",
+];
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "todo":
-      return "bg-gray-100 text-gray-600";
-    case "in-progress":
-      return "bg-blue-100 text-blue-600";
-    case "complete":
-      return "bg-green-100 text-green-600";
-    default:
-      return "bg-gray-100 text-gray-600";
-  }
-};
+const priorityOptions = [
+  { value: "urgent", label: "Urgent" },
+  { value: "high", label: "High" },
+  { value: "medium", label: "Medium" },
+  { value: "low", label: "Low" },
+];
 
-export function TaskDetailModal({ task, open, onOpenChange, onUpdateTask }: TaskDetailModalProps) {
-  const [isEditingTitle, setIsEditingTitle] = useState(false);
+export function TaskDetailModal({
+  task,
+  open,
+  onOpenChange,
+  onUpdateTask,
+}: TaskDetailModalProps) {
+  const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(task?.title || "");
   const [description, setDescription] = useState(task?.description || "");
-  const [comment, setComment] = useState("");
-  const [newTag, setNewTag] = useState("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [status, setStatus] = useState<Task["status"]>(task?.status || "To Do");
+  const [priority, setPriority] = useState<Task["priority"]>(task?.priority || "medium");
+  const [assignee, setAssignee] = useState(task?.assignee?.name || "");
+  const [startDate, setStartDate] = useState<Date | undefined>(
+    task?.startDate ? new Date(task.startDate) : undefined
+  );
+  const [dueDate, setDueDate] = useState<Date | undefined>(
+    task?.dueDate ? new Date(task.dueDate) : undefined
+  );
+
+  useEffect(() => {
+    setTitle(task?.title || "");
+    setDescription(task?.description || "");
+    setStatus(task?.status || "To Do");
+    setPriority(task?.priority || "medium");
+    setAssignee(task?.assignee?.name || "");
+    setStartDate(task?.startDate ? new Date(task.startDate) : undefined);
+    setDueDate(task?.dueDate ? new Date(task.dueDate) : undefined);
+    setEditMode(false);
+  }, [task, open]);
 
   if (!task) return null;
 
-  const handleTitleSave = () => {
-    onUpdateTask(task.id, { title, updatedAt: new Date().toISOString() });
-    setIsEditingTitle(false);
-  };
-
-  const handleDescriptionSave = () => {
-    onUpdateTask(task.id, { description, updatedAt: new Date().toISOString() });
-  };
-
-  const handleStatusChange = (status: "todo" | "in-progress" | "complete") => {
-    onUpdateTask(task.id, { status, updatedAt: new Date().toISOString() });
-  };
-
-  const handlePriorityChange = (priority: "urgent" | "high" | "medium" | "low") => {
-    onUpdateTask(task.id, { priority, updatedAt: new Date().toISOString() });
-  };
-
-  const handleSubtaskAdd = (subtaskTitle: string) => {
-    const newSubtask: SubTask = {
-      id: Date.now().toString(),
-      title: subtaskTitle,
-      completed: false,
-      createdAt: new Date().toISOString()
-    };
-    
-    onUpdateTask(task.id, { 
-      subtasks: [...task.subtasks, newSubtask],
-      updatedAt: new Date().toISOString()
+  const handleSave = () => {
+    onUpdateTask(task.id, {
+      title,
+      description,
+      status,
+      priority,
+      assignee: assignee ? { name: assignee } : undefined,
+      startDate: startDate ? startDate.toISOString().slice(0, 10) : undefined,
+      dueDate: dueDate ? dueDate.toISOString().slice(0, 10) : undefined,
     });
+    setEditMode(false);
+    onOpenChange(false);
   };
-
-  const handleSubtaskUpdate = (subtaskId: string, updates: Partial<SubTask>) => {
-    const updatedSubtasks = task.subtasks.map(subtask =>
-      subtask.id === subtaskId ? { ...subtask, ...updates } : subtask
-    );
-    
-    onUpdateTask(task.id, { 
-      subtasks: updatedSubtasks,
-      updatedAt: new Date().toISOString()
-    });
-  };
-
-  const handleSubtaskDelete = (subtaskId: string) => {
-    const updatedSubtasks = task.subtasks.filter(subtask => subtask.id !== subtaskId);
-    onUpdateTask(task.id, { 
-      subtasks: updatedSubtasks,
-      updatedAt: new Date().toISOString()
-    });
-  };
-
-  // Add comment handler
-  const handlePostComment = () => {
-    if (!comment.trim()) return;
-    const newComment: Comment = {
-      id: Date.now().toString(),
-      author: { 
-        id: "current-user", 
-        name: "You", 
-        initials: "YOU",
-        avatar: ""
-      },
-      content: comment,
-      createdAt: new Date().toLocaleString(),
-    };
-    onUpdateTask(task.id, { 
-      comments: [...task.comments, newComment],
-      updatedAt: new Date().toISOString()
-    });
-    setComment("");
-  };
-
-  // Add tag handler
-  const handleAddTag = () => {
-    if (!newTag.trim()) return;
-    onUpdateTask(task.id, { 
-      tags: [...task.tags, newTag.trim()],
-      updatedAt: new Date().toISOString()
-    });
-    setNewTag("");
-  };
-
-  // Add attachment handler
-  const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files?.length) return;
-    const file = e.target.files[0];
-    const newAttachment: Attachment = {
-      id: Date.now().toString(),
-      name: file.name,
-      url: URL.createObjectURL(file),
-      size: file.size,
-      type: file.type,
-      uploadedAt: new Date().toISOString(),
-    };
-    onUpdateTask(task.id, { 
-      attachments: [...task.attachments, newAttachment],
-      updatedAt: new Date().toISOString()
-    });
-    e.target.value = "";
-  };
-
-  const completedSubtasks = task.subtasks.filter(st => st.completed).length;
-  const progressPercentage = task.subtasks.length > 0 
-    ? Math.round((completedSubtasks / task.subtasks.length) * 100) 
-    : 0;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl w-full max-h-[90vh] bg-gray-50 border border-gray-200 rounded-xl shadow-xl p-0 overflow-hidden">
-        {/* Title Bar */}
-        <div className="flex items-center justify-between px-8 py-6 border-b bg-white">
-          <div className="flex items-center gap-3">
-            {isEditingTitle ? (
-              <Input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                onBlur={handleTitleSave}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') handleTitleSave();
-                  if (e.key === 'Escape') setIsEditingTitle(false);
-                }}
-                className="text-2xl font-bold bg-gray-100 px-3 py-2 rounded"
-                autoFocus
+      <DialogContent className="max-w-2xl rounded-3xl shadow-2xl border-0 p-0 overflow-hidden">
+        {/* Header */}
+        <DialogHeader className="bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 px-10 py-8">
+          <DialogTitle className="flex items-center gap-4">
+            <span className="flex items-center gap-3">
+              <Flag className="w-8 h-8 text-yellow-200 drop-shadow-lg" />
+              <span className="text-3xl font-black text-white tracking-tight drop-shadow-lg">
+                Task Details
+              </span>
+            </span>
+            <span className="ml-auto">
+              <DialogClose asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="h-10 w-10 text-white hover:bg-blue-700"
+                >
+                  <X className="h-6 w-6" />
+                </Button>
+              </DialogClose>
+            </span>
+          </DialogTitle>
+        </DialogHeader>
+        <div className="px-10 py-10 bg-white space-y-10">
+          {/* Title */}
+          <div className="flex flex-col md:flex-row md:items-center gap-4 border-b pb-6">
+            <div className="flex-1">
+              <label className="block text-xs font-semibold text-gray-500 mb-1">Title</label>
+              {editMode ? (
+                <Input
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                  className="text-2xl font-bold border-2 border-blue-200 focus:border-blue-500 transition"
+                />
+              ) : (
+                <div className="text-2xl font-extrabold text-blue-900 tracking-tight">{task.title}</div>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <Badge
+                className={
+                  status === "Done"
+                    ? "bg-green-100 text-green-700"
+                    : status === "In Progress"
+                    ? "bg-blue-100 text-blue-700"
+                    : status === "Review"
+                    ? "bg-yellow-100 text-yellow-700"
+                    : status === "Blocked"
+                    ? "bg-red-100 text-red-700"
+                    : status === "Cancelled"
+                    ? "bg-gray-200 text-gray-500"
+                    : "bg-gray-100 text-gray-700"
+                }
+              >
+                {task.status}
+              </Badge>
+              <Badge
+                className={
+                  priority === "urgent"
+                    ? "bg-pink-100 text-pink-700"
+                    : priority === "high"
+                    ? "bg-red-100 text-red-700"
+                    : priority === "medium"
+                    ? "bg-yellow-100 text-yellow-700"
+                    : "bg-gray-100 text-gray-700"
+                }
+              >
+                {task.priority?.charAt(0).toUpperCase() + task.priority?.slice(1)}
+              </Badge>
+            </div>
+          </div>
+          {/* Assignee & Dates */}
+          <div className="flex flex-col md:flex-row gap-8 border-b pb-6">
+            <div className="flex-1 flex flex-col gap-2">
+              <label className="block text-xs font-semibold text-gray-500">Assignee</label>
+              {editMode ? (
+                <div className="flex items-center gap-2">
+                  <User className="w-5 h-5 text-blue-400" />
+                  <Input value={assignee} onChange={e => setAssignee(e.target.value)} />
+                </div>
+              ) : (
+                <Badge className="bg-blue-100 text-blue-700 flex items-center gap-1 text-base px-3 py-1.5">
+                  <User className="w-5 h-5" /> {task.assignee?.name || "Unassigned"}
+                </Badge>
+              )}
+            </div>
+            <div className="flex-1 flex flex-col gap-2">
+              <label className="block text-xs font-semibold text-gray-500">Start Date</label>
+              {editMode ? (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start text-left font-normal"
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {startDate ? format(startDate, "yyyy-MM-dd") : "Pick a date"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={startDate}
+                      onSelect={setStartDate}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              ) : (
+                <span className="text-base font-medium">
+                  {task.startDate ? format(new Date(task.startDate), "yyyy-MM-dd") : "-"}
+                </span>
+              )}
+            </div>
+            <div className="flex-1 flex flex-col gap-2">
+              <label className="block text-xs font-semibold text-gray-500">Due Date</label>
+              {editMode ? (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start text-left font-normal"
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {dueDate ? format(dueDate, "yyyy-MM-dd") : "Pick a date"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={dueDate}
+                      onSelect={setDueDate}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              ) : (
+                <span className="text-base font-medium">
+                  {task.dueDate ? format(new Date(task.dueDate), "yyyy-MM-dd") : "-"}
+                </span>
+              )}
+            </div>
+          </div>
+          {/* Description */}
+          <div>
+            <label className="block text-xs font-semibold text-gray-500 mb-1">Description</label>
+            {editMode ? (
+              <textarea
+                className="w-full min-h-[80px] border rounded-lg px-3 py-2"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
               />
             ) : (
-              <h2
-                className="text-2xl font-bold cursor-pointer hover:bg-gray-100 px-2 py-1 rounded transition"
-                onClick={() => setIsEditingTitle(true)}
-              >
-                {task.title}
-              </h2>
+              <div className="text-gray-700 text-base">{task.description || <span className="text-gray-400">No description</span>}</div>
             )}
-            <span className={`ml-4 px-2 py-1 rounded text-xs font-medium ${getStatusColor(task.status)}`}>
-              {task.status.replace("-", " ")}
-            </span>
-            <span className={`ml-2 px-2 py-1 rounded text-xs font-medium ${getPriorityColor(task.priority)}`}>
-              {task.priority || "medium"}
-            </span>
           </div>
-          <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
-            <X size={20} />
-          </Button>
         </div>
-
-        {/* Main Content */}
-        <div className="flex h-[70vh] overflow-hidden">
-          {/* Left/Main */}
-          <div className="flex-1 px-8 py-6 overflow-y-auto">
-            {/* Description */}
-            <section className="mb-8">
-              <h3 className="text-base font-semibold text-gray-700 mb-2">Description</h3>
-              <Textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                onBlur={handleDescriptionSave}
-                placeholder="Add a description..."
-                className="min-h-[100px] bg-white border border-gray-200 rounded"
-              />
-            </section>
-
-            {/* Subtasks */}
-            <section className="mb-8">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-base font-semibold text-gray-700">
-                  Subtasks <span className="text-xs text-gray-400">({completedSubtasks}/{task.subtasks.length})</span>
-                </h3>
-                {task.subtasks.length > 0 && (
-                  <div className="flex items-center gap-2">
-                    <div className="w-24 bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-blue-500 h-2 rounded-full transition-all"
-                        style={{ width: `${progressPercentage}%` }}
-                      />
-                    </div>
-                    <span className="text-xs text-gray-500">{progressPercentage}%</span>
-                  </div>
-                )}
-              </div>
-              <SubTaskList
-                subtasks={task.subtasks}
-                onAdd={handleSubtaskAdd}
-                onUpdate={handleSubtaskUpdate}
-                onDelete={handleSubtaskDelete}
-              />
-            </section>
-
-            {/* Comments */}
-            <section>
-              <h3 className="text-base font-semibold text-gray-700 mb-2">Comments</h3>
-              <div className="space-y-3">
-                {task.comments.map((comment) => (
-                  <div key={comment.id} className="flex gap-3 p-3 bg-white border border-gray-100 rounded">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="text-xs bg-blue-600 text-white">
-                        {comment.author.initials}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-medium">{comment.author.name}</span>
-                        <span className="text-xs text-gray-400">{comment.createdAt}</span>
-                      </div>
-                      <p className="text-sm text-gray-700">{comment.content}</p>
-                    </div>
-                  </div>
-                ))}
-                <div className="flex gap-3">
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback className="text-xs bg-gray-400 text-white">
-                      YOU
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <Textarea
-                      placeholder="Add a comment..."
-                      className="min-h-[60px] bg-white border border-gray-200 rounded"
-                      value={comment}
-                      onChange={e => setComment(e.target.value)}
-                    />
-                    <Button size="sm" className="mt-2" onClick={handlePostComment}>
-                      Post Comment
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          {/* Sidebar */}
-          <aside className="w-80 px-6 py-6 border-l bg-white flex-shrink-0 overflow-y-auto">
-            {/* Assignee */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Assignee</h4>
-              {task.assignee ? (
-                <div className="flex items-center gap-2">
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback className="text-xs bg-blue-600 text-white">
-                      {task.assignee.initials}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span className="text-sm">{task.assignee.name}</span>
-                </div>
-              ) : (
-                <Button variant="outline" size="sm" className="w-full">
-                  <User size={14} className="mr-2" />
-                  Assign
-                </Button>
-              )}
-            </div>
-
-            {/* Due Date */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Due Date</h4>
-              {task.dueDate ? (
-                <div className="flex items-center gap-2 text-sm">
-                  <Calendar size={14} />
-                  <span>{task.dueDate}</span>
-                </div>
-              ) : (
-                <Button variant="outline" size="sm" className="w-full">
-                  <Calendar size={14} className="mr-2" />
-                  Set Date
-                </Button>
-              )}
-            </div>
-
-            {/* Time Tracking */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Time Tracking</h4>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span>Tracked:</span>
-                  <span>{task.timeTracked || 0}h</span>
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span>Estimated:</span>
-                  <span>{task.estimatedTime || 0}h</span>
-                </div>
-                <Button variant="outline" size="sm" className="w-full">
-                  <Clock size={14} className="mr-2" />
-                  Start Timer
-                </Button>
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Tags</h4>
-              <div className="flex flex-wrap gap-2 mb-2">
-                {task.tags.map((tag, index) => (
-                  <Badge key={index} variant="secondary" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                <Input
-                  size={8}
-                  placeholder="Add tag"
-                  value={newTag}
-                  onChange={e => setNewTag(e.target.value)}
-                  onKeyDown={e => { if (e.key === "Enter") handleAddTag(); }}
-                />
-                <Button variant="outline" size="sm" onClick={handleAddTag}>
-                  <Plus size={12} className="mr-1" />
-                  Add
-                </Button>
-              </div>
-            </div>
-
-            {/* Attachments */}
-            <div>
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">
-                Attachments ({task.attachments.length})
-              </h4>
-              <div className="space-y-2 mb-2">
-                {task.attachments.map(att => (
-                  <a
-                    key={att.id}
-                    href={att.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-xs text-blue-600 underline truncate"
-                  >
-                    {att.name}
-                  </a>
-                ))}
-              </div>
-              <input
-                type="file"
-                ref={fileInputRef}
-                className="hidden"
-                onChange={handleAttachmentChange}
-              />
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full"
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <Paperclip size={14} className="mr-2" />
-                Add Attachment
-              </Button>
-            </div>
-          </aside>
+        {/* Actions */}
+        <div className="flex justify-end gap-3 pt-8 border-t mt-10">
+          {editMode ? (
+            <Button
+              type="button"
+              className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-bold px-8 py-3 rounded-lg flex items-center gap-2 shadow-lg hover:from-indigo-700 hover:to-blue-600 transition"
+              onClick={handleSave}
+            >
+              <Save className="w-5 h-5" /> Save
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              variant="secondary"
+              className="flex items-center gap-2"
+              onClick={() => setEditMode(true)}
+            >
+              <Edit3 className="w-5 h-5" /> Edit
+            </Button>
+          )}
         </div>
       </DialogContent>
     </Dialog>
