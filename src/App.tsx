@@ -24,6 +24,9 @@ import PerformanceReview from "@/pages/PerformanceReview";
 import EmployeeLocation from "@/pages/EmployeeLocation";
 import BranchManagement from "@/pages/BranchManagement";
 import Announcement from "@/pages/Announcement";
+import Documents from "@/pages/Documents";
+import Leave from "@/pages/Leave";
+import Holiday from "@/pages/Holiday";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +66,9 @@ const App = () => (
                 <Route path="/location" element={<EmployeeLocation />} />
                 <Route path="/branch" element={<BranchManagement />} />
                 <Route path="/announcement" element={<Announcement />} />
+                <Route path="/documents" element={<Documents />} />
+                <Route path="/leave" element={<Leave />} />
+                <Route path="/holiday" element={<Holiday />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

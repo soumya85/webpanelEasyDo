@@ -2,14 +2,14 @@ import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Plus } from "lucide-react";
+import { Plus, Users, CalendarDays, CheckCircle2, Clock, XCircle, ChevronRight } from "lucide-react";
 
 type Meeting = {
     id: string;
     title: string;
     company: string;
-    date: string; // ISO string
-    time: string; // e.g. "14:00"
+    date: string;
+    time: string;
     status: "pending" | "completed";
     participants: string[];
     meetingStatus?: "attended" | "missed" | "ignored";
@@ -49,6 +49,24 @@ function getTodayISO() {
     return new Date().toISOString().slice(0, 10);
 }
 
+const statusMap = {
+    attended: {
+        label: "Attended",
+        color: "bg-green-100 text-green-700",
+        icon: <CheckCircle2 className="w-4 h-4 text-green-500" />,
+    },
+    missed: {
+        label: "Missed",
+        color: "bg-red-100 text-red-700",
+        icon: <XCircle className="w-4 h-4 text-red-500" />,
+    },
+    ignored: {
+        label: "Ignored",
+        color: "bg-yellow-100 text-yellow-700",
+        icon: <Clock className="w-4 h-4 text-yellow-500" />,
+    },
+};
+
 export default function Meet() {
     const [meetings, setMeetings] = useState<Meeting[]>(mockMeetings);
     const [tab, setTab] = useState<"pending" | "completed" | "today">("pending");
@@ -57,8 +75,7 @@ export default function Meet() {
 
     const filteredMeetings = useMemo(() => {
         let filtered = meetings.filter(m =>
-            m.title.toLowerCase().includes(search.toLowerCase()) ||
-            m.description?.toLowerCase().includes(search.toLowerCase())
+            m.title.toLowerCase().includes(search.toLowerCase())
         );
         if (tab === "pending") filtered = filtered.filter(m => m.status === "pending");
         if (tab === "completed") filtered = filtered.filter(m => m.status === "completed");
@@ -71,13 +88,10 @@ export default function Meet() {
     const [newDate, setNewDate] = useState(getTodayISO());
     const [newTime, setNewTime] = useState("09:00");
     const [newParticipants, setNewParticipants] = useState("");
-    const [newInstructions, setNewInstructions] = useState("");
-    const [milestones, setMilestones] = useState<string[]>([]);
-    const [repeat, setRepeat] = useState("");
     const [company, setCompany] = useState("");
-    const [attachments, setAttachments] = useState<File[]>([]);
     const [selectedParticipants, setSelectedParticipants] = useState<string[]>([]);
     const [showParticipantsDropdown, setShowParticipantsDropdown] = useState(false);
+
     const handleCreateMeeting = () => {
         setMeetings([
             ...meetings,
@@ -89,22 +103,15 @@ export default function Meet() {
                 time: newTime,
                 status: "pending",
                 participants: selectedParticipants,
-                instructions: newInstructions,
-                milestones,
-                repeat,
-                attachments,
             },
         ]);
         setShowModal(false);
         setNewTitle("");
         setNewDate(getTodayISO());
         setNewTime("09:00");
-        setNewParticipants([]);
-        setNewInstructions("");
-        setMilestones([]);
-        setRepeat("");
+        setNewParticipants("");
         setCompany("");
-        setAttachments([]);
+        setSelectedParticipants([]);
     };
 
     // --- Contact & Group State ---
@@ -117,7 +124,6 @@ export default function Meet() {
     ]);
     const [showContactModal, setShowContactModal] = useState(false);
     const [showGroupModal, setShowGroupModal] = useState(false);
-    const [shareContactId, setShareContactId] = useState<string | null>(null);
     const [showCreateContactModal, setShowCreateContactModal] = useState(false);
     const [showCreateGroupModal, setShowCreateGroupModal] = useState(false);
 
@@ -128,7 +134,8 @@ export default function Meet() {
 
     // Group modal fields
     const [groupName, setGroupName] = useState("");
-    const [groupMembers, setGroupMembers] = useState("");
+    const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
+    const [showMembersDropdown, setShowMembersDropdown] = useState(false);
 
     // Add contact handler
     const handleAddContact = () => {
@@ -138,18 +145,15 @@ export default function Meet() {
     };
 
     // Add group handler
-    const [showMembersDropdown, setShowMembersDropdown] = useState(false);
-    const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
-
     const handleAddGroup = () => {
         setGroups([...groups, { id: Date.now().toString(), name: groupName, members: selectedMembers }]);
         setShowGroupModal(false);
         setShowCreateGroupModal(false);
         setGroupName("");
-        setGroupMembers("");
         setSelectedMembers([]);
     };
 
+    // Company stats
     const companyStats = useMemo(() => {
         const stats: Record<string, { attended: number; missed: number; ignored: number }> = {};
         meetings.forEach(m => {
@@ -165,40 +169,54 @@ export default function Meet() {
     const [pendingTab, setPendingTab] = useState<"today" | "upcoming" | "all">("today");
 
     return (
-        <main className="flex-1 w-full h-full min-h-0 flex flex-col p-6 bg-gray-50">
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-4">
-                    <Input
-                        placeholder="Search meetings..."
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        className="w-64 text-sm"
-                    />
-                    <div className="flex gap-2">
-                        <Button
-                            variant={tab === "pending" ? "default" : "ghost"}
-                            className={`rounded-full px-4 py-1 text-sm ${tab === "pending" ? "bg-blue-700 text-white" : ""}`}
-                            onClick={() => setTab("pending")}
-                        >
-                            Pending
-                            <Badge className="ml-2 bg-gray-200 text-gray-700">{meetings.filter(m => m.status === "pending").length}</Badge>
-                        </Button>
-                        <Button
-                            variant={tab === "completed" ? "default" : "ghost"}
-                            className={`rounded-full px-4 py-1 text-sm ${tab === "completed" ? "bg-blue-700 text-white" : ""}`}
-                            onClick={() => setTab("completed")}
-                        >
-                            Completed
-                            <Badge className="ml-2 bg-gray-200 text-gray-700">{meetings.filter(m => m.status === "completed").length}</Badge>
-                        </Button>
+        <main className="flex-1 w-full min-h-0 flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-inter">
+            {/* Header */}
+            <div className="w-full sticky top-0 z-30 bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 shadow">
+                <div className="max-w-7xl mx-auto flex flex-col gap-1 px-4 py-6">
+                    <div className="flex items-center gap-3">
+                        <Users className="h-8 w-8 text-white bg-indigo-500 rounded-full p-1 shadow" />
+                        <div>
+                            <h1 className="text-2xl font-extrabold text-white tracking-tight drop-shadow">
+                                Meetings
+                            </h1>
+                        </div>
                     </div>
+                   
                 </div>
+            </div>
+
+            {/* Actions */}
+            <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6 flex flex-col md:flex-row gap-2 md:gap-4 items-center">
+                <Input
+                    placeholder="Search meetings..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    className="w-full md:w-64 text-sm"
+                />
                 <div className="flex gap-2">
+                    <Button
+                        variant={tab === "pending" ? "default" : "ghost"}
+                        className={`rounded-full px-4 py-1 text-sm ${tab === "pending" ? "bg-blue-700 text-white" : ""}`}
+                        onClick={() => setTab("pending")}
+                    >
+                        Pending
+                        <Badge className="ml-2 bg-gray-200 text-gray-700">{meetings.filter(m => m.status === "pending").length}</Badge>
+                    </Button>
+                    <Button
+                        variant={tab === "completed" ? "default" : "ghost"}
+                        className={`rounded-full px-4 py-1 text-sm ${tab === "completed" ? "bg-blue-700 text-white" : ""}`}
+                        onClick={() => setTab("completed")}
+                    >
+                        Completed
+                        <Badge className="ml-2 bg-gray-200 text-gray-700">{meetings.filter(m => m.status === "completed").length}</Badge>
+                    </Button>
+                </div>
+                <div className="flex gap-2 ml-auto">
                     <Button
                         className="bg-green-600 text-white rounded px-3 py-1 text-xs"
                         onClick={() => setShowModal(true)}
                     >
-                        + Create Meeting
+                        <Plus className="w-4 h-4 mr-1" /> Create Meeting
                     </Button>
                     <Button className="bg-blue-700 text-white rounded px-3 py-1 text-xs" onClick={() => setShowContactModal(true)}>
                         Contacts
@@ -208,10 +226,11 @@ export default function Meet() {
                     </Button>
                 </div>
             </div>
-            <div className="flex-1 overflow-auto">
+
+            <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 flex-1 overflow-auto">
                 {/* Company Meeting Stats */}
                 {tab === "completed" && (
-                    <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+                    <div className="bg-white rounded-xl shadow p-6 mb-8">
                         <h2 className="text-lg font-semibold mb-3">Company Meeting Stats</h2>
                         <div className="space-y-4">
                             {Object.entries(companyStats).map(([company, stat]) => {
@@ -224,7 +243,6 @@ export default function Meet() {
                                                 Attended: {stat.attended} &nbsp;|&nbsp; Missed: {stat.missed} &nbsp;|&nbsp; Ignored: {stat.ignored}
                                             </span>
                                         </div>
-                                        {/* Simple bar chart */}
                                         <div className="flex h-3 w-full rounded overflow-hidden bg-gray-200">
                                             <div
                                                 className="bg-green-500"
@@ -255,7 +273,6 @@ export default function Meet() {
                 {/* Pending Tab: Show Today's, Upcoming, and Scheduled Meetings */}
                 {tab === "pending" && (
                     <div>
-                        {/* Pending Meetings Sub-Tabs */}
                         <div className="flex gap-2 mb-6">
                             <Button
                                 variant={pendingTab === "today" ? "default" : "ghost"}
@@ -279,8 +296,6 @@ export default function Meet() {
                                 All Scheduled Meetings
                             </Button>
                         </div>
-
-                        {/* Tab Content */}
                         {pendingTab === "today" && (
                             <div>
                                 <h3 className="text-base font-semibold mb-2">Today's Meetings</h3>
@@ -295,7 +310,7 @@ export default function Meet() {
                                             .map(meet => (
                                                 <li
                                                     key={meet.id}
-                                                    className="bg-white rounded-lg shadow-sm px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
+                                                    className="bg-white rounded-xl shadow px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
                                                 >
                                                     <div>
                                                         <div className="font-medium text-base text-gray-900">{meet.title}</div>
@@ -312,7 +327,6 @@ export default function Meet() {
                                 </ul>
                             </div>
                         )}
-
                         {pendingTab === "upcoming" && (
                             <div>
                                 <h3 className="text-base font-semibold mb-2">Upcoming Meetings</h3>
@@ -327,7 +341,7 @@ export default function Meet() {
                                             .map(meet => (
                                                 <li
                                                     key={meet.id}
-                                                    className="bg-white rounded-lg shadow-sm px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
+                                                    className="bg-white rounded-xl shadow px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
                                                 >
                                                     <div>
                                                         <div className="font-medium text-base text-gray-900">{meet.title}</div>
@@ -344,7 +358,6 @@ export default function Meet() {
                                 </ul>
                             </div>
                         )}
-
                         {pendingTab === "all" && (
                             <div>
                                 <h3 className="text-base font-semibold mb-2">All Scheduled Meetings</h3>
@@ -357,7 +370,7 @@ export default function Meet() {
                                             .map(meet => (
                                                 <li
                                                     key={meet.id}
-                                                    className="bg-white rounded-lg shadow-sm px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
+                                                    className="bg-white rounded-xl shadow px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
                                                 >
                                                     <div>
                                                         <div className="font-medium text-base text-gray-900">{meet.title}</div>
@@ -377,15 +390,15 @@ export default function Meet() {
                     </div>
                 )}
 
-                {/* Completed and Today tabs remain as before */}
-                {tab !== "pending" && filteredMeetings.length === 0 ? (
+                {/* Completed Tab */}
+                {tab === "completed" && filteredMeetings.length === 0 ? (
                     <div className="text-center text-gray-400 mt-16">No meetings found.</div>
-                ) : tab !== "pending" ? (
+                ) : tab === "completed" ? (
                     <ul className="space-y-2">
                         {filteredMeetings.map(meet => (
                             <li
                                 key={meet.id}
-                                className="bg-white rounded-lg shadow-sm px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
+                                className="bg-white rounded-xl shadow px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border hover:bg-blue-50 transition"
                             >
                                 <div>
                                     <div className="font-medium text-base text-gray-900">{meet.title}</div>
@@ -395,9 +408,7 @@ export default function Meet() {
                                         <span><b>Participants:</b> {meet.participants.join(", ")}</span>
                                     </div>
                                 </div>
-                                <Badge className={meet.status === "completed" ? "bg-green-500 text-white" : "bg-yellow-500 text-white"}>
-                                    {meet.status === "completed" ? "Completed" : "Pending"}
-                                </Badge>
+                                <Badge className="bg-green-500 text-white">Completed</Badge>
                             </li>
                         ))}
                     </ul>
@@ -407,8 +418,8 @@ export default function Meet() {
             {/* Schedule Meeting Modal */}
             {showModal && (
                 <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-                        <h2 className="text-lg font-semibold mb-4">Schedule Meeting</h2>
+                    <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg">
+                        <h2 className="text-xl font-bold mb-4">Schedule Meeting</h2>
                         <div className="flex flex-col gap-3">
                             <Input
                                 placeholder="Meeting Title"
@@ -477,85 +488,11 @@ export default function Meet() {
                                     </div>
                                 )}
                             </div>
-                            {/* Instructions */}
-                            <textarea
-                                className="border rounded px-3 py-2 text-sm"
-                                placeholder="Instructions"
-                                value={newInstructions}
-                                onChange={e => setNewInstructions(e.target.value)}
-                                rows={2}
-                            />
-                            {/* Milestones/Phases */}
-                            <div>
-                                <div className="flex items-center justify-between mb-1">
-                                    <span className="text-sm font-medium">Milestones / Phases</span>
-                                    <Button
-                                        size="sm"
-                                        className="px-2 py-0 text-xs"
-                                        onClick={() => setMilestones([...milestones, ""])}
-                                        type="button"
-                                    >
-                                        + Add
-                                    </Button>
-                                </div>
-                                {milestones.map((m, idx) => (
-                                    <div key={idx} className="flex gap-2 mb-1">
-                                        <Input
-                                            className="flex-1"
-                                            placeholder={`Milestone ${idx + 1}`}
-                                            value={m}
-                                            onChange={e => {
-                                                const arr = [...milestones];
-                                                arr[idx] = e.target.value;
-                                                setMilestones(arr);
-                                            }}
-                                        />
-                                        <Button
-                                            size="icon"
-                                            variant="ghost"
-                                            onClick={() => setMilestones(milestones.filter((_, i) => i !== idx))}
-                                            type="button"
-                                        >
-                                            ×
-                                        </Button>
-                                    </div>
-                                ))}
-                            </div>
-                            {/* Repeat */}
-                            <select
-                                className="border rounded px-3 py-2 text-sm"
-                                value={repeat}
-                                onChange={e => setRepeat(e.target.value)}
-                            >
-                                <option value="">No Repeat</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="monthly">Monthly</option>
-                                <option value="custom">Custom</option>
-                            </select>
-                            {/* Company/Job */}
                             <Input
-                                placeholder="Company Job/Task"
+                                placeholder="Company"
                                 value={company}
                                 onChange={e => setCompany(e.target.value)}
                             />
-                            {/* Attachments */}
-                            <div>
-                                <label className="block text-sm font-medium mb-1">Attachments</label>
-                                <input
-                                    type="file"
-                                    multiple
-                                    onChange={e => setAttachments(Array.from(e.target.files || []))}
-                                    className="block w-full text-sm"
-                                />
-                                {attachments.length > 0 && (
-                                    <ul className="mt-1 text-xs text-gray-600 list-disc pl-5">
-                                        {attachments.map((file, i) => (
-                                            <li key={i}>{file.name}</li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
                         </div>
                         <div className="flex justify-end gap-2 mt-6">
                             <Button variant="ghost" onClick={() => setShowModal(false)}>
@@ -576,14 +513,14 @@ export default function Meet() {
             {/* Contact List Modal */}
             {showContactModal && (
                 <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                    <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-lg font-semibold">Contacts</h2>
                             <Button
                                 className="bg-blue-700 text-white"
                                 onClick={() => setShowCreateContactModal(true)}
                             >
-                                Create Contact
+                                + Create Contact
                             </Button>
                         </div>
                         <ul className="space-y-2 mb-4 max-h-40 overflow-auto">
@@ -594,9 +531,6 @@ export default function Meet() {
                                         <div className="text-xs text-gray-500">{c.email}</div>
                                         {c.phone && <div className="text-xs text-gray-400">{c.phone}</div>}
                                     </div>
-                                    <Button variant="ghost" size="icon" onClick={() => setShareContactId(c.id)}>
-                                        <svg width="16" height="16" fill="none" stroke="currentColor"><path d="M4 12V8a4 4 0 0 1 8 0v4" /><path d="M12 16H4a2 2 0 0 1-2-2V8a6 6 0 1 1 12 0v6a2 2 0 0 1-2 2z" /></svg>
-                                    </Button>
                                 </li>
                             ))}
                         </ul>
@@ -610,7 +544,7 @@ export default function Meet() {
             {/* Create Contact Modal */}
             {showCreateContactModal && (
                 <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                    <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
                         <h2 className="text-lg font-semibold mb-4">Create Contact</h2>
                         <div className="flex flex-col gap-2 mb-2">
                             <Input placeholder="Name" value={contactName} onChange={e => setContactName(e.target.value)} />
@@ -638,14 +572,14 @@ export default function Meet() {
             {/* Group List Modal */}
             {showGroupModal && (
                 <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                    <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-lg font-semibold">Groups</h2>
                             <Button
                                 className="bg-blue-700 text-white"
                                 onClick={() => setShowCreateGroupModal(true)}
                             >
-                                Create Group
+                                + Create Group
                             </Button>
                         </div>
                         <ul className="space-y-2 mb-4 max-h-40 overflow-auto">
@@ -666,7 +600,7 @@ export default function Meet() {
             {/* Create Group Modal */}
             {showCreateGroupModal && (
                 <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                    <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
                         <h2 className="text-lg font-semibold mb-4">Create Group</h2>
                         <div className="flex flex-col gap-2 mb-2">
                             <Input
@@ -743,23 +677,6 @@ export default function Meet() {
                     </div>
                 </div>
             )}
-
-            {/* Share Contact Modal */}
-            {shareContactId && (
-                <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                        <h2 className="text-lg font-semibold mb-4">Share Contact</h2>
-                        <div className="mb-4">Share <b>{contacts.find(c => c.id === shareContactId)?.name}</b> with:</div>
-                        <Input placeholder="Enter email or group name" />
-                        <div className="flex justify-end gap-2 mt-6">
-                            <Button variant="ghost" onClick={() => setShareContactId(null)}>Cancel</Button>
-                            <Button className="bg-blue-700 text-white" onClick={() => setShareContactId(null)}>Share</Button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-
         </main>
     );
 }
