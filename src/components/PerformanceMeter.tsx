@@ -8,6 +8,13 @@ import {
 import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function PerformanceMeter() {
   const overallScore = 25.5;
