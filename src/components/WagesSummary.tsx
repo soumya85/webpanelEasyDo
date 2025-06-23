@@ -108,6 +108,9 @@ export default function WagesSummary() {
         onOpenChange={setIsWagesDetailModalOpen}
       >
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+          <DialogHeader className="sr-only">
+            <DialogTitle>Payslip Summary</DialogTitle>
+          </DialogHeader>
           <div className="bg-white">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b">
