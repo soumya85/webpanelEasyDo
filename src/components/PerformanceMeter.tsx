@@ -320,6 +320,38 @@ export default function PerformanceMeter() {
                       80
                     </div>
 
+                    {/* Poor Label */}
+                    <div
+                      className="absolute text-sm font-black uppercase"
+                      style={{
+                        color: "#FF4D0F",
+                        left: "6px",
+                        top: "148px",
+                        width: "43px",
+                        height: "10px",
+                        fontFamily:
+                          "SF Pro, -apple-system, Roboto, Helvetica, sans-serif",
+                      }}
+                    >
+                      Poor
+                    </div>
+
+                    {/* Good Label */}
+                    <div
+                      className="absolute text-sm font-black uppercase"
+                      style={{
+                        color: "#7CC200",
+                        left: "232px",
+                        top: "148px",
+                        width: "45px",
+                        height: "10px",
+                        fontFamily:
+                          "SF Pro, -apple-system, Roboto, Helvetica, sans-serif",
+                      }}
+                    >
+                      Good
+                    </div>
+
                     {/* Needle Image */}
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/30b45c204ed677586d6b44103dc49748e3541d73?placeholderIfAbsent=true"
