@@ -221,38 +221,47 @@ export default function PerformanceMeter() {
                         strokeLinecap="round"
                       />
 
-                      {/* Red section (0-20) */}
+                      {/* Section 1 (0-20) */}
                       <path
-                        d="M 32 96 A 96 96 0 0 1 71.5 36.5"
+                        d="M 32 96 A 96 96 0 0 1 67.2 43.2"
                         fill="none"
-                        stroke="#EF4444"
+                        stroke="#FF4D0F"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Orange section (20-40) */}
+                      {/* Section 2 (20-40) */}
                       <path
-                        d="M 71.5 36.5 A 96 96 0 0 1 128 16"
+                        d="M 67.2 43.2 A 96 96 0 0 1 96 16"
                         fill="none"
-                        stroke="#F97316"
+                        stroke="#FFA21F"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Yellow section (40-60) */}
+                      {/* Section 3 (40-60) */}
                       <path
-                        d="M 128 16 A 96 96 0 0 1 184.5 36.5"
+                        d="M 96 16 A 96 96 0 0 1 128 16"
                         fill="none"
-                        stroke="#EAB308"
+                        stroke="#EDE96E"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Green section (60-80) */}
+                      {/* Section 4 (60-80) */}
                       <path
-                        d="M 184.5 36.5 A 96 96 0 0 1 224 96"
+                        d="M 128 16 A 96 96 0 0 1 188.8 43.2"
                         fill="none"
-                        stroke="#22C55E"
+                        stroke="#A1CC47"
+                        strokeWidth="24"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Section 5 (80-100) */}
+                      <path
+                        d="M 188.8 43.2 A 96 96 0 0 1 224 96"
+                        fill="none"
+                        stroke="#7CC200"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
