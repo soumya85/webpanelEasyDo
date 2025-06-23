@@ -19,6 +19,7 @@ import {
 
 export default function PerformanceMeter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<"scores" | "weightage">("scores");
   const overallScore = 25.5;
 
   // Performance categories data
