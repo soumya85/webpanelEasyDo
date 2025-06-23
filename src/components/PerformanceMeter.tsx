@@ -156,140 +156,305 @@ export default function PerformanceMeter() {
 
       {/* Performance Details Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader className="flex flex-row items-center justify-between">
-            <DialogTitle className="text-xl font-bold text-[#283C50]">
-              Employee Performance Details
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto p-0 rounded-t-3xl">
+          {/* Modal Header */}
+          <div className="flex items-center justify-between p-4 pb-2">
+            <div className="flex-1"></div>
+            <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+            <div className="flex-1 flex justify-end">
+              <DialogClose asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 w-8 p-0 rounded-full bg-black text-white hover:bg-gray-800"
+                >
+                  <span className="sr-only">Close</span>✕
+                </Button>
+              </DialogClose>
+            </div>
+          </div>
+
+          <DialogHeader className="px-4 pb-4">
+            <DialogTitle className="text-xl font-bold text-center">
+              Score Details
             </DialogTitle>
-            <DialogClose asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-6 w-6 p-0 hover:bg-gray-100"
-              >
-                <span className="sr-only">Close</span>✕
-              </Button>
-            </DialogClose>
           </DialogHeader>
 
-          <div className="space-y-6">
-            {/* Overall Score Section */}
-            <div className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-lg border">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-red-500 mb-2">
-                  {overallScore}%
-                </div>
-                <div className="text-lg font-semibold text-gray-700 mb-4">
-                  Overall Performance Score
-                </div>
-                <div className="w-full max-w-md mx-auto">
-                  <div className="w-full bg-gray-200 rounded-full h-4">
-                    <div
-                      className="bg-red-500 h-4 rounded-full transition-all duration-500"
-                      style={{ width: `${overallScore}%` }}
-                    ></div>
-                  </div>
-                  <div className="flex justify-between mt-2 text-sm">
-                    <span className="text-red-500 font-medium">
-                      Poor (0-30%)
-                    </span>
-                    <span className="text-yellow-500 font-medium">
-                      Average (31-70%)
-                    </span>
-                    <span className="text-green-500 font-medium">
-                      Good (71-100%)
-                    </span>
-                  </div>
-                </div>
-              </div>
+          <div className="px-4">
+            {/* Tabs */}
+            <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
+              <button
+                onClick={() => setActiveTab("scores")}
+                className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  activeTab === "scores"
+                    ? "bg-white text-black shadow-sm"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
+              >
+                Scores
+              </button>
+              <button
+                onClick={() => setActiveTab("weightage")}
+                className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  activeTab === "weightage"
+                    ? "bg-white text-black shadow-sm"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
+              >
+                Weightage
+              </button>
             </div>
 
-            {/* Detailed Performance Categories */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {performanceData.map((item, index) => (
-                <div key={index} className="bg-white border rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-semibold text-gray-800">
-                      {item.category}
-                    </h3>
-                    <div className="flex items-center">
-                      <span
-                        className="font-bold text-lg"
-                        style={{ color: getBarColor(item.percentage) }}
+            {activeTab === "scores" ? (
+              <>
+                {/* Semicircular Gauge */}
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-64 h-32">
+                    <svg width="256" height="128" viewBox="0 0 256 128">
+                      {/* Background Arc */}
+                      <path
+                        d="M 32 96 A 96 96 0 0 1 224 96"
+                        fill="none"
+                        stroke="#E5E7EB"
+                        strokeWidth="24"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Red section (0-20) */}
+                      <path
+                        d="M 32 96 A 96 96 0 0 1 71.5 36.5"
+                        fill="none"
+                        stroke="#EF4444"
+                        strokeWidth="24"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Orange section (20-40) */}
+                      <path
+                        d="M 71.5 36.5 A 96 96 0 0 1 128 16"
+                        fill="none"
+                        stroke="#F97316"
+                        strokeWidth="24"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Yellow section (40-60) */}
+                      <path
+                        d="M 128 16 A 96 96 0 0 1 184.5 36.5"
+                        fill="none"
+                        stroke="#EAB308"
+                        strokeWidth="24"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Green section (60-80) */}
+                      <path
+                        d="M 184.5 36.5 A 96 96 0 0 1 224 96"
+                        fill="none"
+                        stroke="#22C55E"
+                        strokeWidth="24"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Score labels */}
+                      <text
+                        x="45"
+                        y="105"
+                        fontSize="14"
+                        fontWeight="bold"
+                        fill="#374151"
                       >
-                        {item.percentage}%
+                        20
+                      </text>
+                      <text
+                        x="85"
+                        y="45"
+                        fontSize="14"
+                        fontWeight="bold"
+                        fill="#374151"
+                      >
+                        40
+                      </text>
+                      <text
+                        x="120"
+                        y="25"
+                        fontSize="14"
+                        fontWeight="bold"
+                        fill="#374151"
+                      >
+                        60
+                      </text>
+                      <text
+                        x="155"
+                        y="45"
+                        fontSize="14"
+                        fontWeight="bold"
+                        fill="#374151"
+                      >
+                        80
+                      </text>
+                      <text
+                        x="195"
+                        y="105"
+                        fontSize="14"
+                        fontWeight="bold"
+                        fill="#374151"
+                      >
+                        100
+                      </text>
+
+                      {/* Needle */}
+                      <g transform="translate(128, 96)">
+                        <line
+                          x1="0"
+                          y1="0"
+                          x2={
+                            Math.cos(Math.PI * (1 - overallScore / 100)) * -80
+                          }
+                          y2={
+                            Math.sin(Math.PI * (1 - overallScore / 100)) * -80
+                          }
+                          stroke="#000"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="0" cy="0" r="4" fill="#000" />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Labels */}
+                <div className="flex justify-between mb-6 px-4">
+                  <span className="text-lg font-bold text-red-500">Poor</span>
+                  <span className="text-lg font-bold text-green-500">Good</span>
+                </div>
+
+                {/* Performance Meter Text */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl font-bold text-black mb-1">
+                    Performance Meter
+                  </h2>
+                  <p className="text-lg text-gray-600">
+                    ( Overall Score :{" "}
+                    <span className="font-bold">{overallScore}%</span> )
+                  </p>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Donut Chart for Weightage */}
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-48 h-48">
+                    <svg width="192" height="192" viewBox="0 0 192 192">
+                      {/* Background circle */}
+                      <circle
+                        cx="96"
+                        cy="96"
+                        r="80"
+                        fill="none"
+                        stroke="#E5E7EB"
+                        strokeWidth="20"
+                      />
+
+                      {/* Progress circle */}
+                      <circle
+                        cx="96"
+                        cy="96"
+                        r="80"
+                        fill="none"
+                        stroke="#3B82F6"
+                        strokeWidth="20"
+                        strokeDasharray={`${(overallScore / 100) * 502.65} 502.65`}
+                        strokeDashoffset="125.66"
+                        transform="rotate(-90 96 96)"
+                      />
+
+                      {/* Center text */}
+                      <text
+                        x="96"
+                        y="96"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontSize="24"
+                        fontWeight="bold"
+                        fill="#000"
+                      >
+                        {overallScore}%
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Full Score Text */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl font-bold text-black">
+                    Full Score : 100
+                  </h2>
+                </div>
+
+                {/* Weightage Header */}
+                <div className="flex justify-between items-center mb-4 px-2">
+                  <span className="text-lg font-semibold text-gray-700">
+                    Title
+                  </span>
+                  <span className="text-lg font-semibold text-gray-700">
+                    Weightage%
+                  </span>
+                </div>
+              </>
+            )}
+
+            {/* Performance Categories List */}
+            <div className="space-y-3 mb-6">
+              {performanceData.map((item, index) => {
+                const icons = ["👍", "👋", "⚡", "⭐", "👥", "📈"];
+                const colors = [
+                  "#93C5FD",
+                  "#3B82F6",
+                  "#1E40AF",
+                  "#EF4444",
+                  "#10B981",
+                  "#EAB308",
+                ];
+                const weightages = [20, 20, 15, 15, 15, 15];
+
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-4 h-4 rounded-sm"
+                        style={{ backgroundColor: colors[index] }}
+                      ></div>
+                      <span className="text-gray-800 font-medium">
+                        {item.category}
+                      </span>
+                      <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span className="text-blue-600 text-xs">i</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{icons[index]}</span>
+                      <span className="text-lg font-bold text-gray-800">
+                        {activeTab === "scores"
+                          ? `${item.percentage}%`
+                          : weightages[index]}
                       </span>
                     </div>
                   </div>
-
-                  <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
-                    <div
-                      className="h-3 rounded-full transition-all duration-500"
-                      style={{
-                        width: `${item.percentage}%`,
-                        backgroundColor: getBarColor(item.percentage),
-                      }}
-                    ></div>
-                  </div>
-
-                  <div className="text-sm text-gray-600">
-                    {item.percentage === 0 &&
-                      "No data available for this period"}
-                    {item.percentage > 0 &&
-                      item.percentage <= 40 &&
-                      "Below expectations - Needs improvement"}
-                    {item.percentage > 40 &&
-                      item.percentage <= 70 &&
-                      "Meeting expectations - Good progress"}
-                    {item.percentage > 70 &&
-                      "Exceeding expectations - Excellent performance"}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Performance Insights */}
-            <div className="bg-blue-50 p-6 rounded-lg border">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Performance Insights
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <div>
-                    <div className="font-medium text-gray-800">
-                      Strong Performance
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Attendance rate is excellent at 97%
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                  <div>
-                    <div className="font-medium text-gray-800">
-                      Areas for Improvement
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Focus on Management Review, Meeting Attendance, and Sales
-                      Lead activities
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                  <div>
-                    <div className="font-medium text-gray-800">
-                      Recommendation
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Schedule regular check-ins with manager and set clear task
-                      deadlines
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* Note */}
+            <div className="bg-gray-50 p-4 rounded-lg mb-4">
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">- Note :</span> Weightage of
+                each score is set by the Management of the company.
+              </p>
             </div>
           </div>
         </DialogContent>
