@@ -8,8 +8,18 @@ import {
 import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 export default function PerformanceMeter() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<"scores" | "weightage">("scores");
   const overallScore = 25.5;
 
   // Performance categories data
@@ -52,6 +62,7 @@ export default function PerformanceMeter() {
               variant="ghost"
               size="sm"
               className="text-[#4766E5] hover:text-[#4766E5]/80"
+              onClick={() => setIsModalOpen(true)}
             >
               More Info
               <ChevronRight className="w-4 h-4 ml-1" />
@@ -143,6 +154,178 @@ export default function PerformanceMeter() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Performance Details Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-2xl w-full max-h-[95vh] overflow-y-auto p-0 rounded-t-3xl">
+          {/* Modal Header */}
+          <div className="flex items-center justify-between p-4 pb-2">
+            <div className="flex-1"></div>
+            <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+            <div className="flex-1 flex justify-end">
+              <DialogClose asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 w-8 p-0 rounded-full bg-black text-white hover:bg-gray-800"
+                >
+                  <span className="sr-only">Close</span>✕
+                </Button>
+              </DialogClose>
+            </div>
+          </div>
+
+          <DialogHeader className="px-4 pb-4">
+            <DialogTitle className="text-xl font-bold text-center">
+              Score Details
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="px-4">
+            {/* Tabs */}
+            <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
+              <button
+                onClick={() => setActiveTab("scores")}
+                className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  activeTab === "scores"
+                    ? "bg-white text-black shadow-sm"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
+              >
+                Scores
+              </button>
+              <button
+                onClick={() => setActiveTab("weightage")}
+                className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  activeTab === "weightage"
+                    ? "bg-white text-black shadow-sm"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
+              >
+                Weightage
+              </button>
+            </div>
+
+            {activeTab === "scores" ? (
+              <></>
+            ) : (
+              <>
+                {/* Donut Chart for Weightage */}
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-48 h-48">
+                    <svg width="192" height="192" viewBox="0 0 192 192">
+                      {/* Background circle */}
+                      <circle
+                        cx="96"
+                        cy="96"
+                        r="80"
+                        fill="none"
+                        stroke="#E5E7EB"
+                        strokeWidth="20"
+                      />
+
+                      {/* Progress circle */}
+                      <circle
+                        cx="96"
+                        cy="96"
+                        r="80"
+                        fill="none"
+                        stroke="#3B82F6"
+                        strokeWidth="20"
+                        strokeDasharray={`${(overallScore / 100) * 502.65} 502.65`}
+                        strokeDashoffset="125.66"
+                        transform="rotate(-90 96 96)"
+                      />
+
+                      {/* Center text */}
+                      <text
+                        x="96"
+                        y="96"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontSize="24"
+                        fontWeight="bold"
+                        fill="#000"
+                      >
+                        {overallScore}%
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Full Score Text */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl font-bold text-black">
+                    Full Score : 100
+                  </h2>
+                </div>
+
+                {/* Weightage Header */}
+                <div className="flex justify-between items-center mb-4 px-2">
+                  <span className="text-lg font-semibold text-gray-700">
+                    Title
+                  </span>
+                  <span className="text-lg font-semibold text-gray-700">
+                    Weightage%
+                  </span>
+                </div>
+              </>
+            )}
+
+            {/* Performance Categories List */}
+            <div className="space-y-3 mb-6">
+              {performanceData.map((item, index) => {
+                const icons = ["👍", "👋", "⚡", "⭐", "👥", "📈"];
+                const colors = [
+                  "#93C5FD",
+                  "#3B82F6",
+                  "#1E40AF",
+                  "#EF4444",
+                  "#10B981",
+                  "#EAB308",
+                ];
+                const weightages = [20, 20, 15, 15, 15, 15];
+
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-4 h-4 rounded-sm"
+                        style={{ backgroundColor: colors[index] }}
+                      ></div>
+                      <span className="text-gray-800 font-medium">
+                        {item.category}
+                      </span>
+                      <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span className="text-blue-600 text-xs">i</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{icons[index]}</span>
+                      <span className="text-lg font-bold text-gray-800">
+                        {activeTab === "scores"
+                          ? `${item.percentage}%`
+                          : weightages[index]}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Note */}
+            <div className="bg-gray-50 p-4 rounded-lg mb-4">
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">- Note :</span> Weightage of
+                each score is set by the Management of the company.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

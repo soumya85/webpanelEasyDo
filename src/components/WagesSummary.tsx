@@ -1,7 +1,12 @@
 import { ChevronRight, Download, Mail, Eye, ChevronLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -103,6 +108,9 @@ export default function WagesSummary() {
         onOpenChange={setIsWagesDetailModalOpen}
       >
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+          <DialogHeader className="sr-only">
+            <DialogTitle>Payslip Summary</DialogTitle>
+          </DialogHeader>
           <div className="bg-white">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b">
