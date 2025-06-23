@@ -157,7 +157,7 @@ export default function PerformanceMeter() {
 
       {/* Performance Details Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto p-0 rounded-t-3xl">
+        <DialogContent className="max-w-2xl w-full max-h-[95vh] overflow-y-auto p-0 rounded-t-3xl">
           {/* Modal Header */}
           <div className="flex items-center justify-between p-4 pb-2">
             <div className="flex-1"></div>
