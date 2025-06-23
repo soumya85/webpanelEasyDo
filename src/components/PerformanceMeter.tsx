@@ -277,7 +277,7 @@ export default function PerformanceMeter() {
                         20
                       </text>
                       <text
-                        x="85"
+                        x="75"
                         y="45"
                         fontSize="14"
                         fontWeight="bold"
@@ -295,7 +295,7 @@ export default function PerformanceMeter() {
                         60
                       </text>
                       <text
-                        x="155"
+                        x="165"
                         y="45"
                         fontSize="14"
                         fontWeight="bold"
