@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dialog";
 
 export default function PerformanceMeter() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const overallScore = 25.5;
 
   // Performance categories data
