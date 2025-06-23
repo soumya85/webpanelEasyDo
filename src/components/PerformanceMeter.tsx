@@ -152,6 +152,138 @@ export default function PerformanceMeter() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Performance Details Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-[#283C50]">
+              Employee Performance Details
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Overall Score Section */}
+            <div className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-lg border">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-red-500 mb-2">
+                  {overallScore}%
+                </div>
+                <div className="text-lg font-semibold text-gray-700 mb-4">
+                  Overall Performance Score
+                </div>
+                <div className="w-full max-w-md mx-auto">
+                  <div className="w-full bg-gray-200 rounded-full h-4">
+                    <div
+                      className="bg-red-500 h-4 rounded-full transition-all duration-500"
+                      style={{ width: `${overallScore}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex justify-between mt-2 text-sm">
+                    <span className="text-red-500 font-medium">
+                      Poor (0-30%)
+                    </span>
+                    <span className="text-yellow-500 font-medium">
+                      Average (31-70%)
+                    </span>
+                    <span className="text-green-500 font-medium">
+                      Good (71-100%)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Detailed Performance Categories */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {performanceData.map((item, index) => (
+                <div key={index} className="bg-white border rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-semibold text-gray-800">
+                      {item.category}
+                    </h3>
+                    <div className="flex items-center">
+                      <span
+                        className="font-bold text-lg"
+                        style={{ color: getBarColor(item.percentage) }}
+                      >
+                        {item.percentage}%
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+                    <div
+                      className="h-3 rounded-full transition-all duration-500"
+                      style={{
+                        width: `${item.percentage}%`,
+                        backgroundColor: getBarColor(item.percentage),
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="text-sm text-gray-600">
+                    {item.percentage === 0 &&
+                      "No data available for this period"}
+                    {item.percentage > 0 &&
+                      item.percentage <= 40 &&
+                      "Below expectations - Needs improvement"}
+                    {item.percentage > 40 &&
+                      item.percentage <= 70 &&
+                      "Meeting expectations - Good progress"}
+                    {item.percentage > 70 &&
+                      "Exceeding expectations - Excellent performance"}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Performance Insights */}
+            <div className="bg-blue-50 p-6 rounded-lg border">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Performance Insights
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div>
+                    <div className="font-medium text-gray-800">
+                      Strong Performance
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Attendance rate is excellent at 97%
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                  <div>
+                    <div className="font-medium text-gray-800">
+                      Areas for Improvement
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Focus on Management Review, Meeting Attendance, and Sales
+                      Lead activities
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div>
+                    <div className="font-medium text-gray-800">
+                      Recommendation
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Schedule regular check-ins with manager and set clear task
+                      deadlines
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
