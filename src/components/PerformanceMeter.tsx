@@ -208,129 +208,132 @@ export default function PerformanceMeter() {
 
             {activeTab === "scores" ? (
               <>
-                {/* Semicircular Gauge */}
+                {/* Semicircular Gauge - Figma Design */}
                 <div className="flex justify-center mb-6">
-                  <div className="relative w-64 h-32">
-                    <svg width="256" height="128" viewBox="0 0 256 128">
-                      {/* Background Arc */}
+                  <div
+                    className="relative w-70 h-40"
+                    style={{ width: "280px", height: "158px" }}
+                  >
+                    {/* Main SVG Arc */}
+                    <svg
+                      className="absolute left-0 top-0"
+                      style={{
+                        width: "140px",
+                        height: "280px",
+                        transform: "rotate(-90deg)",
+                      }}
+                      width="281"
+                      height="140"
+                      viewBox="0 0 281 140"
+                      fill="none"
+                    >
                       <path
-                        d="M 32 96 A 96 96 0 0 1 224 96"
-                        fill="none"
-                        stroke="#E5E7EB"
-                        strokeWidth="24"
-                        strokeLinecap="round"
+                        d="M0.169067 140C0.169066 110.435 9.52876 81.6288 26.9067 57.7101L72.2116 90.6261C61.7849 104.977 56.1691 122.261 56.1691 140H0.169067Z"
+                        fill="#FF4D0F"
                       />
-
-                      {/* Section 1 (0-20) - Red #FF4D0F */}
                       <path
-                        d="M 32 96 A 96 96 0 0 0 61.6 64.8"
-                        fill="none"
-                        stroke="#FF4D0F"
-                        strokeWidth="24"
-                        strokeLinecap="round"
+                        d="M26.9066 57.7101C44.2845 33.7914 68.7885 15.9882 96.9066 6.85208L114.212 60.1112C97.3407 65.5929 82.6383 76.2748 72.2116 90.626L26.9066 57.7101Z"
+                        fill="#FFA21F"
                       />
-
-                      {/* Section 2 (20-40) - Orange #FFA21F */}
                       <path
-                        d="M 61.6 64.8 A 96 96 0 0 0 80 32"
-                        fill="none"
-                        stroke="#FFA21F"
-                        strokeWidth="24"
-                        strokeLinecap="round"
+                        d="M96.9066 6.85208C125.025 -2.28403 155.313 -2.28403 183.431 6.85208L166.126 60.1113C149.256 54.6296 131.082 54.6296 114.212 60.1113L96.9066 6.85208Z"
+                        fill="#EDE96E"
                       />
-
-                      {/* Section 3 (40-60) - Yellow #EDE96E */}
                       <path
-                        d="M 80 32 A 96 96 0 0 0 128 16"
-                        fill="none"
-                        stroke="#EDE96E"
-                        strokeWidth="24"
-                        strokeLinecap="round"
+                        d="M183.431 6.85208C211.549 15.9882 236.053 33.7914 253.431 57.7101L208.126 90.626C197.7 76.2748 182.997 65.5929 166.126 60.1113L183.431 6.85208Z"
+                        fill="#A1CC47"
                       />
-
-                      {/* Section 4 (60-80) - Light Green #A1CC47 */}
                       <path
-                        d="M 128 16 A 96 96 0 0 0 176 32"
-                        fill="none"
-                        stroke="#A1CC47"
-                        strokeWidth="24"
-                        strokeLinecap="round"
+                        d="M253.431 57.7101C270.809 81.6288 280.169 110.435 280.169 140H224.169C224.169 122.261 218.553 104.977 208.126 90.6261L253.431 57.7101Z"
+                        fill="#7CC200"
                       />
-
-                      {/* Section 5 (80-100) - Dark Green #7CC200 */}
-                      <path
-                        d="M 176 32 A 96 96 0 0 0 224 96"
-                        fill="none"
-                        stroke="#7CC200"
-                        strokeWidth="24"
-                        strokeLinecap="round"
-                      />
-
-                      {/* Score labels positioned correctly for 5 segments */}
-                      <text
-                        x="42"
-                        y="108"
-                        fontSize="14"
-                        fontWeight="bold"
-                        fill="#1F2937"
-                      >
-                        20
-                      </text>
-                      <text
-                        x="70"
-                        y="45"
-                        fontSize="14"
-                        fontWeight="bold"
-                        fill="#1F2937"
-                      >
-                        40
-                      </text>
-                      <text
-                        x="122"
-                        y="25"
-                        fontSize="14"
-                        fontWeight="bold"
-                        fill="#1F2937"
-                      >
-                        60
-                      </text>
-                      <text
-                        x="174"
-                        y="45"
-                        fontSize="14"
-                        fontWeight="bold"
-                        fill="#1F2937"
-                      >
-                        80
-                      </text>
-                      <text
-                        x="200"
-                        y="108"
-                        fontSize="14"
-                        fontWeight="bold"
-                        fill="#1F2937"
-                      >
-                        100
-                      </text>
-
-                      {/* Needle pointing to current score (31.2%) */}
-                      <g transform="translate(128, 96)">
-                        <line
-                          x1="0"
-                          y1="0"
-                          x2={
-                            Math.cos(Math.PI * (1 - overallScore / 100)) * -75
-                          }
-                          y2={
-                            Math.sin(Math.PI * (1 - overallScore / 100)) * -75
-                          }
-                          stroke="#000"
-                          strokeWidth="4"
-                          strokeLinecap="round"
-                        />
-                        <circle cx="0" cy="0" r="6" fill="#000" />
-                      </g>
                     </svg>
+
+                    {/* Score Labels */}
+                    <div
+                      className="absolute text-xs font-bold text-gray-600"
+                      style={{
+                        transform: "rotate(84deg)",
+                        left: "259px",
+                        top: "111px",
+                        width: "23px",
+                        height: "15px",
+                        textAlign: "center",
+                      }}
+                    >
+                      100
+                    </div>
+
+                    <div
+                      className="absolute text-xs font-bold text-gray-600"
+                      style={{
+                        transform: "rotate(14deg)",
+                        left: "159px",
+                        top: "4px",
+                        width: "17px",
+                        height: "15px",
+                        textAlign: "center",
+                      }}
+                    >
+                      60
+                    </div>
+
+                    <div
+                      className="absolute text-xs font-bold text-gray-600"
+                      style={{
+                        transform: "rotate(-26deg)",
+                        left: "78px",
+                        top: "11px",
+                        width: "17px",
+                        height: "15px",
+                        textAlign: "center",
+                      }}
+                    >
+                      40
+                    </div>
+
+                    <div
+                      className="absolute text-xs font-bold text-gray-600"
+                      style={{
+                        transform: "rotate(-63deg)",
+                        left: "17px",
+                        top: "65px",
+                        width: "16px",
+                        height: "15px",
+                        textAlign: "center",
+                      }}
+                    >
+                      20
+                    </div>
+
+                    <div
+                      className="absolute text-xs font-bold text-gray-600"
+                      style={{
+                        transform: "rotate(55deg)",
+                        left: "228px",
+                        top: "43px",
+                        width: "17px",
+                        height: "15px",
+                        textAlign: "center",
+                      }}
+                    >
+                      80
+                    </div>
+
+                    {/* Needle Image */}
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/30b45c204ed677586d6b44103dc49748e3541d73?placeholderIfAbsent=true"
+                      alt="Performance needle"
+                      className="absolute"
+                      style={{
+                        width: "33px",
+                        height: "108px",
+                        left: "123px",
+                        top: "43px",
+                        transform: `rotate(${-90 + (overallScore / 100) * 180}deg)`,
+                        transformOrigin: "center bottom",
+                      }}
+                    />
                   </div>
                 </div>
 
