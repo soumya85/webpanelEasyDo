@@ -221,114 +221,114 @@ export default function PerformanceMeter() {
                         strokeLinecap="round"
                       />
 
-                      {/* Section 1 (0-20) */}
+                      {/* Section 1 (0-20) - Red */}
                       <path
-                        d="M 32 96 A 96 96 0 0 1 67.2 43.2"
+                        d="M 32 96 A 96 96 0 0 1 89.4 28.8"
                         fill="none"
                         stroke="#FF4D0F"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Section 2 (20-40) */}
+                      {/* Section 2 (20-40) - Orange */}
                       <path
-                        d="M 67.2 43.2 A 96 96 0 0 1 96 16"
+                        d="M 89.4 28.8 A 96 96 0 0 1 128 16"
                         fill="none"
                         stroke="#FFA21F"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Section 3 (40-60) */}
+                      {/* Section 3 (40-60) - Yellow */}
                       <path
-                        d="M 96 16 A 96 96 0 0 1 128 16"
+                        d="M 128 16 A 96 96 0 0 1 166.6 28.8"
                         fill="none"
                         stroke="#EDE96E"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Section 4 (60-80) */}
+                      {/* Section 4 (60-80) - Light Green */}
                       <path
-                        d="M 128 16 A 96 96 0 0 1 188.8 43.2"
+                        d="M 166.6 28.8 A 96 96 0 0 1 224 96"
                         fill="none"
                         stroke="#A1CC47"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Section 5 (80-100) */}
+                      {/* Section 5 (80-100) - Dark Green */}
                       <path
-                        d="M 188.8 43.2 A 96 96 0 0 1 224 96"
+                        d="M 199.2 67.2 A 96 96 0 0 1 224 96"
                         fill="none"
                         stroke="#7CC200"
                         strokeWidth="24"
                         strokeLinecap="round"
                       />
 
-                      {/* Score labels */}
+                      {/* Score labels positioned correctly */}
                       <text
-                        x="45"
-                        y="105"
-                        fontSize="14"
+                        x="52"
+                        y="108"
+                        fontSize="12"
                         fontWeight="bold"
-                        fill="#374151"
+                        fill="#4B5563"
                       >
                         20
                       </text>
                       <text
-                        x="75"
-                        y="45"
-                        fontSize="14"
+                        x="85"
+                        y="38"
+                        fontSize="12"
                         fontWeight="bold"
-                        fill="#374151"
+                        fill="#4B5563"
                       >
                         40
                       </text>
                       <text
-                        x="120"
+                        x="122"
                         y="25"
-                        fontSize="14"
+                        fontSize="12"
                         fontWeight="bold"
-                        fill="#374151"
+                        fill="#4B5563"
                       >
                         60
                       </text>
                       <text
-                        x="165"
-                        y="45"
-                        fontSize="14"
+                        x="159"
+                        y="38"
+                        fontSize="12"
                         fontWeight="bold"
-                        fill="#374151"
+                        fill="#4B5563"
                       >
                         80
                       </text>
                       <text
-                        x="195"
-                        y="105"
-                        fontSize="14"
+                        x="188"
+                        y="108"
+                        fontSize="12"
                         fontWeight="bold"
-                        fill="#374151"
+                        fill="#4B5563"
                       >
                         100
                       </text>
 
-                      {/* Needle */}
+                      {/* Needle pointing to current score */}
                       <g transform="translate(128, 96)">
                         <line
                           x1="0"
                           y1="0"
                           x2={
-                            Math.cos(Math.PI * (1 - overallScore / 100)) * -80
+                            Math.cos(Math.PI * (1 - overallScore / 100)) * -75
                           }
                           y2={
-                            Math.sin(Math.PI * (1 - overallScore / 100)) * -80
+                            Math.sin(Math.PI * (1 - overallScore / 100)) * -75
                           }
                           stroke="#000"
                           strokeWidth="3"
                           strokeLinecap="round"
                         />
-                        <circle cx="0" cy="0" r="4" fill="#000" />
+                        <circle cx="0" cy="0" r="5" fill="#000" />
                       </g>
                     </svg>
                   </div>
