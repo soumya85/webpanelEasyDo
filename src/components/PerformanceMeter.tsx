@@ -157,10 +157,19 @@ export default function PerformanceMeter() {
       {/* Performance Details Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
+          <DialogHeader className="flex flex-row items-center justify-between">
             <DialogTitle className="text-xl font-bold text-[#283C50]">
               Employee Performance Details
             </DialogTitle>
+            <DialogClose asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-6 w-6 p-0 hover:bg-gray-100"
+              >
+                <span className="sr-only">Close</span>✕
+              </Button>
+            </DialogClose>
           </DialogHeader>
 
           <div className="space-y-6">
