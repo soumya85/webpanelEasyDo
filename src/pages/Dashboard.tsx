@@ -440,7 +440,7 @@ const Dashboard: React.FC = () => {
                 <Button
                   onClick={handlePunchIn}
                   className="w-full mb-3 h-10 text-gray-700 hover:opacity-90"
-                  style={{ backgroundColor: "#eaf2ff", borderColor: "#9ca3af" }}
+                  style={{ backgroundColor: "#ffffff", borderColor: "#9ca3af" }}
                 >
                   ⏰ PUNCH IN
                 </Button>
