@@ -439,7 +439,8 @@ const Dashboard: React.FC = () => {
               {punchStatus === "NOT PUNCHED IN" && (
                 <Button
                   onClick={handlePunchIn}
-                  className="w-full mb-3 h-10 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  className="w-full mb-3 h-10 text-gray-700 hover:opacity-90"
+                  style={{ backgroundColor: "#eaf2ff", borderColor: "#c4cad7" }}
                 >
                   ⏰ PUNCH IN
                 </Button>
