@@ -46,7 +46,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   const currentTabData = taskTabsData[activeTaskTab];
 
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-blue-50">
