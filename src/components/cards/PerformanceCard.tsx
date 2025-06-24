@@ -14,54 +14,59 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
 }) => {
   return (
     <DashboardCard id={id} index={index}>
-      <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-yellow-50">
-          <Trophy className="w-5 h-5 text-yellow-600" />
+      {/* Header with gradient icon */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className="p-3 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 shadow-lg shadow-yellow-500/20">
+          <Trophy className="w-5 h-5 text-white" />
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50]">My Performance</h3>
+        <h3 className="text-sm font-bold text-slate-800 tracking-tight">
+          My Performance
+        </h3>
       </div>
 
       <div className="flex-1 flex flex-col">
-        <div className="text-center mb-4">
-          <div className="flex justify-center mb-2">
+        {/* Rating display with enhanced styling */}
+        <div className="text-center mb-6 p-6 rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 border border-indigo-200/50 shadow-sm">
+          <div className="flex justify-center mb-3 gap-1">
             {[1, 2, 3, 4].map((star) => (
               <Star
                 key={star}
-                className="w-4 h-4 text-yellow-500 fill-current"
+                className="w-6 h-6 text-yellow-500 fill-current drop-shadow-sm"
               />
             ))}
-            <Star className="w-4 h-4 text-gray-300" />
+            <Star className="w-6 h-6 text-gray-300" />
           </div>
-          <div className="text-2xl font-bold text-[#4766E5] mb-1">4.4</div>
-          <div className="text-xs text-gray-600">
+          <div className="text-4xl font-black text-indigo-700 mb-2 tracking-tight">
+            4.4
+          </div>
+          <div className="text-sm font-medium text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full inline-block">
             Average over 23 task reviews
           </div>
         </div>
 
-        <div className="text-center mb-4">
-          <div className="text-sm text-green-600 font-semibold mb-1">
+        {/* Encouragement message */}
+        <div className="text-center mb-6 p-4 rounded-xl bg-gradient-to-r from-green-50 to-emerald-100 border border-green-200">
+          <div className="text-lg font-bold text-green-700 mb-1">
             Nice, Keep it up! 💪
           </div>
+          <div className="text-sm text-green-600">You're doing great!</div>
         </div>
 
-        <div className="text-center mb-4">
-          <div className="w-12 h-12 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-2">
-            <Trophy className="w-6 h-6 text-yellow-600" />
+        {/* Achievement badge */}
+        <div className="text-center mb-6 p-6 rounded-2xl bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 border border-yellow-200 shadow-sm">
+          <div className="w-16 h-16 mx-auto bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mb-3 shadow-lg shadow-yellow-500/25">
+            <Trophy className="w-8 h-8 text-white" />
           </div>
-          <div className="text-xs font-semibold text-[#283C50]">
+          <div className="text-sm font-bold text-slate-800 mb-1">
             Employee of the Month
           </div>
-          <div className="text-xs text-gray-500">June 2025</div>
+          <div className="text-xs font-semibold text-amber-600 bg-amber-100 px-3 py-1 rounded-full inline-block">
+            June 2025
+          </div>
         </div>
 
-        <Button
-          className="w-full h-8 text-xs text-gray-700 hover:opacity-90 mt-auto"
-          style={{
-            backgroundColor: "#eff5ff",
-            borderColor: "#bfdbfe",
-            borderWidth: "1px",
-          }}
-        >
+        {/* Action button */}
+        <Button className="w-full h-10 text-sm font-semibold text-slate-700 bg-gradient-to-r from-slate-100 to-gray-100 hover:from-slate-200 hover:to-gray-200 border border-slate-200 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.01] mt-auto">
           View Performance Details
         </Button>
       </div>
