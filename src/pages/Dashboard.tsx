@@ -187,7 +187,7 @@ const Dashboard: React.FC = () => {
       {/* Header Section */}
       <div className="flex justify-between items-center mb-6 px-6 pt-6">
         <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
-          Good morning, Bhaskar! 👋
+          Good morning, Bhaskar! ����
         </h1>
       </div>
 
@@ -696,10 +696,7 @@ const Dashboard: React.FC = () => {
                 <div className="text-xs text-gray-500">June 2025</div>
               </div>
 
-              <Button
-                className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{ backgroundColor: "#d4deee" }}
-              >
+              <Button className="w-full h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                 View Performance Details
               </Button>
             </div>
