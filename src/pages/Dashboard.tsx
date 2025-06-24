@@ -299,7 +299,7 @@ const Dashboard: React.FC = () => {
                       className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
                       style={{
                         backgroundColor: "#eaf2ff",
-                        borderColor: "#c4cad7",
+                        borderColor: "#9ca3af",
                       }}
                     >
                       {card.action}
