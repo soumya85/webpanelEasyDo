@@ -43,7 +43,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
   };
 
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex flex-col h-full">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 rounded-lg bg-indigo-50">

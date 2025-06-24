@@ -18,7 +18,7 @@ export const AttendanceCard: React.FC<AttendanceCardProps> = ({
   onResize,
 }) => {
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-lg bg-green-50">
           <Calendar className="w-5 h-5 text-green-600" />
