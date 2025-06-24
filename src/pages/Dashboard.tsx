@@ -471,7 +471,10 @@ const Dashboard: React.FC = () => {
                   (Tracked ONLY between Punch-in & Punch-out as per Mandate of
                   the company)
                 </div>
-                <Button className="w-full mt-2 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+                <Button
+                  className="w-full mt-2 h-8 text-xs text-gray-700 hover:opacity-90"
+                  style={{ backgroundColor: "#eaf2ff", borderColor: "#c4cad7" }}
+                >
                   Click here for more Detail
                 </Button>
               </div>
