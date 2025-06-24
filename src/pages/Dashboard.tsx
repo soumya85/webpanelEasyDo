@@ -300,6 +300,7 @@ const Dashboard: React.FC = () => {
                       style={{
                         backgroundColor: "#ffffff",
                         borderColor: "#bfdbfe",
+                        borderWidth: "1px",
                       }}
                     >
                       {card.action}
