@@ -58,22 +58,39 @@ const Dashboard: React.FC = () => {
     setPunchStatus("PUNCHED IN");
   };
 
-  // Quick Overview Cards Data
-  const quickOverviewCards = [
-    {
-      id: "tasks",
-      title: "My Tasks at a Glance",
+  // Task Tab Data
+  const taskTabsData = {
+    MY_TASK: {
       value: "472",
       subtitle: "Total Pending Tasks",
-      icon: CheckSquare,
-      color: "bg-blue-50",
-      iconColor: "text-blue-600",
       details: [
         { label: "Overdue", value: "23", color: "text-red-500" },
         { label: "Due Today", value: "18", color: "text-orange-500" },
       ],
       progress: 85,
       action: "View All My Tasks",
+    },
+    DELEGATED_TASK: {
+      value: "34",
+      subtitle: "Total Delegated Tasks",
+      details: [
+        { label: "Pending Review", value: "12", color: "text-orange-500" },
+        { label: "Completed", value: "22", color: "text-green-500" },
+      ],
+      progress: 65,
+      action: "View Delegated Tasks",
+    },
+  };
+
+  // Quick Overview Cards Data
+  const quickOverviewCards = [
+    {
+      id: "tasks",
+      title: "Task at a Glance",
+      icon: CheckSquare,
+      color: "bg-blue-50",
+      iconColor: "text-blue-600",
+      hasTabsView: true,
     },
     {
       id: "meetings",
