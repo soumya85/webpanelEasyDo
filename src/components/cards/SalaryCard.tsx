@@ -1,5 +1,5 @@
 import React from "react";
-import { DollarSign } from "lucide-react";
+import { IndianRupee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DashboardCard } from "../DashboardCard";
@@ -14,7 +14,7 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({ id, index }) => {
     <DashboardCard id={id} index={index}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-lg bg-green-50">
-          <DollarSign className="w-5 h-5 text-green-600" />
+          <IndianRupee className="w-5 h-5 text-green-600" />
         </div>
         <h3 className="text-sm font-semibold text-[#283C50]">
           Salary Snapshot
@@ -30,45 +30,49 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({ id, index }) => {
         <div className="text-xs text-gray-500">vs previous month</div>
       </div>
 
-      <div className="space-y-2 mb-4">
-        <div className="flex justify-between items-center">
-          <span className="text-xs text-gray-600">Next Payslip</span>
-          <span className="text-xs font-semibold text-[#4766E5]">15</span>
-        </div>
-        <div className="text-xs text-gray-500">Days Remaining</div>
+      <div className="flex-1 flex flex-col">
+        <div className="space-y-2 mb-4">
+          <div className="flex justify-between items-center">
+            <span className="text-xs text-gray-600">Next Payslip</span>
+            <span className="text-xs font-semibold text-[#4766E5]">15</span>
+          </div>
+          <div className="text-xs text-gray-500">Days Remaining</div>
 
-        <div className="mt-2 space-y-1">
-          <div className="flex justify-between text-xs">
-            <span className="text-gray-600">Deducted</span>
-            <span className="text-red-600 font-semibold">₹8,500</span>
+          <div className="mt-2 space-y-1">
+            <div className="flex justify-between text-xs">
+              <span className="text-gray-600">Deducted</span>
+              <span className="text-red-600 font-semibold">₹8,500</span>
+            </div>
+            <div className="flex justify-between text-xs">
+              <span className="text-gray-600">PF Contribution</span>
+              <span className="text-blue-600 font-semibold">₹2,200</span>
+            </div>
           </div>
-          <div className="flex justify-between text-xs">
-            <span className="text-gray-600">PF Contribution</span>
-            <span className="text-blue-600 font-semibold">₹2,200</span>
-          </div>
+        </div>
+
+        <div className="mt-auto space-y-2">
+          <Button
+            className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+            style={{
+              backgroundColor: "#eff5ff",
+              borderColor: "#bfdbfe",
+              borderWidth: "1px",
+            }}
+          >
+            Request Salary Advance
+          </Button>
+          <Button
+            className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+            style={{
+              backgroundColor: "#eff5ff",
+              borderColor: "#bfdbfe",
+              borderWidth: "1px",
+            }}
+          >
+            View All Payslips
+          </Button>
         </div>
       </div>
-
-      <Button
-        className="w-full mb-2 h-8 text-xs text-gray-700 hover:opacity-90"
-        style={{
-          backgroundColor: "#eff5ff",
-          borderColor: "#bfdbfe",
-          borderWidth: "1px",
-        }}
-      >
-        Request Salary Advance
-      </Button>
-      <Button
-        className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-        style={{
-          backgroundColor: "#eff5ff",
-          borderColor: "#bfdbfe",
-          borderWidth: "1px",
-        }}
-      >
-        View All Payslips
-      </Button>
     </DashboardCard>
   );
 };
