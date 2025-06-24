@@ -13,7 +13,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
   isDirty = false,
 }) => {
   return (
-    <div className="flex items-center gap-3 mb-6">
+    <div className="flex items-center gap-3 mb-6 pt-3">
       <div className="flex items-center gap-2">
         <div className="flex items-center justify-center px-3 h-8 text-xs font-medium text-gray-900 bg-white border border-gray-300 rounded-md cursor-default">
           <Save className="w-3 h-3 mr-1" />
