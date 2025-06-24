@@ -3,13 +3,21 @@ import { cn } from "@/lib/utils";
 import { CheckSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface TaskCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const TaskCard: React.FC<TaskCardProps> = ({ id, index }) => {
+export const TaskCard: React.FC<TaskCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   const [activeTaskTab, setActiveTaskTab] = useState("MY_TASK");
 
   const taskTabsData = {
@@ -38,7 +46,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ id, index }) => {
   const currentTabData = taskTabsData[activeTaskTab];
 
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-blue-50">

@@ -2,13 +2,21 @@ import React from "react";
 import { StickyNote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface NotesCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const NotesCard: React.FC<NotesCardProps> = ({ id, index }) => {
+export const NotesCard: React.FC<NotesCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   const notes = [
     { text: "Follow up on client proposal", time: "Added 3 hours ago" },
     { text: "Review Q4 budget allocation", time: "Added yesterday" },
@@ -16,7 +24,7 @@ export const NotesCard: React.FC<NotesCardProps> = ({ id, index }) => {
   ];
 
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-yellow-50">

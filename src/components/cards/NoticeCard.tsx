@@ -2,13 +2,21 @@ import React from "react";
 import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface NoticeCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const NoticeCard: React.FC<NoticeCardProps> = ({ id, index }) => {
+export const NoticeCard: React.FC<NoticeCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   const noticeItems = [
     {
       title: "Holiday Notice - Diwali Celebration",
@@ -24,7 +32,7 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({ id, index }) => {
   ];
 
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-lg bg-red-50">
           <Bell className="w-5 h-5 text-red-600" />

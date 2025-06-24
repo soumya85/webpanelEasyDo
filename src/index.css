@@ -208,6 +208,31 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
+  /* Width resize handle styles */
+  .width-resize-handle {
+    cursor: ew-resize;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+    border-radius: 2px;
+  }
+
+  .width-resize-handle:hover {
+    opacity: 1;
+    background: linear-gradient(to bottom, #2563eb, #1e40af);
+  }
+
+  /* Card width transitions */
+  .card-width-transition {
+    transition: grid-column 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Equal height rows */
+  .dashboard-grid {
+    display: grid;
+    grid-auto-rows: minmax(320px, auto);
+  }
+
   /* Grid layout responsiveness */
   .dashboard-grid {
     display: grid;

@@ -7,8 +7,14 @@ import { LayoutControls } from "@/components/LayoutControls";
 import { cn } from "@/lib/utils";
 
 const Dashboard: React.FC = () => {
-  const { sections, moveCard, reorderCards, resetLayout, isLoading } =
-    useDashboardLayout();
+  const {
+    sections,
+    moveCard,
+    reorderCards,
+    resizeCard,
+    resetLayout,
+    isLoading,
+  } = useDashboardLayout();
 
   const handleDragEnd = useCallback(
     (result: DropResult) => {
@@ -69,7 +75,12 @@ const Dashboard: React.FC = () => {
               title={section.title}
             >
               {section.cards.map((card, index) => (
-                <CardFactory key={card.id} card={card} index={index} />
+                <CardFactory
+                  key={card.id}
+                  card={card}
+                  index={index}
+                  onResize={resizeCard}
+                />
               ))}
             </DroppableSection>
           ))}
@@ -78,13 +89,27 @@ const Dashboard: React.FC = () => {
         {/* Instructions */}
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="text-sm font-semibold text-blue-900 mb-2">
-            💡 Drag & Drop Instructions
+            💡 Drag & Drop + Width Resize Instructions
           </h3>
           <ul className="text-xs text-blue-800 space-y-1">
-            <li>• Hover over any card to see the drag handle</li>
-            <li>• Drag cards between sections to reorganize your dashboard</li>
             <li>
-              • Your layout is automatically saved and persists across sessions
+              • Hover over any card to see the drag handle (top center) and
+              width resize handle (right edge)
+            </li>
+            <li>
+              • Drag cards between sections/rows to reorganize -{" "}
+              <strong>width is preserved</strong>
+            </li>
+            <li>
+              • Drag the blue resize handle on the right edge to adjust card
+              width (Small, Medium, Large, Extra Large)
+            </li>
+            <li>
+              • All cards in the same row maintain equal height automatically
+            </li>
+            <li>
+              • Your layout and card sizes are automatically saved and persist
+              across sessions
             </li>
             <li>
               • Use the "Reset Layout" button to restore the default arrangement

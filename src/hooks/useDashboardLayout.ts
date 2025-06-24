@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { CardSize } from "@/types/cardSize";
 
 export interface DashboardCard {
   id: string;
@@ -16,6 +17,7 @@ export interface DashboardCard {
   title: string;
   section: "quick-overview" | "productivity" | "information-hub";
   order: number;
+  size?: CardSize;
   data?: any;
 }
 
@@ -34,6 +36,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Task at a Glance",
     section: "quick-overview",
     order: 0,
+    size: "medium",
   },
   {
     id: "meetings",
@@ -41,6 +44,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Meetings This Week",
     section: "quick-overview",
     order: 1,
+    size: "medium",
   },
   {
     id: "approvals",
@@ -48,6 +52,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Pending Approvals",
     section: "quick-overview",
     order: 2,
+    size: "medium",
   },
   {
     id: "notes",
@@ -55,6 +60,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Quick Notes",
     section: "quick-overview",
     order: 3,
+    size: "medium",
   },
   {
     id: "chat",
@@ -62,6 +68,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Recent Chat Activity",
     section: "productivity",
     order: 0,
+    size: "large",
   },
   {
     id: "workStatus",
@@ -69,6 +76,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "My Daily Work Status",
     section: "productivity",
     order: 1,
+    size: "large",
   },
   {
     id: "notice",
@@ -76,6 +84,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Notice Board",
     section: "information-hub",
     order: 0,
+    size: "medium",
   },
   {
     id: "attendance",
@@ -83,6 +92,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Monthly Attendance Summary",
     section: "information-hub",
     order: 1,
+    size: "medium",
   },
   {
     id: "salary",
@@ -90,6 +100,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "Salary Snapshot",
     section: "information-hub",
     order: 2,
+    size: "medium",
   },
   {
     id: "performance",
@@ -97,6 +108,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "My Performance",
     section: "information-hub",
     order: 3,
+    size: "medium",
   },
 ];
 
@@ -148,6 +160,8 @@ export const useDashboardLayout = () => {
           ...card,
           section: destinationSection as DashboardCard["section"],
           order: destinationIndex,
+          // Explicitly preserve the current size when moving
+          size: card.size || "medium",
         };
       }
       return card;
@@ -205,6 +219,14 @@ export const useDashboardLayout = () => {
     saveLayout(updatedCards);
   };
 
+  // Resize card
+  const resizeCard = (cardId: string, newSize: CardSize) => {
+    const updatedCards = cards.map((card) =>
+      card.id === cardId ? { ...card, size: newSize } : card,
+    );
+    saveLayout(updatedCards);
+  };
+
   // Reset to default layout
   const resetLayout = () => {
     saveLayout(getDefaultLayout());
@@ -235,6 +257,7 @@ export const useDashboardLayout = () => {
     getCardsBySection,
     moveCard,
     reorderCards,
+    resizeCard,
     resetLayout,
     isLoading,
   };

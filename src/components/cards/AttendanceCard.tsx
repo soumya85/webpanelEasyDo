@@ -2,18 +2,23 @@ import React from "react";
 import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface AttendanceCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
 export const AttendanceCard: React.FC<AttendanceCardProps> = ({
   id,
   index,
+  size,
+  onResize,
 }) => {
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-lg bg-green-50">
           <Calendar className="w-5 h-5 text-green-600" />

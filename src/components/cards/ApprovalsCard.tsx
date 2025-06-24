@@ -3,13 +3,21 @@ import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface ApprovalsCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const ApprovalsCard: React.FC<ApprovalsCardProps> = ({ id, index }) => {
+export const ApprovalsCard: React.FC<ApprovalsCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   const approvals = [
     {
       type: "Leave Request - John Doe",
@@ -24,7 +32,7 @@ export const ApprovalsCard: React.FC<ApprovalsCardProps> = ({ id, index }) => {
   ];
 
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-red-50">

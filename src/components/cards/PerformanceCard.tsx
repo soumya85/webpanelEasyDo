@@ -2,18 +2,23 @@ import React from "react";
 import { Trophy, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface PerformanceCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
 export const PerformanceCard: React.FC<PerformanceCardProps> = ({
   id,
   index,
+  size,
+  onResize,
 }) => {
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-lg bg-yellow-50">
           <Trophy className="w-5 h-5 text-yellow-600" />

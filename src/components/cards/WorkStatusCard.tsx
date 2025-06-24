@@ -3,15 +3,20 @@ import { cn } from "@/lib/utils";
 import { Clock, AlertTriangle, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface WorkStatusCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
 export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
   id,
   index,
+  size,
+  onResize,
 }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [punchStatus, setPunchStatus] = useState("NOT PUNCHED IN");
@@ -38,7 +43,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
   };
 
   return (
-    <DashboardCard id={id} index={index}>
+    <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex flex-col h-full">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 rounded-lg bg-indigo-50">
