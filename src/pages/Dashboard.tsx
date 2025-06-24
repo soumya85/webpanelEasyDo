@@ -1,204 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback } from "react";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { useDashboardLayout } from "@/hooks/useDashboardLayout";
+import { DroppableSection } from "@/components/DroppableSection";
+import { CardFactory } from "@/components/CardFactory";
+import { LayoutControls } from "@/components/LayoutControls";
 import { cn } from "@/lib/utils";
-import {
-  CheckSquare,
-  Calendar,
-  AlertTriangle,
-  StickyNote,
-  MessageSquare,
-  Clock,
-  Users,
-  BarChart3,
-  TrendingUp,
-  Trophy,
-  Star,
-  Bell,
-  DollarSign,
-  Target,
-  MapPin,
-  Zap,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Dashboard: React.FC = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [punchStatus, setPunchStatus] = useState("NOT PUNCHED IN");
-  const [activeTaskTab, setActiveTaskTab] = useState("MY_TASK");
+  const { sections, moveCard, reorderCards, resetLayout, isLoading } =
+    useDashboardLayout();
 
-  // Update time every second
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+  const handleDragEnd = useCallback(
+    (result: DropResult) => {
+      const { destination, source, draggableId } = result;
 
-    return () => clearInterval(timer);
-  }, []);
+      // If dropped outside any droppable area
+      if (!destination) {
+        return;
+      }
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-      hour12: true,
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-  };
+      // If dropped in the same position
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ) {
+        return;
+      }
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    });
-  };
+      // If moved to a different section
+      if (destination.droppableId !== source.droppableId) {
+        moveCard(draggableId, destination.droppableId, destination.index);
+      } else {
+        // If reordered within the same section
+        reorderCards(source.droppableId, source.index, destination.index);
+      }
+    },
+    [moveCard, reorderCards],
+  );
 
-  const handlePunchIn = () => {
-    setPunchStatus("PUNCHED IN");
-  };
-
-  // Task Tab Data
-  const taskTabsData = {
-    MY_TASK: {
-      value: "472",
-      subtitle: "Total Pending Tasks",
-      details: [
-        { label: "Overdue", value: "23", color: "text-red-500" },
-        { label: "Due Today", value: "18", color: "text-orange-500" },
-      ],
-      progress: 85,
-      action: "View All My Tasks",
-    },
-    DELEGATED_TASK: {
-      value: "34",
-      subtitle: "Total Delegated Tasks",
-      details: [
-        { label: "Pending Review", value: "12", color: "text-orange-500" },
-        { label: "Completed", value: "22", color: "text-green-500" },
-      ],
-      progress: 65,
-      action: "View Delegated Tasks",
-    },
-  };
-
-  // Quick Overview Cards Data
-  const quickOverviewCards = [
-    {
-      id: "tasks",
-      title: "Task at a Glance",
-      icon: CheckSquare,
-      color: "bg-blue-50",
-      iconColor: "text-blue-600",
-      hasTabsView: true,
-    },
-    {
-      id: "meetings",
-      title: "Meetings This Week",
-      value: "7",
-      subtitle: "Scheduled Meetings",
-      icon: Calendar,
-      color: "bg-green-50",
-      iconColor: "text-green-600",
-      items: [
-        {
-          type: "Weekly Team Sync",
-          time: "Today at 3:00 PM",
-          duration: "5 minutes",
-        },
-        {
-          type: "Client Review Meeting",
-          time: "Tomorrow at 10:30 AM",
-          duration: "3 minutes",
-        },
-      ],
-      action: "View All Meetings",
-    },
-    {
-      id: "approvals",
-      title: "Pending Approvals",
-      value: "8",
-      subtitle: "Items Awaiting Your Approval",
-      icon: AlertTriangle,
-      color: "bg-red-50",
-      iconColor: "text-red-600",
-      items: [
-        {
-          type: "Leave Request - John Doe",
-          status: "Urgent",
-          time: "Submitted 2 days ago",
-        },
-        {
-          type: "Expense Report - Marketing",
-          status: "Review",
-          time: "Submitted 1 day ago",
-        },
-      ],
-      action: "Review Approvals",
-    },
-    {
-      id: "notes",
-      title: "Quick Notes",
-      icon: StickyNote,
-      color: "bg-yellow-50",
-      iconColor: "text-yellow-600",
-      items: [
-        { text: "Follow up on client proposal", time: "Added 3 hours ago" },
-        { text: "Review Q4 budget allocation", time: "Added yesterday" },
-        { text: "Update team on project timeline", time: "Added 3 days ago" },
-      ],
-      action: "Add New Note",
-    },
-  ];
-
-  // Chat Activity Data
-  const chatActivities = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      message: "Can we schedule the meeting for tomorrow?",
-      time: "5m ago",
-      avatar: "/placeholder.svg",
-    },
-    {
-      id: 2,
-      name: "Project Team Alpha",
-      message: "The latest updates have been pushed to the develop...",
-      time: "12m ago",
-      avatar: "/placeholder.svg",
-      isGroup: true,
-    },
-    {
-      id: 3,
-      name: "Mike Chen",
-      message: "Thanks for the quick response!",
-      time: "1h ago",
-      avatar: "/placeholder.svg",
-    },
-    {
-      id: 4,
-      name: "HR Department",
-      message: "Please review the updated policy document and prov...",
-      time: "Yesterday",
-      avatar: "/placeholder.svg",
-      isGroup: true,
-    },
-  ];
-
-  // Information Hub Data
-  const noticeItems = [
-    {
-      title: "Holiday Notice - Diwali Celebration",
-      content: "Office will remain closed on October 24th for Diwali...",
-      date: "1 day ago",
-    },
-    {
-      title: "New Health Insurance Policy Updates",
-      content:
-        "Important updates regarding the company health insurance policy...",
-      date: "3 days ago",
-    },
-  ];
+  if (isLoading) {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4766E5]"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
@@ -210,673 +58,47 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div className="flex-1 overflow-auto px-6 pb-6">
-        {/* Quick Overview Section */}
-        <div className="mb-12">
-          <h2 className="text-lg font-semibold text-[#283C50] mb-4">
-            Quick Overview
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {quickOverviewCards.map((card) => {
-              const IconComponent = card.icon;
+        {/* Layout Controls */}
+        <LayoutControls onReset={resetLayout} />
 
-              // Special handling for tasks card with tabs
-              if (card.hasTabsView) {
-                const currentTabData = taskTabsData[activeTaskTab];
-                return (
-                  <div
-                    key={card.id}
-                    className={cn(
-                      "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                      "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                      "p-4 flex flex-col h-80",
-                    )}
-                  >
-                    {/* Header */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className={cn("p-2 rounded-lg", card.color)}>
-                        <IconComponent
-                          className={cn("w-5 h-5", card.iconColor)}
-                        />
-                      </div>
-                      <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-                        {card.title}
-                      </h3>
-                    </div>
-
-                    {/* Tabs */}
-                    <div className="flex bg-gray-100 rounded-lg p-1 mb-3">
-                      <button
-                        onClick={() => setActiveTaskTab("MY_TASK")}
-                        className={cn(
-                          "flex-1 text-xs font-medium py-2 px-3 rounded-md transition-all duration-200",
-                          activeTaskTab === "MY_TASK"
-                            ? "bg-white text-[#4766E5] shadow-sm"
-                            : "text-gray-600 hover:text-gray-800",
-                        )}
-                      >
-                        MY Task
-                      </button>
-                      <button
-                        onClick={() => setActiveTaskTab("DELEGATED_TASK")}
-                        className={cn(
-                          "flex-1 text-xs font-medium py-2 px-3 rounded-md transition-all duration-200",
-                          activeTaskTab === "DELEGATED_TASK"
-                            ? "bg-white text-[#4766E5] shadow-sm"
-                            : "text-gray-600 hover:text-gray-800",
-                        )}
-                      >
-                        Delegated Task
-                      </button>
-                    </div>
-
-                    {/* Main Content */}
-                    <div className="flex-1 min-h-0 overflow-hidden">
-                      <div className="mb-2">
-                        <div className="text-3xl font-bold text-[#4766E5]">
-                          {currentTabData.value}
-                        </div>
-                        <div className="text-xs text-gray-600">
-                          {currentTabData.subtitle}
-                        </div>
-                      </div>
-
-                      {/* Details */}
-                      <div className="space-y-2 text-xs">
-                        {currentTabData.details?.map((detail, idx) => (
-                          <div key={idx} className="flex justify-between">
-                            <span className="text-gray-600">
-                              {detail.label}
-                            </span>
-                            <span className={cn("font-semibold", detail.color)}>
-                              {detail.value}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Progress Bar */}
-                      <div className="mt-3">
-                        <div className="flex justify-between text-xs mb-1">
-                          <span className="text-gray-600">Weekly Progress</span>
-                          <span className="font-semibold text-[#4766E5]">
-                            {currentTabData.progress}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div
-                            className="bg-[#4766E5] h-2 rounded-full transition-all duration-300"
-                            style={{ width: `${currentTabData.progress}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Action Button */}
-                    <div className="mt-4 pt-2 border-t border-gray-100">
-                      <Button
-                        className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-                        style={{
-                          backgroundColor: "#eff5ff",
-                          borderColor: "#bfdbfe",
-                          borderWidth: "1px",
-                        }}
-                      >
-                        {currentTabData.action}
-                      </Button>
-                    </div>
-                  </div>
-                );
-              }
-
-              // Regular card rendering for other cards
-              return (
-                <div
-                  key={card.id}
-                  className={cn(
-                    "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                    "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                    "p-4 flex flex-col h-80",
-                  )}
-                >
-                  {/* Header */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={cn("p-2 rounded-lg", card.color)}>
-                      <IconComponent
-                        className={cn("w-5 h-5", card.iconColor)}
-                      />
-                    </div>
-                    <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-                      {card.title}
-                    </h3>
-                  </div>
-
-                  {/* Main Content */}
-                  <div className="flex-1 min-h-0 overflow-hidden">
-                    {card.value && (
-                      <div className="mb-2">
-                        <div className="text-3xl font-bold text-[#4766E5]">
-                          {card.value}
-                        </div>
-                        <div className="text-xs text-gray-600">
-                          {card.subtitle}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Details/Items */}
-                    <div className="space-y-2 text-xs max-h-40 overflow-y-auto">
-                      {card.details?.map((detail, idx) => (
-                        <div key={idx} className="flex justify-between">
-                          <span className="text-gray-600">{detail.label}</span>
-                          <span className={cn("font-semibold", detail.color)}>
-                            {detail.value}
-                          </span>
-                        </div>
-                      ))}
-
-                      {card.items?.map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="border-b border-gray-100 pb-1 last:border-b-0"
-                        >
-                          <div className="flex justify-between items-start">
-                            <span className="text-gray-800 font-medium">
-                              {item.type || item.text}
-                            </span>
-                            {item.status && (
-                              <Badge
-                                variant={
-                                  item.status === "Urgent"
-                                    ? "destructive"
-                                    : "secondary"
-                                }
-                                className="text-xs"
-                              >
-                                {item.status}
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-gray-500 text-xs mt-1">
-                            {item.time || item.duration}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Progress Bar */}
-                    {card.progress && (
-                      <div className="mt-3">
-                        <div className="flex justify-between text-xs mb-1">
-                          <span className="text-gray-600">Weekly Progress</span>
-                          <span className="font-semibold text-[#4766E5]">
-                            {card.progress}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div
-                            className="bg-[#4766E5] h-2 rounded-full transition-all duration-300"
-                            style={{ width: `${card.progress}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Action Button */}
-                  <div className="mt-4 pt-2 border-t border-gray-100">
-                    <Button
-                      className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-                      style={{
-                        backgroundColor: "#eff5ff",
-                        borderColor: "#bfdbfe",
-                        borderWidth: "1px",
-                      }}
-                    >
-                      {card.action}
-                    </Button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Personal Productivity & Communication Section */}
-        <div className="mb-12">
-          <h2 className="text-lg font-semibold text-[#283C50] mb-4">
-            Personal Productivity & Communication
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Recent Chat Activity */}
-            <div
+        {/* Drag and Drop Context */}
+        <DragDropContext onDragEnd={handleDragEnd}>
+          {sections.map((section) => (
+            <DroppableSection
+              key={section.id}
+              sectionId={section.id}
+              title={section.title}
               className={cn(
-                "bg-white rounded-xl border-b-4 border-[#4766E5]",
-                "shadow-lg hover:shadow-xl transition-all duration-300",
-                "p-6",
+                // Responsive grid configuration for different sections
+                section.id === "quick-overview" &&
+                  "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+                section.id === "productivity" && "grid-cols-1 lg:grid-cols-2",
+                section.id === "information-hub" &&
+                  "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
               )}
             >
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-blue-50 shadow-sm">
-                    <MessageSquare className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-[#283C50]">
-                      Recent Chat Activity
-                    </h3>
-                    <p className="text-sm text-gray-600 mt-1">
-                      Unread Messages
-                    </p>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-[#4766E5] mb-1">
-                    14
-                  </div>
-                  <Badge className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                    New
-                  </Badge>
-                </div>
-              </div>
+              {section.cards.map((card, index) => (
+                <CardFactory key={card.id} card={card} index={index} />
+              ))}
+            </DroppableSection>
+          ))}
+        </DragDropContext>
 
-              <div className="space-y-4">
-                {chatActivities.map((chat) => (
-                  <div
-                    key={chat.id}
-                    className="flex items-center gap-4 p-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-xl transition-all duration-200 cursor-pointer border border-transparent hover:border-blue-200"
-                  >
-                    <Avatar className="h-10 w-10 ring-2 ring-blue-100">
-                      <AvatarImage src={chat.avatar} />
-                      <AvatarFallback className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
-                        {chat.name.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className="text-sm font-semibold text-gray-900 truncate">
-                          {chat.name}
-                        </div>
-                        {chat.isGroup && (
-                          <Badge
-                            variant="secondary"
-                            className="text-xs bg-blue-100 text-blue-700"
-                          >
-                            Group
-                          </Badge>
-                        )}
-                        <div className="text-xs text-gray-500 ml-auto font-medium">
-                          {chat.time}
-                        </div>
-                      </div>
-                      <div className="text-sm text-gray-700 truncate font-medium leading-relaxed">
-                        {chat.message}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <Button
-                className="w-full mt-6 h-10 text-sm font-semibold text-gray-700 hover:opacity-90 transition-all duration-300"
-                style={{
-                  backgroundColor: "#eff5ff",
-                  borderColor: "#bfdbfe",
-                  borderWidth: "1px",
-                }}
-              >
-                View All Chats
-              </Button>
-            </div>
-
-            {/* My Daily Work Status */}
-            <div
-              className={cn(
-                "bg-white rounded-xl border-b-4 border-[#4766E5]",
-                "shadow-lg hover:shadow-xl transition-all duration-300",
-                "p-6",
-              )}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-indigo-50">
-                  <Clock className="w-5 h-5 text-indigo-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-[#283C50]">
-                  My Daily Work Status
-                </h3>
-              </div>
-
-              <div className="text-center mb-4">
-                <div className="text-2xl font-bold text-[#4766E5] mb-1">
-                  {formatTime(currentTime)}
-                </div>
-                <div className="text-xs text-gray-600">Monday 23 Jun, 2025</div>
-              </div>
-
-              <div className="space-y-3 mb-4">
-                <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
-                  <span className="text-xs text-gray-600">Office Hours</span>
-                  <span className="text-xs font-semibold text-[#4766E5]">
-                    09:00 AM To 06:00 PM
-                  </span>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-sm font-medium text-gray-700 mb-1">
-                    Punch Status
-                  </div>
-                  <div className="text-lg font-bold text-red-600 mb-2">
-                    {punchStatus}
-                  </div>
-                </div>
-              </div>
-
-              {punchStatus === "NOT PUNCHED IN" && (
-                <Button
-                  onClick={handlePunchIn}
-                  className="w-full mb-3 h-10 text-gray-700 hover:opacity-90"
-                  style={{
-                    backgroundColor: "#eff5ff",
-                    borderColor: "#bfdbfe",
-                    borderWidth: "1px",
-                  }}
-                >
-                  ⏰ PUNCH IN
-                </Button>
-              )}
-
-              <div className="text-xs text-gray-500 text-center mb-3">
-                Punch-in is tracked for attendance
-              </div>
-
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-3">
-                <div className="flex items-center gap-2 text-orange-600 text-xs">
-                  <Bell className="w-3 h-3" />
-                  <span className="font-medium">
-                    Attendance is locked @01:31 AM.
-                  </span>
-                </div>
-                <div className="text-xs text-orange-600 mt-1">
-                  For Punch-in: Click above for request for Approval to yr
-                  Reporting Manager...
-                </div>
-              </div>
-
-              <div className="text-center">
-                <div className="text-xs font-medium text-gray-700 mb-1">
-                  Location Timeline
-                </div>
-                <div className="text-xs text-gray-500">
-                  (Tracked ONLY between Punch-in & Punch-out as per Mandate of
-                  the company)
-                </div>
-                <Button
-                  className="w-full mt-2 h-8 text-xs text-gray-700 hover:opacity-90"
-                  style={{
-                    backgroundColor: "#eff5ff",
-                    borderColor: "#bfdbfe",
-                    borderWidth: "1px",
-                  }}
-                >
-                  Click here for more Detail
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Information Hub */}
-        <div className="mb-12">
-          <h2 className="text-lg font-semibold text-[#283C50] mb-4">
-            Information Hub
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Notice Board */}
-            <div
-              className={cn(
-                "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                "p-4",
-              )}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-red-50">
-                  <Bell className="w-5 h-5 text-red-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-[#283C50]">
-                  Notice Board
-                </h3>
-              </div>
-
-              <div className="text-xs text-gray-600 mb-3">
-                You're viewing for: All Branch
-              </div>
-
-              <div className="space-y-3">
-                {noticeItems.map((notice, idx) => (
-                  <div
-                    key={idx}
-                    className="border-b border-gray-100 pb-2 last:border-b-0"
-                  >
-                    <div className="text-xs font-medium text-gray-900 mb-1">
-                      {notice.title}
-                    </div>
-                    <div className="text-xs text-gray-600 mb-1">
-                      {notice.content}
-                    </div>
-                    <div className="text-xs text-gray-500">{notice.date}</div>
-                  </div>
-                ))}
-              </div>
-
-              <Button
-                className="w-full mt-4 h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{
-                  backgroundColor: "#eff5ff",
-                  borderColor: "#bfdbfe",
-                  borderWidth: "1px",
-                }}
-              >
-                View All Notices
-              </Button>
-            </div>
-
-            {/* Monthly Attendance Summary */}
-            <div
-              className={cn(
-                "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                "p-4",
-              )}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-green-50">
-                  <Calendar className="w-5 h-5 text-green-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-[#283C50]">
-                  Monthly Attendance Summary
-                </h3>
-              </div>
-
-              <div className="text-xs text-gray-600 mb-3">- June 2025</div>
-              <div className="text-xs text-gray-600 mb-4">
-                Total Days: 30 | Working Days: 22
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 mb-4">
-                <div className="text-center p-2 bg-green-50 rounded">
-                  <div className="text-lg font-bold text-green-600">22</div>
-                  <div className="text-xs text-green-600">Present</div>
-                </div>
-                <div className="text-center p-2 bg-red-50 rounded">
-                  <div className="text-lg font-bold text-red-600">0</div>
-                  <div className="text-xs text-red-600">Absent</div>
-                </div>
-                <div className="text-center p-2 bg-blue-50 rounded">
-                  <div className="text-lg font-bold text-blue-600">5</div>
-                  <div className="text-xs text-blue-600">Sunday</div>
-                </div>
-                <div className="text-center p-2 bg-orange-50 rounded">
-                  <div className="text-lg font-bold text-orange-600">3</div>
-                  <div className="text-xs text-orange-600">Holiday</div>
-                </div>
-                <div className="text-center p-2 bg-purple-50 rounded">
-                  <div className="text-lg font-bold text-purple-600">0</div>
-                  <div className="text-xs text-purple-600">Late</div>
-                </div>
-                <div className="text-center p-2 bg-pink-50 rounded">
-                  <div className="text-lg font-bold text-pink-600">0</div>
-                  <div className="text-xs text-pink-600">Red Flag</div>
-                </div>
-              </div>
-
-              <Button
-                className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{
-                  backgroundColor: "#eff5ff",
-                  borderColor: "#bfdbfe",
-                  borderWidth: "1px",
-                }}
-              >
-                View Detailed Report
-              </Button>
-            </div>
-
-            {/* Salary Snapshot */}
-            <div
-              className={cn(
-                "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                "p-4",
-              )}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-green-50">
-                  <DollarSign className="w-5 h-5 text-green-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-[#283C50]">
-                  Salary Snapshot
-                </h3>
-              </div>
-
-              <div className="mb-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="text-lg font-bold text-green-600">
-                    ₹ 50,000.00
-                  </div>
-                  <Badge className="bg-green-100 text-green-600 text-xs">
-                    +12%
-                  </Badge>
-                </div>
-                <div className="text-xs text-gray-600">Last Net Pay</div>
-                <div className="text-xs text-gray-500">vs previous month</div>
-              </div>
-
-              <div className="space-y-2 mb-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-gray-600">Next Payslip</span>
-                  <span className="text-xs font-semibold text-[#4766E5]">
-                    15
-                  </span>
-                </div>
-                <div className="text-xs text-gray-500">Days Remaining</div>
-
-                <div className="mt-2 space-y-1">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">Deducted</span>
-                    <span className="text-red-600 font-semibold">₹8,500</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">PF Contribution</span>
-                    <span className="text-blue-600 font-semibold">₹2,200</span>
-                  </div>
-                </div>
-              </div>
-
-              <Button
-                className="w-full mb-2 h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{
-                  backgroundColor: "#eff5ff",
-                  borderColor: "#bfdbfe",
-                  borderWidth: "1px",
-                }}
-              >
-                Request Salary Advance
-              </Button>
-              <Button
-                className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{
-                  backgroundColor: "#eff5ff",
-                  borderColor: "#bfdbfe",
-                  borderWidth: "1px",
-                }}
-              >
-                View All Payslips
-              </Button>
-            </div>
-
-            {/* My Performance */}
-            <div
-              className={cn(
-                "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                "p-4",
-              )}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-yellow-50">
-                  <Trophy className="w-5 h-5 text-yellow-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-[#283C50]">
-                  My Performance
-                </h3>
-              </div>
-
-              <div className="text-center mb-4">
-                <div className="flex justify-center mb-2">
-                  {[1, 2, 3, 4].map((star) => (
-                    <Star
-                      key={star}
-                      className="w-4 h-4 text-yellow-500 fill-current"
-                    />
-                  ))}
-                  <Star className="w-4 h-4 text-gray-300" />
-                </div>
-                <div className="text-2xl font-bold text-[#4766E5] mb-1">
-                  4.4
-                </div>
-                <div className="text-xs text-gray-600">
-                  Average over 23 task reviews
-                </div>
-              </div>
-
-              <div className="text-center mb-4">
-                <div className="text-sm text-green-600 font-semibold mb-1">
-                  Nice, Keep it up! 💪
-                </div>
-              </div>
-
-              <div className="text-center mb-4">
-                <div className="w-12 h-12 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-2">
-                  <Trophy className="w-6 h-6 text-yellow-600" />
-                </div>
-                <div className="text-xs font-semibold text-[#283C50]">
-                  Employee of the Month
-                </div>
-                <div className="text-xs text-gray-500">June 2025</div>
-              </div>
-
-              <Button
-                className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{
-                  backgroundColor: "#eff5ff",
-                  borderColor: "#bfdbfe",
-                  borderWidth: "1px",
-                }}
-              >
-                View Performance Details
-              </Button>
-            </div>
-          </div>
+        {/* Instructions */}
+        <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <h3 className="text-sm font-semibold text-blue-900 mb-2">
+            💡 Drag & Drop Instructions
+          </h3>
+          <ul className="text-xs text-blue-800 space-y-1">
+            <li>• Hover over any card to see the drag handle</li>
+            <li>• Drag cards between sections to reorganize your dashboard</li>
+            <li>
+              • Your layout is automatically saved and persists across sessions
+            </li>
+            <li>
+              • Use the "Reset Layout" button to restore the default arrangement
+            </li>
+          </ul>
         </div>
       </div>
     </div>
