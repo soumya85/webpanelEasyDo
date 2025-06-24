@@ -24,7 +24,6 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({ id, index }) => {
       <div className="mb-4">
         <div className="flex items-center gap-2 mb-2">
           <div className="text-lg font-bold text-green-600">₹ 50,000.00</div>
-          <Badge className="bg-green-100 text-green-600 text-xs">+12%</Badge>
         </div>
         <div className="text-xs text-gray-600">Last Net Pay</div>
         <div className="text-xs text-gray-500">vs previous month</div>
