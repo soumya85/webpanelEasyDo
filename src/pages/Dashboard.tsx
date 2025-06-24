@@ -295,7 +295,13 @@ const Dashboard: React.FC = () => {
 
                   {/* Action Button */}
                   <div className="mt-4 pt-2 border-t border-gray-100">
-                    <Button className="w-full h-8 text-xs bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200">
+                    <Button
+                      className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+                      style={{
+                        backgroundColor: "#eaf2ff",
+                        borderColor: "#c4cad7",
+                      }}
+                    >
                       {card.action}
                     </Button>
                   </div>
