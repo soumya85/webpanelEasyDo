@@ -18,8 +18,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         <Button
           variant="outline"
           size="sm"
-          className="text-xs h-8 cursor-default font-medium text-gray-900"
-          disabled
+          className="text-xs h-8 cursor-default font-medium text-gray-900 pointer-events-none"
         >
           <Save className="w-3 h-3 mr-1" />
           Layout auto-saved
