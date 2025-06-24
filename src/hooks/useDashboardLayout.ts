@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { CardSize } from "@/types/cardSize";
 
 export interface DashboardCard {
   id: string;
@@ -16,6 +17,7 @@ export interface DashboardCard {
   title: string;
   section: "quick-overview" | "productivity" | "information-hub";
   order: number;
+  size?: CardSize;
   data?: any;
 }
 
