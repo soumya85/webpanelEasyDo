@@ -49,26 +49,28 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({ id, index }) => {
         </div>
       </div>
 
-      <Button
-        className="w-full mb-2 h-8 text-xs text-gray-700 hover:opacity-90"
-        style={{
-          backgroundColor: "#eff5ff",
-          borderColor: "#bfdbfe",
-          borderWidth: "1px",
-        }}
-      >
-        Request Salary Advance
-      </Button>
-      <Button
-        className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-        style={{
-          backgroundColor: "#eff5ff",
-          borderColor: "#bfdbfe",
-          borderWidth: "1px",
-        }}
-      >
-        View All Payslips
-      </Button>
+      <div className="space-y-2">
+        <Button
+          className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+          style={{
+            backgroundColor: "#eff5ff",
+            borderColor: "#bfdbfe",
+            borderWidth: "1px",
+          }}
+        >
+          Request Salary Advance
+        </Button>
+        <Button
+          className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+          style={{
+            backgroundColor: "#eff5ff",
+            borderColor: "#bfdbfe",
+            borderWidth: "1px",
+          }}
+        >
+          View All Payslips
+        </Button>
+      </div>
     </DashboardCard>
   );
 };
