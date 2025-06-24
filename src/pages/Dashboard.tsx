@@ -25,6 +25,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const Dashboard: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [punchStatus, setPunchStatus] = useState("NOT PUNCHED IN");
+  const [activeTaskTab, setActiveTaskTab] = useState("MY_TASK");
 
   // Update time every second
   useEffect(() => {
