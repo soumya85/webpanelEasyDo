@@ -47,20 +47,19 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
 
   return (
     <DashboardCard id={id} index={index}>
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-blue-50 shadow-sm">
-            <MessageSquare className="w-6 h-6 text-blue-600" />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold text-[#283C50]">
-              Recent Chat Activity
-            </h3>
-            <p className="text-sm text-gray-600 mt-1">Unread Messages</p>
-          </div>
+      <div className="flex items-center gap-3 mb-3">
+        <div className="p-2 rounded-lg bg-blue-50">
+          <MessageSquare className="w-5 h-5 text-blue-600" />
         </div>
-        <div className="text-center">
-          <div className="text-3xl font-bold text-[#4766E5] mb-1">14</div>
+        <h3 className="text-sm font-semibold text-[#283C50] flex-1">
+          Recent Chat Activity
+        </h3>
+      </div>
+
+      <div className="flex items-center justify-between mb-4">
+        <div className="text-xs text-gray-600">Unread Messages</div>
+        <div className="flex items-center gap-2">
+          <div className="text-2xl font-bold text-[#4766E5]">14</div>
           <Badge className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
             New
           </Badge>
