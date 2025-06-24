@@ -89,6 +89,20 @@ const taskSummaries: TaskSummary[] = [
   { id: "4", title: "Notes & Reminder", count: 7, color: "bg-blue-500" },
 ];
 
+// Helper function to generate proper two-letter initials
+const getInitials = (name: string): string => {
+  // Remove special characters and extra text like phone numbers
+  const cleanName = name.replace(/[~\(\)+0-9]/g, "").trim();
+  const words = cleanName.split(" ").filter((word) => word.length > 0);
+
+  if (words.length >= 2) {
+    return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+  } else if (words.length === 1) {
+    return words[0].substring(0, 2).toUpperCase();
+  }
+  return "AI"; // fallback for AI/system messages
+};
+
 const chatItems: ChatItem[] = [
   {
     id: "1",
