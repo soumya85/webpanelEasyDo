@@ -84,13 +84,21 @@ const Dashboard: React.FC = () => {
         {/* Instructions */}
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="text-sm font-semibold text-blue-900 mb-2">
-            💡 Drag & Drop Instructions
+            💡 Drag & Drop + Resize Instructions
           </h3>
           <ul className="text-xs text-blue-800 space-y-1">
-            <li>• Hover over any card to see the drag handle</li>
+            <li>
+              • Hover over any card to see the drag handle (top center) and
+              resize button (top right)
+            </li>
             <li>• Drag cards between sections to reorganize your dashboard</li>
             <li>
-              • Your layout is automatically saved and persists across sessions
+              • Click the resize button (⤢) to change card size: Small, Medium,
+              Large, or Extra Large
+            </li>
+            <li>
+              • Your layout and card sizes are automatically saved and persist
+              across sessions
             </li>
             <li>
               • Use the "Reset Layout" button to restore the default arrangement
