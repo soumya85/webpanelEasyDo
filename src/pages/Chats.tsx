@@ -2741,11 +2741,7 @@ const ChatConversation: React.FC<{
           <Avatar className="h-10 w-10">
             <AvatarImage src={selectedChat.avatar} alt={selectedChat.name} />
             <AvatarFallback className="bg-gray-300 text-gray-700 text-sm">
-              {selectedChat.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .slice(0, 2)}
+              {getInitials(selectedChat.name)}
             </AvatarFallback>
           </Avatar>
 
