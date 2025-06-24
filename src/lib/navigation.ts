@@ -10,6 +10,7 @@ import {
   FileText,
   Settings,
   HelpCircle,
+  Zap,
 } from "lucide-react";
 
 export interface NavigationItem {
@@ -90,7 +91,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "sample",
     label: "Sample",
-    icon: LayoutDashboard,
+    icon: Zap,
     href: "/sample",
   },
 ];
