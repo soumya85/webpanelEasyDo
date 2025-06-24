@@ -1,7 +1,7 @@
 import React from "react";
 
-const Extra: React.FC = () => {
+const Dashboard: React.FC = () => {
   return null;
 };
 
-export default Extra;
+export default Dashboard;

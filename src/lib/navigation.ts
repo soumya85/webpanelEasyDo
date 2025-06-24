@@ -23,10 +23,10 @@ export interface NavigationItem {
 
 export const navigationItems: NavigationItem[] = [
   {
-    id: "extra",
-    label: "Extra",
+    id: "dashboard",
+    label: "Dashboard",
     icon: LayoutDashboard,
-    href: "/extra",
+    href: "/dashboard",
   },
   {
     id: "chats",

@@ -27,7 +27,7 @@ import Announcement from "@/pages/Announcement";
 import Documents from "@/pages/Documents";
 import Leave from "@/pages/Leave";
 import Holiday from "@/pages/Holiday";
-import Extra from "@/pages/Extra";
+import Dashboard from "@/pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -41,8 +41,8 @@ const App = () => (
           <SidebarProvider>
             <PageLayout>
               <Routes>
-                <Route path="/" element={<Extra />} />
-                <Route path="/sample" element={<Sample />} />
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/chats" element={<Chats />} />
                 <Route path="/todays-schedule" element={<TodaysSchedule />} />
                 <Route
