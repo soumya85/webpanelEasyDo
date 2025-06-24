@@ -3023,14 +3023,10 @@ const MobileChatList: React.FC<{
               className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
             >
               <div className="relative">
-                <Avatar className="h-12 w-12">
+                <Avatar className="h-12 w-12 flex-shrink-0">
                   <AvatarImage src={chat.avatar} alt={chat.name} />
                   <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
-                    {chat.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)}
+                    {getInitials(chat.name)}
                   </AvatarFallback>
                 </Avatar>
               </div>
