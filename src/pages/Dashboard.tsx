@@ -470,7 +470,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Information Hub */}
-        <div className="mb-8">
+        <div className="mb-12">
           <h2 className="text-lg font-semibold text-[#283C50] mb-4">
             Information Hub
           </h2>
