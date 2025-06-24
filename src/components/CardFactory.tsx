@@ -18,28 +18,39 @@ interface CardFactoryProps {
   onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const CardFactory: React.FC<CardFactoryProps> = ({ card, index }) => {
+export const CardFactory: React.FC<CardFactoryProps> = ({
+  card,
+  index,
+  onResize,
+}) => {
+  const commonProps = {
+    id: card.id,
+    index,
+    size: card.size,
+    onResize,
+  };
+
   switch (card.type) {
     case "task":
-      return <TaskCard id={card.id} index={index} />;
+      return <TaskCard {...commonProps} />;
     case "meetings":
-      return <MeetingsCard id={card.id} index={index} />;
+      return <MeetingsCard {...commonProps} />;
     case "approvals":
-      return <ApprovalsCard id={card.id} index={index} />;
+      return <ApprovalsCard {...commonProps} />;
     case "notes":
-      return <NotesCard id={card.id} index={index} />;
+      return <NotesCard {...commonProps} />;
     case "chat":
-      return <ChatCard id={card.id} index={index} />;
+      return <ChatCard {...commonProps} />;
     case "workStatus":
-      return <WorkStatusCard id={card.id} index={index} />;
+      return <WorkStatusCard {...commonProps} />;
     case "notice":
-      return <NoticeCard id={card.id} index={index} />;
+      return <NoticeCard {...commonProps} />;
     case "attendance":
-      return <AttendanceCard id={card.id} index={index} />;
+      return <AttendanceCard {...commonProps} />;
     case "salary":
-      return <SalaryCard id={card.id} index={index} />;
+      return <SalaryCard {...commonProps} />;
     case "performance":
-      return <PerformanceCard id={card.id} index={index} />;
+      return <PerformanceCard {...commonProps} />;
     default:
       return null;
   }
