@@ -31,7 +31,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         size="sm"
         className="text-xs h-8 font-medium !text-gray-900 !border-gray-300"
       >
-        <RotateCcw className="w-3 h-3 mr-1" />
+        <RotateCcw className="w-3 h-3 mr-1 text-blue-600" />
         Reset Layout
       </Button>
     </div>
