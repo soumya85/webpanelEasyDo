@@ -5,13 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface ChatCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
+export const ChatCard: React.FC<ChatCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   // Function to generate initials from name
   const getInitials = (name: string): string => {
     // Remove special characters and extra text like phone numbers
