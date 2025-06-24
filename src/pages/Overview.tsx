@@ -2480,7 +2480,7 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
   );
 };
 
-const Overview: React.FC = () => {
+const Sample: React.FC = () => {
   // Hooks
   const navigate = useNavigate();
 
@@ -2606,7 +2606,7 @@ const Overview: React.FC = () => {
           {/* Breadcrumb Navigation */}
           <div className="flex justify-start items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
             <div className="text-[#283C50] font-inter text-base sm:text-xl lg:text-base font-bold leading-[20px] sm:leading-[24px] lg:leading-[19.2px]">
-              Overview
+              Sample
             </div>
             <div className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
               |
@@ -3274,4 +3274,4 @@ const Overview: React.FC = () => {
   );
 };
 
-export default Overview;
+export default Sample;
