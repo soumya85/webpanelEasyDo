@@ -199,7 +199,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
 
         <div className="mt-auto">
           <Button
-            className="w-full h-8 text-xs font-semibold text-gray-700 hover:opacity-90 transition-all duration-300"
+            className="w-full py-2 text-sm font-medium text-gray-700 hover:opacity-90 transition-all duration-300"
             style={{
               backgroundColor: "#eff5ff",
               borderColor: "#bfdbfe",
