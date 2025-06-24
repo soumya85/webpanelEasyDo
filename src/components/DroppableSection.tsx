@@ -25,6 +25,7 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
             {...provided.droppableProps}
             className={cn(
               "grid gap-6 min-h-[200px] transition-all duration-300",
+              "items-stretch", // Ensure all grid items stretch to equal height
               // Responsive grid columns based on section
               sectionId === "quick-overview" &&
                 "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
