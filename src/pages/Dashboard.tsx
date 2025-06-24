@@ -297,7 +297,7 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Action Button */}
-                  <Button className="w-full mt-6 h-10 text-sm font-semibold bg-gradient-to-r from-[#4766E5] to-[#6366F1] text-white border-0 hover:from-[#3b5df0] hover:to-[#5b63e8] transition-all duration-300 shadow-md hover:shadow-lg">
+                  <Button className="w-full mt-4 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                     {card.action}
                   </Button>
                 </div>
