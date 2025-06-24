@@ -21,7 +21,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         </div>
         {isDirty && (
           <Badge className="text-xs bg-blue-100 text-blue-700">
-            Drag cards to rearrange
+            Drag & resize cards
           </Badge>
         )}
       </div>
