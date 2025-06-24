@@ -148,51 +148,55 @@ export const useDashboardLayout = () => {
       .sort((a, b) => a.order - b.order);
   };
 
-  // Move card to different section
+  // Move card to different section or position
   const moveCard = (
     cardId: string,
     destinationSection: string,
     destinationIndex: number,
   ) => {
-    const updatedCards = cards.map((card) => {
-      if (card.id === cardId) {
-        return {
-          ...card,
-          section: destinationSection as DashboardCard["section"],
-          order: destinationIndex,
-          // Explicitly preserve the current size when moving
-          size: card.size || "medium",
-        };
-      }
-      return card;
-    });
+    const sourceCard = cards.find((card) => card.id === cardId);
+    if (!sourceCard) return;
 
-    // Reorder cards in the destination section
-    const sectionCards = updatedCards.filter(
-      (card) => card.section === destinationSection,
-    );
-    const otherCards = updatedCards.filter(
-      (card) => card.section !== destinationSection,
-    );
+    // Get cards in destination section (excluding the card being moved)
+    const destinationCards = cards
+      .filter(
+        (card) => card.section === destinationSection && card.id !== cardId,
+      )
+      .sort((a, b) => a.order - b.order);
 
-    const reorderedSectionCards = sectionCards.map((card, index) => ({
+    // Create the moved card with new section
+    const movedCard = {
+      ...sourceCard,
+      section: destinationSection as DashboardCard["section"],
+      size: sourceCard.size || "medium",
+    };
+
+    // Insert the moved card at the specified index
+    destinationCards.splice(destinationIndex, 0, movedCard);
+
+    // Update order indices for destination section
+    const updatedDestinationCards = destinationCards.map((card, index) => ({
       ...card,
       order: index,
     }));
 
-    // Reorder cards in other sections to maintain consistent ordering
-    const reorderedCards = [
-      ...otherCards.map((card) => {
-        const sectionCards = otherCards.filter(
-          (c) => c.section === card.section,
+    // Get cards from other sections and reorder them
+    const otherSectionCards = cards
+      .filter(
+        (card) => card.section !== destinationSection && card.id !== cardId,
+      )
+      .map((card) => {
+        const sectionCards = cards.filter(
+          (c) => c.section === card.section && c.id !== cardId,
         );
-        const cardIndex = sectionCards.findIndex((c) => c.id === card.id);
+        const cardIndex = sectionCards
+          .sort((a, b) => a.order - b.order)
+          .findIndex((c) => c.id === card.id);
         return { ...card, order: cardIndex };
-      }),
-      ...reorderedSectionCards,
-    ];
+      });
 
-    saveLayout(reorderedCards);
+    const allUpdatedCards = [...otherSectionCards, ...updatedDestinationCards];
+    saveLayout(allUpdatedCards);
   };
 
   // Reorder cards within the same section

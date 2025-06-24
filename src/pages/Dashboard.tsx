@@ -33,15 +33,26 @@ const Dashboard: React.FC = () => {
         return;
       }
 
-      // If moved to a different section
-      if (destination.droppableId !== source.droppableId) {
-        moveCard(draggableId, destination.droppableId, destination.index);
+      const destId = destination.droppableId;
+      const sourceId = source.droppableId;
+
+      // Handle new row drops
+      if (destId.endsWith("-new-row")) {
+        // Extract the base section ID
+        const sectionId = destId.replace("-new-row", "");
+        // Move to end of section to create new row
+        const sectionCards =
+          sections.find((s) => s.id === sectionId)?.cards || [];
+        moveCard(draggableId, sectionId, sectionCards.length);
+      } else if (destId !== sourceId) {
+        // Move to different section
+        moveCard(draggableId, destId, destination.index);
       } else {
-        // If reordered within the same section
-        reorderCards(source.droppableId, source.index, destination.index);
+        // Reorder within the same section
+        reorderCards(sourceId, source.index, destination.index);
       }
     },
-    [moveCard, reorderCards],
+    [moveCard, reorderCards, sections],
   );
 
   if (isLoading) {
@@ -57,7 +68,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
-      <div className="flex justify-between items-center mb-6 px-6 pt-2">
+      <div className="flex justify-between items-center mb-2 px-6 pt-2">
         <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
           Good morning, Bhaskar! 👋
         </h1>
@@ -73,6 +84,7 @@ const Dashboard: React.FC = () => {
               key={section.id}
               sectionId={section.id}
               title={section.title}
+              cards={section.cards}
             >
               {section.cards.map((card, index) => (
                 <CardFactory
@@ -89,7 +101,7 @@ const Dashboard: React.FC = () => {
         {/* Instructions */}
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="text-sm font-semibold text-blue-900 mb-2">
-            💡 Drag & Drop + Width Resize Instructions
+            💡 Enhanced Drag & Drop + Width Resize Instructions
           </h3>
           <ul className="text-xs text-blue-800 space-y-1">
             <li>
@@ -97,8 +109,16 @@ const Dashboard: React.FC = () => {
               width resize handle (right edge)
             </li>
             <li>
-              • Drag cards between sections/rows to reorganize -{" "}
+              • Drag cards between sections or within sections to reorganize -{" "}
               <strong>width is preserved</strong>
+            </li>
+            <li>
+              • <strong>NEW:</strong> Drop cards on purple zones to create new
+              rows within a section
+            </li>
+            <li>
+              • <strong>NEW:</strong> Drop cards on green zones to add new rows
+              at the end of a section
             </li>
             <li>
               • Drag the blue resize handle on the right edge to adjust card
