@@ -55,12 +55,11 @@ const Dashboard: React.FC = () => {
         <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
           Good morning, Bhaskar! 👋
         </h1>
+        {/* Layout Controls moved to header row */}
+        <LayoutControls onReset={resetLayout} />
       </div>
 
       <div className="flex-1 overflow-auto px-6 pb-6">
-        {/* Layout Controls */}
-        <LayoutControls onReset={resetLayout} />
-
         {/* Drag and Drop Context */}
         <DragDropContext onDragEnd={handleDragEnd}>
           {sections.map((section) => (
