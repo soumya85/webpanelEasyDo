@@ -2642,11 +2642,7 @@ const ChatContactsList: React.FC<{
             <Avatar className="h-12 w-12 flex-shrink-0">
               <AvatarImage src={chat.avatar} alt={chat.name} />
               <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
-                {chat.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")
-                  .slice(0, 2)}
+                {getInitials(chat.name)}
               </AvatarFallback>
             </Avatar>
 
