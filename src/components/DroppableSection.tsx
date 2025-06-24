@@ -24,10 +24,16 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
             ref={provided.innerRef}
             {...provided.droppableProps}
             className={cn(
-              "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[200px] transition-all duration-300",
+              "grid gap-6 min-h-[200px] transition-all duration-300",
+              // Responsive grid columns based on section
+              sectionId === "quick-overview" &&
+                "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+              sectionId === "productivity" && "grid-cols-1 lg:grid-cols-2",
+              sectionId === "information-hub" &&
+                "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+              // Drag over styles
               snapshot.isDraggingOver &&
                 "bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg p-4",
-              sectionId === "productivity" && "lg:grid-cols-2",
               className,
             )}
           >
