@@ -14,7 +14,7 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({ id, index }) => {
     <DashboardCard id={id} index={index}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-lg bg-green-50">
-          <DollarSign className="w-5 h-5 text-green-600" />
+          <IndianRupee className="w-5 h-5 text-green-600" />
         </div>
         <h3 className="text-sm font-semibold text-[#283C50]">
           Salary Snapshot
