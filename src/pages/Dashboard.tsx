@@ -185,8 +185,8 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-[#283C50] flex items-center gap-2">
+      <div className="flex justify-between items-center mb-6 px-6">
+        <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
           Good morning, Bhaskar! 👋
         </h1>
         <p className="text-sm text-gray-600">{formatDate(currentTime)}</p>
