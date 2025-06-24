@@ -206,7 +206,7 @@ const Dashboard: React.FC = () => {
                   className={cn(
                     "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
                     "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                    "p-4 flex flex-col h-64",
+                    "p-4 flex flex-col h-80",
                   )}
                 >
                   {/* Header */}
