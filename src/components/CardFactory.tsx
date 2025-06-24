@@ -1,5 +1,6 @@
 import React from "react";
 import { DashboardCard } from "../hooks/useDashboardLayout";
+import { CardSize } from "@/types/cardSize";
 import { TaskCard } from "./cards/TaskCard";
 import { MeetingsCard } from "./cards/MeetingsCard";
 import { ApprovalsCard } from "./cards/ApprovalsCard";
@@ -14,6 +15,7 @@ import { PerformanceCard } from "./cards/PerformanceCard";
 interface CardFactoryProps {
   card: DashboardCard;
   index: number;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
 export const CardFactory: React.FC<CardFactoryProps> = ({ card, index }) => {
