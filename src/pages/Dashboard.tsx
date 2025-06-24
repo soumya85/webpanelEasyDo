@@ -75,7 +75,12 @@ const Dashboard: React.FC = () => {
               title={section.title}
             >
               {section.cards.map((card, index) => (
-                <CardFactory key={card.id} card={card} index={index} />
+                <CardFactory
+                  key={card.id}
+                  card={card}
+                  index={index}
+                  onResize={resizeCard}
+                />
               ))}
             </DroppableSection>
           ))}
