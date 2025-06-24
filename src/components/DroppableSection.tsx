@@ -39,8 +39,8 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
           >
             {children}
             {provided.placeholder}
-            {snapshot.isDraggingOver && children === null && (
-              <div className="col-span-full flex items-center justify-center min-h-[320px] border-2 border-dashed border-blue-300 rounded-lg bg-blue-50 text-blue-600 font-medium">
+            {snapshot.isDraggingOver && (
+              <div className="col-span-full flex items-center justify-center h-20 border-2 border-dashed border-blue-400 rounded-lg bg-blue-50 text-blue-600 text-sm font-medium opacity-75">
                 Drop card here
               </div>
             )}
