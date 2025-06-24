@@ -16,9 +16,9 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
     <div className="flex items-center gap-3 mb-6">
       <div className="flex items-center gap-2">
         <Button
-          variant="outline"
+          variant="secondary"
           size="sm"
-          className="text-xs h-8 cursor-default font-medium text-gray-900 pointer-events-none"
+          className="text-xs h-8 cursor-default font-medium pointer-events-none"
         >
           <Save className="w-3 h-3 mr-1" />
           Layout auto-saved
@@ -31,9 +31,9 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
       </div>
       <Button
         onClick={onReset}
-        variant="outline"
+        variant="secondary"
         size="sm"
-        className="text-xs h-8 font-medium text-gray-900"
+        className="text-xs h-8 font-medium"
       >
         <RotateCcw className="w-3 h-3 mr-1" />
         Reset Layout
