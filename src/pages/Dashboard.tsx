@@ -33,68 +33,19 @@ const Dashboard: React.FC = () => {
         return;
       }
 
-      // Handle different types of drops
       const destId = destination.droppableId;
       const sourceId = source.droppableId;
 
-      // Check if destination is a row-based drop zone
-      if (destId.includes("-row-") || destId.endsWith("-new-row")) {
-        // Extract the base section ID (e.g., "quick-overview" from "quick-overview-row-1")
-        const baseSectionId = destId.split("-")[0] + "-" + destId.split("-")[1]; // handles "quick-overview", "information-hub"
-        const actualSectionId = baseSectionId.includes("information")
-          ? "information-hub"
-          : baseSectionId.includes("productivity")
-            ? "productivity"
-            : "quick-overview";
-
-        if (destId.endsWith("-new-row")) {
-          // Move to end of section (new row)
-          const sectionCards =
-            sections.find((s) => s.id === actualSectionId)?.cards || [];
-          moveCard(draggableId, actualSectionId, sectionCards.length);
-        } else {
-          // Move to specific row position
-          const rowMatch = destId.match(/-row-(\d+)/);
-          if (rowMatch) {
-            const rowIndex = parseInt(rowMatch[1]);
-            // Calculate the position based on row and existing cards
-            const sectionCards =
-              sections.find((s) => s.id === actualSectionId)?.cards || [];
-
-            // Group cards by rows to find the correct insertion index
-            let insertIndex = 0;
-            let currentRowWidth = 0;
-            const maxRowWidth = 4;
-
-            for (let i = 0; i < sectionCards.length; i++) {
-              const card = sectionCards[i];
-              let cardWidth = 1;
-              if (card.size === "large") cardWidth = 2;
-              if (card.size === "extra-large") cardWidth = 4;
-
-              if (
-                currentRowWidth + cardWidth > maxRowWidth &&
-                currentRowWidth > 0
-              ) {
-                // Starting a new row
-                if (insertIndex >= rowIndex) break;
-                currentRowWidth = cardWidth;
-                insertIndex++;
-              } else {
-                currentRowWidth += cardWidth;
-              }
-
-              if (insertIndex === rowIndex) {
-                insertIndex = i + 1;
-                break;
-              }
-            }
-
-            moveCard(draggableId, actualSectionId, insertIndex);
-          }
-        }
+      // Handle new row drops
+      if (destId.endsWith("-new-row")) {
+        // Extract the base section ID
+        const sectionId = destId.replace("-new-row", "");
+        // Move to end of section to create new row
+        const sectionCards =
+          sections.find((s) => s.id === sectionId)?.cards || [];
+        moveCard(draggableId, sectionId, sectionCards.length);
       } else if (destId !== sourceId) {
-        // Regular section move
+        // Move to different section
         moveCard(draggableId, destId, destination.index);
       } else {
         // Reorder within the same section
