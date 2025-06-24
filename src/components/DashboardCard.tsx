@@ -69,57 +69,63 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
             <GripVertical className="w-4 h-4 text-gray-500" />
           </div>
 
-          {/* Resize Handle */}
+          {/* Width Resize Handle */}
           {onResize && (
-            <div className="absolute -top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <DropdownMenu
-                open={showResizeMenu}
-                onOpenChange={setShowResizeMenu}
-              >
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="h-8 w-8 p-0 bg-white shadow-lg border border-gray-200 hover:bg-gray-50"
-                  >
-                    <Expand className="w-3.5 h-3.5 text-gray-500" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-40">
-                  <div className="px-2 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                    Resize Card
-                  </div>
-                  <DropdownMenuSeparator />
-                  {(Object.keys(CARD_SIZE_CONFIG) as CardSize[]).map(
-                    (sizeOption) => (
-                      <DropdownMenuItem
-                        key={sizeOption}
-                        onClick={() => handleResize(sizeOption)}
-                        className={cn(
-                          "flex items-center gap-2 cursor-pointer",
-                          size === sizeOption && "bg-blue-50 text-blue-700",
-                        )}
-                      >
-                        <div
-                          className={cn(
-                            "w-3 h-3 border border-gray-300",
-                            sizeOption === "small" && "w-2 h-2",
-                            sizeOption === "medium" && "w-3 h-3",
-                            sizeOption === "large" && "w-4 h-3",
-                            sizeOption === "extra-large" && "w-5 h-3",
-                            size === sizeOption &&
-                              "border-blue-500 bg-blue-100",
-                          )}
-                        />
-                        <span>{CARD_SIZE_CONFIG[sizeOption].displayName}</span>
-                        {size === sizeOption && (
-                          <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full" />
-                        )}
-                      </DropdownMenuItem>
-                    ),
-                  )}
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <div
+              className="absolute top-1/2 -right-1 transform -translate-y-1/2 w-2 h-8 cursor-ew-resize opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const startX = e.clientX;
+                const cardElement = e.currentTarget.closest(
+                  "[data-rbd-draggable-id]",
+                ) as HTMLElement;
+                if (!cardElement) return;
+
+                const startWidth = cardElement.offsetWidth;
+                const containerRect =
+                  cardElement.parentElement?.getBoundingClientRect();
+                if (!containerRect) return;
+
+                const handleMouseMove = (moveEvent: MouseEvent) => {
+                  const deltaX = moveEvent.clientX - startX;
+                  const newWidth = startWidth + deltaX;
+                  const containerWidth = containerRect.width;
+
+                  // Determine new size based on width relative to container
+                  let newSize: CardSize = size || "medium";
+                  const widthRatio = newWidth / (containerWidth / 4); // 4 columns max
+
+                  if (widthRatio < 0.75) {
+                    newSize = "small";
+                  } else if (widthRatio < 1.5) {
+                    newSize = "medium";
+                  } else if (widthRatio < 3) {
+                    newSize = "large";
+                  } else {
+                    newSize = "extra-large";
+                  }
+
+                  if (newSize !== size) {
+                    onResize(id, newSize);
+                  }
+                };
+
+                const handleMouseUp = () => {
+                  document.removeEventListener("mousemove", handleMouseMove);
+                  document.removeEventListener("mouseup", handleMouseUp);
+                  document.body.style.cursor = "";
+                  document.body.style.userSelect = "";
+                };
+
+                document.body.style.cursor = "ew-resize";
+                document.body.style.userSelect = "none";
+                document.addEventListener("mousemove", handleMouseMove);
+                document.addEventListener("mouseup", handleMouseUp);
+              }}
+            >
+              <div className="w-1 h-full bg-blue-500 rounded-full opacity-60 hover:opacity-100 transition-opacity" />
             </div>
           )}
 
