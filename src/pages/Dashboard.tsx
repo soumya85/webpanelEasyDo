@@ -150,7 +150,7 @@ const Dashboard: React.FC = () => {
         {/* Instructions */}
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="text-sm font-semibold text-blue-900 mb-2">
-            💡 Drag & Drop + Width Resize Instructions
+            💡 Enhanced Drag & Drop + Width Resize Instructions
           </h3>
           <ul className="text-xs text-blue-800 space-y-1">
             <li>
@@ -158,8 +158,16 @@ const Dashboard: React.FC = () => {
               width resize handle (right edge)
             </li>
             <li>
-              • Drag cards between sections/rows to reorganize -{" "}
+              • Drag cards between sections or within sections to reorganize -{" "}
               <strong>width is preserved</strong>
+            </li>
+            <li>
+              • <strong>NEW:</strong> Drop cards on purple zones to create new
+              rows within a section
+            </li>
+            <li>
+              • <strong>NEW:</strong> Drop cards on green zones to add new rows
+              at the end of a section
             </li>
             <li>
               • Drag the blue resize handle on the right edge to adjust card
