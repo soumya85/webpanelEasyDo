@@ -185,11 +185,10 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
-      <div className="flex justify-between items-center mb-6 px-6">
+      <div className="flex justify-between items-center mb-6 px-6 pt-6">
         <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
           Good morning, Bhaskar! 👋
         </h1>
-        <p className="text-sm text-gray-600">{formatDate(currentTime)}</p>
       </div>
 
       <div className="flex-1 overflow-auto px-6 pb-6">
@@ -207,7 +206,7 @@ const Dashboard: React.FC = () => {
                   className={cn(
                     "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
                     "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                    "p-4 flex flex-col h-64",
+                    "p-4 flex flex-col h-80",
                   )}
                 >
                   {/* Header */}
@@ -223,7 +222,7 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Main Content */}
-                  <div className="flex-1">
+                  <div className="flex-1 min-h-0 overflow-hidden">
                     {card.value && (
                       <div className="mb-2">
                         <div className="text-3xl font-bold text-[#4766E5]">
@@ -236,7 +235,7 @@ const Dashboard: React.FC = () => {
                     )}
 
                     {/* Details/Items */}
-                    <div className="space-y-2 text-xs">
+                    <div className="space-y-2 text-xs max-h-40 overflow-y-auto">
                       {card.details?.map((detail, idx) => (
                         <div key={idx} className="flex justify-between">
                           <span className="text-gray-600">{detail.label}</span>
@@ -295,9 +294,11 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Action Button */}
-                  <Button className="w-full mt-4 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
-                    {card.action}
-                  </Button>
+                  <div className="mt-4 pt-2 border-t border-gray-100">
+                    <Button className="w-full h-8 text-xs bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200">
+                      {card.action}
+                    </Button>
+                  </div>
                 </div>
               );
             })}
@@ -313,56 +314,65 @@ const Dashboard: React.FC = () => {
             {/* Recent Chat Activity */}
             <div
               className={cn(
-                "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                "p-4",
+                "bg-white rounded-xl border-b-4 border-[#4766E5]",
+                "shadow-lg hover:shadow-xl transition-all duration-300",
+                "p-6",
               )}
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-blue-50">
-                    <MessageSquare className="w-5 h-5 text-blue-600" />
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-xl bg-blue-50 shadow-sm">
+                    <MessageSquare className="w-6 h-6 text-blue-600" />
                   </div>
-                  <h3 className="text-sm font-semibold text-[#283C50]">
-                    Recent Chat Activity
-                  </h3>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#283C50]">
+                      Recent Chat Activity
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Unread Messages
+                    </p>
+                  </div>
                 </div>
-                <div className="relative">
-                  <div className="text-2xl font-bold text-[#4766E5]">14</div>
-                  <Badge className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#4766E5] mb-1">
                     14
+                  </div>
+                  <Badge className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                    New
                   </Badge>
                 </div>
               </div>
-              <div className="text-xs text-gray-600 mb-3">Unread Messages</div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {chatActivities.map((chat) => (
                   <div
                     key={chat.id}
-                    className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg"
+                    className="flex items-center gap-4 p-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-xl transition-all duration-200 cursor-pointer border border-transparent hover:border-blue-200"
                   >
-                    <Avatar className="h-8 w-8">
+                    <Avatar className="h-10 w-10 ring-2 ring-blue-100">
                       <AvatarImage src={chat.avatar} />
-                      <AvatarFallback className="text-xs">
+                      <AvatarFallback className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
                         {chat.name.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <div className="text-xs font-medium text-gray-900 truncate">
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="text-sm font-semibold text-gray-900 truncate">
                           {chat.name}
                         </div>
                         {chat.isGroup && (
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge
+                            variant="secondary"
+                            className="text-xs bg-blue-100 text-blue-700"
+                          >
                             Group
                           </Badge>
                         )}
-                        <div className="text-xs text-gray-500 ml-auto">
+                        <div className="text-xs text-gray-500 ml-auto font-medium">
                           {chat.time}
                         </div>
                       </div>
-                      <div className="text-xs text-gray-600 truncate">
+                      <div className="text-sm text-gray-700 truncate font-medium leading-relaxed">
                         {chat.message}
                       </div>
                     </div>
@@ -370,7 +380,7 @@ const Dashboard: React.FC = () => {
                 ))}
               </div>
 
-              <Button className="w-full mt-4 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+              <Button className="w-full mt-6 h-10 text-sm font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white border-0 hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 shadow-md hover:shadow-lg">
                 View All Chats
               </Button>
             </div>
@@ -378,9 +388,9 @@ const Dashboard: React.FC = () => {
             {/* My Daily Work Status */}
             <div
               className={cn(
-                "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                "p-4",
+                "bg-white rounded-xl border-b-4 border-[#4766E5]",
+                "shadow-lg hover:shadow-xl transition-all duration-300",
+                "p-6",
               )}
             >
               <div className="flex items-center gap-3 mb-4">
