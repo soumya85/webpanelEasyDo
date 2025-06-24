@@ -161,7 +161,6 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
           >
             <div className="relative">
               <Avatar className="h-8 w-8 ring-2 ring-blue-100">
-                <AvatarImage src={chat.avatar} />
                 <AvatarFallback className="text-xs font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
                   {getInitials(chat.name)}
                 </AvatarFallback>
