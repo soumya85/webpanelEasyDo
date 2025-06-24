@@ -13,7 +13,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
   isDirty = false,
 }) => {
   return (
-    <div className="flex items-center gap-3 mb-6">
+    <div className="flex items-center gap-3 mb-6 pt-6">
       <div className="flex items-center gap-2">
         <div className="flex items-center justify-center px-3 h-8 text-xs font-medium text-gray-900 bg-white border border-gray-300 rounded-md cursor-default">
           <Save className="w-3 h-3 mr-1" />
@@ -31,7 +31,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         size="sm"
         className="text-xs h-8 font-medium !text-gray-900 !border-gray-300"
       >
-        <RotateCcw className="w-3 h-3 mr-1" />
+        <RotateCcw className="w-3 h-3 mr-1 text-blue-600" />
         Reset Layout
       </Button>
     </div>
