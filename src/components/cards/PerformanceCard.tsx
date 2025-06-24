@@ -21,45 +21,50 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
         <h3 className="text-sm font-semibold text-[#283C50]">My Performance</h3>
       </div>
 
-      <div className="text-center mb-4">
-        <div className="flex justify-center mb-2">
-          {[1, 2, 3, 4].map((star) => (
-            <Star key={star} className="w-4 h-4 text-yellow-500 fill-current" />
-          ))}
-          <Star className="w-4 h-4 text-gray-300" />
+      <div className="flex-1 flex flex-col">
+        <div className="text-center mb-4">
+          <div className="flex justify-center mb-2">
+            {[1, 2, 3, 4].map((star) => (
+              <Star
+                key={star}
+                className="w-4 h-4 text-yellow-500 fill-current"
+              />
+            ))}
+            <Star className="w-4 h-4 text-gray-300" />
+          </div>
+          <div className="text-2xl font-bold text-[#4766E5] mb-1">4.4</div>
+          <div className="text-xs text-gray-600">
+            Average over 23 task reviews
+          </div>
         </div>
-        <div className="text-2xl font-bold text-[#4766E5] mb-1">4.4</div>
-        <div className="text-xs text-gray-600">
-          Average over 23 task reviews
-        </div>
-      </div>
 
-      <div className="text-center mb-4">
-        <div className="text-sm text-green-600 font-semibold mb-1">
-          Nice, Keep it up! 💪
+        <div className="text-center mb-4">
+          <div className="text-sm text-green-600 font-semibold mb-1">
+            Nice, Keep it up! 💪
+          </div>
         </div>
-      </div>
 
-      <div className="text-center mb-4">
-        <div className="w-12 h-12 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-2">
-          <Trophy className="w-6 h-6 text-yellow-600" />
+        <div className="text-center mb-4">
+          <div className="w-12 h-12 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-2">
+            <Trophy className="w-6 h-6 text-yellow-600" />
+          </div>
+          <div className="text-xs font-semibold text-[#283C50]">
+            Employee of the Month
+          </div>
+          <div className="text-xs text-gray-500">June 2025</div>
         </div>
-        <div className="text-xs font-semibold text-[#283C50]">
-          Employee of the Month
-        </div>
-        <div className="text-xs text-gray-500">June 2025</div>
-      </div>
 
-      <Button
-        className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-        style={{
-          backgroundColor: "#eff5ff",
-          borderColor: "#bfdbfe",
-          borderWidth: "1px",
-        }}
-      >
-        View Performance Details
-      </Button>
+        <Button
+          className="w-full h-8 text-xs text-gray-700 hover:opacity-90 mt-auto"
+          style={{
+            backgroundColor: "#eff5ff",
+            borderColor: "#bfdbfe",
+            borderWidth: "1px",
+          }}
+        >
+          View Performance Details
+        </Button>
+      </div>
     </DashboardCard>
   );
 };
