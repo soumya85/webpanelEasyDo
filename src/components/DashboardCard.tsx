@@ -23,15 +23,7 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
   size = "medium",
   onResize,
 }) => {
-  const [showResizeMenu, setShowResizeMenu] = useState(false);
   const sizeConfig = CARD_SIZE_CONFIG[size];
-
-  const handleResize = (newSize: CardSize) => {
-    if (onResize) {
-      onResize(id, newSize);
-    }
-    setShowResizeMenu(false);
-  };
 
   return (
     <Draggable draggableId={id} index={index} isDragDisabled={isDragDisabled}>
