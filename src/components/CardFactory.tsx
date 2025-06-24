@@ -1,5 +1,5 @@
 import React from "react";
-import { DashboardCard } from "./hooks/useDashboardLayout";
+import { DashboardCard } from "../hooks/useDashboardLayout";
 import { TaskCard } from "./cards/TaskCard";
 import { MeetingsCard } from "./cards/MeetingsCard";
 import { ApprovalsCard } from "./cards/ApprovalsCard";
