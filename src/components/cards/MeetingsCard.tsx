@@ -2,13 +2,21 @@ import React from "react";
 import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface MeetingsCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const MeetingsCard: React.FC<MeetingsCardProps> = ({ id, index }) => {
+export const MeetingsCard: React.FC<MeetingsCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   const meetings = [
     {
       type: "Weekly Team Sync",
