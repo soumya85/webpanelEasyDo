@@ -20,11 +20,11 @@ export function PageLayout({ children }: PageLayoutProps) {
       {/* Main Content */}
       <main
         className={cn(
-          "transition-all duration-300 pt-[86px] pb-16",
+          "transition-all duration-300 pt-[70px] pb-16",
           // Desktop margins
           isExpanded ? "lg:ml-[280px]" : "lg:ml-[103px]",
           // Mobile/Tablet margins (no sidebar margin, but account for mobile breadcrumb)
-          "ml-0 lg:pt-[86px] pt-[151px]", // 86px header + 65px mobile breadcrumb
+          "ml-0 lg:pt-[70px] pt-[135px]", // Reduced padding for desktop and mobile
         )}
       >
         <div className="min-h-[calc(100vh-86px-64px)]">
