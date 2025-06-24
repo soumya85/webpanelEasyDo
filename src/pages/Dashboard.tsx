@@ -213,23 +213,15 @@ const Dashboard: React.FC = () => {
                   )}
                 >
                   {/* Header */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div
-                      className={cn(
-                        "p-3 rounded-xl shadow-sm",
-                        card.color,
-                        "group-hover:scale-110 transition-transform duration-300",
-                      )}
-                    >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={cn("p-2 rounded-lg", card.color)}>
                       <IconComponent
-                        className={cn("w-6 h-6", card.iconColor)}
+                        className={cn("w-5 h-5", card.iconColor)}
                       />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-bold text-[#283C50] leading-tight">
-                        {card.title}
-                      </h3>
-                    </div>
+                    <h3 className="text-sm font-semibold text-[#283C50] flex-1">
+                      {card.title}
+                    </h3>
                   </div>
 
                   {/* Main Content */}
