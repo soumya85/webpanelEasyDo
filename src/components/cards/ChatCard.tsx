@@ -46,11 +46,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
   ];
 
   return (
-    <DashboardCard
-      id={id}
-      index={index}
-      className={cn("bg-white rounded-xl border-b-4 border-[#4766E5]")}
-    >
+    <DashboardCard id={id} index={index}>
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
           <div className="p-3 rounded-xl bg-blue-50 shadow-sm">
