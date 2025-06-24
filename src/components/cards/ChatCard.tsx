@@ -141,25 +141,37 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
       <div className="flex items-center justify-between mb-4">
         <div className="text-xs text-gray-600">Unread Messages</div>
         <div className="flex items-center gap-2">
-          <div className="text-2xl font-bold text-[#4766E5]">14</div>
+          <div className="text-2xl font-bold text-[#4766E5]">
+            {chatActivities.reduce(
+              (total, chat) => total + (chat.unreadCount || 0),
+              0,
+            )}
+          </div>
           <Badge className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
             New
           </Badge>
         </div>
       </div>
 
-      <div className="space-y-3 flex-1 overflow-y-auto max-h-48">
-        {chatActivities.slice(0, 3).map((chat) => (
+      <div className="space-y-3 flex-1 overflow-y-auto max-h-80">
+        {chatActivities.slice(0, 8).map((chat) => (
           <div
             key={chat.id}
             className="flex items-center gap-3 p-2 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-lg transition-all duration-200 cursor-pointer border border-transparent hover:border-blue-200"
           >
-            <Avatar className="h-8 w-8 ring-2 ring-blue-100">
-              <AvatarImage src={chat.avatar} />
-              <AvatarFallback className="text-xs font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
-                {chat.name.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
+            <div className="relative">
+              <Avatar className="h-8 w-8 ring-2 ring-blue-100">
+                <AvatarImage src={chat.avatar} />
+                <AvatarFallback className="text-xs font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
+                  {getInitials(chat.name)}
+                </AvatarFallback>
+              </Avatar>
+              {chat.unreadCount && chat.unreadCount > 0 && (
+                <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-[16px] h-4 flex items-center justify-center px-1">
+                  {chat.unreadCount > 99 ? "99+" : chat.unreadCount}
+                </div>
+              )}
+            </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <div className="text-xs font-semibold text-gray-900 truncate">
