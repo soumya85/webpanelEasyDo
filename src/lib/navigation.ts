@@ -24,7 +24,7 @@ export interface NavigationItem {
 export const navigationItems: NavigationItem[] = [
   {
     id: "dashboard",
-    label: "Dashboard",
+    label: "Overview",
     icon: LayoutDashboard,
     href: "/dashboard",
   },
