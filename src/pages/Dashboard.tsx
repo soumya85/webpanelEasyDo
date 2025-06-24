@@ -675,7 +675,11 @@ const Dashboard: React.FC = () => {
               </Button>
               <Button
                 className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{ backgroundColor: "#ffffff", borderColor: "#bfdbfe" }}
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderColor: "#bfdbfe",
+                  borderWidth: "1px",
+                }}
               >
                 View All Payslips
               </Button>
