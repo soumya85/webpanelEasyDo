@@ -696,7 +696,10 @@ const Dashboard: React.FC = () => {
                 <div className="text-xs text-gray-500">June 2025</div>
               </div>
 
-              <Button className="w-full h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+              <Button
+                className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+                style={{ backgroundColor: "#d4deee" }}
+              >
                 View Performance Details
               </Button>
             </div>
