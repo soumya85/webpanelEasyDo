@@ -2,13 +2,21 @@ import React from "react";
 import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
+import { CardSize } from "@/types/cardSize";
 
 interface NoticeCardProps {
   id: string;
   index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const NoticeCard: React.FC<NoticeCardProps> = ({ id, index }) => {
+export const NoticeCard: React.FC<NoticeCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   const noticeItems = [
     {
       title: "Holiday Notice - Diwali Celebration",
