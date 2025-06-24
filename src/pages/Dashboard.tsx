@@ -185,22 +185,11 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
-      <div
-        className={cn(
-          "flex justify-between items-center self-stretch",
-          "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
-          "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-          "px-6 py-4 mb-6",
-        )}
-      >
-        <div className="flex items-center gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-[#283C50] flex items-center gap-2">
-              Good morning, Bhaskar! 👋
-            </h1>
-            <p className="text-sm text-gray-600">{formatDate(currentTime)}</p>
-          </div>
-        </div>
+      <div className="flex justify-between items-center mb-6 px-6">
+        <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
+          Good morning, Bhaskar! 👋
+        </h1>
+        <p className="text-sm text-gray-600">{formatDate(currentTime)}</p>
       </div>
 
       <div className="flex-1 overflow-auto px-6 pb-6">
