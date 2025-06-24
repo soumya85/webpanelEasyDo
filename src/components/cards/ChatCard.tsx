@@ -67,21 +67,21 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
         </div>
       </div>
 
-      <div className="space-y-4 flex-1 overflow-y-auto">
-        {chatActivities.map((chat) => (
+      <div className="space-y-3 flex-1 overflow-y-auto max-h-48">
+        {chatActivities.slice(0, 3).map((chat) => (
           <div
             key={chat.id}
-            className="flex items-center gap-4 p-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-xl transition-all duration-200 cursor-pointer border border-transparent hover:border-blue-200"
+            className="flex items-center gap-3 p-2 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-lg transition-all duration-200 cursor-pointer border border-transparent hover:border-blue-200"
           >
-            <Avatar className="h-10 w-10 ring-2 ring-blue-100">
+            <Avatar className="h-8 w-8 ring-2 ring-blue-100">
               <AvatarImage src={chat.avatar} />
-              <AvatarFallback className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
+              <AvatarFallback className="text-xs font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
                 {chat.name.charAt(0)}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <div className="text-sm font-semibold text-gray-900 truncate">
+                <div className="text-xs font-semibold text-gray-900 truncate">
                   {chat.name}
                 </div>
                 {chat.isGroup && (
@@ -96,7 +96,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
                   {chat.time}
                 </div>
               </div>
-              <div className="text-sm text-gray-700 truncate font-medium leading-relaxed">
+              <div className="text-xs text-gray-700 truncate font-medium leading-relaxed">
                 {chat.message}
               </div>
             </div>
@@ -105,7 +105,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
       </div>
 
       <Button
-        className="w-full mt-6 h-10 text-sm font-semibold text-gray-700 hover:opacity-90 transition-all duration-300"
+        className="w-full mt-4 h-8 text-xs font-semibold text-gray-700 hover:opacity-90 transition-all duration-300"
         style={{
           backgroundColor: "#eff5ff",
           borderColor: "#bfdbfe",
