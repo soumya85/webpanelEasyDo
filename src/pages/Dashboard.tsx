@@ -68,14 +68,6 @@ const Dashboard: React.FC = () => {
               key={section.id}
               sectionId={section.id}
               title={section.title}
-              className={cn(
-                // Responsive grid configuration for different sections
-                section.id === "quick-overview" &&
-                  "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
-                section.id === "productivity" && "grid-cols-1 lg:grid-cols-2",
-                section.id === "information-hub" &&
-                  "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
-              )}
             >
               {section.cards.map((card, index) => (
                 <CardFactory key={card.id} card={card} index={index} />
