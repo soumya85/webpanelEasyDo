@@ -303,16 +303,18 @@ const Dashboard: React.FC = () => {
 
                     {/* Progress Bar */}
                     {card.progress && (
-                      <div className="mt-3">
-                        <div className="flex justify-between text-xs mb-1">
-                          <span className="text-gray-600">Weekly Progress</span>
-                          <span className="font-semibold text-[#4766E5]">
+                      <div className="mt-4">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span className="text-gray-700 font-medium">
+                            Weekly Progress
+                          </span>
+                          <span className="font-bold text-[#4766E5]">
                             {card.progress}%
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                           <div
-                            className="bg-[#4766E5] h-2 rounded-full transition-all duration-300"
+                            className="bg-gradient-to-r from-[#4766E5] to-[#6366F1] h-full rounded-full transition-all duration-500 ease-out"
                             style={{ width: `${card.progress}%` }}
                           ></div>
                         </div>
