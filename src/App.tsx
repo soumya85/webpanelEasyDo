@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SidebarProvider } from "./hooks/useSidebar";
 import { UserProvider } from "./hooks/useUser";
 import { PageLayout } from "./components/layout/PageLayout";
-import Overview from "./pages/Overview";
+import Sample from "./pages/Sample";
 import Chats from "./pages/Chats";
 import TodaysSchedule from "./pages/TodaysSchedule";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
@@ -41,7 +41,7 @@ const App = () => (
           <SidebarProvider>
             <PageLayout>
               <Routes>
-                <Route path="/" element={<Overview />} />
+                <Route path="/sample" element={<Sample />} />
                 <Route path="/chats" element={<Chats />} />
                 <Route path="/todays-schedule" element={<TodaysSchedule />} />
                 <Route

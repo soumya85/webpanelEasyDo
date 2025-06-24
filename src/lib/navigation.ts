@@ -28,12 +28,6 @@ export const navigationItems: NavigationItem[] = [
     href: "/extra",
   },
   {
-    id: "overview",
-    label: "Overview",
-    icon: LayoutDashboard,
-    href: "/",
-  },
-  {
     id: "chats",
     label: "Chats",
     icon: MessageSquare,
@@ -92,5 +86,11 @@ export const navigationItems: NavigationItem[] = [
     label: "Help & Support",
     icon: HelpCircle,
     href: "/help-support",
+  },
+  {
+    id: "sample",
+    label: "Sample",
+    icon: LayoutDashboard,
+    href: "/sample",
   },
 ];
