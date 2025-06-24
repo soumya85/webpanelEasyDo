@@ -227,11 +227,11 @@ const Dashboard: React.FC = () => {
                   {/* Main Content */}
                   <div className="flex-1">
                     {card.value && (
-                      <div className="mb-4">
-                        <div className="text-4xl font-bold text-[#4766E5] mb-1">
+                      <div className="mb-2">
+                        <div className="text-3xl font-bold text-[#4766E5]">
                           {card.value}
                         </div>
-                        <div className="text-sm text-gray-600 font-medium">
+                        <div className="text-xs text-gray-600">
                           {card.subtitle}
                         </div>
                       </div>
