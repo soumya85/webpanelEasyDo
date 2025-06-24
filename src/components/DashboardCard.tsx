@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { cn } from "@/lib/utils";
-import { GripVertical } from "lucide-react";
+import { GripVertical, Expand, MoreVertical } from "lucide-react";
+import { CardSize, CARD_SIZE_CONFIG } from "@/types/cardSize";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 interface DashboardCardProps {
   id: string;
@@ -9,6 +18,8 @@ interface DashboardCardProps {
   children: React.ReactNode;
   className?: string;
   isDragDisabled?: boolean;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
 export const DashboardCard: React.FC<DashboardCardProps> = ({
