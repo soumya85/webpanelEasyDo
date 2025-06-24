@@ -52,10 +52,10 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({ id, index }) => {
 
         <div className="mt-auto space-y-2">
           <Button
-            className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+            className="w-full h-8 text-xs text-white hover:opacity-90"
             style={{
-              backgroundColor: "#eff5ff",
-              borderColor: "#bfdbfe",
+              backgroundColor: "#30A853",
+              borderColor: "#30A853",
               borderWidth: "1px",
             }}
           >
