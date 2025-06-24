@@ -307,16 +307,11 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Personal Productivity & Communication Section */}
-        <div className="mb-10">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50">
-              <Users className="w-5 h-5 text-green-600" />
-            </div>
-            <h2 className="text-xl font-bold text-[#283C50]">
-              Personal Productivity & Communication
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold text-[#283C50] mb-4">
+            Personal Productivity & Communication
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Recent Chat Activity */}
             <div
               className={cn(
