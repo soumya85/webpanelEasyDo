@@ -208,6 +208,25 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
+  /* Resize handle styles */
+  .resize-handle {
+    cursor: pointer;
+    opacity: 0;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .resize-handle:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  /* Card size transitions */
+  .card-resize-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   /* Grid layout responsiveness */
   .dashboard-grid {
     display: grid;
