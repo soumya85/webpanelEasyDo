@@ -93,26 +93,32 @@ const Dashboard: React.FC = () => {
           </h3>
           <ul className="text-xs text-blue-800 space-y-1">
             <li>
-              • Hover over any card to see the drag handle (top center) and
-              width resize handle (right edge)
+              • <strong>Move cards:</strong> Drag any card between sections to
+              reorganize your dashboard
             </li>
             <li>
-              • Drag cards between sections/rows to reorganize -{" "}
-              <strong>width is preserved</strong>
+              • <strong>Resize width:</strong> Hover over a card and drag the
+              blue resize handle on the right edge
             </li>
             <li>
-              • Drag the blue resize handle on the right edge to adjust card
-              width (Small, Medium, Large, Extra Large)
+              • <strong>Width preserved:</strong> When moving cards to different
+              sections, their width size stays the same
             </li>
             <li>
-              • All cards in the same row maintain equal height automatically
+              • <strong>Equal heights:</strong> All cards in the same row
+              automatically maintain equal height
             </li>
             <li>
-              • Your layout and card sizes are automatically saved and persist
-              across sessions
+              • <strong>Four sizes:</strong> Small (1 column), Medium (1
+              column), Large (2 columns), Extra Large (4 columns)
             </li>
             <li>
-              • Use the "Reset Layout" button to restore the default arrangement
+              • <strong>Auto-save:</strong> Your layout and card sizes are saved
+              automatically and persist across sessions
+            </li>
+            <li>
+              • <strong>Reset:</strong> Use the "Reset Layout" button to restore
+              the default arrangement
             </li>
           </ul>
         </div>
