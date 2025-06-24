@@ -386,7 +386,10 @@ const Dashboard: React.FC = () => {
                 ))}
               </div>
 
-              <Button className="w-full mt-6 h-10 text-sm font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white border-0 hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 shadow-md hover:shadow-lg">
+              <Button
+                className="w-full mt-6 h-10 text-sm font-semibold text-gray-700 hover:opacity-90 transition-all duration-300"
+                style={{ backgroundColor: "#eaf2ff", borderColor: "#c4cad7" }}
+              >
                 View All Chats
               </Button>
             </div>
