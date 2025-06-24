@@ -193,7 +193,7 @@ const Dashboard: React.FC = () => {
 
       <div className="flex-1 overflow-auto px-6 pb-6">
         {/* Quick Overview Section */}
-        <div className="mb-8">
+        <div className="mb-12">
           <h2 className="text-lg font-semibold text-[#283C50] mb-4">
             Quick Overview
           </h2>
