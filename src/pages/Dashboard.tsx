@@ -7,8 +7,14 @@ import { LayoutControls } from "@/components/LayoutControls";
 import { cn } from "@/lib/utils";
 
 const Dashboard: React.FC = () => {
-  const { sections, moveCard, reorderCards, resetLayout, isLoading } =
-    useDashboardLayout();
+  const {
+    sections,
+    moveCard,
+    reorderCards,
+    resizeCard,
+    resetLayout,
+    isLoading,
+  } = useDashboardLayout();
 
   const handleDragEnd = useCallback(
     (result: DropResult) => {
