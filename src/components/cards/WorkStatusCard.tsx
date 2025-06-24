@@ -48,14 +48,14 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </h3>
       </div>
 
-      <div className="text-center mb-4">
-        <div className="text-2xl font-bold text-[#4766E5] mb-1">
+      <div className="text-center mb-3">
+        <div className="text-xl font-bold text-[#4766E5] mb-1">
           {formatTime(currentTime)}
         </div>
         <div className="text-xs text-gray-600">Monday 23 Jun, 2025</div>
       </div>
 
-      <div className="space-y-3 mb-4">
+      <div className="space-y-2 mb-3">
         <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
           <span className="text-xs text-gray-600">Office Hours</span>
           <span className="text-xs font-semibold text-[#4766E5]">
@@ -76,7 +76,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
       {punchStatus === "NOT PUNCHED IN" && (
         <Button
           onClick={handlePunchIn}
-          className="w-full mb-3 h-10 text-gray-700 hover:opacity-90"
+          className="w-full mb-2 h-8 text-xs text-gray-700 hover:opacity-90"
           style={{
             backgroundColor: "#eff5ff",
             borderColor: "#bfdbfe",
@@ -87,38 +87,27 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </Button>
       )}
 
-      <div className="text-xs text-gray-500 text-center mb-3">
+      <div className="text-xs text-gray-500 text-center mb-2">
         Punch-in is tracked for attendance
       </div>
 
-      <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-3">
+      <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 mb-2">
         <div className="flex items-center gap-2 text-orange-600 text-xs">
           <Bell className="w-3 h-3" />
-          <span className="font-medium">Attendance is locked @01:31 AM.</span>
-        </div>
-        <div className="text-xs text-orange-600 mt-1">
-          For Punch-in: Click above for request for Approval to yr Reporting
-          Manager...
+          <span className="font-medium">Attendance locked @01:31 AM</span>
         </div>
       </div>
 
       <div className="text-center">
-        <div className="text-xs font-medium text-gray-700 mb-1">
-          Location Timeline
-        </div>
-        <div className="text-xs text-gray-500">
-          (Tracked ONLY between Punch-in & Punch-out as per Mandate of the
-          company)
-        </div>
         <Button
-          className="w-full mt-2 h-8 text-xs text-gray-700 hover:opacity-90"
+          className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
           style={{
             backgroundColor: "#eff5ff",
             borderColor: "#bfdbfe",
             borderWidth: "1px",
           }}
         >
-          Click here for more Detail
+          View Location Timeline
         </Button>
       </div>
     </DashboardCard>
