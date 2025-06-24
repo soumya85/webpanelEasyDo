@@ -184,6 +184,14 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
+      {/* Header Section */}
+      <div className="flex justify-between items-center mb-6 px-6">
+        <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
+          Good morning, Bhaskar! 👋
+        </h1>
+        <p className="text-sm text-gray-600">{formatDate(currentTime)}</p>
+      </div>
+
       <div className="flex-1 overflow-auto px-6 pb-6">
         {/* Quick Overview Section */}
         <div className="mb-8">
