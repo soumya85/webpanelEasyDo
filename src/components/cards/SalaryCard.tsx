@@ -25,18 +25,15 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({ id, index }) => {
         <div className="flex items-center gap-2 mb-2">
           <div className="text-lg font-bold text-green-600">₹ 50,000.00</div>
         </div>
-        <div className="text-xs text-gray-600">Last Net Pay</div>
-        <div className="text-xs text-gray-500">vs previous month</div>
+        <div className="text-xs text-gray-600">• As on 23rd Jun 2025.</div>
+        <div className="text-xs text-gray-600">
+          • Your Next Payslip to be generated in{" "}
+          <span className="font-semibold text-[#4766E5]">7 Days</span>
+        </div>
       </div>
 
       <div className="flex-1 flex flex-col">
         <div className="space-y-2 mb-4">
-          <div className="flex justify-between items-center">
-            <span className="text-xs text-gray-600">Next Payslip</span>
-            <span className="text-xs font-semibold text-[#4766E5]">15</span>
-          </div>
-          <div className="text-xs text-gray-500">Days Remaining</div>
-
           <div className="mt-2 space-y-1">
             <div className="flex justify-between text-xs">
               <span className="text-gray-600">Deducted</span>
