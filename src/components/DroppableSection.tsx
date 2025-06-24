@@ -25,13 +25,9 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
             {...provided.droppableProps}
             className={cn(
               "grid gap-6 min-h-[200px] transition-all duration-300",
-              "items-stretch", // Ensure all grid items stretch to equal height
-              // Responsive grid columns based on section
-              sectionId === "quick-overview" &&
-                "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
-              sectionId === "productivity" && "grid-cols-1 lg:grid-cols-2",
-              sectionId === "information-hub" &&
-                "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+              "items-start", // Allow cards to have different heights
+              // Universal responsive grid that supports dynamic column spans
+              "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
               // Drag over styles
               snapshot.isDraggingOver &&
                 "bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg p-4",
