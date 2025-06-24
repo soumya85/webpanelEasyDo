@@ -160,6 +160,8 @@ export const useDashboardLayout = () => {
           ...card,
           section: destinationSection as DashboardCard["section"],
           order: destinationIndex,
+          // Explicitly preserve the current size when moving
+          size: card.size || "medium",
         };
       }
       return card;
