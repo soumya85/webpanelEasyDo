@@ -185,19 +185,13 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
-      <div className="flex justify-between items-center mb-8 px-6 pt-6">
-        <div>
-          <h1 className="text-2xl font-bold text-[#283C50] flex items-center gap-3 mb-1">
-            Good morning, Bhaskar! 👋
-          </h1>
-          <p className="text-sm text-gray-500">Let's make today productive!</p>
-        </div>
-        <div className="text-right">
-          <p className="text-sm font-medium text-[#283C50]">
-            {formatDate(currentTime)}
-          </p>
-          <p className="text-sm text-gray-500">{formatTime(currentTime)}</p>
-        </div>
+      <div className="flex justify-between items-center mb-6 px-6 pt-6">
+        <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
+          Good morning, Bhaskar! 👋
+        </h1>
+        <p className="text-sm font-medium text-gray-600">
+          {formatDate(currentTime)}
+        </p>
       </div>
 
       <div className="flex-1 overflow-auto px-6 pb-6">
