@@ -644,7 +644,7 @@ const Dashboard: React.FC = () => {
 
               <Button
                 className="w-full mb-2 h-8 text-xs text-gray-700 hover:opacity-90"
-                style={{ backgroundColor: "#ffffff", borderColor: "#9ca3af" }}
+                style={{ backgroundColor: "#ffffff", borderColor: "#bfdbfe" }}
               >
                 Request Salary Advance
               </Button>
@@ -693,7 +693,7 @@ const Dashboard: React.FC = () => {
 
               <div className="text-center mb-4">
                 <div className="text-sm text-green-600 font-semibold mb-1">
-                  Nice, Keep it up! 💪
+                  Nice, Keep it up! ���
                 </div>
               </div>
 
