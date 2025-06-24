@@ -420,9 +420,9 @@ const Dashboard: React.FC = () => {
             {/* My Daily Work Status */}
             <div
               className={cn(
-                "bg-white rounded-[10px] border-b-[6px] border-[#4766E5]",
-                "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-                "p-4",
+                "bg-white rounded-xl border-b-4 border-[#4766E5]",
+                "shadow-lg hover:shadow-xl transition-all duration-300",
+                "p-6",
               )}
             >
               <div className="flex items-center gap-3 mb-4">
