@@ -222,7 +222,7 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Main Content */}
-                  <div className="flex-1">
+                  <div className="flex-1 min-h-0 overflow-hidden">
                     {card.value && (
                       <div className="mb-2">
                         <div className="text-3xl font-bold text-[#4766E5]">
@@ -235,7 +235,7 @@ const Dashboard: React.FC = () => {
                     )}
 
                     {/* Details/Items */}
-                    <div className="space-y-2 text-xs">
+                    <div className="space-y-2 text-xs max-h-40 overflow-y-auto">
                       {card.details?.map((detail, idx) => (
                         <div key={idx} className="flex justify-between">
                           <span className="text-gray-600">{detail.label}</span>
@@ -294,9 +294,11 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Action Button */}
-                  <Button className="w-full mt-4 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
-                    {card.action}
-                  </Button>
+                  <div className="mt-4 pt-2 border-t border-gray-100">
+                    <Button className="w-full h-8 text-xs bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200">
+                      {card.action}
+                    </Button>
+                  </div>
                 </div>
               );
             })}
