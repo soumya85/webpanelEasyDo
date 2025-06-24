@@ -255,11 +255,18 @@ const Dashboard: React.FC = () => {
                     )}
 
                     {/* Details/Items */}
-                    <div className="space-y-2 text-xs">
+                    <div className="space-y-3 text-sm">
                       {card.details?.map((detail, idx) => (
-                        <div key={idx} className="flex justify-between">
-                          <span className="text-gray-600">{detail.label}</span>
-                          <span className={cn("font-semibold", detail.color)}>
+                        <div
+                          key={idx}
+                          className="flex justify-between items-center bg-gray-50 rounded-lg p-2"
+                        >
+                          <span className="text-gray-700 font-medium">
+                            {detail.label}
+                          </span>
+                          <span
+                            className={cn("font-bold text-lg", detail.color)}
+                          >
                             {detail.value}
                           </span>
                         </div>
@@ -268,10 +275,10 @@ const Dashboard: React.FC = () => {
                       {card.items?.map((item, idx) => (
                         <div
                           key={idx}
-                          className="border-b border-gray-100 pb-1 last:border-b-0"
+                          className="border-l-4 border-blue-200 bg-gray-50 rounded-r-lg p-3 last:mb-0"
                         >
-                          <div className="flex justify-between items-start">
-                            <span className="text-gray-800 font-medium">
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="text-gray-800 font-semibold text-sm leading-tight">
                               {item.type || item.text}
                             </span>
                             {item.status && (
@@ -281,13 +288,13 @@ const Dashboard: React.FC = () => {
                                     ? "destructive"
                                     : "secondary"
                                 }
-                                className="text-xs"
+                                className="text-xs ml-2"
                               >
                                 {item.status}
                               </Badge>
                             )}
                           </div>
-                          <div className="text-gray-500 text-xs mt-1">
+                          <div className="text-gray-600 text-xs font-medium">
                             {item.time || item.duration}
                           </div>
                         </div>
