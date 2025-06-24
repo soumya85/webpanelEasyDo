@@ -41,6 +41,7 @@ const App = () => (
           <SidebarProvider>
             <PageLayout>
               <Routes>
+                <Route path="/" element={<Extra />} />
                 <Route path="/sample" element={<Sample />} />
                 <Route path="/chats" element={<Chats />} />
                 <Route path="/todays-schedule" element={<TodaysSchedule />} />
