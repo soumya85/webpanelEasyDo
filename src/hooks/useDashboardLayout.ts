@@ -217,6 +217,14 @@ export const useDashboardLayout = () => {
     saveLayout(updatedCards);
   };
 
+  // Resize card
+  const resizeCard = (cardId: string, newSize: CardSize) => {
+    const updatedCards = cards.map((card) =>
+      card.id === cardId ? { ...card, size: newSize } : card,
+    );
+    saveLayout(updatedCards);
+  };
+
   // Reset to default layout
   const resetLayout = () => {
     saveLayout(getDefaultLayout());
@@ -247,6 +255,7 @@ export const useDashboardLayout = () => {
     getCardsBySection,
     moveCard,
     reorderCards,
+    resizeCard,
     resetLayout,
     isLoading,
   };
