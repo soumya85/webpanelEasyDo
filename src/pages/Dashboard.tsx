@@ -306,18 +306,7 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Action Button */}
-                  <Button
-                    className={cn(
-                      "w-full mt-4 h-8 text-xs",
-                      card.id === "approvals"
-                        ? "bg-red-600 hover:bg-red-700"
-                        : card.id === "meetings"
-                          ? "bg-green-600 hover:bg-green-700"
-                          : card.id === "notes"
-                            ? "bg-yellow-600 hover:bg-yellow-700"
-                            : "bg-[#4766E5] hover:bg-[#4766E5]/90",
-                    )}
-                  >
+                  <Button className="w-full mt-4 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                     {card.action}
                   </Button>
                 </div>
@@ -392,7 +381,7 @@ const Dashboard: React.FC = () => {
                 ))}
               </div>
 
-              <Button className="w-full mt-4 h-8 text-xs bg-blue-600 hover:bg-blue-700">
+              <Button className="w-full mt-4 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                 View All Chats
               </Button>
             </div>
@@ -442,7 +431,7 @@ const Dashboard: React.FC = () => {
               {punchStatus === "NOT PUNCHED IN" && (
                 <Button
                   onClick={handlePunchIn}
-                  className="w-full mb-3 h-10 bg-green-600 hover:bg-green-700"
+                  className="w-full mb-3 h-10 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
                 >
                   ⏰ PUNCH IN
                 </Button>
@@ -473,7 +462,7 @@ const Dashboard: React.FC = () => {
                   (Tracked ONLY between Punch-in & Punch-out as per Mandate of
                   the company)
                 </div>
-                <Button className="w-full mt-2 h-8 text-xs bg-[#4766E5] hover:bg-[#4766E5]/90">
+                <Button className="w-full mt-2 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                   Click here for more Detail
                 </Button>
               </div>
@@ -525,7 +514,7 @@ const Dashboard: React.FC = () => {
                 ))}
               </div>
 
-              <Button className="w-full mt-4 h-8 text-xs bg-red-600 hover:bg-red-700">
+              <Button className="w-full mt-4 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                 View All Notices
               </Button>
             </div>
@@ -579,7 +568,7 @@ const Dashboard: React.FC = () => {
                 </div>
               </div>
 
-              <Button className="w-full h-8 text-xs bg-green-600 hover:bg-green-700">
+              <Button className="w-full h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                 View Detailed Report
               </Button>
             </div>
@@ -635,10 +624,10 @@ const Dashboard: React.FC = () => {
                 </div>
               </div>
 
-              <Button className="w-full mb-2 h-8 text-xs bg-green-600 hover:bg-green-700">
+              <Button className="w-full mb-2 h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                 Request Salary Advance
               </Button>
-              <Button className="w-full h-8 text-xs bg-[#4766E5] hover:bg-[#4766E5]/90">
+              <Button className="w-full h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                 View All Payslips
               </Button>
             </div>
@@ -694,7 +683,7 @@ const Dashboard: React.FC = () => {
                 <div className="text-xs text-gray-500">June 2025</div>
               </div>
 
-              <Button className="w-full h-8 text-xs bg-yellow-600 hover:bg-yellow-700">
+              <Button className="w-full h-8 text-xs bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
                 View Performance Details
               </Button>
             </div>
