@@ -18,7 +18,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         <Button
           variant="outline"
           size="sm"
-          className="text-xs h-8 cursor-default"
+          className="text-xs h-8 cursor-default font-medium text-gray-700"
           disabled
         >
           <Save className="w-3 h-3 mr-1" />
@@ -34,7 +34,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         onClick={onReset}
         variant="outline"
         size="sm"
-        className="text-xs h-8"
+        className="text-xs h-8 font-medium text-gray-700"
       >
         <RotateCcw className="w-3 h-3 mr-1" />
         Reset Layout
