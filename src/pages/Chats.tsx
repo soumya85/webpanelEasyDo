@@ -89,6 +89,20 @@ const taskSummaries: TaskSummary[] = [
   { id: "4", title: "Notes & Reminder", count: 7, color: "bg-blue-500" },
 ];
 
+// Helper function to generate proper two-letter initials
+const getInitials = (name: string): string => {
+  // Remove special characters and extra text like phone numbers
+  const cleanName = name.replace(/[~\(\)+0-9]/g, "").trim();
+  const words = cleanName.split(" ").filter((word) => word.length > 0);
+
+  if (words.length >= 2) {
+    return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+  } else if (words.length === 1) {
+    return words[0].substring(0, 2).toUpperCase();
+  }
+  return "AI"; // fallback for AI/system messages
+};
+
 const chatItems: ChatItem[] = [
   {
     id: "1",
@@ -2628,11 +2642,7 @@ const ChatContactsList: React.FC<{
             <Avatar className="h-12 w-12 flex-shrink-0">
               <AvatarImage src={chat.avatar} alt={chat.name} />
               <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
-                {chat.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")
-                  .slice(0, 2)}
+                {getInitials(chat.name)}
               </AvatarFallback>
             </Avatar>
 
@@ -2731,11 +2741,7 @@ const ChatConversation: React.FC<{
           <Avatar className="h-10 w-10">
             <AvatarImage src={selectedChat.avatar} alt={selectedChat.name} />
             <AvatarFallback className="bg-gray-300 text-gray-700 text-sm">
-              {selectedChat.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .slice(0, 2)}
+              {getInitials(selectedChat.name)}
             </AvatarFallback>
           </Avatar>
 
@@ -3017,14 +3023,10 @@ const MobileChatList: React.FC<{
               className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
             >
               <div className="relative">
-                <Avatar className="h-12 w-12">
+                <Avatar className="h-12 w-12 flex-shrink-0">
                   <AvatarImage src={chat.avatar} alt={chat.name} />
                   <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
-                    {chat.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)}
+                    {getInitials(chat.name)}
                   </AvatarFallback>
                 </Avatar>
               </div>
@@ -3131,11 +3133,7 @@ const MobileChatView: React.FC<{
         <Avatar className="h-8 w-8">
           <AvatarImage src={selectedChat.avatar} alt={selectedChat.name} />
           <AvatarFallback className="bg-gray-300 text-gray-700 text-sm">
-            {selectedChat.name
-              .split(" ")
-              .map((n) => n[0])
-              .join("")
-              .slice(0, 2)}
+            {getInitials(selectedChat.name)}
           </AvatarFallback>
         </Avatar>
 
