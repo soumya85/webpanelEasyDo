@@ -351,23 +351,29 @@ const Dashboard: React.FC = () => {
                 "p-6",
               )}
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-blue-50">
-                    <MessageSquare className="w-5 h-5 text-blue-600" />
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-xl bg-blue-50 shadow-sm">
+                    <MessageSquare className="w-6 h-6 text-blue-600" />
                   </div>
-                  <h3 className="text-sm font-semibold text-[#283C50]">
-                    Recent Chat Activity
-                  </h3>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#283C50]">
+                      Recent Chat Activity
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Unread Messages
+                    </p>
+                  </div>
                 </div>
-                <div className="relative">
-                  <div className="text-2xl font-bold text-[#4766E5]">14</div>
-                  <Badge className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#4766E5] mb-1">
                     14
+                  </div>
+                  <Badge className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                    New
                   </Badge>
                 </div>
               </div>
-              <div className="text-xs text-gray-600 mb-3">Unread Messages</div>
 
               <div className="space-y-3">
                 {chatActivities.map((chat) => (
