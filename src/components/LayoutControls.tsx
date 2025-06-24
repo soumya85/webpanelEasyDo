@@ -15,13 +15,15 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
   return (
     <div className="flex items-center gap-3 mb-6">
       <div className="flex items-center gap-2">
-        <Badge
+        <Button
           variant="outline"
-          className="text-xs text-gray-600 border-gray-300"
+          size="sm"
+          className="text-xs h-8 cursor-default"
+          disabled
         >
           <Save className="w-3 h-3 mr-1" />
           Layout auto-saved
-        </Badge>
+        </Button>
         {isDirty && (
           <Badge className="text-xs bg-blue-100 text-blue-700">
             Drag cards to rearrange
@@ -32,7 +34,7 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         onClick={onReset}
         variant="outline"
         size="sm"
-        className="ml-auto text-xs h-8"
+        className="text-xs h-8"
       >
         <RotateCcw className="w-3 h-3 mr-1" />
         Reset Layout
