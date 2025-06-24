@@ -12,7 +12,12 @@ interface TaskCardProps {
   onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
-export const TaskCard: React.FC<TaskCardProps> = ({ id, index }) => {
+export const TaskCard: React.FC<TaskCardProps> = ({
+  id,
+  index,
+  size,
+  onResize,
+}) => {
   const [activeTaskTab, setActiveTaskTab] = useState("MY_TASK");
 
   const taskTabsData = {
