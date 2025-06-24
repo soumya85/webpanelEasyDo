@@ -59,9 +59,8 @@ const App = () => (
                 />
                 <Route path="/tasks" element={<Tasks />} />
                 <Route path="/meet" element={<Meet />} />
-                <Route path="/notes-reminder" element={<NotesReminder />} />
-                <Route path="/reports" element={<Reports />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/holiday" element={<Holiday />} />
+                <Route path="/sample" element={<Sample />} />
                 <Route path="/help-support" element={<HelpSupport />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route
