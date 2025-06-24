@@ -12,36 +12,118 @@ interface ChatCardProps {
 }
 
 export const ChatCard: React.FC<ChatCardProps> = ({ id, index }) => {
+  // Function to generate initials from name
+  const getInitials = (name: string): string => {
+    // Remove special characters and extra text like phone numbers
+    const cleanName = name.replace(/[~\(\)+0-9]/g, "").trim();
+    const words = cleanName.split(" ").filter((word) => word.length > 0);
+
+    if (words.length >= 2) {
+      return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+    } else if (words.length === 1) {
+      return words[0].charAt(0).toUpperCase();
+    }
+    return "AI"; // fallback for AI/system messages
+  };
+
   const chatActivities = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      message: "Can we schedule the meeting for tomorrow?",
+      name: "Amulya Kumar Kar",
+      message: "🏃 Attendance notification sent",
       time: "5m ago",
       avatar: "/placeholder.svg",
+      unreadCount: 3,
     },
     {
       id: 2,
-      name: "Project Team Alpha",
-      message: "The latest updates have been pushed to the develop...",
+      name: "Suresh Gupta",
+      message: "Meeting scheduled for 3 PM today",
       time: "12m ago",
       avatar: "/placeholder.svg",
-      isGroup: true,
+      unreadCount: 1,
     },
     {
       id: 3,
-      name: "Mike Chen",
-      message: "Thanks for the quick response!",
-      time: "1h ago",
+      name: "Priya Sharma",
+      message: "Can you review the document?",
+      time: "25m ago",
       avatar: "/placeholder.svg",
+      unreadCount: 2,
     },
     {
       id: 4,
-      name: "HR Department",
-      message: "Please review the updated policy document and prov...",
-      time: "Yesterday",
+      name: "Rajesh Kumar",
+      message: "Thanks for the update!",
+      time: "45m ago",
+      avatar: "/placeholder.svg",
+      unreadCount: 1,
+    },
+    {
+      id: 5,
+      name: "QA Testing Team",
+      message: "New build is ready for testing",
+      time: "1h ago",
       avatar: "/placeholder.svg",
       isGroup: true,
+      unreadCount: 5,
+    },
+    {
+      id: 6,
+      name: "Anjali Verma",
+      message: "Sure, I'll send it by EOD",
+      time: "1h ago",
+      avatar: "/placeholder.svg",
+      unreadCount: 1,
+    },
+    {
+      id: 7,
+      name: "Vikram Singh",
+      message: "Let's schedule a call tomorrow",
+      time: "2h ago",
+      avatar: "/placeholder.svg",
+      unreadCount: 2,
+    },
+    {
+      id: 8,
+      name: "Neha Patel",
+      message: "The files are ready for download",
+      time: "3h ago",
+      avatar: "/placeholder.svg",
+      unreadCount: 4,
+    },
+    {
+      id: 9,
+      name: "Marketing Team",
+      message: "Campaign results are looking great!",
+      time: "4h ago",
+      avatar: "/placeholder.svg",
+      isGroup: true,
+      unreadCount: 3,
+    },
+    {
+      id: 10,
+      name: "Deepak Joshi",
+      message: "Great work on the presentation!",
+      time: "5h ago",
+      avatar: "/placeholder.svg",
+      unreadCount: 2,
+    },
+    {
+      id: 11,
+      name: "Kavita Rao",
+      message: "Documents uploaded to shared folder",
+      time: "6h ago",
+      avatar: "/placeholder.svg",
+      unreadCount: 1,
+    },
+    {
+      id: 12,
+      name: "Aditi Kapoor",
+      message: "Budget approval received",
+      time: "Yesterday",
+      avatar: "/placeholder.svg",
+      unreadCount: 1,
     },
   ];
 
