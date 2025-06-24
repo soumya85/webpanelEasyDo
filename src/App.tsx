@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SidebarProvider } from "./hooks/useSidebar";
 import { UserProvider } from "./hooks/useUser";
 import { PageLayout } from "./components/layout/PageLayout";
-import Overview from "./pages/Overview";
+import Sample from "./pages/Overview";
 import Chats from "./pages/Chats";
 import TodaysSchedule from "./pages/TodaysSchedule";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
@@ -27,6 +27,7 @@ import Announcement from "@/pages/Announcement";
 import Documents from "@/pages/Documents";
 import Leave from "@/pages/Leave";
 import Holiday from "@/pages/Holiday";
+import Dashboard from "@/pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -40,7 +41,8 @@ const App = () => (
           <SidebarProvider>
             <PageLayout>
               <Routes>
-                <Route path="/" element={<Overview />} />
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/chats" element={<Chats />} />
                 <Route path="/todays-schedule" element={<TodaysSchedule />} />
                 <Route
@@ -57,12 +59,14 @@ const App = () => (
                 />
                 <Route path="/tasks" element={<Tasks />} />
                 <Route path="/meet" element={<Meet />} />
-                <Route path="/notes-reminder" element={<NotesReminder />} />
-                <Route path="/reports" element={<Reports />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/holiday" element={<Holiday />} />
+                <Route path="/sample" element={<Sample />} />
                 <Route path="/help-support" element={<HelpSupport />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/performance-review" element={<PerformanceReview />} />
+                <Route
+                  path="/performance-review"
+                  element={<PerformanceReview />}
+                />
                 <Route path="/location" element={<EmployeeLocation />} />
                 <Route path="/branch" element={<BranchManagement />} />
                 <Route path="/announcement" element={<Announcement />} />
