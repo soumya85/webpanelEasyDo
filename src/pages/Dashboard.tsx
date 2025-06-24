@@ -446,7 +446,7 @@ const Dashboard: React.FC = () => {
                   onClick={handlePunchIn}
                   className="w-full mb-3 h-10 text-gray-700 hover:opacity-90"
                   style={{
-                    backgroundColor: "#ffffff",
+                    backgroundColor: "#eff5ff",
                     borderColor: "#bfdbfe",
                     borderWidth: "1px",
                   }}
