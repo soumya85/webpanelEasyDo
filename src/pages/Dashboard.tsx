@@ -473,7 +473,7 @@ const Dashboard: React.FC = () => {
                 </div>
                 <Button
                   className="w-full mt-2 h-8 text-xs text-gray-700 hover:opacity-90"
-                  style={{ backgroundColor: "#eaf2ff", borderColor: "#9ca3af" }}
+                  style={{ backgroundColor: "#ffffff", borderColor: "#9ca3af" }}
                 >
                   Click here for more Detail
                 </Button>
