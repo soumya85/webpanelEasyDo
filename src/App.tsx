@@ -27,6 +27,7 @@ import Announcement from "@/pages/Announcement";
 import Documents from "@/pages/Documents";
 import Leave from "@/pages/Leave";
 import Holiday from "@/pages/Holiday";
+import Extra from "@/pages/Extra";
 
 const queryClient = new QueryClient();
 
@@ -62,13 +63,17 @@ const App = () => (
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/help-support" element={<HelpSupport />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/performance-review" element={<PerformanceReview />} />
+                <Route
+                  path="/performance-review"
+                  element={<PerformanceReview />}
+                />
                 <Route path="/location" element={<EmployeeLocation />} />
                 <Route path="/branch" element={<BranchManagement />} />
                 <Route path="/announcement" element={<Announcement />} />
                 <Route path="/documents" element={<Documents />} />
                 <Route path="/leave" element={<Leave />} />
                 <Route path="/holiday" element={<Holiday />} />
+                <Route path="/extra" element={<Extra />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

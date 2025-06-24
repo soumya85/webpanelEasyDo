@@ -87,4 +87,10 @@ export const navigationItems: NavigationItem[] = [
     icon: HelpCircle,
     href: "/help-support",
   },
+  {
+    id: "extra",
+    label: "Extra",
+    icon: LayoutDashboard,
+    href: "/extra",
+  },
 ];
