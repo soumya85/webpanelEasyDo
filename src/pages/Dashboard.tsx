@@ -96,7 +96,10 @@ const Dashboard: React.FC = () => {
               • Hover over any card to see the drag handle (top center) and
               width resize handle (right edge)
             </li>
-            <li>• Drag cards between sections to reorganize your dashboard</li>
+            <li>
+              • Drag cards between sections/rows to reorganize -{" "}
+              <strong>width is preserved</strong>
+            </li>
             <li>
               • Drag the blue resize handle on the right edge to adjust card
               width (Small, Medium, Large, Extra Large)
