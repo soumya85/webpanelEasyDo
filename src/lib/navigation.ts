@@ -22,6 +22,12 @@ export interface NavigationItem {
 
 export const navigationItems: NavigationItem[] = [
   {
+    id: "extra",
+    label: "Extra",
+    icon: LayoutDashboard,
+    href: "/extra",
+  },
+  {
     id: "overview",
     label: "Overview",
     icon: LayoutDashboard,
@@ -86,11 +92,5 @@ export const navigationItems: NavigationItem[] = [
     label: "Help & Support",
     icon: HelpCircle,
     href: "/help-support",
-  },
-  {
-    id: "extra",
-    label: "Extra",
-    icon: LayoutDashboard,
-    href: "/extra",
   },
 ];
