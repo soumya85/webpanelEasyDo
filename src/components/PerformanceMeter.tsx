@@ -24,7 +24,7 @@ export default function PerformanceMeter() {
 
   // Performance categories data
   const performanceData = [
-    { category: "Management", percentage: 0 },
+    { category: "Management Review", percentage: 0 },
     { category: "Attendance", percentage: 98 },
     { category: "On Time Tasks", percentage: 16 },
     { category: "Task Performance", percentage: 60 },
@@ -290,15 +290,13 @@ export default function PerformanceMeter() {
                       }}
                     >
                       {/* Percentage label on bar */}
-                      {item.percentage > 0 ? (
-                        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap">
-                          {item.percentage}%
-                        </div>
-                      ) : (
-                        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-700">
-                          {item.percentage}%
-                        </div>
-                      )}
+                      <div
+                        className={`absolute left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap ${
+                          item.percentage === 0 ? "-top-5" : "-top-6"
+                        }`}
+                      >
+                        {item.percentage}%
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -333,7 +331,7 @@ export default function PerformanceMeter() {
                   size="sm"
                   className="h-8 w-8 p-0 rounded-full bg-black text-white hover:bg-gray-800"
                 >
-                  <span className="sr-only">Close</span>✕
+                  <span className="sr-only">Close</span>��
                 </Button>
               </DialogClose>
             </div>
