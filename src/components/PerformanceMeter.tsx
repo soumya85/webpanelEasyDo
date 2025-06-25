@@ -6,7 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import {
