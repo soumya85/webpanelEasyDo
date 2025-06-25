@@ -5380,6 +5380,16 @@ export default function EmployeeDashboard() {
           setIsReportsModalOpen(true);
         }}
       />
+
+      {/* Sales Register Modal */}
+      <SalesRegisterModal
+        open={isSalesRegisterModalOpen}
+        onClose={() => setIsSalesRegisterModalOpen(false)}
+        onBackToReports={() => {
+          setIsSalesRegisterModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
     </div>
   );
 }
