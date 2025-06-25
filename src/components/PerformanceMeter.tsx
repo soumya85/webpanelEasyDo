@@ -344,9 +344,19 @@ export default function PerformanceMeter() {
                 </div>
 
                 {/* POOR and GOOD labels positioned towards the top */}
-                <div className="flex justify-between items-center mb-6 w-full max-w-[280px] mx-auto -mt-12">
+                <div className="flex justify-between items-center mb-4 w-full max-w-[280px] mx-auto -mt-12">
                   <div className="text-lg font-bold text-red-500">POOR</div>
                   <div className="text-lg font-bold text-green-500">GOOD</div>
+                </div>
+
+                {/* Performance Meter Title Section */}
+                <div className="text-center mb-6">
+                  <div className="text-lg font-bold text-black mb-1">
+                    Performance Meter
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    ( Overall Score : {overallScore}% )
+                  </div>
                 </div>
 
                 {/* Current Score Display */}
