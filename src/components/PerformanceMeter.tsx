@@ -273,14 +273,14 @@ export default function PerformanceMeter() {
                       />
                     </svg>
 
-                    {/* Scale Values positioned right at the outer boundary of segments */}
+                    {/* Scale Values positioned at the absolute outer edge of segments */}
                     <div className="absolute inset-0 pointer-events-none">
-                      {/* 20 - positioned at outer boundary in the red segment */}
+                      {/* 20 - positioned at absolute outer edge in the red segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          left: "13%",
-                          top: "48%",
+                          left: "10%",
+                          top: "43%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -288,12 +288,12 @@ export default function PerformanceMeter() {
                         20
                       </div>
 
-                      {/* 40 - positioned at outer boundary in the orange segment */}
+                      {/* 40 - positioned at absolute outer edge in the orange segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          left: "26%",
-                          top: "18%",
+                          left: "23%",
+                          top: "13%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -301,12 +301,12 @@ export default function PerformanceMeter() {
                         40
                       </div>
 
-                      {/* 60 - positioned at outer boundary in the yellow segment */}
+                      {/* 60 - positioned at absolute outer edge in the yellow segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
                           left: "50%",
-                          top: "8%",
+                          top: "3%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -314,12 +314,12 @@ export default function PerformanceMeter() {
                         60
                       </div>
 
-                      {/* 80 - positioned at outer boundary in the light green segment */}
+                      {/* 80 - positioned at absolute outer edge in the light green segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          right: "26%",
-                          top: "18%",
+                          right: "23%",
+                          top: "13%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -327,12 +327,12 @@ export default function PerformanceMeter() {
                         80
                       </div>
 
-                      {/* 100 - positioned at outer boundary in the dark green segment */}
+                      {/* 100 - positioned at absolute outer edge in the dark green segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          right: "13%",
-                          top: "48%",
+                          right: "10%",
+                          top: "43%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
