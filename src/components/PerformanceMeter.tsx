@@ -213,8 +213,8 @@ export default function PerformanceMeter() {
                   <div className="relative w-full max-w-[280px] h-[140px] flex justify-center items-center">
                     <svg
                       width="281"
-                      height="140"
-                      viewBox="0 0 281 140"
+                      height="150"
+                      viewBox="0 0 281 150"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-[280px] h-[140px]"
@@ -249,44 +249,20 @@ export default function PerformanceMeter() {
                       <g
                         transform={`translate(140.5, 140) rotate(${-180 + (overallScore / 100) * 180})`}
                         className="transition-transform duration-1000 ease-out"
+                        style={{ transformOrigin: "140.5px 140px" }}
                       >
-                        <svg
-                          x="-17"
-                          y="-140"
-                          width="34"
-                          height="109"
-                          viewBox="0 0 34 109"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M11.0057 91.4575L17.3575 0.740436C17.4121 -0.218292 18.7225 -0.282207 18.7589 0.761741L22.9995 91.6492C23.0905 101.556 10.6963 101.407 11.0057 91.4575Z"
-                            fill="#1E3A5F"
-                          />
-                          <path
-                            d="M0.322874 92.0609C0.0976403 82.9201 7.3239 75.3185 16.4646 75.0932C19.7681 75.0182 22.865 75.9003 25.4928 77.4957C30.1476 80.3299 33.3009 85.3977 33.4323 91.235C33.6763 100.376 26.45 107.977 17.2905 108.221C8.16852 108.447 0.566878 101.22 0.322874 92.0609Z"
-                            fill="#1E3A5F"
-                          />
-                          <path
-                            d="M8.54393 91.8544C8.43131 87.2559 12.0726 83.4269 16.6711 83.3143C18.3416 83.2768 19.8807 83.7272 21.2133 84.5156C23.5595 85.942 25.1362 88.4947 25.2112 91.4227C25.3239 96.0213 21.7013 99.8502 17.084 99.9629C12.4855 100.113 8.67531 96.4717 8.54393 91.8544Z"
-                            fill="white"
-                          />
-                          <path
-                            d="M12.5851 91.9227C12.5253 89.4768 14.46 87.4402 16.9034 87.3803C17.791 87.3603 18.6088 87.5999 19.3169 88.0192C20.5635 88.778 21.4012 90.1357 21.4411 91.6931C21.5009 94.139 19.5762 96.1756 17.1228 96.2355C14.6794 96.3153 12.6549 94.3786 12.5851 91.9227Z"
-                            fill="#1E3A5F"
-                          />
-                        </svg>
+                        {/* Needle shaft */}
+                        <path
+                          d="M137.5 140L140.5 50L143.5 140"
+                          fill="#1E3A5F"
+                          stroke="#1E3A5F"
+                          strokeWidth="1"
+                        />
+                        {/* Needle base (circular part) */}
+                        <circle cx="140.5" cy="140" r="6" fill="#1E3A5F" />
+                        <circle cx="140.5" cy="140" r="3" fill="white" />
+                        <circle cx="140.5" cy="140" r="1.5" fill="#1E3A5F" />
                       </g>
-
-                      {/* Center dot to cover needle pivot */}
-                      <circle
-                        cx="140.5"
-                        cy="140"
-                        r="8"
-                        fill="#1E3A5F"
-                        stroke="white"
-                        strokeWidth="2"
-                      />
                     </svg>
                   </div>
                 </div>
