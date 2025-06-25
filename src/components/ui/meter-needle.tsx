@@ -26,24 +26,13 @@ export const MeterNeedle: React.FC<MeterNeedleProps> = ({
   const scale = size / 34; // Scale factor based on original SVG size
 
   return (
-    <motion.div
+    <div
       className={cn("flex-shrink-0", className)}
       style={{
         width: size,
         height: size * 3.2, // Maintain aspect ratio (109/34)
+        transform: animated ? undefined : `rotate(${rotation}deg)`,
       }}
-      initial={animated ? { rotate: 0 } : { rotate: rotation }}
-      animate={{ rotate: rotation }}
-      transition={
-        animated
-          ? {
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
-              duration: 0.6,
-            }
-          : undefined
-      }
     >
       <svg
         width={size}
