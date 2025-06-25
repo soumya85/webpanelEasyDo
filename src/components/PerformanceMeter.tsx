@@ -247,7 +247,7 @@ export default function PerformanceMeter() {
             </h3>
 
             {/* Custom Bar Chart with Grid - Exact match to screenshot */}
-            <div className="relative w-full h-32 bg-white border border-gray-300 overflow-hidden">
+            <div className="relative w-full h-32 bg-white border border-gray-300 overflow-visible">
               {/* Grid background */}
               <div className="absolute inset-0">
                 {/* Horizontal grid lines */}
