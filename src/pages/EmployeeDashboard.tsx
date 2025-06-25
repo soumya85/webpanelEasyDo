@@ -4533,20 +4533,12 @@ export default function EmployeeDashboard() {
 
           {/* User Profile Section */}
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg mb-6">
-            <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
-              <svg
-                className="w-8 h-8 text-gray-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
+            <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+              <img
+                src="https://images.pexels.com/photos/29995688/pexels-photo-29995688.jpeg"
+                alt="Bhaskar Ghosh - Executive Director"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h2 className="text-xl font-bold text-gray-900">Bhaskar Ghosh</h2>
