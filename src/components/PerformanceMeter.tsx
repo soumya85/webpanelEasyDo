@@ -241,7 +241,7 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="flex-1 min-h-[140px]">
+          <div className="flex-1 min-h-[140px] pt-6">
             <h3 className="text-center text-xs font-semibold text-gray-700 mb-3">
               Category Breakdown
             </h3>
