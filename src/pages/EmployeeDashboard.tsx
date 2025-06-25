@@ -70,6 +70,7 @@ export default function EmployeeDashboard() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
+  const [isReportsModalOpen, setIsReportsModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
@@ -1124,6 +1125,8 @@ export default function EmployeeDashboard() {
                     setIsLeaveModalOpen(true);
                   } else if (card.id === "statistics") {
                     setIsStatisticsModalOpen(true);
+                  } else if (card.id === "reports") {
+                    setIsReportsModalOpen(true);
                   }
                 }}
                 className={cn(
@@ -4159,7 +4162,7 @@ export default function EmployeeDashboard() {
                             <div className="mb-6 flex justify-center">
                               <div className="relative">
                                 <div className="w-32 h-32 bg-gradient-to-r from-blue-100 to-pink-100 rounded-full flex items-center justify-center">
-                                  <div className="text-6xl">����‍💼</div>
+                                  <div className="text-6xl">👩‍💼</div>
                                 </div>
                                 <div className="absolute -top-2 -right-2 text-2xl">
                                   ✨
