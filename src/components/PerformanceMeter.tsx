@@ -279,8 +279,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-lg font-bold text-gray-700"
                         style={{
-                          left: "25%",
-                          top: "25%",
+                          left: "20%",
+                          top: "30%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -292,7 +292,7 @@ export default function PerformanceMeter() {
                         className="absolute text-lg font-bold text-gray-700"
                         style={{
                           left: "50%",
-                          top: "8%",
+                          top: "5%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -303,12 +303,24 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-lg font-bold text-gray-700"
                         style={{
-                          right: "25%",
-                          top: "25%",
+                          right: "20%",
+                          top: "30%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
                         80
+                      </div>
+
+                      {/* 100 - positioned on the dark green section (far right) */}
+                      <div
+                        className="absolute text-lg font-bold text-gray-700"
+                        style={{
+                          right: "8%",
+                          top: "65%",
+                          transform: "translate(50%, -50%)",
+                        }}
+                      >
+                        100
                       </div>
                     </div>
                   </div>
