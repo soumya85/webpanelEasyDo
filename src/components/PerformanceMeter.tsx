@@ -343,6 +343,12 @@ export default function PerformanceMeter() {
                   </div>
                 </div>
 
+                {/* POOR and GOOD labels positioned at bottom edges like screenshot */}
+                <div className="flex justify-between items-center mb-6 w-full max-w-[280px] mx-auto -mt-4">
+                  <div className="text-lg font-bold text-red-500">POOR</div>
+                  <div className="text-lg font-bold text-green-500">GOOD</div>
+                </div>
+
                 {/* Current Score Display */}
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-red-500 mb-2">
@@ -425,7 +431,7 @@ export default function PerformanceMeter() {
             {/* Performance Categories List */}
             <div className="space-y-3 mb-6">
               {performanceData.map((item, index) => {
-                const icons = ["👍", "👋", "⚡", "⭐", "👥", "📈"];
+                const icons = ["👍", "👋", "⚡", "���", "👥", "📈"];
                 const colors = [
                   "#93C5FD",
                   "#3B82F6",
