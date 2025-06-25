@@ -279,8 +279,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          left: "15%",
-                          top: "58%",
+                          left: "12%",
+                          top: "55%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -291,8 +291,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          left: "28%",
-                          top: "28%",
+                          left: "25%",
+                          top: "25%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -304,7 +304,7 @@ export default function PerformanceMeter() {
                         className="absolute text-sm font-bold text-gray-800"
                         style={{
                           left: "50%",
-                          top: "18%",
+                          top: "15%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -315,8 +315,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          right: "28%",
-                          top: "28%",
+                          right: "25%",
+                          top: "25%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
@@ -327,8 +327,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          right: "15%",
-                          top: "58%",
+                          right: "12%",
+                          top: "55%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
