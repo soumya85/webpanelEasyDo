@@ -210,7 +210,7 @@ export default function PerformanceMeter() {
               <>
                 {/* Performance Meter - Figma Design */}
                 <div className="flex justify-center mb-8">
-                  <div className="relative w-full max-w-[280px] h-[152px] flex justify-center items-center">
+                  <div className="relative w-full max-w-[320px] h-[180px] flex justify-center items-center">
                     <svg
                       width="281"
                       height="152"
@@ -272,7 +272,64 @@ export default function PerformanceMeter() {
                         fill="#1E3A5F"
                       />
                     </svg>
+
+                    {/* Scale Values positioned around the meter */}
+                    <div className="absolute inset-0 pointer-events-none">
+                      {/* 20 - positioned at the boundary between red and orange segments */}
+                      <div
+                        className="absolute text-sm font-semibold text-gray-600"
+                        style={{
+                          left: "20%",
+                          top: "15%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        20
+                      </div>
+
+                      {/* 40 - positioned at the boundary between orange and yellow segments */}
+                      <div
+                        className="absolute text-sm font-semibold text-gray-600"
+                        style={{
+                          left: "35%",
+                          top: "2%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        40
+                      </div>
+
+                      {/* 60 - positioned at the top center between yellow and light green */}
+                      <div
+                        className="absolute text-sm font-semibold text-gray-600"
+                        style={{
+                          left: "50%",
+                          top: "0%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        60
+                      </div>
+
+                      {/* 80 - positioned at the boundary between light and dark green segments */}
+                      <div
+                        className="absolute text-sm font-semibold text-gray-600"
+                        style={{
+                          right: "35%",
+                          top: "2%",
+                          transform: "translate(50%, -50%)",
+                        }}
+                      >
+                        80
+                      </div>
+                    </div>
                   </div>
+                </div>
+
+                {/* Poor and Good labels */}
+                <div className="flex justify-between items-center mb-6 px-8">
+                  <div className="text-lg font-bold text-red-500">POOR</div>
+                  <div className="text-lg font-bold text-green-500">GOOD</div>
                 </div>
 
                 {/* Current Score Display */}
@@ -287,32 +344,6 @@ export default function PerformanceMeter() {
                     Your current score falls in the{" "}
                     <span className="font-semibold text-red-500">Poor</span>{" "}
                     range
-                  </div>
-                </div>
-
-                {/* Performance Scale Legend */}
-                <div className="flex justify-center mb-6">
-                  <div className="flex items-center gap-6 text-sm">
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-sm bg-[#FF4D0F]"></div>
-                      <span className="text-gray-700">0-20 Poor</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-sm bg-[#FFA21F]"></div>
-                      <span className="text-gray-700">20-40</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-sm bg-[#EDE96E]"></div>
-                      <span className="text-gray-700">40-60</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-sm bg-[#A1CC47]"></div>
-                      <span className="text-gray-700">60-80</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-sm bg-[#7CC200]"></div>
-                      <span className="text-gray-700">80-100 Good</span>
-                    </div>
                   </div>
                 </div>
               </>
