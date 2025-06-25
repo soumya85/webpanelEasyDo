@@ -358,21 +358,6 @@ export default function PerformanceMeter() {
                     ( Overall Score : {overallScore}% )
                   </div>
                 </div>
-
-                {/* Current Score Display */}
-                <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-red-500 mb-2">
-                    {overallScore}%
-                  </div>
-                  <div className="text-lg font-semibold text-gray-700">
-                    Overall Performance Score
-                  </div>
-                  <div className="text-sm text-gray-500 mt-2">
-                    Your current score falls in the{" "}
-                    <span className="font-semibold text-red-500">Poor</span>{" "}
-                    range
-                  </div>
-                </div>
               </>
             ) : (
               <>
