@@ -6,7 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import {
@@ -329,9 +329,10 @@ export default function PerformanceMeter() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-full bg-black text-white hover:bg-gray-800"
+                  className="h-8 w-8 p-0 text-gray-500 hover:text-gray-700"
                 >
-                  <span className="sr-only">Close</span>��
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close</span>
                 </Button>
               </DialogClose>
             </div>
