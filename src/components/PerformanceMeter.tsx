@@ -331,7 +331,8 @@ export default function PerformanceMeter() {
                   size="sm"
                   className="h-8 w-8 p-0 rounded-full bg-black text-white hover:bg-gray-800"
                 >
-                  <span className="sr-only">Close</span>��
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close</span>
                 </Button>
               </DialogClose>
             </div>
