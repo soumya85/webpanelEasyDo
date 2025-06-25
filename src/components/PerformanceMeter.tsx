@@ -209,8 +209,8 @@ export default function PerformanceMeter() {
             {activeTab === "scores" ? (
               <>
                 {/* Performance Meter - Figma Design */}
-                <div className="flex justify-center mb-8">
-                  <div className="relative w-full max-w-[320px] h-[180px] flex justify-center items-center">
+                <div className="flex justify-center mb-3">
+                  <div className="relative w-full max-w-[300px] h-[160px] flex justify-center items-center">
                     <svg
                       width="281"
                       height="152"
