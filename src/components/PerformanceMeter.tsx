@@ -329,7 +329,7 @@ export default function PerformanceMeter() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-full bg-black text-white hover:bg-gray-800"
+                  className="h-8 w-8 p-0 text-gray-500 hover:text-gray-700"
                 >
                   <X className="h-4 w-4" />
                   <span className="sr-only">Close</span>
