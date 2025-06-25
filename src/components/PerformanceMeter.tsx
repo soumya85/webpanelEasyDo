@@ -245,39 +245,32 @@ export default function PerformanceMeter() {
                         fill="#7CC200"
                       />
 
-                      {/* Simple Needle Pointer */}
-                      <g
-                        style={{
-                          transformOrigin: "140.5px 140px",
-                          transform: `rotate(${-135 + (overallScore / 100) * 180}deg)`,
-                          transition: "transform 1s ease-out",
-                        }}
-                      >
-                        {/* Needle shaft */}
-                        <line
-                          x1="140.5"
-                          y1="140"
-                          x2="140.5"
-                          y2="65"
-                          stroke="#1E3A5F"
-                          strokeWidth="4"
-                          strokeLinecap="round"
-                        />
-                        {/* Needle tip */}
-                        <circle cx="140.5" cy="65" r="3" fill="#1E3A5F" />
-                      </g>
+                      {/* Needle Pointer - positioned for 25.5% score in Poor range */}
+                      <line
+                        x1="140.5"
+                        y1="140"
+                        x2="100"
+                        y2="75"
+                        stroke="#1E3A5F"
+                        strokeWidth="5"
+                        strokeLinecap="round"
+                        className="transition-all duration-1000 ease-out"
+                      />
+
+                      {/* Needle tip circle */}
+                      <circle cx="100" cy="75" r="4" fill="#1E3A5F" />
 
                       {/* Center hub */}
                       <circle
                         cx="140.5"
                         cy="140"
-                        r="12"
+                        r="15"
                         fill="#1E3A5F"
                         stroke="white"
-                        strokeWidth="3"
+                        strokeWidth="4"
                       />
-                      <circle cx="140.5" cy="140" r="6" fill="white" />
-                      <circle cx="140.5" cy="140" r="3" fill="#1E3A5F" />
+                      <circle cx="140.5" cy="140" r="8" fill="white" />
+                      <circle cx="140.5" cy="140" r="4" fill="#1E3A5F" />
                     </svg>
                   </div>
                 </div>
