@@ -277,10 +277,10 @@ export default function PerformanceMeter() {
                     <div className="absolute inset-0 pointer-events-none">
                       {/* 40 - positioned on the orange section (left side) */}
                       <div
-                        className="absolute text-lg font-bold text-gray-700"
+                        className="absolute text-base font-bold text-gray-600"
                         style={{
-                          left: "20%",
-                          top: "30%",
+                          left: "18%",
+                          top: "35%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -289,10 +289,10 @@ export default function PerformanceMeter() {
 
                       {/* 60 - positioned at the top center on yellow section */}
                       <div
-                        className="absolute text-lg font-bold text-gray-700"
+                        className="absolute text-base font-bold text-gray-600"
                         style={{
                           left: "50%",
-                          top: "5%",
+                          top: "8%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -301,10 +301,10 @@ export default function PerformanceMeter() {
 
                       {/* 80 - positioned on the light green section (right side) */}
                       <div
-                        className="absolute text-lg font-bold text-gray-700"
+                        className="absolute text-base font-bold text-gray-600"
                         style={{
-                          right: "20%",
-                          top: "30%",
+                          right: "18%",
+                          top: "35%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
@@ -313,10 +313,10 @@ export default function PerformanceMeter() {
 
                       {/* 100 - positioned on the dark green section (far right) */}
                       <div
-                        className="absolute text-lg font-bold text-gray-700"
+                        className="absolute text-base font-bold text-gray-600"
                         style={{
-                          right: "8%",
-                          top: "65%",
+                          right: "5%",
+                          top: "68%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
