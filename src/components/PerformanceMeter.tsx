@@ -40,12 +40,13 @@ export default function PerformanceMeter() {
     },
   };
 
-  // Custom bar colors based on performance
-  const getBarColor = (percentage: number) => {
-    if (percentage === 0) return "#6b7280"; // Gray for 0%
-    if (percentage <= 40) return "#f97316"; // Orange for low performance
-    if (percentage <= 70) return "#eab308"; // Yellow for medium performance
-    return "#22c55e"; // Green for high performance
+  // Custom bar colors to match screenshot
+  const getBarColor = (category: string, percentage: number) => {
+    if (percentage === 0) return "#E5E7EB"; // Light gray for 0%
+    if (category === "Attendance") return "#3B82F6"; // Blue for attendance
+    if (category === "On Time Tasks") return "#1E3A8A"; // Dark blue for on time tasks
+    if (category === "Task Performance") return "#EF4444"; // Red/coral for task performance
+    return "#6B7280"; // Default gray
   };
 
   return (
