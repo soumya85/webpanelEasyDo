@@ -5366,6 +5366,10 @@ export default function EmployeeDashboard() {
       <AttendanceReportModal
         open={isAttendanceReportModalOpen}
         onClose={() => setIsAttendanceReportModalOpen(false)}
+        onBackToReports={() => {
+          setIsAttendanceReportModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
       />
     </div>
   );
