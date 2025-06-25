@@ -114,6 +114,7 @@ const weekDays = ["S", "M", "T", "W", "T", "F", "S"];
 export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
   open,
   onClose,
+  onBackToReports,
 }) => {
   const [selectedPeriod, setSelectedPeriod] = useState("Last Month");
 
