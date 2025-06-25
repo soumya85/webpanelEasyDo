@@ -5,6 +5,12 @@ import { DroppableSection } from "@/components/DroppableSection";
 import { CardFactory } from "@/components/CardFactory";
 import { LayoutControls } from "@/components/LayoutControls";
 import { cn } from "@/lib/utils";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Dashboard: React.FC = () => {
   const {
@@ -118,7 +124,7 @@ const Dashboard: React.FC = () => {
                   - <strong>width is preserved</strong>
                 </li>
                 <li>
-                  • <strong>NEW:</strong> Drop cards on purple zones to create
+                  ��� <strong>NEW:</strong> Drop cards on purple zones to create
                   new rows within a section
                 </li>
                 <li>
