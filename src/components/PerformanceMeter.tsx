@@ -304,7 +304,7 @@ export default function PerformanceMeter() {
             </div>
 
             {/* Category labels */}
-            <div className="flex mt-8">
+            <div className="flex mt-3">
               {performanceData.map((item, index) => (
                 <div key={index} className="flex-1 text-center">
                   <div className="text-xs text-gray-700 font-medium leading-tight">
