@@ -275,6 +275,18 @@ export default function PerformanceMeter() {
 
                     {/* Scale Values positioned around the meter */}
                     <div className="absolute inset-0 pointer-events-none">
+                      {/* 20 - positioned on the red section (far left) */}
+                      <div
+                        className="absolute text-base font-bold text-gray-600"
+                        style={{
+                          left: "5%",
+                          top: "68%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        20
+                      </div>
+
                       {/* 40 - positioned on the orange section (left side) */}
                       <div
                         className="absolute text-base font-bold text-gray-600"
