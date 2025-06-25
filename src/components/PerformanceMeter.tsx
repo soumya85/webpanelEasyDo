@@ -242,10 +242,6 @@ export default function PerformanceMeter() {
 
           {/* Performance Categories Bar Chart */}
           <div className="flex-1 min-h-[140px] pt-6">
-            <h3 className="text-center text-xs font-semibold text-gray-700 mb-3">
-              Category Breakdown
-            </h3>
-
             {/* Custom Bar Chart with Grid - Exact match to screenshot */}
             <div className="relative w-full h-32 bg-white border border-gray-300 overflow-visible">
               {/* Grid background */}
