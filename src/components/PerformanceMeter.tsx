@@ -428,9 +428,9 @@ export default function PerformanceMeter() {
             )}
 
             {/* Performance Categories List */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-2 mb-4">
               {performanceData.map((item, index) => {
-                const icons = ["👍", "👋", "⚡", "���", "👥", "📈"];
+                const icons = ["👍", "👋", "⚡", "💼", "👥", "📈"];
                 const colors = [
                   "#93C5FD",
                   "#3B82F6",
@@ -444,7 +444,7 @@ export default function PerformanceMeter() {
                 return (
                   <div
                     key={index}
-                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0"
+                    className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
                   >
                     <div className="flex items-center gap-3">
                       <div
