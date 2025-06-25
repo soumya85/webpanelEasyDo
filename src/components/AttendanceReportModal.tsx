@@ -179,11 +179,6 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
         </div>
 
         <div className="p-4 space-y-6">
-          {/* Title */}
-          <h2 className="text-xl font-bold text-center text-gray-900">
-            Attendance Report
-          </h2>
-
           {/* Period Selection */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">Period</label>
