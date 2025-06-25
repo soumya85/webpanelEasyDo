@@ -217,20 +217,28 @@ export const Meter: React.FC<MeterProps> = ({
 
         {/* Needle */}
         <div
-          className="absolute"
+          className="absolute inset-0 flex items-center justify-center"
           style={{
-            transform: `translateX(-50%) translateY(-50%)`,
-            left: "50%",
-            top: type === "half" ? "100%" : "50%",
-            transformOrigin: "center bottom",
+            transform: `rotate(${rotation}deg)`,
+            transformOrigin:
+              type === "half" ? "center bottom" : "center center",
           }}
         >
-          <MeterNeedle
-            size={sizeConfig.needle}
-            rotation={rotation}
-            color={color}
-            animated={animated}
-          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: type === "half" ? "0%" : "50%",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            <MeterNeedle
+              size={sizeConfig.needle}
+              rotation={0}
+              color={color}
+              animated={false}
+            />
+          </div>
         </div>
       </div>
 
