@@ -207,7 +207,88 @@ export default function PerformanceMeter() {
             </div>
 
             {activeTab === "scores" ? (
-              <></>
+              <>
+                {/* Performance Meter */}
+                <div className="flex justify-center mb-8">
+                  <div className="relative w-full max-w-[280px] h-[140px] flex justify-center items-center">
+                    <svg
+                      width="281"
+                      height="140"
+                      viewBox="0 0 281 140"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-[280px] h-[140px]"
+                    >
+                      {/* Red segment (0-20) - Poor */}
+                      <path
+                        d="M0.169067 140C0.169066 110.435 9.52876 81.6288 26.9067 57.7101L72.2116 90.6261C61.7849 104.977 56.1691 122.261 56.1691 140H0.169067Z"
+                        fill="#FF4D0F"
+                      />
+                      {/* Orange segment (20-40) */}
+                      <path
+                        d="M26.9066 57.71C44.2845 33.7914 68.7885 15.9882 96.9066 6.85205L114.212 60.1112C97.3407 65.5929 82.6383 76.2748 72.2116 90.626L26.9066 57.71Z"
+                        fill="#FFA21F"
+                      />
+                      {/* Yellow segment (40-60) */}
+                      <path
+                        d="M96.9066 6.85208C125.025 -2.28403 155.313 -2.28403 183.431 6.85208L166.126 60.1113C149.256 54.6296 131.082 54.6296 114.212 60.1113L96.9066 6.85208Z"
+                        fill="#EDE96E"
+                      />
+                      {/* Light green segment (60-80) */}
+                      <path
+                        d="M183.431 6.85205C211.549 15.9882 236.053 33.7914 253.431 57.71L208.126 90.626C197.7 76.2748 182.997 65.5929 166.126 60.1112L183.431 6.85205Z"
+                        fill="#A1CC47"
+                      />
+                      {/* Green segment (80-100) - Good */}
+                      <path
+                        d="M253.431 57.7101C270.809 81.6288 280.169 110.435 280.169 140H224.169C224.169 122.261 218.553 104.977 208.126 90.6261L253.431 57.7101Z"
+                        fill="#7CC200"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Current Score Display */}
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-red-500 mb-2">
+                    {overallScore}%
+                  </div>
+                  <div className="text-lg font-semibold text-gray-700">
+                    Overall Performance Score
+                  </div>
+                  <div className="text-sm text-gray-500 mt-2">
+                    Your current score falls in the{" "}
+                    <span className="font-semibold text-red-500">Poor</span>{" "}
+                    range
+                  </div>
+                </div>
+
+                {/* Performance Scale Legend */}
+                <div className="flex justify-center mb-6">
+                  <div className="flex items-center gap-6 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-sm bg-[#FF4D0F]"></div>
+                      <span className="text-gray-700">0-20 Poor</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-sm bg-[#FFA21F]"></div>
+                      <span className="text-gray-700">20-40</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-sm bg-[#EDE96E]"></div>
+                      <span className="text-gray-700">40-60</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-sm bg-[#A1CC47]"></div>
+                      <span className="text-gray-700">60-80</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-sm bg-[#7CC200]"></div>
+                      <span className="text-gray-700">80-100 Good</span>
+                    </div>
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 {/* Donut Chart for Weightage */}
