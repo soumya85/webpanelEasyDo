@@ -273,14 +273,14 @@ export default function PerformanceMeter() {
                       />
                     </svg>
 
-                    {/* Scale Values positioned close to outer edge to match reference perfectly */}
+                    {/* Scale Values positioned in center of each segment thickness */}
                     <div className="absolute inset-0 pointer-events-none">
-                      {/* 20 - positioned close to outer edge in the red segment */}
+                      {/* 20 - positioned in center thickness of the red segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          left: "12%",
-                          top: "42%",
+                          left: "18%",
+                          top: "52%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -288,12 +288,12 @@ export default function PerformanceMeter() {
                         20
                       </div>
 
-                      {/* 40 - positioned close to outer edge in the orange segment */}
+                      {/* 40 - positioned in center thickness of the orange segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          left: "25%",
-                          top: "12%",
+                          left: "31%",
+                          top: "22%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -301,12 +301,12 @@ export default function PerformanceMeter() {
                         40
                       </div>
 
-                      {/* 60 - positioned close to outer edge in the yellow segment */}
+                      {/* 60 - positioned in center thickness of the yellow segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
                           left: "50%",
-                          top: "2%",
+                          top: "12%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -314,12 +314,12 @@ export default function PerformanceMeter() {
                         60
                       </div>
 
-                      {/* 80 - positioned close to outer edge in the light green segment */}
+                      {/* 80 - positioned in center thickness of the light green segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          right: "25%",
-                          top: "12%",
+                          right: "31%",
+                          top: "22%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -327,12 +327,12 @@ export default function PerformanceMeter() {
                         80
                       </div>
 
-                      {/* 100 - positioned close to outer edge in the dark green segment */}
+                      {/* 100 - positioned in center thickness of the dark green segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
-                          right: "12%",
-                          top: "42%",
+                          right: "18%",
+                          top: "52%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
