@@ -292,7 +292,7 @@ export default function PerformanceMeter() {
                       {/* Percentage label on bar */}
                       <div
                         className={`absolute left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap ${
-                          item.percentage === 0 ? "top-4" : "-top-6"
+                          item.percentage === 0 ? "-top-5" : "-top-6"
                         }`}
                       >
                         {item.percentage}%
@@ -331,7 +331,7 @@ export default function PerformanceMeter() {
                   size="sm"
                   className="h-8 w-8 p-0 rounded-full bg-black text-white hover:bg-gray-800"
                 >
-                  <span className="sr-only">Close</span>✕
+                  <span className="sr-only">Close</span>��
                 </Button>
               </DialogClose>
             </div>
