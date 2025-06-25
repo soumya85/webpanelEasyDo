@@ -4498,6 +4498,61 @@ export default function EmployeeDashboard() {
           })()}
         </DialogContent>
       </Dialog>
+
+      {/* Statistics Modal */}
+      <Dialog
+        open={isStatisticsModalOpen}
+        onOpenChange={setIsStatisticsModalOpen}
+      >
+        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto [&>button]:hidden">
+          <DialogHeader className="flex-shrink-0 pb-4">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                Statistics
+              </DialogTitle>
+              <button
+                onClick={() => setIsStatisticsModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </DialogHeader>
+
+          {/* Blank content area for now */}
+          <div className="min-h-[400px] p-8 flex items-center justify-center">
+            <div className="text-center text-gray-500">
+              <svg
+                className="w-16 h-16 mx-auto mb-4 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
+              <p className="text-lg font-medium">Statistics</p>
+              <p className="text-sm mt-2">Content will be added here</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
