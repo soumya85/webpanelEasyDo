@@ -157,6 +157,11 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md max-h-[95vh] overflow-y-auto p-0 [&>button]:hidden">
+        <DialogHeader>
+          <VisuallyHidden>
+            <DialogTitle>Attendance Report</DialogTitle>
+          </VisuallyHidden>
+        </DialogHeader>
         {/* Mobile Header */}
         <div className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
           <div className="flex items-center gap-3">
