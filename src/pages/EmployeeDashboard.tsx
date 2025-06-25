@@ -4547,7 +4547,7 @@ export default function EmployeeDashboard() {
 
           {/* Top Stats Cards */}
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border border-b-4 border-b-blue-500 shadow-md">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-500 mb-1">0</div>
                 <div className="text-sm font-medium text-gray-900 mb-1">
@@ -4558,7 +4558,7 @@ export default function EmployeeDashboard() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border border-b-4 border-b-blue-500 shadow-md">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-500 mb-1">0</div>
                 <div className="text-sm font-medium text-gray-900 mb-1">
@@ -4569,7 +4569,7 @@ export default function EmployeeDashboard() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border border-b-4 border-b-blue-500 shadow-md">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-500 mb-1">0</div>
                 <div className="text-sm font-medium text-gray-900 mb-1">
