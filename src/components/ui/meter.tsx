@@ -249,6 +249,14 @@ export const Meter: React.FC<MeterProps> = ({
         />
       </div>
 
+      {/* POOR and GOOD labels for half-circle meters */}
+      {type === "half" && (
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between px-4">
+          <div className="text-sm font-bold text-red-500">POOR</div>
+          <div className="text-sm font-bold text-green-500">GOOD</div>
+        </div>
+      )}
+
       {/* Value Display */}
       <div className="text-center mt-2">
         <div className="text-lg font-bold" style={{ color }}>
