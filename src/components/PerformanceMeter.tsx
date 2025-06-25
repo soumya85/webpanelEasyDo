@@ -273,14 +273,14 @@ export default function PerformanceMeter() {
                       />
                     </svg>
 
-                    {/* Scale Values positioned to match reference image exactly */}
+                    {/* Scale Values positioned higher towards outer edge of segments */}
                     <div className="absolute inset-0 pointer-events-none">
-                      {/* 20 - positioned in the red segment as per reference */}
+                      {/* 20 - positioned higher in the red segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
                           left: "13%",
-                          top: "73%",
+                          top: "68%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -288,12 +288,12 @@ export default function PerformanceMeter() {
                         20
                       </div>
 
-                      {/* 40 - positioned in the orange segment as per reference */}
+                      {/* 40 - positioned higher in the orange segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
                           left: "26%",
-                          top: "43%",
+                          top: "38%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -301,12 +301,12 @@ export default function PerformanceMeter() {
                         40
                       </div>
 
-                      {/* 60 - positioned in the yellow segment as per reference */}
+                      {/* 60 - positioned higher in the yellow segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
                           left: "50%",
-                          top: "33%",
+                          top: "28%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -314,12 +314,12 @@ export default function PerformanceMeter() {
                         60
                       </div>
 
-                      {/* 80 - positioned in the light green segment as per reference */}
+                      {/* 80 - positioned higher in the light green segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
                           right: "26%",
-                          top: "43%",
+                          top: "38%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -327,12 +327,12 @@ export default function PerformanceMeter() {
                         80
                       </div>
 
-                      {/* 100 - positioned in the dark green segment as per reference */}
+                      {/* 100 - positioned higher in the dark green segment */}
                       <div
                         className="absolute text-sm font-bold"
                         style={{
                           right: "13%",
-                          top: "73%",
+                          top: "68%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
