@@ -4159,7 +4159,7 @@ export default function EmployeeDashboard() {
                             <div className="mb-6 flex justify-center">
                               <div className="relative">
                                 <div className="w-32 h-32 bg-gradient-to-r from-blue-100 to-pink-100 rounded-full flex items-center justify-center">
-                                  <div className="text-6xl">👩‍💼</div>
+                                  <div className="text-6xl">����‍💼</div>
                                 </div>
                                 <div className="absolute -top-2 -right-2 text-2xl">
                                   ✨
@@ -4533,12 +4533,8 @@ export default function EmployeeDashboard() {
 
           {/* User Profile Section */}
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg mb-6">
-            <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200">
-              <img
-                src="https://images.pexels.com/photos/29995688/pexels-photo-29995688.jpeg"
-                alt="Bhaskar Ghosh - Executive Director"
-                className="w-full h-full object-cover"
-              />
+            <div className="w-16 h-16 bg-[#283C50] rounded-full flex items-center justify-center">
+              <span className="text-white text-xl font-semibold">BG</span>
             </div>
             <div>
               <h2 className="text-xl font-bold text-gray-900">Bhaskar Ghosh</h2>
