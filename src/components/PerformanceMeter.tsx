@@ -159,7 +159,7 @@ export default function PerformanceMeter() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-2xl w-full max-h-[95vh] overflow-y-auto p-0 rounded-t-3xl">
           {/* Modal Header */}
-          <div className="flex items-center justify-between p-4 pb-2">
+          <div className="flex items-center justify-between p-3 pb-1">
             <div className="flex-1"></div>
             <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
             <div className="flex-1 flex justify-end">
@@ -175,7 +175,7 @@ export default function PerformanceMeter() {
             </div>
           </div>
 
-          <DialogHeader className="px-4 pb-4">
+          <DialogHeader className="px-4 pb-2">
             <DialogTitle className="text-xl font-bold text-center">
               Score Details
             </DialogTitle>
@@ -183,7 +183,7 @@ export default function PerformanceMeter() {
 
           <div className="px-4">
             {/* Tabs */}
-            <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
+            <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
               <button
                 onClick={() => setActiveTab("scores")}
                 className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
@@ -209,8 +209,8 @@ export default function PerformanceMeter() {
             {activeTab === "scores" ? (
               <>
                 {/* Performance Meter - Figma Design */}
-                <div className="flex justify-center mb-8">
-                  <div className="relative w-full max-w-[320px] h-[180px] flex justify-center items-center">
+                <div className="flex justify-center mb-3">
+                  <div className="relative w-full max-w-[300px] h-[160px] flex justify-center items-center">
                     <svg
                       width="281"
                       height="152"
@@ -344,13 +344,13 @@ export default function PerformanceMeter() {
                 </div>
 
                 {/* POOR and GOOD labels positioned towards the top */}
-                <div className="flex justify-between items-center mb-2 w-full max-w-[280px] mx-auto -mt-12">
+                <div className="flex justify-between items-center mb-1 w-full max-w-[280px] mx-auto -mt-12">
                   <div className="text-lg font-bold text-red-500">POOR</div>
                   <div className="text-lg font-bold text-green-500">GOOD</div>
                 </div>
 
                 {/* Performance Meter Title Section */}
-                <div className="text-center mb-6 -mt-2">
+                <div className="text-center mb-3 -mt-1">
                   <div className="text-lg font-bold text-black mb-1">
                     Performance Meter
                   </div>
@@ -428,9 +428,9 @@ export default function PerformanceMeter() {
             )}
 
             {/* Performance Categories List */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-2 mb-4">
               {performanceData.map((item, index) => {
-                const icons = ["👍", "👋", "⚡", "���", "👥", "📈"];
+                const icons = ["👍", "👋", "⚡", "💼", "👥", "📈"];
                 const colors = [
                   "#93C5FD",
                   "#3B82F6",
@@ -444,7 +444,7 @@ export default function PerformanceMeter() {
                 return (
                   <div
                     key={index}
-                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0"
+                    className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -472,7 +472,7 @@ export default function PerformanceMeter() {
             </div>
 
             {/* Note */}
-            <div className="bg-gray-50 p-4 rounded-lg mb-4">
+            <div className="bg-gray-50 p-3 rounded-lg mb-2">
               <p className="text-sm text-gray-600">
                 <span className="font-semibold">- Note :</span> Weightage of
                 each score is set by the Management of the company.
