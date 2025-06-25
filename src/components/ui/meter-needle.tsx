@@ -63,6 +63,6 @@ export const MeterNeedle: React.FC<MeterNeedleProps> = ({
           fill={color}
         />
       </svg>
-    </motion.div>
+    </div>
   );
 };
