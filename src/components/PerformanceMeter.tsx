@@ -246,7 +246,7 @@ export default function PerformanceMeter() {
                       />
                       {/* Needle - rotated based on score */}
                       <g
-                        transform={`rotate(${-180 + (overallScore / 100) * 180} 140 135)`}
+                        transform={`rotate(${-134.1} 140 135)`}
                         className="transition-transform duration-1000 ease-out"
                       >
                         {/* Needle shaft */}
