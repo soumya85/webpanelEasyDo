@@ -244,9 +244,9 @@ export default function PerformanceMeter() {
                         d="M253.431 57.7101C270.809 81.6287 280.169 110.435 280.169 140H224.169C224.169 122.261 218.553 104.977 208.126 90.626L253.431 57.7101Z"
                         fill="#7CC200"
                       />
-                      {/* Needle - rotated based on score */}
+                      {/* Needle - rotated based on score (25.5% = red section) */}
                       <g
-                        transform={`rotate(${-134.1} 140 135)`}
+                        transform="rotate(-134.1 139.7 135)"
                         className="transition-transform duration-1000 ease-out"
                       >
                         {/* Needle shaft */}
