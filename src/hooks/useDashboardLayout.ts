@@ -13,7 +13,8 @@ export interface DashboardCard {
     | "notice"
     | "attendance"
     | "salary"
-    | "performance";
+    | "performance"
+    | "meter";
   title: string;
   section: "quick-overview" | "productivity" | "information-hub";
   order: number;
