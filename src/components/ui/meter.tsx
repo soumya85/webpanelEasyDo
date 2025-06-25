@@ -71,7 +71,9 @@ export const Meter: React.FC<MeterProps> = ({
   const range = max - min;
   const normalizedValue = (clampedValue - min) / range;
   const maxAngle = type === "half" ? 180 : 360;
-  const rotation = normalizedValue * maxAngle - (type === "half" ? 90 : 0);
+  // For half circle: -90° = 0%, 0° = 50%, +90° = 100%
+  const rotation =
+    type === "half" ? normalizedValue * 180 - 90 : normalizedValue * 360;
 
   // Generate scale marks
   const scaleMarks = Array.from({ length: 11 }, (_, i) => {
@@ -218,19 +220,17 @@ export const Meter: React.FC<MeterProps> = ({
 
         {/* Needle */}
         <div
-          className="absolute inset-0 z-20"
+          className="absolute z-20"
           style={{
-            transform: `rotate(${rotation}deg)`,
-            transformOrigin: "center bottom",
+            left: "50%",
+            bottom: type === "half" ? "0px" : "50%",
+            transform: `translate(-50%, 0) rotate(${rotation}deg)`,
+            transformOrigin: "50% 100%",
+            width: sizeConfig.needle,
+            height: sizeConfig.needle * 1.5, // Shorter for better visibility
           }}
         >
-          <div
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
-            style={{
-              width: sizeConfig.needle,
-              height: sizeConfig.needle * 3.2,
-            }}
-          >
+          <div className="relative w-full h-full">
             <svg
               width={sizeConfig.needle}
               height={sizeConfig.needle * 3.2}
