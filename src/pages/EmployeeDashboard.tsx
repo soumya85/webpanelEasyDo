@@ -4549,10 +4549,8 @@ export default function EmployeeDashboard() {
               </svg>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900">
-                Soumyadeep Goswami
-              </h2>
-              <p className="text-gray-600">Web Designer, Head office</p>
+              <h2 className="text-xl font-bold text-gray-900">Bhaskar Ghosh</h2>
+              <p className="text-gray-600">Executive Director, Head Office</p>
             </div>
           </div>
 
