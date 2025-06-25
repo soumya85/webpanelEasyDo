@@ -273,14 +273,14 @@ export default function PerformanceMeter() {
                       />
                     </svg>
 
-                    {/* Scale Values positioned in radial center of each colored segment */}
+                    {/* Scale Values positioned within each colored segment to match reference */}
                     <div className="absolute inset-0 pointer-events-none">
                       {/* 20 - positioned in the red section */}
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          left: "16%",
-                          top: "68%",
+                          left: "12%",
+                          top: "60%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -291,8 +291,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          left: "28%",
-                          top: "38%",
+                          left: "24%",
+                          top: "30%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -304,7 +304,7 @@ export default function PerformanceMeter() {
                         className="absolute text-sm font-bold text-gray-800"
                         style={{
                           left: "50%",
-                          top: "25%",
+                          top: "20%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
@@ -315,8 +315,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          right: "28%",
-                          top: "38%",
+                          right: "24%",
+                          top: "30%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
@@ -327,8 +327,8 @@ export default function PerformanceMeter() {
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          right: "16%",
-                          top: "68%",
+                          right: "12%",
+                          top: "60%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
