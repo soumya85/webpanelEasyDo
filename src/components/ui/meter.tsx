@@ -216,14 +216,20 @@ export const Meter: React.FC<MeterProps> = ({
             ))}
         </svg>
 
-        {/* Needle */}
+        {/* Needle - positioned at center of meter */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute z-10 pointer-events-none"
           style={{
-            transformOrigin:
-              type === "half" ? "center bottom" : "center center",
+            left: "50%",
+            top: type === "half" ? "100%" : "50%",
+            transform: "translate(-50%, -100%)",
+            transformOrigin: type === "half" ? "50% 100%" : "50% 50%",
           }}
-          initial={animated ? { rotate: 0 } : { rotate: rotation }}
+          initial={
+            animated
+              ? { rotate: type === "half" ? -90 : 0 }
+              : { rotate: rotation }
+          }
           animate={{ rotate: rotation }}
           transition={
             animated
@@ -236,21 +242,12 @@ export const Meter: React.FC<MeterProps> = ({
               : undefined
           }
         >
-          <div
-            style={{
-              position: "absolute",
-              bottom: type === "half" ? "0%" : "50%",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-          >
-            <MeterNeedle
-              size={sizeConfig.needle}
-              rotation={0}
-              color={color}
-              animated={false}
-            />
-          </div>
+          <MeterNeedle
+            size={Math.max(sizeConfig.needle * 0.8, 24)}
+            rotation={0}
+            color={color}
+            animated={false}
+          />
         </motion.div>
       </div>
 
