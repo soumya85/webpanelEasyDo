@@ -1,7 +1,6 @@
 import React from "react";
 import { Trophy, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Meter } from "@/components/ui/meter";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
 
