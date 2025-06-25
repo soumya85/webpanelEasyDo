@@ -344,23 +344,22 @@ export default function PerformanceMeter() {
                 </div>
 
                 {/* POOR and GOOD labels positioned towards the top */}
-                <div className="flex justify-between items-center mb-6 w-full max-w-[280px] mx-auto -mt-12">
+                <div className="flex justify-between items-center mb-2 w-full max-w-[280px] mx-auto -mt-12">
                   <div className="text-lg font-bold text-red-500">POOR</div>
                   <div className="text-lg font-bold text-green-500">GOOD</div>
                 </div>
 
-                {/* Current Score Display */}
-                <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-red-500 mb-2">
-                    {overallScore}%
+                {/* Performance Meter Title Section */}
+                <div className="text-center mb-6 -mt-2">
+                  <div className="text-lg font-bold text-black mb-1">
+                    Performance Meter
                   </div>
-                  <div className="text-lg font-semibold text-gray-700">
-                    Overall Performance Score
-                  </div>
-                  <div className="text-sm text-gray-500 mt-2">
-                    Your current score falls in the{" "}
-                    <span className="font-semibold text-red-500">Poor</span>{" "}
-                    range
+                  <div className="text-sm text-gray-600">
+                    ( Overall Score :{" "}
+                    <span className="text-lg font-semibold text-black">
+                      {overallScore}%
+                    </span>{" "}
+                    )
                   </div>
                 </div>
               </>
