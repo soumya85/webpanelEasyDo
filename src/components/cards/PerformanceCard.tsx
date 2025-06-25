@@ -43,21 +43,6 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
           </div>
         </div>
 
-        {/* Performance Meter */}
-        <div className="mb-4">
-          <Meter
-            value={88}
-            label="Performance Score"
-            variant="success"
-            size="sm"
-            type="half"
-            min={0}
-            max={100}
-            unit="%"
-            showScale={false}
-          />
-        </div>
-
         <div className="text-center mb-4">
           <div className="text-sm text-green-600 font-semibold mb-1">
             Nice, Keep it up! 💪
