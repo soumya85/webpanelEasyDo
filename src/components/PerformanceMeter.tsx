@@ -247,18 +247,23 @@ export default function PerformanceMeter() {
 
                       {/* Needle Pointer */}
                       <g
-                        transform={`rotate(${-180 + (overallScore / 100) * 180} 140.5 140)`}
+                        transform={`rotate(${-134} 140.5 140)`}
                         className="transition-transform duration-1000 ease-out"
                       >
-                        {/* Needle line - pointing upward by default */}
+                        {/* Needle line - pointing upward by default, thicker and more visible */}
                         <line
                           x1="140.5"
                           y1="140"
                           x2="140.5"
-                          y2="70"
+                          y2="60"
                           stroke="#1E3A5F"
-                          strokeWidth="3"
+                          strokeWidth="4"
                           strokeLinecap="round"
+                        />
+                        {/* Needle tip triangle for better visibility */}
+                        <polygon
+                          points="140.5,50 136,65 145,65"
+                          fill="#1E3A5F"
                         />
                       </g>
 
@@ -266,12 +271,13 @@ export default function PerformanceMeter() {
                       <circle
                         cx="140.5"
                         cy="140"
-                        r="8"
+                        r="10"
                         fill="#1E3A5F"
                         stroke="white"
-                        strokeWidth="2"
+                        strokeWidth="3"
                       />
-                      <circle cx="140.5" cy="140" r="3" fill="white" />
+                      <circle cx="140.5" cy="140" r="4" fill="white" />
+                      <circle cx="140.5" cy="140" r="2" fill="#1E3A5F" />
                     </svg>
                   </div>
                 </div>
