@@ -472,7 +472,7 @@ export default function PerformanceMeter() {
             </div>
 
             {/* Note */}
-            <div className="bg-gray-50 p-4 rounded-lg mb-4">
+            <div className="bg-gray-50 p-3 rounded-lg mb-2">
               <p className="text-sm text-gray-600">
                 <span className="font-semibold">- Note :</span> Weightage of
                 each score is set by the Management of the company.
