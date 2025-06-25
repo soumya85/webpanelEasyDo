@@ -472,6 +472,12 @@ export default function PerformanceMeter() {
                 each score is set by the Management of the company.
               </p>
             </div>
+
+            {/* POOR and GOOD labels positioned at the bottom */}
+            <div className="flex justify-between items-center mt-4 w-full max-w-[280px] mx-auto">
+              <div className="text-lg font-bold text-red-500">POOR</div>
+              <div className="text-lg font-bold text-green-500">GOOD</div>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
