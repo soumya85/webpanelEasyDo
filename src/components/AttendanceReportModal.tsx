@@ -172,7 +172,9 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
               Back To Report
             </span>
           </div>
-          <h1 className="text-lg font-semibold text-gray-900">Report</h1>
+          <h1 className="text-lg font-semibold text-gray-900">
+            Attendance Report
+          </h1>
           <div className="w-6"></div>
         </div>
 
