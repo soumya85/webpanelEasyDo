@@ -1178,11 +1178,31 @@ export default function EmployeeDashboard() {
         open={isLeaveRequestModalOpen}
         onOpenChange={setIsLeaveRequestModalOpen}
       >
-        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto [&>button]:hidden">
           <DialogHeader className="flex-shrink-0 pb-4">
-            <DialogTitle className="text-xl font-bold text-[#283C50]">
-              Leave Request
-            </DialogTitle>
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                Leave Request
+              </DialogTitle>
+              <button
+                onClick={() => setIsLeaveRequestModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
           </DialogHeader>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
