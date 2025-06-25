@@ -241,60 +241,87 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="flex-1 min-h-[40px] max-h-[80px]">
-            <h3 className="text-center text-xs font-semibold text-gray-700 mb-1">
+          <div className="flex-1 min-h-[120px]">
+            <h3 className="text-center text-xs font-semibold text-gray-700 mb-2">
               Category Breakdown
             </h3>
-            <ChartContainer config={chartConfig} className="h-12 w-full">
-              <BarChart
-                data={performanceData}
-                margin={{ top: 2, right: 3, left: 3, bottom: 15 }}
-              >
-                <XAxis
-                  dataKey="category"
-                  tick={{ fontSize: 6 }}
-                  angle={-45}
-                  textAnchor="end"
-                  height={15}
-                  interval={0}
-                />
-                <YAxis
-                  domain={[0, 100]}
-                  tick={{ fontSize: 7 }}
-                  tickFormatter={(value) => `${value}%`}
-                  width={20}
-                />
-                <ChartTooltip
-                  content={<ChartTooltipContent />}
-                  formatter={(value) => [`${value}%`, "Performance"]}
-                />
-                <Bar dataKey="percentage" radius={[2, 2, 0, 0]}>
-                  {performanceData.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={getBarColor(entry.percentage)}
-                    />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ChartContainer>
-          </div>
 
-          {/* Performance Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1 mt-1">
-            {performanceData.map((item, index) => (
-              <div key={index} className="text-center">
-                <div
-                  className={cn("text-xs font-medium")}
-                  style={{ color: getBarColor(item.percentage) }}
-                >
-                  {item.percentage}%
-                </div>
-                <div className="text-xs text-gray-600 leading-tight">
-                  {item.category}
-                </div>
+            {/* Custom Bar Chart with Grid */}
+            <div className="relative w-full h-24 bg-white border border-gray-200 rounded">
+              {/* Grid lines */}
+              <div className="absolute inset-0">
+                {/* Horizontal grid lines */}
+                {[0, 20, 40, 60, 80, 100].map((value) => (
+                  <div
+                    key={value}
+                    className="absolute w-full border-t border-gray-100"
+                    style={{ bottom: `${value}%` }}
+                  />
+                ))}
+
+                {/* Vertical grid lines */}
+                {performanceData.map((_, index) => (
+                  <div
+                    key={index}
+                    className="absolute h-full border-l border-gray-100"
+                    style={{
+                      left: `${(index / performanceData.length) * 100}%`,
+                    }}
+                  />
+                ))}
+                <div className="absolute h-full border-r border-gray-100 right-0" />
               </div>
-            ))}
+
+              {/* Bars */}
+              <div className="absolute inset-0 flex items-end justify-around px-2 pb-1">
+                {performanceData.map((item, index) => (
+                  <div key={index} className="flex flex-col items-center w-8">
+                    {/* Percentage label on top */}
+                    {item.percentage > 0 && (
+                      <div
+                        className="text-xs font-bold text-white bg-gray-800 px-1 rounded mb-1 relative z-10"
+                        style={{
+                          marginBottom: `${item.percentage * 0.6}px`,
+                        }}
+                      >
+                        {item.percentage}%
+                      </div>
+                    )}
+
+                    {/* Bar */}
+                    <div
+                      className="w-6 transition-all duration-300 ease-out"
+                      style={{
+                        height: `${item.percentage}%`,
+                        backgroundColor: getBarColor(
+                          item.category,
+                          item.percentage,
+                        ),
+                        minHeight: item.percentage === 0 ? "0px" : "4px",
+                      }}
+                    />
+
+                    {/* Zero percentage label */}
+                    {item.percentage === 0 && (
+                      <div className="text-xs font-bold text-gray-600 mt-1">
+                        0%
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Category labels */}
+            <div className="flex justify-around mt-2 px-2">
+              {performanceData.map((item, index) => (
+                <div key={index} className="text-center w-8">
+                  <div className="text-xs text-gray-700 font-medium leading-tight">
+                    {item.category}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>
