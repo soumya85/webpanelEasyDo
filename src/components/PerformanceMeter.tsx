@@ -340,17 +340,6 @@ export default function PerformanceMeter() {
                         100
                       </div>
                     </div>
-
-                    {/* POOR and GOOD labels positioned at bottom edges of meter */}
-                    <div
-                      className="absolute bottom-0 left-0 right-0 flex justify-between items-end"
-                      style={{ paddingBottom: "8px" }}
-                    >
-                      <div className="text-lg font-bold text-red-500">POOR</div>
-                      <div className="text-lg font-bold text-green-500">
-                        GOOD
-                      </div>
-                    </div>
                   </div>
                 </div>
 
