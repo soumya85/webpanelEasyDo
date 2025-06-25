@@ -213,8 +213,8 @@ export default function PerformanceMeter() {
                   <div className="relative w-full max-w-[280px] h-[140px] flex justify-center items-center">
                     <svg
                       width="281"
-                      height="150"
-                      viewBox="0 0 281 150"
+                      height="140"
+                      viewBox="0 0 281 140"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-[280px] h-[140px]"
@@ -245,24 +245,50 @@ export default function PerformanceMeter() {
                         fill="#7CC200"
                       />
 
-                      {/* Needle Pointer */}
-                      <g
-                        transform={`translate(140.5, 140) rotate(${-180 + (overallScore / 100) * 180})`}
-                        className="transition-transform duration-1000 ease-out"
-                        style={{ transformOrigin: "140.5px 140px" }}
-                      >
-                        {/* Needle shaft */}
-                        <path
-                          d="M137.5 140L140.5 50L143.5 140"
-                          fill="#1E3A5F"
-                          stroke="#1E3A5F"
-                          strokeWidth="1"
-                        />
-                        {/* Needle base (circular part) */}
-                        <circle cx="140.5" cy="140" r="6" fill="#1E3A5F" />
-                        <circle cx="140.5" cy="140" r="3" fill="white" />
-                        <circle cx="140.5" cy="140" r="1.5" fill="#1E3A5F" />
-                      </g>
+                      {/* Needle Pointer - positioned absolutely from center */}
+                      {(() => {
+                        // Calculate needle position for 25.5%
+                        // Angle goes from 180deg (0%) to 0deg (100%)
+                        const angle = 180 - (overallScore / 100) * 180;
+                        const angleRad = (angle * Math.PI) / 180;
+                        const centerX = 140.5;
+                        const centerY = 140;
+                        const needleLength = 70;
+                        const endX =
+                          centerX + Math.cos(angleRad) * needleLength;
+                        const endY =
+                          centerY - Math.sin(angleRad) * needleLength;
+
+                        return (
+                          <g className="transition-all duration-1000 ease-out">
+                            {/* Needle line */}
+                            <line
+                              x1={centerX}
+                              y1={centerY}
+                              x2={endX}
+                              y2={endY}
+                              stroke="#1E3A5F"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                            />
+                            {/* Needle base circle */}
+                            <circle
+                              cx={centerX}
+                              cy={centerY}
+                              r="8"
+                              fill="#1E3A5F"
+                              stroke="white"
+                              strokeWidth="2"
+                            />
+                            <circle
+                              cx={centerX}
+                              cy={centerY}
+                              r="3"
+                              fill="white"
+                            />
+                          </g>
+                        );
+                      })()}
                     </svg>
                   </div>
                 </div>
