@@ -295,7 +295,7 @@ export default function PerformanceMeter() {
                           {item.percentage}%
                         </div>
                       ) : (
-                        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-700">
+                        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap">
                           {item.percentage}%
                         </div>
                       )}
