@@ -20,6 +20,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 interface AttendanceReportModalProps {
   open: boolean;
   onClose: () => void;
+  onBackToReports: () => void;
 }
 
 // Sample data based on the screenshots
