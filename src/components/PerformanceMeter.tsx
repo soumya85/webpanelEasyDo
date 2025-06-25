@@ -343,14 +343,8 @@ export default function PerformanceMeter() {
                   </div>
                 </div>
 
-                {/* POOR and GOOD labels positioned towards the top */}
-                <div className="flex justify-between items-center mb-1 w-full max-w-[280px] mx-auto -mt-12">
-                  <div className="text-lg font-bold text-red-500">POOR</div>
-                  <div className="text-lg font-bold text-green-500">GOOD</div>
-                </div>
-
                 {/* Performance Meter Title Section */}
-                <div className="text-center mb-3 -mt-1">
+                <div className="text-center mb-3">
                   <div className="text-lg font-bold text-black mb-1">
                     Performance Meter
                   </div>
