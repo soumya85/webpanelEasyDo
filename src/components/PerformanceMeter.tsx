@@ -159,7 +159,7 @@ export default function PerformanceMeter() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-2xl w-full max-h-[95vh] overflow-y-auto p-0 rounded-t-3xl">
           {/* Modal Header */}
-          <div className="flex items-center justify-between p-4 pb-2">
+          <div className="flex items-center justify-between p-3 pb-1">
             <div className="flex-1"></div>
             <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
             <div className="flex-1 flex justify-end">
@@ -175,7 +175,7 @@ export default function PerformanceMeter() {
             </div>
           </div>
 
-          <DialogHeader className="px-4 pb-4">
+          <DialogHeader className="px-4 pb-2">
             <DialogTitle className="text-xl font-bold text-center">
               Score Details
             </DialogTitle>
@@ -183,7 +183,7 @@ export default function PerformanceMeter() {
 
           <div className="px-4">
             {/* Tabs */}
-            <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
+            <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
               <button
                 onClick={() => setActiveTab("scores")}
                 className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
