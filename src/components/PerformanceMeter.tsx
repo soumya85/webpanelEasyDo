@@ -355,7 +355,11 @@ export default function PerformanceMeter() {
                     Performance Meter
                   </div>
                   <div className="text-sm text-gray-600">
-                    ( Overall Score : {overallScore}% )
+                    ( Overall Score :{" "}
+                    <span className="text-lg font-semibold text-black">
+                      {overallScore}%
+                    </span>{" "}
+                    )
                   </div>
                 </div>
               </>
