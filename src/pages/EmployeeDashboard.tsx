@@ -5361,6 +5361,12 @@ export default function EmployeeDashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Attendance Report Modal */}
+      <AttendanceReportModal
+        open={isAttendanceReportModalOpen}
+        onClose={() => setIsAttendanceReportModalOpen(false)}
+      />
     </div>
   );
 }
