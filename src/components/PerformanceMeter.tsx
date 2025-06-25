@@ -241,13 +241,9 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="flex-1 min-h-[140px]">
-            <h3 className="text-center text-xs font-semibold text-gray-700 mb-3">
-              Category Breakdown
-            </h3>
-
+          <div className="flex-1 min-h-[140px] pt-6">
             {/* Custom Bar Chart with Grid - Exact match to screenshot */}
-            <div className="relative w-full h-32 bg-white border border-gray-300 overflow-hidden">
+            <div className="relative w-full h-32 bg-white border border-gray-300 overflow-visible">
               {/* Grid background */}
               <div className="absolute inset-0">
                 {/* Horizontal grid lines */}
@@ -291,9 +287,13 @@ export default function PerformanceMeter() {
                     >
                       {/* Percentage label on bar */}
                       <div
-                        className={`absolute left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap ${
+                        className={`absolute left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap z-10 ${
                           item.percentage === 0 ? "-top-5" : "-top-6"
                         }`}
+                        style={{
+                          display: "block",
+                          visibility: "visible",
+                        }}
                       >
                         {item.percentage}%
                       </div>
