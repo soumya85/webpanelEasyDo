@@ -5192,7 +5192,13 @@ export default function EmployeeDashboard() {
             {/* Reports List */}
             <div className="space-y-1">
               {/* Attendance Report */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsAttendanceReportModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
