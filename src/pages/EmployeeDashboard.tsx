@@ -4547,7 +4547,7 @@ export default function EmployeeDashboard() {
 
           {/* Top Stats Cards */}
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border border-b-4 border-b-blue-500 shadow-md">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-500 mb-1">0</div>
                 <div className="text-sm font-medium text-gray-900 mb-1">
@@ -4558,7 +4558,7 @@ export default function EmployeeDashboard() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border border-b-4 border-b-blue-500 shadow-md">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-500 mb-1">0</div>
                 <div className="text-sm font-medium text-gray-900 mb-1">
@@ -4569,7 +4569,7 @@ export default function EmployeeDashboard() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border border-b-4 border-b-blue-500 shadow-md">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-500 mb-1">0</div>
                 <div className="text-sm font-medium text-gray-900 mb-1">
@@ -4599,7 +4599,7 @@ export default function EmployeeDashboard() {
 
           <div className="space-y-4">
             {/* Approval Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -4663,7 +4663,7 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* My Task Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -4739,7 +4739,7 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Delegate Task Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -4817,7 +4817,7 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Meeting Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -4895,7 +4895,7 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Lead Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -4957,7 +4957,7 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Sales Invoice Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -5021,7 +5021,7 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Reimbursement Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -5083,7 +5083,7 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Opinion Poll Section */}
-            <div className="bg-white rounded-lg p-4 border">
+            <div className="bg-white rounded-lg p-4 border shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
