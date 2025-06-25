@@ -291,9 +291,13 @@ export default function PerformanceMeter() {
                     >
                       {/* Percentage label on bar */}
                       <div
-                        className={`absolute left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap ${
+                        className={`absolute left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap z-10 ${
                           item.percentage === 0 ? "-top-5" : "-top-6"
                         }`}
+                        style={{
+                          display: "block",
+                          visibility: "visible",
+                        }}
                       >
                         {item.percentage}%
                       </div>
