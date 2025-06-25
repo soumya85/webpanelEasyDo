@@ -74,6 +74,8 @@ export default function EmployeeDashboard() {
   const [isReportsModalOpen, setIsReportsModalOpen] = useState(false);
   const [isAttendanceReportModalOpen, setIsAttendanceReportModalOpen] =
     useState(false);
+  const [isSalesRegisterModalOpen, setIsSalesRegisterModalOpen] =
+    useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
