@@ -1,7 +1,6 @@
 import React from "react";
 import { Trophy, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Meter } from "@/components/ui/meter";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
 
@@ -42,21 +41,6 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
           <div className="text-xs text-gray-600">
             Average over 23 task reviews
           </div>
-        </div>
-
-        {/* Performance Meter */}
-        <div className="mb-4">
-          <Meter
-            value={88}
-            label="Performance Score"
-            variant="success"
-            size="sm"
-            type="half"
-            min={0}
-            max={100}
-            unit="%"
-            showScale={false}
-          />
         </div>
 
         <div className="text-center mb-4">
