@@ -280,7 +280,7 @@ export default function PerformanceMeter() {
                         className="absolute text-sm font-bold"
                         style={{
                           left: "18%",
-                          top: "52%",
+                          top: "58%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -293,7 +293,7 @@ export default function PerformanceMeter() {
                         className="absolute text-sm font-bold"
                         style={{
                           left: "31%",
-                          top: "22%",
+                          top: "28%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -306,7 +306,7 @@ export default function PerformanceMeter() {
                         className="absolute text-sm font-bold"
                         style={{
                           left: "50%",
-                          top: "12%",
+                          top: "18%",
                           transform: "translate(-50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -319,7 +319,7 @@ export default function PerformanceMeter() {
                         className="absolute text-sm font-bold"
                         style={{
                           right: "31%",
-                          top: "22%",
+                          top: "28%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
@@ -332,7 +332,7 @@ export default function PerformanceMeter() {
                         className="absolute text-sm font-bold"
                         style={{
                           right: "18%",
-                          top: "52%",
+                          top: "58%",
                           transform: "translate(50%, -50%)",
                           color: "#6D6868",
                         }}
