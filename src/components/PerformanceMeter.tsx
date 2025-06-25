@@ -617,12 +617,12 @@ export default function PerformanceMeter() {
               {performanceData.map((item, index) => {
                 const icons = ["👍", "👋", "⚡", "💼", "👥", "📈"];
                 const colors = [
-                  "#93C5FD",
+                  "#E5E7EB",
                   "#3B82F6",
-                  "#1E40AF",
+                  "#1E3A8A",
                   "#EF4444",
-                  "#10B981",
-                  "#EAB308",
+                  "#E5E7EB",
+                  "#E5E7EB",
                 ];
                 const weightages = [20, 20, 15, 15, 15, 15];
 
