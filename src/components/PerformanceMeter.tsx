@@ -343,14 +343,21 @@ export default function PerformanceMeter() {
                   </div>
                 </div>
 
-                {/* Poor and Good labels positioned at meter edges */}
-                <div className="relative w-full max-w-[320px] mx-auto mb-6">
-                  <div
-                    className="flex justify-between items-center"
-                    style={{ paddingLeft: "20px", paddingRight: "20px" }}
-                  >
-                    <div className="text-lg font-bold text-red-500">POOR</div>
-                    <div className="text-lg font-bold text-green-500">GOOD</div>
+                {/* Poor and Good labels positioned at meter bottom corners */}
+                <div className="relative w-full max-w-[320px] mx-auto mb-6 -mt-4">
+                  <div className="absolute inset-0 flex justify-between items-end pb-2">
+                    <div
+                      className="text-lg font-bold text-red-500"
+                      style={{ marginLeft: "-10px" }}
+                    >
+                      POOR
+                    </div>
+                    <div
+                      className="text-lg font-bold text-green-500"
+                      style={{ marginRight: "-10px" }}
+                    >
+                      GOOD
+                    </div>
                   </div>
                 </div>
 
