@@ -275,48 +275,36 @@ export default function PerformanceMeter() {
 
                     {/* Scale Values positioned around the meter */}
                     <div className="absolute inset-0 pointer-events-none">
-                      {/* 20 - positioned at the boundary between red and orange segments */}
+                      {/* 40 - positioned on the orange section (left side) */}
                       <div
-                        className="absolute text-sm font-semibold text-gray-600"
+                        className="absolute text-lg font-bold text-gray-700"
                         style={{
-                          left: "20%",
-                          top: "15%",
-                          transform: "translate(-50%, -50%)",
-                        }}
-                      >
-                        20
-                      </div>
-
-                      {/* 40 - positioned at the boundary between orange and yellow segments */}
-                      <div
-                        className="absolute text-sm font-semibold text-gray-600"
-                        style={{
-                          left: "35%",
-                          top: "2%",
+                          left: "25%",
+                          top: "25%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
                         40
                       </div>
 
-                      {/* 60 - positioned at the top center between yellow and light green */}
+                      {/* 60 - positioned at the top center on yellow section */}
                       <div
-                        className="absolute text-sm font-semibold text-gray-600"
+                        className="absolute text-lg font-bold text-gray-700"
                         style={{
                           left: "50%",
-                          top: "0%",
+                          top: "8%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
                         60
                       </div>
 
-                      {/* 80 - positioned at the boundary between light and dark green segments */}
+                      {/* 80 - positioned on the light green section (right side) */}
                       <div
-                        className="absolute text-sm font-semibold text-gray-600"
+                        className="absolute text-lg font-bold text-gray-700"
                         style={{
-                          right: "35%",
-                          top: "2%",
+                          right: "25%",
+                          top: "25%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
