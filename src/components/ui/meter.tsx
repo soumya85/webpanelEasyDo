@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { MeterNeedle } from "./meter-needle";
 
@@ -216,13 +217,24 @@ export const Meter: React.FC<MeterProps> = ({
         </svg>
 
         {/* Needle */}
-        <div
+        <motion.div
           className="absolute inset-0 flex items-center justify-center"
           style={{
-            transform: `rotate(${rotation}deg)`,
             transformOrigin:
               type === "half" ? "center bottom" : "center center",
           }}
+          initial={animated ? { rotate: 0 } : { rotate: rotation }}
+          animate={{ rotate: rotation }}
+          transition={
+            animated
+              ? {
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 20,
+                  duration: 0.6,
+                }
+              : undefined
+          }
         >
           <div
             style={{
@@ -239,7 +251,7 @@ export const Meter: React.FC<MeterProps> = ({
               animated={false}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Value Display */}
