@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import PerformanceMeter from "@/components/PerformanceMeter";
+import { AttendanceReportModal } from "@/components/AttendanceReportModal";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
@@ -71,6 +72,8 @@ export default function EmployeeDashboard() {
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
   const [isReportsModalOpen, setIsReportsModalOpen] = useState(false);
+  const [isAttendanceReportModalOpen, setIsAttendanceReportModalOpen] =
+    useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
@@ -5189,7 +5192,13 @@ export default function EmployeeDashboard() {
             {/* Reports List */}
             <div className="space-y-1">
               {/* Attendance Report */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsAttendanceReportModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5352,6 +5361,16 @@ export default function EmployeeDashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Attendance Report Modal */}
+      <AttendanceReportModal
+        open={isAttendanceReportModalOpen}
+        onClose={() => setIsAttendanceReportModalOpen(false)}
+        onBackToReports={() => {
+          setIsAttendanceReportModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
     </div>
   );
 }
