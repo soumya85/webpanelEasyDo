@@ -5146,6 +5146,58 @@ export default function EmployeeDashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Reports Modal */}
+      <Dialog open={isReportsModalOpen} onOpenChange={setIsReportsModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto [&>button]:hidden">
+          <DialogHeader className="flex-shrink-0 pb-4">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-xl font-bold text-[#283C50]">
+                Reports
+              </DialogTitle>
+              <button
+                onClick={() => setIsReportsModalOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </DialogHeader>
+
+          {/* Blank content area for now */}
+          <div className="min-h-[400px] p-8 flex items-center justify-center">
+            <div className="text-center text-gray-500">
+              <svg
+                className="w-16 h-16 mx-auto mb-4 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              <p className="text-lg font-medium">Reports</p>
+              <p className="text-sm mt-2">Content will be added here</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
