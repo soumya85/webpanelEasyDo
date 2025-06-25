@@ -69,6 +69,7 @@ export default function EmployeeDashboard() {
     useState(false);
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
+  const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
@@ -1121,6 +1122,8 @@ export default function EmployeeDashboard() {
                     setIsHolidayModalOpen(true);
                   } else if (card.id === "leave") {
                     setIsLeaveModalOpen(true);
+                  } else if (card.id === "statistics") {
+                    setIsStatisticsModalOpen(true);
                   }
                 }}
                 className={cn(
