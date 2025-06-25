@@ -24,10 +24,10 @@ export default function PerformanceMeter() {
 
   // Performance categories data
   const performanceData = [
-    { category: "Management Review", percentage: 0 },
-    { category: "Attendance", percentage: 97 },
-    { category: "On-Time Tasks", percentage: 0 },
-    { category: "Task Performance", percentage: 40 },
+    { category: "Management", percentage: 0 },
+    { category: "Attendance", percentage: 98 },
+    { category: "On Time Tasks", percentage: 16 },
+    { category: "Task Performance", percentage: 60 },
     { category: "Attend Meeting", percentage: 0 },
     { category: "Sales Lead", percentage: 0 },
   ];
