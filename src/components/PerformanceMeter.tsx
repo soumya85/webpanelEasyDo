@@ -247,11 +247,11 @@ export default function PerformanceMeter() {
             </h3>
 
             {/* Custom Bar Chart with Grid - Exact match to screenshot */}
-            <div className="relative w-full h-28 bg-white border border-gray-300">
-              {/* Grid lines */}
+            <div className="relative w-full h-32 bg-white border border-gray-300 overflow-hidden">
+              {/* Grid background */}
               <div className="absolute inset-0">
-                {/* Horizontal grid lines - every 20% */}
-                {[0, 20, 40, 60, 80, 100].map((value) => (
+                {/* Horizontal grid lines */}
+                {[20, 40, 60, 80].map((value) => (
                   <div
                     key={value}
                     className="absolute w-full border-t border-gray-200"
@@ -259,57 +259,56 @@ export default function PerformanceMeter() {
                   />
                 ))}
 
-                {/* Vertical grid lines - between each category */}
-                {performanceData.map((_, index) => (
+                {/* Vertical grid lines */}
+                {[1, 2, 3, 4, 5].map((index) => (
                   <div
                     key={index}
                     className="absolute h-full border-l border-gray-200"
-                    style={{
-                      left: `${((index + 1) / performanceData.length) * 100}%`,
-                    }}
+                    style={{ left: `${(index / 6) * 100}%` }}
                   />
                 ))}
               </div>
 
-              {/* Bars and Labels */}
-              <div className="absolute inset-0 flex">
+              {/* Chart area with bars */}
+              <div className="absolute inset-0 flex items-end">
                 {performanceData.map((item, index) => (
                   <div
                     key={index}
-                    className="relative flex-1 flex flex-col items-center justify-end pb-1"
+                    className="flex-1 flex flex-col items-center justify-end relative"
+                    style={{ height: "100%" }}
                   >
-                    {/* Percentage label */}
-                    <div
-                      className="absolute text-xs font-bold text-white bg-black px-1.5 py-0.5 z-10"
-                      style={{
-                        bottom: `${Math.max(item.percentage, 8)}%`,
-                        transform: "translateY(50%)",
-                      }}
-                    >
-                      {item.percentage}%
-                    </div>
-
                     {/* Bar */}
                     <div
-                      className="w-12 mx-auto"
+                      className="w-8 relative"
                       style={{
                         height: `${item.percentage}%`,
                         backgroundColor: getBarColor(
                           item.category,
                           item.percentage,
                         ),
-                        minHeight: "0px",
+                        minHeight: item.percentage === 0 ? "0px" : "2px",
                       }}
-                    />
+                    >
+                      {/* Percentage label on bar */}
+                      {item.percentage > 0 ? (
+                        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs font-bold px-1.5 py-0.5 whitespace-nowrap">
+                          {item.percentage}%
+                        </div>
+                      ) : (
+                        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-700">
+                          {item.percentage}%
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Category labels */}
-            <div className="flex mt-2">
+            <div className="flex mt-8">
               {performanceData.map((item, index) => (
-                <div key={index} className="flex-1 text-center px-1">
+                <div key={index} className="flex-1 text-center">
                   <div className="text-xs text-gray-700 font-medium leading-tight">
                     {item.category}
                   </div>
