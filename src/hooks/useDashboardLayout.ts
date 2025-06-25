@@ -13,7 +13,8 @@ export interface DashboardCard {
     | "notice"
     | "attendance"
     | "salary"
-    | "performance";
+    | "performance"
+    | "meter";
   title: string;
   section: "quick-overview" | "productivity" | "information-hub";
   order: number;
@@ -108,6 +109,14 @@ const getDefaultLayout = (): DashboardCard[] => [
     title: "My Performance",
     section: "information-hub",
     order: 3,
+    size: "medium",
+  },
+  {
+    id: "meter",
+    type: "meter",
+    title: "Performance Metrics",
+    section: "productivity",
+    order: 2,
     size: "medium",
   },
 ];
