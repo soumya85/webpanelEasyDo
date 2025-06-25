@@ -168,7 +168,9 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
             <button onClick={onClose} className="p-1">
               <ArrowLeft className="w-5 h-5 text-blue-500" />
             </button>
-            <span className="text-blue-500 text-sm font-medium">EDB</span>
+            <span className="text-blue-500 text-sm font-medium">
+              Back To Report
+            </span>
           </div>
           <h1 className="text-lg font-semibold text-gray-900">Report</h1>
           <div className="w-6"></div>
