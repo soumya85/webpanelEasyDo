@@ -277,11 +277,12 @@ export default function PerformanceMeter() {
                     <div className="absolute inset-0 pointer-events-none">
                       {/* 20 - positioned in the red segment as per reference */}
                       <div
-                        className="absolute text-sm font-bold text-white"
+                        className="absolute text-sm font-bold"
                         style={{
                           left: "13%",
                           top: "73%",
                           transform: "translate(-50%, -50%)",
+                          color: "#6D6868",
                         }}
                       >
                         20
@@ -289,11 +290,12 @@ export default function PerformanceMeter() {
 
                       {/* 40 - positioned in the orange segment as per reference */}
                       <div
-                        className="absolute text-sm font-bold text-white"
+                        className="absolute text-sm font-bold"
                         style={{
                           left: "26%",
                           top: "43%",
                           transform: "translate(-50%, -50%)",
+                          color: "#6D6868",
                         }}
                       >
                         40
@@ -301,11 +303,12 @@ export default function PerformanceMeter() {
 
                       {/* 60 - positioned in the yellow segment as per reference */}
                       <div
-                        className="absolute text-sm font-bold text-gray-800"
+                        className="absolute text-sm font-bold"
                         style={{
                           left: "50%",
                           top: "33%",
                           transform: "translate(-50%, -50%)",
+                          color: "#6D6868",
                         }}
                       >
                         60
@@ -313,11 +316,12 @@ export default function PerformanceMeter() {
 
                       {/* 80 - positioned in the light green segment as per reference */}
                       <div
-                        className="absolute text-sm font-bold text-white"
+                        className="absolute text-sm font-bold"
                         style={{
                           right: "26%",
                           top: "43%",
                           transform: "translate(50%, -50%)",
+                          color: "#6D6868",
                         }}
                       >
                         80
@@ -325,11 +329,12 @@ export default function PerformanceMeter() {
 
                       {/* 100 - positioned in the dark green segment as per reference */}
                       <div
-                        className="absolute text-sm font-bold text-white"
+                        className="absolute text-sm font-bold"
                         style={{
                           right: "13%",
                           top: "73%",
                           transform: "translate(50%, -50%)",
+                          color: "#6D6868",
                         }}
                       >
                         100
