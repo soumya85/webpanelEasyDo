@@ -245,50 +245,33 @@ export default function PerformanceMeter() {
                         fill="#7CC200"
                       />
 
-                      {/* Needle Pointer - positioned absolutely from center */}
-                      {(() => {
-                        // Calculate needle position for 25.5%
-                        // Angle goes from 180deg (0%) to 0deg (100%)
-                        const angle = 180 - (overallScore / 100) * 180;
-                        const angleRad = (angle * Math.PI) / 180;
-                        const centerX = 140.5;
-                        const centerY = 140;
-                        const needleLength = 70;
-                        const endX =
-                          centerX + Math.cos(angleRad) * needleLength;
-                        const endY =
-                          centerY - Math.sin(angleRad) * needleLength;
+                      {/* Needle Pointer */}
+                      <g
+                        transform={`rotate(${-180 + (overallScore / 100) * 180} 140.5 140)`}
+                        className="transition-transform duration-1000 ease-out"
+                      >
+                        {/* Needle line - pointing upward by default */}
+                        <line
+                          x1="140.5"
+                          y1="140"
+                          x2="140.5"
+                          y2="70"
+                          stroke="#1E3A5F"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                        />
+                      </g>
 
-                        return (
-                          <g className="transition-all duration-1000 ease-out">
-                            {/* Needle line */}
-                            <line
-                              x1={centerX}
-                              y1={centerY}
-                              x2={endX}
-                              y2={endY}
-                              stroke="#1E3A5F"
-                              strokeWidth="3"
-                              strokeLinecap="round"
-                            />
-                            {/* Needle base circle */}
-                            <circle
-                              cx={centerX}
-                              cy={centerY}
-                              r="8"
-                              fill="#1E3A5F"
-                              stroke="white"
-                              strokeWidth="2"
-                            />
-                            <circle
-                              cx={centerX}
-                              cy={centerY}
-                              r="3"
-                              fill="white"
-                            />
-                          </g>
-                        );
-                      })()}
+                      {/* Center circle - always on top */}
+                      <circle
+                        cx="140.5"
+                        cy="140"
+                        r="8"
+                        fill="#1E3A5F"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
+                      <circle cx="140.5" cy="140" r="3" fill="white" />
                     </svg>
                   </div>
                 </div>
