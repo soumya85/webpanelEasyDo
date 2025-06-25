@@ -210,7 +210,7 @@ export default function PerformanceMeter() {
               <>
                 {/* Performance Meter - Figma Design */}
                 <div className="flex justify-center mb-3">
-                  <div className="relative w-full max-w-[300px] h-[160px] flex justify-center items-center">
+                  <div className="relative w-full max-w-[300px] h-[180px] flex justify-center items-center">
                     <svg
                       width="281"
                       height="152"
@@ -244,9 +244,9 @@ export default function PerformanceMeter() {
                         d="M253.431 57.7101C270.809 81.6287 280.169 110.435 280.169 140H224.169C224.169 122.261 218.553 104.977 208.126 90.626L253.431 57.7101Z"
                         fill="#7CC200"
                       />
-                      {/* Needle - rotated for 25.5% score (pointing to red section) */}
+                      {/* Needle - adjusted for 31.2% score (pointing to orange section) */}
                       <g
-                        transform="rotate(-45 140 135)"
+                        transform={`rotate(${-90 + 31.2 * 1.8} 140 135)`}
                         className="transition-transform duration-1000 ease-out"
                       >
                         {/* Needle shaft */}
@@ -339,18 +339,32 @@ export default function PerformanceMeter() {
                       >
                         100
                       </div>
+
+                      {/* POOR and GOOD labels positioned at the bottom corners of the gauge */}
+                      <div
+                        className="absolute text-sm font-bold text-red-500"
+                        style={{
+                          left: "10px",
+                          bottom: "5px",
+                        }}
+                      >
+                        POOR
+                      </div>
+                      <div
+                        className="absolute text-sm font-bold text-green-500"
+                        style={{
+                          right: "10px",
+                          bottom: "5px",
+                        }}
+                      >
+                        GOOD
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* POOR and GOOD labels positioned towards the top */}
-                <div className="flex justify-between items-center mb-1 w-full max-w-[280px] mx-auto -mt-12">
-                  <div className="text-lg font-bold text-red-500">POOR</div>
-                  <div className="text-lg font-bold text-green-500">GOOD</div>
-                </div>
-
                 {/* Performance Meter Title Section */}
-                <div className="text-center mb-3 -mt-1">
+                <div className="text-center mb-3">
                   <div className="text-lg font-bold text-black mb-1">
                     Performance Meter
                   </div>
