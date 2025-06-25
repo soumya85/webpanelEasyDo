@@ -273,62 +273,62 @@ export default function PerformanceMeter() {
                       />
                     </svg>
 
-                    {/* Scale Values positioned centrally within each colored segment */}
+                    {/* Scale Values positioned within colored segments matching reference */}
                     <div className="absolute inset-0 pointer-events-none">
-                      {/* 20 - positioned centrally in the red section */}
+                      {/* 20 - positioned in the red section */}
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          left: "20%",
-                          top: "75%",
+                          left: "18%",
+                          top: "70%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
                         20
                       </div>
 
-                      {/* 40 - positioned centrally in the orange section */}
+                      {/* 40 - positioned in the orange section */}
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          left: "35%",
-                          top: "45%",
+                          left: "30%",
+                          top: "40%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
                         40
                       </div>
 
-                      {/* 60 - positioned centrally in the yellow section */}
+                      {/* 60 - positioned in the yellow section */}
                       <div
                         className="absolute text-sm font-bold text-gray-800"
                         style={{
                           left: "50%",
-                          top: "35%",
+                          top: "30%",
                           transform: "translate(-50%, -50%)",
                         }}
                       >
                         60
                       </div>
 
-                      {/* 80 - positioned centrally in the light green section */}
+                      {/* 80 - positioned in the light green section */}
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          right: "35%",
-                          top: "45%",
+                          right: "30%",
+                          top: "40%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
                         80
                       </div>
 
-                      {/* 100 - positioned centrally in the dark green section */}
+                      {/* 100 - positioned in the dark green section */}
                       <div
                         className="absolute text-sm font-bold text-white"
                         style={{
-                          right: "20%",
-                          top: "75%",
+                          right: "18%",
+                          top: "70%",
                           transform: "translate(50%, -50%)",
                         }}
                       >
