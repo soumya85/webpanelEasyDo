@@ -111,6 +111,14 @@ const getDefaultLayout = (): DashboardCard[] => [
     order: 3,
     size: "medium",
   },
+  {
+    id: "meter",
+    type: "meter",
+    title: "Performance Metrics",
+    section: "productivity",
+    order: 2,
+    size: "medium",
+  },
 ];
 
 export const useDashboardLayout = () => {
