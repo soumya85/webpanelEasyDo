@@ -207,7 +207,140 @@ export default function PerformanceMeter() {
             </div>
 
             {activeTab === "scores" ? (
-              <></>
+              <>
+                {/* Performance Meter Gauge */}
+                <div className="flex justify-center mb-8">
+                  <div className="relative w-full max-w-[280px] h-[158px]">
+                    {/* Half-circle meter SVG */}
+                    <div className="relative w-full h-full flex justify-center">
+                      <svg
+                        className="w-[280px] h-[140px] transform -rotate-90"
+                        width="281"
+                        height="140"
+                        viewBox="0 0 281 140"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        {/* Red segment (0-20) */}
+                        <path
+                          d="M0.169067 140C0.169066 110.435 9.52876 81.6288 26.9067 57.7101L72.2116 90.6261C61.7849 104.977 56.1691 122.261 56.1691 140H0.169067Z"
+                          fill="#FF4D0F"
+                        />
+                        {/* Orange segment (20-40) */}
+                        <path
+                          d="M26.9066 57.7101C44.2845 33.7914 68.7885 15.9882 96.9066 6.85208L114.212 60.1112C97.3407 65.5929 82.6383 76.2748 72.2116 90.626L26.9066 57.7101Z"
+                          fill="#FFA21F"
+                        />
+                        {/* Yellow segment (40-60) */}
+                        <path
+                          d="M96.9066 6.85208C125.025 -2.28403 155.313 -2.28403 183.431 6.85208L166.126 60.1113C149.256 54.6296 131.082 54.6296 114.212 60.1113L96.9066 6.85208Z"
+                          fill="#EDE96E"
+                        />
+                        {/* Light green segment (60-80) */}
+                        <path
+                          d="M183.431 6.85208C211.549 15.9882 236.053 33.7914 253.431 57.7101L208.126 90.626C197.7 76.2748 182.997 65.5929 166.126 60.1113L183.431 6.85208Z"
+                          fill="#A1CC47"
+                        />
+                        {/* Green segment (80-100) */}
+                        <path
+                          d="M253.431 57.7101C270.809 81.6288 280.169 110.435 280.169 140H224.169C224.169 122.261 218.553 104.977 208.126 90.6261L253.431 57.7101Z"
+                          fill="#7CC200"
+                        />
+                      </svg>
+
+                      {/* Score markers positioned around the arc */}
+                      <div className="absolute inset-0">
+                        {/* 20 marker */}
+                        <div
+                          className="absolute w-4 h-4 flex items-center justify-center transform -rotate-[63deg]"
+                          style={{ left: "17px", top: "65px" }}
+                        >
+                          <span className="text-xs font-bold text-[#817676] transform rotate-[63deg]">
+                            20
+                          </span>
+                        </div>
+
+                        {/* 40 marker */}
+                        <div
+                          className="absolute w-4 h-4 flex items-center justify-center transform -rotate-[26deg]"
+                          style={{ left: "78px", top: "11px" }}
+                        >
+                          <span className="text-xs font-bold text-[#817676] transform rotate-[26deg]">
+                            40
+                          </span>
+                        </div>
+
+                        {/* 60 marker */}
+                        <div
+                          className="absolute w-4 h-4 flex items-center justify-center transform rotate-[14deg]"
+                          style={{ left: "159px", top: "4px" }}
+                        >
+                          <span className="text-xs font-bold text-[#817676] transform -rotate-[14deg]">
+                            60
+                          </span>
+                        </div>
+
+                        {/* 80 marker */}
+                        <div
+                          className="absolute w-4 h-4 flex items-center justify-center transform rotate-[55deg]"
+                          style={{ left: "228px", top: "43px" }}
+                        >
+                          <span className="text-xs font-bold text-[#817676] transform -rotate-[55deg]">
+                            80
+                          </span>
+                        </div>
+
+                        {/* 100 marker */}
+                        <div
+                          className="absolute w-6 h-4 flex items-center justify-center transform rotate-[84deg]"
+                          style={{ left: "259px", top: "111px" }}
+                        >
+                          <span className="text-xs font-bold text-[#817676] transform -rotate-[84deg]">
+                            100
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Needle indicator - positioned based on current score */}
+                      <div
+                        className="absolute flex items-center justify-center"
+                        style={{
+                          left: "123px",
+                          top: "43px",
+                          transform: `rotate(${-90 + overallScore * 1.8}deg)`,
+                          transformOrigin: "16.5px 65px",
+                        }}
+                      >
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/30b45c204ed677586d6b44103dc49748e3541d73"
+                          alt="Score needle"
+                          className="w-[33px] h-[108px]"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Poor and Good labels */}
+                    <div className="absolute bottom-0 left-0 right-0 flex justify-between px-2">
+                      <span className="text-sm font-black text-[#FF4D0F] uppercase tracking-wider">
+                        POOR
+                      </span>
+                      <span className="text-sm font-black text-[#7CC200] uppercase tracking-wider">
+                        GOOD
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Current Score Display */}
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-red-500 mb-2">
+                    {overallScore}%
+                  </div>
+                  <div className="text-lg font-semibold text-gray-700">
+                    Overall Performance Score
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 {/* Donut Chart for Weightage */}
