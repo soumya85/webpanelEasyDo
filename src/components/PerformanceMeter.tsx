@@ -348,7 +348,7 @@ export default function PerformanceMeter() {
                           bottom: "5px",
                         }}
                       >
-                        Poor
+                        POOR
                       </div>
                       <div
                         className="absolute text-sm font-bold text-green-500"
@@ -357,7 +357,7 @@ export default function PerformanceMeter() {
                           bottom: "5px",
                         }}
                       >
-                        Good
+                        GOOD
                       </div>
                     </div>
                   </div>
