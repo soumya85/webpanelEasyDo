@@ -241,81 +241,75 @@ export default function PerformanceMeter() {
           </div>
 
           {/* Performance Categories Bar Chart */}
-          <div className="flex-1 min-h-[120px]">
-            <h3 className="text-center text-xs font-semibold text-gray-700 mb-2">
+          <div className="flex-1 min-h-[140px]">
+            <h3 className="text-center text-xs font-semibold text-gray-700 mb-3">
               Category Breakdown
             </h3>
 
-            {/* Custom Bar Chart with Grid */}
-            <div className="relative w-full h-24 bg-white border border-gray-200 rounded">
+            {/* Custom Bar Chart with Grid - Exact match to screenshot */}
+            <div className="relative w-full h-28 bg-white border border-gray-300">
               {/* Grid lines */}
               <div className="absolute inset-0">
-                {/* Horizontal grid lines */}
+                {/* Horizontal grid lines - every 20% */}
                 {[0, 20, 40, 60, 80, 100].map((value) => (
                   <div
                     key={value}
-                    className="absolute w-full border-t border-gray-100"
+                    className="absolute w-full border-t border-gray-200"
                     style={{ bottom: `${value}%` }}
                   />
                 ))}
 
-                {/* Vertical grid lines */}
+                {/* Vertical grid lines - between each category */}
                 {performanceData.map((_, index) => (
                   <div
                     key={index}
-                    className="absolute h-full border-l border-gray-100"
+                    className="absolute h-full border-l border-gray-200"
                     style={{
-                      left: `${(index / performanceData.length) * 100}%`,
+                      left: `${((index + 1) / performanceData.length) * 100}%`,
                     }}
                   />
                 ))}
-                <div className="absolute h-full border-r border-gray-100 right-0" />
               </div>
 
-              {/* Bars */}
-              <div className="absolute inset-0 flex items-end justify-around px-2 pb-1">
+              {/* Bars and Labels */}
+              <div className="absolute inset-0 flex">
                 {performanceData.map((item, index) => (
-                  <div key={index} className="flex flex-col items-center w-8">
-                    {/* Percentage label on top */}
-                    {item.percentage > 0 && (
-                      <div
-                        className="text-xs font-bold text-white bg-gray-800 px-1 rounded mb-1 relative z-10"
-                        style={{
-                          marginBottom: `${item.percentage * 0.6}px`,
-                        }}
-                      >
-                        {item.percentage}%
-                      </div>
-                    )}
+                  <div
+                    key={index}
+                    className="relative flex-1 flex flex-col items-center justify-end pb-1"
+                  >
+                    {/* Percentage label */}
+                    <div
+                      className="absolute text-xs font-bold text-white bg-black px-1.5 py-0.5 z-10"
+                      style={{
+                        bottom: `${Math.max(item.percentage, 8)}%`,
+                        transform: "translateY(50%)",
+                      }}
+                    >
+                      {item.percentage}%
+                    </div>
 
                     {/* Bar */}
                     <div
-                      className="w-6 transition-all duration-300 ease-out"
+                      className="w-12 mx-auto"
                       style={{
                         height: `${item.percentage}%`,
                         backgroundColor: getBarColor(
                           item.category,
                           item.percentage,
                         ),
-                        minHeight: item.percentage === 0 ? "0px" : "4px",
+                        minHeight: "0px",
                       }}
                     />
-
-                    {/* Zero percentage label */}
-                    {item.percentage === 0 && (
-                      <div className="text-xs font-bold text-gray-600 mt-1">
-                        0%
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Category labels */}
-            <div className="flex justify-around mt-2 px-2">
+            <div className="flex mt-2">
               {performanceData.map((item, index) => (
-                <div key={index} className="text-center w-8">
+                <div key={index} className="flex-1 text-center px-1">
                   <div className="text-xs text-gray-700 font-medium leading-tight">
                     {item.category}
                   </div>
