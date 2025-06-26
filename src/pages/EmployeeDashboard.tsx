@@ -3,6 +3,12 @@ import { useState } from "react";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import PerformanceMeter from "@/components/PerformanceMeter";
 import { AttendanceReportModal } from "@/components/AttendanceReportModal";
+import { SalesRegisterModal } from "@/components/SalesRegisterModal";
+import { ApprovalsModal } from "@/components/ApprovalsModal";
+import { OperationalExpensesModal } from "@/components/OperationalExpensesModal";
+import { SalaryStatementModal } from "@/components/SalaryStatementModal";
+import { EmployeePerformanceRatingModal } from "@/components/EmployeePerformanceRatingModal";
+import { TaskReportModal } from "@/components/TaskReportModal";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
@@ -74,6 +80,18 @@ export default function EmployeeDashboard() {
   const [isReportsModalOpen, setIsReportsModalOpen] = useState(false);
   const [isAttendanceReportModalOpen, setIsAttendanceReportModalOpen] =
     useState(false);
+  const [isSalesRegisterModalOpen, setIsSalesRegisterModalOpen] =
+    useState(false);
+  const [isApprovalsModalOpen, setIsApprovalsModalOpen] = useState(false);
+  const [isOperationalExpensesModalOpen, setIsOperationalExpensesModalOpen] =
+    useState(false);
+  const [isSalaryStatementModalOpen, setIsSalaryStatementModalOpen] =
+    useState(false);
+  const [
+    isEmployeePerformanceRatingModalOpen,
+    setIsEmployeePerformanceRatingModalOpen,
+  ] = useState(false);
+  const [isTaskReportModalOpen, setIsTaskReportModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
@@ -5220,7 +5238,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Sales Register */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsSalesRegisterModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5242,7 +5266,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Approvals */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsApprovalsModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5262,7 +5292,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Operational Expenses */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsOperationalExpensesModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5284,7 +5320,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Salary Statement */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsSalaryStatementModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5306,7 +5348,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Employee Performance Rating */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsEmployeePerformanceRatingModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5328,7 +5376,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Task Report */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsTaskReportModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5368,6 +5422,66 @@ export default function EmployeeDashboard() {
         onClose={() => setIsAttendanceReportModalOpen(false)}
         onBackToReports={() => {
           setIsAttendanceReportModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Sales Register Modal */}
+      <SalesRegisterModal
+        open={isSalesRegisterModalOpen}
+        onClose={() => setIsSalesRegisterModalOpen(false)}
+        onBackToReports={() => {
+          setIsSalesRegisterModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Approvals Modal */}
+      <ApprovalsModal
+        open={isApprovalsModalOpen}
+        onClose={() => setIsApprovalsModalOpen(false)}
+        onBackToReports={() => {
+          setIsApprovalsModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Operational Expenses Modal */}
+      <OperationalExpensesModal
+        open={isOperationalExpensesModalOpen}
+        onClose={() => setIsOperationalExpensesModalOpen(false)}
+        onBackToReports={() => {
+          setIsOperationalExpensesModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Salary Statement Modal */}
+      <SalaryStatementModal
+        open={isSalaryStatementModalOpen}
+        onClose={() => setIsSalaryStatementModalOpen(false)}
+        onBackToReports={() => {
+          setIsSalaryStatementModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Employee Performance Rating Modal */}
+      <EmployeePerformanceRatingModal
+        open={isEmployeePerformanceRatingModalOpen}
+        onClose={() => setIsEmployeePerformanceRatingModalOpen(false)}
+        onBackToReports={() => {
+          setIsEmployeePerformanceRatingModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Task Report Modal */}
+      <TaskReportModal
+        open={isTaskReportModalOpen}
+        onClose={() => setIsTaskReportModalOpen(false)}
+        onBackToReports={() => {
+          setIsTaskReportModalOpen(false);
           setIsReportsModalOpen(true);
         }}
       />
