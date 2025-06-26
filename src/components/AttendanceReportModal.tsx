@@ -210,7 +210,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
           </div>
 
           {/* Selection Card */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-4 shadow-md">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               Selection
             </h3>
@@ -240,7 +240,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-4 shadow-md">
               <div className="flex justify-between items-center">
                 <span className="text-gray-700 font-medium">
                   Your Attendance Score
@@ -271,7 +271,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">Present</span>
                 <span className="text-gray-900 font-semibold">26</span>
@@ -295,7 +295,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
             </div>
 
             {/* Pie Chart */}
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               <div className="flex items-center justify-center gap-8">
                 <div className="w-40 h-40">
                   <ResponsiveContainer width="100%" height="100%">
@@ -327,7 +327,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
             </h3>
             <p className="text-sm text-gray-600">01-Apr-2025 to 25-Jun-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">Earned</span>
                 <span className="text-gray-900 font-semibold">
@@ -365,7 +365,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">
                   Total working time
@@ -401,7 +401,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">Total Days</span>
                 <span className="text-gray-900 font-semibold">31</span>
@@ -443,7 +443,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
               ))}
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               <h4 className="font-semibold text-gray-900 mb-2">
                 Wednesday (10:15 AM to 07:15 PM)
               </h4>
@@ -467,7 +467,7 @@ export const AttendanceReportModal: React.FC<AttendanceReportModalProps> = ({
               Export for (Soumyadeep Goswami)
             </p>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               {/* Table Header */}
               <div className="grid grid-cols-3 gap-4 py-2 border-b border-gray-300 mb-3">
                 <span className="text-sm font-semibold text-gray-900">Day</span>
