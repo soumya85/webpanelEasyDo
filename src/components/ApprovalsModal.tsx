@@ -230,44 +230,89 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-              <div className="flex justify-between">
-                <span className="text-gray-700 font-medium">
-                  Average Time For Approved
-                </span>
-                <span className="text-gray-900 font-semibold">47 Mins</span>
+            <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <div className="text-gray-700 font-medium">Average</div>
+                  <div className="text-gray-700 font-medium">Time For</div>
+                  <div className="text-gray-700 font-medium">Approved</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-gray-900 font-semibold">47 Mins</div>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-700 font-medium">
-                  Last Month Total
-                </span>
-                <span className="text-gray-900 font-semibold">3</span>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <div className="text-gray-700 font-medium">Last</div>
+                  <div className="text-gray-700 font-medium">Month</div>
+                  <div className="text-gray-700 font-medium">Total</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-gray-900 font-semibold">3</div>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-700 font-medium">
-                  Highest Sent Approval Category
-                </span>
-                <span className="text-gray-900 font-semibold">
-                  Leave request, Punchin approval
-                </span>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <div className="text-gray-700 font-medium">Highest</div>
+                  <div className="text-gray-700 font-medium">Sent</div>
+                  <div className="text-gray-700 font-medium">Approval</div>
+                  <div className="text-gray-700 font-medium">Category</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-gray-900 font-semibold">
+                    Leave request,Punchin
+                  </div>
+                  <div className="text-gray-900 font-semibold">approval</div>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-700 font-medium">
-                  Lowest Sent Approval Category
-                </span>
-                <span className="text-gray-900 font-semibold">
-                  General request, Advance salary, Travel expense, Operational
-                  expense, Vendor quotation, Contract approval, Release payment,
-                  Overtime request
-                </span>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <div className="text-gray-700 font-medium">Lowest</div>
+                  <div className="text-gray-700 font-medium">Sent</div>
+                  <div className="text-gray-700 font-medium">Approval</div>
+                  <div className="text-gray-700 font-medium">Category</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-gray-900 font-semibold">General</div>
+                  <div className="text-gray-900 font-semibold">
+                    request,Advance
+                  </div>
+                  <div className="text-gray-900 font-semibold">
+                    salary,Travel
+                  </div>
+                  <div className="text-gray-900 font-semibold">
+                    expense,Operational
+                  </div>
+                  <div className="text-gray-900 font-semibold">
+                    expense,Vendor
+                  </div>
+                  <div className="text-gray-900 font-semibold">
+                    quotation,Contract
+                  </div>
+                  <div className="text-gray-900 font-semibold">
+                    approval,Release
+                  </div>
+                  <div className="text-gray-900 font-semibold">
+                    payment,Overtime
+                  </div>
+                  <div className="text-gray-900 font-semibold">request</div>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-700 font-medium">
-                  Compare To Last Period
-                </span>
-                <span className="text-gray-900 font-semibold">
-                  33.33% (decrease)
-                </span>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <div className="text-gray-700 font-medium">Compare</div>
+                  <div className="text-gray-700 font-medium">To Last</div>
+                  <div className="text-gray-700 font-medium">Period</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-gray-900 font-semibold">
+                    33.33% (decrease)
+                  </div>
+                </div>
               </div>
             </div>
           </div>
