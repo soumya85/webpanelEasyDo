@@ -5266,7 +5266,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Approvals */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsApprovalsModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5286,7 +5292,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Operational Expenses */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsOperationalExpensesModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5308,7 +5320,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Salary Statement */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsSalaryStatementModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5330,7 +5348,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Employee Performance Rating */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsEmployeePerformanceRatingModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
@@ -5352,7 +5376,13 @@ export default function EmployeeDashboard() {
               </div>
 
               {/* Task Report */}
-              <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+              <div
+                className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors"
+                onClick={() => {
+                  setIsReportsModalOpen(false);
+                  setIsTaskReportModalOpen(true);
+                }}
+              >
                 <div className="w-8 h-8 text-blue-500">
                   <svg
                     className="w-full h-full"
