@@ -5435,6 +5435,56 @@ export default function EmployeeDashboard() {
           setIsReportsModalOpen(true);
         }}
       />
+
+      {/* Approvals Modal */}
+      <ApprovalsModal
+        open={isApprovalsModalOpen}
+        onClose={() => setIsApprovalsModalOpen(false)}
+        onBackToReports={() => {
+          setIsApprovalsModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Operational Expenses Modal */}
+      <OperationalExpensesModal
+        open={isOperationalExpensesModalOpen}
+        onClose={() => setIsOperationalExpensesModalOpen(false)}
+        onBackToReports={() => {
+          setIsOperationalExpensesModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Salary Statement Modal */}
+      <SalaryStatementModal
+        open={isSalaryStatementModalOpen}
+        onClose={() => setIsSalaryStatementModalOpen(false)}
+        onBackToReports={() => {
+          setIsSalaryStatementModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Employee Performance Rating Modal */}
+      <EmployeePerformanceRatingModal
+        open={isEmployeePerformanceRatingModalOpen}
+        onClose={() => setIsEmployeePerformanceRatingModalOpen(false)}
+        onBackToReports={() => {
+          setIsEmployeePerformanceRatingModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Task Report Modal */}
+      <TaskReportModal
+        open={isTaskReportModalOpen}
+        onClose={() => setIsTaskReportModalOpen(false)}
+        onBackToReports={() => {
+          setIsTaskReportModalOpen(false);
+          setIsReportsModalOpen(true);
+        }}
+      />
     </div>
   );
 }
