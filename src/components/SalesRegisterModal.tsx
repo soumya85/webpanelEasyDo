@@ -115,7 +115,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
           </div>
 
           {/* Selection Card */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-4 shadow-md">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               Selection
             </h3>
@@ -141,7 +141,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">Total Sales</span>
                 <span className="text-gray-900 font-semibold">0</span>
@@ -165,7 +165,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
             </div>
 
             {/* Bar Chart */}
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
@@ -223,7 +223,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 min-h-[120px]">
+            <div className="bg-gray-50 rounded-lg p-4 min-h-[120px] shadow-md">
               {/* Empty state - ready for client data */}
             </div>
           </div>
@@ -238,7 +238,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 min-h-[120px]">
+            <div className="bg-gray-50 rounded-lg p-4 min-h-[120px] shadow-md">
               {/* Empty state - ready for sales person data */}
             </div>
           </div>
@@ -253,7 +253,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">Average Sales</span>
                 <span className="text-gray-900 font-semibold">0.00</span>
@@ -277,7 +277,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">Total Clients</span>
                 <span className="text-gray-900 font-semibold">0</span>
@@ -306,7 +306,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
               <span className="text-lg font-bold text-gray-900">MAY</span>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               {/* Table Header */}
               <div className="grid grid-cols-3 gap-4 py-3 border-b border-gray-300 mb-4">
                 <span className="text-sm font-semibold text-gray-900 text-center">
