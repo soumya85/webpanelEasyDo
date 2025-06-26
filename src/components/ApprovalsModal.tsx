@@ -128,7 +128,7 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
           </div>
 
           {/* Selection Card */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-4 shadow-md">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               Selection
             </h3>
@@ -158,7 +158,7 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">
                   Total Approval Requests
@@ -180,7 +180,7 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
             </div>
 
             {/* Approval Status Chart */}
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               <div className="flex items-center gap-8">
                 <div className="h-64 w-64">
                   <ResponsiveContainer width="100%" height="100%">
@@ -230,7 +230,7 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-4 shadow-md">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <div className="text-gray-700 font-medium">Average</div>
@@ -326,7 +326,7 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
               <span className="text-lg font-bold text-gray-900">MAY</span>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3 shadow-md">
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">
                   General Expense
@@ -388,7 +388,7 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
             </div>
 
             {/* Category Chart */}
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               <div className="flex items-center gap-8">
                 <div className="h-64 w-64">
                   <ResponsiveContainer width="100%" height="100%">
@@ -435,7 +435,7 @@ export const ApprovalsModal: React.FC<ApprovalsModalProps> = ({
             </div>
             <p className="text-sm text-gray-600">01-May-2025 to 31-May-2025</p>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 shadow-md">
               {/* Table Header */}
               <div className="grid grid-cols-3 gap-4 py-3 border-b border-gray-300 mb-4">
                 <span className="text-sm font-semibold text-gray-900 text-center">
