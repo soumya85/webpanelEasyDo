@@ -3521,7 +3521,12 @@ const Chats: React.FC = () => {
       {/* DESKTOP LAYOUT - WhatsApp Style (Only for large screens 1024px+) */}
       <div className="hidden lg:block h-full bg-white">
         {/* Fixed Chat Subheader */}
-        <div className="fixed top-[86px] left-0 right-0 z-20 w-full p-4 border-b border-gray-200 bg-white">
+        <div
+          className={cn(
+            "fixed top-[86px] right-0 z-20 p-4 border-b border-gray-200 bg-white transition-all duration-300",
+            isExpanded ? "left-[280px]" : "left-[103px]",
+          )}
+        >
           {/* Single Row: Title, Search, Filters, and Task Cards */}
           <div className="flex items-center gap-4">
             {/* Chats Title */}
