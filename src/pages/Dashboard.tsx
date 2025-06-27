@@ -90,9 +90,12 @@ const Dashboard: React.FC = () => {
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-2 px-6 pt-2">
-        <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
-          Good morning, Bhaskar! 👋
-        </h1>
+        <MultilingualText
+          as="h1"
+          className="text-xl font-bold text-[#283C50] flex items-center gap-2"
+        >
+          {getGreeting()}, Bhaskar! 👋
+        </MultilingualText>
         {/* Layout Controls moved to header row */}
         <LayoutControls onReset={resetLayout} />
       </div>
