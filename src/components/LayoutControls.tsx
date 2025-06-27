@@ -2,6 +2,8 @@ import React from "react";
 import { RotateCcw, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 
 interface LayoutControlsProps {
   onReset: () => void;
