@@ -147,7 +147,7 @@ const OTPVerification = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            VERIFY OTP
+            {t("verifyOTP")}
           </Button>
 
           {/* Back to Login */}
@@ -156,7 +156,7 @@ const OTPVerification = () => {
               onClick={() => navigate("/login")}
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
-              ← Back to login
+              {t("backToLogin")}
             </button>
           </div>
         </div>
