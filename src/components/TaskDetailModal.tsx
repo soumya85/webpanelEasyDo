@@ -64,6 +64,7 @@ export function TaskDetailModal({
   onOpenChange,
   onUpdateTask,
 }: TaskDetailModalProps) {
+  const { t } = useTranslation();
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(task?.title || "");
   const [description, setDescription] = useState(task?.description || "");
