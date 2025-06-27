@@ -84,6 +84,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
+      {/* Language Test Component - temporary for testing */}
+      <div className="px-6 pt-2">
+        <LanguageTest />
+      </div>
+
       {/* Header Section */}
       <div className="flex justify-between items-center mb-2 px-6 pt-2">
         <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
