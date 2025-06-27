@@ -21,6 +21,8 @@ export const ChatCard: React.FC<ChatCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
+
   // Function to generate initials from name
   const getInitials = (name: string): string => {
     // Remove special characters and extra text like phone numbers
@@ -39,7 +41,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 1,
       name: "Amulya Kumar Kar",
-      message: "🏃 Attendance notification sent",
+      message: `🏃 ${t("attendanceNotificationSent")}`,
       time: "5m ago",
       avatar: "/placeholder.svg",
       unreadCount: 3,
@@ -47,7 +49,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 2,
       name: "Suresh Gupta",
-      message: "Meeting scheduled for 3 PM today",
+      message: t("meetingScheduledFor3PM"),
       time: "12m ago",
       avatar: "/placeholder.svg",
       unreadCount: 1,
@@ -55,7 +57,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 3,
       name: "Priya Sharma",
-      message: "Can you review the document?",
+      message: t("canYouReviewDocument"),
       time: "25m ago",
       avatar: "/placeholder.svg",
       unreadCount: 2,
@@ -63,7 +65,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 4,
       name: "Rajesh Kumar",
-      message: "Thanks for the update!",
+      message: t("thanksForUpdate"),
       time: "45m ago",
       avatar: "/placeholder.svg",
       unreadCount: 1,
@@ -71,7 +73,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 5,
       name: "QA Testing Team",
-      message: "New build is ready for testing",
+      message: t("newBuildReadyForTesting"),
       time: "1h ago",
       avatar: "/placeholder.svg",
       isGroup: true,
@@ -80,7 +82,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 6,
       name: "Anjali Verma",
-      message: "Sure, I'll send it by EOD",
+      message: t("sureIllSendByEOD"),
       time: "1h ago",
       avatar: "/placeholder.svg",
       unreadCount: 1,
@@ -88,7 +90,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 7,
       name: "Vikram Singh",
-      message: "Let's schedule a call tomorrow",
+      message: t("letsScheduleCallTomorrow"),
       time: "2h ago",
       avatar: "/placeholder.svg",
       unreadCount: 2,
@@ -96,7 +98,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 8,
       name: "Neha Patel",
-      message: "The files are ready for download",
+      message: t("filesReadyForDownload"),
       time: "3h ago",
       avatar: "/placeholder.svg",
       unreadCount: 4,
@@ -104,7 +106,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 9,
       name: "Marketing Team",
-      message: "Campaign results are looking great!",
+      message: t("campaignResultsLookingGreat"),
       time: "4h ago",
       avatar: "/placeholder.svg",
       isGroup: true,
@@ -113,7 +115,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 10,
       name: "Deepak Joshi",
-      message: "Great work on the presentation!",
+      message: t("greatWorkOnPresentation"),
       time: "5h ago",
       avatar: "/placeholder.svg",
       unreadCount: 2,
@@ -121,7 +123,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 11,
       name: "Kavita Rao",
-      message: "Documents uploaded to shared folder",
+      message: t("documentsUploadedToSharedFolder"),
       time: "6h ago",
       avatar: "/placeholder.svg",
       unreadCount: 1,
@@ -129,8 +131,8 @@ export const ChatCard: React.FC<ChatCardProps> = ({
     {
       id: 12,
       name: "Aditi Kapoor",
-      message: "Budget approval received",
-      time: "Yesterday",
+      message: t("budgetApprovalReceived"),
+      time: t("yesterday"),
       avatar: "/placeholder.svg",
       unreadCount: 1,
     },
