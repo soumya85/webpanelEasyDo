@@ -3519,12 +3519,9 @@ const Chats: React.FC = () => {
   return (
     <>
       {/* DESKTOP LAYOUT - WhatsApp Style (Only for large screens 1024px+) */}
-      <div
-        className="hidden lg:flex flex-col h-full bg-white"
-        style={{ height: "calc(100vh - 86px)" }}
-      >
-        {/* Full Width Controls Section */}
-        <div className="w-full p-4 border-b border-gray-200 bg-white">
+      <div className="hidden lg:block h-full bg-white">
+        {/* Fixed Chat Subheader */}
+        <div className="fixed top-[86px] left-0 right-0 z-20 w-full p-4 border-b border-gray-200 bg-white">
           {/* Single Row: Title, Search, Filters, and Task Cards */}
           <div className="flex items-center gap-4">
             {/* Chats Title */}
