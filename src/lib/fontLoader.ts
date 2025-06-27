@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * Font loading utility to ensure all fonts are properly loaded before use
  */
