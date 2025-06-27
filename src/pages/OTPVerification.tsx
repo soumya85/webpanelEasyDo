@@ -22,6 +22,7 @@ const OTPVerification = () => {
   const [language, setLanguage] = useState<Language>("English");
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
+  const [hasResent, setHasResent] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -68,6 +69,7 @@ const OTPVerification = () => {
       // Reset timer
       setTimeLeft(60);
       setCanResend(false);
+      setHasResent(true);
       // In a real app, this would trigger API call to resend OTP
     }
   };
@@ -118,8 +120,8 @@ const OTPVerification = () => {
             <h1 className="text-xl font-semibold text-gray-900">
               {t("enterOTP")}
             </h1>
-            <p className="text-sm text-gray-500">
-              {t("sentTo")} {maskedNumber}
+            <p className="text-sm text-gray-700">
+              {hasResent ? t("resendTo") : t("sentTo")} {maskedNumber}
             </p>
           </div>
 

@@ -13,6 +13,7 @@ import {
 import { Globe, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
+import { countryCodes, popularCountryCodes } from "@/data/countryCodes";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
@@ -26,6 +27,17 @@ const Login = () => {
   // Get translation function for current language
   const t = (key: keyof typeof translations.English) =>
     translations[language][key];
+
+  // Find current country for display
+  const currentCountry = countryCodes.find(
+    (country) => country.dialCode === countryCode,
+  ) ||
+    popularCountryCodes.find((country) => country.dialCode === countryCode) || {
+      flag: "🇮🇳",
+      dialCode: "+91",
+      name: "India",
+      code: "IN",
+    };
 
   const handleSendOTP = () => {
     if (isFormValid) {
@@ -76,7 +88,7 @@ const Login = () => {
         </Select>
       </div>
 
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-lg">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
           {/* Logo */}
           <div className="flex justify-center">
@@ -99,14 +111,40 @@ const Login = () => {
             <div className="flex gap-3">
               {/* Country Code Selector */}
               <Select value={countryCode} onValueChange={setCountryCode}>
-                <SelectTrigger className="w-20 border-gray-200">
-                  <SelectValue />
+                <SelectTrigger
+                  className="w-[140px] border-gray-200 text-sm [&>span]:overflow-visible [&>span]:text-ellipsis-none"
+                  style={{ textOverflow: "clip" }}
+                >
+                  <SelectValue>
+                    {currentCountry.flag} {currentCountry.dialCode}
+                  </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="+91">🇮🇳 +91</SelectItem>
-                  <SelectItem value="+1">🇺🇸 +1</SelectItem>
-                  <SelectItem value="+44">🇬🇧 +44</SelectItem>
-                  <SelectItem value="+971">🇦🇪 +971</SelectItem>
+                <SelectContent className="max-h-[300px] overflow-y-auto w-[280px]">
+                  {/* Popular Countries Section */}
+                  <div className="px-2 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Popular
+                  </div>
+                  {popularCountryCodes.map((country) => (
+                    <SelectItem
+                      key={`popular-${country.code}`}
+                      value={country.dialCode}
+                    >
+                      {country.flag} {country.dialCode}
+                    </SelectItem>
+                  ))}
+
+                  {/* Separator */}
+                  <div className="border-t my-1" />
+
+                  {/* All Countries Section */}
+                  <div className="px-2 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    All Countries
+                  </div>
+                  {countryCodes.map((country) => (
+                    <SelectItem key={country.code} value={country.dialCode}>
+                      {country.flag} {country.dialCode} - {country.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 
