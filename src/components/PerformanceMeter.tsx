@@ -22,14 +22,17 @@ export default function PerformanceMeter() {
   const [activeTab, setActiveTab] = useState<"scores" | "weightage">("scores");
   const overallScore = 25.5;
 
+  // Import translations
+  const { t } = useTranslation();
+
   // Performance categories data
   const performanceData = [
-    { category: "Management Review", percentage: 0 },
-    { category: "Attendance", percentage: 98 },
-    { category: "On Time Tasks", percentage: 16 },
-    { category: "Task Performance", percentage: 60 },
-    { category: "Attend Meeting", percentage: 0 },
-    { category: "Sales Lead", percentage: 0 },
+    { category: t("managementReview"), percentage: 0 },
+    { category: t("attendance"), percentage: 98 },
+    { category: t("onTimeTasks"), percentage: 16 },
+    { category: t("taskPerformance"), percentage: 60 },
+    { category: t("attendMeeting"), percentage: 0 },
+    { category: t("salesLead"), percentage: 0 },
   ];
 
   // Chart configuration for the ChartContainer
