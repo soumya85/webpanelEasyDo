@@ -57,7 +57,7 @@ declare global {
 
 /**
  * Initialize the global language system
- * This should be called once on app startup
+ * This should be called once on app startup and can be called on navigation
  */
 export const initializeGlobalLanguage = (): void => {
   // Get saved language or default to English
@@ -76,6 +76,22 @@ export const initializeGlobalLanguage = (): void => {
   // Set global window property
   window.siteLang = currentLang;
 
+  // Ensure the global change function is always available
+  if (!window.changeLanguage) {
+    setupGlobalChangeLanguage();
+  }
+
+  setupGlobalChangeLanguage();
+
+  console.log(
+    `🌍 Global language system initialized with language: ${currentLang}`,
+  );
+};
+
+/**
+ * Setup the global change language function
+ */
+const setupGlobalChangeLanguage = (): void => {
   // Create global change language function without page reload
   window.changeLanguage = (lang: GlobalLanguage) => {
     // Validate the new language
@@ -103,14 +119,12 @@ export const initializeGlobalLanguage = (): void => {
       }),
     );
 
-    // Force re-render of all dynamic text elements
+    // Force re-render of all dynamic content
     // This updates content without page reload
     updateDynamicContent(lang);
-  };
 
-  console.log(
-    `🌍 Global language system initialized with language: ${currentLang}`,
-  );
+    console.log(`🌐 Language changed to: ${lang}`);
+  };
 };
 
 /**
