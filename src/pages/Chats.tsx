@@ -3024,77 +3024,78 @@ const MobileChatList: React.FC<{
       {/* Scrollable Chat List Container */}
       <div className="pt-[400px] h-screen overflow-y-auto">
         <div className="bg-white min-h-full">
-        {chatItems.length > 0 ? (
-          chatItems.map((chat) => (
-            <div
-              key={chat.id}
-              onClick={() => onChatSelect(chat)}
-              className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
-            >
-              <div className="relative">
-                <Avatar className="h-12 w-12 flex-shrink-0">
-                  <AvatarImage src={chat.avatar} alt={chat.name} />
-                  <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
-                    {getInitials(chat.name)}
-                  </AvatarFallback>
-                </Avatar>
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-semibold text-gray-900 text-[16px] truncate">
-                    {chat.name}
-                  </h3>
+          {chatItems.length > 0 ? (
+            chatItems.map((chat) => (
+              <div
+                key={chat.id}
+                onClick={() => onChatSelect(chat)}
+                className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+              >
+                <div className="relative">
+                  <Avatar className="h-12 w-12 flex-shrink-0">
+                    <AvatarImage src={chat.avatar} alt={chat.name} />
+                    <AvatarFallback className="bg-gray-300 text-gray-700 font-semibold">
+                      {getInitials(chat.name)}
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
 
-                <div className="flex items-center gap-2 mb-2">
-                  {chat.isGroup && (
-                    <Badge
-                      variant="secondary"
-                      className="bg-black text-white text-[10px] px-2 py-0.5 rounded"
-                    >
-                      <ReactiveMultilingualText translationKey="groupChat" />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-semibold text-gray-900 text-[16px] truncate">
+                      {chat.name}
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-2 mb-2">
+                    {chat.isGroup && (
+                      <Badge
+                        variant="secondary"
+                        className="bg-black text-white text-[10px] px-2 py-0.5 rounded"
+                      >
+                        <ReactiveMultilingualText translationKey="groupChat" />
+                      </Badge>
+                    )}
+                    {chat.tags?.map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  <p className="text-[14px] text-gray-600 truncate">
+                    {chat.lastMessage}
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-end gap-2">
+                  <span className="text-[12px] text-gray-500 flex-shrink-0">
+                    {chat.timestamp}
+                  </span>
+                  {chat.unreadCount > 0 && (
+                    <Badge className="bg-blue-500 text-white min-w-[20px] h-5 rounded-full text-[11px] font-medium">
+                      {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
                     </Badge>
                   )}
-                  {chat.tags?.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
                 </div>
-
-                <p className="text-[14px] text-gray-600 truncate">
-                  {chat.lastMessage}
-                </p>
               </div>
-
-              <div className="flex flex-col items-end gap-2">
-                <span className="text-[12px] text-gray-500 flex-shrink-0">
-                  {chat.timestamp}
-                </span>
-                {chat.unreadCount > 0 && (
-                  <Badge className="bg-blue-500 text-white min-w-[20px] h-5 rounded-full text-[11px] font-medium">
-                    {chat.unreadCount > 999 ? "999+" : chat.unreadCount}
-                  </Badge>
-                )}
-              </div>
+            ))
+          ) : (
+            <div className="flex items-center justify-center py-8">
+              <p className="text-gray-500 text-center">
+                <ReactiveMultilingualText
+                  translationKey={
+                    searchQuery ? "noChatsFound" : "noChatsAvailable"
+                  }
+                />
+              </p>
             </div>
-          ))
-        ) : (
-          <div className="flex items-center justify-center py-8">
-            <p className="text-gray-500 text-center">
-              <ReactiveMultilingualText
-                translationKey={
-                  searchQuery ? "noChatsFound" : "noChatsAvailable"
-                }
-              />
-            </p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
