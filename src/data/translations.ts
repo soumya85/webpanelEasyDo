@@ -265,7 +265,7 @@ export const translations = {
     submit: "जमा करें",
     close: "बंद करें",
     open: "खोलें",
-    view: "देखे���",
+    view: "देखें",
     download: "डाउनलोड करें",
     upload: "अपलोड करें",
 
@@ -300,7 +300,7 @@ export const translations = {
     employeeId: "कर्मचारी आईडी",
     department: "विभाग",
     designation: "पदनाम",
-    joiningDate: "ज्���ाइनिंग की तारीख",
+    joiningDate: "ज्वाइनिंग की तारीख",
 
     // Forms
     firstName: "पहला नाम",
@@ -316,7 +316,7 @@ export const translations = {
     gender: "लिंग",
     male: "पुरुष",
     female: "महिला",
-    other: "अन्य",
+    other: "अन्���",
 
     // Greetings & Profile
     goodMorning: "सुप्रभात",
@@ -337,7 +337,7 @@ export const translations = {
 
     // Leave Management
     leave: "छुट्टी",
-    applyLeave: "छुट्टी के लिए आवेदन करें",
+    applyLeave: "छुट्टी के लिए आवे���न करें",
     leaveBalance: "छुट्टी का बैलेंस",
     leaveHistory: "छुट्टी का इतिहास",
     leaveType: "छुट्टी का प्रकार",
@@ -420,6 +420,23 @@ export const translations = {
     notes: "নোট",
     notice: "নোটিশ",
 
+    // Dashboard Cards
+    taskAtGlance: "কাজের এক নজরে",
+    meetingsThisWeek: "এই সপ্তাহের মিটিং",
+    pendingApprovals: "লম্বিত অনুমোদন",
+    personalNotes: "ব্যক্তিগত নোট",
+    teamChat: "টিম চ্যাট",
+    workStatus: "কাজের অবস্থা",
+    companyNotice: "কোম্পানির নোটিশ",
+    monthlyAttendance: "মাসিক উপস্থিতি",
+    salaryOverview: "বেতনের সংক্ষিপ্তসার",
+    performanceMetrics: "পারফরম্যান্স মেট্রিক্স",
+
+    // Section Titles
+    quickOverview: "দ্রুত পর্যালোচনা",
+    productivity: "উৎপাদনশীলতা",
+    informationHub: "তথ্য কেন্দ্র",
+
     // Common Actions
     save: "সংরক্ষণ",
     cancel: "বাতিল",
@@ -455,7 +472,7 @@ export const translations = {
     completed: "সম্পন্ন",
     inProgress: "চলমান",
     approved: "অনুমোদিত",
-    rejected: "প্রত্যাখ���যাত",
+    rejected: "প্রত্যাখ্যাত",
     draft: "খসড়া",
     published: "প্রকাশিত",
 
@@ -487,7 +504,7 @@ export const translations = {
     other: "অন্যান্য",
 
     // Greetings & Profile
-    goodMorning: "সুপ���রভাত",
+    goodMorning: "সুপ্রভাত",
     goodAfternoon: "শুভ দুপুর",
     goodEvening: "শুভ সন্ধ্যা",
     authorityLevel: "কর্তৃত্বের স্তর",
@@ -640,7 +657,7 @@ export const translations = {
 
     // Forms
     firstName: "మొదటి పేరు",
-    lastName: "చివరి పేర���",
+    lastName: "చివరి పేరు",
     email: "ఇమెయిల్",
     phone: "ఫోన్",
     address: "చిరునామా",
@@ -666,7 +683,7 @@ export const translations = {
     // Messages
     successMessage: "ఆపరేషన్ విజయవంతంగా పూర్తైంది",
     errorMessage: "ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
-    confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన��ని తొలగించాలనుకుంటున్నారా?",
+    confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన్ని తొలగించాలనుకుంటున్నారా?",
     confirmLogout: "మీరు ఖచ్చితంగా లాగౌట్ చేయాలనుకుంటున్నారా?",
     dataUpdated: "డేటా విజయవంతంగా అప్‌డేట్ చేయబడింది",
     dataSaved: "డేటా విజయవంతంగా సేవ్ చేయబడింది",
@@ -683,8 +700,8 @@ export const translations = {
     maternityLeave: "మాతృత్వ సెలవు",
     paternityLeave: "పితృత్వ సెలవు",
     startDate: "ప్రారంభ తేదీ",
-    endDate: "ముగింపు తేదీ",
-    reason: "క���రణం",
+    endDate: "ముగింప��� తేదీ",
+    reason: "కారణం",
 
     // Documents
     documents: "పత్రాలు",
@@ -731,7 +748,7 @@ export const translations = {
     privacyPolicy: "தனியுரிமைக் கொள்கை",
     sendOTP: "OTP அனுப்பவும்",
     enterOTP: "6-இலக்க OTP ஐ உள்ளிடவும்",
-    sentTo: "அனுப்பப்பட்டது",
+    sentTo: "அனுப்பப்பட���டது",
     resendTo: "மீண்டும் அனுப்பவும்",
     resendOTP: "OTP ஐ மீண்டும் அனுப்பவும்",
     resendOTPIn: "OTP ஐ மீண்டும் அனுப்பவும்",
@@ -754,7 +771,7 @@ export const translations = {
     resendOTPIn: "OTP دوبارہ ��ھیجیں",
     seconds: "سیکنڈ میں",
     verifyOTP: "OTP کی تصدیق کریں",
-    backToLogin: "← لاگ ان پر واپس جائیں",
+    backToLogin: "← ��اگ ان پر واپس جائیں",
   },
   Gujarati: {
     welcomeToEasyDo: "EasyDo માં તમારું સ્વાગત છે",
@@ -798,7 +815,7 @@ export const translations = {
     and: "ଏବଂ",
     privacyPolicy: "ଗୋପନୀୟତା ନୀତି",
     sendOTP: "OTP ପଠାନ୍ତୁ",
-    enterOTP: "6-ଅଙ୍କର OTP ପ୍ରବେଶ କରନ୍ତୁ",
+    enterOTP: "6-ଅଙ୍��ର OTP ପ୍ରବେଶ କରନ୍ତୁ",
     sentTo: "ପଠାଯାଇଛି",
     resendTo: "ପୁନଃ ପଠାନ୍ତୁ",
     resendOTP: "OTP ପୁନଃ ପଠାନ୍ତୁ",
