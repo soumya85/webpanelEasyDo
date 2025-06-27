@@ -2101,7 +2101,8 @@ const FullProfile: React.FC<FullProfileProps> = ({ employee, onBack }) => {
 
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                Authority Level {employee.authorityLevel}
+                <ReactiveMultilingualText translationKey="authorityLevel" />{" "}
+                {employee.authorityLevel}
               </span>
               <div className="flex items-center gap-1 text-sm text-gray-600">
                 <span>OA Score : 0</span>
