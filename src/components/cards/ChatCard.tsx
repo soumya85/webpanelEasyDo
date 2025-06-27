@@ -217,7 +217,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
               borderWidth: "1px",
             }}
           >
-            View All Chats
+            {t("viewAllChats")}
           </Button>
         </div>
       </div>
