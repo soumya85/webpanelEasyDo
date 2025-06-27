@@ -37,13 +37,24 @@ export const useTranslation = () => {
   );
 
   useEffect(() => {
+    // Ensure we have the latest language on mount
+    const initialLang = getCurrentLanguage();
+    if (initialLang !== currentLang) {
+      setCurrentLang(initialLang);
+    }
+
     // Listen for global language changes
     const handleLanguageChange = (event: CustomEvent) => {
+      console.log(
+        "🔄 useTranslation received language change:",
+        event.detail.language,
+      );
       setCurrentLang(event.detail.language);
     };
 
     const handleStorageChange = () => {
       const newLang = getCurrentLanguage();
+      console.log("🔄 useTranslation storage change detected:", newLang);
       setCurrentLang(newLang);
     };
 
