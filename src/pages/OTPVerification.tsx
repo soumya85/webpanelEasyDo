@@ -97,9 +97,11 @@ const OTPVerification = () => {
           {/* Heading */}
           <div className="text-center space-y-2">
             <h1 className="text-xl font-semibold text-gray-900">
-              Enter the 6-digit OTP
+              {t("enterOTP")}
             </h1>
-            <p className="text-sm text-gray-500">Sent to {maskedNumber}</p>
+            <p className="text-sm text-gray-500">
+              {t("sentTo")} {maskedNumber}
+            </p>
           </div>
 
           {/* OTP Input */}
