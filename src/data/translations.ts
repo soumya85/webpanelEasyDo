@@ -661,7 +661,7 @@ export const translations = {
     active: "सक्रिय",
     inactive: "निष्क्रिय",
     pending: "लंबित",
-    completed: "पूर्ण",
+    completed: "पू���्ण",
     inProgress: "प्रगति ���ें",
     approved: "अनुमोदित",
     rejected: "अस्वीकृत",
@@ -910,7 +910,7 @@ export const translations = {
     inProgress: "प्रगति में",
     review: "समीक्षा",
     done: "पूर्ण",
-    blocked: "अवरुद्ध",
+    blocked: "अव��ुद्ध",
     cancelled: "रद्द",
 
     // Priority Options
@@ -977,7 +977,7 @@ export const translations = {
     groupName: "समूह नाम",
     enterEmployeeName: "कर्मचारी नाम ���र्ज करें",
     announcementTitle: "घोषणा शीर्षक",
-    writeAnnouncementDetails: "घोषणा विवरण लिखें",
+    writeAnnouncementDetails: "घोषणा विवर��� लिखें",
     reviewerName: "समीक्षक नाम",
     reviewTags: "टीमवर्क, गुणव��्ता, डिलीवरी",
     writeBriefSummary: "समीक्षा का संक्षिप्त सारांश लिखें",
@@ -1001,7 +1001,7 @@ export const translations = {
 
     // Time periods
     lastMonth: "पिछला महीना",
-    lastQuarter: "पिछली तिमाही",
+    lastQuarter: "पिछली तिमाह��",
     lastYear: "पिछला साल",
 
     // Employee data
@@ -1034,7 +1034,7 @@ export const translations = {
     easyDoLogo: "EasyDo लोगो",
     easyDoIcon: "EasyDo आइकन",
     allBranches: "सभी शाखाएं",
-    otherCompany: "अन्य कंपनी",
+    otherCompany: "अन��य कंपनी",
     taskLogo: "कार्य लोगो",
     checkmarkIcon: "चेकमार्क आइकन",
     addItem: "आइटम जोड़ें",
@@ -1096,7 +1096,7 @@ export const translations = {
 
     // Status labels
     submitted: "जमा किया गया",
-    noPendingApprovalAvailable: "कोई लंबित अनुमोदन उपलब्ध नहीं",
+    noPendingApprovalAvailable: "क��ई लंबित अनुमोदन उपलब्ध नहीं",
     noDeniedApprovalAvailable: "कोई अस्वीकृत अनुमोदन उपलब्ध नहीं",
 
     // Common placeholders and hints
@@ -1128,7 +1128,7 @@ export const translations = {
     bySigningUp: "সাইন আপ করে, আপনি আমাদের",
     termsAndConditions: "নিয়ম ও শর্তাবলী",
     and: "এবং",
-    privacyPolicy: "গ���পনীয়তা নীতি",
+    privacyPolicy: "গ���পনীয়তা নী���ি",
     sendOTP: "OTP পাঠান",
     enterOTP: "৬-ড���জিটের OTP প্রবে��� করু��",
     sentTo: "পাঠানো হয়েছে",
@@ -1140,7 +1140,7 @@ export const translations = {
     backToLogin: "← লগইনে ফিরে যান",
 
     // Navigation & Layout
-    dashboard: "ড্য��শবোর্ড",
+    dashboard: "সংক্ষিপ্ত বিবরণ",
     chats: "চ্যাট",
     todaysSchedule: "আজকের সময়সূচী",
     employeeDashboard: "ক��্মচারী ড্যাশবোর্ড",
@@ -1178,7 +1178,7 @@ export const translations = {
     pendingApprovals: "লম্বিত অনুমোদন",
     personalNotes: "ব্যক্তিগত নোট",
     teamChat: "টিম চ্যাট",
-    workStatus: "কাজের অবস���থা",
+    workStatus: "কাজের অবস����থা",
     companyNotice: "কোম্পানির নোটিশ",
     monthlyAttendance: "মাসি�� উপস্থিতি",
     salaryOverview: "বেতনের সংক্ষিপ্তসার",
@@ -1237,7 +1237,7 @@ export const translations = {
     employeeId: "কর্মচারী আইডি",
     department: "বিভাগ",
     designation: "পদবী",
-    joiningDate: "যোগদানের তারিখ",
+    joiningDate: "যোগদ��নের তারিখ",
 
     // Forms
     firstName: "প্রথম নাম",
@@ -1268,7 +1268,7 @@ export const translations = {
 
     // Messages
     successMessage: "অপারেশন সফলভাবে সম্পন্ন হয়েছে",
-    errorMessage: "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    errorMessage: "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা ���রুন।",
     confirmDelete: "আপনি কি নিশ্চিত যে এই আইটেমটি মুছতে চান?",
     confirmLogout: "আপ���ি কি নিশ্চিত যে লগআউট করতে চান?",
     dataUpdated: "ডেটা সফলভাবে আপডেট হয়��ছে",
@@ -1284,7 +1284,7 @@ export const translations = {
     sickLeave: "অসুস্থতার ছুটি",
     earnedLeave: "অর্জিত ছুটি",
     maternityLeave: "মাতৃত্বকালীন ছুটি",
-    paternityLeave: "পিতৃত্বকালীন ছুটি",
+    paternityLeave: "পিতৃত্বক���লীন ছুটি",
     startDate: "শুরুর তারিখ",
     endDate: "শেষ তারিখ",
     reason: "কারণ",
@@ -1316,7 +1316,7 @@ export const translations = {
     present: "উপস্থিত",
     absent: "অনুপস্থিত",
     sunday: "রব���বার",
-    holiday: "ছুটির দি��",
+    holiday: "ছুটি��� দি��",
     late: "���েরি",
     redFlag: "লাল পতাকা",
     viewDetailedReport: "��িস্তারিত রিপোর্ট দেখুন",
@@ -1337,7 +1337,7 @@ export const translations = {
     overdue: "বিলম্বিত",
     dueToday: "আজ দেয়",
     pendingReview: "পর্যালোচনা মুলতুবি",
-    viewAllMyTasks: "আমার সব কাজ দেখুন",
+    viewAllMyTasks: "আ��ার সব কাজ দেখুন",
     viewDelegatedTasks: "অর্পিত ��াজ দেখুন",
     myTask: "আমার কাজ",
     delegatedTask: "অর���পিত কাজ",
@@ -1372,7 +1372,7 @@ export const translations = {
     enhancedDragDropInstructions:
       "উন্নত ড্রাগ & ড্রপ + প্রস্থ রিসাইজ নির্দেশাবলী",
     hoverOverCardInstructions:
-      "ড্রাগ হ্যান্ডেল (টপ সেন্টার) এবং প্রস্থ রিসাইজ হ্যান্ডেল (ডান প্রান্ত) দেখতে যেকোনো কার্ডের উপর হোভার করুন",
+      "ড্রাগ হ্যান্ডেল (টপ সেন্টার) এবং প্রস্থ রিসাইজ হ্যান্ডেল (ডান প্রান্ত) দেখতে যেকোনো কার্ডের উ���র হোভার করুন",
     dragCardsBetweenSections:
       "পুনর্গঠনের জন্য সেকশনের মধ্যে বা সেকশনের ভিতরে কার্ড ড্র��গ করুন - প্রস্থ সংরক্ষিত থ��কে",
     dropCardsOnPurpleZones:
@@ -1409,7 +1409,7 @@ export const translations = {
     officeHours: "অফিস সময়",
     punchStatus: "পাঞ্চ স্ট্যাটাস",
     notPunchedIn: "পাঞ্চ ইন করা হয়নি",
-    punchedIn: "পাঞ্চ ইন করা হয়েছে",
+    punchedIn: "পাঞ্চ ���ন করা হয়েছে",
     punchIn: "পাঞ্চ ইন",
     punchActionsTracked: "উপস্থিতির জন্য পাঞ্চ ক্রিয়া ট্র্যাক করা হয়",
     attendanceIsLocked: "উপস্থিতি লক হয়ে গেছে @11:31 AM।",
@@ -1573,7 +1573,7 @@ export const translations = {
     welcome: "స్వాగతం",
     lastMessage: "చివరి సందేశం",
     yesterday: "నిన్న",
-    executiveDirector: "కార్యనిర్వాహక డైరెక్టర్",
+    executiveDirector: "కార్యన��ర్వాహక డైరెక్టర్",
     headOffice: "ప్రధాన కార్యాలయం",
 
     // Messages
@@ -1613,7 +1613,7 @@ export const translations = {
     title: "శీర్షిక",
     description: "వివరణ",
     publishDate: "ప్రచురణ తేదీ",
-    priority: "ప్రాధాన్యత",
+    priority: "ప్రాధాన్య���",
     high: "అధిక",
     medium: "మధ్యమ",
     low: "తక్కువ",
@@ -1686,7 +1686,7 @@ export const translations = {
     dragCardsBetweenSections:
       "పునర్వ్యవస్థ��కరణ కోసం విభాగాల మధ్య లేదా విభాగాలలో కార్డులను ��్రాగ్ చేయండి - వెడల్పు భద్రపరచబడుతుంది",
     dropCardsOnPurpleZones:
-      "విభాగంలో కొత్త వరుసలు సృష్టించడానికి ఊదా జోన్‌లపై కార్డులను డ్రాప్ చేయండి",
+      "విభాగంలో కొత్త వరుసలు సృష్టించడాన��కి ఊదా జోన్‌లపై కార్డులను డ్రాప్ చేయండి",
     dropCardsOnGreenZones:
       "విభాగం చివరిలో కొత్త వరుసలను జోడించడానికి ఆకుప���్చ జోన్‌లపై కార్డులను డ్రాప్ చేయండి",
     dragBlueResizeHandle:
@@ -1696,7 +1696,7 @@ export const translations = {
     layoutSavedAutomatically:
       "మీ లేఅవుట్ మరియు కార్డ్ పరిమాణ���లు స్వయంచాలకంగా సేవ్ చేయబడతాయి మరియు సెషన్‌లలో కొనసాగుతాయి",
     useResetLayoutButton:
-      'డిఫాల్ట్ అమరికను పునరుద్ధరించడానికి "రీసెట్ లేఅవుట్" బటన్��ను ఉపయోగించండి',
+      'డిఫాల్ట్ అమరికను పున���ుద్ధరించడానికి "రీసెట్ లేఅవుట్" బటన్��ను ఉపయోగించండి',
 
     // Chat related translations
     newBadge: "కొత్త",
@@ -1711,7 +1711,7 @@ export const translations = {
   },
   Marathi: {
     welcomeToEasyDo: "EasyDo मध्ये आपले स्वागत आहे",
-    mobileNumberPlaceholder: "मोबाईल नंबर",
+    mobileNumberPlaceholder: "मोबा���ल नंबर",
     bySigningUp: "साइन अप करून, तुम्ही आमच्या",
     termsAndConditions: "अटी व शर्ती",
     and: "आणि",
@@ -1733,7 +1733,7 @@ export const translations = {
     updateTeamOnProjectTimeline: "प्रकल्प वेळापत्रकावर टीम अपडेट",
     addedHoursAgo: "{hours} तासांपूर्वी जोडले",
     addedYesterday: "काल जोडले",
-    addedDaysAgo: "{days} दिवसांपूर्वी जोडले",
+    addedDaysAgo: "{days} दिवसांपूर्वी जो���ले",
     addNewNote: "नवीन नोट जोडा",
 
     // Drag & Drop Instructions
@@ -1787,7 +1787,7 @@ export const translations = {
     // Common Placeholders
     selectPriority: "অগ্রাধিকার নির্বাচন করুন",
     selectBranch: "শাখা নির্বাচন করুন",
-    selectContact: "যোগাযোগ নি��্বাচন করুন",
+    selectContact: "য��গাযোগ নি��্বাচন করুন",
     enterName: "নাম প্রবেশ করুন",
     phoneNumber: "ফোন নম্বর",
     enterEmail: "ইমেইল প্রবেশ করুন",
@@ -1819,7 +1819,7 @@ export const translations = {
     typeAMessage: "একটি বার্তা টাইপ করুন",
     typeHere: "এখানে টাইপ করুন...",
     searchOrStartNewChat: "চ্যাট খুঁজুন বা নতুন শুরু করুন",
-    searchEmployee: "���র্মচারী, শাখা বা পদ খুঁজুন",
+    searchEmployee: "���র্মচারী, শাখা বা পদ খুঁ��ুন",
     searchBranchOrLocation: "শাখা বা অবস্থান খুঁজুন",
     searchEmployeeLeave: "কর্মচারী, শাখা বা কারণ খুঁজুন",
     searchNotes: "নোট খুঁজুন...",
@@ -1840,7 +1840,7 @@ export const translations = {
     email: "ইমেইল",
     phone: "ফোন",
     groupName: "গ্রুপের নাম",
-    enterEmployeeName: "কর্মচারীর নাম প্রবেশ করুন",
+    enterEmployeeName: "কর্মচারী�� নাম প্রবেশ করুন",
     announcementTitle: "ঘোষ��ার শিরোনাম",
     writeAnnouncementDetails: "ঘোষণার বিবরণ লিখুন",
     reviewerName: "পর্যালোচকের নাম",
@@ -1919,7 +1919,7 @@ export const translations = {
     bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள்",
     termsAndConditions: "விதிமுறைகள் & நிபந்தனைகள்",
     and: "மற்றும்",
-    privacyPolicy: "தனியுரிமை��் கொள்கை",
+    privacyPolicy: "��னியுரிமை��் கொள்கை",
     sendOTP: "OTP அனுப்பவும்",
     enterOTP: "6-இலக்க OTP ஐ உள்ளிடவும்",
     sentTo: "அனுப்பப்பட்டது",
@@ -1938,7 +1938,7 @@ export const translations = {
     addedHoursAgo: "{hours} மணி நே���ங்களுக்கு முன்பு சேர��க்கப்பட���டது",
     addedYesterday: "நேற்று சேர்க்கப்பட்டது",
     addedDaysAgo: "{days} நாட்களுக்கு முன்பு சேர்க்கப்பட்டது",
-    addNewNote: "புதிய குறிப்பு சேர்க்கவும்",
+    addNewNote: "புதிய குறிப்பு ச��ர்க்கவும்",
 
     // Drag & Drop Instructions
     enhancedDragDropInstructions:
@@ -1950,7 +1950,7 @@ export const translations = {
     dropCardsOnPurpleZones:
       "பிரிவில் புதிய வரிசைகளை உருவாக்க ஊதா பகுதிகளில் அட்டைகளை விடவும்",
     dropCardsOnGreenZones:
-      "பிரிவின் இறுதியில் புதிய வரிசைகளை சேர்க்க பச்சை பகுதிகளில் அட்டைகளை விடவும்",
+      "பிரிவின் இறுதியில் புதிய வரிசைக��ை சேர்க்க பச்சை பகுதிகளில் அட்டைகளை விடவும்",
     dragBlueResizeHandle:
       "அட்டையின் அகலத்தை சரிசெய்ய வலது பக்கத்தில் உள்ள நீல மறுஅளவு கைப்பிடிய�� இழுக்கவும் (சிறிய, நடுத்தர, பெரிய, கூடுதல் பெரிய)",
     sameRowEqualHeight:
@@ -1996,7 +1996,7 @@ export const translations = {
     dropCardsOnPurpleZones:
       "سیکشن کے اندر نئی قطاریں بنانے کے لیے جامنی زونز پر کارڈز ڈراپ کریں",
     dropCardsOnGreenZones:
-      "سیکشن کے آخر میں نئی قطاریں شا��ل کرنے کے لیے سبز زونز پر کارڈز ڈراپ کریں",
+      "سیکشن کے آخر میں نئی قطاریں شا��ل کرنے کے لیے سبز ز��نز پر کارڈز ڈراپ کریں",
     dragBlueResizeHandle:
       "کارڈ کی چوڑائی ایڈجسٹ کرنے کے لیے دائیں طرف نیلے ری سائز ہینڈل کو ڈر��گ کریں (چھوٹا، درمیانہ، بڑا، بہت بڑا)",
     sameRowEqualHeight:
@@ -2056,7 +2056,7 @@ export const translations = {
   Kannada: {
     welcomeToEasyDo: "EasyDo ಗೆ ನಿಮಗೆ ಸ್ವಾಗತ",
     mobileNumberPlaceholder: "ಮೊಬೈಲ್ ನಂಬರ್",
-    bySigningUp: "ಸೈನ��� ಅಪ್ ಮಾಡುವ ಮೂಲಕ, ನೀವು ನಮ್ಮ",
+    bySigningUp: "ಸೈನ���� ಅಪ್ ಮಾಡುವ ಮೂಲಕ, ನೀವು ನಮ್ಮ",
     termsAndConditions: "ನಿಯಮಗಳು ಮತ್ತು ಷರತ��ತುಗಳು",
     and: "ಮತ್ತು",
     privacyPolicy: "ಗೌಪ್ಯತೆ ನೀತಿ",
@@ -2075,7 +2075,7 @@ export const translations = {
     followUpOnClientProposal: "ಕ್ಲ���ಂಟ್ ಪ್ರಸ್ತಾವನೆಯ ಮೇಲೆ ಫಾಲೋ ಅಪ್",
     reviewQ4BudgetAllocation: "Q4 ಬಜೆಟ್ ಹಂಚಿಕೆ ಪರಿಶೀಲನೆ",
     updateTeamOnProjectTimeline: "ಪ್ರಾಜೆಕ್ಟ್ ಟೈಮ್‌ಲೈನ್‌ನಲ್ಲಿ ತಂಡದ ಅಪ್‌ಡೇಟ್",
-    addedHoursAgo: "{hours} ಗಂಟೆಗಳ ಹಿಂದೆ ಸೇರಿಸಲಾಗಿದೆ",
+    addedHoursAgo: "{hours} ಗಂಟೆಗಳ ��ಿಂದೆ ಸೇರಿಸಲಾಗಿದೆ",
     addedYesterday: "ನಿನ್ನೆ ಸೇ��ಿಸಲಾಗಿದೆ",
     addedDaysAgo: "{days} ದಿನಗಳ ಹಿಂದೆ ಸೇರಿಸಲಾಗಿದೆ",
     addNewNote: "ಹೊಸ ಟಿಪ್ಪಣಿ ಸೇರಿಸಿ",
