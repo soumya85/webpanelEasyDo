@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { cn } from "@/lib/utils";
 import {
   BarChart,
