@@ -274,11 +274,11 @@ export const translations = {
     email: "ईमेल",
     phone: "फोन",
     address: "पता",
-    city: "शह��",
+    city: "शहर",
     state: "राज्य",
     country: "देश",
     zipCode: "पिन कोड",
-    dateOfBirth: "जन्म तिथि",
+    dateOfBirth: "जन��म तिथि",
     gender: "लिंग",
     male: "पुरुष",
     female: "महिला",
@@ -321,7 +321,7 @@ export const translations = {
     uploadDocument: "दस्तावेज़ अपलोड करें",
     documentName: "दस्तावेज़ का नाम",
     documentType: "दस्तावेज़ का प्रकार",
-    uploadDate: "अपलोड की तारी��",
+    uploadDate: "अपलो��� की तारीख",
     fileSize: "फ़ाइल का आकार",
 
     // Announcements
@@ -350,14 +350,14 @@ export const translations = {
     resendOTP: "OTP পুনরায় পাঠান",
     resendOTPIn: "OTP পুনরায় পাঠান",
     seconds: "সেকেন্ডে",
-    verifyOTP: "OTP যাচাই করুন",
+    verifyOTP: "OTP য��চাই করুন",
     backToLogin: "← লগইনে ফিরে যান",
 
     // Navigation & Layout
     dashboard: "ড্যাশবোর্ড",
     chats: "চ্যাট",
     todaysSchedule: "আজকের সময়সূচী",
-    employeeDashboard: "কর্মচ��রী ড্যাশবোর্ড",
+    employeeDashboard: "কর্মচারী ড্যাশবোর্ড",
     companyDashboard: "কোম্পানি ড্যাশবোর্ড",
     tasks: "কাজ",
     meet: "মিট",
@@ -419,7 +419,7 @@ export const translations = {
     inactive: "নিষ্ক্রিয়",
     pending: "মুলতুবি",
     completed: "সম্পন্ন",
-    inProgress: "চলমান",
+    inProgress: "চলম��ন",
     approved: "অনুমোদিত",
     rejected: "প্রত্যাখ্যাত",
     draft: "খসড়া",
@@ -451,6 +451,15 @@ export const translations = {
     male: "পুরুষ",
     female: "মহিলা",
     other: "অন্যান্য",
+
+    // Greetings & Profile
+    goodMorning: "সুপ্রভাত",
+    goodAfternoon: "শুভ দুপুর",
+    goodEvening: "শুভ সন্ধ্যা",
+    authorityLevel: "কর্তৃত্বের স্তর",
+    welcome: "স্বাগতম",
+    lastMessage: "শেষ বার্তা",
+    yesterday: "গতকাল",
 
     // Messages
     successMessage: "অপারেশন সফলভাবে সম্পন্ন হয়েছে",
@@ -498,7 +507,7 @@ export const translations = {
     // Authentication
     welcomeToEasyDo: "EasyDo కు స్వాగతం",
     mobileNumberPlaceholder: "మొబైల్ నంబర్",
-    bySigningUp: "సైన్ అప్ చేయడం ద్వారా, మీరు మా",
+    bySigningUp: "సైన్ అప్ చేయడ��� ద్వారా, మీరు మా",
     termsAndConditions: "నిబంధనలు & షరతులు",
     and: "మరియు",
     privacyPolicy: "గోప్యతా విధానం",
@@ -533,7 +542,7 @@ export const translations = {
     allBranch: "అన్ని శాఖలు",
 
     // Dashboard
-    quickStats: "వేగవం���మైన గణాంకాలు",
+    quickStats: "వేగవంతమైన గణాంకాలు",
     recentActivity: "ఇటీవలి కార్యకలాపాలు",
     upcomingTasks: "రాబోయే కార్యాలు",
     notifications: "నోటిఫికేషన్లు",
@@ -560,7 +569,7 @@ export const translations = {
     open: "తెరవండి",
     view: "చూడండి",
     download: "డౌన్‌లోడ్ చేయండి",
-    upload: "అప్‌లోడ్ చేయండి",
+    upload: "అ���్‌లోడ్ చేయండి",
 
     // Time & Date
     today: "ఈరోజు",
@@ -596,7 +605,7 @@ export const translations = {
     joiningDate: "చేరిన తేదీ",
 
     // Forms
-    firstName: "మొదట�� పేరు",
+    firstName: "మొదటి పేరు",
     lastName: "చివరి పేరు",
     email: "ఇమెయిల్",
     phone: "ఫోన్",
@@ -616,7 +625,7 @@ export const translations = {
     errorMessage: "ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
     confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన్ని తొలగించాలనుకుంటున్నారా?",
     confirmLogout: "మీరు ఖచ్చితంగా లాగౌట్ చేయాలనుకుంటున్నారా?",
-    dataUpdated: "డేటా విజయవంతంగా అప్‌డేట్ చేయబడింద���",
+    dataUpdated: "డేటా విజయవంతంగా అప్‌డేట్ చేయబడింది",
     dataSaved: "డేటా విజయవంతంగా సేవ్ చేయబడింది",
 
     // Leave Management
@@ -666,14 +675,14 @@ export const translations = {
     resendTo: "पुन्हा पाठवा",
     resendOTP: "OTP पुन्हा प��ठवा",
     resendOTPIn: "OTP पुन्हा पाठवा",
-    seconds: "सेकंदात",
+    seconds: "सेकंद���त",
     verifyOTP: "OTP सत्यापित करा",
     backToLogin: "← लॉगिनवर परत जा",
   },
   Tamil: {
     welcomeToEasyDo: "EasyDo வில் உங்களை வரவேற்கிறோம்",
     mobileNumberPlaceholder: "மொபைல் எண்",
-    bySigningUp: "பதிவு செய்வதன் மூலம், நீங���கள் எங்கள்",
+    bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள்",
     termsAndConditions: "விதிமுறைகள் & நிபந்தனைகள்",
     and: "மற்றும்",
     privacyPolicy: "தனியுரிமைக் கொள்கை",
@@ -696,7 +705,7 @@ export const translations = {
     privacyPolicy: "رازداری کی پالیسی",
     sendOTP: "OTP بھیجیں",
     enterOTP: "6-ہندسے کا OTP درج کریں",
-    sentTo: "ب��یجا گیا",
+    sentTo: "بھیجا گیا",
     resendTo: "دوبارہ بھیجیں",
     resendOTP: "OTP دوبارہ بھیجیں",
     resendOTPIn: "OTP دوبارہ ��ھیجیں",
@@ -727,7 +736,7 @@ export const translations = {
     bySigningUp: "ಸೈನ್ ಅಪ್ ಮಾಡುವ ಮೂಲಕ, ನೀವು ನಮ್ಮ",
     termsAndConditions: "ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು",
     and: "ಮತ್ತು",
-    privacyPolicy: "ಗೌಪ್ಯತೆ ನ���ತಿ",
+    privacyPolicy: "ಗೌಪ್ಯತೆ ನೀತಿ",
     sendOTP: "OTP ಕಳುಹಿಸಿ",
     enterOTP: "6-ಅಂಕಿಯ OTP ಅನ್ನು ನಮೂದಿಸಿ",
     sentTo: "ಕಳುಹಿಸಲಾಗಿದೆ",
