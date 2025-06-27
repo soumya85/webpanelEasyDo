@@ -189,7 +189,7 @@ export function TaskDetailModal({
           <div className="flex flex-col md:flex-row gap-8 border-b pb-6">
             <div className="flex-1 flex flex-col gap-2">
               <label className="block text-xs font-semibold text-gray-500">
-                Assignee
+                <MultilingualText>{t("assignee")}</MultilingualText>
               </label>
               {editMode ? (
                 <div className="flex items-center gap-2">
@@ -201,14 +201,16 @@ export function TaskDetailModal({
                 </div>
               ) : (
                 <Badge className="bg-blue-100 text-blue-700 flex items-center gap-1 text-base px-3 py-1.5">
-                  <User className="w-5 h-5" />{" "}
-                  {task.assignee?.name || "Unassigned"}
+                  <User className="w-5 h-5" />
+                  <MultilingualText>
+                    {task.assignee?.name || t("unassigned")}
+                  </MultilingualText>
                 </Badge>
               )}
             </div>
             <div className="flex-1 flex flex-col gap-2">
               <label className="block text-xs font-semibold text-gray-500">
-                Start Date
+                <MultilingualText>{t("startDate")}</MultilingualText>
               </label>
               {editMode ? (
                 <Popover>
@@ -218,9 +220,11 @@ export function TaskDetailModal({
                       className="w-full justify-start text-left font-normal"
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
-                      {startDate
-                        ? format(startDate, "yyyy-MM-dd")
-                        : "Pick a date"}
+                      <MultilingualText>
+                        {startDate
+                          ? format(startDate, "yyyy-MM-dd")
+                          : t("pickADate")}
+                      </MultilingualText>
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
@@ -242,7 +246,7 @@ export function TaskDetailModal({
             </div>
             <div className="flex-1 flex flex-col gap-2">
               <label className="block text-xs font-semibold text-gray-500">
-                Due Date
+                <MultilingualText>{t("dueDate")}</MultilingualText>
               </label>
               {editMode ? (
                 <Popover>
@@ -252,7 +256,11 @@ export function TaskDetailModal({
                       className="w-full justify-start text-left font-normal"
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
-                      {dueDate ? format(dueDate, "yyyy-MM-dd") : "Pick a date"}
+                      <MultilingualText>
+                        {dueDate
+                          ? format(dueDate, "yyyy-MM-dd")
+                          : t("pickADate")}
+                      </MultilingualText>
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
