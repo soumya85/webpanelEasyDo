@@ -23,6 +23,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface SalesRegisterModalProps {
   open: boolean;
