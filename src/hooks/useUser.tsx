@@ -5,6 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import { useNavigate } from "react-router-dom";
 
 export interface User {
   id: string;
@@ -50,6 +51,7 @@ const USER_STORAGE_KEY = "user-profile-data";
 const AUTH_STORAGE_KEY = "user-authenticated";
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     // Check if user is authenticated from localStorage
     if (typeof window !== "undefined") {
@@ -126,8 +128,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
         console.error("Error clearing data from localStorage:", error);
       }
     }
-    // Redirect to login page
-    window.location.href = "/login";
+    // Redirect to login page using React Router
+    navigate("/login");
   };
 
   // Auto-authenticate when user successfully completes OTP verification
