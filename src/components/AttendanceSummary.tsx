@@ -1,5 +1,6 @@
 import { ChevronRight, ChevronUp, User, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { cn } from "@/lib/utils";
