@@ -30,25 +30,49 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6">
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-2xl shadow-xl p-8 space-y-8">
+        <div className="bg-white p-8 space-y-8">
           {/* Logo */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 via-purple-500 to-teal-400 rounded-2xl flex items-center justify-center transform rotate-12">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F835d6476d6ca471fa2644819d467705d%2F25940a1f71ae4cef84e1ed5bdab9a460?format=webp&width=800"
-                  alt="EasyDo Logo"
-                  className="h-10 w-10 brightness-0 invert"
+          <div className="flex justify-center mb-8">
+            <div className="w-16 h-16 flex items-center justify-center">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M32 8C18.7452 8 8 18.7452 8 32C8 45.2548 18.7452 56 32 56C45.2548 56 56 45.2548 56 32C56 18.7452 45.2548 8 32 8Z"
+                  fill="url(#gradient1)"
                 />
-              </div>
+                <path
+                  d="M24 24L40 32L24 40V24Z"
+                  fill="white"
+                  fillOpacity="0.9"
+                />
+                <defs>
+                  <linearGradient
+                    id="gradient1"
+                    x1="8"
+                    y1="8"
+                    x2="56"
+                    y2="56"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#60A5FA" />
+                    <stop offset="0.5" stopColor="#3B82F6" />
+                    <stop offset="1" stopColor="#06B6D4" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
           </div>
 
           {/* Welcome Heading */}
-          <div className="text-center space-y-2">
-            <h1 className="text-2xl font-bold text-gray-900">
+          <div className="text-center space-y-3 mb-8">
+            <h1 className="text-2xl font-semibold text-gray-900">
               Welcome to EasyDo
             </h1>
             <p className="text-gray-600 text-sm">
@@ -61,7 +85,7 @@ const Login = () => {
             <div className="space-y-2">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700"
               >
                 Email
               </label>
@@ -71,7 +95,7 @@ const Login = () => {
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 transition-colors"
+                className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
 
@@ -80,22 +104,22 @@ const Login = () => {
               onClick={handleSubmit}
               disabled={!isFormValid}
               className={cn(
-                "w-full h-12 text-base font-semibold rounded-lg transition-all duration-200",
+                "w-full h-12 text-white font-semibold rounded-lg transition-all duration-200 border-0",
                 isFormValid
-                  ? "bg-gradient-to-r from-purple-500 to-teal-400 hover:from-purple-600 hover:to-teal-500 text-white border-0"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed border-0",
+                  ? "bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 hover:from-blue-600 hover:via-purple-600 hover:to-cyan-500"
+                  : "bg-gray-300 cursor-not-allowed",
               )}
             >
               Submit
             </Button>
 
             {/* Login Link */}
-            <div className="text-center">
+            <div className="text-center py-2">
               <p className="text-sm text-gray-600">
                 Already have an account?{" "}
                 <button
                   onClick={() => navigate("/otp-verification")}
-                  className="text-blue-600 hover:text-blue-700 font-medium"
+                  className="text-gray-900 font-medium hover:underline"
                 >
                   Login
                 </button>
@@ -103,7 +127,7 @@ const Login = () => {
             </div>
 
             {/* Divider */}
-            <div className="relative">
+            <div className="relative py-4">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t border-gray-200" />
               </div>
@@ -118,9 +142,9 @@ const Login = () => {
             <Button
               onClick={handleGoogleLogin}
               variant="outline"
-              className="w-full h-12 border-gray-200 hover:bg-gray-50 transition-colors"
+              className="w-full h-12 border border-gray-200 bg-white hover:bg-gray-50 rounded-lg transition-colors"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
                     fill="#4285F4"
@@ -147,8 +171,8 @@ const Login = () => {
           </div>
 
           {/* Terms and Privacy */}
-          <div className="text-center space-y-1">
-            <p className="text-xs text-gray-500 leading-relaxed">
+          <div className="text-center pt-6">
+            <p className="text-xs text-gray-500 leading-relaxed max-w-sm mx-auto">
               By clicking "Submit", you agree to EasyDo's{" "}
               <a href="#" className="text-blue-600 hover:underline">
                 User Agreement
@@ -157,11 +181,9 @@ const Login = () => {
               <a href="#" className="text-blue-600 hover:underline">
                 Privacy Policy
               </a>
-              ,<br />
-              we prioritize your privacy and trust, guiding you through
-              innovative interactions while
-              <br />
-              safeguarding your personal information.
+              , we prioritize your privacy and trust, guiding you through
+              innovative interactions while safeguarding your personal
+              information.
             </p>
           </div>
         </div>
