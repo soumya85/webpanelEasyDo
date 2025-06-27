@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export default function WagesSummary() {
+  const { t } = useTranslation();
   const [isWagesDetailModalOpen, setIsWagesDetailModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"current" | "year" | "issued">(
     "current",
