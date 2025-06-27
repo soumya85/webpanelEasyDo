@@ -87,13 +87,7 @@ const Login = () => {
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
-      <LanguageSelector
-        value={language}
-        onValueChange={setLanguage}
-        position="absolute"
-        showGlobe={true}
-        size="md"
-      />
+      <LanguageSelector position="absolute" showGlobe={true} size="md" />
 
       <div className="w-full max-w-lg">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
