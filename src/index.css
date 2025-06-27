@@ -1,36 +1,23 @@
-/* Fonts are now loaded via HTML head for better performance and reliability */
+/* Fonts are loaded via Google Fonts in HTML head */
 
-/* Critical font rendering fix to prevent FOUT (Flash of Unstyled Text) */
+/* Optimized font rendering */
 * {
   font-variant-ligatures: normal;
   font-feature-settings: "kern" 1;
   text-rendering: optimizeLegibility;
-  font-display: swap;
 }
 
-/* Ensure consistent rendering during font loading */
-html {
-  font-display: swap;
-}
-
-/* Prevent invisible text during font load */
-.font-loading {
-  visibility: hidden;
-}
-
-.font-loaded {
-  visibility: visible;
-}
-
-/* Immediate font application for better UX */
+/* Ensure fonts display immediately */
+html,
 body {
-  font-display: swap !important;
+  font-display: swap;
 }
 
-/* Force immediate font application for multilingual content */
+/* Multilingual content styling */
 .text-multilingual {
-  font-display: swap !important;
-  font-synthesis: weight style !important;
+  font-display: swap;
+  font-synthesis: weight style;
+  text-rendering: optimizeLegibility;
 }
 
 @tailwind base;
