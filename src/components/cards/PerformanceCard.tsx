@@ -3,6 +3,7 @@ import { Trophy, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface PerformanceCardProps {
   id: string;
@@ -17,13 +18,17 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 rounded-lg bg-yellow-50">
           <Trophy className="w-5 h-5 text-yellow-600" />
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50]">My Performance</h3>
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          {t("myPerformance")}
+        </h3>
       </div>
 
       <div className="flex-1 flex flex-col">
@@ -39,13 +44,13 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
           </div>
           <div className="text-2xl font-bold text-[#4766E5] mb-1">4.4</div>
           <div className="text-xs text-gray-600">
-            Average over 23 task reviews
+            {t("averageOverTaskReviews").replace("{count}", "23")}
           </div>
         </div>
 
         <div className="text-center mb-4">
           <div className="text-sm text-green-600 font-semibold mb-1">
-            Nice, Keep it up! 💪
+            {t("niceKeepItUp")}
           </div>
         </div>
 
@@ -54,7 +59,7 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
             <Trophy className="w-6 h-6 text-yellow-600" />
           </div>
           <div className="text-xs font-semibold text-[#283C50]">
-            Employee of the Month
+            {t("employeeOfTheMonth")}
           </div>
           <div className="text-xs text-gray-500">June 2025</div>
         </div>
@@ -67,7 +72,7 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
             borderWidth: "1px",
           }}
         >
-          View Performance Details
+          {t("viewPerformanceDetails")}
         </Button>
       </div>
     </DashboardCard>

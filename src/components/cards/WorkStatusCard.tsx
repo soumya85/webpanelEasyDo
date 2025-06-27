@@ -4,6 +4,7 @@ import { Clock, AlertTriangle, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface WorkStatusCardProps {
   id: string;
@@ -18,8 +19,9 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [punchStatus, setPunchStatus] = useState("NOT PUNCHED IN");
+  const [punchStatus, setPunchStatus] = useState(t("notPunchedIn"));
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -39,7 +41,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
   };
 
   const handlePunchIn = () => {
-    setPunchStatus("PUNCHED IN");
+    setPunchStatus(t("punchedIn"));
   };
 
   return (
@@ -50,7 +52,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
             <Clock className="w-5 h-5 text-indigo-600" />
           </div>
           <h3 className="text-sm font-semibold text-[#283C50]">
-            My Daily Work Status
+            {t("myDailyWorkStatus")}
           </h3>
         </div>
 
@@ -60,7 +62,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
             <div className="flex items-center gap-2 mb-2">
               <Clock className="w-4 h-4 text-blue-600" />
               <span className="text-sm font-medium text-blue-800">
-                Office Hours
+                {t("officeHours")}
               </span>
             </div>
             <div className="text-sm text-blue-700">09:00 AM To 06:00 PM</div>
@@ -69,7 +71,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
           {/* Punch Status Section */}
           <div className="mb-3">
             <div className="text-sm font-medium text-gray-700 mb-2">
-              Punch Status
+              {t("punchStatus")}
             </div>
             <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-center">
               <div className="text-red-700 font-semibold">{punchStatus}</div>
@@ -77,18 +79,18 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
           </div>
 
           {/* Punch In Button */}
-          {punchStatus === "NOT PUNCHED IN" && (
+          {punchStatus === t("notPunchedIn") && (
             <Button
               onClick={handlePunchIn}
               className="w-full mb-3 bg-green-600 hover:bg-green-700 text-white font-medium py-3"
             >
               <Play className="w-4 h-4 mr-2" />
-              PUNCH IN
+              {t("punchIn")}
             </Button>
           )}
 
           <div className="text-xs text-gray-500 text-center mb-3">
-            Punch actions are tracked for attendance
+            {t("punchActionsTracked")}
           </div>
 
           {/* Warning Message */}
@@ -96,13 +98,8 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
             <div className="flex items-start gap-2 text-orange-700 text-sm">
               <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
               <div>
-                <span className="font-medium">
-                  Attendance is locked @11:31 AM.
-                </span>
-                <span className="block">
-                  For Punch-in, Click above try request for Approval, to yr
-                  Reporting Manager...
-                </span>
+                <span className="font-medium">{t("attendanceIsLocked")}</span>
+                <span className="block">{t("forPunchInClick")}</span>
               </div>
             </div>
           </div>
@@ -110,18 +107,17 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
           {/* Location Timeline Section */}
           <div className="mb-4">
             <div className="text-sm font-medium text-gray-700 mb-1">
-              Location Timeline
+              {t("locationTimeline")}
             </div>
             <div className="text-xs text-gray-500 mb-2">
-              (Tracked ONLY between Punch-in & Punch-out as per Mandate of the
-              company)
+              {t("trackedOnlyBetween")}
             </div>
           </div>
         </div>
 
         <div className="mt-auto">
           <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2">
-            Click Here For More Detail
+            {t("clickHereForMoreDetail")}
           </Button>
         </div>
       </div>
