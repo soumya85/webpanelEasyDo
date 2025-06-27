@@ -129,9 +129,14 @@
       sans-serif;
     font-feature-settings:
       "rlig" 1,
-      "calt" 1;
+      "calt" 1,
+      "kern" 1,
+      "liga" 1;
     font-variant-ligatures: normal;
     text-rendering: optimizeLegibility;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-synthesis: weight style small-caps;
   }
 
   html {
