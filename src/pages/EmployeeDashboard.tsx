@@ -3196,7 +3196,7 @@ export default function EmployeeDashboard() {
             {/* Total Amount Field */}
             <div className="space-y-2">
               <Input
-                placeholder="Total Amount"
+                placeholder={t("totalAmount")}
                 type="number"
                 value={reimburseFormData.amount}
                 onChange={(e) =>
