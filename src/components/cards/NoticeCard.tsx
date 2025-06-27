@@ -3,6 +3,7 @@ import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface NoticeCardProps {
   id: string;
