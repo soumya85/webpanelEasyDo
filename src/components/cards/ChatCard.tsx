@@ -146,12 +146,12 @@ export const ChatCard: React.FC<ChatCardProps> = ({
             <MessageSquare className="w-5 h-5 text-blue-600" />
           </div>
           <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-            Recent Chat Activity
+            {t("recentChatActivity")}
           </h3>
         </div>
 
         <div className="flex items-center justify-between mb-4">
-          <div className="text-xs text-gray-600">Unread Messages</div>
+          <div className="text-xs text-gray-600">{t("unreadMessages")}</div>
           <div className="flex items-center gap-2">
             <div className="text-2xl font-bold text-[#4766E5]">
               {chatActivities.reduce(
@@ -160,7 +160,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
               )}
             </div>
             <Badge className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-              New
+              {t("newBadge")}
             </Badge>
           </div>
         </div>
