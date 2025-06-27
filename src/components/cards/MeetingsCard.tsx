@@ -64,11 +64,15 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
             >
               <div className="flex justify-between items-start">
                 <span className="text-gray-800 font-medium">
-                  {meeting.type}
+                  <MultilingualText>{meeting.type}</MultilingualText>
                 </span>
               </div>
-              <div className="text-gray-500 text-xs mt-1">{meeting.time}</div>
-              <div className="text-gray-500 text-xs">{meeting.duration}</div>
+              <div className="text-gray-500 text-xs mt-1">
+                <MultilingualText>{meeting.time}</MultilingualText>
+              </div>
+              <div className="text-gray-500 text-xs">
+                <MultilingualText>{meeting.duration}</MultilingualText>
+              </div>
             </div>
           ))}
         </div>
