@@ -123,7 +123,8 @@ const OTPVerification = () => {
 
             {/* Resend OTP */}
             <div className="text-center">
-              <button
+              <MultilingualText
+                as="button"
                 onClick={handleResendOTP}
                 disabled={!canResend}
                 className={cn(
@@ -131,13 +132,12 @@ const OTPVerification = () => {
                   canResend
                     ? "text-blue-600 hover:underline cursor-pointer"
                     : "text-gray-500 cursor-not-allowed",
-                  getMultilingualTextClass(language),
                 )}
               >
                 {canResend
                   ? t("resendOTP")
                   : `${t("resendOTPIn")} ${timeLeft} ${t("seconds")}`}
-              </button>
+              </MultilingualText>
             </div>
           </div>
 
