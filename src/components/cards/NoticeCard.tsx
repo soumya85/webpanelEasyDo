@@ -71,7 +71,7 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
           borderWidth: "1px",
         }}
       >
-        View All Notices
+        {t("viewAllNotices")}
       </Button>
     </DashboardCard>
   );
