@@ -2571,7 +2571,7 @@ const ChatContactsList: React.FC<{
       )}
 
       {/* Chat List */}
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         {chatItems.map((chat) => (
           <div
             key={chat.id}
