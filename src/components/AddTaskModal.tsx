@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/components/ui/dialog";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -66,7 +67,7 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
                 className="inline-block mr-2 text-green-300"
                 size={32}
               />
-              Create New Task
+              <ReactiveMultilingualText translationKey="createNewTask" />
             </span>
             <DialogClose asChild>
               <Button

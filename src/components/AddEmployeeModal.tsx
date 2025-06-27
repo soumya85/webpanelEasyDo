@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Plus, Trash2 } from "lucide-react";
@@ -15,7 +28,12 @@ interface Props {
 
 const branches = ["Head Office", "New Delhi", "Haldia", "Paradip"];
 const roles = ["Admin", "Manager", "Employee"];
-const managers = ["Bhaskar Ghosh", "Debashis Debnath", "Nayanjyoti Mandal", "Digambar Khuntia"];
+const managers = [
+  "Bhaskar Ghosh",
+  "Debashis Debnath",
+  "Nayanjyoti Mandal",
+  "Digambar Khuntia",
+];
 const salaryTypes = ["Monthly", "Per Hour", "Daily", "Weekly"];
 const allowances = ["HRA", "Travel", "Medical"];
 const deductions = ["PF", "ESI", "Professional Tax"];
@@ -37,13 +55,17 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
         style={{ maxHeight: "90vh", display: "flex", flexDirection: "column" }}
       >
         <DialogHeader className="bg-gradient-to-r from-blue-600 to-blue-400 px-8 py-6">
-          <DialogTitle className="text-2xl font-bold text-white">Add New Employee</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-white">
+            Add New Employee
+          </DialogTitle>
         </DialogHeader>
         <div className="overflow-y-auto" style={{ flex: 1, minHeight: 0 }}>
           <form className="px-8 py-8 bg-white space-y-10">
             {/* Section: Basic Info */}
             <section>
-              <h2 className="text-lg font-semibold text-blue-700 mb-4">Basic Information</h2>
+              <h2 className="text-lg font-semibold text-blue-700 mb-4">
+                Basic Information
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Branch selection dropdown */}
                 <div>
@@ -53,8 +75,10 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                       <SelectValue placeholder="Select branch" />
                     </SelectTrigger>
                     <SelectContent>
-                      {branches.map(branch => (
-                        <SelectItem key={branch} value={branch}>{branch}</SelectItem>
+                      {branches.map((branch) => (
+                        <SelectItem key={branch} value={branch}>
+                          {branch}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -65,12 +89,19 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                   {!selectedContact ? (
                     <Input
                       placeholder="Select contact"
-                      onBlur={e => setSelectedContact(e.target.value)}
+                      onBlur={(e) => setSelectedContact(e.target.value)}
                     />
                   ) : (
                     <div className="flex items-center gap-2">
-                      <span className="bg-gray-100 px-2 py-1 rounded">{selectedContact}</span>
-                      <Button type="button" size="icon" variant="ghost" onClick={() => setSelectedContact(null)}>
+                      <span className="bg-gray-100 px-2 py-1 rounded">
+                        {selectedContact}
+                      </span>
+                      <Button
+                        type="button"
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => setSelectedContact(null)}
+                      >
                         <Trash2 className="w-4 h-4 text-red-500" />
                       </Button>
                     </div>
@@ -121,8 +152,10 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                       <SelectValue placeholder="Select role" />
                     </SelectTrigger>
                     <SelectContent>
-                      {roles.map(role => (
-                        <SelectItem key={role} value={role}>{role}</SelectItem>
+                      {roles.map((role) => (
+                        <SelectItem key={role} value={role}>
+                          {role}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -135,8 +168,10 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                       <SelectValue placeholder="Select manager" />
                     </SelectTrigger>
                     <SelectContent>
-                      {managers.map(mgr => (
-                        <SelectItem key={mgr} value={mgr}>{mgr}</SelectItem>
+                      {managers.map((mgr) => (
+                        <SelectItem key={mgr} value={mgr}>
+                          {mgr}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -146,12 +181,16 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
 
             {/* Section: Work & Salary */}
             <section>
-              <h2 className="text-lg font-semibold text-blue-700 mb-4">Work & Salary Details</h2>
+              <h2 className="text-lg font-semibold text-blue-700 mb-4">
+                Work & Salary Details
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Branch timing selection with custom */}
                 <div>
                   <Label className="font-medium">Branch Timing</Label>
-                  <Select onValueChange={v => setShowCustomTiming(v === "custom")}>
+                  <Select
+                    onValueChange={(v) => setShowCustomTiming(v === "custom")}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Select timing" />
                     </SelectTrigger>
@@ -168,7 +207,11 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                 {/* Overtime allowed radio */}
                 <div>
                   <Label className="font-medium">Overtime Allowed</Label>
-                  <RadioGroup value={overtimeAllowed} onValueChange={setOvertimeAllowed} className="flex gap-6 mt-2">
+                  <RadioGroup
+                    value={overtimeAllowed}
+                    onValueChange={setOvertimeAllowed}
+                    className="flex gap-6 mt-2"
+                  >
                     <div className="flex items-center gap-1">
                       <RadioGroupItem value="yes" /> <span>Yes</span>
                     </div>
@@ -180,12 +223,18 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                 {/* Selected shift timing show */}
                 <div>
                   <Label className="font-medium">Selected Shift Timing</Label>
-                  <div className="bg-blue-50 text-blue-700 rounded px-3 py-2 font-medium">9:00 AM - 6:00 PM</div>
+                  <div className="bg-blue-50 text-blue-700 rounded px-3 py-2 font-medium">
+                    9:00 AM - 6:00 PM
+                  </div>
                 </div>
                 {/* Manage working Saturday */}
                 <div>
                   <Label className="font-medium">Manage Working Saturday</Label>
-                  <RadioGroup value={workingSaturday} onValueChange={setWorkingSaturday} className="flex gap-6 mt-2">
+                  <RadioGroup
+                    value={workingSaturday}
+                    onValueChange={setWorkingSaturday}
+                    className="flex gap-6 mt-2"
+                  >
                     <div className="flex items-center gap-1">
                       <RadioGroupItem value="yes" /> <span>Yes</span>
                     </div>
@@ -195,7 +244,7 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                   </RadioGroup>
                   {workingSaturday === "yes" && (
                     <div className="flex gap-2 mt-2 flex-wrap">
-                      {saturdays.map(sat => (
+                      {saturdays.map((sat) => (
                         <div key={sat} className="flex items-center gap-1">
                           <Checkbox id={`sat-${sat}`} />
                           <Label htmlFor={`sat-${sat}`}>{sat}</Label>
@@ -207,7 +256,11 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                 {/* Leave balance */}
                 <div>
                   <Label className="font-medium">Leave Balance</Label>
-                  <Input type="number" min={0} placeholder="Enter leave balance" />
+                  <Input
+                    type="number"
+                    min={0}
+                    placeholder="Enter leave balance"
+                  />
                 </div>
                 {/* Salary detail dropdown */}
                 <div>
@@ -217,8 +270,10 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                       <SelectValue placeholder="Select salary type" />
                     </SelectTrigger>
                     <SelectContent>
-                      {salaryTypes.map(type => (
-                        <SelectItem key={type} value={type}>{type}</SelectItem>
+                      {salaryTypes.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -226,7 +281,11 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                 {/* Basic salary input */}
                 <div>
                   <Label className="font-medium">Basic Salary</Label>
-                  <Input type="number" min={0} placeholder="Enter basic salary" />
+                  <Input
+                    type="number"
+                    min={0}
+                    placeholder="Enter basic salary"
+                  />
                 </div>
               </div>
               {/* Allowances and Deductions */}
@@ -234,12 +293,18 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                 {/* Include allowances */}
                 <div>
                   <div className="flex items-center">
-                    <Checkbox checked={includeAllowances} onCheckedChange={v => setIncludeAllowances(!!v)} id="allowances" />
-                    <Label htmlFor="allowances" className="ml-2 font-medium">Include Allowances</Label>
+                    <Checkbox
+                      checked={includeAllowances}
+                      onCheckedChange={(v) => setIncludeAllowances(!!v)}
+                      id="allowances"
+                    />
+                    <Label htmlFor="allowances" className="ml-2 font-medium">
+                      Include Allowances
+                    </Label>
                   </div>
                   {includeAllowances && (
                     <div className="flex gap-4 mt-2 flex-wrap">
-                      {allowances.map(a => (
+                      {allowances.map((a) => (
                         <div key={a} className="flex items-center gap-1">
                           <Checkbox id={`allowance-${a}`} />
                           <Label htmlFor={`allowance-${a}`}>{a}</Label>
@@ -251,12 +316,18 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                 {/* Include deductions */}
                 <div>
                   <div className="flex items-center">
-                    <Checkbox checked={includeDeductions} onCheckedChange={v => setIncludeDeductions(!!v)} id="deductions" />
-                    <Label htmlFor="deductions" className="ml-2 font-medium">Include Deductions</Label>
+                    <Checkbox
+                      checked={includeDeductions}
+                      onCheckedChange={(v) => setIncludeDeductions(!!v)}
+                      id="deductions"
+                    />
+                    <Label htmlFor="deductions" className="ml-2 font-medium">
+                      Include Deductions
+                    </Label>
                   </div>
                   {includeDeductions && (
                     <div className="flex gap-4 mt-2 flex-wrap">
-                      {deductions.map(d => (
+                      {deductions.map((d) => (
                         <div key={d} className="flex items-center gap-1">
                           <Checkbox id={`deduction-${d}`} />
                           <Label htmlFor={`deduction-${d}`}>{d}</Label>
@@ -270,11 +341,15 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
 
             {/* Section: Employee Details & Verification */}
             <section>
-              <h2 className="text-lg font-semibold text-blue-700 mb-4">Employee Details & Verification</h2>
+              <h2 className="text-lg font-semibold text-blue-700 mb-4">
+                Employee Details & Verification
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Employee details */}
                 <div className="border rounded-lg p-4 bg-gray-50">
-                  <Label className="font-medium mb-2 block">Employee Details</Label>
+                  <Label className="font-medium mb-2 block">
+                    Employee Details
+                  </Label>
                   <div className="grid grid-cols-1 gap-3">
                     <Input placeholder="UAN Number" />
                     <Input placeholder="PF Number" />
@@ -289,15 +364,21 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                   <div className="grid grid-cols-1 gap-3">
                     <div className="flex gap-2">
                       <Input placeholder="Aadhar" />
-                      <Button type="button" variant="secondary">Verify</Button>
+                      <Button type="button" variant="secondary">
+                        Verify
+                      </Button>
                     </div>
                     <div className="flex gap-2">
                       <Input placeholder="PAN" />
-                      <Button type="button" variant="secondary">Verify</Button>
+                      <Button type="button" variant="secondary">
+                        Verify
+                      </Button>
                     </div>
                     <div className="flex gap-2">
                       <Input placeholder="UAN" />
-                      <Button type="button" variant="secondary">Verify</Button>
+                      <Button type="button" variant="secondary">
+                        Verify
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -306,20 +387,28 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
 
             {/* Section: Attendance */}
             <section>
-              <h2 className="text-lg font-semibold text-blue-700 mb-4">Attendance</h2>
+              <h2 className="text-lg font-semibold text-blue-700 mb-4">
+                Attendance
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Attendance tag input */}
                 <div>
                   <Label className="font-medium">Attendance Tag</Label>
                   <div className="flex gap-2">
                     <Input placeholder="Enter tag" />
-                    <Button type="button" variant="secondary">Copy to Card</Button>
+                    <Button type="button" variant="secondary">
+                      Copy to Card
+                    </Button>
                   </div>
                 </div>
                 {/* Attendance selfie section */}
                 <div>
                   <Label className="font-medium">Attendance Selfie</Label>
-                  <RadioGroup value={attendanceSelfie} onValueChange={setAttendanceSelfie} className="flex gap-6 mt-2">
+                  <RadioGroup
+                    value={attendanceSelfie}
+                    onValueChange={setAttendanceSelfie}
+                    className="flex gap-6 mt-2"
+                  >
                     <div className="flex items-center gap-1">
                       <RadioGroupItem value="yes" /> <span>Yes</span>
                     </div>
@@ -328,7 +417,12 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
                     </div>
                   </RadioGroup>
                   {attendanceSelfie === "yes" && (
-                    <Input type="file" accept="image/*" multiple className="mt-2" />
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="mt-2"
+                    />
                   )}
                 </div>
                 {/* Attendance location selection */}
@@ -342,10 +436,16 @@ export default function AddEmployeeModal({ open, onClose }: Props) {
             {/* Actions */}
             <div className="flex justify-end gap-3 pt-6 border-t mt-8">
               <DialogClose asChild>
-                <Button variant="outline" type="button">Cancel</Button>
+                <Button variant="outline" type="button">
+                  Cancel
+                </Button>
               </DialogClose>
-              <Button type="submit" className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2">
-                <Plus className="w-4 h-4" /> Add Employee
+              <Button
+                type="submit"
+                className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2"
+              >
+                <Plus className="w-4 h-4" />{" "}
+                <ReactiveMultilingualText translationKey="addEmployee" />
               </Button>
             </div>
           </form>

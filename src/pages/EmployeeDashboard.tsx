@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
+import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import PerformanceMeter from "@/components/PerformanceMeter";
 import { AttendanceReportModal } from "@/components/AttendanceReportModal";
@@ -60,6 +62,7 @@ const ChevronRightIcon = () => (
 );
 
 export default function EmployeeDashboard() {
+  const { t } = useGlobalTranslation();
   const [isLeaveRequestModalOpen, setIsLeaveRequestModalOpen] = useState(false);
   const [isLeaveCalendarOpen, setIsLeaveCalendarOpen] = useState(false);
   const [isLeaveBalanceInfoOpen, setIsLeaveBalanceInfoOpen] = useState(false);
@@ -1632,7 +1635,7 @@ export default function EmployeeDashboard() {
               onClick={handleLeaveSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
             >
-              Submit Request
+              <ReactiveMultilingualText translationKey="submitRequest" />
             </Button>
             <Button
               variant="outline"
@@ -2775,7 +2778,7 @@ export default function EmployeeDashboard() {
 
           <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
             <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8">
-              Submit OT Request
+              <ReactiveMultilingualText translationKey="submitOTRequest" />
             </Button>
             <Button
               variant="outline"
@@ -2846,7 +2849,7 @@ export default function EmployeeDashboard() {
             {/* Amount/Total Field */}
             <div className="space-y-2">
               <Input
-                placeholder="Amount/Total"
+                placeholder={t("amountTotal")}
                 type="number"
                 value={salaryAdvanceFormData.amount}
                 onChange={(e) =>
@@ -2886,13 +2889,21 @@ export default function EmployeeDashboard() {
                 }
               >
                 <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-[#4766E5] focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
-                  <SelectValue placeholder="Duration" />
+                  <SelectValue placeholder={t("duration")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1-month">1 Month</SelectItem>
-                  <SelectItem value="3-months">3 Months</SelectItem>
-                  <SelectItem value="6-months">6 Months</SelectItem>
-                  <SelectItem value="12-months">12 Months</SelectItem>
+                  <SelectItem value="1-month">
+                    <ReactiveMultilingualText translationKey="oneMonth" />
+                  </SelectItem>
+                  <SelectItem value="3-months">
+                    <ReactiveMultilingualText translationKey="threeMonths" />
+                  </SelectItem>
+                  <SelectItem value="6-months">
+                    <ReactiveMultilingualText translationKey="sixMonths" />
+                  </SelectItem>
+                  <SelectItem value="12-months">
+                    <ReactiveMultilingualText translationKey="twelveMonths" />
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -3114,7 +3125,7 @@ export default function EmployeeDashboard() {
               onClick={handleSalaryAdvanceSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
             >
-              Submit Advance Request
+              <ReactiveMultilingualText translationKey="submitAdvanceRequest" />
             </Button>
             <Button
               variant="outline"
@@ -3185,7 +3196,7 @@ export default function EmployeeDashboard() {
             {/* Total Amount Field */}
             <div className="space-y-2">
               <Input
-                placeholder="Total Amount"
+                placeholder={t("totalAmount")}
                 type="number"
                 value={reimburseFormData.amount}
                 onChange={(e) =>
@@ -3210,14 +3221,24 @@ export default function EmployeeDashboard() {
                 }
               >
                 <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-500 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
-                  <SelectValue placeholder="Approval No. (Optional)" />
+                  <SelectValue placeholder={t("approvalNoOptional")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="pending">Pending Approval</SelectItem>
-                  <SelectItem value="approved">Pre-approved</SelectItem>
-                  <SelectItem value="manager">Manager Approval</SelectItem>
-                  <SelectItem value="finance">Finance Approval</SelectItem>
-                  <SelectItem value="none">No Approval Required</SelectItem>
+                  <SelectItem value="pending">
+                    <ReactiveMultilingualText translationKey="pendingApproval" />
+                  </SelectItem>
+                  <SelectItem value="approved">
+                    <ReactiveMultilingualText translationKey="preApproved" />
+                  </SelectItem>
+                  <SelectItem value="manager">
+                    <ReactiveMultilingualText translationKey="managerApproval" />
+                  </SelectItem>
+                  <SelectItem value="finance">
+                    <ReactiveMultilingualText translationKey="financeApproval" />
+                  </SelectItem>
+                  <SelectItem value="none">
+                    <ReactiveMultilingualText translationKey="noApprovalRequired" />
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -3315,7 +3336,7 @@ export default function EmployeeDashboard() {
               onClick={handleReimburseSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
             >
-              Submit Reimbursement Request
+              <ReactiveMultilingualText translationKey="submitReimbursementRequest" />
             </Button>
             <Button
               variant="outline"
@@ -3583,7 +3604,7 @@ export default function EmployeeDashboard() {
                 {currentBranchData.stats.total}
               </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
-                TOTAL
+                <ReactiveMultilingualText translationKey="total" />
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
@@ -4561,8 +4582,13 @@ export default function EmployeeDashboard() {
               <span className="text-white text-xl font-semibold">BG</span>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Bhaskar Ghosh</h2>
-              <p className="text-gray-600">Executive Director, Head Office</p>
+              <h2 className="text-xl font-bold text-gray-900">
+                <ReactiveMultilingualText translationKey="bhaskarGhosh" />
+              </h2>
+              <p className="text-gray-600">
+                <ReactiveMultilingualText translationKey="executiveDirector" />,{" "}
+                <ReactiveMultilingualText translationKey="headOffice" />
+              </p>
             </div>
           </div>
 

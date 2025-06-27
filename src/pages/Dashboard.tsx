@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { useDashboardLayout } from "@/hooks/useDashboardLayout";
 import { DroppableSection } from "@/components/DroppableSection";
 import { CardFactory } from "@/components/CardFactory";
@@ -80,7 +81,9 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="flex-1 flex items-center justify-center">
-          <div className="text-lg">Loading...</div>
+          <div className="text-lg">
+            <ReactiveMultilingualText translationKey="loading" />
+          </div>
         </div>
       </div>
     );
