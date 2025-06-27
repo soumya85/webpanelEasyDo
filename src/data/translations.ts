@@ -386,7 +386,7 @@ export const translations = {
     teamChat: "टीम चैट",
     workStatus: "कार्य स्थिति",
     companyNotice: "कंपनी की सूचना",
-    monthlyAttendance: "मासिक उपस्थिति",
+    monthlyAttendance: "��ासिक उपस्थिति",
     salaryOverview: "वेतन अवलोकन",
     performanceMetrics: "प्रदर्शन मेट्रिक्स",
 
@@ -475,7 +475,7 @@ export const translations = {
     // Messages
     successMessage: "ऑपरेशन सफलतापूर्वक पूरा हुआ",
     errorMessage: "एक त्रुट��� हुई है। कृपया फिर से कोशिश करें।",
-    confirmDelete: "क्या आप वाकई इस आइटम को हटाना चाहते हैं?",
+    confirmDelete: "क्या आप ���ाकई इस आइटम को हटाना चाहते हैं?",
     confirmLogout: "क्या आप वाकई लॉगआउट करना चाहते हैं?",
     dataUpdated: "डेटा सफलतापूर्वक अपडेट किया गया है",
     dataSaved: "डेटा सफलतापूर्वक सहेजा गया है",
@@ -544,7 +544,7 @@ export const translations = {
     dueToday: "आज देय",
     pendingReview: "समीक्षा लंबित",
     viewAllMyTasks: "मेरे सभी कार्य देखें",
-    viewDelegatedTasks: "स���ंपे गए कार्य देखें",
+    viewDelegatedTasks: "स���ंपे गए कार्य देखे���",
     myTask: "मेरा कार्य",
     delegatedTask: "सौंपा गया कार्य",
 
@@ -583,7 +583,7 @@ export const translations = {
     attendanceNotificationSent: "उपस्थिति अधिसूचना भेजी गई",
     meetingScheduledFor3PM: "आज दोपहर 3 बजे बैठक निर्धारित",
     canYouReviewDocument: "क्या आप दस्तावेज़ की समीक्षा कर सकते हैं?",
-    thanksForUpdate: "अपडेट के लिए धन्यवाद!",
+    thanksForUpdate: "अपडे��� के लिए धन्यवाद!",
     newBuildReadyForTesting: "���रीक्षण के लिए नया बिल्ड तैयार है",
     sureIllSendByEOD: "जरूर, मैं दिन के अंत तक भेज दूंगा",
     letsScheduleCallTomorrow: "कल कॉल शेड्यूल करते हैं",
@@ -642,7 +642,7 @@ export const translations = {
     dragCardsBetweenSections:
       "पुनर्गठन के लिए कार्ड को सेक्शन के बीच या सेक्शन के भीतर ड्रैग करें - चौड़ाई संरक्षित रहती है",
     dropCardsOnPurpleZones:
-      "सेक्शन के भीतर नई पंक��तियां बनाने के लि��� कार्ड को बैंगनी ज़ोन पर ड्रॉप करें",
+      "सेक्शन ���े भीतर नई पंक��तियां बनाने के लि��� कार्ड को बैंगनी ज़ोन पर ड्रॉप करें",
     dropCardsOnGreenZones:
       "सेक्शन के अंत में नई पंक्तियां जोड़ने के लिए कार्ड को हरे ज़ोन पर ड्रॉप करें",
     dragBlueResizeHandle:
@@ -1198,6 +1198,17 @@ export const translations = {
       "మీ లేఅవుట్ మరియు కార్డ్ పరిమాణ���లు స్వయంచాలకంగా సేవ్ చేయబడతాయి మరియు సెషన్‌లలో కొనసాగుతాయి",
     useResetLayoutButton:
       'డిఫాల్ట్ అమరికను పునరుద్ధరించడానికి "రీసెట్ లేఅవుట్" బటన్‌ను ఉపయోగించండి',
+
+    // Chat related translations
+    newBadge: "కొత్త",
+    groupBadge: "గ్రూప్",
+    viewAllChats: "అన్ని చాట్‌లను చూడండి",
+    searchOrStartNewChat: "వెతకండి లేదా కొత్త చాట్ ప్రారంభించండి",
+    selectChatToStart: "మెసేజింగ్ ప్రారంభించడానికి చాట్‌ను ఎంచుకోండి",
+    online: "ఆన్‌లైన్",
+    groupChat: "గ్రూప్ చాట్",
+    noChatsFound: "చాట్‌లు కనుగొనబడలేదు",
+    noChatsAvailable: "చాట్‌లు అందుబాటులో లేవు",
   },
   Marathi: {
     welcomeToEasyDo: "EasyDo मध्ये आपले स्वागत आहे",
@@ -1333,7 +1344,7 @@ export const translations = {
     sameRowEqualHeight:
       "ایک ہی قطار کے تمام کارڈز خودکار طور پر برابر اونچائی برقرار رکھتے ہیں",
     layoutSavedAutomatically:
-      "آپ کا لے آؤٹ اور کارڈ سائز خودکار طور پر محفوظ ہو جاتے ہیں اور سیشنز میں برقرار رہتے ہیں",
+      "آپ کا لے آؤٹ اور کارڈ سائز خودکار طور پر محفو�� ہو جاتے ہیں اور سیشنز میں برقرار رہتے ہیں",
     useResetLayoutButton:
       'ڈیفالٹ ترتیب بحال کرنے کے لیے "ری سیٹ لے آؤٹ" بٹن استعمال کریں',
   },
@@ -1370,7 +1381,7 @@ export const translations = {
     hoverOverCardInstructions:
       "ડ્રેગ હેન્ડલ (ટોપ સેન્ટર) અને પહોળાઈ રીસાઇઝ હેન્ડલ (જમણી કિનારી) જોવા માટે કોઈપણ કાર્ડ પર હોવર કરો",
     dragCardsBetweenSections:
-      "પુનઃવ્યવસ્થા માટે વિભાગો વચ્ચે અથવા વિભાગોની અંદર કાર્ડ્સ ડ્રેગ કરો - પહોળાઈ સાચવવામાં આવે છે",
+      "પ��નઃવ્યવસ્થા માટે વિભાગો વચ્ચે અથવા વિભાગોની અંદર કાર્ડ્સ ડ્રેગ કરો - પહોળાઈ સાચવવામાં આવે છે",
     dropCardsOnPurpleZones:
       "વિભાગમાં નવી પંક્તિઓ બનાવવા માટે જાંબલી ઝોનમાં કાર્ડ્સ ડ્રોપ કરો",
     dropCardsOnGreenZones:
