@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/input-otp";
 import { cn, getMultilingualTextClass } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
-import { LanguageSelector, useLanguage } from "@/components/LanguageSelector";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguageContext } from "@/contexts/LanguageContext";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
