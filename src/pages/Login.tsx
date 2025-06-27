@@ -107,7 +107,12 @@ const Login = () => {
 
           {/* Welcome Heading */}
           <div className="text-center">
-            <h1 className="text-xl font-semibold text-gray-900">
+            <h1
+              className={cn(
+                "text-xl font-semibold text-gray-900",
+                getMultilingualTextClass(language),
+              )}
+            >
               {t("welcomeToEasyDo")}
             </h1>
           </div>
