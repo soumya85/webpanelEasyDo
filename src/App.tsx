@@ -44,6 +44,8 @@ const App = () => (
             <PageLayout>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/otp-verification" element={<OTPVerification />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/chats" element={<Chats />} />
                 <Route path="/todays-schedule" element={<TodaysSchedule />} />
