@@ -485,18 +485,40 @@
       "kern" 1,
       "liga" 1,
       "clig" 1,
-      "calt" 1;
+      "calt" 1,
+      "rlig" 1;
     unicode-bidi: plaintext;
     text-align: start;
     font-variant-numeric: lining-nums;
     font-variant-east-asian: normal;
     font-language-override: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-variation-settings: normal;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    text-combine-upright: none;
+    text-decoration-skip-ink: auto;
+    hyphens: auto;
+    word-break: keep-all;
+    line-break: auto;
   }
 
   /* Ensure proper fallback for missing glyphs */
   .text-multilingual * {
     font-synthesis: weight style small-caps;
     font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-position: normal;
+  }
+
+  /* Ensure consistent character rendering across all languages */
+  .text-multilingual,
+  .text-multilingual * {
+    font-display: swap;
+    font-stretch: normal;
+    text-size-adjust: 100%;
   }
 
   /* Prevent layout shift during font loading */
