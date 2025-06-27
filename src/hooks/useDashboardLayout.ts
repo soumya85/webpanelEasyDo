@@ -33,7 +33,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "tasks",
     type: "task",
-    title: "Task at a Glance",
+    title: "taskAtGlance",
     section: "quick-overview",
     order: 0,
     size: "medium",
@@ -41,7 +41,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "meetings",
     type: "meetings",
-    title: "Meetings This Week",
+    title: "meetingsThisWeek",
     section: "quick-overview",
     order: 1,
     size: "medium",
