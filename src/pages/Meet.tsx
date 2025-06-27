@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
