@@ -123,7 +123,7 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
                     <CalendarIcon className="mr-2 h-5 w-5" />
                     {startDate
                       ? format(startDate, "EEE, MMM dd, yyyy")
-                      : "Pick a date"}
+                      : t("pickADate")}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
