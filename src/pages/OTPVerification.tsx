@@ -6,7 +6,16 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { translations, type Language } from "@/data/translations";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
