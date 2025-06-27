@@ -3233,8 +3233,12 @@ export default function EmployeeDashboard() {
                   <SelectItem value="manager">
                     <ReactiveMultilingualText translationKey="managerApproval" />
                   </SelectItem>
-                  <SelectItem value="finance">Finance Approval</SelectItem>
-                  <SelectItem value="none">No Approval Required</SelectItem>
+                  <SelectItem value="finance">
+                    <ReactiveMultilingualText translationKey="financeApproval" />
+                  </SelectItem>
+                  <SelectItem value="none">
+                    <ReactiveMultilingualText translationKey="noApprovalRequired" />
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
