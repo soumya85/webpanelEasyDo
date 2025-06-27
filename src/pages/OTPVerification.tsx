@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +20,8 @@ import { translations, type Language } from "@/data/translations";
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
   const [language, setLanguage] = useState<Language>("English");
+  const [timeLeft, setTimeLeft] = useState(60);
+  const [canResend, setCanResend] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,6 +35,18 @@ const OTPVerification = () => {
   // Get translation function for current language
   const t = (key: keyof typeof translations.English) =>
     translations[language][key];
+
+  // Timer effect for resend functionality
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setCanResend(true);
+    }
+  }, [timeLeft]);
 
   const handleVerifyOTP = () => {
     if (isOTPValid) {
@@ -48,9 +62,14 @@ const OTPVerification = () => {
   };
 
   const handleResendOTP = () => {
-    // Reset OTP input
-    setOtp("");
-    // In a real app, this would trigger API call to resend OTP
+    if (canResend) {
+      // Reset OTP input
+      setOtp("");
+      // Reset timer
+      setTimeLeft(60);
+      setCanResend(false);
+      // In a real app, this would trigger API call to resend OTP
+    }
   };
 
   return (
@@ -78,7 +97,7 @@ const OTPVerification = () => {
             <SelectItem value="Gujarati">ગુજરાતી (Gujarati)</SelectItem>
             <SelectItem value="Kannada">ಕನ್ನಡ (Kannada)</SelectItem>
             <SelectItem value="Odia">ଓଡ଼ିଆ (Odia)</SelectItem>
-            <SelectItem value="Punjabi">ਪੰਜਾਬੀ (Punjabi)</SelectItem>
+            <SelectItem value="Punjabi">ਪੰਜ���ਬੀ (Punjabi)</SelectItem>
             <SelectItem value="Malayalam">മലയാളം (Malayalam)</SelectItem>
           </SelectContent>
         </Select>
@@ -129,9 +148,17 @@ const OTPVerification = () => {
             <div className="text-center">
               <button
                 onClick={handleResendOTP}
-                className="text-sm text-primary hover:underline transition-colors"
+                disabled={!canResend}
+                className={cn(
+                  "text-sm transition-colors",
+                  canResend
+                    ? "text-primary hover:underline cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed",
+                )}
               >
-                {t("resendOTP")}
+                {canResend
+                  ? t("resendOTP")
+                  : `${t("resendOTPIn")} ${timeLeft} ${t("seconds")}`}
               </button>
             </div>
           </div>
