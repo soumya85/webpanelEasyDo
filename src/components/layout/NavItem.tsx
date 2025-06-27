@@ -13,9 +13,10 @@ interface NavItemProps {
   badge?: number;
 }
 
-export function NavItem({ icon: Icon, label, href, badge }: NavItemProps) {
+export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
   const location = useLocation();
   const { isExpanded, setMobileOpen } = useSidebar();
+  const { t } = useTranslation();
   const isActive = location.pathname === href;
 
   const handleClick = () => {
