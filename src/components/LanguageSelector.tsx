@@ -98,6 +98,12 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       const currentFontClass = getLanguageFontClass(contextValue);
       bodyElement.classList.add(currentFontClass.replace("font-", "font-"));
       bodyElement.classList.add("text-multilingual");
+
+      // Force font reload to ensure proper rendering
+      setTimeout(() => {
+        reloadFonts();
+        waitForFontsToLoad();
+      }, 50);
     }
   }, [contextValue, useContext]);
 
