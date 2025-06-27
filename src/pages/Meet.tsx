@@ -637,7 +637,7 @@ export default function Meet() {
                 onClick={handleCreateMeeting}
                 disabled={!newTitle}
               >
-                Create
+                <ReactiveMultilingualText translationKey="create" />
               </Button>
             </div>
           </div>
