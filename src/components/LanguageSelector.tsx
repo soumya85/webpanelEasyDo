@@ -10,6 +10,7 @@ import { Globe } from "lucide-react";
 import { type Language } from "@/data/translations";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { getLanguageFontClass } from "@/lib/utils";
+import { reloadFonts, waitForFontsToLoad } from "@/lib/fontLoader";
 
 interface LanguageOption {
   value: Language;
