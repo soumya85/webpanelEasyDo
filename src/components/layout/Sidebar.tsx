@@ -67,7 +67,7 @@ export function Sidebar() {
               <NavItem
                 key={item.id}
                 icon={item.icon}
-                label={item.label}
+                labelKey={item.labelKey}
                 href={item.href}
                 badge={item.badge}
               />
