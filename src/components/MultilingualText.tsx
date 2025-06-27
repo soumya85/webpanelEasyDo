@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { cn, getMultilingualTextClass } from "@/lib/utils";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { forceFontRerender } from "@/lib/fontLoader";
 
 interface MultilingualTextProps {
   children: React.ReactNode;
@@ -25,9 +26,28 @@ export const MultilingualText: React.FC<MultilingualTextProps> = ({
   ...props
 }) => {
   const { language } = useLanguageContext();
+  const elementRef = useRef<HTMLElement>(null);
+  const previousLanguage = useRef(language);
+
+  // Force re-render when language changes to ensure proper font rendering
+  useEffect(() => {
+    if (previousLanguage.current !== language && elementRef.current) {
+      // Force re-render of this specific element
+      const element = elementRef.current;
+      const originalTransform = element.style.transform;
+
+      // Brief style change to force re-render
+      element.style.transform = "translateZ(0)";
+      element.offsetHeight; // Force reflow
+      element.style.transform = originalTransform;
+
+      previousLanguage.current = language;
+    }
+  }, [language]);
 
   return (
     <Component
+      ref={elementRef}
       className={cn(getMultilingualTextClass(language), className)}
       {...props}
     >
