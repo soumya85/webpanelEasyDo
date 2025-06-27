@@ -3522,33 +3522,19 @@ const Chats: React.FC = () => {
     <>
       {/* DESKTOP LAYOUT - WhatsApp Style (Only for large screens 1024px+) */}
       <div className="hidden lg:block h-full bg-white">
-        {/* Fixed Chat Subheader */}
+        {/* Fixed Chat Subheader - Simplified to match screenshot */}
         <div
           className={cn(
-            "fixed top-[86px] right-0 z-20 p-4 border-b border-gray-200 bg-white transition-all duration-300",
+            "fixed top-[86px] right-0 z-20 px-6 py-3 border-b border-gray-200 bg-white transition-all duration-300",
             isExpanded ? "left-[280px]" : "left-[103px]",
           )}
         >
-          {/* Single Row: Title, Search, Filters, and Task Cards */}
-          <div className="flex items-center gap-4">
-            {/* Chats Title */}
-            <h1 className="text-xl font-semibold text-gray-900 flex-shrink-0">
-              Chats
-            </h1>
+          {/* Chat Title and Filter Tabs */}
+          <div className="flex items-center gap-6">
+            <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
 
-            {/* Search Bar */}
-            <div className="relative flex-shrink-0" style={{ width: "350px" }}>
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={getGlobalTranslation("searchOrStartNewChat")}
-                className="pl-10 bg-gray-50 border-gray-200 h-9"
-              />
-            </div>
-
-            {/* Filter Buttons */}
-            <div className="flex gap-1.5 flex-1">
+            {/* Filter Tabs - matching screenshot style */}
+            <div className="flex gap-2">
               {filterTabs.map((filter) => {
                 const count = getFilterCount(filter);
                 return (
@@ -3556,46 +3542,19 @@ const Chats: React.FC = () => {
                     key={filter}
                     onClick={() => setSelectedFilter(filter)}
                     className={cn(
-                      "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap",
+                      "px-3 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-2",
                       selectedFilter === filter
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-150 border border-gray-200",
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200",
                     )}
                   >
                     <span>{filter}</span>
-                    <span
-                      className={cn(
-                        "text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center",
-                        selectedFilter === filter
-                          ? "bg-white/20 text-white"
-                          : "bg-blue-500 text-white",
-                      )}
-                    >
+                    <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
                       {count}
                     </span>
                   </button>
                 );
               })}
-            </div>
-
-            {/* Task Summary Cards */}
-            <div className="flex gap-1.5 flex-shrink-0">
-              {taskSummaries.map((task) => (
-                <div
-                  key={task.id}
-                  className="bg-gray-100 rounded-lg p-2 cursor-pointer hover:bg-gray-150 transition-colors border border-gray-200"
-                  style={{ minWidth: "50px" }}
-                >
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-blue-600 mb-0.5">
-                      {task.count}
-                    </div>
-                    <div className="text-xs text-gray-600 leading-tight font-medium">
-                      {task.title}
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
