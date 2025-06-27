@@ -25,7 +25,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { ChevronDown, Check } from "lucide-react";
-import { cn, getMultilingualTextClass } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
 import {
   countryCodes,
@@ -34,6 +34,7 @@ import {
 } from "@/data/countryCodes";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { MultilingualText } from "@/components/MultilingualText";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
