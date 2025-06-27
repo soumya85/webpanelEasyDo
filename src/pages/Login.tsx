@@ -148,10 +148,10 @@ const Login = () => {
               "w-full h-12 text-base font-semibold rounded-lg transition-all duration-200",
               isFormValid
                 ? "bg-primary hover:bg-primary-600 text-white"
-                : "bg-gray-300 text-transparent cursor-not-allowed border-0",
+                : "bg-gray-300 text-gray-400 cursor-not-allowed border-0",
             )}
           >
-            {isFormValid ? "SEND OTP" : ""}
+            SEND OTP
           </Button>
         </div>
       </div>
