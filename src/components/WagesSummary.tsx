@@ -37,7 +37,7 @@ export default function WagesSummary() {
       borderColor: "border-l-red-500",
     },
     {
-      label: "Net Pay",
+      label: t("netPay"),
       amount: "₹11,583.56",
       color: "text-blue-600",
       bgColor: "bg-blue-50",
