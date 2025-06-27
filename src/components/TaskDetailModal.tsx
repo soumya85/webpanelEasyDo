@@ -58,6 +58,37 @@ export function TaskDetailModal({
   const [priority, setPriority] = useState<Task["priority"]>(
     task?.priority || "medium",
   );
+
+  // Get translated status and priority options
+  const getStatusOptions = () => [
+    { value: "To Do", label: t("toDo") },
+    { value: "In Progress", label: t("inProgress") },
+    { value: "Review", label: t("review") },
+    { value: "Done", label: t("done") },
+    { value: "Blocked", label: t("blocked") },
+    { value: "Cancelled", label: t("cancelled") },
+  ];
+
+  const getPriorityOptions = () => [
+    { value: "urgent", label: t("urgent") },
+    { value: "high", label: t("high") },
+    { value: "medium", label: t("medium") },
+    { value: "low", label: t("low") },
+  ];
+
+  const getStatusDisplayText = (statusValue: string) => {
+    const statusOption = getStatusOptions().find(
+      (option) => option.value === statusValue,
+    );
+    return statusOption ? statusOption.label : statusValue;
+  };
+
+  const getPriorityDisplayText = (priorityValue: string) => {
+    const priorityOption = getPriorityOptions().find(
+      (option) => option.value === priorityValue,
+    );
+    return priorityOption ? priorityOption.label : priorityValue;
+  };
   const [assignee, setAssignee] = useState(task?.assignee?.name || "");
   const [startDate, setStartDate] = useState<Date | undefined>(
     task?.startDate ? new Date(task.startDate) : undefined,
