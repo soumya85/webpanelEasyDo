@@ -12,10 +12,10 @@ import { LanguageSelector, useLanguage } from "@/components/LanguageSelector";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
-  const [language, setLanguage] = useState<Language>("English");
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
   const [hasResent, setHasResent] = useState(false);
+  const { language, setLanguage } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -93,7 +93,7 @@ const OTPVerification = () => {
             <SelectItem value="Kannada">ಕನ್ನಡ (Kannada)</SelectItem>
             <SelectItem value="Odia">ଓଡ଼ିଆ (Odia)</SelectItem>
             <SelectItem value="Punjabi">ਪੰਜ���ਬੀ (Punjabi)</SelectItem>
-            <SelectItem value="Malayalam">മലയാളം (Malayalam)</SelectItem>
+            <SelectItem value="Malayalam">മ���യാളം (Malayalam)</SelectItem>
           </SelectContent>
         </Select>
       </div>
