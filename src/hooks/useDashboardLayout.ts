@@ -81,7 +81,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "notice",
     type: "notice",
-    title: "Notice Board",
+    title: "companyNotice",
     section: "information-hub",
     order: 0,
     size: "medium",
@@ -89,7 +89,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "attendance",
     type: "attendance",
-    title: "Monthly Attendance Summary",
+    title: "monthlyAttendance",
     section: "information-hub",
     order: 1,
     size: "medium",
@@ -97,7 +97,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "salary",
     type: "salary",
-    title: "Salary Snapshot",
+    title: "salaryOverview",
     section: "information-hub",
     order: 2,
     size: "medium",
@@ -105,7 +105,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "performance",
     type: "performance",
-    title: "My Performance",
+    title: "performanceMetrics",
     section: "information-hub",
     order: 3,
     size: "medium",
