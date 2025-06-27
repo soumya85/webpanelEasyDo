@@ -32,12 +32,13 @@ const languageOptions: LanguageOption[] = [
 ];
 
 interface LanguageSelectorProps {
-  value: Language;
-  onValueChange: (language: Language) => void;
+  value?: Language;
+  onValueChange?: (language: Language) => void;
   className?: string;
   showGlobe?: boolean;
   position?: "absolute" | "relative";
   size?: "sm" | "md" | "lg";
+  useContext?: boolean;
 }
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
