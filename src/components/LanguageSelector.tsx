@@ -42,13 +42,31 @@ interface LanguageSelectorProps {
 }
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
-  value,
-  onValueChange,
+  value: propValue,
+  onValueChange: propOnValueChange,
   className = "",
   showGlobe = true,
   position = "relative",
   size = "md",
+  useContext = false,
 }) => {
+  // Use context if useContext is true, otherwise use props
+  let contextValue, contextSetLanguage;
+  try {
+    const context = useLanguageContext();
+    contextValue = context.language;
+    contextSetLanguage = context.setLanguage;
+  } catch {
+    // Context not available, fallback to props
+    contextValue = undefined;
+    contextSetLanguage = undefined;
+  }
+
+  const value =
+    useContext && contextValue ? contextValue : propValue || "English";
+  const onValueChange =
+    useContext && contextSetLanguage ? contextSetLanguage : propOnValueChange;
+
   const currentLanguage = languageOptions.find((lang) => lang.value === value);
   const displayValue = currentLanguage
     ? `${currentLanguage.nativeLabel} (${currentLanguage.label})`
