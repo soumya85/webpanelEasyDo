@@ -63,16 +63,21 @@ const Dashboard: React.FC = () => {
   );
 
   if (isLoading) {
-  return (
-    <div className="h-full flex flex-col overflow-hidden">
-      {/* Language Test Component - temporary for testing */}
-      <div className="p-4 border-b border-gray-200 flex-shrink-0">
-        <LanguageTest />
-      </div>
+    return (
+      <div className="h-full flex flex-col overflow-hidden">
+        {/* Language Test Component - temporary for testing */}
+        <div className="p-4 border-b border-gray-200 flex-shrink-0">
+          <LanguageTest />
+        </div>
 
-      {/* Layout Controls */}
-      <div className="flex justify-between items-center p-4 pb-2 border-b border-gray-200 flex-shrink-0">
-        <LayoutControls onReset={resetLayout} />
+        {/* Layout Controls */}
+        <div className="flex justify-between items-center p-4 pb-2 border-b border-gray-200 flex-shrink-0">
+          <LayoutControls onReset={resetLayout} />
+        </div>
+
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-lg">Loading...</div>
+        </div>
       </div>
     );
   }
