@@ -211,7 +211,7 @@ export const translations = {
   },
   Hindi: {
     // Authentication
-    welcomeToEasyDo: "EasyDo में आपका स्वागत है",
+    welcomeToEasyDo: "EasyDo में आपका स्व��गत है",
     mobileNumberPlaceholder: "मोबाइल नंबर",
     bySigningUp: "साइन अप करके, आप हमारी",
     termsAndConditions: "नियम और शर्तें",
@@ -379,7 +379,7 @@ export const translations = {
 
     // Documents
     documents: "दस्तावेज़",
-    uploadDocument: "दस्तावेज़ अपलोड करें",
+    uploadDocument: "दस��तावेज़ अपलोड करें",
     documentName: "दस्तावेज़ का नाम",
     documentType: "दस्तावेज़ का प्रकार",
     uploadDate: "अपलोड की तारीख",
@@ -429,7 +429,7 @@ export const translations = {
     privacyPolicy: "গোপনীয়তা নীতি",
     sendOTP: "OTP পাঠান",
     enterOTP: "৬-ডিজিটের OTP প্রবেশ করুন",
-    sentTo: "পা���ানো হয়েছে",
+    sentTo: "পাঠানো হয়েছে",
     resendTo: "পুনরায় পাঠান",
     resendOTP: "OTP পুনরায় পাঠান",
     resendOTPIn: "OTP পুনরায় পাঠান",
@@ -438,7 +438,7 @@ export const translations = {
     backToLogin: "← লগইনে ফিরে যান",
 
     // Navigation & Layout
-    dashboard: "ড্যাশবোর্ড",
+    dashboard: "ড্যাশ���োর্ড",
     chats: "চ্যাট",
     todaysSchedule: "আজকের সময়সূচী",
     employeeDashboard: "কর্মচারী ড্যাশবোর্ড",
@@ -588,7 +588,7 @@ export const translations = {
     reason: "কারণ",
 
     // Documents
-    documents: "নথিপত্র",
+    documents: "নথি��ত্র",
     uploadDocument: "নথি আপলোড করুন",
     documentName: "��থির নাম",
     documentType: "নথির ধরন",
@@ -618,12 +618,12 @@ export const translations = {
     late: "দেরি",
     redFlag: "লাল পতাকা",
     viewDetailedReport: "বিস্তারিত রিপোর্ট দেখুন",
-    asOn: "অনুযায়ী",
+    asOn: "অনুযায়���",
     nextPayslip: "আপনার পরবর্তী পেস্লিপ তৈরি হবে",
     days: "দিন",
     deducted: "কর্তন",
     pfContribution: "পিএফ অবদান",
-    requestSalaryAdvance: "বেতন অগ্রিমের জন্য অনুরোধ করুন",
+    requestSalaryAdvance: "বেতন অগ্রিমে��� জন্য অনুরোধ করুন",
     viewAllPayslips: "সব পেস্লিপ দেখুন",
 
     // User Profile
@@ -671,7 +671,7 @@ export const translations = {
     quickStats: "వేగవంతమైన గణాంకాలు",
     recentActivity: "ఇటీవలి కార్యకలాపాలు",
     upcomingTasks: "రాబోయే కార్యాలు",
-    notifications: "నోటిఫికేషన్లు",
+    notifications: "నోటిఫి��ేషన్లు",
     attendance: "హాజరు",
     performance: "పనితీరు",
     salary: "జీతం",
@@ -700,7 +700,7 @@ export const translations = {
     // Common Actions
     save: "సేవ్ చేయండి",
     cancel: "రద్దు చేయండి",
-    delete: "తొలగించండి",
+    delete: "తొలగించ���డి",
     edit: "సవరించండి",
     add: "జోడించండి",
     remove: "తొలగించండి",
@@ -766,7 +766,7 @@ export const translations = {
     // Greetings & Profile
     goodMorning: "శుభోదయం",
     goodAfternoon: "శుభ మధ్యాహ్నం",
-    goodEvening: "శుభ సాయంత్రం",
+    goodEvening: "శుభ ���ాయంత్రం",
     authorityLevel: "అధికార స్థాయి",
     welcome: "స్వాగతం",
     lastMessage: "చివరి సందేశం",
@@ -815,6 +815,29 @@ export const translations = {
     high: "అధిక",
     medium: "మధ్యమ",
     low: "తక్కువ",
+
+    // Card Content
+    monthlyAttendanceSummary: "మాసిక హాజరు సారాంశం",
+    salarySnapshot: "జీతం స్నాప్‌షాట్",
+    totalDays: "మొత్తం రోజులు",
+    workingDays: "పని దినాలు",
+    present: "హాజరు",
+    absent: "గైరాజరు",
+    sunday: "ఆదివారం",
+    holiday: "సెలవుదినం",
+    late: "ఆలస్యం",
+    redFlag: "ఎరుపు జెండా",
+    viewDetailedReport: "వివరణాత్మక నివేదిక చూడండి",
+    asOn: "ప్రకారం",
+    nextPayslip: "మీ తదుపరి పేస్లిప్ రూపొందించబడుతుంది",
+    days: "రోజులు",
+    deducted: "తీసివేయబడింది",
+    pfContribution: "పిఎఫ్ సహకారం",
+    requestSalaryAdvance: "జీతం అడ్వాన్స్ కోసం అభ్యర్థించండి",
+    viewAllPayslips: "అన్ని పేస్లిప్‌లను చూడండి",
+
+    // User Profile
+    bhaskarGhosh: "భాస్కర్ ఘోష్",
   },
   Marathi: {
     welcomeToEasyDo: "EasyDo मध्ये आपले स्वागत आहे",
@@ -839,16 +862,16 @@ export const translations = {
     bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள���",
     termsAndConditions: "விதிமுறைகள் & நிபந்தனைகள்",
     and: "மற்றும்",
-    privacyPolicy: "தனியுரிமைக் கொள்கை",
+    privacyPolicy: "தனியுரிம���க் கொள்கை",
     sendOTP: "OTP அனுப்பவும்",
     enterOTP: "6-இலக்க OTP ஐ உள்ளி���வும்",
     sentTo: "அனுப்பப்பட்டது",
-    resendTo: "மீண்டும் அனுப்பவும்",
+    resendTo: "மீண்டும் அனுப்பவ���ம்",
     resendOTP: "OTP ஐ மீண்டும் அனுப்பவும்",
     resendOTPIn: "OTP ஐ மீண்டும் அனுப்பவும்",
     seconds: "வினாடிகளில்",
     verifyOTP: "OTP ஐ சரிபார்க்கவும்",
-    backToLogin: "← உள்நுழை��ுக்கு திரும்பவும்",
+    backToLogin: "← உள்நுழைவுக்கு திரும்பவும்",
   },
   Urdu: {
     welcomeToEasyDo: "EasyDo میں آپ کا خیرمقدم",
@@ -886,7 +909,7 @@ export const translations = {
   },
   Kannada: {
     welcomeToEasyDo: "EasyDo ಗೆ ನಿಮಗೆ ಸ್ವಾಗತ",
-    mobileNumberPlaceholder: "ಮೊ���ೈಲ್ ನಂಬರ್",
+    mobileNumberPlaceholder: "ಮೊಬೈಲ್ ನಂಬರ್",
     bySigningUp: "ಸೈನ್ ಅಪ್ ಮಾಡುವ ಮೂಲಕ, ನೀವು ನಮ್ಮ",
     termsAndConditions: "ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು",
     and: "ಮತ್ತು",
@@ -909,7 +932,7 @@ export const translations = {
     and: "ଏବଂ",
     privacyPolicy: "ଗୋପନୀୟତା ନୀତି",
     sendOTP: "OTP ପଠାନ୍ତୁ",
-    enterOTP: "6-ଅ���୍କର OTP ପ୍ରବେଶ କରନ୍ତୁ",
+    enterOTP: "6-ଅଙ୍କର OTP ପ୍ରବେଶ କରନ୍ତୁ",
     sentTo: "ପଠାଯାଇଛି",
     resendTo: "ପୁନଃ ପଠାନ୍ତୁ",
     resendOTP: "OTP ପୁନଃ ପଠାନ୍ତୁ",
@@ -919,7 +942,7 @@ export const translations = {
     backToLogin: "← ଲଗଇନ୍‌କୁ ଫେରନ୍ତୁ",
   },
   Punjabi: {
-    welcomeToEasyDo: "EasyDo ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
+    welcomeToEasyDo: "EasyDo ���ਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
     mobileNumberPlaceholder: "ਮੋਬਾਈਲ ਨੰਬਰ",
     bySigningUp: "ਸਾਈਨ ਅੱਪ ਕਰਕੇ, ਤੁਸੀਂ ਸਾਡੀ",
     termsAndConditions: "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
