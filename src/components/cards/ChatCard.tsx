@@ -193,7 +193,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
                       variant="secondary"
                       className="text-xs bg-blue-100 text-blue-700"
                     >
-                      Group
+                      {t("groupBadge")}
                     </Badge>
                   )}
                   <div className="text-xs text-gray-500 ml-auto font-medium">
