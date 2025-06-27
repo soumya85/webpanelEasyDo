@@ -153,7 +153,7 @@ const OTPVerification = () => {
                   "text-sm transition-colors",
                   canResend
                     ? "text-primary hover:underline cursor-pointer"
-                    : "text-gray-400 cursor-not-allowed",
+                    : "text-blue-600 cursor-not-allowed",
                 )}
               >
                 {canResend
