@@ -85,7 +85,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     <div className={`${positionClasses} ${className}`}>
       <Select value={value} onValueChange={onValueChange || (() => {})}>
         <SelectTrigger
-          className={`${sizeClasses[size]} border-gray-200 bg-white hover:bg-gray-50 transition-colors`}
+          className={`${sizeClasses[size]} border-gray-200 bg-white hover:bg-gray-50 transition-colors text-multilingual`}
         >
           <div className="flex items-center gap-2">
             {showGlobe && <Globe className="h-4 w-4 text-gray-500 shrink-0" />}
