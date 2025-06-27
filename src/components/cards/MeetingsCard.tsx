@@ -19,6 +19,7 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
   const meetings = [
     {
       type: "Weekly Team Sync",
