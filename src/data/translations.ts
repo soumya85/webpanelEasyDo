@@ -35,6 +35,11 @@ export const translations = {
     and: "এবং",
     privacyPolicy: "গোপনীয়তা নীতি",
     sendOTP: "OTP পাঠান",
+    enterOTP: "৬-ডিজিটের OTP প্রবেশ করুন",
+    sentTo: "পাঠানো হয়েছে",
+    resendOTP: "OTP পুনরায় পাঠান",
+    verifyOTP: "OTP যাচাই করুন",
+    backToLogin: "← লগইনে ফিরে যান",
   },
   Telugu: {
     welcomeToEasyDo: "EasyDo కు స్వాగతం",
@@ -56,7 +61,7 @@ export const translations = {
   },
   Tamil: {
     welcomeToEasyDo: "EasyDo வில் உங்களை வரவேற்கிறோம்",
-    mobileNumberPlaceholder: "மொபைல் எண்",
+    mobileNumberPlaceholder: "மொபைல் ��ண்",
     bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள்",
     termsAndConditions: "விதிமுறைகள் & நிபந்தனைகள்",
     and: "மற்றும்",
@@ -83,7 +88,7 @@ export const translations = {
   },
   Kannada: {
     welcomeToEasyDo: "EasyDo ಗೆ ನಿಮಗೆ ಸ್ವಾಗತ",
-    mobileNumberPlaceholder: "ಮೊಬೈಲ್ ನಂಬರ್",
+    mobileNumberPlaceholder: "ಮೊ���ೈಲ್ ನಂಬರ್",
     bySigningUp: "ಸೈನ್ ಅಪ್ ಮಾಡುವ ಮೂಲಕ, ನೀವು ನಮ್ಮ",
     termsAndConditions: "ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು",
     and: "ಮತ್ತು",
@@ -109,7 +114,7 @@ export const translations = {
     sendOTP: "OTP ਭੇਜੋ",
   },
   Malayalam: {
-    welcomeToEasyDo: "EasyDo ലേക്ക് സ്വാഗതം",
+    welcomeToEasyDo: "EasyDo ലേക്ക് സ്വ���ഗതം",
     mobileNumberPlaceholder: "മൊബൈൽ നമ്പർ",
     bySigningUp: "സൈൻ അപ്പ് ചെയ്യുന്നതിലൂടെ, നിങ്ങൾ ഞങ്ങളുടെ",
     termsAndConditions: "നിബന്ധനകളും വ്യവസ്ഥകളും",
