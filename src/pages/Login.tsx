@@ -113,7 +113,7 @@ const Login = () => {
               {/* Mobile Number Input */}
               <Input
                 type="tel"
-                placeholder="Mobile number"
+                placeholder={t("mobileNumberPlaceholder")}
                 value={mobileNumber}
                 onChange={handleMobileNumberChange}
                 className="flex-1 border-gray-200 focus:border-primary focus:ring-primary"
