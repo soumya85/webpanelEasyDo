@@ -63,11 +63,16 @@ const Dashboard: React.FC = () => {
   );
 
   if (isLoading) {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4766E5]"></div>
-        </div>
+  return (
+    <div className="h-full flex flex-col overflow-hidden">
+      {/* Language Test Component - temporary for testing */}
+      <div className="p-4 border-b border-gray-200 flex-shrink-0">
+        <LanguageTest />
+      </div>
+
+      {/* Layout Controls */}
+      <div className="flex justify-between items-center p-4 pb-2 border-b border-gray-200 flex-shrink-0">
+        <LayoutControls onReset={resetLayout} />
       </div>
     );
   }
