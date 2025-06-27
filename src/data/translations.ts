@@ -141,6 +141,8 @@ export const translations = {
     welcome: "Welcome",
     lastMessage: "Last message",
     yesterday: "Yesterday",
+    executiveDirector: "Executive Director",
+    headOffice: "Head Office",
 
     // Messages
     successMessage: "Operation completed successfully",
@@ -223,7 +225,7 @@ export const translations = {
     allBranch: "सभी शाखाएं",
 
     // Dashboard
-    quickStats: "त्वरित आंकड़े",
+    quickStats: "त्वरित आंकड���े",
     recentActivity: "हाल की गतिविधि",
     upcomingTasks: "आगामी कार्य",
     notifications: "सूचनाएं",
@@ -236,7 +238,7 @@ export const translations = {
     notice: "सूचना",
 
     // Dashboard Cards
-    taskAtGlance: "कार्���ों की एक झलक",
+    taskAtGlance: "कार्यों की एक झलक",
     meetingsThisWeek: "इस सप्ताह की बैठकें",
     pendingApprovals: "लंबित अनुमोदन",
     personalNotes: "व्यक्तिगत नोट्स",
@@ -375,7 +377,7 @@ export const translations = {
     mobileNumberPlaceholder: "মোবাইল নম্বর",
     bySigningUp: "সাইন আপ করে, আপনি আমাদের",
     termsAndConditions: "নিয়ম ও শর্তাবলী",
-    and: "এব���",
+    and: "এবং",
     privacyPolicy: "গোপনীয়তা নীতি",
     sendOTP: "OTP পাঠান",
     enterOTP: "৬-ডিজিটের OTP প্রবেশ করুন",
@@ -430,7 +432,7 @@ export const translations = {
     companyNotice: "কোম্পানির নোটিশ",
     monthlyAttendance: "মাসিক উপস্থিতি",
     salaryOverview: "বেতনের সংক্ষিপ্তসার",
-    performanceMetrics: "পারফরম্যান্স মেট্রিক্স",
+    performanceMetrics: "��ারফরম্যান্স মেট্রিক্স",
 
     // Section Titles
     quickOverview: "দ্রুত পর্যালোচনা",
@@ -463,7 +465,7 @@ export const translations = {
     lastMonth: "গত মাস",
     morning: "সকাল",
     afternoon: "দুপুর",
-    evening: "সন্ধ্যা",
+    evening: "সন্ধ���যা",
 
     // Status
     active: "সক্রিয়",
@@ -479,7 +481,7 @@ export const translations = {
     // Employee Management
     employees: "কর্মচারী",
     addEmployee: "কর্মচারী যোগ করুন",
-    employeeDetails: "ক��্মচারীর বিবরণ",
+    employeeDetails: "কর্মচারীর বিবরণ",
     employeeList: "কর্মচারী তালিকা",
     employeeName: "কর্মচারীর নাম",
     employeeId: "কর্মচারী আইডি",
@@ -494,7 +496,7 @@ export const translations = {
     phone: "ফোন",
     address: "ঠিকানা",
     city: "শহর",
-    state: "রাজ্য",
+    state: "রাজ��য",
     country: "দেশ",
     zipCode: "পিন কোড",
     dateOfBirth: "জন্ম তারিখ",
@@ -506,7 +508,7 @@ export const translations = {
     // Greetings & Profile
     goodMorning: "সুপ্রভাত",
     goodAfternoon: "শুভ দুপুর",
-    goodEvening: "শুভ সন্ধ্য��",
+    goodEvening: "শুভ সন্ধ্যা",
     authorityLevel: "কর্তৃত্বের স্তর",
     welcome: "স্বাগতম",
     lastMessage: "শেষ বার্তা",
@@ -564,13 +566,13 @@ export const translations = {
     privacyPolicy: "గోప్యతా విధానం",
     sendOTP: "OTP పంపండి",
     enterOTP: "6-అంకెల OTP ని ఎంటర్ చేయండి",
-    sentTo: "ప��పబడింది",
+    sentTo: "పంపబడింది",
     resendTo: "పునర్ పంపణ",
     resendOTP: "OTP పునర్ పంపణ",
     resendOTPIn: "OTP పునర్ పంపణ",
     seconds: "సెకన్లలో",
     verifyOTP: "OTP ధృవీకరించండి",
-    backToLogin: "← లాగిన్‌కు తిరిగి వెళ్లండి",
+    backToLogin: "← లాగిన్‌క��� తిరిగి వెళ్లండి",
 
     // Navigation & Layout
     dashboard: "డ్యాష్‌బోర్డ్",
@@ -593,7 +595,7 @@ export const translations = {
     allBranch: "అన్ని శాఖలు",
 
     // Dashboard
-    quickStats: "వేగవంతమైన గణాంకాలు",
+    quickStats: "వేగవంతమై�� గణాంకాలు",
     recentActivity: "ఇటీవలి కార్యకలాపాలు",
     upcomingTasks: "రాబోయే కార్యాలు",
     notifications: "నోటిఫికేషన్లు",
@@ -646,7 +648,7 @@ export const translations = {
     thisWeek: "ఈ వారం",
     thisMonth: "ఈ నెల",
     lastMonth: "గత నెల",
-    morning: "ఉదయం",
+    morning: "ఉదయ��",
     afternoon: "మధ్యాహ్నం",
     evening: "సాయంత్రం",
 
@@ -699,8 +701,8 @@ export const translations = {
 
     // Messages
     successMessage: "ఆపరేషన్ విజయవంతంగా పూర్తైంది",
-    errorMessage: "ఒక ���ోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
-    confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన్ని తొలగించాలనుకుంటున్నారా?",
+    errorMessage: "ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
+    confirmDelete: "మీరు ఖచ్చితంగా ఈ అ��శాన్ని తొలగించాలనుకుంటున్నారా?",
     confirmLogout: "మీరు ఖచ్చితంగా లాగౌట్ చేయాలనుకుంటున్నారా?",
     dataUpdated: "డేటా విజయవంతంగా అప్‌డేట్ చేయబడింది",
     dataSaved: "డేటా విజయవంతంగా సేవ్ చేయబడింది",
@@ -745,7 +747,7 @@ export const translations = {
     bySigningUp: "साइन अप करून, तु��्ही आमच्या",
     termsAndConditions: "अटी व शर्ती",
     and: "आणि",
-    privacyPolicy: "गोपनीयता धोरण",
+    privacyPolicy: "गोपनी���ता धोरण",
     sendOTP: "OTP पाठवा",
     enterOTP: "6-अंकी OTP टाका",
     sentTo: "पाठवले",
@@ -767,7 +769,7 @@ export const translations = {
     enterOTP: "6-இலக்க OTP ஐ உள்ளிடவும்",
     sentTo: "அனுப்பப்பட்டது",
     resendTo: "மீண்டும் அனுப்பவும்",
-    resendOTP: "OTP ஐ மீண்டும் அனுப்பவும்",
+    resendOTP: "OTP ஐ மீண்டும் அனுப்பவு���்",
     resendOTPIn: "OTP ஐ மீண்டும் அனுப்பவும்",
     seconds: "வினாடிகளில்",
     verifyOTP: "OTP ஐ சரிபார்க்கவும்",
@@ -811,7 +813,7 @@ export const translations = {
     welcomeToEasyDo: "EasyDo ಗೆ ನಿಮಗೆ ಸ್ವಾಗತ",
     mobileNumberPlaceholder: "ಮೊಬೈಲ್ ನಂಬರ್",
     bySigningUp: "ಸೈನ್ ಅಪ್ ಮಾಡುವ ಮೂಲಕ, ನೀವು ನಮ್ಮ",
-    termsAndConditions: "ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು",
+    termsAndConditions: "ನಿಯಮಗಳ��� ಮತ್ತು ಷರತ್ತುಗಳು",
     and: "ಮತ್ತು",
     privacyPolicy: "ಗೌಪ್ಯತೆ ನೀತಿ",
     sendOTP: "OTP ಕಳುಹಿಸಿ",
@@ -832,7 +834,7 @@ export const translations = {
     and: "ଏବଂ",
     privacyPolicy: "ଗୋପନୀୟତା ନୀତି",
     sendOTP: "OTP ପଠାନ୍ତୁ",
-    enterOTP: "6-ଅଙ୍କର OTP ପ୍ରବେଶ କରନ୍ତୁ",
+    enterOTP: "6-ଅଙ୍କର OTP ପ୍ରବେ��� କରନ୍ତୁ",
     sentTo: "ପଠାଯାଇଛି",
     resendTo: "ପୁନଃ ପଠାନ୍ତୁ",
     resendOTP: "OTP ପୁନଃ ପଠାନ୍ତୁ",
@@ -851,7 +853,7 @@ export const translations = {
     sendOTP: "OTP ਭੇਜੋ",
     enterOTP: "6-ਅੰਕਾਂ ਦਾ OTP ਦਾਖਲ ਕਰੋ",
     sentTo: "ਭੇਜਿਆ ਗਿਆ",
-    resendTo: "ਮੁੜ ��ੇਜੋ",
+    resendTo: "ਮੁੜ ਭੇਜੋ",
     resendOTP: "OTP ਮੁੜ ਭੇਜੋ",
     resendOTPIn: "OTP ਮੁੜ ਭੇਜੋ",
     seconds: "ਸਕਿੰਟਾਂ ਵਿੱਚ",
@@ -869,7 +871,7 @@ export const translations = {
     enterOTP: "6-അക്ക OTP നൽകുക",
     sentTo: "അയച്ചത്",
     resendTo: "വീണ്ടും അയയ്ക്കുക",
-    resendOTP: "OTP വീണ്ടും അയയ്ക്���ുക",
+    resendOTP: "OTP വീണ്ടും അയയ്ക്കുക",
     resendOTPIn: "OTP വീണ്ടും അയയ്ക്കുക",
     seconds: "സെക്കൻഡിൽ",
     verifyOTP: "OTP പരി��ോധിക്കുക",
