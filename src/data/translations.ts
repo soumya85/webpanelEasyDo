@@ -290,6 +290,36 @@ export const translations = {
     niceKeepItUp: "Nice, Keep it up! 💪",
     employeeOfTheMonth: "Employee of the Month",
     viewPerformanceDetails: "View Performance Details",
+
+    // Quick Notes Card
+    quickNotes: "Quick Notes",
+    followUpOnClientProposal: "Follow up on client proposal",
+    reviewQ4BudgetAllocation: "Review Q4 budget allocation",
+    updateTeamOnProjectTimeline: "Update team on project timeline",
+    addedHoursAgo: "Added {hours} hours ago",
+    addedYesterday: "Added yesterday",
+    addedDaysAgo: "Added {days} days ago",
+    addNewNote: "Add New Note",
+
+    // Drag & Drop Instructions
+    enhancedDragDropInstructions:
+      "Enhanced Drag & Drop + Width Resize Instructions",
+    hoverOverCardInstructions:
+      "Hover over any card to see the drag handle (top center) and width resize handle (right edge)",
+    dragCardsBetweenSections:
+      "Drag cards between sections or within sections to reorganize - width is preserved",
+    dropCardsOnPurpleZones:
+      "Drop cards on purple zones to create new rows within a section",
+    dropCardsOnGreenZones:
+      "Drop cards on green zones to add new rows at the end of a section",
+    dragBlueResizeHandle:
+      "Drag the blue resize handle on the right edge to adjust card width (Small, Medium, Large, Extra Large)",
+    sameRowEqualHeight:
+      "All cards in the same row maintain equal height automatically",
+    layoutSavedAutomatically:
+      "Your layout and card sizes are automatically saved and persist across sessions",
+    useResetLayoutButton:
+      'Use the "Reset Layout" button to restore the default arrangement',
   },
   Hindi: {
     // Authentication
@@ -360,7 +390,7 @@ export const translations = {
     informationHub: "सूचना केंद्र",
 
     // Common Actions
-    save: "सहेजें",
+    save: "सहे���ें",
     cancel: "रद्द करें",
     delete: "हटाएं",
     edit: "संपादित करें",
@@ -390,7 +420,7 @@ export const translations = {
     // Status
     active: "सक्रिय",
     inactive: "निष्क्रिय",
-    pending: "लंबित",
+    pending: "��ंबित",
     completed: "पूर्ण",
     inProgress: "प्रगति में",
     approved: "अनुमोदित",
@@ -441,7 +471,7 @@ export const translations = {
     errorMessage: "एक त्रुटि हुई है। कृपया फिर से कोशिश करें।",
     confirmDelete: "क्या आप वाकई इस आइटम को हटाना चाहते हैं?",
     confirmLogout: "क्या आप वाकई लॉगआउट करना चाहते हैं?",
-    dataUpdated: "डेटा सफलतापूर्वक अपडेट किया गया है",
+    dataUpdated: "डेटा सफलतापूर्वक अपडेट किया ��या है",
     dataSaved: "डेटा सफलतापूर्वक सहेजा गया है",
 
     // Leave Management
@@ -491,7 +521,7 @@ export const translations = {
     redFlag: "लाल झंडा",
     viewDetailedReport: "विस्तृत रिपोर्ट देखें",
     asOn: "की स्थिति",
-    nextPayslip: "आपकी अगली पेस्लिप बनाई जाएगी",
+    nextPayslip: "आपकी अगली ��ेस्लिप बनाई जाएगी",
     days: "दिन",
     deducted: "कटौती",
     pfContribution: "पीएफ योगदान",
@@ -537,7 +567,7 @@ export const translations = {
     officeWillRemainClosed: "दिवाली के लिए 24 अक्टूबर को कार्यालय बंद रहेगा...",
     newHealthInsurancePolicy: "नई स्वास्थ्य बीमा नीति अपडेट",
     importantUpdatesRegarding:
-      "कंपनी स्वास्थ्य बीमा नीति के संबंध में महत्वपूर्ण अपडेट...",
+      "कंपनी स्वास्���्य बीमा नीति के संबंध में महत्वपूर्ण अपडेट...",
     viewAllNotices: "सभी सूच��ाएं देखें",
 
     // Chat Card
@@ -690,7 +720,7 @@ export const translations = {
     published: "প্রকাশিত",
 
     // Employee Management
-    employees: "কর্মচারী",
+    employees: "কর্��চারী",
     addEmployee: "কর্মচারী যোগ ��রুন",
     employeeDetails: "কর্মচারীর বিবরণ",
     employeeList: "কর্মচারী তালিকা",
@@ -738,7 +768,7 @@ export const translations = {
     // Leave Management
     leave: "ছুটি",
     applyLeave: "ছুটির আবেদন করুন",
-    leaveBalance: "ছুটির ব্যালেন্স",
+    leaveBalance: "ছুটির ব্যাল��ন্স",
     leaveHistory: "ছুটির ইতিহাস",
     leaveType: "ছুটির ধরন",
     casualLeave: "নৈমিত্তিক ছুটি",
@@ -764,7 +794,7 @@ export const translations = {
     title: "শিরোনাম",
     description: "বর্ণনা",
     publishDate: "প্রকাশের তারিখ",
-    priority: "অগ্রাধিকার",
+    priority: "অগ্রাধিকা��",
     high: "উচ্চ",
     medium: "মাঝারি",
     low: "নিম্ন",
@@ -947,7 +977,7 @@ export const translations = {
     other: "ఇతర",
 
     // Greetings & Profile
-    goodMorning: "శుభోదయం",
+    goodMorning: "శుభోద��ం",
     goodAfternoon: "శుభ మధ్యాహ్నం",
     goodEvening: "శుభ సాయంత్రం",
     authorityLevel: "అధికార స్���ాయి",
@@ -966,7 +996,7 @@ export const translations = {
     dataSaved: "డేటా విజయవంతంగా సేవ్ చేయబడింది",
 
     // Leave Management
-    leave: "సెలవు",
+    leave: "సెలవ���",
     applyLeave: "సెలవు కోసం దరఖాస్తు చేయండి",
     leaveBalance: "సెలవు బ్యాలెన్స్",
     leaveHistory: "సెలవు చరిత్ర",
@@ -1012,7 +1042,7 @@ export const translations = {
     redFlag: "ఎరుపు జెండా",
     viewDetailedReport: "వివరణాత్మక నివేదిక చూడండి",
     asOn: "ప్రకారం",
-    nextPayslip: "మీ తదుపరి పేస్లిప్ రూపొందించబడుతుంది",
+    nextPayslip: "మీ తదుపరి పేస్లిప్ రూపొం��ించబడుతుంది",
     days: "రోజులు",
     deducted: "తీసివేయబడింది",
     pfContribution: "పిఎఫ్ సహకారం",
@@ -1056,7 +1086,7 @@ export const translations = {
     resendOTP: "OTP पुन्हा प��ठवा",
     resendOTPIn: "OTP पुन्हा पाठवा",
     seconds: "सेकंदात",
-    verifyOTP: "OTP सत्यापित करा",
+    verifyOTP: "OTP सत���यापित करा",
     backToLogin: "← लॉगिनवर परत जा",
   },
   Tamil: {
@@ -1142,7 +1172,7 @@ export const translations = {
     resendOTPIn: "OTP ପୁନଃ ପଠାନ୍ତୁ",
     seconds: "ସେକେଣ୍ଡରେ",
     verifyOTP: "OTP ଯ��ଞ୍ଚ କର��୍ତୁ",
-    backToLogin: "← ଲଗଇନ୍‌କୁ ଫେରନ୍ତୁ",
+    backToLogin: "← ଲଗ���ନ୍‌କୁ ଫେରନ୍ତୁ",
   },
   Punjabi: {
     welcomeToEasyDo: "EasyDo ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
@@ -1164,7 +1194,7 @@ export const translations = {
   Malayalam: {
     welcomeToEasyDo: "EasyDo ലേക്ക് സ്വാഗതം",
     mobileNumberPlaceholder: "മൊബൈൽ നമ്പർ",
-    bySigningUp: "സൈൻ അപ്പ് ചെയ്യുന്നതിലൂടെ, നിങ്ങൾ ഞങ്ങളുടെ",
+    bySigningUp: "സൈൻ അപ്പ് ചെയ്യുന്നതിലൂടെ, നിങ്ങൾ ഞ��്ങളുടെ",
     termsAndConditions: "നിബന്ധനകളും വ്യവസ്ഥകളും",
     and: "ഒപ്പം",
     privacyPolicy: "സ്വകാര്യതാ നയം",
