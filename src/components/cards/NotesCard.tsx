@@ -40,7 +40,7 @@ export const NotesCard: React.FC<NotesCardProps> = ({
           <StickyNote className="w-5 h-5 text-yellow-600" />
         </div>
         <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-          Quick Notes
+          {t("quickNotes")}
         </h3>
       </div>
 
