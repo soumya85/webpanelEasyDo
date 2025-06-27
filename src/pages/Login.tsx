@@ -38,6 +38,7 @@ const Login = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [language, setLanguage] = useState<Language>("English");
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
