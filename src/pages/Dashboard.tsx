@@ -4,6 +4,7 @@ import { useDashboardLayout } from "@/hooks/useDashboardLayout";
 import { DroppableSection } from "@/components/DroppableSection";
 import { CardFactory } from "@/components/CardFactory";
 import { LayoutControls } from "@/components/LayoutControls";
+import { LanguageTest } from "@/components/LanguageTest";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
