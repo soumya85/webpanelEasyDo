@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   Menu,
   Plus,
-  Moon,
   MessageSquare,
   Bell,
   ChevronDown,
@@ -28,6 +27,7 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
+import { LanguageSelector } from "@/components/LanguageSelector";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
@@ -258,10 +258,13 @@ export function Header() {
         <div className="flex items-center gap-6">
           {/* Desktop Icons */}
           <div className="flex items-center gap-6">
-            {/* Theme Toggle */}
-            <Button variant="ghost" size="icon">
-              <Moon className="h-5 w-5 text-gray-500" />
-            </Button>
+            {/* Language Selector */}
+            <LanguageSelector
+              position="relative"
+              showGlobe={true}
+              size="sm"
+              className="min-w-[120px]"
+            />
 
             {/* Chat Notification */}
             <Button variant="ghost" size="icon" className="relative">

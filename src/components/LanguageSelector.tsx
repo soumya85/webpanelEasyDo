@@ -10,7 +10,12 @@ import { Globe } from "lucide-react";
 import { type Language } from "@/data/translations";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { getLanguageFontClass } from "@/lib/utils";
-import { reloadFonts, waitForFontsToLoad } from "@/lib/fontLoader";
+import {
+  reloadLanguageFonts,
+  loadLanguageFonts,
+  forceFontRerender,
+  LANGUAGE_FONT_MAP,
+} from "@/lib/fontLoader";
 
 interface LanguageOption {
   value: Language;
@@ -72,38 +77,62 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   // Update body class when language changes for global font application
   useEffect(() => {
     if (useContext && contextValue) {
-      const bodyElement = document.body;
+      const handleLanguageChange = async () => {
+        const bodyElement = document.body;
 
-      // Remove existing language font classes
-      const existingLanguageFonts = [
-        "font-english",
-        "font-hindi",
-        "font-bengali",
-        "font-telugu",
-        "font-marathi",
-        "font-tamil",
-        "font-urdu",
-        "font-gujarati",
-        "font-kannada",
-        "font-odia",
-        "font-punjabi",
-        "font-malayalam",
-      ];
+        // Remove existing language font classes
+        const existingLanguageFonts = [
+          "font-english",
+          "font-hindi",
+          "font-bengali",
+          "font-telugu",
+          "font-marathi",
+          "font-tamil",
+          "font-urdu",
+          "font-gujarati",
+          "font-kannada",
+          "font-odia",
+          "font-punjabi",
+          "font-malayalam",
+        ];
 
-      existingLanguageFonts.forEach((fontClass) => {
-        bodyElement.classList.remove(fontClass);
-      });
+        existingLanguageFonts.forEach((fontClass) => {
+          bodyElement.classList.remove(fontClass);
+        });
 
-      // Add current language font class
-      const currentFontClass = getLanguageFontClass(contextValue);
-      bodyElement.classList.add(currentFontClass.replace("font-", "font-"));
-      bodyElement.classList.add("text-multilingual");
+        // Add current language font class
+        const currentFontClass = getLanguageFontClass(contextValue);
+        bodyElement.classList.add(currentFontClass);
+        bodyElement.classList.add("text-multilingual");
 
-      // Force font reload to ensure proper rendering
-      setTimeout(() => {
-        reloadFonts();
-        waitForFontsToLoad();
-      }, 50);
+        // Load language-specific fonts and apply proper rendering
+        try {
+          console.log(`🌐 Language changed to: ${contextValue}`);
+
+          // Load fonts for the specific language
+          if (contextValue in LANGUAGE_FONT_MAP) {
+            await loadLanguageFonts(
+              contextValue as keyof typeof LANGUAGE_FONT_MAP,
+            );
+          }
+
+          // Force immediate re-render to ensure proper character display
+          forceFontRerender();
+
+          // Additional re-render after a short delay to ensure stability
+          setTimeout(() => {
+            forceFontRerender();
+          }, 200);
+
+          console.log(`✅ Font loading completed for ${contextValue}`);
+        } catch (error) {
+          console.warn(`⚠️ Font loading failed for ${contextValue}:`, error);
+          // Fallback: just force re-render
+          forceFontRerender();
+        }
+      };
+
+      handleLanguageChange();
     }
   }, [contextValue, useContext]);
 
