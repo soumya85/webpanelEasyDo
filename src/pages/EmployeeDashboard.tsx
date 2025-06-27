@@ -3221,12 +3221,18 @@ export default function EmployeeDashboard() {
                 }
               >
                 <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-500 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
-                  <SelectValue placeholder="Approval No. (Optional)" />
+                  <SelectValue placeholder={t("approvalNoOptional")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="pending">Pending Approval</SelectItem>
-                  <SelectItem value="approved">Pre-approved</SelectItem>
-                  <SelectItem value="manager">Manager Approval</SelectItem>
+                  <SelectItem value="pending">
+                    <ReactiveMultilingualText translationKey="pendingApproval" />
+                  </SelectItem>
+                  <SelectItem value="approved">
+                    <ReactiveMultilingualText translationKey="preApproved" />
+                  </SelectItem>
+                  <SelectItem value="manager">
+                    <ReactiveMultilingualText translationKey="managerApproval" />
+                  </SelectItem>
                   <SelectItem value="finance">Finance Approval</SelectItem>
                   <SelectItem value="none">No Approval Required</SelectItem>
                 </SelectContent>
