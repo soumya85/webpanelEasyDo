@@ -2554,7 +2554,7 @@ const ChatContactsList: React.FC<{
   };
 
   return (
-    <div className="flex flex-col h-full bg-white border-r border-gray-200">
+    <div className="flex flex-col bg-white border-r border-gray-200">
       {/* Header */}
       {!hideHeader && (
         <div className="p-4 border-b border-gray-200 bg-white">
