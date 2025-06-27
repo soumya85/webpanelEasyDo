@@ -34,6 +34,7 @@ import { MultilingualText } from "@/components/MultilingualText";
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
   const { user, logout } = useUser();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const [showMobileFilter, setShowMobileFilter] = useState(false);
