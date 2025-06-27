@@ -4561,8 +4561,13 @@ export default function EmployeeDashboard() {
               <span className="text-white text-xl font-semibold">BG</span>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Bhaskar Ghosh</h2>
-              <p className="text-gray-600">Executive Director, Head Office</p>
+              <h2 className="text-xl font-bold text-gray-900">
+                <ReactiveMultilingualText translationKey="bhaskarGhosh" />
+              </h2>
+              <p className="text-gray-600">
+                <ReactiveMultilingualText translationKey="executiveDirector" />,{" "}
+                <ReactiveMultilingualText translationKey="headOffice" />
+              </p>
             </div>
           </div>
 
