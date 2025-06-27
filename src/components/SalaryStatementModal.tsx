@@ -48,6 +48,7 @@ export const SalaryStatementModal: React.FC<SalaryStatementModalProps> = ({
   onClose,
   onBackToReports,
 }) => {
+  const { t } = useTranslation();
   const [selectedEmployee, setSelectedEmployee] = useState("");
 
   const handleSearch = () => {
