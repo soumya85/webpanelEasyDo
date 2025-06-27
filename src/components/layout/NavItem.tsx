@@ -2,10 +2,13 @@ import { LucideIcon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/useSidebar";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
+import { type TranslationKey } from "@/data/translations";
 
 interface NavItemProps {
   icon: LucideIcon;
-  label: string;
+  labelKey: TranslationKey;
   href: string;
   badge?: number;
 }
