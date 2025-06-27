@@ -10,6 +10,7 @@ interface UserProfileProps {
 
 export function UserProfile({ isExpanded }: UserProfileProps) {
   const { user } = useUser();
+  const { t } = useTranslation();
 
   if (!isExpanded) {
     return (
