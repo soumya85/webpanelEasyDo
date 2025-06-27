@@ -156,7 +156,7 @@ const Login = () => {
                 : "bg-gray-300 text-gray-400 cursor-not-allowed border-0",
             )}
           >
-            SEND OTP
+            {t("sendOTP")}
           </Button>
         </div>
       </div>
