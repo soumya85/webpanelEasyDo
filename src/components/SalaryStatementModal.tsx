@@ -5,6 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTranslation } from "@/hooks/useTranslation";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Button } from "@/components/ui/button";
 import {
@@ -47,6 +48,7 @@ export const SalaryStatementModal: React.FC<SalaryStatementModalProps> = ({
   onClose,
   onBackToReports,
 }) => {
+  const { t } = useTranslation();
   const [selectedEmployee, setSelectedEmployee] = useState("");
 
   const handleSearch = () => {
@@ -100,7 +102,7 @@ export const SalaryStatementModal: React.FC<SalaryStatementModalProps> = ({
               onValueChange={setSelectedEmployee}
             >
               <SelectTrigger className="w-full h-12 border border-gray-300">
-                <SelectValue placeholder="Select Employee" />
+                <SelectValue placeholder={t("selectEmployee")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="soumyadeep-goswami">

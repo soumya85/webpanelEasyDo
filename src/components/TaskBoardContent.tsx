@@ -22,6 +22,7 @@ import {
   ZoomOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/hooks/useTranslation";
 import {
   format,
   startOfMonth,
@@ -446,6 +447,7 @@ function GanttChartView({
 
 // --- Main TaskBoardContent Component ---
 export function TaskBoardContent() {
+  const { t } = useTranslation();
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
@@ -629,7 +631,7 @@ export function TaskBoardContent() {
         <div className="flex items-center gap-2 w-full md:w-auto">
           <div className="relative w-full md:w-56">
             <Input
-              placeholder="Search tasks, assignee, or details"
+              placeholder={t("searchTasks")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 py-1.5 text-sm rounded border border-blue-100 focus:border-blue-400 transition"

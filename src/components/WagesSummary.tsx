@@ -9,8 +9,10 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function WagesSummary() {
+  const { t } = useTranslation();
   const [isWagesDetailModalOpen, setIsWagesDetailModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"current" | "year" | "issued">(
     "current",
@@ -35,7 +37,7 @@ export default function WagesSummary() {
       borderColor: "border-l-red-500",
     },
     {
-      label: "Net Pay",
+      label: t("netPay"),
       amount: "₹11,583.56",
       color: "text-blue-600",
       bgColor: "bg-blue-50",

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { ArrowLeft } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface OperationalExpensesModalProps {
   open: boolean;
@@ -34,7 +35,8 @@ const lastFourMonthsData = [
 export const OperationalExpensesModal: React.FC<
   OperationalExpensesModalProps
 > = ({ open, onClose, onBackToReports }) => {
-  const [selectedPeriod, setSelectedPeriod] = useState("Last Month");
+  const { t } = useTranslation();
+  const [selectedPeriod, setSelectedPeriod] = useState(t("lastMonth"));
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -77,9 +79,11 @@ export const OperationalExpensesModal: React.FC<
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Last Month">Last Month</SelectItem>
-                <SelectItem value="Last Quarter">Last Quarter</SelectItem>
-                <SelectItem value="Last Year">Last Year</SelectItem>
+                <SelectItem value={t("lastMonth")}>{t("lastMonth")}</SelectItem>
+                <SelectItem value={t("lastQuarter")}>
+                  {t("lastQuarter")}
+                </SelectItem>
+                <SelectItem value={t("lastYear")}>{t("lastYear")}</SelectItem>
               </SelectContent>
             </Select>
           </div>

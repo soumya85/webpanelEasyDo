@@ -2869,7 +2869,7 @@ const ChatConversation: React.FC<{
             <Input
               value={messageText}
               onChange={(e) => onMessageChange(e.target.value)}
-              placeholder="Type a message"
+              placeholder={getGlobalTranslation("typeAMessage")}
               className="rounded-3xl border-gray-300 py-3"
               onKeyDown={(e) => e.key === "Enter" && onSendMessage()}
             />
@@ -3238,7 +3238,7 @@ const MobileChatView: React.FC<{
           <Input
             value={messageText}
             onChange={(e) => onMessageChange(e.target.value)}
-            placeholder="Type here..."
+            placeholder={getGlobalTranslation("typeHere")}
             className="rounded-full border-gray-300 pr-10"
             onKeyDown={(e) => e.key === "Enter" && onSendMessage()}
           />
@@ -3538,7 +3538,7 @@ const Chats: React.FC = () => {
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search or start a new chat"
+                placeholder={getGlobalTranslation("searchOrStartNewChat")}
                 className="pl-10 bg-gray-50 border-gray-200 h-9"
               />
             </div>
