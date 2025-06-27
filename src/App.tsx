@@ -8,7 +8,7 @@ import { SidebarProvider } from "./hooks/useSidebar";
 import { UserProvider } from "./hooks/useUser";
 import { PageLayout } from "./components/layout/PageLayout";
 import Sample from "./pages/Overview";
-import Chats from "./pages/Chats";
+import ChatsSimple from "./pages/ChatsSimple";
 import TodaysSchedule from "./pages/TodaysSchedule";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
 import CompanyDashboard from "./pages/CompanyDashboard";
