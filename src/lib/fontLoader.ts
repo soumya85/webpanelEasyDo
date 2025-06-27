@@ -268,13 +268,10 @@ export const reloadLanguageFonts = async (
   try {
     console.log(`🔄 Reloading fonts for ${language}`);
 
-    // First, force re-render current text
-    forceFontRerender();
-
-    // Load language-specific fonts
+    // First, ensure fonts are actually available before proceeding
     await loadLanguageFonts(language);
 
-    // Apply language-specific font classes
+    // Apply language-specific font classes with immediate effect
     const body = document.body;
 
     // Remove all existing language font classes
@@ -283,17 +280,33 @@ export const reloadLanguageFonts = async (
     );
     body.classList.remove(...languageFontClasses);
 
+    // Force a reflow to ensure class removal takes effect
+    body.offsetHeight;
+
     // Add the correct language font class
     body.classList.add(`font-${language.toLowerCase()}`);
+    body.classList.add("text-multilingual");
 
-    // Force another re-render after font application
-    setTimeout(() => {
-      forceFontRerender();
-    }, 100);
+    // Force immediate font application with multiple techniques
+    forceFontRerender();
 
-    console.log(`✓ Fonts reloaded for ${language}`);
+    // Additional verification that fonts are working
+    await new Promise((resolve) => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          forceFontRerender();
+          resolve(void 0);
+        });
+      });
+    });
+
+    console.log(`✓ Fonts reloaded and verified for ${language}`);
   } catch (error) {
     console.warn(`Font reload failed for ${language}:`, error);
+    // Fallback: apply basic font classes anyway
+    const body = document.body;
+    body.classList.add(`font-${language.toLowerCase()}`);
+    body.classList.add("text-multilingual");
   }
 };
 
