@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { type Language } from "@/data/translations";
+import { useGlobalFontLoader } from "@/hooks/useFontLoader";
 
 interface LanguageContextType {
   language: Language;
@@ -30,19 +31,33 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   defaultLanguage = "English",
 }) => {
   const [language, setLanguageState] = useState<Language>(defaultLanguage);
+  const { switchLanguage, isInitialized } = useGlobalFontLoader();
 
   // Load saved language from localStorage on mount
   useEffect(() => {
     const savedLanguage = localStorage.getItem("selectedLanguage") as Language;
-    if (savedLanguage && isValidLanguage(savedLanguage)) {
-      setLanguageState(savedLanguage);
-    }
-  }, []);
+    const initialLanguage =
+      savedLanguage && isValidLanguage(savedLanguage)
+        ? savedLanguage
+        : defaultLanguage;
 
-  // Save language to localStorage when it changes
-  const setLanguage = (newLanguage: Language) => {
+    setLanguageState(initialLanguage);
+
+    // Initialize fonts for the initial language
+    switchLanguage(initialLanguage);
+  }, [defaultLanguage, switchLanguage]);
+
+  // Enhanced setLanguage function with font loading
+  const setLanguage = async (newLanguage: Language) => {
+    if (language === newLanguage) return;
+
+    console.log(`🌐 Changing language from ${language} to ${newLanguage}`);
+
     setLanguageState(newLanguage);
     localStorage.setItem("selectedLanguage", newLanguage);
+
+    // Load fonts for the new language
+    await switchLanguage(newLanguage);
   };
 
   const value = {
