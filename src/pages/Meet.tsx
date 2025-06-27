@@ -740,7 +740,7 @@ export default function Meet() {
                 className="bg-blue-700 text-white"
                 onClick={() => setShowCreateGroupModal(true)}
               >
-                + Create Group
+                + <ReactiveMultilingualText translationKey="createGroup" />
               </Button>
             </div>
             <ul className="space-y-2 mb-4 max-h-40 overflow-auto">
