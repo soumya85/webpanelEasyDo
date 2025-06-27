@@ -30,6 +30,10 @@ const OTPVerification = () => {
 
   const isOTPValid = otp.length === 6;
 
+  // Get translation function for current language
+  const t = (key: keyof typeof translations.English) =>
+    translations[language][key];
+
   const handleVerifyOTP = () => {
     if (isOTPValid) {
       // In a real app, you would verify the OTP with the backend here
