@@ -60,7 +60,9 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
           variant="default"
           className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-xl"
         >
-          Authority Level {user.authorityLevel}
+          <MultilingualText>
+            {t("authorityLevel")} {user.authorityLevel}
+          </MultilingualText>
         </Badge>
       </div>
     </div>
