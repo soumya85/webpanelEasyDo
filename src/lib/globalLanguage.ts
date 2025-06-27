@@ -76,7 +76,7 @@ export const initializeGlobalLanguage = (): void => {
   // Set global window property
   window.siteLang = currentLang;
 
-  // Create global change language function
+  // Create global change language function without page reload
   window.changeLanguage = (lang: GlobalLanguage) => {
     // Validate the new language
     const isValid = globalLanguageOptions.some(
@@ -103,9 +103,9 @@ export const initializeGlobalLanguage = (): void => {
       }),
     );
 
-    // Reload the page to apply changes across all components
-    // This ensures all content updates without manual re-rendering
-    location.reload();
+    // Force re-render of all dynamic text elements
+    // This updates content without page reload
+    updateDynamicContent(lang);
   };
 
   console.log(
@@ -130,6 +130,29 @@ export const getLanguageOption = (
 };
 
 /**
+ * Update dynamic content without page reload
+ */
+const updateDynamicContent = (lang: GlobalLanguage): void => {
+  // Force React components to re-render by triggering state updates
+  const event = new Event("storage");
+  window.dispatchEvent(event);
+
+  // Update any elements with data-translate attributes
+  const translatableElements = document.querySelectorAll("[data-translate]");
+  translatableElements.forEach((element) => {
+    const key = element.getAttribute("data-translate");
+    if (key) {
+      // This would be handled by React components listening to the event
+      element.dispatchEvent(
+        new CustomEvent("translateUpdate", { detail: { key, lang } }),
+      );
+    }
+  });
+
+  console.log(`🌐 Language updated to ${lang} without page reload`);
+};
+
+/**
  * Create the global script content as a string
  * This can be injected into HTML head
  */
@@ -142,7 +165,10 @@ export const getGlobalLanguageScript = (): string => {
         window.siteLang = lang;
         window.changeLanguage = function (lang) {
           localStorage.setItem('siteLang', lang);
-          location.reload();
+          document.documentElement.lang = lang;
+          window.siteLang = lang;
+          window.dispatchEvent(new CustomEvent('languageChange', { detail: { language: lang } }));
+          window.dispatchEvent(new Event('storage'));
         };
       })();
     </script>

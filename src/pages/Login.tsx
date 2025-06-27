@@ -32,8 +32,8 @@ import {
   type CountryCode,
 } from "@/data/countryCodes";
 import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
-import { MultilingualText } from "@/components/MultilingualText";
-import { getGlobalTranslation } from "@/lib/globalTranslations";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
+import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
@@ -41,6 +41,7 @@ const Login = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { t } = useGlobalTranslation();
 
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
 
@@ -94,12 +95,11 @@ const Login = () => {
 
           {/* Welcome Heading */}
           <div className="text-center">
-            <MultilingualText
+            <ReactiveMultilingualText
               as="h1"
               className="text-xl font-semibold text-gray-900"
-            >
-              {getGlobalTranslation("welcomeToEasyDo")}
-            </MultilingualText>
+              translationKey="welcomeToEasyDo"
+            />
           </div>
 
           {/* Mobile Number Input Section */}
@@ -187,7 +187,7 @@ const Login = () => {
               {/* Mobile Number Input */}
               <Input
                 type="tel"
-                placeholder={getGlobalTranslation("mobileNumberPlaceholder")}
+                placeholder={t("mobileNumberPlaceholder")}
                 value={mobileNumber}
                 onChange={handleMobileNumberChange}
                 className="flex-1 border-gray-200 focus:border-primary focus:ring-primary"
@@ -204,20 +204,19 @@ const Login = () => {
               onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
               className="mt-1"
             />
-            <MultilingualText
-              as="label"
+            <label
               htmlFor="terms"
               className="text-sm text-gray-600 leading-relaxed"
             >
-              {getGlobalTranslation("bySigningUp")}{" "}
+              <ReactiveMultilingualText translationKey="bySigningUp" />{" "}
               <a href="#" className="text-primary hover:underline">
-                {getGlobalTranslation("termsAndConditions")}
+                <ReactiveMultilingualText translationKey="termsAndConditions" />
               </a>{" "}
-              {getGlobalTranslation("and")}{" "}
+              <ReactiveMultilingualText translationKey="and" />{" "}
               <a href="#" className="text-primary hover:underline">
-                {getGlobalTranslation("privacyPolicy")}
+                <ReactiveMultilingualText translationKey="privacyPolicy" />
               </a>
-            </MultilingualText>
+            </label>
           </div>
 
           {/* Send OTP Button */}
@@ -231,9 +230,7 @@ const Login = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            <MultilingualText>
-              {getGlobalTranslation("sendOTP")}
-            </MultilingualText>
+            <ReactiveMultilingualText translationKey="sendOTP" />
           </Button>
         </div>
       </div>

@@ -69,7 +69,12 @@
         window.siteLang = lang;
         window.changeLanguage = function (lang) {
           localStorage.setItem("siteLang", lang);
-          location.reload();
+          document.documentElement.lang = lang;
+          window.siteLang = lang;
+          window.dispatchEvent(
+            new CustomEvent("languageChange", { detail: { language: lang } }),
+          );
+          window.dispatchEvent(new Event("storage"));
         };
       })();
     </script>

@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/input-otp";
 import { cn } from "@/lib/utils";
 import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
-import { MultilingualText } from "@/components/MultilingualText";
-import { getGlobalTranslation } from "@/lib/globalTranslations";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
+import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
@@ -18,6 +18,7 @@ const OTPVerification = () => {
   const [hasResent, setHasResent] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useGlobalTranslation();
 
   const { mobileNumber, maskedNumber } = location.state || {
     mobileNumber: "+91 9876543210",
@@ -83,17 +84,15 @@ const OTPVerification = () => {
 
           {/* Heading */}
           <div className="text-center space-y-2">
-            <MultilingualText
+            <ReactiveMultilingualText
               as="h1"
               className="text-xl font-semibold text-gray-900"
-            >
-              {getGlobalTranslation("enterOTP")}
-            </MultilingualText>
-            <MultilingualText as="p" className="text-sm text-gray-700">
-              {hasResent
-                ? getGlobalTranslation("resendTo")
-                : getGlobalTranslation("sentTo")}{" "}
-              {maskedNumber}
+              translationKey="enterOTP"
+            />
+            <p className="text-sm text-gray-700">
+              <ReactiveMultilingualText
+                translationKey={hasResent ? "resendTo" : "sentTo"}
+              /> {maskedNumber}
             </MultilingualText>
           </div>
 
@@ -120,21 +119,25 @@ const OTPVerification = () => {
 
             {/* Resend OTP */}
             <div className="text-center">
-              <MultilingualText
-                as="button"
-                onClick={handleResendOTP}
-                disabled={!canResend}
-                className={cn(
-                  "text-sm transition-colors",
-                  canResend
-                    ? "text-blue-600 hover:underline cursor-pointer"
-                    : "text-gray-500 cursor-not-allowed",
-                )}
-              >
-                {canResend
-                  ? getGlobalTranslation("resendOTP")
-                  : `${getGlobalTranslation("resendOTPIn")} ${timeLeft} ${getGlobalTranslation("seconds")}`}
-              </MultilingualText>
+            <button
+              onClick={handleResendOTP}
+              disabled={!canResend}
+              className={cn(
+                "text-sm transition-colors",
+                canResend
+                  ? "text-blue-600 hover:underline cursor-pointer"
+                  : "text-gray-500 cursor-not-allowed",
+              )}
+            >
+              {canResend ? (
+                <ReactiveMultilingualText translationKey="resendOTP" />
+              ) : (
+                <>
+                  <ReactiveMultilingualText translationKey="resendOTPIn" /> {timeLeft}{" "}
+                  <ReactiveMultilingualText translationKey="seconds" />
+                </>
+              )}
+            </button>
             </div>
           </div>
 
@@ -149,20 +152,17 @@ const OTPVerification = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            <MultilingualText>
-              {getGlobalTranslation("verifyOTP")}
-            </MultilingualText>
+            <ReactiveMultilingualText translationKey="verifyOTP" />
           </Button>
 
           {/* Back to Login */}
           <div className="text-center">
-            <MultilingualText
-              as="button"
+            <button
               onClick={() => navigate("/login")}
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
-              {getGlobalTranslation("backToLogin")}
-            </MultilingualText>
+              <ReactiveMultilingualText translationKey="backToLogin" />
+            </button>
           </div>
         </div>
       </div>
