@@ -81,10 +81,7 @@ const Login = () => {
 
   return (
     <div
-      className={cn(
-        "min-h-screen flex items-center justify-center p-6",
-        getMultilingualTextClass(language),
-      )}
+      className="min-h-screen flex items-center justify-center p-6"
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
