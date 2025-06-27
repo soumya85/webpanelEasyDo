@@ -228,6 +228,68 @@ export const translations = {
     minutes: "minutes",
     scheduledMeetings: "Scheduled Meetings",
     viewAllMeetings: "View All Meetings",
+
+    // Approvals Card
+    itemsAwaitingYourApproval: "Items Awaiting Your Approval",
+    leaveRequest: "Leave Request",
+    expenseReport: "Expense Report",
+    urgent: "Urgent",
+    review: "Review",
+    submittedDaysAgo: "Submitted {days} ago",
+    reviewApprovals: "Review Approvals",
+
+    // Notice Card
+    noticeBoard: "Notice Board",
+    youreViewingFor: "You're viewing for",
+    holidayNotice: "Holiday Notice - Diwali Celebration",
+    officeWillRemainClosed:
+      "Office will remain closed on October 24th for Diwali...",
+    newHealthInsurancePolicy: "New Health Insurance Policy Updates",
+    importantUpdatesRegarding:
+      "Important updates regarding the company health insurance policy...",
+    viewAllNotices: "View All Notices",
+
+    // Chat Card
+    recentChatActivity: "Recent Chat Activity",
+    unreadMessages: "Unread Messages",
+    attendanceNotificationSent: "Attendance notification sent",
+    meetingScheduledFor3PM: "Meeting scheduled for 3 PM today",
+    canYouReviewDocument: "Can you review the document?",
+    thanksForUpdate: "Thanks for the update!",
+    newBuildReadyForTesting: "New build is ready for testing",
+    sureIllSendByEOD: "Sure, I'll send it by EOD",
+    letsScheduleCallTomorrow: "Let's schedule a call tomorrow",
+    filesReadyForDownload: "The files are ready for download",
+    campaignResultsLookingGreat: "Campaign results are looking great!",
+    greatWorkOnPresentation: "Great work on the presentation!",
+    documentsUploadedToSharedFolder: "Documents uploaded to shared folder",
+    budgetApprovalReceived: "Budget approval received",
+    newBadge: "New",
+    groupBadge: "Group",
+    viewAllChats: "View All Chats",
+
+    // Work Status Card
+    myDailyWorkStatus: "My Daily Work Status",
+    officeHours: "Office Hours",
+    punchStatus: "Punch Status",
+    notPunchedIn: "NOT PUNCHED IN",
+    punchedIn: "PUNCHED IN",
+    punchIn: "PUNCH IN",
+    punchActionsTracked: "Punch actions are tracked for attendance",
+    attendanceIsLocked: "Attendance is locked @11:31 AM.",
+    forPunchInClick:
+      "For Punch-in, Click above try request for Approval, to yr Reporting Manager...",
+    locationTimeline: "Location Timeline",
+    trackedOnlyBetween:
+      "(Tracked ONLY between Punch-in & Punch-out as per Mandate of the company)",
+    clickHereForMoreDetail: "Click Here For More Detail",
+
+    // Performance Card
+    myPerformance: "My Performance",
+    averageOverTaskReviews: "Average over {count} task reviews",
+    niceKeepItUp: "Nice, Keep it up! 💪",
+    employeeOfTheMonth: "Employee of the Month",
+    viewPerformanceDetails: "View Performance Details",
   },
   Hindi: {
     // Authentication
@@ -236,7 +298,7 @@ export const translations = {
     bySigningUp: "साइन अप करके, आप हमारी",
     termsAndConditions: "नियम और शर्तें",
     and: "और",
-    privacyPolicy: "गोपनीयता नीति",
+    privacyPolicy: "गोप���ीयता नीति",
     sendOTP: "OTP भेजें",
     enterOTP: "6-अंकीय OTP दर्ज करें",
     sentTo: "भेजा गया",
@@ -288,7 +350,7 @@ export const translations = {
     teamChat: "टीम चैट",
     workStatus: "कार्य स्थिति",
     companyNotice: "कंपनी की सूचना",
-    monthlyAttendance: "मासिक उपस्थिति",
+    monthlyAttendance: "मास���क उपस्थिति",
     salaryOverview: "वेतन अवलोकन",
     performanceMetrics: "प्रदर्शन मेट्रिक्स",
 
@@ -349,7 +411,7 @@ export const translations = {
 
     // Forms
     firstName: "पहला नाम",
-    lastName: "अंतिम नाम",
+    lastName: "अंतिम ना��",
     email: "ईमेल",
     phone: "फोन",
     address: "पता",
@@ -377,7 +439,7 @@ export const translations = {
     // Messages
     successMessage: "ऑपरेशन सफलतापूर्वक पूरा हुआ",
     errorMessage: "एक त्रुटि हुई है। कृपया फिर से कोशिश करें।",
-    confirmDelete: "क्या आप वाकई इस आइटम को हटाना चाहते हैं?",
+    confirmDelete: "क्या आप वाकई इ�� आइटम को हटाना चाहते हैं?",
     confirmLogout: "क्या आप वाकई लॉगआउट करना चाहते हैं?",
     dataUpdated: "डेटा सफलतापूर्वक अपडेट किया गया है",
     dataSaved: "डेटा सफलतापूर्वक सहेजा गया है",
@@ -427,7 +489,7 @@ export const translations = {
     holiday: "छुट्टी",
     late: "देर से",
     redFlag: "लाल झंडा",
-    viewDetailedReport: "विस्तृत रिपोर्ट देखें",
+    viewDetailedReport: "विस���तृत रिपोर्ट देखें",
     asOn: "की स्थिति",
     nextPayslip: "आपकी अगली पेस्लिप बनाई जाएगी",
     days: "दिन",
@@ -447,7 +509,7 @@ export const translations = {
     pendingReview: "समीक्षा लंबित",
     viewAllMyTasks: "मेरे सभी कार्य देखें",
     viewDelegatedTasks: "स���ंपे गए कार्य देखें",
-    myTask: "मेरा कार्य",
+    myTask: "मेरा क���र्य",
     delegatedTask: "सौंपा गया कार्य",
 
     // Meetings Card
@@ -498,7 +560,7 @@ export const translations = {
     allBranch: "সকল শাখা",
 
     // Dashboard
-    quickStats: "দ্রুত পরিসংখ্যান",
+    quickStats: "দ্রুত ���রিসংখ্যান",
     recentActivity: "সাম্প্রতিক কার্যকলাপ",
     upcomingTasks: "আসন্ন কাজ",
     notifications: "বিজ্ঞপ্তি",
@@ -524,7 +586,7 @@ export const translations = {
 
     // Section Titles
     quickOverview: "দ্রুত পর্যালোচনা",
-    productivity: "উৎপাদনশীলতা",
+    productivity: "উৎপাদনশীল��া",
     informationHub: "তথ্য কেন্দ্র",
 
     // Common Actions
@@ -590,7 +652,7 @@ export const translations = {
     dateOfBirth: "জন্ম তারিখ",
     gender: "লিঙ্গ",
     male: "পুরুষ",
-    female: "মহিলা",
+    female: "���হিলা",
     other: "অন্যান্য",
 
     // Greetings & Profile
@@ -608,7 +670,7 @@ export const translations = {
     successMessage: "অপারেশন সফলভাবে সম্পন্ন হয়েছে",
     errorMessage: "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
     confirmDelete: "আপনি কি নিশ্চিত যে এই আইটেমটি মুছতে চান?",
-    confirmLogout: "আপনি কি নিশ্চিত যে লগআউট করতে চান?",
+    confirmLogout: "আপনি কি নিশ্চিত যে ���গআউট করতে চান?",
     dataUpdated: "ডেটা সফলভাবে আপডেট হয়েছে",
     dataSaved: "ডেটা সফলভাবে সংরক্ষিত হয়েছে",
 
@@ -854,7 +916,7 @@ export const translations = {
     maternityLeave: "మాతృత్వ సెలవు",
     paternityLeave: "పితృత్వ సెలవు",
     startDate: "ప్రారంభ తేదీ",
-    endDate: "ముగింపు తేదీ",
+    endDate: "మ��గింపు తేదీ",
     reason: "కారణం",
 
     // Documents
