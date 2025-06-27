@@ -2849,7 +2849,7 @@ export default function EmployeeDashboard() {
             {/* Amount/Total Field */}
             <div className="space-y-2">
               <Input
-                placeholder="Amount/Total"
+                placeholder={t("amountTotal")}
                 type="number"
                 value={salaryAdvanceFormData.amount}
                 onChange={(e) =>
