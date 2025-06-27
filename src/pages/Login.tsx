@@ -28,6 +28,17 @@ const Login = () => {
   const t = (key: keyof typeof translations.English) =>
     translations[language][key];
 
+  // Find current country for display
+  const currentCountry = countryCodes.find(
+    (country) => country.dialCode === countryCode,
+  ) ||
+    popularCountryCodes.find((country) => country.dialCode === countryCode) || {
+      flag: "🇮🇳",
+      dialCode: "+91",
+      name: "India",
+      code: "IN",
+    };
+
   const handleSendOTP = () => {
     if (isFormValid) {
       navigate("/otp-verification", {
@@ -66,7 +77,7 @@ const Login = () => {
             <SelectItem value="Bengali">বাংলা (Bengali)</SelectItem>
             <SelectItem value="Telugu">తెలుగు (Telugu)</SelectItem>
             <SelectItem value="Marathi">मराठी (Marathi)</SelectItem>
-            <SelectItem value="Tamil">தமிழ் (Tamil)</SelectItem>
+            <SelectItem value="Tamil">��மிழ் (Tamil)</SelectItem>
             <SelectItem value="Urdu">ار��و (Urdu)</SelectItem>
             <SelectItem value="Gujarati">ગુજરાતી (Gujarati)</SelectItem>
             <SelectItem value="Kannada">ಕನ್ನಡ (Kannada)</SelectItem>
@@ -101,7 +112,9 @@ const Login = () => {
               {/* Country Code Selector */}
               <Select value={countryCode} onValueChange={setCountryCode}>
                 <SelectTrigger className="w-20 border-gray-200">
-                  <SelectValue />
+                  <SelectValue>
+                    {currentCountry.flag} {currentCountry.dialCode}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px] overflow-y-auto w-[280px]">
                   {/* Popular Countries Section */}
