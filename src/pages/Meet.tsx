@@ -689,7 +689,9 @@ export default function Meet() {
       {showCreateContactModal && (
         <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
           <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
-            <h2 className="text-lg font-semibold mb-4">Create Contact</h2>
+            <h2 className="text-lg font-semibold mb-4">
+              <ReactiveMultilingualText translationKey="createContact" />
+            </h2>
             <div className="flex flex-col gap-2 mb-2">
               <Input
                 placeholder="Name"
