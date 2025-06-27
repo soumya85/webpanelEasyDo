@@ -1,23 +1,34 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
+import { LogOut } from "lucide-react";
 
 interface UserProfileProps {
   isExpanded: boolean;
 }
 
 export function UserProfile({ isExpanded }: UserProfileProps) {
-  const { user } = useUser();
+  const { user, logout } = useUser();
 
   if (!isExpanded) {
     return (
-      <div className="flex flex-col items-center p-4">
+      <div className="flex flex-col items-center p-4 gap-3">
         <Avatar className="h-12 w-12">
           <AvatarImage src={getProfileImageSrc(user)} alt={user.name} />
           <AvatarFallback className="bg-azure-24 text-white font-semibold">
             {getUserInitials(user.name)}
           </AvatarFallback>
         </Avatar>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={logout}
+          className="h-8 w-8 text-gray-500 hover:text-destructive hover:bg-red-50"
+          title="Logout"
+        >
+          <LogOut className="h-4 w-4" />
+        </Button>
       </div>
     );
   }
@@ -59,6 +70,16 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
         >
           Authority Level {user.authorityLevel}
         </Badge>
+
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={logout}
+          className="mt-2 text-gray-600 border-gray-200 hover:bg-red-50 hover:border-red-200 hover:text-destructive transition-colors"
+        >
+          <LogOut className="h-4 w-4 mr-2" />
+          Logout
+        </Button>
       </div>
     </div>
   );
