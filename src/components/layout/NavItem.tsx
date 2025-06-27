@@ -43,7 +43,9 @@ export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
     >
       <Icon className="h-[18px] w-[18px] flex-shrink-0" />
       {isExpanded && (
-        <span className="text-13 font-semibold leading-tight">{label}</span>
+        <MultilingualText className="text-13 font-semibold leading-tight">
+          {t(labelKey)}
+        </MultilingualText>
       )}
       {badge && badge > 0 && isExpanded && (
         <div className="ml-auto flex h-4 w-4 items-center justify-center rounded-full bg-warning text-white text-[9px] font-semibold">
