@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
+import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -2580,7 +2582,7 @@ const ChatContactsList: React.FC<{
           <div className="flex items-center gap-4">
             {/* Chats Title */}
             <h1 className="text-xl font-semibold text-gray-900 flex-shrink-0">
-              Chats
+              <ReactiveMultilingualText translationKey="chats" />
             </h1>
 
             {/* Search Bar */}
@@ -2589,7 +2591,7 @@ const ChatContactsList: React.FC<{
               <Input
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                placeholder="Search or start a new chat"
+                placeholder={t("searchOrStartNewChat")}
                 className="pl-10 bg-gray-50 border-gray-200 h-9"
               />
             </div>
@@ -2723,7 +2725,7 @@ const ChatConversation: React.FC<{
         <div className="text-center">
           <MessageCircle className="h-24 w-24 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">
-            Select a chat to start messaging
+            <ReactiveMultilingualText translationKey="selectChatToStart" />
           </h3>
           <p className="text-gray-500">
             Choose from your existing conversations or start a new one
@@ -2747,7 +2749,9 @@ const ChatConversation: React.FC<{
 
           <div className="flex-1">
             <h2 className="font-semibold text-gray-900">{selectedChat.name}</h2>
-            <p className="text-sm text-gray-500">Online</p>
+            <p className="text-sm text-gray-500">
+              <ReactiveMultilingualText translationKey="online" />
+            </p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -2913,6 +2917,7 @@ const MobileChatList: React.FC<{
   selectedFilter,
   onFilterChange,
 }) => {
+  const { t } = useGlobalTranslation();
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
 
   // Calculate counts for each filter
@@ -2944,7 +2949,9 @@ const MobileChatList: React.FC<{
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
         {/* Title */}
         <div className="px-4 pt-4 pb-2">
-          <h1 className="text-[28px] font-black text-gray-900">Chats</h1>
+          <h1 className="text-[28px] font-black text-gray-900">
+            <ReactiveMultilingualText translationKey="chats" />
+          </h1>
         </div>
 
         {/* Search Bar */}
@@ -2953,7 +2960,7 @@ const MobileChatList: React.FC<{
             <Input
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search"
+              placeholder={t("search")}
               className="pl-10 rounded-lg border-gray-300 bg-gray-50"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -3044,7 +3051,7 @@ const MobileChatList: React.FC<{
                       variant="secondary"
                       className="bg-black text-white text-[10px] px-2 py-0.5 rounded"
                     >
-                      GROUP CHAT
+                      <ReactiveMultilingualText translationKey="groupChat" />
                     </Badge>
                   )}
                   {chat.tags?.map((tag) => (
@@ -3078,7 +3085,11 @@ const MobileChatList: React.FC<{
         ) : (
           <div className="flex items-center justify-center py-8">
             <p className="text-gray-500 text-center">
-              {searchQuery ? "No chats found" : "No chats available"}
+              <ReactiveMultilingualText
+                translationKey={
+                  searchQuery ? "noChatsFound" : "noChatsAvailable"
+                }
+              />
             </p>
           </div>
         )}
@@ -3350,6 +3361,7 @@ const CompanyActionDrawer: React.FC<{
 const Chats: React.FC = () => {
   // Hooks
   const location = useLocation();
+  const { t } = useGlobalTranslation();
 
   // For mobile: start with no chat selected (show list)
   // For desktop: start with first chat selected (show conversation)

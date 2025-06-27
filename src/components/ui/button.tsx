@@ -3,7 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
-import { useLanguageContext } from "@/contexts/LanguageContext";
+import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import { getMultilingualTextClass } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -43,14 +43,32 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const { language } = useLanguageContext();
+    const { currentLanguage } = useGlobalTranslation();
     const Comp = asChild ? Slot : "button";
+
+    // Map global language codes to the format expected by getMultilingualTextClass
+    const languageMap: Record<string, string> = {
+      en: "English",
+      hi: "Hindi",
+      bn: "Bengali",
+      te: "Telugu",
+      mr: "Marathi",
+      ta: "Tamil",
+      ur: "Urdu",
+      gu: "Gujarati",
+      kn: "Kannada",
+      or: "Odia",
+      pa: "Punjabi",
+      ml: "Malayalam",
+    };
+
+    const mappedLanguage = languageMap[currentLanguage] || "English";
 
     return (
       <Comp
         className={cn(
           buttonVariants({ variant, size }),
-          getMultilingualTextClass(language),
+          getMultilingualTextClass(mappedLanguage),
           className,
         )}
         ref={ref}

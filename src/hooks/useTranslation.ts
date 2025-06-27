@@ -1,9 +1,26 @@
-import { useCallback } from "react";
-import { useLanguageContext } from "@/contexts/LanguageContext";
+import { useCallback, useState, useEffect } from "react";
 import { translations, type TranslationKey } from "@/data/translations";
+import { getCurrentLanguage, type GlobalLanguage } from "@/lib/globalLanguage";
+
+// Map global language codes to translation keys
+const langMap: Record<string, keyof typeof translations> = {
+  en: "English",
+  hi: "Hindi",
+  bn: "Bengali",
+  te: "Telugu",
+  mr: "Marathi",
+  ta: "Tamil",
+  ur: "Urdu",
+  gu: "Gujarati",
+  kn: "Kannada",
+  or: "Odia",
+  pa: "Punjabi",
+  ml: "Malayalam",
+};
 
 /**
  * Hook for easy translation access across components
+ * Now works with the global language system and updates reactively
  *
  * Usage:
  * const { t, language, setLanguage } = useTranslation();
@@ -15,7 +32,49 @@ import { translations, type TranslationKey } from "@/data/translations";
  * <span>{t('someKey', 'Default Text')}</span>
  */
 export const useTranslation = () => {
-  const { language, setLanguage } = useLanguageContext();
+  const [currentLang, setCurrentLang] = useState<GlobalLanguage>(() =>
+    getCurrentLanguage(),
+  );
+
+  useEffect(() => {
+    // Ensure we have the latest language on mount
+    const initialLang = getCurrentLanguage();
+    if (initialLang !== currentLang) {
+      setCurrentLang(initialLang);
+    }
+
+    // Listen for global language changes
+    const handleLanguageChange = (event: CustomEvent) => {
+      console.log(
+        "🔄 useTranslation received language change:",
+        event.detail.language,
+      );
+      setCurrentLang(event.detail.language);
+    };
+
+    const handleStorageChange = () => {
+      const newLang = getCurrentLanguage();
+      console.log("🔄 useTranslation storage change detected:", newLang);
+      setCurrentLang(newLang);
+    };
+
+    window.addEventListener(
+      "languageChange",
+      handleLanguageChange as EventListener,
+    );
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener(
+        "languageChange",
+        handleLanguageChange as EventListener,
+      );
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  // Get the translation language key from the current global language
+  const translationLanguage = langMap[currentLang] || "English";
 
   /**
    * Translation function
@@ -26,7 +85,7 @@ export const useTranslation = () => {
   const t = useCallback(
     (key: TranslationKey, fallback?: string): string => {
       try {
-        const translation = translations[language]?.[key];
+        const translation = translations[translationLanguage]?.[key];
         if (translation) {
           return translation;
         }
@@ -41,13 +100,13 @@ export const useTranslation = () => {
         return fallback || key;
       } catch (error) {
         console.warn(
-          `Translation error for key "${key}" in language "${language}":`,
+          `Translation error for key "${key}" in language "${translationLanguage}":`,
           error,
         );
         return fallback || key;
       }
     },
-    [language],
+    [translationLanguage],
   );
 
   /**
@@ -74,9 +133,11 @@ export const useTranslation = () => {
    */
   const hasTranslation = useCallback(
     (key: TranslationKey): boolean => {
-      return !!(translations[language]?.[key] || translations.English[key]);
+      return !!(
+        translations[translationLanguage]?.[key] || translations.English[key]
+      );
     },
-    [language],
+    [translationLanguage],
   );
 
   /**
@@ -116,12 +177,21 @@ export const useTranslation = () => {
     [],
   );
 
+  /**
+   * Change language using the global system
+   */
+  const setLanguage = useCallback((newLang: GlobalLanguage) => {
+    if (window.changeLanguage) {
+      window.changeLanguage(newLang);
+    }
+  }, []);
+
   return {
     t,
     tp,
     tl,
     hasTranslation,
-    language,
+    language: translationLanguage,
     setLanguage,
   };
 };

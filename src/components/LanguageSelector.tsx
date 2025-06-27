@@ -60,11 +60,17 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   // Use context if useContext is true, otherwise use props
   let contextValue, contextSetLanguage;
   try {
-    const context = useLanguageContext();
-    contextValue = context.language;
-    contextSetLanguage = context.setLanguage;
+    if (useContext) {
+      const context = useLanguageContext();
+      contextValue = context.language;
+      contextSetLanguage = context.setLanguage;
+    } else {
+      contextValue = undefined;
+      contextSetLanguage = undefined;
+    }
   } catch {
     // Context not available, fallback to props
+    console.warn("LanguageContext not available, falling back to props");
     contextValue = undefined;
     contextSetLanguage = undefined;
   }
