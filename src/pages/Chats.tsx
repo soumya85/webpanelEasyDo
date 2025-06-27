@@ -3022,7 +3022,10 @@ const MobileChatList: React.FC<{
       </div>
 
       {/* Chat List */}
-      <div className="flex-1 bg-white overflow-y-auto">
+      <div
+        className="bg-white overflow-y-auto"
+        style={{ paddingTop: "calc(86px + 320px)", minHeight: "100vh" }}
+      >
         {chatItems.length > 0 ? (
           chatItems.map((chat) => (
             <div
