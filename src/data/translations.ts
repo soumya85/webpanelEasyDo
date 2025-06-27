@@ -235,6 +235,23 @@ export const translations = {
     notes: "नोट्स",
     notice: "सूचना",
 
+    // Dashboard Cards
+    taskAtGlance: "कार्यों की एक झलक",
+    meetingsThisWeek: "इस सप्ताह की बैठकें",
+    pendingApprovals: "लंबित अनुमोदन",
+    personalNotes: "व्यक्तिगत नोट्स",
+    teamChat: "टीम चैट",
+    workStatus: "कार्य स्थिति",
+    companyNotice: "कंपनी की सूचना",
+    monthlyAttendance: "मासिक उपस्थिति",
+    salaryOverview: "वेतन अवलोकन",
+    performanceMetrics: "प्रदर्शन मेट्रिक्स",
+
+    // Section Titles
+    quickOverview: "त्वरित अवलोकन",
+    productivity: "उत्पादकता",
+    informationHub: "सूचना केंद्र",
+
     // Common Actions
     save: "सहेजें",
     cancel: "रद्द करें",
@@ -248,7 +265,7 @@ export const translations = {
     submit: "जमा करें",
     close: "बंद करें",
     open: "खोलें",
-    view: "देखें",
+    view: "देखे���",
     download: "डाउनलोड करें",
     upload: "अपलोड करें",
 
@@ -276,14 +293,14 @@ export const translations = {
 
     // Employee Management
     employees: "कर्मचारी",
-    addEmployee: "कर्मचारी ��ोड़ें",
+    addEmployee: "कर्मचारी जोड़ें",
     employeeDetails: "कर्मचारी विवरण",
     employeeList: "कर्मचारी सूची",
     employeeName: "कर्मचारी का नाम",
     employeeId: "कर्मचारी आईडी",
     department: "विभाग",
     designation: "पदनाम",
-    joiningDate: "ज्वाइनिंग की तारीख",
+    joiningDate: "ज्���ाइनिंग की तारीख",
 
     // Forms
     firstName: "पहला नाम",
@@ -438,7 +455,7 @@ export const translations = {
     completed: "সম্পন্ন",
     inProgress: "চলমান",
     approved: "অনুমোদিত",
-    rejected: "প্রত্যাখ্যাত",
+    rejected: "প্রত্যাখ���যাত",
     draft: "খসড়া",
     published: "প্রকাশিত",
 
@@ -470,7 +487,7 @@ export const translations = {
     other: "অন্যান্য",
 
     // Greetings & Profile
-    goodMorning: "���ুপ্রভাত",
+    goodMorning: "সুপ���রভাত",
     goodAfternoon: "শুভ দুপুর",
     goodEvening: "শুভ সন্ধ্যা",
     authorityLevel: "কর্তৃত্বের স্তর",
@@ -489,7 +506,7 @@ export const translations = {
     // Leave Management
     leave: "ছুটি",
     applyLeave: "ছুটির আবেদন করুন",
-    leaveBalance: "ছুটির ব্���ালেন্স",
+    leaveBalance: "ছুটির ব্যালেন্স",
     leaveHistory: "ছুটির ইতিহাস",
     leaveType: "ছুটির ধরন",
     casualLeave: "নৈমিত্তিক ছুটি",
@@ -515,7 +532,7 @@ export const translations = {
     title: "শিরোনাম",
     description: "বর্ণনা",
     publishDate: "প্রকাশের তারিখ",
-    priority: "অগ্রাধি��ার",
+    priority: "অগ্রাধিকার",
     high: "উচ্চ",
     medium: "মাঝারি",
     low: "নিম্ন",
@@ -623,7 +640,7 @@ export const translations = {
 
     // Forms
     firstName: "మొదటి పేరు",
-    lastName: "చివరి పే���ు",
+    lastName: "చివరి పేర���",
     email: "ఇమెయిల్",
     phone: "ఫోన్",
     address: "చిరునామా",
@@ -649,7 +666,7 @@ export const translations = {
     // Messages
     successMessage: "ఆపరేషన్ విజయవంతంగా పూర్తైంది",
     errorMessage: "ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
-    confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన్ని తొలగించాలనుకుంటున్నారా?",
+    confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన��ని తొలగించాలనుకుంటున్నారా?",
     confirmLogout: "మీరు ఖచ్చితంగా లాగౌట్ చేయాలనుకుంటున్నారా?",
     dataUpdated: "డేటా విజయవంతంగా అప్‌డేట్ చేయబడింది",
     dataSaved: "డేటా విజయవంతంగా సేవ్ చేయబడింది",
@@ -667,7 +684,7 @@ export const translations = {
     paternityLeave: "పితృత్వ సెలవు",
     startDate: "ప్రారంభ తేదీ",
     endDate: "ముగింపు తేదీ",
-    reason: "కారణం",
+    reason: "క���రణం",
 
     // Documents
     documents: "పత్రాలు",
@@ -760,7 +777,7 @@ export const translations = {
     welcomeToEasyDo: "EasyDo ಗೆ ನಿಮಗೆ ಸ್ವಾಗತ",
     mobileNumberPlaceholder: "ಮೊಬೈಲ್ ನಂಬರ್",
     bySigningUp: "ಸೈನ್ ಅಪ್ ಮಾಡುವ ಮೂಲಕ, ನೀವು ನಮ್ಮ",
-    termsAndConditions: "ನಿಯಮಗಳು ಮತ್ತು ���ರತ್ತುಗಳು",
+    termsAndConditions: "ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು",
     and: "ಮತ್ತು",
     privacyPolicy: "ಗೌಪ್ಯತೆ ನೀತಿ",
     sendOTP: "OTP ಕಳುಹಿಸಿ",
@@ -804,7 +821,7 @@ export const translations = {
     resendOTP: "OTP ਮੁੜ ਭੇਜੋ",
     resendOTPIn: "OTP ਮੁੜ ਭੇਜੋ",
     seconds: "ਸਕਿੰਟਾਂ ਵਿੱਚ",
-    verifyOTP: "OTP ਦੀ ਪੁਸ਼ਟੀ ਕ��ੋ",
+    verifyOTP: "OTP ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
     backToLogin: "← ਲਾਗਇਨ 'ਤੇ ਵਾਪਸ ਜਾਓ",
   },
   Malayalam: {
