@@ -32,8 +32,7 @@ import {
   popularCountryCodes,
   type CountryCode,
 } from "@/data/countryCodes";
-import { LanguageSelector } from "@/components/LanguageSelector";
-import { useLanguageContext } from "@/contexts/LanguageContext";
+import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
 import { MultilingualText } from "@/components/MultilingualText";
 
 const Login = () => {
@@ -41,14 +40,34 @@ const Login = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [open, setOpen] = useState(false);
-  const { language, setLanguage } = useLanguageContext();
+  // Use global language system
+  const getCurrentLanguage = () => window.siteLang || "en";
   const navigate = useNavigate();
 
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
 
   // Get translation function for current language
-  const t = (key: keyof typeof translations.English) =>
-    translations[language][key];
+  const getTranslation = (key: keyof typeof translations.English) => {
+    const currentLang = getCurrentLanguage();
+    // Map global language codes to translation keys
+    const langMap: Record<string, keyof typeof translations> = {
+      en: "English",
+      hi: "Hindi",
+      bn: "Bengali",
+      te: "Telugu",
+      mr: "Marathi",
+      ta: "Tamil",
+      ur: "Urdu",
+      gu: "Gujarati",
+      kn: "Kannada",
+      or: "Odia",
+      pa: "Punjabi",
+      ml: "Malayalam",
+    };
+
+    const translationKey = langMap[currentLang] || "English";
+    return translations[translationKey][key];
+  };
 
   // Find current country for display
   const currentCountry = countryCodes.find(
@@ -85,7 +104,7 @@ const Login = () => {
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
-      <LanguageSelector position="absolute" showGlobe={true} size="md" />
+      <GlobalLanguageSelector position="absolute" showGlobe={true} size="md" />
 
       <div className="w-full max-w-lg">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
@@ -104,7 +123,7 @@ const Login = () => {
               as="h1"
               className="text-xl font-semibold text-gray-900"
             >
-              {t("welcomeToEasyDo")}
+              {getTranslation("welcomeToEasyDo")}
             </MultilingualText>
           </div>
 
@@ -193,7 +212,7 @@ const Login = () => {
               {/* Mobile Number Input */}
               <Input
                 type="tel"
-                placeholder={t("mobileNumberPlaceholder")}
+                placeholder={getTranslation("mobileNumberPlaceholder")}
                 value={mobileNumber}
                 onChange={handleMobileNumberChange}
                 className="flex-1 border-gray-200 focus:border-primary focus:ring-primary"
@@ -215,13 +234,13 @@ const Login = () => {
               htmlFor="terms"
               className="text-sm text-gray-600 leading-relaxed"
             >
-              {t("bySigningUp")}{" "}
+              {getTranslation("bySigningUp")}{" "}
               <a href="#" className="text-primary hover:underline">
-                {t("termsAndConditions")}
+                {getTranslation("termsAndConditions")}
               </a>{" "}
-              {t("and")}{" "}
+              {getTranslation("and")}{" "}
               <a href="#" className="text-primary hover:underline">
-                {t("privacyPolicy")}
+                {getTranslation("privacyPolicy")}
               </a>
             </MultilingualText>
           </div>
@@ -237,7 +256,7 @@ const Login = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            <MultilingualText>{t("sendOTP")}</MultilingualText>
+            <MultilingualText>{getTranslation("sendOTP")}</MultilingualText>
           </Button>
         </div>
       </div>

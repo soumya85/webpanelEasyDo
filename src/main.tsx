@@ -2,9 +2,13 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import { initializeGlobalLanguage } from "./lib/globalLanguage";
 
 // Ensure fonts are ready before initial render
 const renderApp = async () => {
+  // Initialize global language system first
+  initializeGlobalLanguage();
+
   // Wait for fonts to be ready if supported
   if (document.fonts && document.fonts.ready) {
     try {

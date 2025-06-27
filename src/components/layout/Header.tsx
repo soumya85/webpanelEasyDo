@@ -27,7 +27,7 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
-import { LanguageSelector } from "@/components/LanguageSelector";
+import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
 import { useTranslation } from "@/hooks/useTranslation";
 import { MultilingualText } from "@/components/MultilingualText";
 
@@ -268,7 +268,7 @@ export function Header() {
           {/* Desktop Icons */}
           <div className="flex items-center gap-6">
             {/* Language Selector */}
-            <LanguageSelector
+            <GlobalLanguageSelector
               position="relative"
               showGlobe={true}
               size="sm"

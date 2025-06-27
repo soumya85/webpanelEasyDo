@@ -8,8 +8,7 @@ import {
 } from "@/components/ui/input-otp";
 import { cn } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
-import { LanguageSelector } from "@/components/LanguageSelector";
-import { useLanguageContext } from "@/contexts/LanguageContext";
+import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
 import { MultilingualText } from "@/components/MultilingualText";
 
 const OTPVerification = () => {
@@ -17,7 +16,8 @@ const OTPVerification = () => {
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
   const [hasResent, setHasResent] = useState(false);
-  const { language, setLanguage } = useLanguageContext();
+  // Use global language system
+  const getCurrentLanguage = () => window.siteLang || "en";
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,8 +29,27 @@ const OTPVerification = () => {
   const isOTPValid = otp.length === 6;
 
   // Get translation function for current language
-  const t = (key: keyof typeof translations.English) =>
-    translations[language][key];
+  const getTranslation = (key: keyof typeof translations.English) => {
+    const currentLang = getCurrentLanguage();
+    // Map global language codes to translation keys
+    const langMap: Record<string, keyof typeof translations> = {
+      en: "English",
+      hi: "Hindi",
+      bn: "Bengali",
+      te: "Telugu",
+      mr: "Marathi",
+      ta: "Tamil",
+      ur: "Urdu",
+      gu: "Gujarati",
+      kn: "Kannada",
+      or: "Odia",
+      pa: "Punjabi",
+      ml: "Malayalam",
+    };
+
+    const translationKey = langMap[currentLang] || "English";
+    return translations[translationKey][key];
+  };
 
   // Timer effect for resend functionality
   useEffect(() => {
@@ -75,7 +94,7 @@ const OTPVerification = () => {
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
-      <LanguageSelector position="absolute" showGlobe={true} size="md" />
+      <GlobalLanguageSelector position="absolute" showGlobe={true} size="md" />
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
           {/* Logo */}
@@ -93,10 +112,13 @@ const OTPVerification = () => {
               as="h1"
               className="text-xl font-semibold text-gray-900"
             >
-              {t("enterOTP")}
+              {getTranslation("enterOTP")}
             </MultilingualText>
             <MultilingualText as="p" className="text-sm text-gray-700">
-              {hasResent ? t("resendTo") : t("sentTo")} {maskedNumber}
+              {hasResent
+                ? getTranslation("resendTo")
+                : getTranslation("sentTo")}{" "}
+              {maskedNumber}
             </MultilingualText>
           </div>
 
@@ -135,8 +157,8 @@ const OTPVerification = () => {
                 )}
               >
                 {canResend
-                  ? t("resendOTP")
-                  : `${t("resendOTPIn")} ${timeLeft} ${t("seconds")}`}
+                  ? getTranslation("resendOTP")
+                  : `${getTranslation("resendOTPIn")} ${timeLeft} ${getTranslation("seconds")}`}
               </MultilingualText>
             </div>
           </div>
@@ -152,7 +174,7 @@ const OTPVerification = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            <MultilingualText>{t("verifyOTP")}</MultilingualText>
+            <MultilingualText>{getTranslation("verifyOTP")}</MultilingualText>
           </Button>
 
           {/* Back to Login */}
@@ -162,7 +184,7 @@ const OTPVerification = () => {
               onClick={() => navigate("/login")}
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
-              {t("backToLogin")}
+              {getTranslation("backToLogin")}
             </MultilingualText>
           </div>
         </div>
