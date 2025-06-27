@@ -74,7 +74,7 @@ const Login = () => {
           <SelectContent>
             <SelectItem value="English">English</SelectItem>
             <SelectItem value="Hindi">हिंदी (Hindi)</SelectItem>
-            <SelectItem value="Bengali">বাংল�� (Bengali)</SelectItem>
+            <SelectItem value="Bengali">বাংলা (Bengali)</SelectItem>
             <SelectItem value="Telugu">తెలుగు (Telugu)</SelectItem>
             <SelectItem value="Marathi">मराठी (Marathi)</SelectItem>
             <SelectItem value="Tamil">தமிழ் (Tamil)</SelectItem>
@@ -111,7 +111,7 @@ const Login = () => {
             <div className="flex gap-3">
               {/* Country Code Selector */}
               <Select value={countryCode} onValueChange={setCountryCode}>
-                <SelectTrigger className="w-[120px] border-gray-200 text-sm">
+                <SelectTrigger className="w-[120px] border-gray-200 text-sm overflow-visible whitespace-nowrap">
                   <SelectValue>
                     {currentCountry.flag} {currentCountry.dialCode}
                   </SelectValue>
