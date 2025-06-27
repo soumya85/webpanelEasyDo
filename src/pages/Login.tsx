@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Globe, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { translations, type Language } from "@/data/translations";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
