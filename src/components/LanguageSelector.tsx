@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/select";
 import { Globe } from "lucide-react";
 import { type Language } from "@/data/translations";
+import { useLanguageContext } from "@/contexts/LanguageContext";
 
 interface LanguageOption {
   value: Language;
