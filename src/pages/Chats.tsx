@@ -2947,7 +2947,7 @@ const MobileChatList: React.FC<{
   return (
     <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
       {/* Header with Original Mobile Design */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div className="bg-white border-b border-gray-200 fixed top-[86px] left-0 right-0 z-20">
         {/* Title */}
         <div className="px-4 pt-4 pb-2">
           <h1 className="text-[28px] font-black text-gray-900">
