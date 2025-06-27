@@ -2887,13 +2887,21 @@ export default function EmployeeDashboard() {
                 }
               >
                 <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-[#4766E5] focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
-                  <SelectValue placeholder="Duration" />
+                  <SelectValue placeholder={t("duration")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1-month">1 Month</SelectItem>
-                  <SelectItem value="3-months">3 Months</SelectItem>
-                  <SelectItem value="6-months">6 Months</SelectItem>
-                  <SelectItem value="12-months">12 Months</SelectItem>
+                  <SelectItem value="1-month">
+                    <ReactiveMultilingualText translationKey="oneMonth" />
+                  </SelectItem>
+                  <SelectItem value="3-months">
+                    <ReactiveMultilingualText translationKey="threeMonths" />
+                  </SelectItem>
+                  <SelectItem value="6-months">
+                    <ReactiveMultilingualText translationKey="sixMonths" />
+                  </SelectItem>
+                  <SelectItem value="12-months">
+                    <ReactiveMultilingualText translationKey="twelveMonths" />
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
