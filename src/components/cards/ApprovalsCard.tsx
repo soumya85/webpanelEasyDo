@@ -19,16 +19,18 @@ export const ApprovalsCard: React.FC<ApprovalsCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
+
   const approvals = [
     {
-      type: "Leave Request - John Doe",
-      status: "Urgent",
-      time: "Submitted 2 days ago",
+      type: `${t("leaveRequest")} - John Doe`,
+      status: t("urgent"),
+      time: t("submittedDaysAgo").replace("{days}", "2"),
     },
     {
-      type: "Expense Report - Marketing",
-      status: "Review",
-      time: "Submitted 1 day ago",
+      type: `${t("expenseReport")} - Marketing`,
+      status: t("review"),
+      time: t("submittedDaysAgo").replace("{days}", "1"),
     },
   ];
 
