@@ -39,7 +39,7 @@ export default function PerformanceMeter() {
   // Chart configuration for the ChartContainer
   const chartConfig = {
     percentage: {
-      label: "Performance",
+      label: t("performance"),
       color: "#3b82f6",
     },
   };
