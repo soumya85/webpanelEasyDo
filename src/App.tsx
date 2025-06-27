@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { SidebarProvider } from "./hooks/useSidebar";
 import { UserProvider } from "./hooks/useUser";
 import { PageLayout } from "./components/layout/PageLayout";
@@ -33,56 +33,63 @@ import OTPVerification from "@/pages/OTPVerification";
 
 const queryClient = new QueryClient();
 
+// Component to handle conditional layout based on route
+const AppContent = () => {
+  const location = useLocation();
+  const isAuthRoute = ["/login", "/otp-verification"].includes(
+    location.pathname,
+  );
+
+  if (isAuthRoute) {
+    return (
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/otp-verification" element={<OTPVerification />} />
+      </Routes>
+    );
+  }
+
+  return (
+    <UserProvider>
+      <SidebarProvider>
+        <PageLayout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/chats" element={<Chats />} />
+            <Route path="/todays-schedule" element={<TodaysSchedule />} />
+            <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
+            <Route path="/company-dashboard" element={<CompanyDashboard />} />
+            <Route path="/employee-register" element={<EmployeeRegister />} />
+            <Route path="/tasks" element={<Tasks />} />
+            <Route path="/meet" element={<Meet />} />
+            <Route path="/holiday" element={<Holiday />} />
+            <Route path="/sample" element={<Sample />} />
+            <Route path="/help-support" element={<HelpSupport />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/performance-review" element={<PerformanceReview />} />
+            <Route path="/location" element={<EmployeeLocation />} />
+            <Route path="/branch" element={<BranchManagement />} />
+            <Route path="/announcement" element={<Announcement />} />
+            <Route path="/documents" element={<Documents />} />
+            <Route path="/leave" element={<Leave />} />
+            <Route path="/holiday" element={<Holiday />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </PageLayout>
+      </SidebarProvider>
+    </UserProvider>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <UserProvider>
-          <SidebarProvider>
-            <PageLayout>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/otp-verification" element={<OTPVerification />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/chats" element={<Chats />} />
-                <Route path="/todays-schedule" element={<TodaysSchedule />} />
-                <Route
-                  path="/employee-dashboard"
-                  element={<EmployeeDashboard />}
-                />
-                <Route
-                  path="/company-dashboard"
-                  element={<CompanyDashboard />}
-                />
-                <Route
-                  path="/employee-register"
-                  element={<EmployeeRegister />}
-                />
-                <Route path="/tasks" element={<Tasks />} />
-                <Route path="/meet" element={<Meet />} />
-                <Route path="/holiday" element={<Holiday />} />
-                <Route path="/sample" element={<Sample />} />
-                <Route path="/help-support" element={<HelpSupport />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route
-                  path="/performance-review"
-                  element={<PerformanceReview />}
-                />
-                <Route path="/location" element={<EmployeeLocation />} />
-                <Route path="/branch" element={<BranchManagement />} />
-                <Route path="/announcement" element={<Announcement />} />
-                <Route path="/documents" element={<Documents />} />
-                <Route path="/leave" element={<Leave />} />
-                <Route path="/holiday" element={<Holiday />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </PageLayout>
-          </SidebarProvider>
-        </UserProvider>
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
