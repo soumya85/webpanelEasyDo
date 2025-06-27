@@ -121,7 +121,15 @@ export function Header() {
         </div>
 
         {/* Right Controls */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          {/* Language Selector - Mobile */}
+          <GlobalLanguageSelector
+            position="relative"
+            showGlobe={false}
+            size="sm"
+            className="min-w-[60px]"
+          />
+
           {/* Chat Notification */}
           <div className="relative flex items-center justify-center">
             <button className="flex items-center justify-center w-[22px] h-[22px]">
