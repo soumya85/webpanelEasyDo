@@ -41,18 +41,46 @@ export const GlobalLanguageSelector: React.FC<GlobalLanguageSelectorProps> = ({
       setCurrentLanguage(event.detail.language);
     };
 
+    // Listen for storage events (in case language changed in another tab/component)
+    const handleStorageChange = () => {
+      const newLang = getCurrentLanguage();
+      setCurrentLanguage(newLang);
+    };
+
+    // Also listen for route changes to sync language state
+    const handleRouteChange = () => {
+      const currentLang = getCurrentLanguage();
+      setCurrentLanguage(currentLang);
+    };
+
     window.addEventListener(
       "languageChange",
       handleLanguageChange as EventListener,
     );
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("popstate", handleRouteChange);
+
+    // Check language state on focus (when returning to tab)
+    window.addEventListener("focus", handleRouteChange);
 
     return () => {
       window.removeEventListener(
         "languageChange",
         handleLanguageChange as EventListener,
       );
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("popstate", handleRouteChange);
+      window.removeEventListener("focus", handleRouteChange);
     };
   }, []);
+
+  // Also sync on component mount/remount (page navigation)
+  useEffect(() => {
+    const currentLang = getCurrentLanguage();
+    if (currentLang !== currentLanguage) {
+      setCurrentLanguage(currentLang);
+    }
+  });
 
   const handleLanguageChange = (newLanguage: GlobalLanguage) => {
     // Use the global change language function
