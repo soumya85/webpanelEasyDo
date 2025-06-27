@@ -100,14 +100,12 @@ const Login = () => {
 
           {/* Welcome Heading */}
           <div className="text-center">
-            <h1
-              className={cn(
-                "text-xl font-semibold text-gray-900",
-                getMultilingualTextClass(language),
-              )}
+            <MultilingualText
+              as="h1"
+              className="text-xl font-semibold text-gray-900"
             >
               {t("welcomeToEasyDo")}
-            </h1>
+            </MultilingualText>
           </div>
 
           {/* Mobile Number Input Section */}
