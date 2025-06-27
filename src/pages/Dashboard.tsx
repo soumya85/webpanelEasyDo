@@ -4,7 +4,8 @@ import { useDashboardLayout } from "@/hooks/useDashboardLayout";
 import { DroppableSection } from "@/components/DroppableSection";
 import { CardFactory } from "@/components/CardFactory";
 import { LayoutControls } from "@/components/LayoutControls";
-
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -12,7 +13,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
 const Dashboard: React.FC = () => {
   const {
     sections,
