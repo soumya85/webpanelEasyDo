@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
+import { getGlobalTranslation } from "@/lib/globalTranslations";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
