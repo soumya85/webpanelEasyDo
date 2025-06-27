@@ -31,7 +31,7 @@ import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
-  const { user } = useUser();
+  const { user, logout } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
   const [showMobileFilter, setShowMobileFilter] = useState(false);
@@ -51,8 +51,7 @@ export function Header() {
   };
 
   const handleLogoutClick = () => {
-    // Add logout logic here
-    console.log("Logout clicked");
+    logout();
   };
 
   return (

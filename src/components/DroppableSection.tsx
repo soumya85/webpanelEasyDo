@@ -1,5 +1,5 @@
 import React from "react";
-import { Droppable } from "react-beautiful-dnd";
+import { Droppable } from "@hello-pangea/dnd";
 import { cn } from "@/lib/utils";
 
 // Import type only to avoid circular dependency

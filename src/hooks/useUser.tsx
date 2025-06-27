@@ -25,6 +25,8 @@ interface UserContextType {
   user: User;
   updateUser: (updates: Partial<User>) => void;
   updateProfileImage: (imageUrl: string | null) => void;
+  logout: () => void;
+  isAuthenticated: boolean;
 }
 
 const defaultUser: User = {
@@ -45,8 +47,22 @@ const defaultUser: User = {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 const USER_STORAGE_KEY = "user-profile-data";
+const AUTH_STORAGE_KEY = "user-authenticated";
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    // Check if user is authenticated from localStorage
+    if (typeof window !== "undefined") {
+      try {
+        const authStatus = localStorage.getItem(AUTH_STORAGE_KEY);
+        return authStatus === "true";
+      } catch (error) {
+        console.error("Error loading auth status from localStorage:", error);
+      }
+    }
+    return false;
+  });
+
   const [user, setUser] = useState<User>(() => {
     // Load user data from localStorage on initialization
     if (typeof window !== "undefined") {
@@ -74,6 +90,17 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
   }, [user]);
 
+  // Save auth status to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem(AUTH_STORAGE_KEY, isAuthenticated.toString());
+      } catch (error) {
+        console.error("Error saving auth status to localStorage:", error);
+      }
+    }
+  }, [isAuthenticated]);
+
   const updateUser = (updates: Partial<User>) => {
     setUser((prev) => {
       const updatedUser = { ...prev, ...updates };
@@ -88,8 +115,36 @@ export function UserProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const logout = () => {
+    setIsAuthenticated(false);
+    // Clear user data and auth status from localStorage
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.removeItem(USER_STORAGE_KEY);
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+      } catch (error) {
+        console.error("Error clearing data from localStorage:", error);
+      }
+    }
+    // Redirect to login page
+    window.location.href = "/login";
+  };
+
+  // Auto-authenticate when user successfully completes OTP verification
+  const authenticateUser = () => {
+    setIsAuthenticated(true);
+  };
+
   return (
-    <UserContext.Provider value={{ user, updateUser, updateProfileImage }}>
+    <UserContext.Provider
+      value={{
+        user,
+        updateUser,
+        updateProfileImage,
+        logout,
+        isAuthenticated,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

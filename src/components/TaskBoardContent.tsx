@@ -7,13 +7,53 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Search, Filter, LayoutGrid, List, Calendar as CalendarIcon, SlidersHorizontal, BarChart2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
+import {
+  Plus,
+  Search,
+  Filter,
+  LayoutGrid,
+  List,
+  Calendar as CalendarIcon,
+  SlidersHorizontal,
+  BarChart2,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
+  ZoomOut,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format, startOfMonth, endOfMonth, addDays, isToday, differenceInCalendarDays, addMonths, addWeeks, addYears, isSameDay } from "date-fns";
-import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+import {
+  format,
+  startOfMonth,
+  endOfMonth,
+  addDays,
+  isToday,
+  differenceInCalendarDays,
+  addMonths,
+  addWeeks,
+  addYears,
+  isSameDay,
+} from "date-fns";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from "@hello-pangea/dnd";
 
-type SortOption = "created-desc" | "created-asc" | "due-date" | "priority" | "name";
-type FilterOption = "all" | "high-priority" | "due-today" | "overdue" | "no-assignee" | "assigned-to-me";
+type SortOption =
+  | "created-desc"
+  | "created-asc"
+  | "due-date"
+  | "priority"
+  | "name";
+type FilterOption =
+  | "all"
+  | "high-priority"
+  | "due-today"
+  | "overdue"
+  | "no-assignee"
+  | "assigned-to-me";
 type GroupByOption = "status" | "assignee" | "priority" | "due-date";
 
 const groupOptions: { value: GroupByOption; label: string }[] = [
@@ -47,7 +87,7 @@ function CalendarView({
 
   // Map date string to tasks
   const tasksByDate: Record<string, Task[]> = {};
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     if (task.dueDate) {
       const key = format(new Date(task.dueDate), "yyyy-MM-dd");
       if (!tasksByDate[key]) tasksByDate[key] = [];
@@ -77,7 +117,7 @@ function CalendarView({
         </Button>
       </div>
       <div className="grid grid-cols-7 gap-2 text-center font-semibold text-gray-500 mb-2">
-        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(d => (
+        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
           <div key={d}>{d}</div>
         ))}
       </div>
@@ -91,22 +131,24 @@ function CalendarView({
               className={cn(
                 "rounded-lg min-h-[80px] p-1 flex flex-col items-stretch border transition",
                 isSameDay(date, new Date()) && "bg-blue-50",
-                isToday(date) && "border-blue-500 ring-2 ring-blue-200"
+                isToday(date) && "border-blue-500 ring-2 ring-blue-200",
               )}
             >
-              <div className={cn(
-                "text-xs font-bold mb-1 text-right",
-                isToday(date) ? "text-blue-600" : "text-gray-500"
-              )}>
+              <div
+                className={cn(
+                  "text-xs font-bold mb-1 text-right",
+                  isToday(date) ? "text-blue-600" : "text-gray-500",
+                )}
+              >
                 {format(date, "d")}
               </div>
               <div className="flex flex-col gap-1">
-                {dayTasks.slice(0, 2).map(task => (
+                {dayTasks.slice(0, 2).map((task) => (
                   <button
                     key={task.id}
                     className={cn(
                       "truncate text-xs px-1 py-0.5 rounded bg-blue-50 text-blue-700 text-left hover:bg-blue-100",
-                      "border border-blue-100"
+                      "border border-blue-100",
                     )}
                     onClick={() => onTaskClick(task)}
                     title={task.title}
@@ -146,12 +188,16 @@ function GanttChartView({
   const [viewStart, setViewStart] = useState(() => startOfMonth(new Date()));
 
   // Calculate Gantt range (min start, max end)
-  const validTasks = tasks.filter(t => t.dueDate && t.startDate);
+  const validTasks = tasks.filter((t) => t.dueDate && t.startDate);
   const minStart = validTasks.length
-    ? validTasks.map(t => new Date(t.startDate!)).reduce((a, b) => (a < b ? a : b))
+    ? validTasks
+        .map((t) => new Date(t.startDate!))
+        .reduce((a, b) => (a < b ? a : b))
     : new Date();
   const maxEnd = validTasks.length
-    ? validTasks.map(t => new Date(t.dueDate!)).reduce((a, b) => (a > b ? a : b))
+    ? validTasks
+        .map((t) => new Date(t.dueDate!))
+        .reduce((a, b) => (a > b ? a : b))
     : new Date();
 
   // Calculate visible range based on zoom
@@ -159,7 +205,8 @@ function GanttChartView({
   let rangeStart = viewStart;
   let rangeEnd = (() => {
     if (zoom === 0) return addDays(rangeStart, zoomLevels[zoom].days - 1);
-    if (zoom === 1) return addWeeks(rangeStart, Math.floor(zoomLevels[zoom].days / 7) - 1);
+    if (zoom === 1)
+      return addWeeks(rangeStart, Math.floor(zoomLevels[zoom].days / 7) - 1);
     if (zoom === 2) return addYears(rangeStart, 1);
     return addDays(rangeStart, 29);
   })();
@@ -202,7 +249,11 @@ function GanttChartView({
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setViewStart(addMonths(viewStart, zoom === 2 ? -12 : zoom === 1 ? -3 : -1))}
+            onClick={() =>
+              setViewStart(
+                addMonths(viewStart, zoom === 2 ? -12 : zoom === 1 ? -3 : -1),
+              )
+            }
             title="Previous"
           >
             <ChevronLeft />
@@ -213,7 +264,11 @@ function GanttChartView({
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setViewStart(addMonths(viewStart, zoom === 2 ? 12 : zoom === 1 ? 3 : 1))}
+            onClick={() =>
+              setViewStart(
+                addMonths(viewStart, zoom === 2 ? 12 : zoom === 1 ? 3 : 1),
+              )
+            }
             title="Next"
           >
             <ChevronRight />
@@ -236,19 +291,21 @@ function GanttChartView({
           >
             <ZoomOut />
           </Button>
-          <span className="text-xs text-gray-400 ml-2">{zoomLevels[zoom].label} view</span>
+          <span className="text-xs text-gray-400 ml-2">
+            {zoomLevels[zoom].label} view
+          </span>
         </div>
       </div>
       <div
         className="overflow-x-auto"
         style={{ cursor: isDragging ? "grabbing" : "grab" }}
-        onMouseDown={e => {
+        onMouseDown={(e) => {
           setIsDragging(true);
           setDragStartX(e.clientX);
         }}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
-        onMouseMove={e => {
+        onMouseMove={(e) => {
           if (isDragging) {
             const container = e.currentTarget as HTMLDivElement;
             container.scrollLeft -= e.movementX;
@@ -265,35 +322,60 @@ function GanttChartView({
                   key={i}
                   className={cn(
                     "flex-1 text-center border-l border-gray-100 px-0.5",
-                    zoom === 0 && isToday(day) && "text-blue-600 font-bold bg-blue-50 rounded"
+                    zoom === 0 &&
+                      isToday(day) &&
+                      "text-blue-600 font-bold bg-blue-50 rounded",
                   )}
                 >
                   {zoom === 0
                     ? format(day, "d")
                     : zoom === 1
-                    ? format(day, "wo MMM")
-                    : format(day, "MMM")}
+                      ? format(day, "wo MMM")
+                      : format(day, "MMM")}
                 </div>
               ))}
             </div>
           </div>
           {/* Rows */}
-          {tasks.map(task => {
+          {tasks.map((task) => {
             if (!task.startDate || !task.dueDate) return null;
             const start = new Date(task.startDate);
             const end = new Date(task.dueDate);
 
             // Calculate bar position and length
-            let startIdx = 0, endIdx = 0;
+            let startIdx = 0,
+              endIdx = 0;
             if (zoom === 0) {
-              startIdx = Math.max(0, differenceInCalendarDays(start, daysArr[0]));
-              endIdx = Math.min(daysArr.length - 1, differenceInCalendarDays(end, daysArr[0]));
+              startIdx = Math.max(
+                0,
+                differenceInCalendarDays(start, daysArr[0]),
+              );
+              endIdx = Math.min(
+                daysArr.length - 1,
+                differenceInCalendarDays(end, daysArr[0]),
+              );
             } else if (zoom === 1) {
-              startIdx = Math.max(0, Math.floor(differenceInCalendarDays(start, daysArr[0]) / 7));
-              endIdx = Math.min(daysArr.length - 1, Math.floor(differenceInCalendarDays(end, daysArr[0]) / 7));
+              startIdx = Math.max(
+                0,
+                Math.floor(differenceInCalendarDays(start, daysArr[0]) / 7),
+              );
+              endIdx = Math.min(
+                daysArr.length - 1,
+                Math.floor(differenceInCalendarDays(end, daysArr[0]) / 7),
+              );
             } else {
-              startIdx = Math.max(0, (start.getMonth() - daysArr[0].getMonth()) + 12 * (start.getFullYear() - daysArr[0].getFullYear()));
-              endIdx = Math.min(daysArr.length - 1, (end.getMonth() - daysArr[0].getMonth()) + 12 * (end.getFullYear() - daysArr[0].getFullYear()));
+              startIdx = Math.max(
+                0,
+                start.getMonth() -
+                  daysArr[0].getMonth() +
+                  12 * (start.getFullYear() - daysArr[0].getFullYear()),
+              );
+              endIdx = Math.min(
+                daysArr.length - 1,
+                end.getMonth() -
+                  daysArr[0].getMonth() +
+                  12 * (end.getFullYear() - daysArr[0].getFullYear()),
+              );
             }
             const barLength = Math.max(1, endIdx - startIdx + 1);
 
@@ -303,7 +385,7 @@ function GanttChartView({
                   <span
                     className={cn(
                       "w-2 h-2 rounded-full",
-                      getBarColor(task.priority || "low")
+                      getBarColor(task.priority || "low"),
                     )}
                   />
                   <button
@@ -314,20 +396,25 @@ function GanttChartView({
                     {task.title}
                   </button>
                   {task.assignee && (
-                    <Badge className="ml-2 bg-blue-100 text-blue-700">{task.assignee.name}</Badge>
+                    <Badge className="ml-2 bg-blue-100 text-blue-700">
+                      {task.assignee.name}
+                    </Badge>
                   )}
                 </div>
                 <div className="flex-1 flex items-center relative h-8">
                   <div className="flex absolute left-0 top-0 w-full h-full">
                     {daysArr.map((_, i) => (
-                      <div key={i} className="flex-1 border-l border-gray-100 h-full" />
+                      <div
+                        key={i}
+                        className="flex-1 border-l border-gray-100 h-full"
+                      />
                     ))}
                   </div>
                   <div
                     className={cn(
                       "absolute h-6 rounded-full flex items-center justify-center text-xs font-semibold shadow transition-all group-hover:scale-105 cursor-pointer",
                       getBarColor(task.priority || "low"),
-                      "opacity-90 hover:opacity-100"
+                      "opacity-90 hover:opacity-100",
                     )}
                     style={{
                       left: `${(startIdx / daysArr.length) * 100}%`,
@@ -338,15 +425,19 @@ function GanttChartView({
                     title={`${task.title}: ${format(start, "MMM d")} - ${format(end, "MMM d")}`}
                     onClick={() => onTaskClick(task)}
                   >
-                    <span className="truncate px-2 text-white">{task.assignee?.name || "Unassigned"}</span>
+                    <span className="truncate px-2 text-white">
+                      {task.assignee?.name || "Unassigned"}
+                    </span>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-        {tasks.filter(t => t.startDate && t.dueDate).length === 0 && (
-          <div className="text-center text-gray-400 py-8">No tasks with start and end dates.</div>
+        {tasks.filter((t) => t.startDate && t.dueDate).length === 0 && (
+          <div className="text-center text-gray-400 py-8">
+            No tasks with start and end dates.
+          </div>
         )}
       </div>
     </div>
@@ -360,7 +451,9 @@ export function TaskBoardContent() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isTaskDetailOpen, setIsTaskDetailOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentView, setCurrentView] = useState<"board" | "list" | "calendar" | "gantt">("board");
+  const [currentView, setCurrentView] = useState<
+    "board" | "list" | "calendar" | "gantt"
+  >("board");
   const [sortBy, setSortBy] = useState<SortOption>("created-desc");
   const [filterBy, setFilterBy] = useState<FilterOption>("all");
   const [groupBy, setGroupBy] = useState<GroupByOption>("status");
@@ -372,15 +465,15 @@ export function TaskBoardContent() {
   // Top-level filter logic
   const topLevelFilteredTasks = useMemo(() => {
     if (topFilter === "my") {
-      return tasks.filter(task => task.assignee?.name === currentUser);
+      return tasks.filter((task) => task.assignee?.name === currentUser);
     } else {
-      return tasks.filter(task => task.assignee?.name !== currentUser);
+      return tasks.filter((task) => task.assignee?.name !== currentUser);
     }
   }, [tasks, topFilter, currentUser]);
 
   // Filtering and sorting logic
   const filteredAndSortedTasks = useMemo(() => {
-    let filtered = topLevelFilteredTasks.filter(task => {
+    let filtered = topLevelFilteredTasks.filter((task) => {
       const matchesSearch =
         task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         task.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -397,7 +490,9 @@ export function TaskBoardContent() {
           return new Date(task.dueDate).toDateString() === today;
         case "overdue":
           if (!task.dueDate) return false;
-          return new Date(task.dueDate) < new Date() && task.status !== "complete";
+          return (
+            new Date(task.dueDate) < new Date() && task.status !== "complete"
+          );
         case "no-assignee":
           return !task.assignee;
         case "assigned-to-me":
@@ -410,9 +505,13 @@ export function TaskBoardContent() {
     return filtered.sort((a, b) => {
       switch (sortBy) {
         case "created-asc":
-          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+          return (
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          );
         case "created-desc":
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
         case "due-date":
           if (!a.dueDate && !b.dueDate) return 0;
           if (!a.dueDate) return 1;
@@ -420,8 +519,10 @@ export function TaskBoardContent() {
           return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
         case "priority":
           const priorityOrder = { urgent: 4, high: 3, medium: 2, low: 1 };
-          const aPriority = priorityOrder[a.priority as keyof typeof priorityOrder] || 0;
-          const bPriority = priorityOrder[b.priority as keyof typeof priorityOrder] || 0;
+          const aPriority =
+            priorityOrder[a.priority as keyof typeof priorityOrder] || 0;
+          const bPriority =
+            priorityOrder[b.priority as keyof typeof priorityOrder] || 0;
           return bPriority - aPriority;
         case "name":
           return a.title.localeCompare(b.title);
@@ -432,19 +533,21 @@ export function TaskBoardContent() {
   }, [topLevelFilteredTasks, searchTerm, sortBy, filterBy, currentUser]);
 
   // Task CRUD
-  const addTask = (task: Task) => setTasks(prev => [...prev, task]);
+  const addTask = (task: Task) => setTasks((prev) => [...prev, task]);
   const updateTask = (taskId: string, updates: Partial<Task>) => {
-    setTasks(prev =>
-      prev.map(task =>
-        task.id === taskId ? { ...task, ...updates, updatedAt: new Date().toISOString() } : task
-      )
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === taskId
+          ? { ...task, ...updates, updatedAt: new Date().toISOString() }
+          : task,
+      ),
     );
   };
 
   // Grouping logic
   const groupedTasks = useMemo(() => {
     const groups: Record<string, Task[]> = {};
-    filteredAndSortedTasks.forEach(task => {
+    filteredAndSortedTasks.forEach((task) => {
       let key = "";
       switch (groupBy) {
         case "status":
@@ -457,7 +560,9 @@ export function TaskBoardContent() {
           key = task.priority || "No Priority";
           break;
         case "due-date":
-          key = task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "No Due Date";
+          key = task.dueDate
+            ? new Date(task.dueDate).toLocaleDateString()
+            : "No Due Date";
           break;
       }
       if (!groups[key]) groups[key] = [];
@@ -526,7 +631,7 @@ export function TaskBoardContent() {
             <Input
               placeholder="Search tasks, assignee, or details"
               value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 py-1.5 text-sm rounded border border-blue-100 focus:border-blue-400 transition"
             />
             <Search className="absolute left-2 top-1/2 -translate-y-1/2 text-blue-400 w-4 h-4" />
@@ -568,18 +673,35 @@ export function TaskBoardContent() {
 
       {/* --- Controls --- */}
       <div className="flex flex-wrap items-center gap-2 px-4 py-2 bg-white border-b sticky top-[88px] z-30 shadow-sm">
-        <Tabs value={currentView} onValueChange={v => setCurrentView(v as "board" | "list" | "calendar" | "gantt")}>
+        <Tabs
+          value={currentView}
+          onValueChange={(v) =>
+            setCurrentView(v as "board" | "list" | "calendar" | "gantt")
+          }
+        >
           <TabsList className="bg-blue-50 rounded px-1 py-1">
-            <TabsTrigger value="board" className="flex items-center gap-1 text-sm px-2 py-1 rounded">
+            <TabsTrigger
+              value="board"
+              className="flex items-center gap-1 text-sm px-2 py-1 rounded"
+            >
               <LayoutGrid className="w-4 h-4" /> Board
             </TabsTrigger>
-            <TabsTrigger value="list" className="flex items-center gap-1 text-sm px-2 py-1 rounded">
+            <TabsTrigger
+              value="list"
+              className="flex items-center gap-1 text-sm px-2 py-1 rounded"
+            >
               <List className="w-4 h-4" /> List
             </TabsTrigger>
-            <TabsTrigger value="calendar" className="flex items-center gap-1 text-sm px-2 py-1 rounded">
+            <TabsTrigger
+              value="calendar"
+              className="flex items-center gap-1 text-sm px-2 py-1 rounded"
+            >
               <CalendarIcon className="w-4 h-4" /> Calendar
             </TabsTrigger>
-            <TabsTrigger value="gantt" className="flex items-center gap-1 text-sm px-2 py-1 rounded">
+            <TabsTrigger
+              value="gantt"
+              className="flex items-center gap-1 text-sm px-2 py-1 rounded"
+            >
               <BarChart2 className="w-4 h-4" /> Gantt
             </TabsTrigger>
           </TabsList>
@@ -589,7 +711,7 @@ export function TaskBoardContent() {
           <select
             className="border border-blue-100 rounded px-2 py-1 text-sm bg-blue-50 focus:border-blue-400 transition"
             value={filterBy}
-            onChange={e => setFilterBy(e.target.value as FilterOption)}
+            onChange={(e) => setFilterBy(e.target.value as FilterOption)}
           >
             <option value="all">All Tasks</option>
             <option value="high-priority">High Priority</option>
@@ -604,7 +726,7 @@ export function TaskBoardContent() {
           <select
             className="border border-blue-100 rounded px-2 py-1 text-sm bg-blue-50 focus:border-blue-400 transition"
             value={sortBy}
-            onChange={e => setSortBy(e.target.value as SortOption)}
+            onChange={(e) => setSortBy(e.target.value as SortOption)}
           >
             <option value="created-desc">Newest</option>
             <option value="created-asc">Oldest</option>
@@ -618,10 +740,12 @@ export function TaskBoardContent() {
           <select
             className="border border-blue-100 rounded px-2 py-1 text-sm bg-blue-50 focus:border-blue-400 transition"
             value={groupBy}
-            onChange={e => setGroupBy(e.target.value as GroupByOption)}
+            onChange={(e) => setGroupBy(e.target.value as GroupByOption)}
           >
-            {groupOptions.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            {groupOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
             ))}
           </select>
         </div>
@@ -652,19 +776,29 @@ export function TaskBoardContent() {
                           }`}
                         >
                           <div className="flex items-center justify-between mb-2">
-                            <h2 className="font-bold text-base text-gray-800 truncate">{group}</h2>
-                            <Badge className="bg-blue-100 text-blue-700">{groupTasks.length}</Badge>
+                            <h2 className="font-bold text-base text-gray-800 truncate">
+                              {group}
+                            </h2>
+                            <Badge className="bg-blue-100 text-blue-700">
+                              {groupTasks.length}
+                            </Badge>
                           </div>
                           <div className="flex-1 overflow-y-auto min-h-0">
                             {groupTasks.slice(0, 4).map((task, idx) => (
-                              <Draggable draggableId={task.id} index={idx} key={task.id}>
+                              <Draggable
+                                draggableId={task.id}
+                                index={idx}
+                                key={task.id}
+                              >
                                 {(provided, snapshot) => (
                                   <div
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                     className={`mb-2 shadow-sm hover:shadow-md transition cursor-pointer border border-gray-100 rounded bg-gradient-to-br from-white to-blue-50 p-2 ${
-                                      snapshot.isDragging ? "ring-2 ring-blue-400" : ""
+                                      snapshot.isDragging
+                                        ? "ring-2 ring-blue-400"
+                                        : ""
                                     }`}
                                     onClick={() => {
                                       setSelectedTask(task);
@@ -676,27 +810,39 @@ export function TaskBoardContent() {
                                     }}
                                   >
                                     <div className="flex items-center justify-between">
-                                      <h3 className="font-semibold text-gray-900 text-sm truncate">{task.title}</h3>
+                                      <h3 className="font-semibold text-gray-900 text-sm truncate">
+                                        {task.title}
+                                      </h3>
                                     </div>
-                                    <p className="text-gray-500 text-xs mt-1 line-clamp-2">{task.description}</p>
+                                    <p className="text-gray-500 text-xs mt-1 line-clamp-2">
+                                      {task.description}
+                                    </p>
                                     <div className="flex items-center gap-1 mt-2 flex-wrap">
                                       <Badge
                                         className={
                                           task.priority === "high"
                                             ? "bg-red-100 text-red-700"
                                             : task.priority === "medium"
-                                            ? "bg-yellow-100 text-yellow-700"
-                                            : "bg-gray-100 text-gray-700"
+                                              ? "bg-yellow-100 text-yellow-700"
+                                              : "bg-gray-100 text-gray-700"
                                         }
                                       >
-                                        {task.priority?.charAt(0).toUpperCase() + task.priority?.slice(1)}
+                                        {task.priority
+                                          ?.charAt(0)
+                                          .toUpperCase() +
+                                          task.priority?.slice(1)}
                                       </Badge>
                                       {task.assignee && (
-                                        <Badge className="bg-blue-100 text-blue-700">{task.assignee.name}</Badge>
+                                        <Badge className="bg-blue-100 text-blue-700">
+                                          {task.assignee.name}
+                                        </Badge>
                                       )}
                                       {task.dueDate && (
                                         <Badge className="bg-gray-100 text-gray-700">
-                                          Due: {new Date(task.dueDate).toLocaleDateString()}
+                                          Due:{" "}
+                                          {new Date(
+                                            task.dueDate,
+                                          ).toLocaleDateString()}
                                         </Badge>
                                       )}
                                     </div>
@@ -716,7 +862,7 @@ export function TaskBoardContent() {
         ) : currentView === "calendar" ? (
           <CalendarView
             tasks={filteredAndSortedTasks}
-            onTaskClick={task => {
+            onTaskClick={(task) => {
               setSelectedTask(task);
               setIsTaskDetailOpen(true);
             }}
@@ -724,7 +870,7 @@ export function TaskBoardContent() {
         ) : currentView === "gantt" ? (
           <GanttChartView
             tasks={filteredAndSortedTasks}
-            onTaskClick={task => {
+            onTaskClick={(task) => {
               setSelectedTask(task);
               setIsTaskDetailOpen(true);
             }}
@@ -735,20 +881,30 @@ export function TaskBoardContent() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50 sticky top-0 z-10">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Title</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Assignee</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Priority</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Due Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    Title
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    Assignee
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    Priority
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    Due Date
+                  </th>
                   <th className="px-6 py-3"></th>
                 </tr>
               </thead>
               <tbody>
                 {filteredAndSortedTasks.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="text-center text-gray-400 py-8">No tasks found.</td>
+                    <td colSpan={5} className="text-center text-gray-400 py-8">
+                      No tasks found.
+                    </td>
                   </tr>
                 ) : (
-                  filteredAndSortedTasks.map(task => (
+                  filteredAndSortedTasks.map((task) => (
                     <tr
                       key={task.id}
                       className="hover:bg-blue-50 transition cursor-pointer"
@@ -757,24 +913,37 @@ export function TaskBoardContent() {
                         setIsTaskDetailOpen(true);
                       }}
                     >
-                      <td className="px-6 py-4 font-medium text-gray-900">{task.title}</td>
-                      <td className="px-6 py-4">{task.assignee?.name || <span className="text-gray-400">Unassigned</span>}</td>
+                      <td className="px-6 py-4 font-medium text-gray-900">
+                        {task.title}
+                      </td>
+                      <td className="px-6 py-4">
+                        {task.assignee?.name || (
+                          <span className="text-gray-400">Unassigned</span>
+                        )}
+                      </td>
                       <td className="px-6 py-4">
                         <Badge
                           className={
                             task.priority === "high"
                               ? "bg-red-100 text-red-700"
                               : task.priority === "medium"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : "bg-gray-100 text-gray-700"
+                                ? "bg-yellow-100 text-yellow-700"
+                                : "bg-gray-100 text-gray-700"
                           }
                         >
-                          {task.priority?.charAt(0).toUpperCase() + task.priority?.slice(1)}
+                          {task.priority?.charAt(0).toUpperCase() +
+                            task.priority?.slice(1)}
                         </Badge>
                       </td>
-                      <td className="px-6 py-4">{task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "-"}</td>
+                      <td className="px-6 py-4">
+                        {task.dueDate
+                          ? new Date(task.dueDate).toLocaleDateString()
+                          : "-"}
+                      </td>
                       <td className="px-6 py-4 text-right">
-                        <Button size="sm" variant="outline">View</Button>
+                        <Button size="sm" variant="outline">
+                          View
+                        </Button>
                       </td>
                     </tr>
                   ))
@@ -786,9 +955,9 @@ export function TaskBoardContent() {
       </div>
 
       {/* Modals */}
-      <AddTaskModal 
-        open={isAddTaskModalOpen} 
-        onOpenChange={setIsAddTaskModalOpen} 
+      <AddTaskModal
+        open={isAddTaskModalOpen}
+        onOpenChange={setIsAddTaskModalOpen}
       />
       <TaskDetailModal
         task={selectedTask}

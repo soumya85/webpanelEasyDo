@@ -1,5 +1,5 @@
 import React from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable } from "@hello-pangea/dnd";
 import { cn } from "@/lib/utils";
 import { GripVertical } from "lucide-react";
 import { CardSize, CARD_SIZE_CONFIG } from "@/types/cardSize";
