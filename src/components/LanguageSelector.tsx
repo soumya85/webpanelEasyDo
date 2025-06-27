@@ -22,7 +22,7 @@ const languageOptions: LanguageOption[] = [
   { value: "Hindi", label: "Hindi", nativeLabel: "हिंदी" },
   { value: "Bengali", label: "Bengali", nativeLabel: "বাংলা" },
   { value: "Telugu", label: "Telugu", nativeLabel: "తెలుగు" },
-  { value: "Marathi", label: "Marathi", nativeLabel: "मर��ठी" },
+  { value: "Marathi", label: "Marathi", nativeLabel: "मराठी" },
   { value: "Tamil", label: "Tamil", nativeLabel: "தமிழ்" },
   { value: "Urdu", label: "Urdu", nativeLabel: "اردو" },
   { value: "Gujarati", label: "Gujarati", nativeLabel: "ગુજરાતી" },
@@ -67,6 +67,38 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     useContext && contextValue ? contextValue : propValue || "English";
   const onValueChange =
     useContext && contextSetLanguage ? contextSetLanguage : propOnValueChange;
+
+  // Update body class when language changes for global font application
+  useEffect(() => {
+    if (useContext && contextValue) {
+      const bodyElement = document.body;
+
+      // Remove existing language font classes
+      const existingLanguageFonts = [
+        "font-english",
+        "font-hindi",
+        "font-bengali",
+        "font-telugu",
+        "font-marathi",
+        "font-tamil",
+        "font-urdu",
+        "font-gujarati",
+        "font-kannada",
+        "font-odia",
+        "font-punjabi",
+        "font-malayalam",
+      ];
+
+      existingLanguageFonts.forEach((fontClass) => {
+        bodyElement.classList.remove(fontClass);
+      });
+
+      // Add current language font class
+      const currentFontClass = getLanguageFontClass(contextValue);
+      bodyElement.classList.add(currentFontClass.replace("font-", "font-"));
+      bodyElement.classList.add("text-multilingual");
+    }
+  }, [contextValue, useContext]);
 
   const currentLanguage = languageOptions.find((lang) => lang.value === value);
   const displayValue = currentLanguage
