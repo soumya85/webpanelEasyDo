@@ -28,10 +28,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
   const { user, logout } = useUser();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const [showMobileFilter, setShowMobileFilter] = useState(false);
@@ -92,9 +95,12 @@ export function Header() {
           {/* Title and Button Group */}
           <div className="flex items-center gap-3 ml-3">
             {/* Dashboard Title */}
-            <h1 className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6">
-              Dashboard
-            </h1>
+            <MultilingualText
+              as="h1"
+              className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6"
+            >
+              {t("dashboard")}
+            </MultilingualText>
 
             {/* Create Button */}
             <button className="flex items-center justify-center w-[26px] h-[24px] bg-[#4766E5] rounded-[3px] border border-[#4766E5]">
@@ -200,17 +206,20 @@ export function Header() {
           </Button>
 
           {/* Title */}
-          <h1 className="text-xl font-black text-azure-24 uppercase tracking-wide">
-            Dashboard
-          </h1>
+          <MultilingualText
+            as="h1"
+            className="text-xl font-black text-azure-24 uppercase tracking-wide"
+          >
+            {t("dashboard")}
+          </MultilingualText>
 
           {/* Desktop Controls */}
           <div className="flex items-center gap-6">
             {/* Company Select */}
             <div className="flex items-center gap-4">
-              <span className="text-base font-semibold text-azure-24">
-                Company
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("company")}
+              </MultilingualText>
               <Select
                 value={selectedCompany}
                 onValueChange={setSelectedCompany}
@@ -229,15 +238,15 @@ export function Header() {
 
             {/* Branch Select */}
             <div className="flex items-center gap-4">
-              <span className="text-base font-semibold text-azure-24">
-                Branch
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("branch")}
+              </MultilingualText>
               <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                 <SelectTrigger className="w-[149px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="All Branch">All Branch</SelectItem>
+                  <SelectItem value="All Branch">{t("allBranch")}</SelectItem>
                   <SelectItem value="Branch 1">Branch 1</SelectItem>
                   <SelectItem value="Branch 2">Branch 2</SelectItem>
                 </SelectContent>
@@ -247,9 +256,9 @@ export function Header() {
             {/* Create Button */}
             <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
               <Plus className="h-4 w-4" />
-              <span className="text-sm font-semibold uppercase tracking-wider">
-                Create
-              </span>
+              <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
+                {t("create")}
+              </MultilingualText>
             </Button>
           </div>
         </div>
@@ -293,13 +302,13 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={handleProfileClick}>
-                Profile
+                <MultilingualText>{t("profile")}</MultilingualText>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleSettingsClick}>
-                Settings
+                <MultilingualText>{t("settings")}</MultilingualText>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleLogoutClick}>
-                Logout
+                <MultilingualText>{t("logout")}</MultilingualText>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -333,7 +342,7 @@ export function Header() {
             className="gap-2 text-sm border-gray-400"
           >
             <Filter className="h-4 w-4" />
-            Filter
+            <MultilingualText>{t("filter")}</MultilingualText>
           </Button>
         </div>
 
@@ -341,9 +350,9 @@ export function Header() {
         {showMobileFilter && (
           <div className="bg-white border-t border-gray-200 p-6 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-base font-semibold text-azure-24">
-                Company
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("company")}
+              </MultilingualText>
               <Select
                 value={selectedCompany}
                 onValueChange={setSelectedCompany}
@@ -361,15 +370,15 @@ export function Header() {
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="text-base font-semibold text-azure-24">
-                Branch
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("branch")}
+              </MultilingualText>
               <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                 <SelectTrigger className="w-[241px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="All Branch">All Branch</SelectItem>
+                  <SelectItem value="All Branch">{t("allBranch")}</SelectItem>
                   <SelectItem value="Branch 1">Branch 1</SelectItem>
                   <SelectItem value="Branch 2">Branch 2</SelectItem>
                 </SelectContent>

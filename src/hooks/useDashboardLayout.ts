@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export interface DashboardCard {
   id: string;
@@ -33,7 +34,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "tasks",
     type: "task",
-    title: "Task at a Glance",
+    title: "taskAtGlance",
     section: "quick-overview",
     order: 0,
     size: "medium",
@@ -41,7 +42,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "meetings",
     type: "meetings",
-    title: "Meetings This Week",
+    title: "meetingsThisWeek",
     section: "quick-overview",
     order: 1,
     size: "medium",
@@ -49,7 +50,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "approvals",
     type: "approvals",
-    title: "Pending Approvals",
+    title: "pendingApprovals",
     section: "quick-overview",
     order: 2,
     size: "medium",
@@ -57,7 +58,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "notes",
     type: "notes",
-    title: "Quick Notes",
+    title: "personalNotes",
     section: "quick-overview",
     order: 3,
     size: "medium",
@@ -65,7 +66,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "chat",
     type: "chat",
-    title: "Recent Chat Activity",
+    title: "teamChat",
     section: "productivity",
     order: 0,
     size: "large",
@@ -73,7 +74,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "workStatus",
     type: "workStatus",
-    title: "My Daily Work Status",
+    title: "workStatus",
     section: "productivity",
     order: 1,
     size: "large",
@@ -81,7 +82,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "notice",
     type: "notice",
-    title: "Notice Board",
+    title: "companyNotice",
     section: "information-hub",
     order: 0,
     size: "medium",
@@ -89,7 +90,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "attendance",
     type: "attendance",
-    title: "Monthly Attendance Summary",
+    title: "monthlyAttendance",
     section: "information-hub",
     order: 1,
     size: "medium",
@@ -97,7 +98,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "salary",
     type: "salary",
-    title: "Salary Snapshot",
+    title: "salaryOverview",
     section: "information-hub",
     order: 2,
     size: "medium",
@@ -105,7 +106,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "performance",
     type: "performance",
-    title: "My Performance",
+    title: "performanceMetrics",
     section: "information-hub",
     order: 3,
     size: "medium",
@@ -115,6 +116,7 @@ const getDefaultLayout = (): DashboardCard[] => [
 export const useDashboardLayout = () => {
   const [cards, setCards] = useState<DashboardCard[]>(getDefaultLayout());
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   // Load layout from localStorage on mount
   useEffect(() => {
@@ -240,17 +242,17 @@ export const useDashboardLayout = () => {
   const getSections = (): DashboardSection[] => [
     {
       id: "quick-overview",
-      title: "Quick Overview",
+      title: t("quickOverview"),
       cards: getCardsBySection("quick-overview"),
     },
     {
       id: "productivity",
-      title: "Personal Productivity & Communication",
+      title: t("productivity"),
       cards: getCardsBySection("productivity"),
     },
     {
       id: "information-hub",
-      title: "Information Hub",
+      title: t("informationHub"),
       cards: getCardsBySection("information-hub"),
     },
   ];

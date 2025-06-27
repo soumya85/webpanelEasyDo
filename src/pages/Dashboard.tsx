@@ -4,6 +4,8 @@ import { useDashboardLayout } from "@/hooks/useDashboardLayout";
 import { DroppableSection } from "@/components/DroppableSection";
 import { CardFactory } from "@/components/CardFactory";
 import { LayoutControls } from "@/components/LayoutControls";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -11,7 +13,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
 const Dashboard: React.FC = () => {
   const {
     sections,
@@ -21,6 +22,15 @@ const Dashboard: React.FC = () => {
     resetLayout,
     isLoading,
   } = useDashboardLayout();
+  const { t } = useTranslation();
+
+  // Get time-based greeting
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return t("goodMorning");
+    if (hour < 17) return t("goodAfternoon");
+    return t("goodEvening");
+  };
 
   const handleDragEnd = useCallback(
     (result: DropResult) => {
@@ -63,9 +73,14 @@ const Dashboard: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col h-full bg-gray-50">
-        <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4766E5]"></div>
+      <div className="h-full flex flex-col overflow-hidden">
+        {/* Layout Controls */}
+        <div className="flex justify-between items-center p-4 pb-2 border-b border-gray-200 flex-shrink-0">
+          <LayoutControls onReset={resetLayout} />
+        </div>
+
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-lg">Loading...</div>
         </div>
       </div>
     );
@@ -75,9 +90,12 @@ const Dashboard: React.FC = () => {
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-2 px-6 pt-2">
-        <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
-          Good morning, Bhaskar! 👋
-        </h1>
+        <MultilingualText
+          as="h1"
+          className="text-xl font-bold text-[#283C50] flex items-center gap-2"
+        >
+          {getGreeting()}, Bhaskar! 👋
+        </MultilingualText>
         {/* Layout Controls moved to header row */}
         <LayoutControls onReset={resetLayout} />
       </div>

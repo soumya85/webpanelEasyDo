@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable } from "@hello-pangea/dnd";
 import { cn } from "@/lib/utils";
+import { MultilingualText } from "@/components/MultilingualText";
 
 // Import type only to avoid circular dependency
 interface DashboardCard {
@@ -25,7 +26,12 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
 }) => {
   return (
     <div className="mb-3">
-      <h2 className="text-lg font-semibold text-[#283C50] mb-4">{title}</h2>
+      <MultilingualText
+        as="h2"
+        className="text-lg font-semibold text-[#283C50] mb-4"
+      >
+        {title}
+      </MultilingualText>
 
       {/* Main section droppable */}
       <Droppable droppableId={sectionId} direction="horizontal">

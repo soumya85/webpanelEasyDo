@@ -4,6 +4,8 @@ import { CheckSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 
 interface TaskCardProps {
   id: string;
@@ -19,6 +21,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   onResize,
 }) => {
   const [activeTaskTab, setActiveTaskTab] = useState("MY_TASK");
+  const { t } = useTranslation();
 
   const taskTabsData = {
     MY_TASK: {
@@ -52,9 +55,12 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         <div className="p-2 rounded-lg bg-blue-50">
           <CheckSquare className="w-5 h-5 text-blue-600" />
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-          Task at a Glance
-        </h3>
+        <MultilingualText
+          as="h3"
+          className="text-sm font-semibold text-[#283C50] flex-1"
+        >
+          {t("taskAtGlance")}
+        </MultilingualText>
       </div>
 
       {/* Tabs */}

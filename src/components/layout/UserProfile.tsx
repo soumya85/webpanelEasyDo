@@ -1,6 +1,8 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 
 interface UserProfileProps {
   isExpanded: boolean;
@@ -8,6 +10,7 @@ interface UserProfileProps {
 
 export function UserProfile({ isExpanded }: UserProfileProps) {
   const { user } = useUser();
+  const { t } = useTranslation();
 
   if (!isExpanded) {
     return (
@@ -51,13 +54,17 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
           </svg>
         </div>
 
-        <p className="text-xs text-azure-24 leading-tight">{user.position}</p>
+        <MultilingualText className="text-xs text-azure-24 leading-tight">
+          {t("executiveDirector")}
+        </MultilingualText>
 
         <Badge
           variant="default"
           className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-xl"
         >
-          Authority Level {user.authorityLevel}
+          <MultilingualText>
+            {t("authorityLevel")} {user.authorityLevel}
+          </MultilingualText>
         </Badge>
       </div>
     </div>

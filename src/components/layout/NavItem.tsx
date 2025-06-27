@@ -2,17 +2,21 @@ import { LucideIcon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/useSidebar";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
+import { type TranslationKey } from "@/data/translations";
 
 interface NavItemProps {
   icon: LucideIcon;
-  label: string;
+  labelKey: TranslationKey;
   href: string;
   badge?: number;
 }
 
-export function NavItem({ icon: Icon, label, href, badge }: NavItemProps) {
+export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
   const location = useLocation();
   const { isExpanded, setMobileOpen } = useSidebar();
+  const { t } = useTranslation();
   const isActive = location.pathname === href;
 
   const handleClick = () => {
@@ -39,7 +43,9 @@ export function NavItem({ icon: Icon, label, href, badge }: NavItemProps) {
     >
       <Icon className="h-[18px] w-[18px] flex-shrink-0" />
       {isExpanded && (
-        <span className="text-13 font-semibold leading-tight">{label}</span>
+        <MultilingualText className="text-13 font-semibold leading-tight">
+          {t(labelKey)}
+        </MultilingualText>
       )}
       {badge && badge > 0 && isExpanded && (
         <div className="ml-auto flex h-4 w-4 items-center justify-center rounded-full bg-warning text-white text-[9px] font-semibold">
