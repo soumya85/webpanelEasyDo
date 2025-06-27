@@ -6,7 +6,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { cn } from "@/lib/utils";
+import { cn, getMultilingualTextClass } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
 import { LanguageSelector, useLanguage } from "@/components/LanguageSelector";
 
