@@ -62,6 +62,7 @@ const ChevronRightIcon = () => (
 );
 
 export default function EmployeeDashboard() {
+  const { t } = useGlobalTranslation();
   const [isLeaveRequestModalOpen, setIsLeaveRequestModalOpen] = useState(false);
   const [isLeaveCalendarOpen, setIsLeaveCalendarOpen] = useState(false);
   const [isLeaveBalanceInfoOpen, setIsLeaveBalanceInfoOpen] = useState(false);
