@@ -380,11 +380,15 @@
       "calt" 1;
     unicode-bidi: plaintext;
     text-align: start;
+    font-variant-numeric: lining-nums;
+    font-variant-east-asian: normal;
+    font-language-override: normal;
   }
 
   /* Ensure proper fallback for missing glyphs */
   .text-multilingual * {
-    font-synthesis: weight style;
+    font-synthesis: weight style small-caps;
+    font-variant-ligatures: normal;
   }
 
   /* Prevent layout shift during font loading */
@@ -395,6 +399,22 @@
 
   .font-loaded {
     visibility: visible;
+  }
+
+  /* Force font reload and ensure proper character rendering */
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+    font-feature-settings: inherit;
+  }
+
+  /* Better placeholder text rendering */
+  input::placeholder,
+  textarea::placeholder {
+    font-family: inherit;
+    opacity: 0.6;
   }
 
   .scrollbar-hide {
