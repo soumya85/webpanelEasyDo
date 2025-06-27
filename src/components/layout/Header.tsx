@@ -350,9 +350,9 @@ export function Header() {
         {showMobileFilter && (
           <div className="bg-white border-t border-gray-200 p-6 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-base font-semibold text-azure-24">
-                Company
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("company")}
+              </MultilingualText>
               <Select
                 value={selectedCompany}
                 onValueChange={setSelectedCompany}
@@ -370,15 +370,15 @@ export function Header() {
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="text-base font-semibold text-azure-24">
-                Branch
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("branch")}
+              </MultilingualText>
               <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                 <SelectTrigger className="w-[241px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="All Branch">All Branch</SelectItem>
+                  <SelectItem value="All Branch">{t("allBranch")}</SelectItem>
                   <SelectItem value="Branch 1">Branch 1</SelectItem>
                   <SelectItem value="Branch 2">Branch 2</SelectItem>
                 </SelectContent>
