@@ -14,16 +14,22 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
   onReset,
   isDirty = false,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex items-center gap-3 mb-6 pt-6">
       <div className="flex items-center gap-2">
         <div className="flex items-center justify-center px-3 h-8 text-xs font-medium text-gray-900 bg-white border border-gray-300 rounded-md cursor-default">
           <Save className="w-3 h-3 mr-1" />
-          Layout auto-saved
+          <MultilingualText className="text-xs">
+            {t("layoutAutoSaved")}
+          </MultilingualText>
         </div>
         {isDirty && (
           <Badge className="text-xs bg-blue-100 text-blue-700">
-            Drag & resize cards
+            <MultilingualText className="text-xs">
+              {t("dragResizeCards")}
+            </MultilingualText>
           </Badge>
         )}
       </div>
@@ -34,7 +40,9 @@ export const LayoutControls: React.FC<LayoutControlsProps> = ({
         className="text-xs h-8 font-medium !text-gray-900 !border-gray-300"
       >
         <RotateCcw className="w-3 h-3 mr-1 text-blue-600" />
-        Reset Layout
+        <MultilingualText className="text-xs">
+          {t("resetLayout")}
+        </MultilingualText>
       </Button>
     </div>
   );
