@@ -167,7 +167,7 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
               <Label className="font-semibold text-gray-700">Priority</Label>
               <Select value={priority} onValueChange={setPriority}>
                 <SelectTrigger className="mt-2">
-                  <SelectValue placeholder="Select priority" />
+                  <SelectValue placeholder={t("selectPriority")} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="high">🔥 High</SelectItem>
