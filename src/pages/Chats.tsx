@@ -2945,8 +2945,8 @@ const MobileChatList: React.FC<{
   };
 
   return (
-    <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
-      {/* Header with Original Mobile Design */}
+    <div className="h-full bg-gray-50">
+      {/* Fixed Header with Original Mobile Design */}
       <div className="bg-white border-b border-gray-200 fixed top-[86px] left-0 right-0 z-20">
         {/* Title */}
         <div className="px-4 pt-4 pb-2">
@@ -3021,11 +3021,9 @@ const MobileChatList: React.FC<{
         </div>
       </div>
 
-      {/* Chat List */}
-      <div
-        className="bg-white overflow-y-auto"
-        style={{ paddingTop: "calc(86px + 320px)", minHeight: "100vh" }}
-      >
+      {/* Scrollable Chat List Container */}
+      <div className="pt-[400px] h-screen overflow-y-auto">
+        <div className="bg-white min-h-full">
         {chatItems.length > 0 ? (
           chatItems.map((chat) => (
             <div
