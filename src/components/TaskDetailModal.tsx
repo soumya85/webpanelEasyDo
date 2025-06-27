@@ -184,7 +184,9 @@ export function TaskDetailModal({
                             : "bg-gray-100 text-gray-700"
                 }
               >
-                {task.status}
+                <MultilingualText>
+                  {getStatusDisplayText(task.status)}
+                </MultilingualText>
               </Badge>
               <Badge
                 className={
@@ -197,8 +199,9 @@ export function TaskDetailModal({
                         : "bg-gray-100 text-gray-700"
                 }
               >
-                {task.priority?.charAt(0).toUpperCase() +
-                  task.priority?.slice(1)}
+                <MultilingualText>
+                  {getPriorityDisplayText(task.priority || "medium")}
+                </MultilingualText>
               </Badge>
             </div>
           </div>
