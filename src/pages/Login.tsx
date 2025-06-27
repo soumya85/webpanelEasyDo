@@ -25,7 +25,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { ChevronDown, Check } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getMultilingualTextClass } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
 import {
   countryCodes,
