@@ -3538,7 +3538,7 @@ const Chats: React.FC = () => {
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search or start a new chat"
+                placeholder={getGlobalTranslation("searchOrStartNewChat")}
                 className="pl-10 bg-gray-50 border-gray-200 h-9"
               />
             </div>
