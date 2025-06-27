@@ -40,8 +40,9 @@ const Login = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
-  };
 
   // Find current country for display
   const currentCountry = countryCodes.find(
@@ -230,7 +231,9 @@ const Login = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            <MultilingualText>{getGlobalTranslation("sendOTP")}</MultilingualText>
+            <MultilingualText>
+              {getGlobalTranslation("sendOTP")}
+            </MultilingualText>
           </Button>
         </div>
       </div>
