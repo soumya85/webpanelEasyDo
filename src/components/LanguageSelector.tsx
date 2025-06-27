@@ -96,12 +96,12 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             </SelectValue>
           </div>
         </SelectTrigger>
-        <SelectContent className="max-w-[250px]">
+        <SelectContent className="max-w-[250px] text-multilingual">
           {languageOptions.map((language) => (
             <SelectItem
               key={language.value}
               value={language.value}
-              className="cursor-pointer"
+              className="cursor-pointer text-multilingual"
             >
               <span className="flex items-center justify-between w-full">
                 <span className="font-medium">{language.nativeLabel}</span>
