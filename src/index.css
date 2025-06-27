@@ -150,6 +150,77 @@
     text-wrap: balance;
   }
 
+  /* Language-specific font utilities */
+  .font-hindi {
+    font-family:
+      "Noto Sans Devanagari", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-bengali {
+    font-family:
+      "Noto Sans Bengali", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-telugu {
+    font-family:
+      "Noto Sans Telugu", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-marathi {
+    font-family:
+      "Noto Sans Devanagari", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-tamil {
+    font-family: "Noto Sans Tamil", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-urdu {
+    font-family:
+      "Noto Sans Arabic", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-gujarati {
+    font-family:
+      "Noto Sans Gujarati", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-kannada {
+    font-family:
+      "Noto Sans Kannada", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-odia {
+    font-family: "Noto Sans Oriya", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-punjabi {
+    font-family:
+      "Noto Sans Gurmukhi", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-malayalam {
+    font-family:
+      "Noto Sans Malayalam", "Noto Sans", "Inter", system-ui, sans-serif;
+  }
+
+  .font-english {
+    font-family: "Inter", "Noto Sans", system-ui, sans-serif;
+  }
+
+  /* Text rendering optimizations */
+  .text-multilingual {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-variant-ligatures: normal;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "clig" 1,
+      "calt" 1;
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
