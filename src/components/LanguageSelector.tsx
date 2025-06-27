@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -9,6 +9,7 @@ import {
 import { Globe } from "lucide-react";
 import { type Language } from "@/data/translations";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { getLanguageFontClass } from "@/lib/utils";
 
 interface LanguageOption {
   value: Language;
@@ -21,7 +22,7 @@ const languageOptions: LanguageOption[] = [
   { value: "Hindi", label: "Hindi", nativeLabel: "हिंदी" },
   { value: "Bengali", label: "Bengali", nativeLabel: "বাংলা" },
   { value: "Telugu", label: "Telugu", nativeLabel: "తెలుగు" },
-  { value: "Marathi", label: "Marathi", nativeLabel: "मराठी" },
+  { value: "Marathi", label: "Marathi", nativeLabel: "मर��ठी" },
   { value: "Tamil", label: "Tamil", nativeLabel: "தமிழ்" },
   { value: "Urdu", label: "Urdu", nativeLabel: "اردو" },
   { value: "Gujarati", label: "Gujarati", nativeLabel: "ગુજરાતી" },
