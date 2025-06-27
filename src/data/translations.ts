@@ -208,10 +208,28 @@ export const translations = {
 
     // User Profile
     bhaskarGhosh: "Bhaskar Ghosh",
+
+    // Task Card
+    totalPendingTasks: "Total Pending Tasks",
+    totalDelegatedTasks: "Total Delegated Tasks",
+    overdue: "Overdue",
+    dueToday: "Due Today",
+    pendingReview: "Pending Review",
+    viewAllMyTasks: "View All My Tasks",
+    viewDelegatedTasks: "View Delegated Tasks",
+    myTask: "MY TASK",
+    delegatedTask: "DELEGATED TASK",
+
+    // Meetings Card
+    weeklyTeamSync: "Weekly Team Sync",
+    clientReviewMeeting: "Client Review Meeting",
+    todayAt: "Today at",
+    tomorrowAt: "Tomorrow at",
+    minutes: "minutes",
   },
   Hindi: {
     // Authentication
-    welcomeToEasyDo: "EasyDo में आपका स्व��गत है",
+    welcomeToEasyDo: "EasyDo में आपका स्वागत है",
     mobileNumberPlaceholder: "मोबाइल नंबर",
     bySigningUp: "साइन अप करके, आप हमारी",
     termsAndConditions: "नियम और शर्तें",
@@ -379,7 +397,7 @@ export const translations = {
 
     // Documents
     documents: "दस्तावेज़",
-    uploadDocument: "दस��तावेज़ अपलोड करें",
+    uploadDocument: "दस्तावेज़ अपलोड करें",
     documentName: "दस्तावेज़ का नाम",
     documentType: "दस्तावेज़ का प्रकार",
     uploadDate: "अपलोड की तारीख",
@@ -438,7 +456,7 @@ export const translations = {
     backToLogin: "← লগইনে ফিরে যান",
 
     // Navigation & Layout
-    dashboard: "ড্যাশ���োর্ড",
+    dashboard: "ড্যাশবোর্ড",
     chats: "চ্যাট",
     todaysSchedule: "আজকের সময়সূচী",
     employeeDashboard: "কর্মচারী ড্যাশবোর্ড",
@@ -559,7 +577,7 @@ export const translations = {
     goodEvening: "শুভ সন্ধ্যা",
     authorityLevel: "কর্তৃত্বের স্তর",
     welcome: "স্বাগতম",
-    lastMessage: "শেষ বার্তা",
+    lastMessage: "শেষ ���ার্তা",
     yesterday: "গতকাল",
     executiveDirector: "নির্বাহী পরিচালক",
     headOffice: "প্রধান কার্যালয়",
@@ -588,7 +606,7 @@ export const translations = {
     reason: "কারণ",
 
     // Documents
-    documents: "নথি��ত্র",
+    documents: "নথিপত্র",
     uploadDocument: "নথি আপলোড করুন",
     documentName: "��থির নাম",
     documentType: "নথির ধরন",
@@ -618,12 +636,12 @@ export const translations = {
     late: "দেরি",
     redFlag: "লাল পতাকা",
     viewDetailedReport: "বিস্তারিত রিপোর্ট দেখুন",
-    asOn: "অনুযায়���",
+    asOn: "অনুযায়ী",
     nextPayslip: "আপনার পরবর্তী পেস্লিপ তৈরি হবে",
     days: "দিন",
     deducted: "কর্তন",
     pfContribution: "পিএফ অবদান",
-    requestSalaryAdvance: "বেতন অগ্রিমে��� জন্য অনুরোধ করুন",
+    requestSalaryAdvance: "বেতন অগ্রিমের জন্য অনুরোধ করুন",
     viewAllPayslips: "সব পেস্লিপ দেখুন",
 
     // User Profile
@@ -638,7 +656,7 @@ export const translations = {
     and: "మరియు",
     privacyPolicy: "గోప్యతా విధానం",
     sendOTP: "OTP పంపండి",
-    enterOTP: "6-అంకెల OTP ని ఎంటర్ చేయండి",
+    enterOTP: "6-అంక���ల OTP ని ఎంటర్ చేయండి",
     sentTo: "పంపబడింది",
     resendTo: "పునర్ పంపణ",
     resendOTP: "OTP పునర్ పంపణ",
@@ -664,14 +682,14 @@ export const translations = {
     create: "సృష్టించు",
     filter: "ఫిల్టర్",
     company: "కంపెనీ",
-    branch: "శాఖ",
+    branch: "శా��",
     allBranch: "అన్ని శాఖలు",
 
     // Dashboard
     quickStats: "వేగవంతమైన గణాంకాలు",
     recentActivity: "ఇటీవలి కార్యకలాపాలు",
     upcomingTasks: "రాబోయే కార్యాలు",
-    notifications: "నోటిఫి��ేషన్లు",
+    notifications: "నోటిఫికేషన్లు",
     attendance: "హాజరు",
     performance: "పనితీరు",
     salary: "జీతం",
@@ -700,7 +718,7 @@ export const translations = {
     // Common Actions
     save: "సేవ్ చేయండి",
     cancel: "రద్దు చేయండి",
-    delete: "తొలగించ���డి",
+    delete: "తొలగించండి",
     edit: "సవరించండి",
     add: "జోడించండి",
     remove: "తొలగించండి",
@@ -756,7 +774,7 @@ export const translations = {
     city: "నగరం",
     state: "రాష్ట్రం",
     country: "దేశం",
-    zipCode: "పిన్ కోడ్",
+    zipCode: "పిన్ క��డ్",
     dateOfBirth: "పుట్టిన తేదీ",
     gender: "లింగం",
     male: "పుర��షుడు",
@@ -766,7 +784,7 @@ export const translations = {
     // Greetings & Profile
     goodMorning: "శుభోదయం",
     goodAfternoon: "శుభ మధ్యాహ్నం",
-    goodEvening: "శుభ ���ాయంత్రం",
+    goodEvening: "శుభ సాయంత్రం",
     authorityLevel: "అధికార స్థాయి",
     welcome: "స్వాగతం",
     lastMessage: "చివరి సందేశం",
@@ -803,7 +821,7 @@ export const translations = {
     documentName: "పత్ర పేరు",
     documentType: "పత్ర రకం",
     uploadDate: "అప్‌లోడ్ తేదీ",
-    fileSize: "ఫైల్ పరిమాణం",
+    fileSize: "ఫైల్ ప��ిమాణం",
 
     // Announcements
     announcements: "ప్రకటనలు",
@@ -862,11 +880,11 @@ export const translations = {
     bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள���",
     termsAndConditions: "விதிமுறைகள் & நிபந்தனைகள்",
     and: "மற்றும்",
-    privacyPolicy: "தனியுரிம���க் கொள்கை",
+    privacyPolicy: "தனியுரிமைக் கொள்கை",
     sendOTP: "OTP அனுப்பவும்",
     enterOTP: "6-இலக்க OTP ஐ உள்ளி���வும்",
     sentTo: "அனுப்பப்பட்டது",
-    resendTo: "மீண்டும் அனுப்பவ���ம்",
+    resendTo: "மீண்டும் அனுப்பவும்",
     resendOTP: "OTP ஐ மீண்டும் அனுப்பவும்",
     resendOTPIn: "OTP ஐ மீண்டும் அனுப்பவும்",
     seconds: "வினாடிகளில்",
@@ -942,7 +960,7 @@ export const translations = {
     backToLogin: "← ଲଗଇନ୍‌କୁ ଫେରନ୍ତୁ",
   },
   Punjabi: {
-    welcomeToEasyDo: "EasyDo ���ਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
+    welcomeToEasyDo: "EasyDo ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
     mobileNumberPlaceholder: "ਮੋਬਾਈਲ ਨੰਬਰ",
     bySigningUp: "ਸਾਈਨ ਅੱਪ ਕਰਕੇ, ਤੁਸੀਂ ਸਾਡੀ",
     termsAndConditions: "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
@@ -954,7 +972,7 @@ export const translations = {
     resendTo: "ਮੁੜ ਭੇਜੋ",
     resendOTP: "OTP ਮੁੜ ਭੇਜੋ",
     resendOTPIn: "OTP ਮੁੜ ਭੇਜੋ",
-    seconds: "ਸਕਿੰਟਾਂ ਵਿੱਚ",
+    seconds: "ਸਕਿੰਟ���ਂ ਵਿੱਚ",
     verifyOTP: "OTP ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
     backToLogin: "← ਲਾਗਇਨ 'ਤੇ ਵਾਪਸ ਜਾਓ",
   },
@@ -973,7 +991,7 @@ export const translations = {
     resendOTPIn: "OTP വീണ്ടും അയയ്ക്കുക",
     seconds: "സെക്കൻഡിൽ",
     verifyOTP: "OTP പരി��ോധിക്കുക",
-    backToLogin: "← ലോഗിനിലേക്ക് തിരികെ പോകുക",
+    backToLogin: "← ലോഗിനിലേക്ക് തിരിക��� പോകുക",
   },
 } as const;
 
