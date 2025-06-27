@@ -90,7 +90,7 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
             borderWidth: "1px",
           }}
         >
-          View All Meetings
+          <MultilingualText>{t("viewAllMeetings")}</MultilingualText>
         </Button>
       </div>
     </DashboardCard>
