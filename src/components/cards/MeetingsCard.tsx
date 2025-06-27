@@ -22,14 +22,14 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
   const { t } = useTranslation();
   const meetings = [
     {
-      type: "Weekly Team Sync",
-      time: "Today at 3:00 PM",
-      duration: "5 minutes",
+      type: t("weeklyTeamSync"),
+      time: `${t("todayAt")} 3:00 PM`,
+      duration: `5 ${t("minutes")}`,
     },
     {
-      type: "Client Review Meeting",
-      time: "Tomorrow at 10:30 AM",
-      duration: "3 minutes",
+      type: t("clientReviewMeeting"),
+      time: `${t("tomorrowAt")} 10:30 AM`,
+      duration: `3 ${t("minutes")}`,
     },
   ];
 
