@@ -10,16 +10,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Globe, ChevronDown } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { ChevronDown, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
-import { countryCodes, popularCountryCodes } from "@/data/countryCodes";
+import {
+  countryCodes,
+  popularCountryCodes,
+  type CountryCode,
+} from "@/data/countryCodes";
+import { LanguageSelector, useLanguage } from "@/components/LanguageSelector";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [language, setLanguage] = useState<Language>("English");
+  const [open, setOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
   const navigate = useNavigate();
 
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
@@ -63,30 +83,13 @@ const Login = () => {
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
-      <div className="absolute top-6 right-6">
-        <Select value={language} onValueChange={setLanguage}>
-          <SelectTrigger className="w-auto min-w-[140px] border-gray-200 bg-white">
-            <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-gray-500" />
-              <SelectValue />
-            </div>
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="English">English</SelectItem>
-            <SelectItem value="Hindi">हिंदी (Hindi)</SelectItem>
-            <SelectItem value="Bengali">বাংলা (Bengali)</SelectItem>
-            <SelectItem value="Telugu">తెలుగు (Telugu)</SelectItem>
-            <SelectItem value="Marathi">मराठी (Marathi)</SelectItem>
-            <SelectItem value="Tamil">தமிழ் (Tamil)</SelectItem>
-            <SelectItem value="Urdu">ار��و (Urdu)</SelectItem>
-            <SelectItem value="Gujarati">ગુજરાતી (Gujarati)</SelectItem>
-            <SelectItem value="Kannada">ಕನ್ನಡ (Kannada)</SelectItem>
-            <SelectItem value="Odia">ଓଡ଼ିଆ (Odia)</SelectItem>
-            <SelectItem value="Punjabi">ਪੰਜਾਬੀ (Punjabi)</SelectItem>
-            <SelectItem value="Malayalam">മലയാളം (Malayalam)</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      <LanguageSelector
+        value={language}
+        onValueChange={setLanguage}
+        position="absolute"
+        showGlobe={true}
+        size="md"
+      />
 
       <div className="w-full max-w-lg">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
@@ -109,44 +112,84 @@ const Login = () => {
           {/* Mobile Number Input Section */}
           <div className="space-y-4">
             <div className="flex gap-3">
-              {/* Country Code Selector */}
-              <Select value={countryCode} onValueChange={setCountryCode}>
-                <SelectTrigger
-                  className="w-[140px] border-gray-200 text-sm [&>span]:overflow-visible [&>span]:text-ellipsis-none"
-                  style={{ textOverflow: "clip" }}
-                >
-                  <SelectValue>
-                    {currentCountry.flag} {currentCountry.dialCode}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent className="max-h-[300px] overflow-y-auto w-[280px]">
-                  {/* Popular Countries Section */}
-                  <div className="px-2 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Popular
-                  </div>
-                  {popularCountryCodes.map((country) => (
-                    <SelectItem
-                      key={`popular-${country.code}`}
-                      value={country.dialCode}
-                    >
-                      {country.flag} {country.dialCode}
-                    </SelectItem>
-                  ))}
+              {/* Country Code Selector with Search */}
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="w-[140px] justify-between border-gray-200 text-sm hover:bg-gray-50"
+                  >
+                    <span className="overflow-hidden text-ellipsis whitespace-nowrap">
+                      {currentCountry.flag} {currentCountry.dialCode}
+                    </span>
+                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[300px] p-0" align="start">
+                  <Command>
+                    <CommandInput placeholder="Search countries..." />
+                    <CommandList>
+                      <CommandEmpty>No country found.</CommandEmpty>
 
-                  {/* Separator */}
-                  <div className="border-t my-1" />
+                      {/* Popular Countries */}
+                      <CommandGroup heading="Popular">
+                        {popularCountryCodes.map((country) => (
+                          <CommandItem
+                            key={`popular-${country.code}`}
+                            value={`${country.name} ${country.dialCode}`}
+                            onSelect={() => {
+                              setCountryCode(country.dialCode);
+                              setOpen(false);
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                countryCode === country.dialCode
+                                  ? "opacity-100"
+                                  : "opacity-0",
+                              )}
+                            />
+                            <span className="flex items-center gap-2">
+                              {country.flag} {country.dialCode}
+                            </span>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
 
-                  {/* All Countries Section */}
-                  <div className="px-2 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    All Countries
-                  </div>
-                  {countryCodes.map((country) => (
-                    <SelectItem key={country.code} value={country.dialCode}>
-                      {country.flag} {country.dialCode} - {country.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                      <CommandSeparator />
+
+                      {/* All Countries */}
+                      <CommandGroup heading="All Countries">
+                        {countryCodes.map((country) => (
+                          <CommandItem
+                            key={country.code}
+                            value={`${country.name} ${country.dialCode}`}
+                            onSelect={() => {
+                              setCountryCode(country.dialCode);
+                              setOpen(false);
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                countryCode === country.dialCode
+                                  ? "opacity-100"
+                                  : "opacity-0",
+                              )}
+                            />
+                            <span className="flex items-center gap-2">
+                              {country.flag} {country.dialCode} - {country.name}
+                            </span>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
 
               {/* Mobile Number Input */}
               <Input
