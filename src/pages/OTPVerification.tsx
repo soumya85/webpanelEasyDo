@@ -131,7 +131,7 @@ const OTPVerification = () => {
                 onClick={handleResendOTP}
                 className="text-sm text-primary hover:underline transition-colors"
               >
-                Resend OTP
+                {t("resendOTP")}
               </button>
             </div>
           </div>
