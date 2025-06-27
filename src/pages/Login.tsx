@@ -71,7 +71,7 @@ const Login = () => {
             <SelectItem value="Gujarati">ગુજરાતી (Gujarati)</SelectItem>
             <SelectItem value="Kannada">ಕನ್ನಡ (Kannada)</SelectItem>
             <SelectItem value="Odia">ଓଡ଼ିଆ (Odia)</SelectItem>
-            <SelectItem value="Punjabi">ਪੰਜਾਬੀ (Punjabi)</SelectItem>
+            <SelectItem value="Punjabi">ਪ��ਜਾਬੀ (Punjabi)</SelectItem>
             <SelectItem value="Malayalam">മലയാളം (Malayalam)</SelectItem>
           </SelectContent>
         </Select>
@@ -100,10 +100,10 @@ const Login = () => {
             <div className="flex gap-3">
               {/* Country Code Selector */}
               <Select value={countryCode} onValueChange={setCountryCode}>
-                <SelectTrigger className="w-24 border-gray-200">
+                <SelectTrigger className="w-20 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="max-h-[300px] overflow-y-auto">
+                <SelectContent className="max-h-[300px] overflow-y-auto w-[280px]">
                   {/* Popular Countries Section */}
                   <div className="px-2 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Popular
@@ -126,14 +126,14 @@ const Login = () => {
                   </div>
                   {countryCodes.map((country) => (
                     <SelectItem key={country.code} value={country.dialCode}>
-                      <div className="flex items-center justify-between w-full">
-                        <span>
+                      <span className="flex items-center justify-between w-full">
+                        <span className="flex items-center">
                           {country.flag} {country.dialCode}
                         </span>
-                        <span className="text-xs text-gray-500 ml-2">
+                        <span className="text-xs text-gray-500 ml-2 truncate">
                           {country.name}
                         </span>
-                      </div>
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>
