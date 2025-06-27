@@ -43,27 +43,89 @@ const Login = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M32 8C18.7452 8 8 18.7452 8 32C8 45.2548 18.7452 56 32 56C45.2548 56 56 45.2548 56 32C56 18.7452 45.2548 8 32 8Z"
-                  fill="url(#gradient1)"
-                />
-                <path
-                  d="M24 24L40 32L24 40V24Z"
-                  fill="white"
-                  fillOpacity="0.9"
-                />
+                <g transform="translate(12, 12)">
+                  {/* Flower/Star petals */}
+                  <path
+                    d="M20 0C25 5 25 15 20 20C15 25 5 25 0 20C-5 15 -5 5 0 0C5 -5 15 -5 20 0Z"
+                    fill="url(#gradient1)"
+                    transform="rotate(0 20 20)"
+                  />
+                  <path
+                    d="M20 0C25 5 25 15 20 20C15 25 5 25 0 20C-5 15 -5 5 0 0C5 -5 15 -5 20 0Z"
+                    fill="url(#gradient2)"
+                    transform="rotate(72 20 20)"
+                  />
+                  <path
+                    d="M20 0C25 5 25 15 20 20C15 25 5 25 0 20C-5 15 -5 5 0 0C5 -5 15 -5 20 0Z"
+                    fill="url(#gradient3)"
+                    transform="rotate(144 20 20)"
+                  />
+                  <path
+                    d="M20 0C25 5 25 15 20 20C15 25 5 25 0 20C-5 15 -5 5 0 0C5 -5 15 -5 20 0Z"
+                    fill="url(#gradient4)"
+                    transform="rotate(216 20 20)"
+                  />
+                  <path
+                    d="M20 0C25 5 25 15 20 20C15 25 5 25 0 20C-5 15 -5 5 0 0C5 -5 15 -5 20 0Z"
+                    fill="url(#gradient5)"
+                    transform="rotate(288 20 20)"
+                  />
+                </g>
                 <defs>
                   <linearGradient
                     id="gradient1"
-                    x1="8"
-                    y1="8"
-                    x2="56"
-                    y2="56"
+                    x1="0"
+                    y1="0"
+                    x2="40"
+                    y2="40"
                     gradientUnits="userSpaceOnUse"
                   >
                     <stop stopColor="#60A5FA" />
-                    <stop offset="0.5" stopColor="#3B82F6" />
-                    <stop offset="1" stopColor="#06B6D4" />
+                    <stop offset="1" stopColor="#3B82F6" />
+                  </linearGradient>
+                  <linearGradient
+                    id="gradient2"
+                    x1="0"
+                    y1="0"
+                    x2="40"
+                    y2="40"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#3B82F6" />
+                    <stop offset="1" stopColor="#1D4ED8" />
+                  </linearGradient>
+                  <linearGradient
+                    id="gradient3"
+                    x1="0"
+                    y1="0"
+                    x2="40"
+                    y2="40"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#06B6D4" />
+                    <stop offset="1" stopColor="#0891B2" />
+                  </linearGradient>
+                  <linearGradient
+                    id="gradient4"
+                    x1="0"
+                    y1="0"
+                    x2="40"
+                    y2="40"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#8B5CF6" />
+                    <stop offset="1" stopColor="#7C3AED" />
+                  </linearGradient>
+                  <linearGradient
+                    id="gradient5"
+                    x1="0"
+                    y1="0"
+                    x2="40"
+                    y2="40"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#06B6D4" />
+                    <stop offset="1" stopColor="#60A5FA" />
                   </linearGradient>
                 </defs>
               </svg>
