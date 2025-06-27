@@ -3115,7 +3115,7 @@ export default function EmployeeDashboard() {
               onClick={handleSalaryAdvanceSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
             >
-              Submit Advance Request
+              <ReactiveMultilingualText translationKey="submitAdvanceRequest" />
             </Button>
             <Button
               variant="outline"
