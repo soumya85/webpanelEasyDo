@@ -116,6 +116,7 @@ const getDefaultLayout = (): DashboardCard[] => [
 export const useDashboardLayout = () => {
   const [cards, setCards] = useState<DashboardCard[]>(getDefaultLayout());
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   // Load layout from localStorage on mount
   useEffect(() => {
