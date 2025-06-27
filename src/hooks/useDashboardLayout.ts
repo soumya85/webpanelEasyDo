@@ -242,17 +242,17 @@ export const useDashboardLayout = () => {
   const getSections = (): DashboardSection[] => [
     {
       id: "quick-overview",
-      title: "Quick Overview",
+      title: t("quickOverview"),
       cards: getCardsBySection("quick-overview"),
     },
     {
       id: "productivity",
-      title: "Personal Productivity & Communication",
+      title: t("productivity"),
       cards: getCardsBySection("productivity"),
     },
     {
       id: "information-hub",
-      title: "Information Hub",
+      title: t("informationHub"),
       cards: getCardsBySection("information-hub"),
     },
   ];
