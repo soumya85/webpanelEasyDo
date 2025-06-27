@@ -53,11 +53,28 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
     console.log(`🌐 Changing language from ${language} to ${newLanguage}`);
 
-    setLanguageState(newLanguage);
-    localStorage.setItem("selectedLanguage", newLanguage);
+    try {
+      // Set language state immediately for UI updates
+      setLanguageState(newLanguage);
+      localStorage.setItem("selectedLanguage", newLanguage);
 
-    // Load fonts for the new language
-    await switchLanguage(newLanguage);
+      // Load fonts for the new language with error handling
+      await switchLanguage(newLanguage);
+
+      // Force a re-render to ensure new fonts are applied
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            resolve(void 0);
+          });
+        });
+      });
+
+      console.log(`✅ Language and fonts switched to ${newLanguage}`);
+    } catch (error) {
+      console.warn(`⚠️ Font loading failed for ${newLanguage}:`, error);
+      // Language still changed, just fonts might not be optimal
+    }
   };
 
   const value = {
