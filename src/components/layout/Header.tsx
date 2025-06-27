@@ -206,9 +206,12 @@ export function Header() {
           </Button>
 
           {/* Title */}
-          <h1 className="text-xl font-black text-azure-24 uppercase tracking-wide">
-            Dashboard
-          </h1>
+          <MultilingualText
+            as="h1"
+            className="text-xl font-black text-azure-24 uppercase tracking-wide"
+          >
+            {t("dashboard")}
+          </MultilingualText>
 
           {/* Desktop Controls */}
           <div className="flex items-center gap-6">
