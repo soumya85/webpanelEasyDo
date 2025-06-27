@@ -21,6 +21,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   onResize,
 }) => {
   const [activeTaskTab, setActiveTaskTab] = useState("MY_TASK");
+  const { t } = useTranslation();
 
   const taskTabsData = {
     MY_TASK: {
