@@ -2869,7 +2869,7 @@ const ChatConversation: React.FC<{
             <Input
               value={messageText}
               onChange={(e) => onMessageChange(e.target.value)}
-              placeholder="Type a message"
+              placeholder={getGlobalTranslation("typeAMessage")}
               className="rounded-3xl border-gray-300 py-3"
               onKeyDown={(e) => e.key === "Enter" && onSendMessage()}
             />
