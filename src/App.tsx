@@ -8,7 +8,7 @@ import { SidebarProvider } from "./hooks/useSidebar";
 import { UserProvider } from "./hooks/useUser";
 import { PageLayout } from "./components/layout/PageLayout";
 import Sample from "./pages/Overview";
-import ChatsSimple from "./pages/ChatsSimple";
+import Chats from "./pages/Chats";
 import TodaysSchedule from "./pages/TodaysSchedule";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
 import CompanyDashboard from "./pages/CompanyDashboard";
@@ -54,7 +54,7 @@ const AppContent = () => {
                   <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/chats" element={<ChatsSimple />} />
+                    <Route path="/chats" element={<Chats />} />
                     <Route
                       path="/todays-schedule"
                       element={<TodaysSchedule />}
