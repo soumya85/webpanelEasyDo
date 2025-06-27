@@ -64,18 +64,52 @@
     <!-- Global Language Management Script -->
     <script>
       (function () {
-        const lang = localStorage.getItem("siteLang") || "en";
-        document.documentElement.lang = lang;
-        window.siteLang = lang;
-        window.changeLanguage = function (lang) {
-          localStorage.setItem("siteLang", lang);
+        // Initialize language immediately
+        function initLanguage() {
+          const lang = localStorage.getItem("siteLang") || "en";
           document.documentElement.lang = lang;
           window.siteLang = lang;
-          window.dispatchEvent(
-            new CustomEvent("languageChange", { detail: { language: lang } }),
-          );
-          window.dispatchEvent(new Event("storage"));
-        };
+          return lang;
+        }
+
+        // Set up change language function
+        function setupChangeLanguage() {
+          window.changeLanguage = function (lang) {
+            localStorage.setItem("siteLang", lang);
+            document.documentElement.lang = lang;
+            window.siteLang = lang;
+            window.dispatchEvent(
+              new CustomEvent("languageChange", { detail: { language: lang } }),
+            );
+            window.dispatchEvent(new Event("storage"));
+            console.log("🌐 Language changed to:", lang);
+          };
+        }
+
+        // Initialize on load
+        initLanguage();
+        setupChangeLanguage();
+
+        // Re-initialize on navigation (for SPA routing)
+        let lastUrl = location.href;
+        const observer = new MutationObserver(() => {
+          const url = location.href;
+          if (url !== lastUrl) {
+            lastUrl = url;
+            setTimeout(() => {
+              initLanguage();
+              setupChangeLanguage();
+            }, 50);
+          }
+        });
+
+        observer.observe(document, { subtree: true, childList: true });
+
+        // Also check on focus (tab switching)
+        window.addEventListener("focus", () => {
+          initLanguage();
+          setupChangeLanguage();
+        });
       })();
     </script>
   </head>
