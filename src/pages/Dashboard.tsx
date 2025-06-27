@@ -22,6 +22,15 @@ const Dashboard: React.FC = () => {
     resetLayout,
     isLoading,
   } = useDashboardLayout();
+  const { t } = useTranslation();
+
+  // Get time-based greeting
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return t("goodMorning");
+    if (hour < 17) return t("goodAfternoon");
+    return t("goodEvening");
+  };
 
   const handleDragEnd = useCallback(
     (result: DropResult) => {
