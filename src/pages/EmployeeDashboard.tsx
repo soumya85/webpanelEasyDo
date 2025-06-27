@@ -3604,7 +3604,7 @@ export default function EmployeeDashboard() {
                 {currentBranchData.stats.total}
               </div>
               <div className="text-xs font-medium text-gray-600 uppercase">
-                TOTAL
+                <ReactiveMultilingualText translationKey="total" />
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
