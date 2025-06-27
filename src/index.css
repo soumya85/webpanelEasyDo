@@ -187,62 +187,184 @@
     text-wrap: balance;
   }
 
-  /* Language-specific font utilities */
+  /* Language-specific font utilities with comprehensive fallbacks */
   .font-hindi {
     font-family:
-      "Noto Sans Devanagari", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Devanagari",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-bengali {
     font-family:
-      "Noto Sans Bengali", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Bengali",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-telugu {
     font-family:
-      "Noto Sans Telugu", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Telugu",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-marathi {
     font-family:
-      "Noto Sans Devanagari", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Devanagari",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-tamil {
-    font-family: "Noto Sans Tamil", "Noto Sans", "Inter", system-ui, sans-serif;
+    font-family:
+      "Noto Sans Tamil",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-urdu {
     font-family:
-      "Noto Sans Arabic", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Arabic",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-gujarati {
     font-family:
-      "Noto Sans Gujarati", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Gujarati",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-kannada {
     font-family:
-      "Noto Sans Kannada", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Kannada",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-odia {
-    font-family: "Noto Sans Oriya", "Noto Sans", "Inter", system-ui, sans-serif;
+    font-family:
+      "Noto Sans Oriya",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-punjabi {
     font-family:
-      "Noto Sans Gurmukhi", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Gurmukhi",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-malayalam {
     font-family:
-      "Noto Sans Malayalam", "Noto Sans", "Inter", system-ui, sans-serif;
+      "Noto Sans Malayalam",
+      "Noto Sans",
+      "Inter",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-english {
-    font-family: "Inter", "Noto Sans", system-ui, sans-serif;
+    font-family:
+      "Inter",
+      "Noto Sans",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   /* Text rendering optimizations */
