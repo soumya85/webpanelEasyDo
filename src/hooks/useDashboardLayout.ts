@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export interface DashboardCard {
   id: string;
