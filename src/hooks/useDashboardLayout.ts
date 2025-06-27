@@ -49,7 +49,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "approvals",
     type: "approvals",
-    title: "Pending Approvals",
+    title: "pendingApprovals",
     section: "quick-overview",
     order: 2,
     size: "medium",
@@ -57,7 +57,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "notes",
     type: "notes",
-    title: "Quick Notes",
+    title: "personalNotes",
     section: "quick-overview",
     order: 3,
     size: "medium",
@@ -65,7 +65,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "chat",
     type: "chat",
-    title: "Recent Chat Activity",
+    title: "teamChat",
     section: "productivity",
     order: 0,
     size: "large",
@@ -73,7 +73,7 @@ const getDefaultLayout = (): DashboardCard[] => [
   {
     id: "workStatus",
     type: "workStatus",
-    title: "My Daily Work Status",
+    title: "workStatus",
     section: "productivity",
     order: 1,
     size: "large",
