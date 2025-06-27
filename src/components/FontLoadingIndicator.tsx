@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useFontLoader } from "@/hooks/useFontLoader";
-import { useLanguageContext } from "@/contexts/LanguageContext";
+import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 
 interface FontLoadingIndicatorProps {
   children: React.ReactNode;
@@ -20,8 +20,26 @@ export const FontLoadingIndicator: React.FC<FontLoadingIndicatorProps> = ({
   className = "",
   showLoading = true,
 }) => {
-  const { language } = useLanguageContext();
-  const { isLoading, isLoaded, hasError } = useFontLoader(language);
+  const { currentLanguage } = useGlobalTranslation();
+
+  // Map global language codes to the format expected by useFontLoader
+  const languageMap: Record<string, string> = {
+    en: "English",
+    hi: "Hindi",
+    bn: "Bengali",
+    te: "Telugu",
+    mr: "Marathi",
+    ta: "Tamil",
+    ur: "Urdu",
+    gu: "Gujarati",
+    kn: "Kannada",
+    or: "Odia",
+    pa: "Punjabi",
+    ml: "Malayalam",
+  };
+
+  const mappedLanguage = languageMap[currentLanguage] || "English";
+  const { isLoading, isLoaded, hasError } = useFontLoader(mappedLanguage);
 
   if (isLoading && showLoading) {
     return (
@@ -35,7 +53,7 @@ export const FontLoadingIndicator: React.FC<FontLoadingIndicatorProps> = ({
 
   if (hasError) {
     console.warn(
-      `Font loading error for ${language}, displaying content anyway`,
+      `Font loading error for ${mappedLanguage}, displaying content anyway`,
     );
   }
 
