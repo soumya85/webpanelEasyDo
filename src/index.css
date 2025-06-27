@@ -129,9 +129,14 @@
       sans-serif;
     font-feature-settings:
       "rlig" 1,
-      "calt" 1;
+      "calt" 1,
+      "kern" 1,
+      "liga" 1;
     font-variant-ligatures: normal;
     text-rendering: optimizeLegibility;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-synthesis: weight style small-caps;
   }
 
   html {
@@ -200,6 +205,8 @@
       "Noto Sans Devanagari",
       "Noto Sans",
       "Inter",
+      "DejaVu Sans",
+      "Lucida Grande",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -208,6 +215,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-bengali {
@@ -215,6 +228,8 @@
       "Noto Sans Bengali",
       "Noto Sans",
       "Inter",
+      "Vrinda",
+      "Shonar Bangla",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -223,6 +238,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-telugu {
@@ -230,6 +251,8 @@
       "Noto Sans Telugu",
       "Noto Sans",
       "Inter",
+      "Gautami",
+      "Vani",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -238,6 +261,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-marathi {
@@ -245,6 +274,8 @@
       "Noto Sans Devanagari",
       "Noto Sans",
       "Inter",
+      "DejaVu Sans",
+      "Lucida Grande",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -253,6 +284,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-tamil {
@@ -260,6 +297,8 @@
       "Noto Sans Tamil",
       "Noto Sans",
       "Inter",
+      "Latha",
+      "Tamil Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -268,6 +307,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-urdu {
@@ -275,6 +320,8 @@
       "Noto Sans Arabic",
       "Noto Sans",
       "Inter",
+      "Tahoma",
+      "Arial Unicode MS",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -283,6 +330,14 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
+    direction: rtl;
+    text-align: right;
   }
 
   .font-gujarati {
@@ -290,6 +345,8 @@
       "Noto Sans Gujarati",
       "Noto Sans",
       "Inter",
+      "Shruti",
+      "Gujarati Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -298,6 +355,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-kannada {
@@ -305,6 +368,8 @@
       "Noto Sans Kannada",
       "Noto Sans",
       "Inter",
+      "Tunga",
+      "Kannada Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -313,6 +378,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-odia {
@@ -320,6 +391,8 @@
       "Noto Sans Oriya",
       "Noto Sans",
       "Inter",
+      "Kalinga",
+      "Oriya Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -328,6 +401,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-punjabi {
@@ -335,6 +414,8 @@
       "Noto Sans Gurmukhi",
       "Noto Sans",
       "Inter",
+      "Raavi",
+      "Gurmukhi MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -343,6 +424,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-malayalam {
@@ -350,6 +437,8 @@
       "Noto Sans Malayalam",
       "Noto Sans",
       "Inter",
+      "Kartika",
+      "Malayalam Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -358,6 +447,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-english {
@@ -372,6 +467,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   /* Text rendering optimizations */
@@ -384,18 +485,40 @@
       "kern" 1,
       "liga" 1,
       "clig" 1,
-      "calt" 1;
+      "calt" 1,
+      "rlig" 1;
     unicode-bidi: plaintext;
     text-align: start;
     font-variant-numeric: lining-nums;
     font-variant-east-asian: normal;
     font-language-override: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-variation-settings: normal;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    text-combine-upright: none;
+    text-decoration-skip-ink: auto;
+    hyphens: auto;
+    word-break: keep-all;
+    line-break: auto;
   }
 
   /* Ensure proper fallback for missing glyphs */
   .text-multilingual * {
     font-synthesis: weight style small-caps;
     font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-position: normal;
+  }
+
+  /* Ensure consistent character rendering across all languages */
+  .text-multilingual,
+  .text-multilingual * {
+    font-display: swap;
+    font-stretch: normal;
+    text-size-adjust: 100%;
   }
 
   /* Prevent layout shift during font loading */
