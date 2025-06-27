@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
+import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import PerformanceMeter from "@/components/PerformanceMeter";
 import { AttendanceReportModal } from "@/components/AttendanceReportModal";
