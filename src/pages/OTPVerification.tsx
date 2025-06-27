@@ -150,23 +150,20 @@ const OTPVerification = () => {
               isOTPValid
                 ? "bg-primary hover:bg-primary-600 text-white"
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
-              getMultilingualTextClass(language),
             )}
           >
-            {t("verifyOTP")}
+            <MultilingualText>{t("verifyOTP")}</MultilingualText>
           </Button>
 
           {/* Back to Login */}
           <div className="text-center">
-            <button
+            <MultilingualText
+              as="button"
               onClick={() => navigate("/login")}
-              className={cn(
-                "text-sm text-gray-500 hover:text-gray-700 transition-colors",
-                getMultilingualTextClass(language),
-              )}
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
               {t("backToLogin")}
-            </button>
+            </MultilingualText>
           </div>
         </div>
       </div>
