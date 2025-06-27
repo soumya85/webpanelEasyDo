@@ -1,5 +1,12 @@
 /* Fonts are now loaded via HTML head for better performance and reliability */
 
+/* Critical font rendering fix */
+* {
+  font-variant-ligatures: normal;
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
