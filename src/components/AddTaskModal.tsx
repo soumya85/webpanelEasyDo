@@ -188,7 +188,7 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
             </Label>
             <textarea
               id="instructions"
-              placeholder="Describe the task in detail..."
+              placeholder={t("describeTaskInDetail")}
               className="w-full min-h-[100px] px-3 py-2 border border-input rounded-lg resize-none mt-2"
             />
           </div>
