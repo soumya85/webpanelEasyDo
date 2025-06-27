@@ -40,9 +40,12 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
         <div className="p-2 rounded-lg bg-green-50">
           <Calendar className="w-5 h-5 text-green-600" />
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-          Meetings This Week
-        </h3>
+        <MultilingualText
+          as="h3"
+          className="text-sm font-semibold text-[#283C50] flex-1"
+        >
+          {t("meetingsThisWeek")}
+        </MultilingualText>
       </div>
 
       {/* Main Content */}
