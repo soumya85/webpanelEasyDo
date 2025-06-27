@@ -12,15 +12,20 @@ import {
 } from "@/components/ui/select";
 import { Globe, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { translations, type Language } from "@/data/translations";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [language, setLanguage] = useState("English");
+  const [language, setLanguage] = useState<Language>("English");
   const navigate = useNavigate();
 
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
+
+  // Get translation function for current language
+  const t = (key: keyof typeof translations.English) =>
+    translations[language][key];
 
   const handleSendOTP = () => {
     if (isFormValid) {
@@ -85,7 +90,7 @@ const Login = () => {
           {/* Welcome Heading */}
           <div className="text-center">
             <h1 className="text-xl font-semibold text-gray-900">
-              Welcome to EasyDo
+              {t("welcomeToEasyDo")}
             </h1>
           </div>
 
@@ -108,7 +113,7 @@ const Login = () => {
               {/* Mobile Number Input */}
               <Input
                 type="tel"
-                placeholder="Mobile number"
+                placeholder={t("mobileNumberPlaceholder")}
                 value={mobileNumber}
                 onChange={handleMobileNumberChange}
                 className="flex-1 border-gray-200 focus:border-primary focus:ring-primary"
@@ -129,13 +134,13 @@ const Login = () => {
               htmlFor="terms"
               className="text-sm text-gray-600 leading-relaxed"
             >
-              By Signing up, you agree with our{" "}
+              {t("bySigningUp")}{" "}
               <a href="#" className="text-primary hover:underline">
-                Terms & Conditions
+                {t("termsAndConditions")}
               </a>{" "}
-              and{" "}
+              {t("and")}{" "}
               <a href="#" className="text-primary hover:underline">
-                Privacy Policy
+                {t("privacyPolicy")}
               </a>
             </label>
           </div>
@@ -148,10 +153,10 @@ const Login = () => {
               "w-full h-12 text-base font-semibold rounded-lg transition-all duration-200",
               isFormValid
                 ? "bg-primary hover:bg-primary-600 text-white"
-                : "bg-gray-300 text-transparent cursor-not-allowed border-0",
+                : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            {isFormValid ? "SEND OTP" : ""}
+            {t("sendOTP")}
           </Button>
         </div>
       </div>
