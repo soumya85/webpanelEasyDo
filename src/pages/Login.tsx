@@ -32,7 +32,8 @@ import {
   popularCountryCodes,
   type CountryCode,
 } from "@/data/countryCodes";
-import { LanguageSelector, useLanguage } from "@/components/LanguageSelector";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguageContext } from "@/contexts/LanguageContext";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
