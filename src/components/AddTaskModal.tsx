@@ -1,14 +1,32 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { CalendarIcon, X, Plus, Paperclip, CheckCircle2 } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 
 interface AddTaskModalProps {
   open: boolean;
@@ -43,13 +61,16 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
         <DialogHeader className="bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 px-10 py-8">
           <DialogTitle className="text-3xl font-extrabold text-white flex items-center justify-between tracking-tight">
             <span>
-              <CheckCircle2 className="inline-block mr-2 text-green-300" size={32} />
+              <CheckCircle2
+                className="inline-block mr-2 text-green-300"
+                size={32}
+              />
               Create New Task
             </span>
             <DialogClose asChild>
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="h-10 w-10 text-white hover:bg-blue-700"
               >
                 <X className="h-6 w-6" />
@@ -61,8 +82,10 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
           {/* Title & Assignee */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <Label htmlFor="title" className="font-semibold text-gray-700">Task Title</Label>
-              <Input 
+              <Label htmlFor="title" className="font-semibold text-gray-700">
+                Task Title
+              </Label>
+              <Input
                 id="title"
                 placeholder="e.g. Design new dashboard"
                 className="w-full mt-2"
@@ -70,13 +93,15 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
               />
             </div>
             <div>
-              <Label htmlFor="assignee" className="font-semibold text-gray-700">Assignee</Label>
+              <Label htmlFor="assignee" className="font-semibold text-gray-700">
+                Assignee
+              </Label>
               <Input
                 id="assignee"
                 placeholder="Assign to (name or email)"
                 className="w-full mt-2"
                 value={assignee}
-                onChange={e => setAssignee(e.target.value)}
+                onChange={(e) => setAssignee(e.target.value)}
               />
             </div>
           </div>
@@ -91,11 +116,13 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
                     variant="outline"
                     className={cn(
                       "w-full justify-start text-left font-normal mt-2",
-                      !startDate && "text-muted-foreground"
+                      !startDate && "text-muted-foreground",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-5 w-5" />
-                    {startDate ? format(startDate, "EEE, MMM dd, yyyy") : "Pick a date"}
+                    {startDate
+                      ? format(startDate, "EEE, MMM dd, yyyy")
+                      : "Pick a date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -116,11 +143,13 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
                     variant="outline"
                     className={cn(
                       "w-full justify-start text-left font-normal mt-2",
-                      !endDate && "text-muted-foreground"
+                      !endDate && "text-muted-foreground",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-5 w-5" />
-                    {endDate ? format(endDate, "EEE, MMM dd, yyyy") : "Pick a date"}
+                    {endDate
+                      ? format(endDate, "EEE, MMM dd, yyyy")
+                      : "Pick a date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -150,7 +179,12 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
 
           {/* Instructions */}
           <div>
-            <Label htmlFor="instructions" className="font-semibold text-gray-700">Instructions</Label>
+            <Label
+              htmlFor="instructions"
+              className="font-semibold text-gray-700"
+            >
+              Instructions
+            </Label>
             <textarea
               id="instructions"
               placeholder="Describe the task in detail..."
@@ -241,7 +275,11 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
           <div>
             <Label className="font-semibold text-gray-700">Attachment</Label>
             <label className="flex items-center gap-2 cursor-pointer mt-2">
-              <Button variant="outline" className="w-fit flex items-center gap-2" asChild>
+              <Button
+                variant="outline"
+                className="w-fit flex items-center gap-2"
+                asChild
+              >
                 <span>
                   <Paperclip className="w-4 h-4 mr-1" />
                   {attachment ? attachment.name : "Browse"}
@@ -250,7 +288,7 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
               <input
                 type="file"
                 className="hidden"
-                onChange={e => setAttachment(e.target.files?.[0] || null)}
+                onChange={(e) => setAttachment(e.target.files?.[0] || null)}
               />
             </label>
           </div>
@@ -258,9 +296,14 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
           {/* Actions */}
           <div className="flex justify-end gap-4 pt-8 border-t mt-10">
             <DialogClose asChild>
-              <Button variant="outline" type="button" className="font-semibold">Cancel</Button>
+              <Button variant="outline" type="button" className="font-semibold">
+                Cancel
+              </Button>
             </DialogClose>
-            <Button type="submit" className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-bold px-8 py-3 rounded-lg flex items-center gap-2 shadow-lg hover:from-indigo-700 hover:to-blue-600 transition">
+            <Button
+              type="submit"
+              className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-bold px-8 py-3 rounded-lg flex items-center gap-2 shadow-lg hover:from-indigo-700 hover:to-blue-600 transition"
+            >
               <Plus className="w-5 h-5" /> Add Task
             </Button>
           </div>
