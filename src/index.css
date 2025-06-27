@@ -102,14 +102,23 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+    font-family:
+      "Inter", "Noto Sans", "Noto Sans Devanagari", "Noto Sans Telugu",
+      "Noto Sans Gujarati", "Noto Sans Bengali", "Noto Sans Tamil",
+      "Noto Sans Kannada", "Noto Sans Malayalam", "Noto Sans Oriya",
+      "Noto Sans Gurmukhi", "Noto Sans Arabic", system-ui, sans-serif;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
   }
 
   html {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family:
+      "Inter", "Noto Sans", "Noto Sans Devanagari", "Noto Sans Telugu",
+      "Noto Sans Gujarati", "Noto Sans Bengali", "Noto Sans Tamil",
+      "Noto Sans Kannada", "Noto Sans Malayalam", "Noto Sans Oriya",
+      "Noto Sans Gurmukhi", "Noto Sans Arabic", system-ui, sans-serif;
   }
 
   /* Smooth scrolling for sidebar */
