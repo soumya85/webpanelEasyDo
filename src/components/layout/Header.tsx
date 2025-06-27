@@ -302,13 +302,13 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={handleProfileClick}>
-                Profile
+                <MultilingualText>{t("profile")}</MultilingualText>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleSettingsClick}>
-                Settings
+                <MultilingualText>{t("settings")}</MultilingualText>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleLogoutClick}>
-                Logout
+                <MultilingualText>{t("logout")}</MultilingualText>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
