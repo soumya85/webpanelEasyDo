@@ -10,10 +10,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Globe, ChevronDown } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { Globe, ChevronDown, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
-import { countryCodes, popularCountryCodes } from "@/data/countryCodes";
+import {
+  countryCodes,
+  popularCountryCodes,
+  type CountryCode,
+} from "@/data/countryCodes";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
