@@ -66,7 +66,7 @@ export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
                 className="inline-block mr-2 text-green-300"
                 size={32}
               />
-              Create New Task
+              <ReactiveMultilingualText translationKey="createNewTask" />
             </span>
             <DialogClose asChild>
               <Button
