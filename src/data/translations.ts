@@ -278,7 +278,7 @@ export const translations = {
     state: "राज्य",
     country: "देश",
     zipCode: "पिन कोड",
-    dateOfBirth: "जन��म तिथि",
+    dateOfBirth: "जन्म तिथि",
     gender: "लिंग",
     male: "पुरुष",
     female: "महिला",
@@ -318,10 +318,10 @@ export const translations = {
 
     // Documents
     documents: "दस्तावेज़",
-    uploadDocument: "दस्तावेज़ अपलोड करें",
+    uploadDocument: "दस्तावेज़ अपलोड कर���ं",
     documentName: "दस्तावेज़ का नाम",
     documentType: "दस्तावेज़ का प्रकार",
-    uploadDate: "अपलो��� की तारीख",
+    uploadDate: "अपलोड की तारीख",
     fileSize: "फ़ाइल का आकार",
 
     // Announcements
@@ -350,7 +350,7 @@ export const translations = {
     resendOTP: "OTP পুনরায় পাঠান",
     resendOTPIn: "OTP পুনরায় পাঠান",
     seconds: "সেকেন্ডে",
-    verifyOTP: "OTP য��চাই করুন",
+    verifyOTP: "OTP যাচাই করুন",
     backToLogin: "← লগইনে ফিরে যান",
 
     // Navigation & Layout
@@ -415,11 +415,11 @@ export const translations = {
     evening: "সন্ধ্যা",
 
     // Status
-    active: "সক্রিয়",
+    active: "��ক্রিয়",
     inactive: "নিষ্ক্রিয়",
     pending: "মুলতুবি",
     completed: "সম্পন্ন",
-    inProgress: "চলম��ন",
+    inProgress: "চলমান",
     approved: "অনুমোদিত",
     rejected: "প্রত্যাখ্যাত",
     draft: "খসড়া",
@@ -456,7 +456,7 @@ export const translations = {
     goodMorning: "সুপ্রভাত",
     goodAfternoon: "শুভ দুপুর",
     goodEvening: "শুভ সন্ধ্যা",
-    authorityLevel: "কর্তৃত্বের স্তর",
+    authorityLevel: "কর���তৃত্বের স্তর",
     welcome: "স্বাগতম",
     lastMessage: "শেষ বার্তা",
     yesterday: "গতকাল",
@@ -477,7 +477,7 @@ export const translations = {
     leaveType: "ছুটির ধরন",
     casualLeave: "নৈমিত্তিক ছুটি",
     sickLeave: "অসুস্থতার ছুটি",
-    earnedLeave: "অর্জিত ছুটি",
+    earnedLeave: "অর্জিত ছুট��",
     maternityLeave: "মাতৃত্বকালীন ছুটি",
     paternityLeave: "পিতৃত্বকালীন ছুটি",
     startDate: "শুরুর তারিখ",
@@ -507,7 +507,7 @@ export const translations = {
     // Authentication
     welcomeToEasyDo: "EasyDo కు స్వాగతం",
     mobileNumberPlaceholder: "మొబైల్ నంబర్",
-    bySigningUp: "సైన్ అప్ చేయడ��� ద్వారా, మీరు మా",
+    bySigningUp: "సైన్ అప్ చేయడం ద్వారా, మీరు మా",
     termsAndConditions: "నిబంధనలు & షరతులు",
     and: "మరియు",
     privacyPolicy: "గోప్యతా విధానం",
@@ -533,7 +533,7 @@ export const translations = {
     reports: "రిపోర్ట్స్",
     settings: "సెట్టింగ్స్",
     helpSupport: "సహాయం & మద్దతు",
-    profile: "ప్రొఫైల్",
+    profile: "ప్రొఫైల���",
     logout: "లాగౌట్",
     create: "సృష్టించు",
     filter: "ఫిల్టర్",
@@ -569,7 +569,7 @@ export const translations = {
     open: "తెరవండి",
     view: "చూడండి",
     download: "డౌన్‌లోడ్ చేయండి",
-    upload: "అ���్‌లోడ్ చేయండి",
+    upload: "అప్‌లోడ్ చేయండి",
 
     // Time & Date
     today: "ఈరోజు",
@@ -619,6 +619,15 @@ export const translations = {
     male: "పురుషుడు",
     female: "స్త్రీ",
     other: "ఇతర",
+
+    // Greetings & Profile
+    goodMorning: "శుభోదయం",
+    goodAfternoon: "శుభ మధ్యాహ్నం",
+    goodEvening: "శుభ సాయంత్రం",
+    authorityLevel: "అధికార స్థాయి",
+    welcome: "స్వాగతం",
+    lastMessage: "చివరి సందేశం",
+    yesterday: "నిన్న",
 
     // Messages
     successMessage: "ఆపరేషన్ విజయవంతంగా పూర్తైంది",
@@ -675,7 +684,7 @@ export const translations = {
     resendTo: "पुन्हा पाठवा",
     resendOTP: "OTP पुन्हा प��ठवा",
     resendOTPIn: "OTP पुन्हा पाठवा",
-    seconds: "सेकंद���त",
+    seconds: "सेकंदात",
     verifyOTP: "OTP सत्यापित करा",
     backToLogin: "← लॉगिनवर परत जा",
   },
@@ -767,7 +776,7 @@ export const translations = {
   Punjabi: {
     welcomeToEasyDo: "EasyDo ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
     mobileNumberPlaceholder: "ਮੋਬਾਈਲ ਨੰਬਰ",
-    bySigningUp: "ਸਾਈਨ ਅੱਪ ਕਰਕੇ, ਤੁਸੀਂ ਸਾਡੀ",
+    bySigningUp: "ਸਾਈਨ ਅੱ�� ਕਰਕੇ, ਤੁਸੀਂ ਸਾਡੀ",
     termsAndConditions: "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
     and: "ਅਤੇ",
     privacyPolicy: "ਗੁਪਤਤਾ ਨੀਤੀ",
@@ -791,7 +800,7 @@ export const translations = {
     sendOTP: "OTP അയയ്ക്കുക",
     enterOTP: "6-അക്ക OTP നൽകുക",
     sentTo: "അയച്ചത്",
-    resendTo: "വീണ്ടും അയയ്ക്കുക",
+    resendTo: "വീണ്ടു�� അയയ്ക്കുക",
     resendOTP: "OTP വീണ്ടും അയയ്ക്കുക",
     resendOTPIn: "OTP വീണ്ടും അയയ്ക്കുക",
     seconds: "സെക്കൻഡിൽ",
