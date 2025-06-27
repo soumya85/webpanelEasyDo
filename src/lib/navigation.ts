@@ -12,10 +12,11 @@ import {
   HelpCircle,
   Zap,
 } from "lucide-react";
+import { type TranslationKey } from "@/data/translations";
 
 export interface NavigationItem {
   id: string;
-  label: string;
+  labelKey: TranslationKey;
   icon: typeof LayoutDashboard;
   href: string;
   badge?: number;
@@ -24,73 +25,73 @@ export interface NavigationItem {
 export const navigationItems: NavigationItem[] = [
   {
     id: "dashboard",
-    label: "Overview",
+    labelKey: "dashboard",
     icon: LayoutDashboard,
     href: "/dashboard",
   },
   {
     id: "chats",
-    label: "Chats",
+    labelKey: "chats",
     icon: MessageSquare,
     href: "/chats",
   },
   {
     id: "todays-schedule",
-    label: "Todays Schedule",
+    labelKey: "todaysSchedule",
     icon: Calendar,
     href: "/todays-schedule",
   },
   {
     id: "employee-dashboard",
-    label: "Employee Dashboard",
+    labelKey: "employeeDashboard",
     icon: Users,
     href: "/employee-dashboard",
   },
   {
     id: "company-dashboard",
-    label: "Company Dashboard",
+    labelKey: "companyDashboard",
     icon: Building,
     href: "/company-dashboard",
   },
   {
     id: "tasks",
-    label: "Tasks",
+    labelKey: "tasks",
     icon: CheckSquare,
     href: "/tasks",
   },
   {
     id: "meet",
-    label: "Meet",
+    labelKey: "meet",
     icon: Video,
     href: "/meet",
   },
   {
     id: "notes-reminder",
-    label: "Notes & Reminder",
+    labelKey: "notesReminder",
     icon: StickyNote,
     href: "/notes-reminder",
   },
   {
     id: "reports",
-    label: "Reports",
+    labelKey: "reports",
     icon: FileText,
     href: "/reports",
   },
   {
     id: "settings",
-    label: "Settings",
+    labelKey: "settings",
     icon: Settings,
     href: "/settings",
   },
   {
     id: "help-support",
-    label: "Help & Support",
+    labelKey: "helpSupport",
     icon: HelpCircle,
     href: "/help-support",
   },
   {
     id: "sample",
-    label: "Sample",
+    labelKey: "dashboard",
     icon: Zap,
     href: "/sample",
   },
