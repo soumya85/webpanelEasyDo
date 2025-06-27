@@ -67,20 +67,21 @@ const CircularProgress: React.FC<{
 };
 
 // Sample data for pie charts
-const taskPerformanceData = [
-  { name: "On Time", value: 50, color: "#4A90E2" },
-  { name: "After Time", value: 50, color: "#F5A623" },
-];
-
-const meetingStatusData = [
-  { name: "Not Attended", value: 100, color: "#9CA3AF" },
-  { name: "Attended", value: 0, color: "#4A90E2" },
-];
-
 export const EmployeePerformanceRatingModal: React.FC<
   EmployeePerformanceRatingModalProps
 > = ({ open, onClose, onBackToReports }) => {
-  const [selectedPeriod, setSelectedPeriod] = useState("Last Month");
+  const { t } = useTranslation();
+  const [selectedPeriod, setSelectedPeriod] = useState(t("lastMonth"));
+
+  const taskPerformanceData = [
+    { name: t("onTime"), value: 50, color: "#4A90E2" },
+    { name: t("afterTime"), value: 50, color: "#F5A623" },
+  ];
+
+  const meetingStatusData = [
+    { name: t("notAttended"), value: 100, color: "#9CA3AF" },
+    { name: t("attended"), value: 0, color: "#4A90E2" },
+  ];
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
