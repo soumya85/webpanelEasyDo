@@ -153,7 +153,7 @@ const Login = () => {
               "w-full h-12 text-base font-semibold rounded-lg transition-all duration-200",
               isFormValid
                 ? "bg-primary hover:bg-primary-600 text-white"
-                : "bg-gray-300 text-gray-600 cursor-not-allowed border-0 disabled:opacity-100",
+                : "bg-gray-300 text-gray-500 cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
             {t("sendOTP")}
