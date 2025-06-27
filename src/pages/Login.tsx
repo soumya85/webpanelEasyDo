@@ -90,7 +90,7 @@ const Login = () => {
           {/* Welcome Heading */}
           <div className="text-center">
             <h1 className="text-xl font-semibold text-gray-900">
-              Welcome to EasyDo
+              {t("welcomeToEasyDo")}
             </h1>
           </div>
 
