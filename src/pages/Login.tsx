@@ -224,7 +224,10 @@ const Login = () => {
             />
             <label
               htmlFor="terms"
-              className="text-sm text-gray-600 leading-relaxed"
+              className={cn(
+                "text-sm text-gray-600 leading-relaxed",
+                getMultilingualTextClass(language),
+              )}
             >
               {t("bySigningUp")}{" "}
               <a href="#" className="text-primary hover:underline">
