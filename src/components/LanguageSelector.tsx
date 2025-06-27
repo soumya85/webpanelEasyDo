@@ -83,7 +83,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   return (
     <div className={`${positionClasses} ${className}`}>
-      <Select value={value} onValueChange={onValueChange}>
+      <Select value={value} onValueChange={onValueChange || (() => {})}>
         <SelectTrigger
           className={`${sizeClasses[size]} border-gray-200 bg-white hover:bg-gray-50 transition-colors`}
         >
