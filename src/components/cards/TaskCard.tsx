@@ -55,9 +55,12 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         <div className="p-2 rounded-lg bg-blue-50">
           <CheckSquare className="w-5 h-5 text-blue-600" />
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-          Task at a Glance
-        </h3>
+        <MultilingualText
+          as="h3"
+          className="text-sm font-semibold text-[#283C50] flex-1"
+        >
+          {t("taskAtGlance")}
+        </MultilingualText>
       </div>
 
       {/* Tabs */}
