@@ -145,6 +145,7 @@ const OTPVerification = () => {
                   canResend
                     ? "text-blue-600 hover:underline cursor-pointer"
                     : "text-gray-500 cursor-not-allowed",
+                  getMultilingualTextClass(language),
                 )}
               >
                 {canResend
