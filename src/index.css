@@ -205,6 +205,8 @@
       "Noto Sans Devanagari",
       "Noto Sans",
       "Inter",
+      "DejaVu Sans",
+      "Lucida Grande",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -213,6 +215,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-bengali {
@@ -220,6 +228,8 @@
       "Noto Sans Bengali",
       "Noto Sans",
       "Inter",
+      "Vrinda",
+      "Shonar Bangla",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -228,6 +238,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-telugu {
@@ -235,6 +251,8 @@
       "Noto Sans Telugu",
       "Noto Sans",
       "Inter",
+      "Gautami",
+      "Vani",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -243,6 +261,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-marathi {
@@ -250,6 +274,8 @@
       "Noto Sans Devanagari",
       "Noto Sans",
       "Inter",
+      "DejaVu Sans",
+      "Lucida Grande",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -258,6 +284,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-tamil {
@@ -265,6 +297,8 @@
       "Noto Sans Tamil",
       "Noto Sans",
       "Inter",
+      "Latha",
+      "Tamil Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -273,6 +307,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-urdu {
@@ -280,6 +320,8 @@
       "Noto Sans Arabic",
       "Noto Sans",
       "Inter",
+      "Tahoma",
+      "Arial Unicode MS",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -288,6 +330,14 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
+    direction: rtl;
+    text-align: right;
   }
 
   .font-gujarati {
@@ -295,6 +345,8 @@
       "Noto Sans Gujarati",
       "Noto Sans",
       "Inter",
+      "Shruti",
+      "Gujarati Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -303,6 +355,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-kannada {
@@ -310,6 +368,8 @@
       "Noto Sans Kannada",
       "Noto Sans",
       "Inter",
+      "Tunga",
+      "Kannada Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -318,6 +378,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-odia {
@@ -325,6 +391,8 @@
       "Noto Sans Oriya",
       "Noto Sans",
       "Inter",
+      "Kalinga",
+      "Oriya Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -333,6 +401,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-punjabi {
@@ -340,6 +414,8 @@
       "Noto Sans Gurmukhi",
       "Noto Sans",
       "Inter",
+      "Raavi",
+      "Gurmukhi MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -348,6 +424,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-malayalam {
@@ -355,6 +437,8 @@
       "Noto Sans Malayalam",
       "Noto Sans",
       "Inter",
+      "Kartika",
+      "Malayalam Sangam MN",
       "Apple Color Emoji",
       "Segoe UI Emoji",
       system-ui,
@@ -363,6 +447,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   .font-english {
@@ -377,6 +467,12 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    font-kerning: auto;
+    font-variant-numeric: lining-nums;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
 
   /* Text rendering optimizations */
