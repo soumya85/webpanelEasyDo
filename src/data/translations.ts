@@ -21,6 +21,11 @@ export const translations = {
     and: "और",
     privacyPolicy: "गोपनीयता नीति",
     sendOTP: "OTP भेजें",
+    enterOTP: "6-अंकीय OTP दर्ज करें",
+    sentTo: "भेजा गया",
+    resendOTP: "OTP पुनः भेजें",
+    verifyOTP: "OTP सत्यापित करें",
+    backToLogin: "← लॉगिन पर वापस जाएं",
   },
   Bengali: {
     welcomeToEasyDo: "EasyDo তে আপনাকে স্বাগতম",
@@ -70,7 +75,7 @@ export const translations = {
   Gujarati: {
     welcomeToEasyDo: "EasyDo માં તમારું સ્વાગત છે",
     mobileNumberPlaceholder: "મોબાઇલ નંબર",
-    bySigningUp: "સાઇન અપ કરીને, તમ�� અમારી",
+    bySigningUp: "સાઇન અપ કરીને, તમે અમારી",
     termsAndConditions: "નિયમો અને શરતો",
     and: "અને",
     privacyPolicy: "ગોપનીયતા નીતિ",
