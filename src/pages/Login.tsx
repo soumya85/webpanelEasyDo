@@ -111,7 +111,10 @@ const Login = () => {
             <div className="flex gap-3">
               {/* Country Code Selector */}
               <Select value={countryCode} onValueChange={setCountryCode}>
-                <SelectTrigger className="w-[120px] border-gray-200 text-sm overflow-visible whitespace-nowrap">
+                <SelectTrigger
+                  className="w-[140px] border-gray-200 text-sm [&>span]:overflow-visible [&>span]:text-ellipsis-none"
+                  style={{ textOverflow: "clip" }}
+                >
                   <SelectValue>
                     {currentCountry.flag} {currentCountry.dialCode}
                   </SelectValue>
