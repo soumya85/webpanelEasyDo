@@ -13,6 +13,7 @@ import {
 import { Globe, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
+import { countryCodes, popularCountryCodes } from "@/data/countryCodes";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
@@ -99,14 +100,42 @@ const Login = () => {
             <div className="flex gap-3">
               {/* Country Code Selector */}
               <Select value={countryCode} onValueChange={setCountryCode}>
-                <SelectTrigger className="w-20 border-gray-200">
+                <SelectTrigger className="w-24 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="+91">🇮🇳 +91</SelectItem>
-                  <SelectItem value="+1">🇺🇸 +1</SelectItem>
-                  <SelectItem value="+44">🇬🇧 +44</SelectItem>
-                  <SelectItem value="+971">🇦🇪 +971</SelectItem>
+                <SelectContent className="max-h-[300px] overflow-y-auto">
+                  {/* Popular Countries Section */}
+                  <div className="px-2 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Popular
+                  </div>
+                  {popularCountryCodes.map((country) => (
+                    <SelectItem
+                      key={`popular-${country.code}`}
+                      value={country.dialCode}
+                    >
+                      {country.flag} {country.dialCode}
+                    </SelectItem>
+                  ))}
+
+                  {/* Separator */}
+                  <div className="border-t my-1" />
+
+                  {/* All Countries Section */}
+                  <div className="px-2 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    All Countries
+                  </div>
+                  {countryCodes.map((country) => (
+                    <SelectItem key={country.code} value={country.dialCode}>
+                      <div className="flex items-center justify-between w-full">
+                        <span>
+                          {country.flag} {country.dialCode}
+                        </span>
+                        <span className="text-xs text-gray-500 ml-2">
+                          {country.name}
+                        </span>
+                      </div>
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 
