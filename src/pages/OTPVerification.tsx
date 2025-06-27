@@ -54,6 +54,31 @@ const OTPVerification = () => {
       className="min-h-screen flex items-center justify-center p-6"
       style={{ backgroundColor: "#eff4ff" }}
     >
+      {/* Language Selector - Top Right */}
+      <div className="absolute top-6 right-6">
+        <Select value={language} onValueChange={setLanguage}>
+          <SelectTrigger className="w-auto min-w-[140px] border-gray-200 bg-white">
+            <div className="flex items-center gap-2">
+              <Globe className="h-4 w-4 text-gray-500" />
+              <SelectValue />
+            </div>
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="English">English</SelectItem>
+            <SelectItem value="Hindi">हिंदी (Hindi)</SelectItem>
+            <SelectItem value="Bengali">বাংলা (Bengali)</SelectItem>
+            <SelectItem value="Telugu">తెలుగు (Telugu)</SelectItem>
+            <SelectItem value="Marathi">मराठी (Marathi)</SelectItem>
+            <SelectItem value="Tamil">தமிழ் (Tamil)</SelectItem>
+            <SelectItem value="Urdu">اردو (Urdu)</SelectItem>
+            <SelectItem value="Gujarati">ગુજરાતી (Gujarati)</SelectItem>
+            <SelectItem value="Kannada">ಕನ್ನಡ (Kannada)</SelectItem>
+            <SelectItem value="Odia">ଓଡ଼ିଆ (Odia)</SelectItem>
+            <SelectItem value="Punjabi">ਪੰਜਾਬੀ (Punjabi)</SelectItem>
+            <SelectItem value="Malayalam">മലയാളം (Malayalam)</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
           {/* Logo */}
