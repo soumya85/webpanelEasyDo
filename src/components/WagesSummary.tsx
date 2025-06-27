@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function WagesSummary() {
   const [isWagesDetailModalOpen, setIsWagesDetailModalOpen] = useState(false);
