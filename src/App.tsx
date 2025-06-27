@@ -28,6 +28,8 @@ import Documents from "@/pages/Documents";
 import Leave from "@/pages/Leave";
 import Holiday from "@/pages/Holiday";
 import Dashboard from "@/pages/Dashboard";
+import Login from "@/pages/Login";
+import OTPVerification from "@/pages/OTPVerification";
 
 const queryClient = new QueryClient();
 
