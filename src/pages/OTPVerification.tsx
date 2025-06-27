@@ -92,8 +92,9 @@ const OTPVerification = () => {
             <p className="text-sm text-gray-700">
               <ReactiveMultilingualText
                 translationKey={hasResent ? "resendTo" : "sentTo"}
-              /> {maskedNumber}
-            </MultilingualText>
+              />{" "}
+              {maskedNumber}
+            </p>
           </div>
 
           {/* OTP Input */}
@@ -119,25 +120,26 @@ const OTPVerification = () => {
 
             {/* Resend OTP */}
             <div className="text-center">
-            <button
-              onClick={handleResendOTP}
-              disabled={!canResend}
-              className={cn(
-                "text-sm transition-colors",
-                canResend
-                  ? "text-blue-600 hover:underline cursor-pointer"
-                  : "text-gray-500 cursor-not-allowed",
-              )}
-            >
-              {canResend ? (
-                <ReactiveMultilingualText translationKey="resendOTP" />
-              ) : (
-                <>
-                  <ReactiveMultilingualText translationKey="resendOTPIn" /> {timeLeft}{" "}
-                  <ReactiveMultilingualText translationKey="seconds" />
-                </>
-              )}
-            </button>
+              <button
+                onClick={handleResendOTP}
+                disabled={!canResend}
+                className={cn(
+                  "text-sm transition-colors",
+                  canResend
+                    ? "text-blue-600 hover:underline cursor-pointer"
+                    : "text-gray-500 cursor-not-allowed",
+                )}
+              >
+                {canResend ? (
+                  <ReactiveMultilingualText translationKey="resendOTP" />
+                ) : (
+                  <>
+                    <ReactiveMultilingualText translationKey="resendOTPIn" />{" "}
+                    {timeLeft}{" "}
+                    <ReactiveMultilingualText translationKey="seconds" />
+                  </>
+                )}
+              </button>
             </div>
           </div>
 
