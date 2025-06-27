@@ -55,7 +55,8 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
   onClose,
   onBackToReports,
 }) => {
-  const [selectedPeriod, setSelectedPeriod] = useState("Last Month");
+  const { t } = useTranslation();
+  const [selectedPeriod, setSelectedPeriod] = useState(t("lastMonth"));
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
