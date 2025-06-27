@@ -112,7 +112,7 @@ export default function Documents() {
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-4 flex flex-col md:flex-row gap-2 md:gap-4 items-center">
         <Input
           className="w-full md:w-64 text-sm"
-          placeholder="Search document"
+          placeholder={t("searchDocument")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
