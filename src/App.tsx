@@ -38,60 +38,68 @@ const queryClient = new QueryClient();
 
 // Component to handle conditional layout based on route
 const AppContent = () => {
-  const location = useLocation();
-  const isAuthRoute = ["/login", "/otp-verification"].includes(
-    location.pathname,
-  );
-
-  if (isAuthRoute) {
-    return (
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/otp-verification" element={<OTPVerification />} />
-      </Routes>
-    );
-  }
-
   return (
-    <ProtectedRoute>
-      <UserProvider>
-        <SidebarProvider>
-          <PageLayout>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/chats" element={<Chats />} />
-              <Route path="/todays-schedule" element={<TodaysSchedule />} />
-              <Route
-                path="/employee-dashboard"
-                element={<EmployeeDashboard />}
-              />
-              <Route path="/company-dashboard" element={<CompanyDashboard />} />
-              <Route path="/employee-register" element={<EmployeeRegister />} />
-              <Route path="/tasks" element={<Tasks />} />
-              <Route path="/meet" element={<Meet />} />
-              <Route path="/holiday" element={<Holiday />} />
-              <Route path="/sample" element={<Sample />} />
-              <Route path="/help-support" element={<HelpSupport />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route
-                path="/performance-review"
-                element={<PerformanceReview />}
-              />
-              <Route path="/location" element={<EmployeeLocation />} />
-              <Route path="/branch" element={<BranchManagement />} />
-              <Route path="/announcement" element={<Announcement />} />
-              <Route path="/documents" element={<Documents />} />
-              <Route path="/leave" element={<Leave />} />
-              <Route path="/holiday" element={<Holiday />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </PageLayout>
-        </SidebarProvider>
-      </UserProvider>
-    </ProtectedRoute>
+    <Routes>
+      {/* Public routes (no authentication required) */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/otp-verification" element={<OTPVerification />} />
+
+      {/* Protected routes (authentication required) */}
+      <Route
+        path="/*"
+        element={
+          <ProtectedRoute>
+            <UserProvider>
+              <SidebarProvider>
+                <PageLayout>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/chats" element={<Chats />} />
+                    <Route
+                      path="/todays-schedule"
+                      element={<TodaysSchedule />}
+                    />
+                    <Route
+                      path="/employee-dashboard"
+                      element={<EmployeeDashboard />}
+                    />
+                    <Route
+                      path="/company-dashboard"
+                      element={<CompanyDashboard />}
+                    />
+                    <Route
+                      path="/employee-register"
+                      element={<EmployeeRegister />}
+                    />
+                    <Route path="/tasks" element={<Tasks />} />
+                    <Route path="/meet" element={<Meet />} />
+                    <Route path="/holiday" element={<Holiday />} />
+                    <Route path="/sample" element={<Sample />} />
+                    <Route path="/help-support" element={<HelpSupport />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route
+                      path="/performance-review"
+                      element={<PerformanceReview />}
+                    />
+                    <Route path="/location" element={<EmployeeLocation />} />
+                    <Route path="/branch" element={<BranchManagement />} />
+                    <Route path="/announcement" element={<Announcement />} />
+                    <Route path="/documents" element={<Documents />} />
+                    <Route path="/leave" element={<Leave />} />
+                    <Route path="/notes-reminder" element={<NotesReminder />} />
+                    <Route path="/reports" element={<Reports />} />
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </PageLayout>
+              </SidebarProvider>
+            </UserProvider>
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 };
 
