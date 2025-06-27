@@ -102,7 +102,7 @@ export const SalaryStatementModal: React.FC<SalaryStatementModalProps> = ({
               onValueChange={setSelectedEmployee}
             >
               <SelectTrigger className="w-full h-12 border border-gray-300">
-                <SelectValue placeholder="Select Employee" />
+                <SelectValue placeholder={t("selectEmployee")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="soumyadeep-goswami">
