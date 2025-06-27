@@ -116,7 +116,7 @@ export function TaskDetailModal({
             <span className="flex items-center gap-3">
               <Flag className="w-8 h-8 text-yellow-200 drop-shadow-lg" />
               <span className="text-3xl font-black text-white tracking-tight drop-shadow-lg">
-                Task Details
+                <MultilingualText>Task Details</MultilingualText>
               </span>
             </span>
             <span className="ml-auto">
