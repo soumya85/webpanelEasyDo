@@ -74,7 +74,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
               : "text-gray-600 hover:text-gray-800",
           )}
         >
-          MY Task
+          <MultilingualText>{t("myTask")}</MultilingualText>
         </button>
         <button
           onClick={() => setActiveTaskTab("DELEGATED_TASK")}
