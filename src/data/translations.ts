@@ -352,7 +352,7 @@ export const translations = {
     lastMessage: "अंतिम संदेश",
     yesterday: "कल",
     executiveDirector: "कार्यकारी निदेशक",
-    headOffice: "मुख्य कार्यालय",
+    headOffice: "मुख्य क��र्यालय",
 
     // Messages
     successMessage: "ऑपरेशन सफलतापूर्वक पूरा हुआ",
@@ -395,11 +395,34 @@ export const translations = {
     high: "उच्च",
     medium: "मध्यम",
     low: "निम्न",
+
+    // Card Content
+    monthlyAttendanceSummary: "मास���क उपस्थिति सारांश",
+    salarySnapshot: "वेतन स्नैपशॉट",
+    totalDays: "कुल दिन",
+    workingDays: "कार्य दिवस",
+    present: "उपस्थित",
+    absent: "अनुपस्थित",
+    sunday: "रविवार",
+    holiday: "छुट्टी",
+    late: "देर से",
+    redFlag: "लाल झंडा",
+    viewDetailedReport: "विस्तृत रिपोर्ट देखें",
+    asOn: "की स्थिति",
+    nextPayslip: "आपकी अगली पेस्लिप बनाई जाएगी",
+    days: "दिन",
+    deducted: "कटौती",
+    pfContribution: "पीएफ योगदान",
+    requestSalaryAdvance: "वेतन अग्रिम का अनुरोध करें",
+    viewAllPayslips: "सभी पेस्लिप देखें",
+
+    // User Profile
+    bhaskarGhosh: "भास्कर घोष",
   },
   Bengali: {
     // Authentication
     welcomeToEasyDo: "EasyDo তে আপনাকে স্বাগতম",
-    mobileNumberPlaceholder: "মোবাইল নম্বর",
+    mobileNumberPlaceholder: "মোবা��ল নম্বর",
     bySigningUp: "সাইন আপ করে, আপনি আমাদের",
     termsAndConditions: "নিয়ম ও শর্তাবলী",
     and: "এবং",
@@ -476,7 +499,7 @@ export const translations = {
     noData: "কোন ডেটা নেই",
     submit: "জমা দিন",
     close: "বন্ধ",
-    open: "খুলুন",
+    open: "��ুলুন",
     view: "দেখুন",
     download: "ডাউনলোড",
     upload: "আপলোড",
@@ -539,7 +562,7 @@ export const translations = {
     lastMessage: "শেষ বার্তা",
     yesterday: "গতকাল",
     executiveDirector: "নির্বাহী পরিচালক",
-    headOffice: "প্রধান কার্যালয়",
+    headOffice: "��্রধান কার্যালয়",
 
     // Messages
     successMessage: "অপারেশন সফলভাবে সম্পন্ন হয়েছে",
@@ -557,7 +580,7 @@ export const translations = {
     leaveType: "ছুটির ধরন",
     casualLeave: "নৈমিত্তিক ছুটি",
     sickLeave: "অসুস্থতার ছুটি",
-    earnedLeave: "অর্জিত ছুটি",
+    earnedLeave: "অর্���িত ছুটি",
     maternityLeave: "মাতৃত্বকালীন ছুটি",
     paternityLeave: "পিতৃত্বকালীন ছুটি",
     startDate: "শুরুর তারিখ",
@@ -586,7 +609,7 @@ export const translations = {
   Telugu: {
     // Authentication
     welcomeToEasyDo: "EasyDo కు స్వాగతం",
-    mobileNumberPlaceholder: "మొబైల్ నంబర్",
+    mobileNumberPlaceholder: "మొబైల్ నంబర��",
     bySigningUp: "సైన్ అప్ చేయడం ద్వారా, మీరు మా",
     termsAndConditions: "నిబంధనలు & షరతులు",
     and: "మరియు",
@@ -607,7 +630,7 @@ export const translations = {
     todaysSchedule: "నేటి షెడ్యూల్",
     employeeDashboard: "ఉద్యోగి డ్యాష్‌బోర్డ్",
     companyDashboard: "కంపెనీ డ్యాష్‌బోర్డ్",
-    tasks: "కార్యాలు",
+    tasks: "కార్యాల���",
     meet: "మీట్",
     notesReminder: "గమనికలు & రిమైండర్",
     reports: "రిపోర్ట్స్",
@@ -635,7 +658,7 @@ export const translations = {
     notice: "నోటీసు",
 
     // Dashboard Cards
-    taskAtGlance: "కార్యాలు ఒక చూపులో",
+    taskAtGlance: "కార్యాలు ���క చూపులో",
     meetingsThisWeek: "ఈ వారం సమావేశాలు",
     pendingApprovals: "పెండింగ్ ఆమోదాలు",
     personalNotes: "వ్యక్తిగత గమనికలు",
@@ -734,7 +757,7 @@ export const translations = {
     confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన్ని తొలగించాలనుకుంటున్నారా?",
     confirmLogout: "మీరు ఖచ్చితంగా లాగౌట్ చేయాలనుకుంటున్నారా?",
     dataUpdated: "డేటా విజయవంతంగా అప్‌డేట్ చేయబడింది",
-    dataSaved: "డేటా విజయవంతంగా సేవ్ చేయబడింది",
+    dataSaved: "డేటా విజయవంతంగా సేవ్ ���ేయబడింది",
 
     // Leave Management
     leave: "సెలవు",
@@ -784,7 +807,7 @@ export const translations = {
     resendOTP: "OTP पुन्हा प��ठवा",
     resendOTPIn: "OTP पुन्हा पाठवा",
     seconds: "सेकंदात",
-    verifyOTP: "OTP सत्यापित करा",
+    verifyOTP: "OTP सत्यापित कर���",
     backToLogin: "← लॉगिनवर परत जा",
   },
   Tamil: {
@@ -827,7 +850,7 @@ export const translations = {
     bySigningUp: "સાઇન અપ કરીને, તમે અમારી",
     termsAndConditions: "નિયમો અને ��રતો",
     and: "અને",
-    privacyPolicy: "��ોપનીયતા નીતિ",
+    privacyPolicy: "��ોપની��તા નીતિ",
     sendOTP: "OTP મોકલો",
     enterOTP: "6-અંકનો OTP દાખલ કરો",
     sentTo: "મોકલાયેલ છે",
@@ -849,7 +872,7 @@ export const translations = {
     enterOTP: "6-ಅಂಕಿಯ OTP ಅನ್ನು ನಮೂದಿಸಿ",
     sentTo: "ಕಳುಹಿಸಲಾಗಿದೆ",
     resendTo: "ಮರುಕಳುಹಿಸಿ",
-    resendOTP: "OTP ಮರುಕಳುಹಿಸಿ",
+    resendOTP: "OTP ಮರುಕಳುಹ���ಸಿ",
     resendOTPIn: "OTP ಮರುಕಳುಹಿಸಿ",
     seconds: "ಸೆಕೆಂಡುಗಳಲ್ಲಿ",
     verifyOTP: "OTP ಅನ್ನು ��ರಿಶೀಲಿಸಿ",
