@@ -228,6 +228,68 @@ export const translations = {
     minutes: "minutes",
     scheduledMeetings: "Scheduled Meetings",
     viewAllMeetings: "View All Meetings",
+
+    // Approvals Card
+    itemsAwaitingYourApproval: "Items Awaiting Your Approval",
+    leaveRequest: "Leave Request",
+    expenseReport: "Expense Report",
+    urgent: "Urgent",
+    review: "Review",
+    submittedDaysAgo: "Submitted {days} ago",
+    reviewApprovals: "Review Approvals",
+
+    // Notice Card
+    noticeBoard: "Notice Board",
+    youreViewingFor: "You're viewing for",
+    holidayNotice: "Holiday Notice - Diwali Celebration",
+    officeWillRemainClosed:
+      "Office will remain closed on October 24th for Diwali...",
+    newHealthInsurancePolicy: "New Health Insurance Policy Updates",
+    importantUpdatesRegarding:
+      "Important updates regarding the company health insurance policy...",
+    viewAllNotices: "View All Notices",
+
+    // Chat Card
+    recentChatActivity: "Recent Chat Activity",
+    unreadMessages: "Unread Messages",
+    attendanceNotificationSent: "Attendance notification sent",
+    meetingScheduledFor3PM: "Meeting scheduled for 3 PM today",
+    canYouReviewDocument: "Can you review the document?",
+    thanksForUpdate: "Thanks for the update!",
+    newBuildReadyForTesting: "New build is ready for testing",
+    sureIllSendByEOD: "Sure, I'll send it by EOD",
+    letsScheduleCallTomorrow: "Let's schedule a call tomorrow",
+    filesReadyForDownload: "The files are ready for download",
+    campaignResultsLookingGreat: "Campaign results are looking great!",
+    greatWorkOnPresentation: "Great work on the presentation!",
+    documentsUploadedToSharedFolder: "Documents uploaded to shared folder",
+    budgetApprovalReceived: "Budget approval received",
+    newBadge: "New",
+    groupBadge: "Group",
+    viewAllChats: "View All Chats",
+
+    // Work Status Card
+    myDailyWorkStatus: "My Daily Work Status",
+    officeHours: "Office Hours",
+    punchStatus: "Punch Status",
+    notPunchedIn: "NOT PUNCHED IN",
+    punchedIn: "PUNCHED IN",
+    punchIn: "PUNCH IN",
+    punchActionsTracked: "Punch actions are tracked for attendance",
+    attendanceIsLocked: "Attendance is locked @11:31 AM.",
+    forPunchInClick:
+      "For Punch-in, Click above try request for Approval, to yr Reporting Manager...",
+    locationTimeline: "Location Timeline",
+    trackedOnlyBetween:
+      "(Tracked ONLY between Punch-in & Punch-out as per Mandate of the company)",
+    clickHereForMoreDetail: "Click Here For More Detail",
+
+    // Performance Card
+    myPerformance: "My Performance",
+    averageOverTaskReviews: "Average over {count} task reviews",
+    niceKeepItUp: "Nice, Keep it up! 💪",
+    employeeOfTheMonth: "Employee of the Month",
+    viewPerformanceDetails: "View Performance Details",
   },
   Hindi: {
     // Authentication
@@ -255,7 +317,7 @@ export const translations = {
     companyDashboard: "कंपनी डैशबोर्ड",
     tasks: "कार्य",
     meet: "मीट",
-    notesReminder: "नोट्स और रिमाइंडर",
+    notesReminder: "नोट्स और रिमाइ��डर",
     reports: "रिपोर्ट्स",
     settings: "सेटिंग्स",
     helpSupport: "सहायता और समर्थन",
@@ -434,7 +496,7 @@ export const translations = {
     deducted: "कटौती",
     pfContribution: "पीएफ योगदान",
     requestSalaryAdvance: "वेतन अग्रिम का अनुरोध करें",
-    viewAllPayslips: "सभी पेस्लिप देखें",
+    viewAllPayslips: "सभ�� पेस्लिप देखें",
 
     // User Profile
     bhaskarGhosh: "भास्कर घोष",
@@ -458,6 +520,67 @@ export const translations = {
     minutes: "मिनट",
     scheduledMeetings: "निर्धारित बैठकें",
     viewAllMeetings: "सभी बैठकें देखें",
+
+    // Approvals Card
+    itemsAwaitingYourApproval: "आपकी अनुमोदन की प्रतीक्षा में आइटम",
+    leaveRequest: "छुट्टी का अनुरोध",
+    expenseReport: "व्यय रिपोर्ट",
+    urgent: "अत्यावश्यक",
+    review: "समीक्षा",
+    submittedDaysAgo: "{days} दिन पहले प्रस्तुत",
+    reviewApprovals: "अनुमोदन की समीक्षा करें",
+
+    // Notice Card
+    noticeBoard: "सूचना बोर्ड",
+    youreViewingFor: "आप देख रहे हैं",
+    holidayNotice: "छुट्टी की सूचना - दिवाली समारोह",
+    officeWillRemainClosed: "दिवाली के लिए 24 अक्टूबर को कार्यालय बंद रहेगा...",
+    newHealthInsurancePolicy: "नई स्वास्थ्य बीमा नीति अपडेट",
+    importantUpdatesRegarding:
+      "कंपनी स्वास्थ्य बीमा नीति के संबंध में महत्वपूर्ण अपडेट...",
+    viewAllNotices: "सभी सूच��ाएं देखें",
+
+    // Chat Card
+    recentChatActivity: "हाल की चैट गतिविधि",
+    unreadMessages: "अपठित संदेश",
+    attendanceNotificationSent: "उपस्थिति अधिसूचना भेजी गई",
+    meetingScheduledFor3PM: "आज दोपहर 3 बजे बैठक निर्धारित",
+    canYouReviewDocument: "क्या आप दस्तावेज़ की समीक्षा कर सकते हैं?",
+    thanksForUpdate: "अपडेट के लिए धन्यवाद!",
+    newBuildReadyForTesting: "परीक्षण के लिए नया बिल्ड तैयार है",
+    sureIllSendByEOD: "जरूर, मैं दिन के अंत तक भेज दूंगा",
+    letsScheduleCallTomorrow: "कल कॉल शेड्यूल करते हैं",
+    filesReadyForDownload: "फाइलें डाउनलोड के लिए तैयार हैं",
+    campaignResultsLookingGreat: "अभियान के परिणाम बहुत अच्छे लग रहे हैं!",
+    greatWorkOnPresentation: "प्रस्तुति पर बेहतरीन काम!",
+    documentsUploadedToSharedFolder: "साझा फ़ोल्डर में दस्तावेज़ अपलोड किए गए",
+    budgetApprovalReceived: "बजट अनुमोदन प्राप्त हुआ",
+    newBadge: "नया",
+    groupBadge: "समूह",
+    viewAllChats: "सभी चैट देखें",
+
+    // Work Status Card
+    myDailyWorkStatus: "मेरी दैनिक कार्य स्थिति",
+    officeHours: "कार्यालय के घंटे",
+    punchStatus: "पंच स्थिति",
+    notPunchedIn: "पंच इन नहीं किया गया",
+    punchedIn: "पंच इन किया गया",
+    punchIn: "पंच इन",
+    punchActionsTracked: "उपस्थिति के लिए पंच कार्य ट्रैक किए जाते हैं",
+    attendanceIsLocked: "उपस्थिति @11:31 AM पर लॉक है।",
+    forPunchInClick:
+      "पंच-इन के लिए, ऊपर क्लिक करें अपने रिपोर्टिंग मैनेजर से अनुमोदन का अनुरोध करें...",
+    locationTimeline: "स्थान समयरेखा",
+    trackedOnlyBetween:
+      "(कंपनी के नियम के अनु��ार केवल पंच-इन और पंच-आउट के बीच ट्रैक किया गया)",
+    clickHereForMoreDetail: "अधिक विवरण के लिए यहां क्लिक करें",
+
+    // Performance Card
+    myPerformance: "मेरा प्रदर्शन",
+    averageOverTaskReviews: "{count} कार्य समीक्षाओं का औसत",
+    niceKeepItUp: "बढ़िया, इसी तरह जारी रखें! 💪",
+    employeeOfTheMonth: "महीने का कर्मचारी",
+    viewPerformanceDetails: "प्रदर्शन विवरण देखें",
   },
   Bengali: {
     // Authentication
@@ -470,7 +593,7 @@ export const translations = {
     sendOTP: "OTP পাঠান",
     enterOTP: "৬-ডিজিটের OTP প্রবেশ করুন",
     sentTo: "পাঠানো হয়েছে",
-    resendTo: "পুনরায় পাঠান",
+    resendTo: "পুনরায��� পাঠান",
     resendOTP: "OTP পুনরায় পাঠান",
     resendOTPIn: "OTP প��নরায় পাঠান",
     seconds: "সেকেন্ডে",
@@ -499,7 +622,7 @@ export const translations = {
 
     // Dashboard
     quickStats: "দ্রুত পরিসংখ্যান",
-    recentActivity: "সাম্প্রতিক কার্যকলাপ",
+    recentActivity: "সাম্প্রতিক ক��র্যকলাপ",
     upcomingTasks: "আসন্ন কাজ",
     notifications: "বিজ্ঞপ্তি",
     attendance: "উপস্থিতি",
@@ -650,14 +773,14 @@ export const translations = {
     monthlyAttendanceSummary: "মাসিক উপস্থিতির সারসংক্ষেপ",
     salarySnapshot: "বেতনের স্ন্যাপশট",
     totalDays: "মোট দিন",
-    workingDays: "কর্মদিবস",
+    workingDays: "কর্ম���িবস",
     present: "উপস্থিত",
     absent: "অনুপস্থিত",
     sunday: "রব���বার",
     holiday: "ছুটির দিন",
     late: "দেরি",
     redFlag: "লাল পতাকা",
-    viewDetailedReport: "বিস্তারিত রিপোর্ট দেখুন",
+    viewDetailedReport: "��িস্তারিত রিপোর্ট দেখুন",
     asOn: "অনুযায়ী",
     nextPayslip: "আপনার পরবর্তী পেস্লিপ তৈরি হবে",
     days: "দিন",
@@ -759,7 +882,7 @@ export const translations = {
 
     // Common Actions
     save: "సేవ్ చేయండి",
-    cancel: "రద్���ు చేయండి",
+    cancel: "రద్�����ు చేయండి",
     delete: "తొలగించండి",
     edit: "సవరించండి",
     add: "జోడించండి",
@@ -893,7 +1016,7 @@ export const translations = {
     days: "రోజులు",
     deducted: "తీసివేయబడింది",
     pfContribution: "పిఎఫ్ సహకారం",
-    requestSalaryAdvance: "జీతం అడ్వాన్స్ కోసం అభ్యర్థించండి",
+    requestSalaryAdvance: "జీతం అడ్వాన్స్ కోసం అభ్యర్థి��చండి",
     viewAllPayslips: "అన్ని పేస్లిప్‌లను చూడండి",
 
     // User Profile
@@ -1018,7 +1141,7 @@ export const translations = {
     resendOTP: "OTP ପୁନଃ ପଠାନ୍ତୁ",
     resendOTPIn: "OTP ପୁନଃ ପଠାନ୍ତୁ",
     seconds: "ସେକେଣ୍ଡରେ",
-    verifyOTP: "OTP ଯାଞ୍ଚ କର��୍ତୁ",
+    verifyOTP: "OTP ଯ��ଞ୍ଚ କର��୍ତୁ",
     backToLogin: "← ଲଗଇନ୍‌କୁ ଫେରନ୍ତୁ",
   },
   Punjabi: {

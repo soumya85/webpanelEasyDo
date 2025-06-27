@@ -3,6 +3,7 @@ import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface NoticeCardProps {
   id: string;
@@ -17,16 +18,17 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
+
   const noticeItems = [
     {
-      title: "Holiday Notice - Diwali Celebration",
-      content: "Office will remain closed on October 24th for Diwali...",
+      title: t("holidayNotice"),
+      content: t("officeWillRemainClosed"),
       date: "1 day ago",
     },
     {
-      title: "New Health Insurance Policy Updates",
-      content:
-        "Important updates regarding the company health insurance policy...",
+      title: t("newHealthInsurancePolicy"),
+      content: t("importantUpdatesRegarding"),
       date: "3 days ago",
     },
   ];
@@ -37,11 +39,13 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
         <div className="p-2 rounded-lg bg-red-50">
           <Bell className="w-5 h-5 text-red-600" />
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50]">Notice Board</h3>
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          {t("noticeBoard")}
+        </h3>
       </div>
 
       <div className="text-xs text-gray-600 mb-3">
-        You're viewing for: All Branch
+        {t("youreViewingFor")}: {t("allBranch")}
       </div>
 
       <div className="space-y-3 flex-1 overflow-y-auto">
@@ -67,7 +71,7 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
           borderWidth: "1px",
         }}
       >
-        View All Notices
+        {t("viewAllNotices")}
       </Button>
     </DashboardCard>
   );
