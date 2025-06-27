@@ -447,6 +447,7 @@ function GanttChartView({
 
 // --- Main TaskBoardContent Component ---
 export function TaskBoardContent() {
+  const { t } = useTranslation();
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
