@@ -4,7 +4,7 @@ import { useDashboardLayout } from "@/hooks/useDashboardLayout";
 import { DroppableSection } from "@/components/DroppableSection";
 import { CardFactory } from "@/components/CardFactory";
 import { LayoutControls } from "@/components/LayoutControls";
-import { LanguageTest } from "@/components/LanguageTest";
+
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -65,11 +65,6 @@ const Dashboard: React.FC = () => {
   if (isLoading) {
     return (
       <div className="h-full flex flex-col overflow-hidden">
-        {/* Language Test Component - temporary for testing */}
-        <div className="p-4 border-b border-gray-200 flex-shrink-0">
-          <LanguageTest />
-        </div>
-
         {/* Layout Controls */}
         <div className="flex justify-between items-center p-4 pb-2 border-b border-gray-200 flex-shrink-0">
           <LayoutControls onReset={resetLayout} />
@@ -84,11 +79,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
-      {/* Language Test Component - temporary for testing */}
-      <div className="px-6 pt-2">
-        <LanguageTest />
-      </div>
-
       {/* Header Section */}
       <div className="flex justify-between items-center mb-2 px-6 pt-2">
         <h1 className="text-xl font-bold text-[#283C50] flex items-center gap-2">
