@@ -3316,7 +3316,7 @@ export default function EmployeeDashboard() {
               onClick={handleReimburseSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
             >
-              Submit Reimbursement Request
+              <ReactiveMultilingualText translationKey="submitReimbursementRequest" />
             </Button>
             <Button
               variant="outline"
