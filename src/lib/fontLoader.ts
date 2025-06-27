@@ -19,6 +19,22 @@ export const REQUIRED_FONTS = [
   "Noto Sans Arabic",
 ];
 
+// Map languages to their specific font families
+export const LANGUAGE_FONT_MAP = {
+  English: ["Inter", "Noto Sans"],
+  Hindi: ["Noto Sans Devanagari", "Noto Sans"],
+  Bengali: ["Noto Sans Bengali", "Noto Sans"],
+  Telugu: ["Noto Sans Telugu", "Noto Sans"],
+  Marathi: ["Noto Sans Devanagari", "Noto Sans"],
+  Tamil: ["Noto Sans Tamil", "Noto Sans"],
+  Urdu: ["Noto Sans Arabic", "Noto Sans"],
+  Gujarati: ["Noto Sans Gujarati", "Noto Sans"],
+  Kannada: ["Noto Sans Kannada", "Noto Sans"],
+  Odia: ["Noto Sans Oriya", "Noto Sans"],
+  Punjabi: ["Noto Sans Gurmukhi", "Noto Sans"],
+  Malayalam: ["Noto Sans Malayalam", "Noto Sans"],
+} as const;
+
 /**
  * Test characters for each script to verify proper rendering
  */
@@ -110,6 +126,72 @@ export const verifyCharacterRendering = (
 };
 
 /**
+ * Load fonts for a specific language with enhanced verification
+ */
+export const loadLanguageFonts = async (
+  language: keyof typeof LANGUAGE_FONT_MAP,
+  maxRetries: number = 3,
+): Promise<void> => {
+  if (!document.fonts || !document.fonts.ready) {
+    return Promise.resolve();
+  }
+
+  const languageFonts = LANGUAGE_FONT_MAP[language] || ["Inter", "Noto Sans"];
+
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      console.log(
+        `🔄 Loading fonts for ${language} (attempt ${attempt + 1}/${maxRetries})`,
+      );
+
+      // Wait for document fonts to be ready
+      await document.fonts.ready;
+
+      // Load language-specific fonts with multiple weights
+      const fontLoadPromises = languageFonts.flatMap((font) => [
+        document.fonts.load(`400 16px "${font}"`),
+        document.fonts.load(`500 16px "${font}"`),
+        document.fonts.load(`600 16px "${font}"`),
+      ]);
+
+      await Promise.race([
+        Promise.all(fontLoadPromises),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("Font loading timeout")), 5000),
+        ),
+      ]);
+
+      // Verify font rendering with language-specific test
+      let allFontsVerified = true;
+      for (const font of languageFonts) {
+        const isWorking = isFontLoaded(font);
+        if (!isWorking) {
+          console.warn(`⚠ Font verification failed: ${font}`);
+          allFontsVerified = false;
+        }
+      }
+
+      if (allFontsVerified) {
+        console.log(`✓ All fonts for ${language} loaded and verified`);
+        break;
+      } else if (attempt < maxRetries - 1) {
+        console.log(`🔄 Retrying font verification for ${language}`);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        continue;
+      }
+    } catch (error) {
+      console.warn(
+        `Font loading attempt ${attempt + 1} failed for ${language}:`,
+        error,
+      );
+      if (attempt < maxRetries - 1) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+    }
+  }
+};
+
+/**
  * Wait for all required fonts to load with retry mechanism
  */
 export const waitForFontsToLoad = async (
@@ -178,6 +260,44 @@ export const waitForFontsToLoad = async (
 };
 
 /**
+ * Force reload fonts for a specific language if they're not displaying correctly
+ */
+export const reloadLanguageFonts = async (
+  language: keyof typeof LANGUAGE_FONT_MAP,
+): Promise<void> => {
+  try {
+    console.log(`🔄 Reloading fonts for ${language}`);
+
+    // First, force re-render current text
+    forceFontRerender();
+
+    // Load language-specific fonts
+    await loadLanguageFonts(language);
+
+    // Apply language-specific font classes
+    const body = document.body;
+
+    // Remove all existing language font classes
+    const languageFontClasses = Object.keys(LANGUAGE_FONT_MAP).map(
+      (lang) => `font-${lang.toLowerCase()}`,
+    );
+    body.classList.remove(...languageFontClasses);
+
+    // Add the correct language font class
+    body.classList.add(`font-${language.toLowerCase()}`);
+
+    // Force another re-render after font application
+    setTimeout(() => {
+      forceFontRerender();
+    }, 100);
+
+    console.log(`✓ Fonts reloaded for ${language}`);
+  } catch (error) {
+    console.warn(`Font reload failed for ${language}:`, error);
+  }
+};
+
+/**
  * Force reload fonts if they're not displaying correctly
  */
 export const reloadFonts = (): void => {
@@ -214,12 +334,30 @@ export const reloadFonts = (): void => {
  * Force font re-render for better character display
  */
 export const forceFontRerender = (): void => {
-  // Force repaint by briefly changing and restoring text color
+  // Force repaint by briefly changing and restoring text properties
   const body = document.body;
   const originalColor = body.style.color;
+  const originalFontWeight = body.style.fontWeight;
+
+  // Force multiple style changes to trigger re-render
   body.style.color = "transparent";
+  body.style.fontWeight = "normal";
   body.offsetHeight; // Force reflow
+
   body.style.color = originalColor;
+  body.style.fontWeight = originalFontWeight;
+
+  // Also force re-render on all text elements
+  const textElements = document.querySelectorAll(
+    "span, p, h1, h2, h3, h4, h5, h6, div, label, button, input, textarea",
+  );
+  textElements.forEach((element) => {
+    const htmlElement = element as HTMLElement;
+    const originalTransform = htmlElement.style.transform;
+    htmlElement.style.transform = "translateZ(0)";
+    htmlElement.offsetHeight; // Force reflow
+    htmlElement.style.transform = originalTransform;
+  });
 };
 
 /**
