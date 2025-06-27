@@ -129,42 +129,25 @@ const Dashboard: React.FC = () => {
             className="bg-blue-50 border border-blue-200 rounded-lg px-4"
           >
             <AccordionTrigger className="text-sm font-semibold text-blue-900 hover:no-underline">
-              💡 Enhanced Drag & Drop + Width Resize Instructions
+              💡 {t("enhancedDragDropInstructions")}
             </AccordionTrigger>
             <AccordionContent>
               <ul className="text-xs text-blue-800 space-y-1 pb-2">
+                <li>• {t("hoverOverCardInstructions")}</li>
                 <li>
-                  • Hover over any card to see the drag handle (top center) and
-                  width resize handle (right edge)
+                  • {t("dragCardsBetweenSections")} -{" "}
+                  <strong>width is preserved</strong>
                 </li>
                 <li>
-                  • Drag cards between sections or within sections to reorganize
-                  - <strong>width is preserved</strong>
+                  ●● <strong>NEW:</strong> {t("dropCardsOnPurpleZones")}
                 </li>
                 <li>
-                  ��� <strong>NEW:</strong> Drop cards on purple zones to create
-                  new rows within a section
+                  • <strong>NEW:</strong> {t("dropCardsOnGreenZones")}
                 </li>
-                <li>
-                  • <strong>NEW:</strong> Drop cards on green zones to add new
-                  rows at the end of a section
-                </li>
-                <li>
-                  • Drag the blue resize handle on the right edge to adjust card
-                  width (Small, Medium, Large, Extra Large)
-                </li>
-                <li>
-                  • All cards in the same row maintain equal height
-                  automatically
-                </li>
-                <li>
-                  • Your layout and card sizes are automatically saved and
-                  persist across sessions
-                </li>
-                <li>
-                  • Use the "Reset Layout" button to restore the default
-                  arrangement
-                </li>
+                <li>• {t("dragBlueResizeHandle")}</li>
+                <li>• {t("sameRowEqualHeight")}</li>
+                <li>• {t("layoutSavedAutomatically")}</li>
+                <li>• {t("useResetLayoutButton")}</li>
               </ul>
             </AccordionContent>
           </AccordionItem>
