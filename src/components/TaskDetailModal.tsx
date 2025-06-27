@@ -42,21 +42,7 @@ interface TaskDetailModalProps {
   onUpdateTask: (taskId: string, updates: Partial<Task>) => void;
 }
 
-const statusOptions = [
-  "To Do",
-  "In Progress",
-  "Review",
-  "Done",
-  "Blocked",
-  "Cancelled",
-];
-
-const priorityOptions = [
-  { value: "urgent", label: "Urgent" },
-  { value: "high", label: "High" },
-  { value: "medium", label: "Medium" },
-  { value: "low", label: "Low" },
-];
+// These will be translated in the component using the translation hook
 
 export function TaskDetailModal({
   task,
