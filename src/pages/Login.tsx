@@ -37,74 +37,95 @@ const Login = () => {
           <div className="flex justify-center mb-8">
             <div className="w-16 h-16 flex items-center justify-center">
               <svg
-                width="64"
-                height="64"
-                viewBox="0 0 64 64"
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g transform="translate(32, 32)">
-                  {/* Swirling interconnected elements */}
+                <g transform="translate(24, 24)">
+                  {/* 5 curved petals forming a swirl */}
                   <path
-                    d="M0,-20 C12,-16 16,-4 12,8 C8,20 -4,16 -16,12 C-20,0 -16,-12 -4,-16 C8,-20 20,-16 16,-4 C12,8 0,12 -12,8 C-16,-4 -12,-16 0,-20Z"
-                    fill="none"
-                    stroke="url(#gradient1)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
+                    d="M0,-18 C8,-12 8,0 0,6 C-8,12 -12,0 -6,-12 C0,-18 6,-6 0,6"
+                    fill="url(#petal1)"
+                    transform="rotate(0)"
                   />
-
                   <path
-                    d="M14,-14 C18,-6 14,6 6,10 C-2,14 -14,10 -18,2 C-14,-6 -6,-18 2,-14 C10,-10 18,-2 14,6 C10,14 -2,18 -10,14 C-14,6 -10,-2 -2,-6 C6,-10 14,-2 14,6"
-                    fill="none"
-                    stroke="url(#gradient2)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
+                    d="M0,-18 C8,-12 8,0 0,6 C-8,12 -12,0 -6,-12 C0,-18 6,-6 0,6"
+                    fill="url(#petal2)"
+                    transform="rotate(72)"
                   />
-
                   <path
-                    d="M10,-10 C14,-4 10,4 4,8 C-2,12 -10,8 -14,2 C-10,-4 -4,-12 2,-10 C8,-6 14,-2 10,4 C6,10 -2,14 -8,10 C-12,4 -8,-2 -2,-4 C4,-8 10,-2 10,4"
-                    fill="none"
-                    stroke="url(#gradient3)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
+                    d="M0,-18 C8,-12 8,0 0,6 C-8,12 -12,0 -6,-12 C0,-18 6,-6 0,6"
+                    fill="url(#petal3)"
+                    transform="rotate(144)"
+                  />
+                  <path
+                    d="M0,-18 C8,-12 8,0 0,6 C-8,12 -12,0 -6,-12 C0,-18 6,-6 0,6"
+                    fill="url(#petal4)"
+                    transform="rotate(216)"
+                  />
+                  <path
+                    d="M0,-18 C8,-12 8,0 0,6 C-8,12 -12,0 -6,-12 C0,-18 6,-6 0,6"
+                    fill="url(#petal5)"
+                    transform="rotate(288)"
                   />
                 </g>
                 <defs>
                   <linearGradient
-                    id="gradient1"
-                    x1="-20"
-                    y1="-20"
-                    x2="20"
-                    y2="20"
+                    id="petal1"
+                    x1="0"
+                    y1="-18"
+                    x2="0"
+                    y2="12"
                     gradientUnits="userSpaceOnUse"
                   >
                     <stop stopColor="#60A5FA" />
-                    <stop offset="0.5" stopColor="#3B82F6" />
-                    <stop offset="1" stopColor="#06B6D4" />
+                    <stop offset="1" stopColor="#3B82F6" />
                   </linearGradient>
                   <linearGradient
-                    id="gradient2"
-                    x1="-18"
-                    y1="-14"
-                    x2="18"
-                    y2="14"
+                    id="petal2"
+                    x1="0"
+                    y1="-18"
+                    x2="0"
+                    y2="12"
                     gradientUnits="userSpaceOnUse"
                   >
                     <stop stopColor="#06B6D4" />
-                    <stop offset="0.5" stopColor="#3B82F6" />
-                    <stop offset="1" stopColor="#60A5FA" />
+                    <stop offset="1" stopColor="#0891B2" />
                   </linearGradient>
                   <linearGradient
-                    id="gradient3"
-                    x1="-14"
-                    y1="-10"
-                    x2="14"
-                    y2="10"
+                    id="petal3"
+                    x1="0"
+                    y1="-18"
+                    x2="0"
+                    y2="12"
                     gradientUnits="userSpaceOnUse"
                   >
                     <stop stopColor="#3B82F6" />
-                    <stop offset="0.5" stopColor="#60A5FA" />
-                    <stop offset="1" stopColor="#06B6D4" />
+                    <stop offset="1" stopColor="#1D4ED8" />
+                  </linearGradient>
+                  <linearGradient
+                    id="petal4"
+                    x1="0"
+                    y1="-18"
+                    x2="0"
+                    y2="12"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#06B6D4" />
+                    <stop offset="1" stopColor="#0284C7" />
+                  </linearGradient>
+                  <linearGradient
+                    id="petal5"
+                    x1="0"
+                    y1="-18"
+                    x2="0"
+                    y2="12"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#60A5FA" />
+                    <stop offset="1" stopColor="#2563EB" />
                   </linearGradient>
                 </defs>
               </svg>
