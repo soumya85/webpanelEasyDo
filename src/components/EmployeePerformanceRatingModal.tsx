@@ -124,9 +124,11 @@ export const EmployeePerformanceRatingModal: React.FC<
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Last Month">Last Month</SelectItem>
-                <SelectItem value="Last Quarter">Last Quarter</SelectItem>
-                <SelectItem value="Last Year">Last Year</SelectItem>
+                <SelectItem value={t("lastMonth")}>{t("lastMonth")}</SelectItem>
+                <SelectItem value={t("lastQuarter")}>
+                  {t("lastQuarter")}
+                </SelectItem>
+                <SelectItem value={t("lastYear")}>{t("lastYear")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
