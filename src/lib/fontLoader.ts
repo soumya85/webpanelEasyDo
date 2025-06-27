@@ -436,15 +436,5 @@ export const useFontLoader = () => {
   return { fontsLoaded, fontLoadAttempts };
 };
 
-// Auto-initialize font loading when module is imported
-if (typeof window !== "undefined") {
-  // Wait a bit for initial render, then ensure fonts are loaded
-  setTimeout(() => {
-    waitForFontsToLoad().then(() => {
-      // Additional delay to ensure proper rendering
-      setTimeout(() => {
-        forceFontRerender();
-      }, 200);
-    });
-  }, 100);
-}
+// Font loading utilities available but not auto-initialized
+// Google Fonts loaded via HTML head are sufficient for most cases
