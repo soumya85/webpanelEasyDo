@@ -30,6 +30,7 @@ import Holiday from "@/pages/Holiday";
 import Dashboard from "@/pages/Dashboard";
 import Login from "@/pages/Login";
 import OTPVerification from "@/pages/OTPVerification";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -50,36 +51,44 @@ const AppContent = () => {
   }
 
   return (
-    <UserProvider>
-      <SidebarProvider>
-        <PageLayout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/chats" element={<Chats />} />
-            <Route path="/todays-schedule" element={<TodaysSchedule />} />
-            <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
-            <Route path="/company-dashboard" element={<CompanyDashboard />} />
-            <Route path="/employee-register" element={<EmployeeRegister />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/meet" element={<Meet />} />
-            <Route path="/holiday" element={<Holiday />} />
-            <Route path="/sample" element={<Sample />} />
-            <Route path="/help-support" element={<HelpSupport />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/performance-review" element={<PerformanceReview />} />
-            <Route path="/location" element={<EmployeeLocation />} />
-            <Route path="/branch" element={<BranchManagement />} />
-            <Route path="/announcement" element={<Announcement />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/leave" element={<Leave />} />
-            <Route path="/holiday" element={<Holiday />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </PageLayout>
-      </SidebarProvider>
-    </UserProvider>
+    <ProtectedRoute>
+      <UserProvider>
+        <SidebarProvider>
+          <PageLayout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/chats" element={<Chats />} />
+              <Route path="/todays-schedule" element={<TodaysSchedule />} />
+              <Route
+                path="/employee-dashboard"
+                element={<EmployeeDashboard />}
+              />
+              <Route path="/company-dashboard" element={<CompanyDashboard />} />
+              <Route path="/employee-register" element={<EmployeeRegister />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/meet" element={<Meet />} />
+              <Route path="/holiday" element={<Holiday />} />
+              <Route path="/sample" element={<Sample />} />
+              <Route path="/help-support" element={<HelpSupport />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/performance-review"
+                element={<PerformanceReview />}
+              />
+              <Route path="/location" element={<EmployeeLocation />} />
+              <Route path="/branch" element={<BranchManagement />} />
+              <Route path="/announcement" element={<Announcement />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/leave" element={<Leave />} />
+              <Route path="/holiday" element={<Holiday />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PageLayout>
+        </SidebarProvider>
+      </UserProvider>
+    </ProtectedRoute>
   );
 };
 
