@@ -1633,7 +1633,7 @@ export default function EmployeeDashboard() {
               onClick={handleLeaveSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
             >
-              Submit Request
+              <ReactiveMultilingualText translationKey="submitRequest" />
             </Button>
             <Button
               variant="outline"
