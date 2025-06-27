@@ -1,20 +1,4 @@
-/* Core Inter font for English */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap");
-
-/* Indian language fonts with proper subsets */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&subset=devanagari,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&subset=telugu,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700&subset=gujarati,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&subset=bengali,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&subset=tamil,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&subset=kannada,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700&subset=malayalam,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;500;600;700&subset=oriya,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Gurmukhi:wght@400;500;600;700&subset=gurmukhi,latin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&subset=arabic,latin&display=swap");
-
-/* Fallback comprehensive font */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&subset=latin,latin-ext,devanagari,bengali,gujarati,gurmukhi,kannada,malayalam,oriya,tamil,telugu&display=swap");
+/* Fonts are now loaded via HTML head for better performance and reliability */
 
 @tailwind base;
 @tailwind components;
