@@ -48,7 +48,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   showGlobe = true,
   position = "relative",
   size = "md",
-  useContext = false,
+  useContext = true,
 }) => {
   // Use context if useContext is true, otherwise use props
   let contextValue, contextSetLanguage;
