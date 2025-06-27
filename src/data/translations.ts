@@ -245,7 +245,7 @@ export const translations = {
     resendOTPIn: "OTP पुनः भेजें",
     seconds: "सेकंड में",
     verifyOTP: "OTP सत्यापित करें",
-    backToLogin: "← लॉगिन पर वापस जा���ं",
+    backToLogin: "← लॉगिन पर वापस जाएं",
 
     // Navigation & Layout
     dashboard: "डैशबोर्ड",
@@ -307,7 +307,7 @@ export const translations = {
     search: "खोजें",
     loading: "लोड हो रहा है...",
     noData: "कोई डेटा उपलब्ध नहीं",
-    submit: "��मा करें",
+    submit: "जमा करें",
     close: "बंद करें",
     open: "खोलें",
     view: "देखें",
@@ -342,7 +342,7 @@ export const translations = {
     employeeDetails: "कर्मचारी विवरण",
     employeeList: "कर्म���ारी सूची",
     employeeName: "कर्मचारी का नाम",
-    employeeId: "कर्मचारी आ���डी",
+    employeeId: "कर्मचारी आईडी",
     department: "विभाग",
     designation: "पदनाम",
     joiningDate: "ज्वाइनिंग की तारीख",
@@ -390,7 +390,7 @@ export const translations = {
     leaveType: "छुट्टी का प्रकार",
     casualLeave: "आकस्मिक छुट्टी",
     sickLeave: "बीमारी की छुट्टी",
-    earnedLeave: "अर्जित छुट���टी",
+    earnedLeave: "अर्जित छुट्टी",
     maternityLeave: "मातृत्व छुट्टी",
     paternityLeave: "पितृत��व छुट्टी",
     startDate: "शुरुआती तारीख",
@@ -446,7 +446,7 @@ export const translations = {
     dueToday: "आज देय",
     pendingReview: "समीक्षा लंबित",
     viewAllMyTasks: "मेरे सभी कार्य देखें",
-    viewDelegatedTasks: "सौंपे गए कार्य देखें",
+    viewDelegatedTasks: "स��ंपे गए कार्य देखें",
     myTask: "मेरा कार्य",
     delegatedTask: "सौंपा गया कार्य",
 
@@ -606,7 +606,7 @@ export const translations = {
 
     // Messages
     successMessage: "অপারেশন সফলভাবে সম্পন্ন হয়েছে",
-    errorMessage: "একটি ত্রুটি ঘটেছে। অনুগ��রহ করে আবার চেষ্টা করুন।",
+    errorMessage: "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
     confirmDelete: "আপনি কি নিশ্চিত যে এই আইটেমটি মুছতে চান?",
     confirmLogout: "আপনি কি নিশ্চিত যে লগআউট করতে চান?",
     dataUpdated: "ডেটা সফলভাবে আপডেট হয়েছে",
@@ -621,7 +621,7 @@ export const translations = {
     casualLeave: "নৈমিত্তিক ছুটি",
     sickLeave: "অসুস্থতার ছুটি",
     earnedLeave: "অর্জিত ছুটি",
-    maternityLeave: "মাতৃত্বকালীন ছুটি",
+    maternityLeave: "মাতৃত্বকালীন ছু���ি",
     paternityLeave: "পিতৃত্বকালীন ছুটি",
     startDate: "শুরুর তারিখ",
     endDate: "শেষ তারিখ",
@@ -659,7 +659,7 @@ export const translations = {
     redFlag: "লাল পতাকা",
     viewDetailedReport: "বিস্তারিত রিপোর্ট দেখুন",
     asOn: "অনুযায়ী",
-    nextPayslip: "আপনার পরবর্ত��� পেস্লিপ তৈরি হবে",
+    nextPayslip: "আপনার পরবর্তী পেস্লিপ তৈরি হবে",
     days: "দিন",
     deducted: "কর্তন",
     pfContribution: "পিএফ অবদান",
@@ -686,6 +686,8 @@ export const translations = {
     todayAt: "আজ",
     tomorrowAt: "আগামীকাল",
     minutes: "মিনিট",
+    scheduledMeetings: "নির্ধারিত মিটিং",
+    viewAllMeetings: "সব মিটিং দেখুন",
   },
   Telugu: {
     // Authentication
@@ -703,7 +705,7 @@ export const translations = {
     resendOTPIn: "OTP పునర్ పంపణ",
     seconds: "సెకన్లలో",
     verifyOTP: "OTP ధృవీకరించండి",
-    backToLogin: "← లాగిన్‌కు తిరిగి వెళ్లండి",
+    backToLogin: "← లాగిన్‌కు తిర��గి వెళ్లండి",
 
     // Navigation & Layout
     dashboard: "డ్యాష్‌బోర్డ్",
@@ -739,7 +741,7 @@ export const translations = {
     notice: "నోటీసు",
 
     // Dashboard Cards
-    taskAtGlance: "కార్యాలు ఒక చూపులో",
+    taskAtGlance: "కార్యా��ు ఒక చూపులో",
     meetingsThisWeek: "ఈ వారం సమావేశాలు",
     pendingApprovals: "పెండింగ్ ఆమోదాలు",
     personalNotes: "వ్యక్తిగత గమనికలు",
@@ -751,7 +753,7 @@ export const translations = {
     performanceMetrics: "పనితీరు మెట్రిక్స్",
 
     // Section Titles
-    quickOverview: "వే��వంతమైన అవలోకనం",
+    quickOverview: "వేగవంతమైన అవలోకనం",
     productivity: "ఉత్పాదకత",
     informationHub: "సమాచార కేంద్రం",
 
@@ -792,7 +794,7 @@ export const translations = {
     approved: "ఆమోదించబడింది",
     rejected: "తిరస్కరించబడింది",
     draft: "డ్రాఫ్ట్",
-    published: "ప్రచురించబడింది",
+    published: "ప్రచురించబడిం��ి",
 
     // Employee Management
     employees: "ఉద్యోగులు",
@@ -803,7 +805,7 @@ export const translations = {
     employeeId: "ఉద్యోగి ID",
     department: "విభాగం",
     designation: "హోదా",
-    joiningDate: "చేరిన తేద���",
+    joiningDate: "చేరిన తేదీ",
 
     // Forms
     firstName: "మొదటి పేరు",
@@ -823,7 +825,7 @@ export const translations = {
 
     // Greetings & Profile
     goodMorning: "శుభోదయం",
-    goodAfternoon: "శుభ మధ్యాహ్నం",
+    goodAfternoon: "శు�� మధ్యాహ్నం",
     goodEvening: "శుభ సాయంత్రం",
     authorityLevel: "అధికార స్థాయి",
     welcome: "స్వాగతం",
@@ -834,7 +836,7 @@ export const translations = {
 
     // Messages
     successMessage: "ఆపరేషన్ విజయవంతంగా పూర్తైంది",
-    errorMessage: "ఒక లోపం సంభవించింది. దయచేసి ���ళ్లీ ప్రయత్నించండి.",
+    errorMessage: "ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
     confirmDelete: "మీరు ఖచ్చితంగా ఈ అంశాన్ని తొలగించాలనుకుంటున్నారా?",
     confirmLogout: "మీరు ఖచ్చితంగా లాగౌట్ చేయాలనుకుంటున్నారా?",
     dataUpdated: "డేటా విజయవంతంగా అప్‌డేట్ చేయబడింది",
@@ -853,7 +855,7 @@ export const translations = {
     paternityLeave: "పితృత్వ సెలవు",
     startDate: "ప్రారంభ తేదీ",
     endDate: "ముగింపు తేదీ",
-    reason: "కా���ణం",
+    reason: "కారణం",
 
     // Documents
     documents: "పత్రాలు",
@@ -869,7 +871,7 @@ export const translations = {
     title: "శీర్షిక",
     description: "వివరణ",
     publishDate: "ప్రచురణ తేదీ",
-    priority: "ప్రాధాన్యత",
+    priority: "ప్రా���ాన్యత",
     high: "అధిక",
     medium: "మధ్యమ",
     low: "తక్కువ",
@@ -929,7 +931,7 @@ export const translations = {
     resendOTP: "OTP पुन्हा प��ठवा",
     resendOTPIn: "OTP पुन्हा पाठवा",
     seconds: "सेकंदात",
-    verifyOTP: "OTP सत्यापित करा",
+    verifyOTP: "OTP ���त्यापित करा",
     backToLogin: "← लॉगिनवर परत जा",
   },
   Tamil: {
@@ -942,9 +944,9 @@ export const translations = {
     sendOTP: "OTP அனுப்பவும்",
     enterOTP: "6-இலக்க OTP ஐ உள்ளி���வும்",
     sentTo: "அனுப்பப்பட்டது",
-    resendTo: "மீண்டும் அனுப்பவு���்",
+    resendTo: "மீண்டும் அனுப்பவும்",
     resendOTP: "OTP ஐ மீண்டும் அனுப்பவும்",
-    resendOTPIn: "OTP ஐ மீண்டும் அனுப்பவும்",
+    resendOTPIn: "OTP ஐ மீண்டும் அனுப்பவும���",
     seconds: "வினாடிகளில்",
     verifyOTP: "OTP ஐ சரிபார்க்கவும்",
     backToLogin: "← உள்நுழைவுக்கு திரும்பவும்",
@@ -1020,7 +1022,7 @@ export const translations = {
   Punjabi: {
     welcomeToEasyDo: "EasyDo ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
     mobileNumberPlaceholder: "ਮੋਬਾਈਲ ਨੰਬਰ",
-    bySigningUp: "ਸਾਈਨ ਅੱਪ ਕਰਕੇ, ਤੁਸੀਂ ਸਾਡੀ",
+    bySigningUp: "ਸਾਈਨ ਅੱਪ ਕਰਕ��, ਤੁਸੀਂ ਸਾਡੀ",
     termsAndConditions: "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
     and: "ਅਤੇ",
     privacyPolicy: "ਗੁਪਤਤਾ ਨੀਤੀ",
@@ -1037,14 +1039,14 @@ export const translations = {
   Malayalam: {
     welcomeToEasyDo: "EasyDo ലേക്ക് സ്വാഗതം",
     mobileNumberPlaceholder: "മൊബൈൽ നമ്പർ",
-    bySigningUp: "സൈൻ അപ്പ് ചെയ്യുന്നതില���ടെ, നിങ്ങൾ ഞങ്ങളുടെ",
+    bySigningUp: "സൈൻ അപ്പ് ചെയ്യുന്നതിലൂടെ, നിങ്ങൾ ഞങ്ങളുടെ",
     termsAndConditions: "നിബന്ധനകളും വ്യവസ്ഥകളും",
     and: "ഒപ്പം",
     privacyPolicy: "സ്വകാര്യതാ നയം",
     sendOTP: "OTP അയയ്ക്കുക",
     enterOTP: "6-അക്ക OTP നൽകുക",
     sentTo: "അയച്ചത്",
-    resendTo: "വീണ്ടും അയയ്ക്കുക",
+    resendTo: "വീണ്ടും അയയ��ക്കുക",
     resendOTP: "OTP വീണ്ടും അയയ്ക്കുക",
     resendOTPIn: "OTP വീണ്ടും അയയ്ക്കുക",
     seconds: "സെക്കൻഡിൽ",
