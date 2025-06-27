@@ -284,7 +284,7 @@ export function TaskDetailModal({
           {/* Description */}
           <div>
             <label className="block text-xs font-semibold text-gray-500 mb-1">
-              Description
+              <MultilingualText>{t("description")}</MultilingualText>
             </label>
             {editMode ? (
               <textarea
@@ -295,7 +295,9 @@ export function TaskDetailModal({
             ) : (
               <div className="text-gray-700 text-base">
                 {task.description || (
-                  <span className="text-gray-400">No description</span>
+                  <span className="text-gray-400">
+                    <MultilingualText>{t("noDescription")}</MultilingualText>
+                  </span>
                 )}
               </div>
             )}
