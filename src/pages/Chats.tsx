@@ -3129,12 +3129,9 @@ const MobileChatView: React.FC<{
   if (!selectedChat) return null;
 
   return (
-    <div
-      className="flex flex-col bg-white -mb-16 pb-16"
-      style={{ height: "calc(100vh - 151px + 4rem)" }}
-    >
+    <div className="flex flex-col bg-white h-screen pt-[86px]">
       {/* Mobile Chat Header */}
-      <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
+      <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-white fixed top-[86px] left-0 right-0 z-20">
         <Button
           variant="ghost"
           size="icon"
