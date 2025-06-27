@@ -34,6 +34,7 @@ interface AddTaskModalProps {
 }
 
 export function AddTaskModal({ open, onOpenChange }: AddTaskModalProps) {
+  const { t } = useTranslation();
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const [checklistItems, setChecklistItems] = useState<string[]>([""]);
