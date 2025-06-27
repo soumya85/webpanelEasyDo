@@ -210,7 +210,7 @@
 
   /* Text rendering optimizations */
   .text-multilingual {
-    text-rendering: optimizeSpeed;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-variant-ligatures: normal;
@@ -219,6 +219,23 @@
       "liga" 1,
       "clig" 1,
       "calt" 1;
+    unicode-bidi: plaintext;
+    text-align: start;
+  }
+
+  /* Ensure proper fallback for missing glyphs */
+  .text-multilingual * {
+    font-synthesis: weight style;
+  }
+
+  /* Prevent layout shift during font loading */
+  .font-loading {
+    font-display: swap;
+    visibility: hidden;
+  }
+
+  .font-loaded {
+    visibility: visible;
   }
 
   .scrollbar-hide {
