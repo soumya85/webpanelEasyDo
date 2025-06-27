@@ -94,7 +94,7 @@ const Dashboard: React.FC = () => {
           as="h1"
           className="text-xl font-bold text-[#283C50] flex items-center gap-2"
         >
-          {getGreeting()}, Bhaskar! 👋
+          {getGreeting()}, {t("bhaskarGhosh")}! 👋
         </MultilingualText>
         {/* Layout Controls moved to header row */}
         <LayoutControls onReset={resetLayout} />

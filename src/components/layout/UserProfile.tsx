@@ -37,7 +37,7 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
       <div className="flex flex-col items-center gap-2 text-center">
         <div className="flex items-center gap-2">
           <h3 className="font-bold text-azure-24 text-base leading-tight">
-            {user.name}
+            <MultilingualText>{t("bhaskarGhosh")}</MultilingualText>
           </h3>
           <svg
             width="12"

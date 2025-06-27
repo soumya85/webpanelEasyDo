@@ -22,14 +22,14 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
   const { t } = useTranslation();
   const meetings = [
     {
-      type: "Weekly Team Sync",
-      time: "Today at 3:00 PM",
-      duration: "5 minutes",
+      type: t("weeklyTeamSync"),
+      time: `${t("todayAt")} 3:00 PM`,
+      duration: `5 ${t("minutes")}`,
     },
     {
-      type: "Client Review Meeting",
-      time: "Tomorrow at 10:30 AM",
-      duration: "3 minutes",
+      type: t("clientReviewMeeting"),
+      time: `${t("tomorrowAt")} 10:30 AM`,
+      duration: `3 ${t("minutes")}`,
     },
   ];
 
@@ -52,7 +52,9 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
       <div className="flex-1 min-h-0 overflow-hidden">
         <div className="mb-2">
           <div className="text-3xl font-bold text-[#4766E5]">7</div>
-          <div className="text-xs text-gray-600">Scheduled Meetings</div>
+          <div className="text-xs text-gray-600">
+            <MultilingualText>{t("scheduledMeetings")}</MultilingualText>
+          </div>
         </div>
 
         {/* Meeting Items */}
@@ -64,11 +66,15 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
             >
               <div className="flex justify-between items-start">
                 <span className="text-gray-800 font-medium">
-                  {meeting.type}
+                  <MultilingualText>{meeting.type}</MultilingualText>
                 </span>
               </div>
-              <div className="text-gray-500 text-xs mt-1">{meeting.time}</div>
-              <div className="text-gray-500 text-xs">{meeting.duration}</div>
+              <div className="text-gray-500 text-xs mt-1">
+                <MultilingualText>{meeting.time}</MultilingualText>
+              </div>
+              <div className="text-gray-500 text-xs">
+                <MultilingualText>{meeting.duration}</MultilingualText>
+              </div>
             </div>
           ))}
         </div>
@@ -84,7 +90,7 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
             borderWidth: "1px",
           }}
         >
-          View All Meetings
+          <MultilingualText>{t("viewAllMeetings")}</MultilingualText>
         </Button>
       </div>
     </DashboardCard>

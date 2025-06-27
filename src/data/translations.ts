@@ -185,6 +185,49 @@ export const translations = {
     high: "High",
     medium: "Medium",
     low: "Low",
+
+    // Card Content
+    monthlyAttendanceSummary: "Monthly Attendance Summary",
+    salarySnapshot: "Salary Snapshot",
+    totalDays: "Total Days",
+    workingDays: "Working Days",
+    present: "Present",
+    absent: "Absent",
+    sunday: "Sunday",
+    holiday: "Holiday",
+    late: "Late",
+    redFlag: "Red Flag",
+    viewDetailedReport: "View Detailed Report",
+    asOn: "As on",
+    nextPayslip: "Your Next Payslip to be generated in",
+    days: "Days",
+    deducted: "Deducted",
+    pfContribution: "PF Contribution",
+    requestSalaryAdvance: "Request Salary Advance",
+    viewAllPayslips: "View All Payslips",
+
+    // User Profile
+    bhaskarGhosh: "Bhaskar Ghosh",
+
+    // Task Card
+    totalPendingTasks: "Total Pending Tasks",
+    totalDelegatedTasks: "Total Delegated Tasks",
+    overdue: "Overdue",
+    dueToday: "Due Today",
+    pendingReview: "Pending Review",
+    viewAllMyTasks: "View All My Tasks",
+    viewDelegatedTasks: "View Delegated Tasks",
+    myTask: "MY TASK",
+    delegatedTask: "DELEGATED TASK",
+
+    // Meetings Card
+    weeklyTeamSync: "Weekly Team Sync",
+    clientReviewMeeting: "Client Review Meeting",
+    todayAt: "Today at",
+    tomorrowAt: "Tomorrow at",
+    minutes: "minutes",
+    scheduledMeetings: "Scheduled Meetings",
+    viewAllMeetings: "View All Meetings",
   },
   Hindi: {
     // Authentication
@@ -229,7 +272,7 @@ export const translations = {
     recentActivity: "हाल की गतिविधि",
     upcomingTasks: "आगामी कार्य",
     notifications: "सूचनाएं",
-    attendance: "उपस्थिति",
+    attendance: "��पस्थिति",
     performance: "प्र���र्शन",
     salary: "वेतन",
     approvals: "अनुमोदन",
@@ -372,6 +415,49 @@ export const translations = {
     high: "उच्च",
     medium: "मध्यम",
     low: "निम्न",
+
+    // Card Content
+    monthlyAttendanceSummary: "मासिक उपस्थिति सारांश",
+    salarySnapshot: "वेतन स्नैपशॉट",
+    totalDays: "कुल दिन",
+    workingDays: "कार्य दिवस",
+    present: "उपस्थित",
+    absent: "अनुपस्थित",
+    sunday: "रविवार",
+    holiday: "छुट्टी",
+    late: "देर से",
+    redFlag: "लाल झंडा",
+    viewDetailedReport: "विस्तृत रिपोर्ट देखें",
+    asOn: "की स्थिति",
+    nextPayslip: "आपकी अगली पेस्लिप बनाई जाएगी",
+    days: "दिन",
+    deducted: "कटौती",
+    pfContribution: "पीएफ योगदान",
+    requestSalaryAdvance: "वेतन अग्रिम का अनुरोध करें",
+    viewAllPayslips: "सभी पेस्लिप देखें",
+
+    // User Profile
+    bhaskarGhosh: "भास्कर घोष",
+
+    // Task Card
+    totalPendingTasks: "कुल लंबित कार्य",
+    totalDelegatedTasks: "कुल सौंपे गए कार्य",
+    overdue: "अतिदेय",
+    dueToday: "आज देय",
+    pendingReview: "समीक्षा लंबित",
+    viewAllMyTasks: "मेरे सभी कार्य देखें",
+    viewDelegatedTasks: "स���ंपे गए कार्य देखें",
+    myTask: "मेरा कार्य",
+    delegatedTask: "सौंपा गया कार्य",
+
+    // Meetings Card
+    weeklyTeamSync: "साप्ताहिक टीम सिंक",
+    clientReviewMeeting: "क्लाइंट समीक्षा बैठक",
+    todayAt: "आज",
+    tomorrowAt: "कल",
+    minutes: "मिनट",
+    scheduledMeetings: "निर्धारित बैठकें",
+    viewAllMeetings: "सभी बैठकें देखें",
   },
   Bengali: {
     // Authentication
@@ -386,7 +472,7 @@ export const translations = {
     sentTo: "পাঠানো হয়েছে",
     resendTo: "পুনরায় পাঠান",
     resendOTP: "OTP পুনরায় পাঠান",
-    resendOTPIn: "OTP পুনরায় পাঠান",
+    resendOTPIn: "OTP প��নরায় পাঠান",
     seconds: "সেকেন্ডে",
     verifyOTP: "OTP যাচাই করুন",
     backToLogin: "← লগইনে ফিরে যান",
@@ -482,7 +568,7 @@ export const translations = {
 
     // Employee Management
     employees: "কর্মচারী",
-    addEmployee: "কর্মচারী যোগ করুন",
+    addEmployee: "কর্মচারী যোগ ��রুন",
     employeeDetails: "কর্মচারীর বিবরণ",
     employeeList: "কর্মচারী তালিকা",
     employeeName: "কর্মচারীর নাম",
@@ -515,7 +601,7 @@ export const translations = {
     welcome: "স্বাগতম",
     lastMessage: "শেষ বার্তা",
     yesterday: "গতকাল",
-    executiveDirector: "নির্বাহী পরিচালক",
+    executiveDirector: "নির্বাহী ���রিচালক",
     headOffice: "প্রধান কার্যালয়",
 
     // Messages
@@ -544,7 +630,7 @@ export const translations = {
     // Documents
     documents: "নথিপত্র",
     uploadDocument: "নথি আপলোড করুন",
-    documentName: "নথির নাম",
+    documentName: "��থির নাম",
     documentType: "নথির ধরন",
     uploadDate: "আপলোড তারিখ",
     fileSize: "ফাইলের আকার",
@@ -552,13 +638,56 @@ export const translations = {
     // Announcements
     announcements: "ঘোষণা",
     newAnnouncement: "নতুন ঘোষণা",
-    title: "শির��নাম",
+    title: "শিরোনাম",
     description: "বর্ণনা",
     publishDate: "প্রকাশের তারিখ",
     priority: "অগ্রাধিকার",
     high: "উচ্চ",
     medium: "মাঝারি",
     low: "নিম্ন",
+
+    // Card Content
+    monthlyAttendanceSummary: "মাসিক উপস্থিতির সারসংক্ষেপ",
+    salarySnapshot: "বেতনের স্ন্যাপশট",
+    totalDays: "মোট দিন",
+    workingDays: "কর্মদিবস",
+    present: "উপস্থিত",
+    absent: "অনুপস্থিত",
+    sunday: "রব���বার",
+    holiday: "ছুটির দিন",
+    late: "দেরি",
+    redFlag: "লাল পতাকা",
+    viewDetailedReport: "বিস্তারিত রিপোর্ট দেখুন",
+    asOn: "অনুযায়ী",
+    nextPayslip: "আপনার পরবর্তী পেস্লিপ তৈরি হবে",
+    days: "দিন",
+    deducted: "কর্তন",
+    pfContribution: "পিএফ অবদান",
+    requestSalaryAdvance: "বেতন অগ্রিমের জন্য অনুরোধ করুন",
+    viewAllPayslips: "সব পেস্লিপ দেখুন",
+
+    // User Profile
+    bhaskarGhosh: "ভাস্কর ঘোষ",
+
+    // Task Card
+    totalPendingTasks: "মোট মুলতুবি কাজ",
+    totalDelegatedTasks: "মোট অর্পিত কাজ",
+    overdue: "বিলম্বিত",
+    dueToday: "আজ দেয়",
+    pendingReview: "পর্যালোচনা মুলতুবি",
+    viewAllMyTasks: "আমার সব কাজ দেখুন",
+    viewDelegatedTasks: "অর্পিত কাজ দেখুন",
+    myTask: "আমার কাজ",
+    delegatedTask: "অর্পিত কাজ",
+
+    // Meetings Card
+    weeklyTeamSync: "��াপ্তাহিক টিম সিঙ্ক",
+    clientReviewMeeting: "ক্লায়েন্ট পর্যালোচনা মিটিং",
+    todayAt: "আজ",
+    tomorrowAt: "আগামীকাল",
+    minutes: "মিনিট",
+    scheduledMeetings: "নির্ধারিত মিটিং",
+    viewAllMeetings: "সব মিটিং দেখুন",
   },
   Telugu: {
     // Authentication
@@ -576,7 +705,7 @@ export const translations = {
     resendOTPIn: "OTP పునర్ పంపణ",
     seconds: "సెకన్లలో",
     verifyOTP: "OTP ధృవీకరించండి",
-    backToLogin: "← లాగిన్‌కు తిరిగి వెళ్లండి",
+    backToLogin: "← లాగిన్‌కు తిర���గి వెళ్లండి",
 
     // Navigation & Layout
     dashboard: "డ్యాష్‌బోర్డ్",
@@ -601,7 +730,7 @@ export const translations = {
     // Dashboard
     quickStats: "వేగవంతమైన గణాంకాలు",
     recentActivity: "ఇటీవలి కార్యకలాపాలు",
-    upcomingTasks: "రాబోయే కార్యాలు",
+    upcomingTasks: "రాబోయే క��ర్యాలు",
     notifications: "నోటిఫికేషన్లు",
     attendance: "హాజరు",
     performance: "పనితీరు",
@@ -630,7 +759,7 @@ export const translations = {
 
     // Common Actions
     save: "సేవ్ చేయండి",
-    cancel: "రద్దు చేయండి",
+    cancel: "రద్���ు చేయండి",
     delete: "తొలగించండి",
     edit: "సవరించండి",
     add: "జోడించండి",
@@ -663,9 +792,9 @@ export const translations = {
     completed: "పూర్తైంది",
     inProgress: "పురోగతిలో",
     approved: "ఆమోదించబడింది",
-    rejected: "తిరస్కరించబడింది",
+    rejected: "తిరస్��రించబడింది",
     draft: "డ్రాఫ్ట్",
-    published: "ప్రచురించబడింది",
+    published: "ప్రచురించబడిం���ి",
 
     // Employee Management
     employees: "ఉద్యోగులు",
@@ -690,7 +819,7 @@ export const translations = {
     zipCode: "పిన్ కోడ్",
     dateOfBirth: "పుట్టిన తేదీ",
     gender: "లింగం",
-    male: "పురుషుడు",
+    male: "పుర��షుడు",
     female: "స్త్రీ",
     other: "ఇతర",
 
@@ -698,7 +827,7 @@ export const translations = {
     goodMorning: "శుభోదయం",
     goodAfternoon: "శుభ మధ్యాహ్నం",
     goodEvening: "శుభ సాయంత్రం",
-    authorityLevel: "అధికార స్థాయి",
+    authorityLevel: "అధికార స్���ాయి",
     welcome: "స్వాగతం",
     lastMessage: "చివరి సందేశం",
     yesterday: "నిన్న",
@@ -746,6 +875,49 @@ export const translations = {
     high: "అధిక",
     medium: "మధ్యమ",
     low: "తక్కువ",
+
+    // Card Content
+    monthlyAttendanceSummary: "మాసిక హాజరు సారాంశం",
+    salarySnapshot: "జీతం స్నాప్‌షాట్",
+    totalDays: "మొత్తం రోజులు",
+    workingDays: "పని దినాలు",
+    present: "హాజరు",
+    absent: "గైరాజరు",
+    sunday: "ఆదివారం",
+    holiday: "సెలవుదినం",
+    late: "ఆలస్యం",
+    redFlag: "ఎరుపు జెండా",
+    viewDetailedReport: "వివరణాత్మక నివేదిక చూడండి",
+    asOn: "ప్రకారం",
+    nextPayslip: "మీ తదుపరి పేస్లిప్ రూపొందించబడుతుంది",
+    days: "రోజులు",
+    deducted: "తీసివేయబడింది",
+    pfContribution: "పిఎఫ్ సహకారం",
+    requestSalaryAdvance: "జీతం అడ్వాన్స్ కోసం అభ్యర్థించండి",
+    viewAllPayslips: "అన్ని పేస్లిప్‌లను చూడండి",
+
+    // User Profile
+    bhaskarGhosh: "భాస్కర్ ఘోష్",
+
+    // Task Card
+    totalPendingTasks: "మొత్తం పెండింగ్ పనులు",
+    totalDelegatedTasks: "మొత్తం అప్పగించిన పనులు",
+    overdue: "గడువు దాటిన",
+    dueToday: "ఈరోజు గడువు",
+    pendingReview: "సమీక్ష పెండింగ్",
+    viewAllMyTasks: "నా అన్ని పనులను చూడండి",
+    viewDelegatedTasks: "అప్పగించిన పనులను చూడండి",
+    myTask: "నా పని",
+    delegatedTask: "అప్పగించిన పని",
+
+    // Meetings Card
+    weeklyTeamSync: "వారపు టీమ్ సింక్",
+    clientReviewMeeting: "క్లయింట్ రివ్యూ మీటింగ్",
+    todayAt: "ఈరోజు",
+    tomorrowAt: "రేపు",
+    minutes: "నిమిషాలు",
+    scheduledMeetings: "నిర్ణీత సమావేశాలు",
+    viewAllMeetings: "అన్ని సమావేశాలను చూడండి",
   },
   Marathi: {
     welcomeToEasyDo: "EasyDo मध्ये आपले स्वागत आहे",
@@ -767,7 +939,7 @@ export const translations = {
   Tamil: {
     welcomeToEasyDo: "EasyDo வில் உங்களை வரவேற்கிறோம்",
     mobileNumberPlaceholder: "மொபைல் எண்",
-    bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள்",
+    bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள���",
     termsAndConditions: "விதிமுறைகள் & நிபந்தனைகள்",
     and: "மற்றும்",
     privacyPolicy: "தனியுரிமைக் கொள்கை",
@@ -830,7 +1002,7 @@ export const translations = {
     resendOTPIn: "OTP ಮರುಕಳುಹಿಸಿ",
     seconds: "ಸೆಕೆಂಡುಗಳಲ್ಲಿ",
     verifyOTP: "OTP ಅನ್ನು ��ರಿಶೀಲಿಸಿ",
-    backToLogin: "← ಲಾಗಿನ್‌ಗೆ ಹಿಂತಿರುಗಿ",
+    backToLogin: "�� ಲಾಗಿನ್‌ಗೆ ಹಿಂತಿರುಗಿ",
   },
   Odia: {
     welcomeToEasyDo: "EasyDo ରେ ଆପଣଙ୍କୁ ସ୍ୱାଗତ",

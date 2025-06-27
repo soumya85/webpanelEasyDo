@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 
 interface SalaryCardProps {
   id: string;
@@ -18,6 +20,8 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex items-center gap-3 mb-4">
@@ -25,7 +29,7 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({
           <IndianRupee className="w-5 h-5 text-green-600" />
         </div>
         <h3 className="text-sm font-semibold text-[#283C50]">
-          Salary Snapshot
+          <MultilingualText>{t("salarySnapshot")}</MultilingualText>
         </h3>
       </div>
 
@@ -33,10 +37,14 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({
         <div className="flex items-center gap-2 mb-2">
           <div className="text-lg font-bold text-green-600">₹ 50,000.00</div>
         </div>
-        <div className="text-xs text-gray-600">• As on 23rd Jun 2025.</div>
         <div className="text-xs text-gray-600">
-          • Your Next Payslip to be generated in{" "}
-          <span className="font-semibold text-[#4766E5]">7 Days</span>
+          <MultilingualText>• {t("asOn")} 23rd Jun 2025.</MultilingualText>
+        </div>
+        <div className="text-xs text-gray-600">
+          <MultilingualText>
+            • {t("nextPayslip")}{" "}
+            <span className="font-semibold text-[#4766E5]">7 {t("days")}</span>
+          </MultilingualText>
         </div>
       </div>
 
@@ -44,11 +52,15 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({
         <div className="space-y-2 mb-4">
           <div className="mt-2 space-y-1">
             <div className="flex justify-between text-xs">
-              <span className="text-gray-600">Deducted</span>
+              <span className="text-gray-600">
+                <MultilingualText>{t("deducted")}</MultilingualText>
+              </span>
               <span className="text-red-600 font-semibold">₹8,500</span>
             </div>
             <div className="flex justify-between text-xs">
-              <span className="text-gray-600">PF Contribution</span>
+              <span className="text-gray-600">
+                <MultilingualText>{t("pfContribution")}</MultilingualText>
+              </span>
               <span className="text-blue-600 font-semibold">₹2,200</span>
             </div>
           </div>
@@ -63,7 +75,7 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({
               borderWidth: "1px",
             }}
           >
-            Request Salary Advance
+            <MultilingualText>{t("requestSalaryAdvance")}</MultilingualText>
           </Button>
           <Button
             className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
@@ -73,7 +85,7 @@ export const SalaryCard: React.FC<SalaryCardProps> = ({
               borderWidth: "1px",
             }}
           >
-            View All Payslips
+            <MultilingualText>{t("viewAllPayslips")}</MultilingualText>
           </Button>
         </div>
       </div>
