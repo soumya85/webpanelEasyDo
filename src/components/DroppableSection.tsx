@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable } from "@hello-pangea/dnd";
 import { cn } from "@/lib/utils";
+import { MultilingualText } from "@/components/MultilingualText";
 
 // Import type only to avoid circular dependency
 interface DashboardCard {
