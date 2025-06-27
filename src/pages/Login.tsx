@@ -32,14 +32,16 @@ import {
   popularCountryCodes,
   type CountryCode,
 } from "@/data/countryCodes";
-import { LanguageSelector, useLanguage } from "@/components/LanguageSelector";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { MultilingualText } from "@/components/MultilingualText";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [open, setOpen] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguageContext();
   const navigate = useNavigate();
 
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
@@ -83,13 +85,7 @@ const Login = () => {
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
-      <LanguageSelector
-        value={language}
-        onValueChange={setLanguage}
-        position="absolute"
-        showGlobe={true}
-        size="md"
-      />
+      <LanguageSelector position="absolute" showGlobe={true} size="md" />
 
       <div className="w-full max-w-lg">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
@@ -104,9 +100,12 @@ const Login = () => {
 
           {/* Welcome Heading */}
           <div className="text-center">
-            <h1 className="text-xl font-semibold text-gray-900">
+            <MultilingualText
+              as="h1"
+              className="text-xl font-semibold text-gray-900"
+            >
               {t("welcomeToEasyDo")}
-            </h1>
+            </MultilingualText>
           </div>
 
           {/* Mobile Number Input Section */}
@@ -211,7 +210,8 @@ const Login = () => {
               onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
               className="mt-1"
             />
-            <label
+            <MultilingualText
+              as="label"
               htmlFor="terms"
               className="text-sm text-gray-600 leading-relaxed"
             >
@@ -223,7 +223,7 @@ const Login = () => {
               <a href="#" className="text-primary hover:underline">
                 {t("privacyPolicy")}
               </a>
-            </label>
+            </MultilingualText>
           </div>
 
           {/* Send OTP Button */}
@@ -237,7 +237,7 @@ const Login = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            {t("sendOTP")}
+            <MultilingualText>{t("sendOTP")}</MultilingualText>
           </Button>
         </div>
       </div>

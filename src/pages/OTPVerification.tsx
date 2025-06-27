@@ -8,14 +8,16 @@ import {
 } from "@/components/ui/input-otp";
 import { cn } from "@/lib/utils";
 import { translations, type Language } from "@/data/translations";
-import { LanguageSelector, useLanguage } from "@/components/LanguageSelector";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { MultilingualText } from "@/components/MultilingualText";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
   const [hasResent, setHasResent] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguageContext();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -73,13 +75,7 @@ const OTPVerification = () => {
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
-      <LanguageSelector
-        value={language}
-        onValueChange={setLanguage}
-        position="absolute"
-        showGlobe={true}
-        size="md"
-      />
+      <LanguageSelector position="absolute" showGlobe={true} size="md" />
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
           {/* Logo */}
@@ -93,12 +89,15 @@ const OTPVerification = () => {
 
           {/* Heading */}
           <div className="text-center space-y-2">
-            <h1 className="text-xl font-semibold text-gray-900">
+            <MultilingualText
+              as="h1"
+              className="text-xl font-semibold text-gray-900"
+            >
               {t("enterOTP")}
-            </h1>
-            <p className="text-sm text-gray-700">
+            </MultilingualText>
+            <MultilingualText as="p" className="text-sm text-gray-700">
               {hasResent ? t("resendTo") : t("sentTo")} {maskedNumber}
-            </p>
+            </MultilingualText>
           </div>
 
           {/* OTP Input */}
@@ -124,7 +123,8 @@ const OTPVerification = () => {
 
             {/* Resend OTP */}
             <div className="text-center">
-              <button
+              <MultilingualText
+                as="button"
                 onClick={handleResendOTP}
                 disabled={!canResend}
                 className={cn(
@@ -137,7 +137,7 @@ const OTPVerification = () => {
                 {canResend
                   ? t("resendOTP")
                   : `${t("resendOTPIn")} ${timeLeft} ${t("seconds")}`}
-              </button>
+              </MultilingualText>
             </div>
           </div>
 
@@ -152,17 +152,18 @@ const OTPVerification = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            {t("verifyOTP")}
+            <MultilingualText>{t("verifyOTP")}</MultilingualText>
           </Button>
 
           {/* Back to Login */}
           <div className="text-center">
-            <button
+            <MultilingualText
+              as="button"
               onClick={() => navigate("/login")}
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
               {t("backToLogin")}
-            </button>
+            </MultilingualText>
           </div>
         </div>
       </div>

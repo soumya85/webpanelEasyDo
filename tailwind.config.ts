@@ -100,6 +100,22 @@ const config: Config = {
       },
       fontFamily: {
         inter: ["Inter", "system-ui", "sans-serif"],
+        sans: [
+          "Inter",
+          "Noto Sans",
+          "Noto Sans Devanagari",
+          "Noto Sans Telugu",
+          "Noto Sans Gujarati",
+          "Noto Sans Bengali",
+          "Noto Sans Tamil",
+          "Noto Sans Kannada",
+          "Noto Sans Malayalam",
+          "Noto Sans Oriya",
+          "Noto Sans Gurmukhi",
+          "Noto Sans Arabic",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       fontSize: {
         "9": "9px",
