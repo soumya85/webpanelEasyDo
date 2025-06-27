@@ -1093,7 +1093,9 @@ export default function AttendanceSummary() {
                 <div className="flex items-center justify-center h-64">
                   <div className="flex items-center gap-2 text-gray-600">
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Loading attendance data...</span>
+                    <span>
+                      <ReactiveMultilingualText translationKey="loading" />
+                    </span>
                   </div>
                 </div>
               ) : (
