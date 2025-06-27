@@ -42,7 +42,7 @@ export const ApprovalsCard: React.FC<ApprovalsCardProps> = ({
           <AlertTriangle className="w-5 h-5 text-red-600" />
         </div>
         <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-          Pending Approvals
+          {t("pendingApprovals")}
         </h3>
       </div>
 
@@ -51,7 +51,7 @@ export const ApprovalsCard: React.FC<ApprovalsCardProps> = ({
         <div className="mb-2">
           <div className="text-3xl font-bold text-[#4766E5]">8</div>
           <div className="text-xs text-gray-600">
-            Items Awaiting Your Approval
+            {t("itemsAwaitingYourApproval")}
           </div>
         </div>
 
