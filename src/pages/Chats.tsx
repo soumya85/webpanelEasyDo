@@ -2917,6 +2917,7 @@ const MobileChatList: React.FC<{
   selectedFilter,
   onFilterChange,
 }) => {
+  const { t } = useGlobalTranslation();
   const filterTabs = ["All", "Unread", "Groups", "Labels", "Archived"];
 
   // Calculate counts for each filter
