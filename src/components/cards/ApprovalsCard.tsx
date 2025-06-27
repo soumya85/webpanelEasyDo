@@ -91,7 +91,7 @@ export const ApprovalsCard: React.FC<ApprovalsCardProps> = ({
             borderWidth: "1px",
           }}
         >
-          Review Approvals
+          {t("reviewApprovals")}
         </Button>
       </div>
     </DashboardCard>
