@@ -69,7 +69,10 @@ const OTPVerification = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center p-6"
+      className={cn(
+        "min-h-screen flex items-center justify-center p-6",
+        getMultilingualTextClass(language),
+      )}
       style={{ backgroundColor: "#eff4ff" }}
     >
       {/* Language Selector - Top Right */}
