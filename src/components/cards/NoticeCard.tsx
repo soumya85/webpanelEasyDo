@@ -18,16 +18,17 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
+
   const noticeItems = [
     {
-      title: "Holiday Notice - Diwali Celebration",
-      content: "Office will remain closed on October 24th for Diwali...",
+      title: t("holidayNotice"),
+      content: t("officeWillRemainClosed"),
       date: "1 day ago",
     },
     {
-      title: "New Health Insurance Policy Updates",
-      content:
-        "Important updates regarding the company health insurance policy...",
+      title: t("newHealthInsurancePolicy"),
+      content: t("importantUpdatesRegarding"),
       date: "3 days ago",
     },
   ];
