@@ -235,10 +235,9 @@ const Login = () => {
               isFormValid
                 ? "bg-primary hover:bg-primary-600 text-white"
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
-              getMultilingualTextClass(language),
             )}
           >
-            {t("sendOTP")}
+            <MultilingualText>{t("sendOTP")}</MultilingualText>
           </Button>
         </div>
       </div>
