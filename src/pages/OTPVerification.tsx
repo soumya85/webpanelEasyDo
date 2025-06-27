@@ -19,6 +19,7 @@ import { translations, type Language } from "@/data/translations";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
+  const [language, setLanguage] = useState<Language>("English");
   const navigate = useNavigate();
   const location = useLocation();
 
