@@ -137,7 +137,7 @@ export function TaskDetailModal({
           <div className="flex flex-col md:flex-row md:items-center gap-4 border-b pb-6">
             <div className="flex-1">
               <label className="block text-xs font-semibold text-gray-500 mb-1">
-                Title
+                <MultilingualText>{t("title")}</MultilingualText>
               </label>
               {editMode ? (
                 <Input
