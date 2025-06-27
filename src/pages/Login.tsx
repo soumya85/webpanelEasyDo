@@ -196,10 +196,7 @@ const Login = () => {
                 placeholder={t("mobileNumberPlaceholder")}
                 value={mobileNumber}
                 onChange={handleMobileNumberChange}
-                className={cn(
-                  "flex-1 border-gray-200 focus:border-primary focus:ring-primary",
-                  getMultilingualTextClass(language),
-                )}
+                className="flex-1 border-gray-200 focus:border-primary focus:ring-primary"
                 maxLength={10}
               />
             </div>
