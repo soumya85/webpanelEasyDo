@@ -193,7 +193,7 @@ export default function Documents() {
               <Input
                 required
                 className="w-full bg-gray-50"
-                placeholder="Uploader name"
+                placeholder={t("uploaderName")}
                 value={newDoc.uploader}
                 onChange={(e) =>
                   setNewDoc({ ...newDoc, uploader: e.target.value })
