@@ -54,7 +54,9 @@ export function UserProfile({ isExpanded }: UserProfileProps) {
           </svg>
         </div>
 
-        <p className="text-xs text-azure-24 leading-tight">{user.position}</p>
+        <MultilingualText className="text-xs text-azure-24 leading-tight">
+          {t("executiveDirector")}
+        </MultilingualText>
 
         <Badge
           variant="default"
