@@ -496,7 +496,7 @@ export const translations = {
     reason: "क��रण",
 
     // Documents
-    documents: "दस्तावेज़",
+    documents: "दस्ता���ेज़",
     uploadDocument: "दस्तावेज़ अपलोड करें",
     documentName: "दस्ता���ेज़ का नाम",
     documentType: "दस्तावेज़ का प्रकार",
@@ -584,7 +584,7 @@ export const translations = {
     meetingScheduledFor3PM: "आज दोपहर 3 बजे बैठक निर्धारित",
     canYouReviewDocument: "क्या आप दस्तावेज़ की समीक्षा कर सकते हैं?",
     thanksForUpdate: "अपडेट के लिए धन्यवाद!",
-    newBuildReadyForTesting: "परीक्षण के लिए नया बिल्ड तैयार है",
+    newBuildReadyForTesting: "���रीक्षण के लिए नया बिल्ड तैयार है",
     sureIllSendByEOD: "जरूर, मैं दिन के अंत तक भेज दूंगा",
     letsScheduleCallTomorrow: "कल कॉल शेड्यूल करते हैं",
     filesReadyForDownload: "फाइलें डाउनलोड के लिए तैयार हैं",
@@ -613,7 +613,7 @@ export const translations = {
     attendanceIsLocked: "उपस्थिति @11:31 AM पर लॉक है।",
     forPunchInClick:
       "पंच-इन के लिए, ऊपर क्लिक करें अपने रिपोर्टिंग मैनेजर से अनुमोदन का अनुरोध करें...",
-    locationTimeline: "स्थान समयरेखा",
+    locationTimeline: "स्था��� समयरेखा",
     trackedOnlyBetween:
       "(कंपनी के नियम के अनु��ार केवल पंच-इन और पंच-आउट के बीच ट्रैक किया गया)",
     clickHereForMoreDetail: "अधिक विवरण के लिए यहां क्लिक करें",
@@ -642,7 +642,7 @@ export const translations = {
     dragCardsBetweenSections:
       "पुनर्गठन के लिए कार्ड को सेक्शन के बीच या सेक्शन के भीतर ड्रैग करें - चौड़ाई संरक्षित रहती है",
     dropCardsOnPurpleZones:
-      "सेक्शन के भीतर नई पंक��तियां बनाने के लिए कार्ड को बैंगनी ज़ोन पर ड्रॉप करें",
+      "सेक्शन के भीतर नई पंक��तियां बनाने के लि��� कार्ड को बैंगनी ज़ोन पर ड्रॉप करें",
     dropCardsOnGreenZones:
       "सेक्शन के अंत में नई पंक्तियां जोड़ने के लिए कार्ड को हरे ज़ोन पर ड्रॉप करें",
     dragBlueResizeHandle:
@@ -652,7 +652,7 @@ export const translations = {
     layoutSavedAutomatically:
       "आपका लेआउट और कार्ड आकार स्वचालित रूप से सहेजे जाते हैं और सत्रों में बने रहते हैं",
     useResetLayoutButton:
-      'डि���़ॉल्ट व्यवस्था को पुनर्स्थापित करने के लिए "रीसेट लेआउट" बटन क�� उपयोग करें',
+      'डि���़ॉल्ट व्यवस्थ�� को पुनर्स्थापित करने के लिए "रीसेट लेआउट" बटन क�� उपयोग करें',
   },
   Bengali: {
     // Authentication
@@ -837,7 +837,7 @@ export const translations = {
     description: "বর্ণনা",
     publishDate: "প্রকাশের তারিখ",
     priority: "অগ্রাধিকার",
-    high: "উচ্চ",
+    high: "উচ��চ",
     medium: "মাঝারি",
     low: "নিম্ন",
 
@@ -899,7 +899,7 @@ export const translations = {
     addedHoursAgo: "{hours} ঘন্টা আগে যোগ করা হয়েছে",
     addedYesterday: "গতকাল যোগ করা হয়েছে",
     addedDaysAgo: "{days} দিন আগে যোগ করা হয়েছে",
-    addNewNote: "নতুন নোট যোগ করুন",
+    addNewNote: "নতুন নোট যোগ ক��ুন",
 
     // Drag & Drop Instructions
     enhancedDragDropInstructions:
@@ -920,6 +920,17 @@ export const translations = {
       "আপনার লেআউট এবং কার্ডের আকার স্বয়ংক্রিয়ভাবে সংরক্ষিত হয় এবং সেশন জু��়ে বহাল থাকে",
     useResetLayoutButton:
       'ডিফল্ট বিন্যাস পুনরুদ্ধার করতে "রিসেট লেআউট" বোতাম ব্যবহার করুন',
+
+    // Chat related translations
+    newBadge: "নতুন",
+    groupBadge: "গ্রুপ",
+    viewAllChats: "সব চ্যাট দেখুন",
+    searchOrStartNewChat: "খুঁজুন অথবা নতুন চ্যাট শুরু করুন",
+    selectChatToStart: "মেসেজিং শুরু করতে একটি চ্যাট নির্বাচন করুন",
+    online: "অনলাইন",
+    groupChat: "গ্রুপ চ্যাট",
+    noChatsFound: "কোন চ্যাট পাওয়া যায়নি",
+    noChatsAvailable: "কোন চ্যাট উপলব্ধ নেই",
   },
   Telugu: {
     // Authentication
@@ -1067,7 +1078,7 @@ export const translations = {
     headOffice: "ప్రధాన కార్యాలయం",
 
     // Messages
-    successMessage: "ఆపరేషన్ విజయవంతంగా పూర్తైంది",
+    successMessage: "ఆపరేషన్ విజయవంతంగ��� పూర్తైంది",
     errorMessage: "ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
     confirmDelete: "మీరు ఖచ్చితం��ా ఈ అంశాన్ని తొలగించాలనుకుంటున్నారా?",
     confirmLogout: "మీరు ఖచ్చితంగా లాగౌట్ చేయాలనుకుంటున్నారా?",
@@ -1178,7 +1189,7 @@ export const translations = {
     dropCardsOnPurpleZones:
       "విభాగంలో కొత్త వరుసలు సృష్టించడానికి ఊదా జోన్‌లపై కార్డులను డ్రాప్ చేయండి",
     dropCardsOnGreenZones:
-      "విభాగం చివరిలో కొత్త వరుసలను జోడించడానికి ఆకుపచ్చ జోన్‌లపై కార్డులను డ్రాప్ చేయండి",
+      "విభాగం చివరిలో కొత్త వరుసలను జోడించడానికి ఆకుప���్చ జోన్‌లపై కార్డులను డ్రాప్ చేయండి",
     dragBlueResizeHandle:
       "కార్డ్ వెడల్పును సర్దుబాటు చేయడానికి కుడివైపు నీలి రీసైజ్ హ్యాండిల్‌ను డ్రాగ్ చేయండి (చిన్న, మధ్యమ, పెద్ద, అదనపు పెద్ద)",
     sameRowEqualHeight:
@@ -1262,7 +1273,7 @@ export const translations = {
 
     // Drag & Drop Instructions
     enhancedDragDropInstructions:
-      "மேம்படுத்தப்பட்ட இழுத்து விடுதல் + அகல மறுஅளவு வழிமுறைகள்",
+      "மேம்படுத்தப்ப���்ட இழுத்து விடுதல் + அகல மறுஅளவு வழிமுறைகள்",
     hoverOverCardInstructions:
       "இழுத்துச் செல்லும் கைப்பிடி (மேல் மைய��்) மற்றும் அகல மறுஅளவு கைப்பிடி (வலது விளிம்பு) காண எந்த அட்டையின் மீதும் நகர்த்தவும்",
     dragCardsBetweenSections:
@@ -1355,7 +1366,7 @@ export const translations = {
 
     // Drag & Drop Instructions
     enhancedDragDropInstructions:
-      "ઉન્નત ડ્રેગ એન્ડ ડ્રોપ + પહોળાઈ રીસાઇઝ સૂચનાઓ",
+      "ઉન્નત ડ્રેગ એન્ડ ડ્રોપ + પહોળાઈ રીસ��ઇઝ સૂચનાઓ",
     hoverOverCardInstructions:
       "ડ્રેગ હેન્ડલ (ટોપ સેન્ટર) અને પહોળાઈ રીસાઇઝ હેન્ડલ (જમણી કિનારી) જોવા માટે કોઈપણ કાર્ડ પર હોવર કરો",
     dragCardsBetweenSections:
@@ -1392,11 +1403,11 @@ export const translations = {
 
     // Quick Notes Card
     quickNotes: "ತ್ವರಿತ ಟಿಪ್ಪಣಿಗಳು",
-    followUpOnClientProposal: "ಕ್ಲೈಂಟ್ ಪ್ರಸ್ತಾವನೆಯ ಮೇಲೆ ಫಾಲೋ ಅಪ್",
+    followUpOnClientProposal: "ಕ್ಲ���ಂಟ್ ಪ್ರಸ್ತಾವನೆಯ ಮೇಲೆ ಫಾಲೋ ಅಪ್",
     reviewQ4BudgetAllocation: "Q4 ಬಜೆಟ್ ಹಂಚಿಕೆ ಪರಿಶೀಲನೆ",
     updateTeamOnProjectTimeline: "ಪ್ರಾಜೆಕ್ಟ್ ಟೈಮ್‌ಲೈನ್‌ನಲ್ಲಿ ತಂಡದ ಅಪ್‌ಡೇಟ್",
     addedHoursAgo: "{hours} ಗಂಟೆಗಳ ಹಿಂದೆ ಸೇರಿಸಲಾಗಿದೆ",
-    addedYesterday: "ನಿನ್ನೆ ಸೇರಿಸಲಾಗಿದೆ",
+    addedYesterday: "ನಿನ್ನೆ ಸೇ��ಿಸಲಾಗಿದೆ",
     addedDaysAgo: "{days} ದಿನಗಳ ಹಿಂದೆ ಸೇರಿಸಲಾಗಿದೆ",
     addNewNote: "ಹೊಸ ಟಿಪ್ಪಣಿ ಸೇರಿಸಿ",
 
@@ -1491,7 +1502,7 @@ export const translations = {
     updateTeamOnProjectTimeline: "ਪ੍ਰੋਜੈਕਟ ਟਾਈਮਲਾਈਨ 'ਤੇ ਟੀਮ ਅੱਪਡੇਟ",
     addedHoursAgo: "{hours} ਘੰਟੇ ਪਹਿਲਾਂ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ",
     addedYesterday: "ਕੱਲ���ਹ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ",
-    addedDaysAgo: "{days} ਦਿਨ ਪਹਿਲਾਂ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ",
+    addedDaysAgo: "{days} ਦਿਨ ਪਹਿਲਾਂ ਸ਼ਾਮਲ ਕੀਤਾ ਗ��ਆ",
     addNewNote: "ਨਵਾਂ ਨੋਟ ਸ਼ਾਮਲ ਕਰੋ",
 
     // Drag & Drop Instructions
@@ -1535,7 +1546,7 @@ export const translations = {
     followUpOnClientProposal: "ക്ലയന്റ് നിർദ്ദേശത്തിൽ ഫോളോ അപ്പ്",
     reviewQ4BudgetAllocation: "Q4 ബജറ്റ് വിഹിതം അവലോകനം",
     updateTeamOnProjectTimeline: "പ്രോജക്ട് ടൈംലൈനിൽ ടീം അപ്‌ഡേറ്റ്",
-    addedHoursAgo: "{hours} മണിക്കൂർ മുമ്പ് ചേർത്തത്",
+    addedHoursAgo: "{hours} മണിക്കൂർ മുമ���പ് ചേർത്തത്",
     addedYesterday: "ഇന്നലെ ചേർത്തത്",
     addedDaysAgo: "{days} ദിവസം മുമ്പ് ചേർത്തത്",
     addNewNote: "പുതിയ കുറിപ്പ് ചേ��ക്കുക",
