@@ -9,6 +9,7 @@ import { BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
 import { ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 import {
   Dialog,
   DialogContent,
