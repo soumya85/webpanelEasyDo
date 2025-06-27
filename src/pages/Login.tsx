@@ -18,10 +18,14 @@ const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [language, setLanguage] = useState("English");
+  const [language, setLanguage] = useState<Language>("English");
   const navigate = useNavigate();
 
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
+
+  // Get translation function for current language
+  const t = (key: keyof typeof translations.English) =>
+    translations[language][key];
 
   const handleSendOTP = () => {
     if (isFormValid) {
