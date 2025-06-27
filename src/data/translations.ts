@@ -185,6 +185,29 @@ export const translations = {
     high: "High",
     medium: "Medium",
     low: "Low",
+
+    // Card Content
+    monthlyAttendanceSummary: "Monthly Attendance Summary",
+    salarySnapshot: "Salary Snapshot",
+    totalDays: "Total Days",
+    workingDays: "Working Days",
+    present: "Present",
+    absent: "Absent",
+    sunday: "Sunday",
+    holiday: "Holiday",
+    late: "Late",
+    redFlag: "Red Flag",
+    viewDetailedReport: "View Detailed Report",
+    asOn: "As on",
+    nextPayslip: "Your Next Payslip to be generated in",
+    days: "Days",
+    deducted: "Deducted",
+    pfContribution: "PF Contribution",
+    requestSalaryAdvance: "Request Salary Advance",
+    viewAllPayslips: "View All Payslips",
+
+    // User Profile
+    bhaskarGhosh: "Bhaskar Ghosh",
   },
   Hindi: {
     // Authentication
@@ -544,7 +567,7 @@ export const translations = {
     // Documents
     documents: "নথিপত্র",
     uploadDocument: "নথি আপলোড করুন",
-    documentName: "নথির নাম",
+    documentName: "��থির নাম",
     documentType: "নথির ধরন",
     uploadDate: "আপলোড তারিখ",
     fileSize: "ফাইলের আকার",
@@ -690,7 +713,7 @@ export const translations = {
     zipCode: "పిన్ కోడ్",
     dateOfBirth: "పుట్టిన తేదీ",
     gender: "లింగం",
-    male: "పురుషుడు",
+    male: "పుర��షుడు",
     female: "స్త్రీ",
     other: "ఇతర",
 
@@ -767,7 +790,7 @@ export const translations = {
   Tamil: {
     welcomeToEasyDo: "EasyDo வில் உங்களை வரவேற்கிறோம்",
     mobileNumberPlaceholder: "மொபைல் எண்",
-    bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள்",
+    bySigningUp: "பதிவு செய்வதன் மூலம், நீங்கள் எங்கள���",
     termsAndConditions: "விதிமுறைகள் & நிபந்தனைகள்",
     and: "மற்றும்",
     privacyPolicy: "தனியுரிமைக் கொள்கை",
