@@ -28,6 +28,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { useTranslation } from "@/hooks/useTranslation";
+import { MultilingualText } from "@/components/MultilingualText";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
