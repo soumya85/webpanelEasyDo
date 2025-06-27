@@ -111,7 +111,7 @@ const Login = () => {
             <div className="flex gap-3">
               {/* Country Code Selector */}
               <Select value={countryCode} onValueChange={setCountryCode}>
-                <SelectTrigger className="w-24 border-gray-200">
+                <SelectTrigger className="w-28 border-gray-200">
                   <SelectValue>
                     {currentCountry.flag} {currentCountry.dialCode}
                   </SelectValue>
