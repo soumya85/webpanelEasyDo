@@ -87,20 +87,36 @@ export const useGlobalFontLoader = () => {
     try {
       console.log(`🚀 Initializing fonts for ${language}`);
 
+      // Ensure fonts are loaded before applying classes
       if (language in LANGUAGE_FONT_MAP) {
         await loadLanguageFonts(language as keyof typeof LANGUAGE_FONT_MAP);
       }
 
-      // Apply global font classes
+      // Apply global font classes with better error handling
       const body = document.body;
       const existingClasses = Object.keys(LANGUAGE_FONT_MAP).map(
         (lang) => `font-${lang.toLowerCase()}`,
       );
+
+      // Remove existing classes
       body.classList.remove(...existingClasses);
+
+      // Force a reflow to ensure class removal takes effect
+      body.offsetHeight;
+
+      // Add new classes
       body.classList.add(`font-${language.toLowerCase()}`);
       body.classList.add("text-multilingual");
 
-      forceFontRerender();
+      // Wait for next frame to ensure styles are applied
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            forceFontRerender();
+            resolve(void 0);
+          });
+        });
+      });
 
       setCurrentLanguage(language);
       setIsInitialized(true);
@@ -111,6 +127,12 @@ export const useGlobalFontLoader = () => {
         `❌ Global font initialization failed for ${language}:`,
         error,
       );
+
+      // Fallback: apply classes anyway to prevent broken layout
+      const body = document.body;
+      body.classList.add(`font-${language.toLowerCase()}`);
+      body.classList.add("text-multilingual");
+      setIsInitialized(true);
     }
   }, []);
 

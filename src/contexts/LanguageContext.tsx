@@ -35,16 +35,37 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
   // Load saved language from localStorage on mount
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("selectedLanguage") as Language;
-    const initialLanguage =
-      savedLanguage && isValidLanguage(savedLanguage)
-        ? savedLanguage
-        : defaultLanguage;
+    const initializeLanguageAndFonts = async () => {
+      try {
+        const savedLanguage = localStorage.getItem(
+          "selectedLanguage",
+        ) as Language;
+        const initialLanguage =
+          savedLanguage && isValidLanguage(savedLanguage)
+            ? savedLanguage
+            : defaultLanguage;
 
-    setLanguageState(initialLanguage);
+        console.log(`🌍 Initializing language: ${initialLanguage}`);
 
-    // Initialize fonts for the initial language
-    switchLanguage(initialLanguage);
+        setLanguageState(initialLanguage);
+
+        // Initialize fonts for the initial language with retry
+        await switchLanguage(initialLanguage);
+
+        console.log(`✅ Language context initialized for ${initialLanguage}`);
+      } catch (error) {
+        console.warn(`⚠️ Language initialization failed:`, error);
+        // Fallback to default language
+        setLanguageState(defaultLanguage);
+        try {
+          await switchLanguage(defaultLanguage);
+        } catch (fallbackError) {
+          console.warn(`⚠️ Fallback font loading also failed:`, fallbackError);
+        }
+      }
+    };
+
+    initializeLanguageAndFonts();
   }, [defaultLanguage, switchLanguage]);
 
   // Enhanced setLanguage function with font loading
@@ -53,11 +74,28 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
     console.log(`🌐 Changing language from ${language} to ${newLanguage}`);
 
-    setLanguageState(newLanguage);
-    localStorage.setItem("selectedLanguage", newLanguage);
+    try {
+      // Set language state immediately for UI updates
+      setLanguageState(newLanguage);
+      localStorage.setItem("selectedLanguage", newLanguage);
 
-    // Load fonts for the new language
-    await switchLanguage(newLanguage);
+      // Load fonts for the new language with error handling
+      await switchLanguage(newLanguage);
+
+      // Force a re-render to ensure new fonts are applied
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            resolve(void 0);
+          });
+        });
+      });
+
+      console.log(`✅ Language and fonts switched to ${newLanguage}`);
+    } catch (error) {
+      console.warn(`⚠️ Font loading failed for ${newLanguage}:`, error);
+      // Language still changed, just fonts might not be optimal
+    }
   };
 
   const value = {

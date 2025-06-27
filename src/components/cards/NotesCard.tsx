@@ -3,6 +3,7 @@ import { StickyNote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface NotesCardProps {
   id: string;
@@ -17,10 +18,18 @@ export const NotesCard: React.FC<NotesCardProps> = ({
   size,
   onResize,
 }) => {
+  const { t } = useTranslation();
+
   const notes = [
-    { text: "Follow up on client proposal", time: "Added 3 hours ago" },
-    { text: "Review Q4 budget allocation", time: "Added yesterday" },
-    { text: "Update team on project timeline", time: "Added 3 days ago" },
+    {
+      text: t("followUpOnClientProposal"),
+      time: t("addedHoursAgo").replace("{hours}", "3"),
+    },
+    { text: t("reviewQ4BudgetAllocation"), time: t("addedYesterday") },
+    {
+      text: t("updateTeamOnProjectTimeline"),
+      time: t("addedDaysAgo").replace("{days}", "3"),
+    },
   ];
 
   return (
@@ -31,7 +40,7 @@ export const NotesCard: React.FC<NotesCardProps> = ({
           <StickyNote className="w-5 h-5 text-yellow-600" />
         </div>
         <h3 className="text-sm font-semibold text-[#283C50] flex-1">
-          Quick Notes
+          {t("quickNotes")}
         </h3>
       </div>
 
@@ -61,7 +70,7 @@ export const NotesCard: React.FC<NotesCardProps> = ({
             borderWidth: "1px",
           }}
         >
-          Add New Note
+          {t("addNewNote")}
         </Button>
       </div>
     </DashboardCard>

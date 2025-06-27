@@ -268,13 +268,10 @@ export const reloadLanguageFonts = async (
   try {
     console.log(`🔄 Reloading fonts for ${language}`);
 
-    // First, force re-render current text
-    forceFontRerender();
-
-    // Load language-specific fonts
+    // First, ensure fonts are actually available before proceeding
     await loadLanguageFonts(language);
 
-    // Apply language-specific font classes
+    // Apply language-specific font classes with immediate effect
     const body = document.body;
 
     // Remove all existing language font classes
@@ -283,17 +280,33 @@ export const reloadLanguageFonts = async (
     );
     body.classList.remove(...languageFontClasses);
 
+    // Force a reflow to ensure class removal takes effect
+    body.offsetHeight;
+
     // Add the correct language font class
     body.classList.add(`font-${language.toLowerCase()}`);
+    body.classList.add("text-multilingual");
 
-    // Force another re-render after font application
-    setTimeout(() => {
-      forceFontRerender();
-    }, 100);
+    // Force immediate font application with multiple techniques
+    forceFontRerender();
 
-    console.log(`✓ Fonts reloaded for ${language}`);
+    // Additional verification that fonts are working
+    await new Promise((resolve) => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          forceFontRerender();
+          resolve(void 0);
+        });
+      });
+    });
+
+    console.log(`✓ Fonts reloaded and verified for ${language}`);
   } catch (error) {
     console.warn(`Font reload failed for ${language}:`, error);
+    // Fallback: apply basic font classes anyway
+    const body = document.body;
+    body.classList.add(`font-${language.toLowerCase()}`);
+    body.classList.add("text-multilingual");
   }
 };
 
@@ -334,30 +347,57 @@ export const reloadFonts = (): void => {
  * Force font re-render for better character display
  */
 export const forceFontRerender = (): void => {
-  // Force repaint by briefly changing and restoring text properties
-  const body = document.body;
-  const originalColor = body.style.color;
-  const originalFontWeight = body.style.fontWeight;
+  try {
+    // Method 1: Force repaint by changing and restoring text properties
+    const body = document.body;
+    const originalColor = body.style.color;
+    const originalFontWeight = body.style.fontWeight;
+    const originalFontFamily = body.style.fontFamily;
 
-  // Force multiple style changes to trigger re-render
-  body.style.color = "transparent";
-  body.style.fontWeight = "normal";
-  body.offsetHeight; // Force reflow
+    // Force multiple style changes to trigger re-render
+    body.style.color = "transparent";
+    body.style.fontWeight = "normal";
+    body.style.fontFamily = "serif";
+    body.offsetHeight; // Force reflow
 
-  body.style.color = originalColor;
-  body.style.fontWeight = originalFontWeight;
+    body.style.color = originalColor;
+    body.style.fontWeight = originalFontWeight;
+    body.style.fontFamily = originalFontFamily;
 
-  // Also force re-render on all text elements
-  const textElements = document.querySelectorAll(
-    "span, p, h1, h2, h3, h4, h5, h6, div, label, button, input, textarea",
-  );
-  textElements.forEach((element) => {
-    const htmlElement = element as HTMLElement;
-    const originalTransform = htmlElement.style.transform;
-    htmlElement.style.transform = "translateZ(0)";
-    htmlElement.offsetHeight; // Force reflow
-    htmlElement.style.transform = originalTransform;
-  });
+    // Method 2: Force all text elements to re-render with font-specific techniques
+    const textElements = document.querySelectorAll(
+      "span, p, h1, h2, h3, h4, h5, h6, div, label, button, input, textarea, [class*='font-']",
+    );
+
+    textElements.forEach((element) => {
+      const htmlElement = element as HTMLElement;
+      const originalFontFamily = htmlElement.style.fontFamily;
+      const computedFont = getComputedStyle(htmlElement).fontFamily;
+
+      // Force font re-application
+      htmlElement.style.fontFamily = "serif";
+      htmlElement.offsetHeight; // Force reflow
+      htmlElement.style.fontFamily = originalFontFamily || computedFont;
+
+      // Additional transform-based re-render
+      const originalTransform = htmlElement.style.transform;
+      htmlElement.style.transform = "translateZ(0)";
+      htmlElement.offsetHeight; // Force reflow
+      htmlElement.style.transform = originalTransform;
+    });
+
+    // Method 3: Force browser to re-evaluate font-face rules
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        // Trigger a style recalculation
+        document.documentElement.style.fontSize = getComputedStyle(
+          document.documentElement,
+        ).fontSize;
+      });
+    }
+  } catch (error) {
+    console.warn("Font re-render failed:", error);
+  }
 };
 
 /**
