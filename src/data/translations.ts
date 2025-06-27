@@ -19,6 +19,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "Overview",
+    dashboardTitle: "Dashboard",
     chats: "Chats",
     todaysSchedule: "Today's Schedule",
     employeeDashboard: "Employee Dashboard",
@@ -581,6 +582,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "अवलोकन",
+    dashboardTitle: "डैशबोर्ड",
     chats: "चैट्स",
     todaysSchedule: "आज का शेड्यूल",
     employeeDashboard: "कर्मचारी डैशबोर्ड",
@@ -820,7 +822,7 @@ export const translations = {
     thanksForUpdate: "अपडे��� के लिए धन्यवाद!",
     newBuildReadyForTesting: "���रीक���षण के लिए नया बिल्ड तैयार है",
     sureIllSendByEOD: "जरूर, मैं दिन के अ���त तक भेज दूंगा",
-    letsScheduleCallTomorrow: "कल कॉल शेड्यूल ��र���े हैं",
+    letsScheduleCallTomorrow: "कल ���ॉल शेड्यूल ��र���े हैं",
     filesReadyForDownload: "फाइलें डाउनलोड के लिए तैयार हैं",
     campaignResultsLookingGreat: "अभियान के परिणाम बहुत अच्छे लग रहे हैं!",
     greatWorkOnPresentation: "प्रस्तुति पर बेहतरीन काम!",
@@ -838,7 +840,7 @@ export const translations = {
     noChatsAvailable: "कोई चैट उपलब्ध नहीं",
 
     // Work Status Card
-    myDailyWorkStatus: "मेरी दैनिक कार्य स्थिति",
+    myDailyWorkStatus: "मेरी दैन���क कार्य स्थिति",
     officeHours: "कार्यालय के घंटे",
     punchStatus: "पंच स्थिति",
     notPunchedIn: "पंच इन नहीं किया गया",
@@ -875,7 +877,7 @@ export const translations = {
     hoverOverCardInstructions:
       "ड्रैग हैंडल (टॉप ���ेंटर) और चौड़ाई रीसाइज़ हैं������ (दा���ं ओर) देखने के लिए किसी भी कार्ड पर होवर करें",
     dragCardsBetweenSections:
-      "पुनर्गठन के लिए कार्ड को सेक्शन के बीच या सेक्शन के भीतर ड्रैग करें - चौड़ाई संरक्षित रहती है",
+      "पुनर्गठन के लिए कार��ड को सेक्शन के बीच या सेक्शन के भीतर ड्रैग करें - चौड़ाई संरक्षित रहती है",
     dropCardsOnPurpleZones:
       "सेक्शन ���े भीतर नई पंक��तियां बनाने के लि��� का���्ड को बैंगनी ज़ोन पर ड्रॉप करें",
     dropCardsOnGreenZones:
@@ -955,11 +957,11 @@ export const translations = {
     typeHere: "यहाँ टाइप करें...",
     searchOrStartNewChat: "चैट खोजें या नई शुरू करें",
     searchEmployee: "कर्मचारी, शाखा या पद खोजें",
-    searchBranchOrLocation: "शाखा या स्थान खोजें",
+    searchBranchOrLocation: "शाखा या स्थान ���ोजें",
     searchEmployeeLeave: "कर्मचारी, शाखा या कारण खोजें",
     searchNotes: "नोट्स खोजें...",
     searchCountries: "देश खोजें...",
-    searchMeetings: "मीटिंग खोजें...",
+    searchMeetings: "मीटिंग खोज���ं...",
     searchTodaysSchedule: "कार्य, मीटिंग, इवेंट खोजें...",
     searchAnnouncement: "घोषणा खोजें",
     searchHoliday: "छुट्टी खोजें",
@@ -1079,7 +1081,7 @@ export const translations = {
 
     // Time durations
     oneMonth: "1 महीना",
-    threeMonths: "3 महीने",
+    threeMonths: "3 मह���ने",
     sixMonths: "6 महीने",
     twelveMonths: "12 महीने",
 
@@ -1141,6 +1143,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "সংক্ষিপ্ত বিবরণ",
+    dashboardTitle: "ড্যাশবোর্ড",
     chats: "চ্যাট",
     todaysSchedule: "আজকের সময়সূচী",
     employeeDashboard: "ক��্মচারী ড্যাশবোর্ড",
@@ -1237,7 +1240,7 @@ export const translations = {
     employeeId: "কর্মচারী আইডি",
     department: "বিভাগ",
     designation: "পদবী",
-    joiningDate: "যোগদ��নের তারিখ",
+    joiningDate: "যোগদ��নের তা��িখ",
 
     // Forms
     firstName: "প্রথম নাম",
@@ -1380,7 +1383,7 @@ export const translations = {
     dropCardsOnGreenZones:
       "সেকশনের ��েষে নতুন সারি যোগ করতে সবুজ জোনে কার্ড ড্রপ করুন",
     dragBlueResizeHandle:
-      "কার্ডের প্রস্থ সামঞ্জস্য করতে ডানদিকের নীল রিসাইজ হ্যান্ডেল ড্রাগ করুন (ছোট, মাঝারি, বড়, অতিরিক্ত বড়)",
+      "কার্ডের প্রস্থ সামঞ্জস্য করতে ডানদিকের নীল রিসাইজ হ্যান্ডেল ড্রাগ করুন (ছোট, মাঝারি, বড়, অতিরি��্ত বড়)",
     sameRowEqualHeight:
       "একই সারির সব কার্ড স্বয়ংক্রিয়ভাবে সমান উচ্চতা বজা��় রাখে",
     layoutSavedAutomatically:
@@ -1394,7 +1397,7 @@ export const translations = {
     attendanceNotificationSent: "উপস্থিতি বিজ্ঞপ্��ি পাঠানো হয়েছে",
     meetingScheduledFor3PM: "আজ বিকেল ৩টায় মিটিং নির্ধারিত",
     canYouReviewDocument: "আপনি কি নথিটি পর্যালোচনা করতে পারেন?",
-    thanksForUpdate: "আপডেটের জন্য ধন্যবাদ!",
+    thanksForUpdate: "আপডেটের জন্য ধন্যব��দ!",
     newBuildReadyForTesting: "পরীক্ষার জন্য নতুন বিল্ড প্রস্তুত",
     sureIllSendByEOD: "অবশ্যই, আমি দিনের শ���ষে পাঠাব",
     letsScheduleCallTomorrow: "কাল কল নির্ধারণ করি",
@@ -1451,8 +1454,9 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "అవలోకనం",
+    dashboardTitle: "డ్యాష్‌బోర్డ్",
     chats: "చాట్స్",
-    todaysSchedule: "నేటి షెడ్యూల్",
+    todaysSchedule: "నేటి షె���్యూల్",
     employeeDashboard: "ఉద్యోగి డ్యాష్‌బ��ర్డ్",
     companyDashboard: "కంపెనీ డ్యాష్‌బోర్డ్",
     tasks: "కార్యాలు",
@@ -1479,7 +1483,7 @@ export const translations = {
     salary: "జీతం",
     approvals: "ఆమోదాలు",
     meetings: "సమావేశాలు",
-    notes: "గమనిక��ు",
+    notes: "గమనిక���ు",
     notice: "నోటీసు",
 
     // Dashboard Cards
@@ -1619,7 +1623,7 @@ export const translations = {
     low: "తక్కువ",
 
     // Card Content
-    monthlyAttendanceSummary: "మాసిక హాజరు సారాంశం",
+    monthlyAttendanceSummary: "మాసిక హాజ���ు సారాంశం",
     salarySnapshot: "జీతం స్నాప్‌షాట్",
     totalDays: "మొత్తం రోజులు",
     workingDays: "పని దినాలు",
@@ -1702,7 +1706,7 @@ export const translations = {
     newBadge: "కొత్త",
     groupBadge: "గ్రూప్",
     viewAllChats: "అన్ని చాట���‌లను చూడండి",
-    searchOrStartNewChat: "వెతకండి లేదా కొత్త చాట్ ప్రారంభించండి",
+    searchOrStartNewChat: "వెతకండి లేదా కొత్త చ���ట్ ప్రారంభించండి",
     selectChatToStart: "మెసేజింగ్ ప్రారంభించడానికి చాట్‌ను ఎం��ుకోండి",
     online: "ఆన్‌లైన్",
     groupChat: "గ్రూప్ చాట్",
@@ -1728,6 +1732,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "विहंगावलोकन",
+    dashboardTitle: "डॅशबोर्ड",
     chats: "चॅट्स",
     todaysSchedule: "आजचे वेळापत्रक",
     employeeDashboard: "कर्मचारी डॅशबोर्ड",
@@ -1952,6 +1957,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "மேலோட்டப்பார்வை",
+    dashboardTitle: "டாஷ்போர்டு",
     chats: "அரட்டைகள்",
     todaysSchedule: "இன்றைய அட்டவணை",
     employeeDashboard: "பணியாளர் டாஷ்போர்டு",
@@ -1986,7 +1992,7 @@ export const translations = {
     hoverOverCardInstructions:
       "இழுத்துச் செல்லும் கைப்பிடி (மேல் மைய��்) மற்றும் அகல மறுஅளவு க���ப்பி���ி (வலது விளிம்பு) காண எந்த அட்டையின் மீதும் நகர்த்தவும்",
     dragCardsBetweenSections:
-      "மறுசீரமைப்பிற்காக பிரிவுகளுக்கு இடையே அல்லது பிரிவுகளுக்குள் அட்டைகளை இழுக்கவும் - அகலம் பாதுகாக்கப்படு��ிறது",
+      "மறுசீரமைப்பிற்காக ��ிரிவுகளுக்கு இடையே அல்லது பிரிவுகளுக்குள் அட்டைகளை இழுக்கவும் - அகலம் பாதுகாக்கப்படு��ிறது",
     dropCardsOnPurpleZones:
       "பிரிவில் புதிய வரிசைகளை உருவாக்க ஊதா பகுதிகளில் அட்டைகளை விடவும்",
     dropCardsOnGreenZones:
@@ -2019,6 +2025,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "جائزہ",
+    dashboardTitle: "ڈیش بورڈ",
     chats: "چیٹس",
     todaysSchedule: "آج کا شیڈول",
     employeeDashboard: "ملازم ڈیش بورڈ",
@@ -2054,7 +2061,7 @@ export const translations = {
     dragCardsBetweenSections:
       "دوبارہ ترتیب دینے کے لیے ��یکشنز کے درمیان یا سیکشنز کے اندر کارڈز کو ڈریگ کریں - چوڑائی محفوظ رہتی ہے",
     dropCardsOnPurpleZones:
-      "سیکشن کے اندر نئی قطاریں بنانے کے لیے جامنی زونز پر کارڈز ڈراپ کریں",
+      "سیکشن کے اندر نئی قطاریں بنانے کے لیے جامنی زونز پر ��ارڈز ڈراپ کریں",
     dropCardsOnGreenZones:
       "سیکشن کے آخر میں نئی قطاریں شا��ل کرنے کے لیے سبز ز��نز پر کارڈز ڈراپ کریں",
     dragBlueResizeHandle:
@@ -2072,7 +2079,7 @@ export const translations = {
     bySigningUp: "સાઇન અપ કરીને, તમે અમ���રી",
     termsAndConditions: "નિયમો અને શરતો",
     and: "અને",
-    privacyPolicy: "ગોપનીયતા નીતિ",
+    privacyPolicy: "ગોપન���યતા નીતિ",
     sendOTP: "OTP મોકલો",
     enterOTP: "6-��ંકનો OTP દાખલ કરો",
     sentTo: "મોકલાયેલ છે",
@@ -2085,6 +2092,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "વિહંગાવલોકન",
+    dashboardTitle: "ડેશબોર્ડ",
     chats: "ચેટ્સ",
     todaysSchedule: "આજનું શેડ્યૂલ",
     employeeDashboard: "કર્મચારી ડેશબોર્ડ",
@@ -2152,6 +2160,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "ಸಂಕ್ಷಿಪ್ತ ಅವಲೋಕನ",
+    dashboardTitle: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     chats: "ಚಾಟ್‌ಗಳು",
     todaysSchedule: "ಇಂದಿನ ವೇಳಾಪಟ್ಟಿ",
     employeeDashboard: "ಉದ್ಯೋಗಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
@@ -2219,6 +2228,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "ସଂକ୍ଷିପ୍ତ ବିବରଣୀ",
+    dashboardTitle: "ଡ୍ୟାସବୋର୍ଡ",
     chats: "ଚାଟ୍‌ଗୁଡ଼ିକ",
     todaysSchedule: "ଆଜିର କାର୍ଯ୍ୟସୂଚୀ",
     employeeDashboard: "କର୍ମଚାରୀ ଡ୍ୟାସବୋର୍ଡ",
@@ -2286,6 +2296,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "ਸੰਖੇਪ ਵੇਰਵਾ",
+    dashboardTitle: "ਡੈਸ਼ਬੋਰਡ",
     chats: "ਚੈਟਸ",
     todaysSchedule: "ਅੱਜ ਦਾ ਸਮਾਂ-ਸਾਰਣੀ",
     employeeDashboard: "ਕਰਮਚਾਰੀ ਡੈਸ਼ਬੋਰਡ",
@@ -2317,7 +2328,7 @@ export const translations = {
     // Drag & Drop Instructions
     enhancedDragDropInstructions: "ਵਧੀਆ ਡਰੈੱਗ ਐਂਡ ਡਰਾਪ + ਚੌੜਾਈ ਰੀਸਾਈਜ਼ ਨਿਰਦੇਸ਼",
     hoverOverCardInstructions:
-      "ਡਰੈੱਗ ਹੈਂਡਲ (ਟਾਪ ਸੈਂਟਰ) ਅਤੇ ਚੌੜਾਈ ਰੀਸਾਈਜ਼ ਹੈਂਡਲ (ਸੱਜੇ ਕਿਨਾਰੇ) ਵੇਖਣ ਲਈ ਕਿਸੇ ਵੀ ਕਾਰਡ 'ਤੇ ਹੋ��ਰ ਕਰੋ",
+      "ਡਰੈੱਗ ਹੈਂਡਲ (ਟਾਪ ਸੈਂਟਰ) ਅਤੇ ਚੌੜਾਈ ਰੀਸਾਈਜ਼ ਹੈਂਡਲ (ਸੱਜੇ ਕਿਨਾ��ੇ) ਵੇਖਣ ਲਈ ਕਿਸੇ ਵੀ ਕਾਰਡ 'ਤੇ ਹੋ��ਰ ਕਰੋ",
     dragCardsBetweenSections:
       "ਪੁਨਰ-ਵਿਵਸਥਾ ਲਈ ਭਾਗਾਂ ਵਿਚਕਾਰ ਜਾਂ ਭਾਗਾਂ ਦੇ ਅੰਦਰ ਕਾਰਡਾਂ ਨੂੰ ਡਰੈੱਗ ਕਰੋ - ਚੌੜਾਈ ਸੁਰੱਖਿਅਤ ਰਹਿ��ਦੀ ਹੈ",
     dropCardsOnPurpleZones:
@@ -2329,7 +2340,7 @@ export const translations = {
     sameRowEqualHeight:
       "ਇੱਕੋ ਕਤਾਰ ਦੇ ਸਾਰੇ ਕਾਰਡ ਆਪਣੇ ਆਪ ਬਰਾਬਰ ਉਚਾਈ ਬਣ��ਈ ਰੱਖਦੇ ਹਨ",
     layoutSavedAutomatically:
-      "ਤੁਹਾਡਾ ਲੇਆਉਟ ਅਤੇ ਕਾਰਡ ਸਾਈਜ਼ ਆਪਣੇ ਆਪ ਸੇਵ ਹੋ ਜਾਂਦੇ ਹਨ ਅ��ੇ ਸੈਸ਼ਨਾਂ ਵਿੱਚ ਬਰਕਰਾਰ ਰਹਿੰਦੇ ਹਨ",
+      "ਤੁਹਾਡਾ ਲੇਆਉਟ ਅਤ�� ਕਾਰਡ ਸਾਈਜ਼ ਆਪਣੇ ਆਪ ਸੇਵ ਹੋ ਜਾਂਦੇ ਹਨ ਅ��ੇ ਸੈਸ਼ਨਾਂ ਵਿੱਚ ਬਰਕਰਾਰ ਰਹਿੰਦੇ ਹਨ",
     useResetLayoutButton:
       'ਡਿਫਾਲਟ ਵਿਵਸਥਾ ਬਹਾਲ ਕਰਨ ਲਈ "ਰੀਸੈੱਟ ਲੇਆਉਟ" ਬਟਨ ਦੀ ਵਰਤੋਂ ਕਰੋ',
   },
@@ -2352,6 +2363,7 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "അവലോകനം",
+    dashboardTitle: "ഡാഷ്ബോർഡ്",
     chats: "ചാറ്റുകൾ",
     todaysSchedule: "ഇന്നത്തെ ഷെഡ്യൂൾ",
     employeeDashboard: "ജീവനക്കാരുടെ ഡാഷ്ബോർഡ്",
@@ -2386,7 +2398,7 @@ export const translations = {
     hoverOverCardInstructions:
       "ഡ്രാഗ് ഹാൻഡിൽ (���ോപ്പ് സെന്റർ) ഉം വീതി ���ീസൈസ് ഹാൻഡിൽ (വലത് അരികിൽ) ഉം കാണാൻ ഏതെങ്കിലും കാർഡിൽ ഹോവർ ചെയ്യുക",
     dragCardsBetweenSections:
-      "പുനഃസംഘടന���്ക്കായി വിഭാഗങ്ങൾക്കിടയിൽ അല്ലെങ്കിൽ വിഭാഗങ്ങൾക്കുള്ളിൽ കാർഡുകൾ ഡ്രാഗ് ചെയ്യുക - വീതി സംരക്ഷിക്കപ്പെടുന്നു",
+      "പുനഃസംഘടന�����ക്കായി വിഭാഗങ്ങൾക്കിടയിൽ അല്ലെങ്കിൽ വിഭാഗങ്ങൾക്കുള്ളിൽ കാർഡുകൾ ഡ്രാഗ് ചെയ്യുക - വീതി സംരക്ഷിക്കപ്പെടുന്നു",
     dropCardsOnPurpleZones:
       "വിഭാഗത്തിൽ പുതിയ വരികൾ സൃഷ്ടിക്കാൻ പർപ്പിൾ സോണുകളിൽ കാർ��ുകൾ ഡ്രോപ്പ് ചെയ്യുക",
     dropCardsOnGreenZones:

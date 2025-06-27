@@ -99,7 +99,7 @@ export function Header() {
               as="h1"
               className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6"
             >
-              {t("dashboard")}
+              {t("dashboardTitle")}
             </MultilingualText>
 
             {/* Create Button */}
@@ -218,7 +218,7 @@ export function Header() {
             as="h1"
             className="text-xl font-black text-azure-24 uppercase tracking-wide"
           >
-            {t("dashboard")}
+            {t("dashboardTitle")}
           </MultilingualText>
 
           {/* Desktop Controls */}
