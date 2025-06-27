@@ -51,6 +51,7 @@ const USER_STORAGE_KEY = "user-profile-data";
 const AUTH_STORAGE_KEY = "user-authenticated";
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     // Check if user is authenticated from localStorage
     if (typeof window !== "undefined") {
