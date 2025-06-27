@@ -40,79 +40,84 @@ const OTPVerification = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-6">
-      <div className="w-full max-w-md space-y-8">
-        {/* Logo */}
-        <div className="flex justify-center">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F835d6476d6ca471fa2644819d467705d%2F25940a1f71ae4cef84e1ed5bdab9a460?format=webp&width=800"
-            alt="EasyDo Logo"
-            className="h-16 w-auto"
-          />
-        </div>
-
-        {/* Heading */}
-        <div className="text-center space-y-2">
-          <h1 className="text-xl font-semibold text-gray-900">
-            Enter the 6-digit OTP
-          </h1>
-          <p className="text-sm text-gray-500">Sent to {maskedNumber}</p>
-        </div>
-
-        {/* OTP Input */}
-        <div className="space-y-6">
+    <div
+      className="min-h-screen flex items-center justify-center p-6"
+      style={{ backgroundColor: "#eff4ff" }}
+    >
+      <div className="w-full max-w-md">
+        <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+          {/* Logo */}
           <div className="flex justify-center">
-            <InputOTP
-              maxLength={6}
-              value={otp}
-              onChange={(value) => setOtp(value)}
-              className="gap-3"
-            >
-              <InputOTPGroup className="gap-3">
-                {Array.from({ length: 6 }, (_, index) => (
-                  <InputOTPSlot
-                    key={index}
-                    index={index}
-                    className="w-12 h-12 border-2 border-gray-200 rounded-lg text-lg font-medium focus:border-primary transition-colors"
-                  />
-                ))}
-              </InputOTPGroup>
-            </InputOTP>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F835d6476d6ca471fa2644819d467705d%2F25940a1f71ae4cef84e1ed5bdab9a460?format=webp&width=800"
+              alt="EasyDo Logo"
+              className="h-20 w-auto"
+            />
           </div>
 
-          {/* Resend OTP */}
+          {/* Heading */}
+          <div className="text-center space-y-2">
+            <h1 className="text-xl font-semibold text-gray-900">
+              Enter the 6-digit OTP
+            </h1>
+            <p className="text-sm text-gray-500">Sent to {maskedNumber}</p>
+          </div>
+
+          {/* OTP Input */}
+          <div className="space-y-6">
+            <div className="flex justify-center">
+              <InputOTP
+                maxLength={6}
+                value={otp}
+                onChange={(value) => setOtp(value)}
+                className="gap-3"
+              >
+                <InputOTPGroup className="gap-3">
+                  {Array.from({ length: 6 }, (_, index) => (
+                    <InputOTPSlot
+                      key={index}
+                      index={index}
+                      className="w-12 h-12 border-2 border-gray-200 rounded-lg text-lg font-medium focus:border-primary transition-colors"
+                    />
+                  ))}
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+
+            {/* Resend OTP */}
+            <div className="text-center">
+              <button
+                onClick={handleResendOTP}
+                className="text-sm text-primary hover:underline transition-colors"
+              >
+                Resend OTP
+              </button>
+            </div>
+          </div>
+
+          {/* Verify Button */}
+          <Button
+            onClick={handleVerifyOTP}
+            disabled={!isOTPValid}
+            className={cn(
+              "w-full h-12 text-base font-semibold rounded-lg transition-all duration-200",
+              isOTPValid
+                ? "bg-primary hover:bg-primary-600 text-white"
+                : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
+            )}
+          >
+            VERIFY OTP
+          </Button>
+
+          {/* Back to Login */}
           <div className="text-center">
             <button
-              onClick={handleResendOTP}
-              className="text-sm text-primary hover:underline transition-colors"
+              onClick={() => navigate("/login")}
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
-              Resend OTP
+              ← Back to login
             </button>
           </div>
-        </div>
-
-        {/* Verify Button */}
-        <Button
-          onClick={handleVerifyOTP}
-          disabled={!isOTPValid}
-          className={cn(
-            "w-full h-12 text-base font-semibold rounded-lg transition-all duration-200",
-            isOTPValid
-              ? "bg-primary hover:bg-primary-600 text-white"
-              : "bg-gray-200 text-gray-400 cursor-not-allowed",
-          )}
-        >
-          VERIFY OTP
-        </Button>
-
-        {/* Back to Login */}
-        <div className="text-center">
-          <button
-            onClick={() => navigate("/login")}
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-          >
-            ← Back to login
-          </button>
         </div>
       </div>
     </div>
