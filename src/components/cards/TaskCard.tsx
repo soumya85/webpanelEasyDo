@@ -26,23 +26,23 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   const taskTabsData = {
     MY_TASK: {
       value: "472",
-      subtitle: "Total Pending Tasks",
+      subtitle: t("totalPendingTasks"),
       details: [
-        { label: "Overdue", value: "23", color: "text-red-500" },
-        { label: "Due Today", value: "18", color: "text-orange-500" },
+        { label: t("overdue"), value: "23", color: "text-red-500" },
+        { label: t("dueToday"), value: "18", color: "text-orange-500" },
       ],
       progress: 85,
-      action: "View All My Tasks",
+      action: t("viewAllMyTasks"),
     },
     DELEGATED_TASK: {
       value: "34",
-      subtitle: "Total Delegated Tasks",
+      subtitle: t("totalDelegatedTasks"),
       details: [
-        { label: "Pending Review", value: "12", color: "text-orange-500" },
-        { label: "Completed", value: "22", color: "text-green-500" },
+        { label: t("pendingReview"), value: "12", color: "text-orange-500" },
+        { label: t("completed"), value: "22", color: "text-green-500" },
       ],
       progress: 65,
-      action: "View Delegated Tasks",
+      action: t("viewDelegatedTasks"),
     },
   };
 
