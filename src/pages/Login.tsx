@@ -134,13 +134,13 @@ const Login = () => {
               htmlFor="terms"
               className="text-sm text-gray-600 leading-relaxed"
             >
-              By Signing up, you agree with our{" "}
+              {t("bySigningUp")}{" "}
               <a href="#" className="text-primary hover:underline">
-                Terms & Conditions
+                {t("termsAndConditions")}
               </a>{" "}
-              and{" "}
+              {t("and")}{" "}
               <a href="#" className="text-primary hover:underline">
-                Privacy Policy
+                {t("privacyPolicy")}
               </a>
             </label>
           </div>
