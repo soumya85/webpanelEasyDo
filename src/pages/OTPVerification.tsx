@@ -152,8 +152,8 @@ const OTPVerification = () => {
                 className={cn(
                   "text-sm transition-colors",
                   canResend
-                    ? "text-primary hover:underline cursor-pointer"
-                    : "text-blue-600 cursor-not-allowed",
+                    ? "text-blue-600 hover:underline cursor-pointer"
+                    : "text-gray-500 cursor-not-allowed",
                 )}
               >
                 {canResend
