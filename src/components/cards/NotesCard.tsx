@@ -70,7 +70,7 @@ export const NotesCard: React.FC<NotesCardProps> = ({
             borderWidth: "1px",
           }}
         >
-          Add New Note
+          {t("addNewNote")}
         </Button>
       </div>
     </DashboardCard>
