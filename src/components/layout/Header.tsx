@@ -342,7 +342,7 @@ export function Header() {
             className="gap-2 text-sm border-gray-400"
           >
             <Filter className="h-4 w-4" />
-            Filter
+            <MultilingualText>{t("filter")}</MultilingualText>
           </Button>
         </div>
 
