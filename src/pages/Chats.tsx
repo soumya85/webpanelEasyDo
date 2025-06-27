@@ -3238,7 +3238,7 @@ const MobileChatView: React.FC<{
           <Input
             value={messageText}
             onChange={(e) => onMessageChange(e.target.value)}
-            placeholder="Type here..."
+            placeholder={getGlobalTranslation("typeHere")}
             className="rounded-full border-gray-300 pr-10"
             onKeyDown={(e) => e.key === "Enter" && onSendMessage()}
           />
