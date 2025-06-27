@@ -311,7 +311,8 @@ export function TaskDetailModal({
               className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-bold px-8 py-3 rounded-lg flex items-center gap-2 shadow-lg hover:from-indigo-700 hover:to-blue-600 transition"
               onClick={handleSave}
             >
-              <Save className="w-5 h-5" /> Save
+              <Save className="w-5 h-5" />
+              <MultilingualText>{t("save")}</MultilingualText>
             </Button>
           ) : (
             <Button
@@ -320,7 +321,8 @@ export function TaskDetailModal({
               className="flex items-center gap-2"
               onClick={() => setEditMode(true)}
             >
-              <Edit3 className="w-5 h-5" /> Edit
+              <Edit3 className="w-5 h-5" />
+              <MultilingualText>{t("edit")}</MultilingualText>
             </Button>
           )}
         </div>
