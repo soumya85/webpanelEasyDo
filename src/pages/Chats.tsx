@@ -262,7 +262,7 @@ const chatItems: ChatItem[] = [
     id: "16",
     name: "IntelliUI UX Designers Group",
     avatar: "",
-    lastMessage: "IntelliUI: 📄 I'm improving messages to...",
+    lastMessage: "IntelliUI: ��� I'm improving messages to...",
     timestamp: "Yesterday",
     unreadCount: 0,
     isGroup: true,
@@ -3601,10 +3601,7 @@ const Chats: React.FC = () => {
         </div>
 
         {/* Main Content Area */}
-        <div
-          className="flex pt-[160px]"
-          style={{ height: "calc(100vh - 86px)" }}
-        >
+        <div className="flex pt-[160px] min-h-screen">
           {/* Left Panel - Chat Contacts */}
           <div className="w-1/3 min-w-[300px] max-w-[400px]">
             <ChatContactsList
