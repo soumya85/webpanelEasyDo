@@ -60,6 +60,19 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap&subset=arabic,latin,latin-ext"
       rel="stylesheet"
     />
+
+    <!-- Global Language Management Script -->
+    <script>
+      (function () {
+        const lang = localStorage.getItem("siteLang") || "en";
+        document.documentElement.lang = lang;
+        window.siteLang = lang;
+        window.changeLanguage = function (lang) {
+          localStorage.setItem("siteLang", lang);
+          location.reload();
+        };
+      })();
+    </script>
   </head>
 
   <body>

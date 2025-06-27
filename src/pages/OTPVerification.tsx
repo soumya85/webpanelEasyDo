@@ -7,17 +7,15 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { cn } from "@/lib/utils";
-import { translations, type Language } from "@/data/translations";
 import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
 import { MultilingualText } from "@/components/MultilingualText";
+import { getGlobalTranslation } from "@/lib/globalTranslations";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
   const [hasResent, setHasResent] = useState(false);
-  // Use global language system
-  const getCurrentLanguage = () => window.siteLang || "en";
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,29 +25,6 @@ const OTPVerification = () => {
   };
 
   const isOTPValid = otp.length === 6;
-
-  // Get translation function for current language
-  const getTranslation = (key: keyof typeof translations.English) => {
-    const currentLang = getCurrentLanguage();
-    // Map global language codes to translation keys
-    const langMap: Record<string, keyof typeof translations> = {
-      en: "English",
-      hi: "Hindi",
-      bn: "Bengali",
-      te: "Telugu",
-      mr: "Marathi",
-      ta: "Tamil",
-      ur: "Urdu",
-      gu: "Gujarati",
-      kn: "Kannada",
-      or: "Odia",
-      pa: "Punjabi",
-      ml: "Malayalam",
-    };
-
-    const translationKey = langMap[currentLang] || "English";
-    return translations[translationKey][key];
-  };
 
   // Timer effect for resend functionality
   useEffect(() => {
@@ -112,12 +87,12 @@ const OTPVerification = () => {
               as="h1"
               className="text-xl font-semibold text-gray-900"
             >
-              {getTranslation("enterOTP")}
+              {getGlobalTranslation("enterOTP")}
             </MultilingualText>
             <MultilingualText as="p" className="text-sm text-gray-700">
               {hasResent
-                ? getTranslation("resendTo")
-                : getTranslation("sentTo")}{" "}
+                ? getGlobalTranslation("resendTo")
+                : getGlobalTranslation("sentTo")}{" "}
               {maskedNumber}
             </MultilingualText>
           </div>
@@ -157,8 +132,8 @@ const OTPVerification = () => {
                 )}
               >
                 {canResend
-                  ? getTranslation("resendOTP")
-                  : `${getTranslation("resendOTPIn")} ${timeLeft} ${getTranslation("seconds")}`}
+                  ? getGlobalTranslation("resendOTP")
+                  : `${getGlobalTranslation("resendOTPIn")} ${timeLeft} ${getGlobalTranslation("seconds")}`}
               </MultilingualText>
             </div>
           </div>
@@ -174,7 +149,9 @@ const OTPVerification = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            <MultilingualText>{getTranslation("verifyOTP")}</MultilingualText>
+            <MultilingualText>
+              {getGlobalTranslation("verifyOTP")}
+            </MultilingualText>
           </Button>
 
           {/* Back to Login */}
@@ -184,7 +161,7 @@ const OTPVerification = () => {
               onClick={() => navigate("/login")}
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
-              {getTranslation("backToLogin")}
+              {getGlobalTranslation("backToLogin")}
             </MultilingualText>
           </div>
         </div>

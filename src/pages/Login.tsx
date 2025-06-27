@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/command";
 import { ChevronDown, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { translations, type Language } from "@/data/translations";
 import {
   countryCodes,
   popularCountryCodes,
@@ -34,39 +33,14 @@ import {
 } from "@/data/countryCodes";
 import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
 import { MultilingualText } from "@/components/MultilingualText";
+import { getGlobalTranslation } from "@/lib/globalTranslations";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
   const [mobileNumber, setMobileNumber] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [open, setOpen] = useState(false);
-  // Use global language system
-  const getCurrentLanguage = () => window.siteLang || "en";
-  const navigate = useNavigate();
-
   const isFormValid = mobileNumber.length === 10 && acceptedTerms;
-
-  // Get translation function for current language
-  const getTranslation = (key: keyof typeof translations.English) => {
-    const currentLang = getCurrentLanguage();
-    // Map global language codes to translation keys
-    const langMap: Record<string, keyof typeof translations> = {
-      en: "English",
-      hi: "Hindi",
-      bn: "Bengali",
-      te: "Telugu",
-      mr: "Marathi",
-      ta: "Tamil",
-      ur: "Urdu",
-      gu: "Gujarati",
-      kn: "Kannada",
-      or: "Odia",
-      pa: "Punjabi",
-      ml: "Malayalam",
-    };
-
-    const translationKey = langMap[currentLang] || "English";
-    return translations[translationKey][key];
   };
 
   // Find current country for display
@@ -123,7 +97,7 @@ const Login = () => {
               as="h1"
               className="text-xl font-semibold text-gray-900"
             >
-              {getTranslation("welcomeToEasyDo")}
+              {getGlobalTranslation("welcomeToEasyDo")}
             </MultilingualText>
           </div>
 
@@ -212,7 +186,7 @@ const Login = () => {
               {/* Mobile Number Input */}
               <Input
                 type="tel"
-                placeholder={getTranslation("mobileNumberPlaceholder")}
+                placeholder={getGlobalTranslation("mobileNumberPlaceholder")}
                 value={mobileNumber}
                 onChange={handleMobileNumberChange}
                 className="flex-1 border-gray-200 focus:border-primary focus:ring-primary"
@@ -234,13 +208,13 @@ const Login = () => {
               htmlFor="terms"
               className="text-sm text-gray-600 leading-relaxed"
             >
-              {getTranslation("bySigningUp")}{" "}
+              {getGlobalTranslation("bySigningUp")}{" "}
               <a href="#" className="text-primary hover:underline">
-                {getTranslation("termsAndConditions")}
+                {getGlobalTranslation("termsAndConditions")}
               </a>{" "}
-              {getTranslation("and")}{" "}
+              {getGlobalTranslation("and")}{" "}
               <a href="#" className="text-primary hover:underline">
-                {getTranslation("privacyPolicy")}
+                {getGlobalTranslation("privacyPolicy")}
               </a>
             </MultilingualText>
           </div>
@@ -256,7 +230,7 @@ const Login = () => {
                 : "bg-gray-300 text-[#96a0b3] cursor-not-allowed border-0 disabled:opacity-100",
             )}
           >
-            <MultilingualText>{getTranslation("sendOTP")}</MultilingualText>
+            <MultilingualText>{getGlobalTranslation("sendOTP")}</MultilingualText>
           </Button>
         </div>
       </div>
