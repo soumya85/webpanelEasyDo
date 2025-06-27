@@ -22,6 +22,13 @@ const OTPVerification = () => {
 
   const handleVerifyOTP = () => {
     if (isOTPValid) {
+      // In a real app, you would verify the OTP with the backend here
+      // For demo purposes, any 6-digit OTP is valid
+
+      // Set authentication status in localStorage
+      localStorage.setItem("user-authenticated", "true");
+
+      // Navigate to dashboard
       navigate("/dashboard");
     }
   };
