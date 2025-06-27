@@ -89,22 +89,15 @@ const OTPVerification = () => {
 
           {/* Heading */}
           <div className="text-center space-y-2">
-            <h1
-              className={cn(
-                "text-xl font-semibold text-gray-900",
-                getMultilingualTextClass(language),
-              )}
+            <MultilingualText
+              as="h1"
+              className="text-xl font-semibold text-gray-900"
             >
               {t("enterOTP")}
-            </h1>
-            <p
-              className={cn(
-                "text-sm text-gray-700",
-                getMultilingualTextClass(language),
-              )}
-            >
+            </MultilingualText>
+            <MultilingualText as="p" className="text-sm text-gray-700">
               {hasResent ? t("resendTo") : t("sentTo")} {maskedNumber}
-            </p>
+            </MultilingualText>
           </div>
 
           {/* OTP Input */}
