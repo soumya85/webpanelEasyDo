@@ -16,7 +16,7 @@ const OTPVerification = () => {
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
   const [hasResent, setHasResent] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguageContext();
   const navigate = useNavigate();
   const location = useLocation();
 
