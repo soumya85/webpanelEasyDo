@@ -39,11 +39,13 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
         <div className="p-2 rounded-lg bg-red-50">
           <Bell className="w-5 h-5 text-red-600" />
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50]">Notice Board</h3>
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          {t("noticeBoard")}
+        </h3>
       </div>
 
       <div className="text-xs text-gray-600 mb-3">
-        You're viewing for: All Branch
+        {t("youreViewingFor")}: {t("allBranch")}
       </div>
 
       <div className="space-y-3 flex-1 overflow-y-auto">
