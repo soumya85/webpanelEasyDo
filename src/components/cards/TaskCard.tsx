@@ -85,7 +85,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
               : "text-gray-600 hover:text-gray-800",
           )}
         >
-          Delegated Task
+          <MultilingualText>{t("delegatedTask")}</MultilingualText>
         </button>
       </div>
 
