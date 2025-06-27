@@ -47,6 +47,7 @@ const initialDocuments = [
 ];
 
 export default function Documents() {
+  const { t } = useTranslation();
   const [documents, setDocuments] = useState(initialDocuments);
   const [showDialog, setShowDialog] = useState(false);
   const [search, setSearch] = useState("");
