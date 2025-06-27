@@ -210,12 +210,10 @@ const Login = () => {
               onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
               className="mt-1"
             />
-            <label
+            <MultilingualText
+              as="label"
               htmlFor="terms"
-              className={cn(
-                "text-sm text-gray-600 leading-relaxed",
-                getMultilingualTextClass(language),
-              )}
+              className="text-sm text-gray-600 leading-relaxed"
             >
               {t("bySigningUp")}{" "}
               <a href="#" className="text-primary hover:underline">
@@ -225,7 +223,7 @@ const Login = () => {
               <a href="#" className="text-primary hover:underline">
                 {t("privacyPolicy")}
               </a>
-            </label>
+            </MultilingualText>
           </div>
 
           {/* Send OTP Button */}
