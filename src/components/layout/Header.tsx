@@ -217,9 +217,9 @@ export function Header() {
           <div className="flex items-center gap-6">
             {/* Company Select */}
             <div className="flex items-center gap-4">
-              <span className="text-base font-semibold text-azure-24">
-                Company
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("company")}
+              </MultilingualText>
               <Select
                 value={selectedCompany}
                 onValueChange={setSelectedCompany}
@@ -238,15 +238,15 @@ export function Header() {
 
             {/* Branch Select */}
             <div className="flex items-center gap-4">
-              <span className="text-base font-semibold text-azure-24">
-                Branch
-              </span>
+              <MultilingualText className="text-base font-semibold text-azure-24">
+                {t("branch")}
+              </MultilingualText>
               <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                 <SelectTrigger className="w-[149px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="All Branch">All Branch</SelectItem>
+                  <SelectItem value="All Branch">{t("allBranch")}</SelectItem>
                   <SelectItem value="Branch 1">Branch 1</SelectItem>
                   <SelectItem value="Branch 2">Branch 2</SelectItem>
                 </SelectContent>
@@ -256,9 +256,9 @@ export function Header() {
             {/* Create Button */}
             <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
               <Plus className="h-4 w-4" />
-              <span className="text-sm font-semibold uppercase tracking-wider">
-                Create
-              </span>
+              <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
+                {t("create")}
+              </MultilingualText>
             </Button>
           </div>
         </div>
