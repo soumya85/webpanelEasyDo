@@ -71,7 +71,7 @@ const Login = () => {
             <SelectItem value="Gujarati">ગુજરાતી (Gujarati)</SelectItem>
             <SelectItem value="Kannada">ಕನ್ನಡ (Kannada)</SelectItem>
             <SelectItem value="Odia">ଓଡ଼ିଆ (Odia)</SelectItem>
-            <SelectItem value="Punjabi">ਪ��ਜਾਬੀ (Punjabi)</SelectItem>
+            <SelectItem value="Punjabi">ਪੰਜਾਬੀ (Punjabi)</SelectItem>
             <SelectItem value="Malayalam">മലയാളം (Malayalam)</SelectItem>
           </SelectContent>
         </Select>
@@ -126,14 +126,7 @@ const Login = () => {
                   </div>
                   {countryCodes.map((country) => (
                     <SelectItem key={country.code} value={country.dialCode}>
-                      <span className="flex items-center justify-between w-full">
-                        <span className="flex items-center">
-                          {country.flag} {country.dialCode}
-                        </span>
-                        <span className="text-xs text-gray-500 ml-2 truncate">
-                          {country.name}
-                        </span>
-                      </span>
+                      {country.flag} {country.dialCode} - {country.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
