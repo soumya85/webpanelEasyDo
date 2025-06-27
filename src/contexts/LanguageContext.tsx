@@ -35,16 +35,37 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
   // Load saved language from localStorage on mount
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("selectedLanguage") as Language;
-    const initialLanguage =
-      savedLanguage && isValidLanguage(savedLanguage)
-        ? savedLanguage
-        : defaultLanguage;
+    const initializeLanguageAndFonts = async () => {
+      try {
+        const savedLanguage = localStorage.getItem(
+          "selectedLanguage",
+        ) as Language;
+        const initialLanguage =
+          savedLanguage && isValidLanguage(savedLanguage)
+            ? savedLanguage
+            : defaultLanguage;
 
-    setLanguageState(initialLanguage);
+        console.log(`🌍 Initializing language: ${initialLanguage}`);
 
-    // Initialize fonts for the initial language
-    switchLanguage(initialLanguage);
+        setLanguageState(initialLanguage);
+
+        // Initialize fonts for the initial language with retry
+        await switchLanguage(initialLanguage);
+
+        console.log(`✅ Language context initialized for ${initialLanguage}`);
+      } catch (error) {
+        console.warn(`⚠️ Language initialization failed:`, error);
+        // Fallback to default language
+        setLanguageState(defaultLanguage);
+        try {
+          await switchLanguage(defaultLanguage);
+        } catch (fallbackError) {
+          console.warn(`⚠️ Fallback font loading also failed:`, fallbackError);
+        }
+      }
+    };
+
+    initializeLanguageAndFonts();
   }, [defaultLanguage, switchLanguage]);
 
   // Enhanced setLanguage function with font loading
