@@ -3363,6 +3363,7 @@ const Chats: React.FC = () => {
   // Hooks
   const location = useLocation();
   const { t } = useGlobalTranslation();
+  const { isExpanded } = useSidebar();
 
   // For mobile: start with no chat selected (show list)
   // For desktop: start with first chat selected (show conversation)
