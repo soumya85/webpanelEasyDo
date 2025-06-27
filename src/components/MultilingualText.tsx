@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn, getMultilingualTextClass } from "@/lib/utils";
-import { useLanguageContext } from "@/contexts/LanguageContext";
+import { getCurrentLanguage, type GlobalLanguage } from "@/lib/globalLanguage";
 import { forceFontRerender } from "@/lib/fontLoader";
 
 interface MultilingualTextProps {
@@ -25,13 +25,41 @@ export const MultilingualText: React.FC<MultilingualTextProps> = ({
   as: Component = "span",
   ...props
 }) => {
-  const { language } = useLanguageContext();
+  const [currentLang, setCurrentLang] = useState<GlobalLanguage>(() =>
+    getCurrentLanguage(),
+  );
   const elementRef = useRef<HTMLElement>(null);
-  const previousLanguage = useRef(language);
+  const previousLanguage = useRef(currentLang);
+
+  // Listen for global language changes
+  useEffect(() => {
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+
+    const handleStorageChange = () => {
+      const newLang = getCurrentLanguage();
+      setCurrentLang(newLang);
+    };
+
+    window.addEventListener(
+      "languageChange",
+      handleLanguageChange as EventListener,
+    );
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener(
+        "languageChange",
+        handleLanguageChange as EventListener,
+      );
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   // Force re-render when language changes to ensure proper font rendering
   useEffect(() => {
-    if (previousLanguage.current !== language && elementRef.current) {
+    if (previousLanguage.current !== currentLang && elementRef.current) {
       // Force re-render of this specific element
       const element = elementRef.current;
       const originalTransform = element.style.transform;
@@ -41,14 +69,32 @@ export const MultilingualText: React.FC<MultilingualTextProps> = ({
       element.offsetHeight; // Force reflow
       element.style.transform = originalTransform;
 
-      previousLanguage.current = language;
+      previousLanguage.current = currentLang;
     }
-  }, [language]);
+  }, [currentLang]);
+
+  // Map global language codes to the format expected by getMultilingualTextClass
+  const languageMap: Record<GlobalLanguage, string> = {
+    en: "English",
+    hi: "Hindi",
+    bn: "Bengali",
+    te: "Telugu",
+    mr: "Marathi",
+    ta: "Tamil",
+    ur: "Urdu",
+    gu: "Gujarati",
+    kn: "Kannada",
+    or: "Odia",
+    pa: "Punjabi",
+    ml: "Malayalam",
+  };
+
+  const mappedLanguage = languageMap[currentLang] || "English";
 
   return (
     <Component
       ref={elementRef}
-      className={cn(getMultilingualTextClass(language), className)}
+      className={cn(getMultilingualTextClass(mappedLanguage), className)}
       {...props}
     >
       {children}
@@ -61,8 +107,53 @@ export const MultilingualText: React.FC<MultilingualTextProps> = ({
  * Use this when you need just the font class without the wrapper component
  */
 export const useMultilingualFont = () => {
-  const { language } = useLanguageContext();
-  return getMultilingualTextClass(language);
+  const [currentLang, setCurrentLang] = useState<GlobalLanguage>(() =>
+    getCurrentLanguage(),
+  );
+
+  useEffect(() => {
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+
+    const handleStorageChange = () => {
+      const newLang = getCurrentLanguage();
+      setCurrentLang(newLang);
+    };
+
+    window.addEventListener(
+      "languageChange",
+      handleLanguageChange as EventListener,
+    );
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener(
+        "languageChange",
+        handleLanguageChange as EventListener,
+      );
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  // Map global language codes to the format expected by getMultilingualTextClass
+  const languageMap: Record<GlobalLanguage, string> = {
+    en: "English",
+    hi: "Hindi",
+    bn: "Bengali",
+    te: "Telugu",
+    mr: "Marathi",
+    ta: "Tamil",
+    ur: "Urdu",
+    gu: "Gujarati",
+    kn: "Kannada",
+    or: "Odia",
+    pa: "Punjabi",
+    ml: "Malayalam",
+  };
+
+  const mappedLanguage = languageMap[currentLang] || "English";
+  return getMultilingualTextClass(mappedLanguage);
 };
 
 /**
