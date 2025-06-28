@@ -139,7 +139,7 @@ export default function EmployeeLocationTimelineCard() {
     }
   };
 
-  // Google Maps marker handlers
+  // Custom map interaction handlers
   const handleMarkerClick = useCallback(
     (branchId: string) => {
       setSelectedMarker(selectedMarker === branchId ? null : branchId);
@@ -151,25 +151,40 @@ export default function EmployeeLocationTimelineCard() {
     setSelectedMarker(null);
   }, []);
 
-  const handleMapLoad = useCallback(() => {
-    setIsMapLoaded(true);
+  const handleZoomIn = useCallback(() => {
+    setZoomLevel((prev) => Math.min(prev + 1, 10));
   }, []);
 
-  // Create marker icon only when Google Maps is loaded
-  const createMarkerIcon = useCallback(
-    (markerId: string) => {
-      if (!isMapLoaded || !window.google?.maps) {
-        return undefined;
-      }
+  const handleZoomOut = useCallback(() => {
+    setZoomLevel((prev) => Math.max(prev - 1, 1));
+  }, []);
 
-      return {
-        url: `data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23EF4444' stroke='white' stroke-width='3'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='14' font-weight='bold'%3E${markerId}%3C/text%3E%3C/svg%3E`,
-        scaledSize: new window.google.maps.Size(40, 40),
-        anchor: new window.google.maps.Point(20, 20),
-      };
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      setIsDragging(true);
+      setDragStart({
+        x: e.clientX - mapPosition.x,
+        y: e.clientY - mapPosition.y,
+      });
     },
-    [isMapLoaded],
+    [mapPosition],
   );
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (isDragging) {
+        setMapPosition({
+          x: e.clientX - dragStart.x,
+          y: e.clientY - dragStart.y,
+        });
+      }
+    },
+    [isDragging, dragStart],
+  );
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
