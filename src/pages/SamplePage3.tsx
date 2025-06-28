@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
+import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
+import EmployeeLocationTimelineCard from "@/components/cards/EmployeeLocationTimelineCard";
 
 export default function SamplePage3() {
   const { t } = useGlobalTranslation();
@@ -104,6 +106,16 @@ export default function SamplePage3() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Employee Cards Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+          <div className="min-h-[400px]">
+            <EmployeeAttendanceCard />
+          </div>
+          <div className="min-h-[400px]">
+            <EmployeeLocationTimelineCard />
           </div>
         </div>
       </div>

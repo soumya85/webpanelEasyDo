@@ -1,0 +1,133 @@
+import { User } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+
+export default function EmployeeAttendanceCard() {
+  const attendanceData = [
+    {
+      label: "Present",
+      value: 17,
+      color: "text-green-600",
+      bgColor: "bg-green-50",
+      borderColor: "border-green-200",
+      showIcon: true,
+    },
+    {
+      label: "Absent",
+      value: 0,
+      color: "text-gray-600",
+      bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
+    },
+    {
+      label: "Leave",
+      value: 0,
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-200",
+    },
+    {
+      label: "Late",
+      value: 2,
+      color: "text-gray-500",
+      bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
+    },
+    {
+      label: "Half Day",
+      value: 0,
+      color: "text-gray-500",
+      bgColor: "bg-gray-50",
+      borderColor: "border-gray-200",
+    },
+    {
+      label: "Red Flags",
+      value: 2,
+      color: "text-red-600",
+      bgColor: "bg-red-50",
+      borderColor: "border-red-200",
+    },
+    {
+      label: "Holidays",
+      value: 4,
+      color: "text-red-600",
+      bgColor: "bg-red-50",
+      borderColor: "border-red-200",
+    },
+  ];
+
+  return (
+    <Card className="bg-white border border-gray-200 shadow-sm h-full">
+      <CardContent className="p-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-gray-900">
+            Employee Attendance
+          </h2>
+          <span className="text-sm text-blue-600 font-medium">June, 2025</span>
+        </div>
+
+        {/* Attendance Grid */}
+        <div className="grid grid-cols-3 gap-2 mb-4">
+          {attendanceData.slice(0, 6).map((item) => (
+            <div
+              key={item.label}
+              className={cn(
+                "flex flex-col items-center justify-center p-3 rounded-lg border-b-4",
+                "min-h-[80px] transition-all duration-200",
+                item.bgColor,
+                item.label === "Present"
+                  ? "border-green-500"
+                  : item.label === "Leave"
+                    ? "border-orange-500"
+                    : item.label === "Red Flags"
+                      ? "border-red-500"
+                      : "border-gray-400",
+              )}
+            >
+              <div className="flex items-center gap-1 mb-1">
+                <div className={cn("text-xl font-bold", item.color)}>
+                  {item.value}
+                </div>
+                {item.showIcon && (
+                  <User className={cn("w-4 h-4", item.color)} />
+                )}
+              </div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                {item.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Second Row */}
+        <div className="grid grid-cols-1 gap-2 mb-4">
+          <div
+            className={cn(
+              "flex flex-col items-center justify-center p-3 rounded-lg border-b-4 border-red-500",
+              "min-h-[80px] transition-all duration-200",
+              "bg-red-50",
+            )}
+          >
+            <div className="flex items-center gap-1 mb-1">
+              <div className="text-xl font-bold text-red-600">
+                {attendanceData[6].value}
+              </div>
+            </div>
+            <div className="text-xs text-gray-700 text-center font-medium">
+              {attendanceData[6].label}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Summary */}
+        <div className="text-center">
+          <span className="text-sm text-gray-700 font-medium">
+            Total Days <span className="text-gray-800 font-semibold">21</span>,
+            Working Days <span className="text-gray-800 font-semibold">17</span>
+          </span>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
