@@ -1,20 +1,64 @@
 import { Search } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useMemo } from "react";
 
 export default function EmployeeLocationTimelineCard() {
-  // Timeline showing 10 AM - 5 PM window with 2 PM as active (matching new screenshot)
-  // Green bars appear from 10 AM up to the active time (2 PM)
-  const timeSlots = [
-    { time: "10 AM", active: false },
-    { time: "11 AM", active: false },
-    { time: "12 PM", active: false },
-    { time: "1 PM", active: false },
-    { time: "2 PM", active: true },
-    { time: "3 PM", active: false },
-    { time: "4 PM", active: false },
-    { time: "5 PM", active: false },
-  ];
+  // Automatically determine current time and set active slot
+  const timeSlots = useMemo(() => {
+    const now = new Date();
+    const currentHour = now.getHours();
+
+    // Define all possible time slots
+    const allSlots = [
+      { time: "1 AM", hour: 1 },
+      { time: "2 AM", hour: 2 },
+      { time: "3 AM", hour: 3 },
+      { time: "4 AM", hour: 4 },
+      { time: "5 AM", hour: 5 },
+      { time: "6 AM", hour: 6 },
+      { time: "7 AM", hour: 7 },
+      { time: "8 AM", hour: 8 },
+      { time: "9 AM", hour: 9 },
+      { time: "10 AM", hour: 10 },
+      { time: "11 AM", hour: 11 },
+      { time: "12 PM", hour: 12 },
+      { time: "1 PM", hour: 13 },
+      { time: "2 PM", hour: 14 },
+      { time: "3 PM", hour: 15 },
+      { time: "4 PM", hour: 16 },
+      { time: "5 PM", hour: 17 },
+      { time: "6 PM", hour: 18 },
+      { time: "7 PM", hour: 19 },
+      { time: "8 PM", hour: 20 },
+      { time: "9 PM", hour: 21 },
+      { time: "10 PM", hour: 22 },
+      { time: "11 PM", hour: 23 },
+    ];
+
+    // Find the current active hour slot
+    const activeSlotIndex = allSlots.findIndex(
+      (slot) => slot.hour === currentHour,
+    );
+
+    // Determine the 8-hour window around the current time
+    let startIndex = Math.max(0, activeSlotIndex - 4);
+    let endIndex = Math.min(allSlots.length, startIndex + 8);
+
+    // Adjust if we don't have enough slots at the end
+    if (endIndex - startIndex < 8) {
+      startIndex = Math.max(0, endIndex - 8);
+    }
+
+    // Get the 8-hour window
+    const windowSlots = allSlots.slice(startIndex, endIndex);
+
+    // Set active state for each slot
+    return windowSlots.map((slot) => ({
+      time: slot.time,
+      active: slot.hour === currentHour,
+    }));
+  }, []);
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
