@@ -304,251 +304,272 @@ export default function EmployeeLocationTimelineCard() {
           </div>
         </div>
 
-        {/* Map Type Toggle Controls */}
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleMapTypeToggle}
-              className={cn(
-                "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
-                mapType === "custom"
-                  ? "bg-blue-100 text-blue-700 border border-blue-200"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200",
-              )}
+        {/* India Map */}
+        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200 bg-[#A8D3E0]">
+          <div className="relative w-full h-full">
+            {/* India Map SVG */}
+            <svg
+              viewBox="0 0 100 120"
+              className="absolute inset-0 w-full h-full"
+              preserveAspectRatio="xMidYMid meet"
             >
-              <MapIcon className="w-4 h-4" />
-              Custom Map
-            </button>
-            <button
-              onClick={handleMapTypeToggle}
-              className={cn(
-                "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
-                mapType === "google"
-                  ? "bg-blue-100 text-blue-700 border border-blue-200"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200",
-              )}
-            >
-              <MapPin className="w-4 h-4" />
-              Google Maps
-              {!import.meta.env.VITE_GOOGLE_MAPS_API_KEY && (
-                <span className="text-xs bg-orange-100 text-orange-600 px-1 rounded">
-                  API key needed
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
+              {/* Ocean/Water Background */}
+              <rect width="100" height="120" fill="#A8D3E0" />
 
-        {/* Maps Container */}
-        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200">
-          {mapType === "google" ? (
-            /* Google Maps Placeholder */
-            <div className="w-full h-full flex items-center justify-center bg-gray-100">
-              <div className="text-center p-8">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
-                  <MapPin className="w-8 h-8 text-gray-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Google Maps API Required
-                </h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  To enable Google Maps, please add your Google Maps API key to
-                  the environment variables.
-                </p>
-                <div className="bg-gray-50 rounded-lg p-4 text-left">
-                  <p className="text-xs text-gray-500 mb-2">
-                    Add to .env file:
-                  </p>
-                  <code className="text-xs bg-white p-2 rounded border block">
-                    VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
-                  </code>
-                </div>
-                <button
-                  onClick={() => setMapType("custom")}
-                  className="mt-4 px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  Use Custom Map Instead
-                </button>
-              </div>
-            </div>
-          ) : (
-            /* Custom Map Implementation */
-            <div
-              className="relative w-full h-full"
-              style={{ backgroundColor: "#AAD3DF" }}
-            >
-              <div
-                className="relative w-full h-full cursor-grab select-none"
-                style={{
-                  transform: `translate(${mapPosition.x}px, ${mapPosition.y}px) scale(${0.8 + (zoomLevel - 1) * 0.1})`,
-                  transformOrigin: "center center",
-                }}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                onClick={handleMapClick}
+              {/* Neighboring Countries - Light Gray */}
+              <path
+                d="M15 25 L35 20 L45 25 L40 35 L30 40 L20 35 Z"
+                fill="#F5F5F5"
+                stroke="#E0E0E0"
+                strokeWidth="0.2"
+              />
+
+              {/* Pakistan */}
+              <path
+                d="M10 30 L25 28 L30 35 L25 45 L15 50 L8 45 Z"
+                fill="#F5F5F5"
+                stroke="#E0E0E0"
+                strokeWidth="0.2"
+              />
+
+              {/* Main India Land Mass - Light Green */}
+              <path
+                d="M30 35 L35 25 L45 23 L55 22 L65 25 L75 30 L82 38 L88 50 L92 65 L90 80 L85 95 L78 105 L68 110 L55 112 L45 108 L35 100 L28 85 L25 70 L27 55 L30 40 Z"
+                fill="#C8E6C9"
+                stroke="#B8D4B9"
+                strokeWidth="0.3"
+              />
+
+              {/* Sri Lanka */}
+              <ellipse
+                cx="45"
+                cy="105"
+                rx="3"
+                ry="8"
+                fill="#C8E6C9"
+                stroke="#B8D4B9"
+                strokeWidth="0.2"
+              />
+
+              {/* Country Labels */}
+              <text
+                x="20"
+                y="18"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
               >
-                {/* Custom SVG Map */}
-                <svg
-                  viewBox="0 0 600 400"
-                  className="absolute inset-0 w-full h-full"
-                  style={{ backgroundColor: "#AAD3DF" }}
-                >
-                  <rect width="600" height="400" fill="#AAD3DF" />
+                Kyrgyzstan
+              </text>
+              <text
+                x="70"
+                y="15"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                XINJIANG
+              </text>
+              <text
+                x="8"
+                y="22"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                Tajikistan
+              </text>
+              <text
+                x="5"
+                y="38"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                Pakistan
+              </text>
+              <text
+                x="72"
+                y="22"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                TIBET
+              </text>
+              <text
+                x="68"
+                y="35"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                Nepal
+              </text>
+              <text
+                x="85"
+                y="45"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                Bhutan
+              </text>
+              <text
+                x="85"
+                y="85"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                Myanmar
+              </text>
+              <text
+                x="85"
+                y="92"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                (Burma)
+              </text>
 
-                  {/* India Land Mass */}
-                  <path
-                    d="M200 120 L220 100 L280 95 L350 90 L420 110 L480 130 L520 170 L550 210 L580 270 L590 330 L580 390 L560 440 L520 470 L460 490 L400 500 L340 490 L280 470 L240 440 L200 390 L180 330 L170 270 L180 210 Z"
-                    fill="#FAF9F7"
-                    stroke="#E5E5E5"
-                    strokeWidth="0.5"
-                  />
+              {/* India Label */}
+              <text
+                x="50"
+                y="65"
+                fontSize="8"
+                fill="#333"
+                fontFamily="Arial, sans-serif"
+                textAnchor="middle"
+                fontWeight="normal"
+              >
+                India
+              </text>
 
-                  {/* Vegetation Areas */}
-                  <ellipse
-                    cx="250"
-                    cy="160"
-                    rx="40"
-                    ry="30"
-                    fill="#C8E6C9"
-                    opacity="0.7"
-                  />
-                  <ellipse
-                    cx="380"
-                    cy="180"
-                    rx="45"
-                    ry="35"
-                    fill="#C8E6C9"
-                    opacity="0.8"
-                  />
-                  <ellipse
-                    cx="350"
-                    cy="250"
-                    rx="25"
-                    ry="30"
-                    fill="#C8E6C9"
-                    opacity="0.6"
-                  />
-                </svg>
+              {/* Water Bodies */}
+              <text
+                x="5"
+                y="85"
+                fontSize="4"
+                fill="#4A90E2"
+                fontFamily="Arial, sans-serif"
+              >
+                Arabian Sea
+              </text>
+              <text
+                x="75"
+                y="95"
+                fontSize="4"
+                fill="#4A90E2"
+                fontFamily="Arial, sans-serif"
+              >
+                Bay of Bengal
+              </text>
+              <text
+                x="45"
+                y="118"
+                fontSize="3"
+                fill="#666"
+                fontFamily="Arial, sans-serif"
+              >
+                Sri Lanka
+              </text>
+            </svg>
 
-                {/* Map Labels */}
-                <div className="absolute inset-0 w-full h-full pointer-events-none">
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-normal text-gray-800">
-                    India
-                  </div>
+            {/* Branch Markers */}
+            {branches.map((branch) => (
+              <div
+                key={branch.id}
+                className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform"
+                style={{
+                  left: `${branch.position.x}%`,
+                  top: `${branch.position.y}%`,
+                }}
+                onClick={() => handleMarkerClick(branch.id)}
+              >
+                {/* Pin Marker */}
+                <div className="relative">
+                  <svg
+                    width="30"
+                    height="40"
+                    viewBox="0 0 30 40"
+                    className="drop-shadow-md"
+                  >
+                    {/* Pin Shadow */}
+                    <ellipse
+                      cx="15"
+                      cy="37"
+                      rx="6"
+                      ry="2"
+                      fill="rgba(0,0,0,0.2)"
+                    />
+                    {/* Pin Shape */}
+                    <path
+                      d="M15 2C9.5 2 5 6.5 5 12C5 20 15 38 15 38S25 20 25 12C25 6.5 20.5 2 15 2Z"
+                      fill="#EA4335"
+                      stroke="#FFFFFF"
+                      strokeWidth="1.5"
+                    />
+                    {/* White Circle */}
+                    <circle cx="15" cy="12" r="7" fill="#FFFFFF" />
+                    {/* Number */}
+                    <text
+                      x="15"
+                      y="16"
+                      textAnchor="middle"
+                      fill="#EA4335"
+                      fontSize="10"
+                      fontWeight="bold"
+                      fontFamily="Arial, sans-serif"
+                    >
+                      {branch.id}
+                    </text>
+                  </svg>
                 </div>
 
-                {/* Branch Markers */}
-                {branches.map((branch) => (
-                  <div
-                    key={branch.id}
-                    className="absolute cursor-pointer hover:scale-105 transition-transform z-10"
-                    style={{
-                      left: `${branch.position.x}px`,
-                      top: `${branch.position.y}px`,
-                      transform: "translate(-50%, -100%)",
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleMarkerClick(branch.id);
-                    }}
-                  >
-                    <div className="relative">
-                      <svg
-                        width="40"
-                        height="52"
-                        viewBox="0 0 40 52"
-                        className="drop-shadow-lg"
+                {/* Branch Label */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1">
+                  <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap">
+                    {branch.name}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Info Window */}
+            {selectedMarker && (
+              <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg border border-gray-200 p-3 min-w-48 z-20">
+                {(() => {
+                  const branch = branches.find((b) => b.id === selectedMarker);
+                  return branch ? (
+                    <div>
+                      <button
+                        onClick={() => setSelectedMarker(null)}
+                        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300"
                       >
-                        <ellipse
-                          cx="20"
-                          cy="48"
-                          rx="8"
-                          ry="3"
-                          fill="rgba(0,0,0,0.2)"
-                        />
-                        <path
-                          d="M20 0C10.5 0 3 7.5 3 17c0 12.5 17 35 17 35s17-22.5 17-35C37 7.5 29.5 0 20 0z"
-                          fill="#EA4335"
-                          stroke="#FFFFFF"
-                          strokeWidth="2"
-                        />
-                        <circle cx="20" cy="17" r="10" fill="#FFFFFF" />
-                      </svg>
-                      <div
-                        className="absolute inset-0 flex items-center justify-center"
-                        style={{
-                          top: "6px",
-                          color: "#EA4335",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                        }}
-                      >
-                        {branch.id}
-                      </div>
+                        ×
+                      </button>
+                      <h3 className="font-semibold text-gray-900 mb-1">
+                        {branch.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        {branch.address}
+                      </p>
+                      <p className="text-sm text-blue-600">
+                        {branch.employees} employees present
+                      </p>
                     </div>
-                  </div>
-                ))}
-
-                {/* Info Window */}
-                {selectedMarker && (
-                  <div
-                    className="absolute z-20 bg-white rounded-lg shadow-lg border border-gray-200 p-3 min-w-48"
-                    style={{
-                      left: `${(branches.find((b) => b.id === selectedMarker)?.position.x || 0) + 20}px`,
-                      top: `${(branches.find((b) => b.id === selectedMarker)?.position.y || 0) - 60}px`,
-                    }}
-                  >
-                    {(() => {
-                      const branch = branches.find(
-                        (b) => b.id === selectedMarker,
-                      );
-                      return branch ? (
-                        <div>
-                          <button
-                            onClick={() => setSelectedMarker(null)}
-                            className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300"
-                          >
-                            ×
-                          </button>
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            {branch.name}
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-1">
-                            {branch.address}
-                          </p>
-                          <p className="text-sm text-blue-600">
-                            {branch.employees} employees present
-                          </p>
-                        </div>
-                      ) : null;
-                    })()}
-                  </div>
-                )}
+                  ) : null;
+                })()}
               </div>
+            )}
 
-              {/* Custom Map Controls */}
-              <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs text-gray-700 font-semibold shadow z-30">
-                Custom Map
-              </div>
-
-              <div className="absolute bottom-4 right-4 flex flex-col bg-white rounded shadow-lg border border-gray-200 z-30">
-                <button
-                  onClick={handleZoomIn}
-                  className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600 border-b border-gray-200"
-                >
-                  <ZoomIn className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleZoomOut}
-                  className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600"
-                >
-                  <ZoomOut className="w-4 h-4" />
-                </button>
-              </div>
+            {/* Google Logo (to match the screenshot) */}
+            <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs text-gray-700 font-semibold shadow">
+              Google
             </div>
-          )}
+          </div>
         </div>
       </CardContent>
     </Card>
