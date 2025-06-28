@@ -147,14 +147,6 @@ export default function EmployeeAttendanceCard() {
             </div>
           ))}
         </div>
-
-        {/* Footer Summary */}
-        <div className="text-center">
-          <span className="text-sm text-gray-700 font-medium">
-            WFHome <span className="text-gray-800 font-semibold">0</span>,
-            WOnHoliday <span className="text-gray-800 font-semibold">0</span>
-          </span>
-        </div>
       </CardContent>
     </Card>
   );
