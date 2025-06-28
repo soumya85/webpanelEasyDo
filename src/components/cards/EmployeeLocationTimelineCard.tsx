@@ -185,28 +185,34 @@ export default function EmployeeLocationTimelineCard() {
 
               {/* Timeline Dots */}
               <div className="flex justify-between items-center relative">
-                {timeSlots.map((slot, index) => (
-                  <div key={slot.time} className="flex flex-col items-center">
-                    <div
-                      className={cn(
-                        "rounded-full z-10 relative",
-                        slot.active
-                          ? "w-4 h-4 bg-green-500"
-                          : "w-3 h-3 bg-gray-300",
-                      )}
-                    />
-                    <span
-                      className={cn(
-                        "text-xs mt-2 font-medium whitespace-nowrap",
-                        slot.active
-                          ? "text-green-600 font-semibold"
-                          : "text-gray-500",
-                      )}
-                    >
-                      {slot.time}
-                    </span>
-                  </div>
-                ))}
+                {timeSlots.map((slot, index) => {
+                  const isSelected = selectedSlotIndex === index;
+                  const isActiveOrSelected = slot.active || isSelected;
+
+                  return (
+                    <div key={slot.time} className="flex flex-col items-center">
+                      <button
+                        onClick={() => setSelectedSlotIndex(index)}
+                        className={cn(
+                          "rounded-full z-10 relative transition-all duration-200 hover:scale-110 cursor-pointer",
+                          isActiveOrSelected
+                            ? "w-4 h-4 bg-green-500"
+                            : "w-3 h-3 bg-gray-500",
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          "text-xs mt-2 font-medium whitespace-nowrap transition-colors duration-200",
+                          isActiveOrSelected
+                            ? "text-green-600 font-semibold"
+                            : "text-gray-500",
+                        )}
+                      >
+                        {slot.time}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
