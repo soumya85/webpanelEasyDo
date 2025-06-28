@@ -29,28 +29,28 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 45, y: 18 }, // North-central India - Delhi region on the map
+      position: { x: 45, y: 30 }, // North-central India - properly positioned within India borders
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 30, y: 35 }, // Western India - Gujarat state region
+      position: { x: 35, y: 38 }, // Western India - Gujarat state region
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 82, y: 42 }, // Eastern India - West Bengal coastal area
+      position: { x: 80, y: 45 }, // Eastern India - West Bengal coastal area near Kolkata
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 75, y: 48 }, // Eastern coast - Odisha state coastline
+      position: { x: 75, y: 50 }, // Eastern coast - Odisha state coastline
       address: "Paradip, Odisha",
       employees: 18,
     },
