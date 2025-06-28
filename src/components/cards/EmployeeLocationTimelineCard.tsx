@@ -198,37 +198,19 @@ export default function EmployeeLocationTimelineCard() {
                   const slotHour = allSlots.find(
                     (as) => as.time === slot.time,
                   )?.hour;
-                  const isSelected =
-                    slotHour !== undefined && selectedHours.includes(slotHour);
-                  const isCurrentTime = slot.active;
-
-                  // Current time is ALWAYS highlighted, other times are highlighted only if selected
-                  const shouldHighlight =
-                    isCurrentTime || (!isCurrentTime && isSelected);
+                  const isSelected = selectedHour === slotHour;
 
                   return (
                     <div key={slot.time} className="flex flex-col items-center">
                       <button
                         onClick={() => {
                           if (slotHour !== undefined) {
-                            if (isCurrentTime) {
-                              // Current time can't be deselected - do nothing
-                              return;
-                            }
-                            // For non-current times, toggle selection
-                            setSelectedHours(
-                              (prev) =>
-                                prev.includes(slotHour)
-                                  ? prev.filter((hour) => hour !== slotHour) // Remove if already selected
-                                  : [...prev, slotHour], // Add if not selected
-                            );
+                            setSelectedHour(slotHour);
                           }
                         }}
                         className={cn(
-                          "rounded-full z-10 relative transition-all duration-200",
-                          !isCurrentTime && "hover:scale-110 cursor-pointer",
-                          isCurrentTime && "cursor-default", // Current time not interactive
-                          shouldHighlight
+                          "rounded-full z-10 relative transition-all duration-200 hover:scale-110 cursor-pointer",
+                          isSelected
                             ? "w-4 h-4 bg-green-500"
                             : "w-3 h-3 bg-gray-400",
                         )}
@@ -236,7 +218,7 @@ export default function EmployeeLocationTimelineCard() {
                       <span
                         className={cn(
                           "text-xs mt-2 font-medium whitespace-nowrap transition-colors duration-200",
-                          shouldHighlight
+                          isSelected
                             ? "text-green-600 font-semibold"
                             : "text-gray-500",
                         )}
