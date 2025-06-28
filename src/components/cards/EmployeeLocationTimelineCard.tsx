@@ -767,37 +767,62 @@ export default function EmployeeLocationTimelineCard() {
               </div>
             </div>
 
-            {/* Branch Markers - Google Maps Style */}
+            {/* Branch Markers - Google Maps Pointer Pin Style */}
             {branches.map((branch) => (
               <div
                 key={branch.id}
-                className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 hover:scale-105 transition-transform z-10"
+                className="absolute cursor-pointer hover:scale-105 transition-transform z-10"
                 style={{
                   left: `${branch.position.x}px`,
                   top: `${branch.position.y}px`,
+                  transform: "translate(-50%, -100%)",
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
                   handleMarkerClick(branch.id);
                 }}
               >
-                <div
-                  className="relative flex items-center justify-center"
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    backgroundColor: "#EA4335",
-                    borderRadius: "50%",
-                    border: "3px solid white",
-                    boxShadow:
-                      "0 2px 6px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2)",
-                    color: "white",
-                    fontSize: "14px",
-                    fontWeight: "700",
-                    fontFamily: "Roboto, Arial, sans-serif",
-                  }}
-                >
-                  {branch.id}
+                {/* Google Maps Pin Container */}
+                <div className="relative">
+                  {/* Pin Shape - SVG */}
+                  <svg
+                    width="40"
+                    height="52"
+                    viewBox="0 0 40 52"
+                    className="drop-shadow-lg"
+                  >
+                    {/* Pin Shadow */}
+                    <ellipse
+                      cx="20"
+                      cy="48"
+                      rx="8"
+                      ry="3"
+                      fill="rgba(0,0,0,0.2)"
+                    />
+                    {/* Main Pin Shape */}
+                    <path
+                      d="M20 0C10.5 0 3 7.5 3 17c0 12.5 17 35 17 35s17-22.5 17-35C37 7.5 29.5 0 20 0z"
+                      fill="#EA4335"
+                      stroke="#FFFFFF"
+                      strokeWidth="2"
+                    />
+                    {/* White Circle Inside */}
+                    <circle cx="20" cy="17" r="10" fill="#FFFFFF" />
+                  </svg>
+
+                  {/* Number Text */}
+                  <div
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{
+                      top: "6px",
+                      color: "#EA4335",
+                      fontSize: "14px",
+                      fontWeight: "700",
+                      fontFamily: "Roboto, Arial, sans-serif",
+                    }}
+                  >
+                    {branch.id}
+                  </div>
                 </div>
               </div>
             ))}
