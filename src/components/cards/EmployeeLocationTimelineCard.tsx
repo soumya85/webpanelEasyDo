@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 export default function EmployeeLocationTimelineCard() {
   // Timeline showing 10 AM as active (green dot) - matching the second screenshot
+  // Green bars appear from start up to the active time (10 AM)
   const timeSlots = [
     { time: "6 AM", active: false, hasBar: true },
     { time: "7 AM", active: false, hasBar: true },
@@ -77,22 +78,14 @@ export default function EmployeeLocationTimelineCard() {
           {/* Timeline */}
           <div className="p-4">
             <div className="relative">
-              {/* Timeline Line with segments */}
-              <div className="absolute top-3 left-6 right-6 flex">
-                {timeSlots.map((slot, index) => (
-                  <div key={index} className="flex-1 flex">
-                    <div
-                      className={cn(
-                        "h-1 flex-1",
-                        slot.hasBar ? "bg-green-500" : "bg-gray-300",
-                      )}
-                    />
-                    {index < timeSlots.length - 1 && (
-                      <div className="w-1"></div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              {/* Timeline Line - continuous line with segments */}
+              <div className="absolute top-3 left-6 right-6 h-1 bg-gray-300 rounded-full"></div>
+
+              {/* Green segments up to active time */}
+              <div
+                className="absolute top-3 left-6 h-1 bg-green-500 rounded-full"
+                style={{ width: "62.5%" }}
+              ></div>
 
               {/* Timeline Dots */}
               <div className="flex justify-between items-center relative">
@@ -100,14 +93,16 @@ export default function EmployeeLocationTimelineCard() {
                   <div key={slot.time} className="flex flex-col items-center">
                     <div
                       className={cn(
-                        "w-5 h-5 rounded-full border-2 border-white shadow-sm z-10",
+                        "w-4 h-4 rounded-full shadow-sm z-10",
                         slot.active ? "bg-green-500" : "bg-gray-300",
                       )}
                     />
                     <span
                       className={cn(
                         "text-xs mt-2 font-medium whitespace-nowrap",
-                        slot.active ? "text-green-600" : "text-gray-500",
+                        slot.active
+                          ? "text-green-600 font-semibold"
+                          : "text-gray-500",
                       )}
                     >
                       {slot.time}
