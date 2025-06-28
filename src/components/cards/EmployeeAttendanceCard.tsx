@@ -271,24 +271,39 @@ export default function EmployeeAttendanceCard() {
           </button>
         </div>
 
-        {/* Status Tabs */}
-        <div className="flex items-center gap-2 mb-4 overflow-x-auto">
-          <div className="flex items-center gap-1 px-3 py-1 bg-blue-100 rounded-full whitespace-nowrap">
-            <span className="text-sm font-medium text-blue-700">Present</span>
-            <span className="text-sm font-bold text-blue-700">79</span>
-          </div>
-          <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full whitespace-nowrap">
-            <span className="text-sm font-medium text-gray-600">Absent</span>
-            <span className="text-sm font-bold text-gray-600">24</span>
-          </div>
-          <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full whitespace-nowrap">
-            <span className="text-sm font-medium text-gray-600">Half Day</span>
-            <span className="text-sm font-bold text-gray-600">0</span>
-          </div>
-          <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full whitespace-nowrap">
-            <span className="text-sm font-medium text-gray-600">Late</span>
-            <span className="text-sm font-bold text-gray-600">2</span>
-          </div>
+        {/* Filter Dropdown */}
+        <div className="relative mb-4">
+          <button
+            onClick={() => setFilterDropdownOpen(!filterDropdownOpen)}
+            className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+          >
+            <span>{selectedFilter}</span>
+            <ChevronDown className="w-4 h-4 text-gray-600" />
+          </button>
+
+          {filterDropdownOpen && (
+            <div className="absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+              {filterOptions.map((option, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setSelectedFilter(option.name);
+                    setFilterDropdownOpen(false);
+                  }}
+                  className="flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                >
+                  <span className="text-sm font-medium text-gray-700">
+                    {option.name}
+                  </span>
+                  {option.count !== null && (
+                    <span className="text-sm font-bold text-gray-600">
+                      {option.count}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Employee Details Card */}
