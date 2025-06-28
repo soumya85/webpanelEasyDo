@@ -44,6 +44,16 @@ export default function SamplePage3() {
       title: "Team",
       id: "team",
     },
+    {
+      icon: <img src="/reports-icon.png" alt="Analytics" />,
+      title: "Analytics",
+      id: "analytics",
+    },
+    {
+      icon: <img src="/statistics-icon.png" alt="Settings" />,
+      title: "Settings",
+      id: "settings",
+    },
   ];
 
   return (
