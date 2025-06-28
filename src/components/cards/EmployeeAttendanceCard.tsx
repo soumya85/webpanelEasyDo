@@ -1,6 +1,7 @@
-import { User, Search, ChevronDown } from "lucide-react";
+import { User, Search, ChevronDown, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 export default function EmployeeAttendanceCard() {
   const attendanceData = [
