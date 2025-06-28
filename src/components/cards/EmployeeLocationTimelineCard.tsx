@@ -159,8 +159,17 @@ export default function EmployeeLocationTimelineCard() {
               <div className="absolute top-2 left-0 right-0 flex">
                 {timeSlots.slice(0, -1).map((slot, index) => {
                   const activeIndex = timeSlots.findIndex((s) => s.active);
-                  const shouldShowGreen =
-                    activeIndex >= 0 && index < activeIndex;
+                  const selectedIndex =
+                    selectedHour !== null
+                      ? timeSlots.findIndex(
+                          (s) =>
+                            allSlots.find((as) => as.time === s.time)?.hour ===
+                            selectedHour,
+                        )
+                      : -1;
+                  const maxIndex =
+                    selectedIndex >= 0 ? selectedIndex : activeIndex;
+                  const shouldShowGreen = maxIndex >= 0 && index < maxIndex;
                   const segmentWidth = `${100 / (timeSlots.length - 1)}%`;
 
                   return (
