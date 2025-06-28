@@ -191,18 +191,29 @@ export default function EmployeeLocationTimelineCard() {
               {/* Timeline Dots */}
               <div className="flex justify-between items-center relative">
                 {timeSlots.map((slot, index) => {
-                  const isSelected = selectedSlotIndex === index;
+                  const slotHour = allSlots.find(
+                    (as) => as.time === slot.time,
+                  )?.hour;
+                  const isSelected = selectedHour === slotHour;
                   const isActiveOrSelected = slot.active || isSelected;
+                  const selectedIndex =
+                    selectedHour !== null
+                      ? timeSlots.findIndex(
+                          (s) =>
+                            allSlots.find((as) => as.time === s.time)?.hour ===
+                            selectedHour,
+                        )
+                      : -1;
                   const isDisabled =
-                    selectedSlotIndex !== null && index > selectedSlotIndex;
+                    selectedIndex >= 0 && index > selectedIndex;
 
                   return (
                     <div key={slot.time} className="flex flex-col items-center">
                       <button
                         onClick={() => {
-                          if (!isDisabled) {
-                            setSelectedSlotIndex(
-                              selectedSlotIndex === index ? null : index,
+                          if (!isDisabled && slotHour !== undefined) {
+                            setSelectedHour(
+                              selectedHour === slotHour ? null : slotHour,
                             );
                           }
                         }}
