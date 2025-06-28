@@ -344,182 +344,63 @@ export default function EmployeeLocationTimelineCard() {
           </div>
         </div>
 
-        {/* Map Section */}
-        <div className="relative mt-4 h-64 bg-gradient-to-br from-green-100 via-blue-50 to-cyan-100 rounded-xl overflow-hidden border border-gray-200">
-          {/* Map content matching the screenshots */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'url(\'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cdefs%3E%3Cpattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e0e0e0" stroke-width="0.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100" height="100" fill="url(%23grid)" /%3E%3C/svg%3E\')',
-            }}
-          >
-            {/* Country/Region Labels */}
-            <div className="absolute top-1 left-4 text-xs font-medium text-gray-700">
-              Kyrgyzstan
-            </div>
-            <div className="absolute top-4 left-6 text-xs font-medium text-gray-700">
-              Tajikistan
-            </div>
-            <div className="absolute top-1 right-4 text-xs text-gray-600">
-              XINJIANG
-            </div>
-            <div className="absolute top-8 left-1 text-xs font-medium text-gray-700">
-              Pakistan
-            </div>
-            <div className="absolute top-12 right-4 text-xs text-gray-600">
-              TIBET
-            </div>
-            <div className="absolute top-14 right-10 text-xs text-gray-600">
-              QING
-            </div>
-            <div className="absolute bottom-16 left-4 text-xs font-medium text-gray-700">
-              Mumbai
-              <br />
-              मुंबई
-            </div>
-            <div className="absolute bottom-12 right-1 text-xs font-medium text-gray-700">
-              Myanmar
-              <br />
-              (Burma)
-            </div>
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-700">
-              Sri Lanka
-            </div>
-            <div className="absolute bottom-1 right-6 text-xs text-gray-600">
-              Andaman
-            </div>
+        {/* Google Map Section */}
+        <div className="relative mt-4 h-64 rounded-xl overflow-hidden border border-gray-200">
+          <LoadScript googleMapsApiKey="AIzaSyBrOPBk_4GdKGzp1Gt8Ps7EKz1yCj5k2TM">
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              center={center}
+              zoom={5}
+              options={mapOptions}
+              onClick={handleMapClick}
+            >
+              {/* Branch Markers */}
+              {branches.map((branch) => (
+                <Marker
+                  key={branch.id}
+                  position={branch.position}
+                  onClick={() => handleMarkerClick(branch.id)}
+                  icon={{
+                    url: `data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23EF4444' stroke='white' stroke-width='3'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='14' font-weight='bold'%3E${branch.id}%3C/text%3E%3C/svg%3E`,
+                    scaledSize: new window.google.maps.Size(40, 40),
+                    anchor: new window.google.maps.Point(20, 20),
+                  }}
+                />
+              ))}
 
-            {/* India Central Label */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-gray-800">
-              India
-            </div>
-
-            {/* State Abbreviations */}
-            <div className="absolute" style={{ top: "35%", left: "46%" }}>
-              <span className="text-xs text-gray-600">UP</span>
-            </div>
-            <div className="absolute" style={{ top: "58%", right: "25%" }}>
-              <span className="text-xs text-gray-600">OD</span>
-            </div>
-            <div className="absolute" style={{ top: "45%", right: "20%" }}>
-              <span className="text-xs text-gray-600">ML</span>
-            </div>
-            <div className="absolute" style={{ top: "42%", right: "16%" }}>
-              <span className="text-xs text-gray-600">NL</span>
-            </div>
-            <div className="absolute" style={{ top: "38%", right: "18%" }}>
-              <span className="text-xs text-gray-600">AR</span>
-            </div>
-            <div className="absolute" style={{ top: "49%", right: "10%" }}>
-              <span className="text-xs text-gray-600">MZ</span>
-            </div>
-            <div className="absolute" style={{ bottom: "28%", left: "12%" }}>
-              <span className="text-xs text-gray-600">KA</span>
-            </div>
-            <div className="absolute" style={{ bottom: "22%", left: "16%" }}>
-              <span className="text-xs text-gray-600">TN</span>
-            </div>
-            <div className="absolute" style={{ bottom: "24%", left: "20%" }}>
-              <span className="text-xs text-gray-600">KL</span>
-            </div>
-            <div className="absolute" style={{ bottom: "32%", left: "14%" }}>
-              <span className="text-xs text-gray-600">GA</span>
-            </div>
-            <div className="absolute" style={{ bottom: "28%", left: "32%" }}>
-              <span className="text-xs text-gray-600">AP</span>
-            </div>
-
-            {/* Branch Labels */}
-            <div className="absolute" style={{ top: "28%", left: "40%" }}>
-              <span className="text-xs font-medium text-gray-800">
-                New Delhi
-                <br />
-                Branch
-              </span>
-            </div>
-            <div className="absolute" style={{ top: "42%", left: "18%" }}>
-              <span className="text-xs font-medium text-gray-800">
-                Ahmedabad
-                <br />
-                office Branch
-              </span>
-            </div>
-            <div className="absolute" style={{ top: "52%", right: "20%" }}>
-              <span className="text-xs font-medium text-gray-800">
-                Haldia Branch
-              </span>
-            </div>
-            <div className="absolute" style={{ top: "48%", right: "16%" }}>
-              <span className="text-xs font-medium text-gray-800">
-                Head office
-                <br />
-                Branch
-              </span>
-            </div>
-            <div className="absolute" style={{ bottom: "32%", right: "18%" }}>
-              <span className="text-xs font-medium text-gray-800">
-                Paradip Branch
-              </span>
-            </div>
-            <div className="absolute" style={{ bottom: "28%", left: "38%" }}>
-              <span className="text-xs font-medium text-gray-800">
-                Hyderabad
-                <br />
-                హైదరాబాద్
-              </span>
-            </div>
-
-            {/* Nepal label */}
-            <div className="absolute" style={{ top: "35%", right: "25%" }}>
-              <span className="text-xs font-medium text-gray-700">Nepal</span>
-            </div>
-
-            {/* Bay of Bengal label */}
-            <div className="absolute" style={{ bottom: "20%", right: "28%" }}>
-              <span className="text-xs text-gray-600">Bay of Bengal</span>
-            </div>
-          </div>
-
-          {/* Location Markers - matching the exact positions and numbers from screenshots */}
-          <div
-            className="absolute w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold border-3 border-white shadow-lg"
-            style={{ top: "22%", left: "40%" }}
-          >
-            3
-          </div>
-          <div
-            className="absolute w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold border-3 border-white shadow-lg"
-            style={{ top: "38%", left: "17%" }}
-          >
-            0
-          </div>
-          <div
-            className="absolute w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold border-3 border-white shadow-lg"
-            style={{ top: "45%", right: "26%" }}
-          >
-            12
-          </div>
-          <div
-            className="absolute w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold border-3 border-white shadow-lg"
-            style={{ top: "42%", right: "22%" }}
-          >
-            10
-          </div>
-
-          {/* Google Logo */}
-          <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs text-gray-700 font-semibold shadow">
-            Google
-          </div>
-
-          {/* Location Pin Control */}
-          <div className="absolute bottom-3 right-3">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-200">
-              <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-              </div>
-            </div>
-          </div>
+              {/* Info Windows */}
+              {selectedMarker && (
+                <InfoWindow
+                  position={
+                    branches.find((b) => b.id === selectedMarker)?.position ||
+                    center
+                  }
+                  onCloseClick={() => setSelectedMarker(null)}
+                >
+                  <div className="p-2 max-w-xs">
+                    {(() => {
+                      const branch = branches.find(
+                        (b) => b.id === selectedMarker,
+                      );
+                      return branch ? (
+                        <div>
+                          <h3 className="font-semibold text-gray-900 mb-1">
+                            {branch.name}
+                          </h3>
+                          <p className="text-sm text-gray-600 mb-1">
+                            {branch.address}
+                          </p>
+                          <p className="text-sm text-blue-600">
+                            {branch.employees} employees present
+                          </p>
+                        </div>
+                      ) : null;
+                    })()}
+                  </div>
+                </InfoWindow>
+              )}
+            </GoogleMap>
+          </LoadScript>
         </div>
       </CardContent>
     </Card>
