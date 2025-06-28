@@ -127,8 +127,8 @@ export default function EmployeeAttendanceCard() {
         {/* Footer Summary */}
         <div className="text-center">
           <span className="text-sm text-gray-700 font-medium">
-            Total Days <span className="text-gray-800 font-semibold">21</span>,
-            Working Days <span className="text-gray-800 font-semibold">17</span>
+            WFHome <span className="text-gray-800 font-semibold">0</span>,
+            WOnHoliday <span className="text-gray-800 font-semibold">0</span>
           </span>
         </div>
       </CardContent>
