@@ -12,6 +12,7 @@ import {
   HelpCircle,
   Zap,
   Star,
+  Layers,
 } from "lucide-react";
 import { type TranslationKey } from "@/data/translations";
 
@@ -95,5 +96,11 @@ export const navigationItems: NavigationItem[] = [
     labelKey: "sample2",
     icon: Star,
     href: "/todays-schedule",
+  },
+  {
+    id: "sample-page-3",
+    labelKey: "samplePage3",
+    icon: Layers,
+    href: "/sample-page-3",
   },
 ];
