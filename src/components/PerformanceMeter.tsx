@@ -270,7 +270,7 @@ export default function PerformanceMeter() {
               {/* Map Background */}
               <div className="absolute inset-0">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F8583191a47d44dd9bdafe859141fb375%2F7583651bfe0c474185fe766e3678b252?format=webp&width=800"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F8583191a47d44dd9bdafe859141fb375%2F2c2d38107bb34d34afb93eee2cd7252a?format=webp&width=800"
                   alt="India Map"
                   className="w-full h-full object-cover"
                 />
@@ -279,10 +279,10 @@ export default function PerformanceMeter() {
                 <div className="absolute inset-0">
                   {branches.map((branch, index) => {
                     const positions = [
-                      { x: "42%", y: "35%", name: "New Delhi\nBranch" }, // New Delhi
-                      { x: "25%", y: "55%", name: "Ahmedabad\noffice Branch" }, // Ahmedabad
-                      { x: "58%", y: "70%", name: "Halasuru Branch" }, // Halasuru
-                      { x: "62%", y: "62%", name: "Paradip Branch" }, // Paradip
+                      { x: "42%", y: "28%", name: "New Delhi\nBranch" }, // New Delhi - top center
+                      { x: "22%", y: "50%", name: "Ahmedabad\noffice Branch" }, // Ahmedabad - left
+                      { x: "58%", y: "65%", name: "Halasuru Branch\noffice" }, // Halasuru - bottom right
+                      { x: "62%", y: "55%", name: "Paradip Branch" }, // Paradip - right center
                     ];
 
                     return (
@@ -294,16 +294,20 @@ export default function PerformanceMeter() {
                           top: positions[index].y,
                         }}
                       >
-                        {/* Pin Marker */}
+                        {/* Pin Marker with Google Maps Style */}
                         <div className="relative">
-                          <div className="w-12 h-12 bg-red-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
-                            <span className="text-white font-bold text-lg">
+                          {/* Pin Drop Shadow */}
+                          <div className="absolute top-1 left-1 w-10 h-10 bg-black opacity-20 rounded-full blur-sm"></div>
+
+                          {/* Main Pin */}
+                          <div className="relative w-10 h-10 bg-red-500 rounded-full border-3 border-white shadow-lg flex items-center justify-center">
+                            <span className="text-white font-bold text-sm">
                               {branch.count}
                             </span>
                           </div>
 
-                          {/* Branch Name Label */}
-                          <div className="absolute top-14 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded shadow-md border text-xs font-medium text-gray-800 whitespace-pre-line text-center min-w-max">
+                          {/* Branch Name Label - Positioned cleanly below */}
+                          <div className="absolute top-12 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded shadow-sm border text-xs font-medium text-gray-800 whitespace-pre-line text-center max-w-20">
                             {positions[index].name}
                           </div>
                         </div>
@@ -314,63 +318,17 @@ export default function PerformanceMeter() {
               </div>
 
               {/* Location Button (Bottom Left) */}
-              <button className="absolute bottom-4 left-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border">
-                <svg
-                  className="w-5 h-5 text-blue-600"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <circle cx="12" cy="12" r="3" fill="currentColor" />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="8"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="12"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                  />
-                </svg>
+              <button className="absolute bottom-3 left-3 w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center border">
+                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                </div>
               </button>
 
               {/* Google Logo (Bottom Right) */}
-              <div className="absolute bottom-4 right-4">
-                <svg
-                  width="66"
-                  height="26"
-                  viewBox="0 0 66 26"
-                  className="bg-white px-1 rounded"
-                >
-                  <g fill="none" fillRule="evenodd">
-                    <path
-                      d="M9.5 14.5v-3h8.5c.1.5.1 1.1.1 1.8 0 5.7-3.8 9.7-8.6 9.7-5 0-9-4-9-9s4-9 9-9c2.4 0 4.4.9 5.9 2.3L13 10.7c-.8-.8-2-1.4-3.5-1.4-2.9 0-5.2 2.4-5.2 5.2s2.3 5.2 5.2 5.2c3.3 0 4.6-2.4 4.8-3.6H9.5v-1.6z"
-                      fill="#4285F4"
-                    />
-                    <path
-                      d="M25 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
-                      fill="#EA4335"
-                    />
-                    <path
-                      d="M38.5 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
-                      fill="#FBBC05"
-                    />
-                    <path
-                      d="M52 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
-                      fill="#34A853"
-                    />
-                    <path
-                      d="M65.5 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
-                      fill="#EA4335"
-                    />
-                  </g>
-                </svg>
+              <div className="absolute bottom-3 right-3 bg-white px-2 py-1 rounded shadow-sm">
+                <span className="text-xs font-medium text-gray-700">
+                  Google
+                </span>
               </div>
             </div>
           </div>
