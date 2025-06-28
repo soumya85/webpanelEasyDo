@@ -75,10 +75,16 @@ export default function PerformanceMeter() {
     return timeData[time] || { total: 29, branches: [3, 0, 12, 10] };
   };
 
+  // Handle time selection
+  const handleTimeSelect = (time: string) => {
+    setCurrentTime(time);
+  };
+
+  // Get current data based on selected time - this will re-calculate when currentTime changes
   const currentData = getDataForTime(currentTime);
   const totalEmployees = currentData.total;
 
-  // Sample branch data with dynamic counts
+  // Sample branch data with dynamic counts - this will update when currentData changes
   const branches = [
     {
       name: "New Delhi Branch",
@@ -105,10 +111,6 @@ export default function PerformanceMeter() {
       lng: 86.7,
     },
   ];
-
-  const handleTimeSelect = (time: string) => {
-    setCurrentTime(time);
-  };
 
   const getCurrentDate = () => {
     const today = new Date();
