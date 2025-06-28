@@ -305,7 +305,7 @@ export default function EmployeeAttendanceCard() {
           </button>
 
           {filterDropdownOpen && (
-            <div className="absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+            <div className="absolute left-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
               {filterOptions.map((option, index) => (
                 <div
                   key={index}
