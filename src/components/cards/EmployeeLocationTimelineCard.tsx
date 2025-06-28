@@ -50,7 +50,7 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 65, y: 52 }, // Odisha coast - south of Kolkata on eastern coast
+      position: { x: 70, y: 46 }, // Near Kolkata area - moved closer to Kolkata position
       address: "Paradip, Odisha",
       employees: 18,
     },
