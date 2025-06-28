@@ -296,7 +296,7 @@ export default function EmployeeAttendanceCard() {
         </div>
 
         {/* Filter Dropdown */}
-        <div className="relative mb-4">
+        <div className="relative mb-4" ref={filterDropdownRef}>
           <button
             onClick={() => setFilterDropdownOpen(!filterDropdownOpen)}
             className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
