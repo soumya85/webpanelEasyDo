@@ -407,7 +407,7 @@ export default function EmployeeLocationTimelineCard() {
                     <div>
                       <button
                         onClick={() => setSelectedMarker(null)}
-                        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300"
+                        className="absolute -top-1 -right-1 w-5 h-5 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300 text-sm"
                       >
                         ×
                       </button>
