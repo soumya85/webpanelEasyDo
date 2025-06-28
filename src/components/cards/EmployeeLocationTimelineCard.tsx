@@ -401,7 +401,7 @@ export default function EmployeeLocationTimelineCard() {
                       y="32"
                       textAnchor="middle"
                       fill="#EA4335"
-                      fontSize="18"
+                      fontSize="14"
                       fontWeight="bold"
                       fontFamily="system-ui, sans-serif"
                     >
