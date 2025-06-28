@@ -29,14 +29,14 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 38, y: 22 }, // Northern India - positioned where New Delhi actually is
+      position: { x: 37, y: 28 }, // Northern India - positioned where New Delhi actually is
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 25, y: 42 }, // Far Western India - Gujarat state, near Mumbai region
+      position: { x: 18, y: 42 }, // Far Western India - Gujarat state, near Mumbai region
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
