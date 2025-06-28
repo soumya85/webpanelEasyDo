@@ -325,49 +325,49 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Classic Google Maps pin shape */}
+                {/* Classic Google Maps pin shape - larger size */}
                 <div className="relative">
                   <svg
-                    width="24"
-                    height="32"
-                    viewBox="0 0 24 32"
+                    width="36"
+                    height="48"
+                    viewBox="0 0 36 48"
                     className="drop-shadow-lg"
                   >
                     {/* Pin shadow */}
                     <ellipse
-                      cx="12"
-                      cy="29"
-                      rx="2"
-                      ry="1"
+                      cx="18"
+                      cy="44"
+                      rx="3"
+                      ry="1.5"
                       fill="rgba(0,0,0,0.3)"
                     />
 
                     {/* Classic pin shape - teardrop */}
                     <path
-                      d="M12 3 C18.075 3 23 7.925 23 14 C23 20.075 12 28 12 28 C12 28 1 20.075 1 14 C1 7.925 5.925 3 12 3 Z"
+                      d="M18 4 C27.11 4 34.5 11.39 34.5 20.5 C34.5 29.61 18 42 18 42 C18 42 1.5 29.61 1.5 20.5 C1.5 11.39 8.89 4 18 4 Z"
                       fill="#EA4335"
                     />
 
                     {/* White center circle */}
-                    <circle cx="12" cy="14" r="7" fill="white" />
+                    <circle cx="18" cy="20.5" r="10.5" fill="white" />
 
                     {/* Red inner border */}
                     <circle
-                      cx="12"
-                      cy="14"
-                      r="7"
+                      cx="18"
+                      cy="20.5"
+                      r="10.5"
                       fill="none"
                       stroke="#EA4335"
-                      strokeWidth="2"
+                      strokeWidth="3"
                     />
 
                     {/* Number text */}
                     <text
-                      x="12"
-                      y="18"
+                      x="18"
+                      y="26"
                       textAnchor="middle"
                       fill="#EA4335"
-                      fontSize="11"
+                      fontSize="16"
                       fontWeight="bold"
                       fontFamily="system-ui, sans-serif"
                     >
