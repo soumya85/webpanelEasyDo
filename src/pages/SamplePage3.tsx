@@ -102,21 +102,6 @@ export default function SamplePage3() {
               <AttendanceSummary />
             </div>
           </div>
-
-          {/* Three columns layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="min-h-[200px] lg:min-h-[220px]">
-              <WagesSummary />
-            </div>
-            <div className="min-h-[200px] lg:min-h-[220px]">
-              <LeaveBalance />
-            </div>
-            <div className="min-h-[200px] lg:min-h-[220px]">
-              <UpcomingHolidays
-                onViewDetails={() => setIsHolidayModalOpen(true)}
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
