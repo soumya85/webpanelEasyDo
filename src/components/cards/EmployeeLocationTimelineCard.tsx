@@ -389,15 +389,9 @@ export default function EmployeeLocationTimelineCard() {
                   </svg>
                 </div>
 
-                {/* Branch Label - Beside the marker */}
-                <div
-                  className={`absolute top-1/2 transform -translate-y-1/2 ${
-                    branch.position.x > 70
-                      ? "right-full mr-2"
-                      : "left-full ml-2"
-                  }`}
-                >
-                  <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap">
+                {/* Branch Label - Below the marker */}
+                <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap text-center">
                     {branch.name}
                   </div>
                 </div>
