@@ -241,7 +241,7 @@ export default function EmployeeAttendanceCard() {
               className="w-full pl-10 pr-4 py-2 text-sm border border-gray-400 rounded-lg bg-gray-100 text-gray-700 placeholder-gray-700 focus:outline-none focus:border-gray-600"
             />
           </div>
-          <div className="relative">
+          <div className="relative" ref={branchDropdownRef}>
             <button
               onClick={() => setBranchDropdownOpen(!branchDropdownOpen)}
               className="flex items-center gap-2 bg-white border-0 text-blue-600 text-sm font-medium px-3 py-2 rounded-lg focus:outline-none cursor-pointer"
