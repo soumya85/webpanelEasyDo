@@ -304,91 +304,157 @@ export default function EmployeeLocationTimelineCard() {
           </div>
         </div>
 
-        {/* India Map */}
-        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200 bg-[#A8D3E0]">
+        {/* Realistic Google Maps Style Map */}
+        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200">
           <div className="relative w-full h-full">
-            {/* India Map SVG */}
+            {/* Realistic Terrain Map SVG */}
             <svg
               viewBox="0 0 100 120"
               className="absolute inset-0 w-full h-full"
               preserveAspectRatio="xMidYMid meet"
             >
-              {/* Ocean/Water Background */}
-              <rect width="100" height="120" fill="#A8D3E0" />
+              {/* Ocean/Water Background - Realistic Blue */}
+              <rect width="100" height="120" fill="#9BB5CE" />
 
-              {/* Neighboring Countries - Light Gray */}
+              {/* Gradient Definitions for Realistic Terrain */}
+              <defs>
+                <linearGradient
+                  id="mountainGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#F5F1E8" />
+                  <stop offset="50%" stopColor="#E8E0D3" />
+                  <stop offset="100%" stopColor="#D4C4B0" />
+                </linearGradient>
+                <linearGradient
+                  id="plainGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#E8F2E8" />
+                  <stop offset="50%" stopColor="#D4E6D4" />
+                  <stop offset="100%" stopColor="#C2D9C2" />
+                </linearGradient>
+                <linearGradient
+                  id="coastGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#F0F8F0" />
+                  <stop offset="100%" stopColor="#E0F0E0" />
+                </linearGradient>
+              </defs>
+
+              {/* Neighboring Countries - Realistic Terrain Colors */}
               <path
                 d="M15 25 L35 20 L45 25 L40 35 L30 40 L20 35 Z"
-                fill="#F5F5F5"
-                stroke="#E0E0E0"
+                fill="#F5F1E8"
+                stroke="#D0C0A8"
                 strokeWidth="0.2"
               />
 
-              {/* Pakistan */}
+              {/* Pakistan - Desert/Mountainous terrain */}
               <path
                 d="M10 30 L25 28 L30 35 L25 45 L15 50 L8 45 Z"
-                fill="#F5F5F5"
-                stroke="#E0E0E0"
+                fill="url(#mountainGradient)"
+                stroke="#D0C0A8"
                 strokeWidth="0.2"
               />
 
-              {/* Accurate India Map Shape */}
+              {/* Main India Land Mass - Varied Terrain */}
               <path
                 d="M38 28 C42 22 50 20 58 19 C66 18 72 20 78 24 C84 28 88 34 90 40 C92 46 93 52 94 58 C95 64 94 70 93 76 C91 82 88 87 84 91 C80 95 75 98 70 100 C65 102 60 103 55 103.5 C52 104 49 103.5 47 102 C45 100 43 97 42 94 C41 90 40.5 86 40 82 C39.5 78 39 74 38.5 70 C38 66 37.5 62 37 58 C36.5 54 36 50 35.5 46 C35 42 34.5 38 34 34 C33.5 32 33 30 32 28 C30 26 28 28 26 30 C24 32 22 36 21 40 C20 44 19.5 48 19 52 C18.5 56 19 60 20 64 C21 68 23 72 25 76 C27 80 30 84 33 87 C36 90 40 93 44 95 C46 96 48 97 49 99 C50 101 49.5 103 47 103 Z"
-                fill="#E8F5E8"
-                stroke="#B8D4B9"
+                fill="url(#plainGradient)"
+                stroke="#B0C8B0"
                 strokeWidth="0.3"
               />
 
-              {/* Detailed coastline features */}
-              {/* Western coastline (Gujarat/Maharashtra) */}
+              {/* Terrain Variation - Mountainous Northern Regions */}
+              <path
+                d="M38 28 C45 25 55 22 65 24 C70 25 75 27 78 30 C76 32 72 34 68 35 C62 36 55 37 48 38 C42 36 40 32 38 28"
+                fill="#E8E0D3"
+                stroke="#D0C0A8"
+                strokeWidth="0.1"
+              />
+
+              {/* Western Ghats */}
+              <path
+                d="M25 55 C27 60 29 65 31 70 C33 75 35 80 37 85 C35 86 33 84 31 82 C29 78 27 72 25 66 C24 61 24 58 25 55"
+                fill="#D4C4B0"
+                stroke="#C0B098"
+                strokeWidth="0.1"
+              />
+
+              {/* Eastern Ghats */}
+              <path
+                d="M75 50 C77 55 79 60 81 65 C83 70 85 75 85 80 C83 81 81 79 79 77 C77 73 75 68 73 63 C72 58 72 54 75 50"
+                fill="#D4C4B0"
+                stroke="#C0B098"
+                strokeWidth="0.1"
+              />
+
+              {/* Deccan Plateau */}
+              <ellipse
+                cx="55"
+                cy="75"
+                rx="15"
+                ry="12"
+                fill="#E0D4C0"
+                stroke="#C8BCA8"
+                strokeWidth="0.1"
+                opacity="0.6"
+              />
+
+              {/* Indo-Gangetic Plain */}
+              <ellipse
+                cx="50"
+                cy="45"
+                rx="20"
+                ry="8"
+                fill="#E8F2E8"
+                stroke="#D0E4D0"
+                strokeWidth="0.1"
+                opacity="0.7"
+              />
+
+              {/* Coastal regions */}
               <path
                 d="M21 52 C18 50 16 53 17 56 C18 59 21 60 24 58 C26 56 25 53 23 52"
-                fill="#E8F5E8"
-                stroke="#B8D4B9"
+                fill="url(#coastGradient)"
+                stroke="#C8E0C8"
                 strokeWidth="0.2"
               />
 
-              {/* Eastern coastline (West Bengal/Odisha) */}
               <path
                 d="M88 38 C90 36 92 39 91 42 C90 45 87 46 84 44 C82 42 84 39 86 38"
-                fill="#E8F5E8"
-                stroke="#B8D4B9"
+                fill="url(#coastGradient)"
+                stroke="#C8E0C8"
                 strokeWidth="0.2"
               />
 
-              {/* Southern peninsula detail */}
+              {/* River Systems - Ganges */}
               <path
-                d="M47 102 C45 104 46 106 48 107 C50 106 51 104 49 102 C48 101 47 101 47 102"
-                fill="#E8F5E8"
-                stroke="#B8D4B9"
-                strokeWidth="0.2"
+                d="M75 35 Q65 40 55 42 Q45 44 35 46"
+                fill="none"
+                stroke="#9BB5CE"
+                strokeWidth="0.3"
+                opacity="0.6"
               />
 
-              {/* Andaman and Nicobar Islands */}
-              <circle
-                cx="85"
-                cy="75"
-                r="1"
-                fill="#E8F5E8"
-                stroke="#B8D4B9"
-                strokeWidth="0.1"
-              />
-              <circle
-                cx="86"
-                cy="80"
-                r="0.8"
-                fill="#E8F5E8"
-                stroke="#B8D4B9"
-                strokeWidth="0.1"
-              />
-              <circle
-                cx="87"
-                cy="85"
-                r="0.6"
-                fill="#E8F5E8"
-                stroke="#B8D4B9"
-                strokeWidth="0.1"
+              {/* River Systems - Narmada */}
+              <path
+                d="M35 60 Q45 58 55 60"
+                fill="none"
+                stroke="#9BB5CE"
+                strokeWidth="0.2"
+                opacity="0.5"
               />
 
               {/* Sri Lanka */}
@@ -397,134 +463,210 @@ export default function EmployeeLocationTimelineCard() {
                 cy="105"
                 rx="3"
                 ry="8"
-                fill="#C8E6C9"
-                stroke="#B8D4B9"
+                fill="url(#plainGradient)"
+                stroke="#B0C8B0"
                 strokeWidth="0.2"
               />
 
-              {/* Country Labels */}
+              {/* Andaman and Nicobar Islands */}
+              <circle
+                cx="85"
+                cy="75"
+                r="1"
+                fill="url(#coastGradient)"
+                stroke="#B0C8B0"
+                strokeWidth="0.1"
+              />
+              <circle
+                cx="86"
+                cy="80"
+                r="0.8"
+                fill="url(#coastGradient)"
+                stroke="#B0C8B0"
+                strokeWidth="0.1"
+              />
+              <circle
+                cx="87"
+                cy="85"
+                r="0.6"
+                fill="url(#coastGradient)"
+                stroke="#B0C8B0"
+                strokeWidth="0.1"
+              />
+
+              {/* Country Labels - Google Maps Style */}
               <text
                 x="20"
                 y="18"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2.5"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Kyrgyzstan
               </text>
               <text
-                x="70"
+                x="68"
                 y="15"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2.5"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 XINJIANG
               </text>
               <text
                 x="8"
                 y="22"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2.5"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Tajikistan
               </text>
               <text
                 x="5"
                 y="38"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2.5"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Pakistan
               </text>
               <text
-                x="72"
-                y="22"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                x="70"
+                y="25"
+                fontSize="2"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 TIBET
               </text>
               <text
                 x="68"
                 y="35"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2.5"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Nepal
               </text>
               <text
-                x="85"
+                x="82"
                 y="45"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Bhutan
               </text>
               <text
                 x="85"
                 y="85"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2.5"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Myanmar
               </text>
               <text
                 x="85"
-                y="92"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                y="90"
+                fontSize="2"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 (Burma)
               </text>
 
-              {/* India Label */}
+              {/* India Label - Prominent */}
               <text
                 x="50"
                 y="65"
-                fontSize="8"
-                fill="#333"
-                fontFamily="Arial, sans-serif"
+                fontSize="12"
+                fill="#2C3E50"
+                fontFamily="Roboto, Arial, sans-serif"
                 textAnchor="middle"
-                fontWeight="normal"
+                fontWeight="400"
               >
                 India
               </text>
 
-              {/* Water Bodies */}
+              {/* Water Bodies Labels */}
               <text
                 x="5"
                 y="85"
-                fontSize="4"
-                fill="#4A90E2"
-                fontFamily="Arial, sans-serif"
+                fontSize="3.5"
+                fill="#1B5E96"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Arabian Sea
               </text>
               <text
-                x="75"
+                x="72"
                 y="95"
-                fontSize="4"
-                fill="#4A90E2"
-                fontFamily="Arial, sans-serif"
+                fontSize="3.5"
+                fill="#1B5E96"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Bay of Bengal
               </text>
               <text
                 x="45"
                 y="118"
-                fontSize="3"
-                fill="#666"
-                fontFamily="Arial, sans-serif"
+                fontSize="2.5"
+                fill="#5D6B75"
+                fontFamily="Roboto, Arial, sans-serif"
+                fontWeight="400"
               >
                 Sri Lanka
+              </text>
+
+              {/* Cities */}
+              <text
+                x="25"
+                y="52"
+                fontSize="2"
+                fill="#444"
+                fontFamily="Roboto, Arial, sans-serif"
+              >
+                Mumbai
+              </text>
+              <text
+                x="48"
+                y="32"
+                fontSize="2"
+                fill="#444"
+                fontFamily="Roboto, Arial, sans-serif"
+              >
+                New Delhi
+              </text>
+              <text
+                x="75"
+                y="42"
+                fontSize="2"
+                fill="#444"
+                fontFamily="Roboto, Arial, sans-serif"
+              >
+                Kolkata
+              </text>
+              <text
+                x="52"
+                y="85"
+                fontSize="2"
+                fill="#444"
+                fontFamily="Roboto, Arial, sans-serif"
+              >
+                Hyderabad
               </text>
             </svg>
 
