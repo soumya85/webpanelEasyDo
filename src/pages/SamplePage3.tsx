@@ -114,7 +114,7 @@ export default function SamplePage3() {
           <div className="min-h-[400px]">
             <EmployeeAttendanceCard />
           </div>
-          <div className="min-h-[400px]">
+          <div className="min-h-[600px]">
             <EmployeeLocationTimelineCard />
           </div>
         </div>

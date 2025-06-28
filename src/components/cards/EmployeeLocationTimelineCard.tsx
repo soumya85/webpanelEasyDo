@@ -43,14 +43,14 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 48, y: 65 }, // Moved westward to be on land in southern India
+      position: { x: 50, y: 45 }, // Positioned near Kolkata in West Bengal
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 46, y: 68 }, // Moved westward to be on land in southern India
+      position: { x: 45, y: 60 }, // Positioned on eastern coast of India, in Odisha
       address: "Paradip, Odisha",
       employees: 18,
     },
@@ -318,7 +318,7 @@ export default function EmployeeLocationTimelineCard() {
         </div>
 
         {/* Realistic Google Maps Terrain Style Map */}
-        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200">
+        <div className="relative flex-1 min-h-[500px] rounded-xl overflow-hidden border border-gray-200">
           <div className="relative w-full h-full">
             {/* Background Map Image */}
             <img
@@ -390,7 +390,7 @@ export default function EmployeeLocationTimelineCard() {
                 </div>
 
                 {/* Branch Label - Below the marker */}
-                <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2">
                   <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap text-center">
                     {branch.name}
                   </div>
@@ -407,7 +407,7 @@ export default function EmployeeLocationTimelineCard() {
                     <div>
                       <button
                         onClick={() => setSelectedMarker(null)}
-                        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300"
+                        className="absolute -top-1 -right-1 w-5 h-5 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300 text-sm"
                       >
                         ×
                       </button>
