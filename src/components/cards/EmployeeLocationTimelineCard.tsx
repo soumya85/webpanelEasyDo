@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
   const [windowOffset, setWindowOffset] = useState(0);
-  // State to track selected time slot by hour value
+  // State to track single selected time slot (current time as initial selection)
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
   // Define all possible time slots
   const allSlots = useMemo(
@@ -43,6 +43,11 @@ export default function EmployeeLocationTimelineCard() {
   const { timeSlots, currentHour, canGoPrevious, canGoNext } = useMemo(() => {
     const now = new Date();
     const currentHour = now.getHours();
+
+    // Set current time as initial selection if no selection exists
+    if (selectedHour === null) {
+      setSelectedHour(currentHour);
+    }
 
     // Find the current active hour slot
     const activeSlotIndex = allSlots.findIndex(
@@ -158,7 +163,6 @@ export default function EmployeeLocationTimelineCard() {
               {/* Timeline Active Segments */}
               <div className="absolute top-2 left-0 right-0 flex">
                 {timeSlots.slice(0, -1).map((slot, index) => {
-                  const activeIndex = timeSlots.findIndex((s) => s.active);
                   const selectedIndex =
                     selectedHour !== null
                       ? timeSlots.findIndex(
@@ -167,9 +171,9 @@ export default function EmployeeLocationTimelineCard() {
                             selectedHour,
                         )
                       : -1;
-                  const maxIndex =
-                    selectedIndex >= 0 ? selectedIndex : activeIndex;
-                  const shouldShowGreen = maxIndex >= 0 && index < maxIndex;
+
+                  const shouldShowGreen =
+                    selectedIndex >= 0 && index < selectedIndex;
                   const segmentWidth = `${100 / (timeSlots.length - 1)}%`;
 
                   return (
@@ -195,34 +199,18 @@ export default function EmployeeLocationTimelineCard() {
                     (as) => as.time === slot.time,
                   )?.hour;
                   const isSelected = selectedHour === slotHour;
-                  const isActiveOrSelected = slot.active || isSelected;
-                  const selectedIndex =
-                    selectedHour !== null
-                      ? timeSlots.findIndex(
-                          (s) =>
-                            allSlots.find((as) => as.time === s.time)?.hour ===
-                            selectedHour,
-                        )
-                      : -1;
-                  const isDisabled =
-                    selectedIndex >= 0 && index > selectedIndex;
 
                   return (
                     <div key={slot.time} className="flex flex-col items-center">
                       <button
                         onClick={() => {
-                          if (!isDisabled && slotHour !== undefined) {
-                            setSelectedHour(
-                              selectedHour === slotHour ? null : slotHour,
-                            );
+                          if (slotHour !== undefined) {
+                            setSelectedHour(slotHour);
                           }
                         }}
-                        disabled={isDisabled}
                         className={cn(
-                          "rounded-full z-10 relative transition-all duration-200",
-                          !isDisabled && "hover:scale-110 cursor-pointer",
-                          isDisabled && "cursor-not-allowed opacity-50",
-                          isActiveOrSelected
+                          "rounded-full z-10 relative transition-all duration-200 hover:scale-110 cursor-pointer",
+                          isSelected
                             ? "w-4 h-4 bg-green-500"
                             : "w-3 h-3 bg-gray-400",
                         )}
@@ -230,8 +218,7 @@ export default function EmployeeLocationTimelineCard() {
                       <span
                         className={cn(
                           "text-xs mt-2 font-medium whitespace-nowrap transition-colors duration-200",
-                          isDisabled && "opacity-50",
-                          isActiveOrSelected
+                          isSelected
                             ? "text-green-600 font-semibold"
                             : "text-gray-500",
                         )}
