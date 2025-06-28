@@ -159,25 +159,28 @@ export default function EmployeeLocationTimelineCard() {
               <div className="absolute top-2 left-0 right-0 flex">
                 {timeSlots.slice(0, -1).map((slot, index) => {
                   const activeIndex = timeSlots.findIndex((s) => s.active);
-                  const maxSelectedIndex =
-                    selectedHours.length > 0
-                      ? Math.max(
-                          ...selectedHours
-                            .map((hour) =>
-                              timeSlots.findIndex(
-                                (s) =>
-                                  allSlots.find((as) => as.time === s.time)
-                                    ?.hour === hour,
-                              ),
-                            )
-                            .filter((idx) => idx >= 0),
-                        )
+                  const selectedIndices = selectedHours
+                    .map((hour) =>
+                      timeSlots.findIndex(
+                        (s) =>
+                          allSlots.find((as) => as.time === s.time)?.hour ===
+                          hour,
+                      ),
+                    )
+                    .filter((idx) => idx >= 0);
+
+                  // Include both current time and selected times
+                  const allHighlightedIndices = [
+                    activeIndex,
+                    ...selectedIndices,
+                  ].filter((idx) => idx >= 0);
+                  const maxHighlightedIndex =
+                    allHighlightedIndices.length > 0
+                      ? Math.max(...allHighlightedIndices)
                       : -1;
-                  // Show green segments up to the highest selected time or current time
-                  const targetIndex =
-                    maxSelectedIndex >= 0 ? maxSelectedIndex : activeIndex;
+
                   const shouldShowGreen =
-                    targetIndex >= 0 && index < targetIndex;
+                    maxHighlightedIndex >= 0 && index < maxHighlightedIndex;
                   const segmentWidth = `${100 / (timeSlots.length - 1)}%`;
 
                   return (
