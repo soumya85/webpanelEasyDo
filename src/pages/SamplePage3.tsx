@@ -15,42 +15,46 @@ export default function SamplePage3() {
   // Sample card data for this page with business-focused actions
   const cardData = [
     {
-      icon: <img src="/reports-icon.png" alt="Register" />,
+      icon: <img src="/register-icon.png" alt="Register" />,
       title: "Register",
       id: "register",
     },
     {
-      icon: <img src="/statistics-icon.png" alt="Background Verification" />,
+      icon: (
+        <img src="/backgroundcheck-icon.png" alt="Background Verification" />
+      ),
       title: "Background Verification",
       id: "background-verification",
     },
     {
-      icon: <img src="/leave-icon.png" alt="Performance Review" />,
+      icon: (
+        <img src="/performamance_review-icon.png" alt="Performance Review" />
+      ),
       title: "Performance Review",
       id: "performance-review",
     },
     {
-      icon: <img src="/holiday-icon.png" alt="Branch" />,
+      icon: <img src="/branch-icon.png" alt="Branch" />,
       title: "Branch",
       id: "branch",
     },
     {
-      icon: <img src="/leave_request-icon.png" alt="Announce" />,
+      icon: <img src="/announce-icon.png" alt="Announce" />,
       title: "Announce",
       id: "announce",
     },
     {
-      icon: <img src="/OT_request-icon.png" alt="Documents" />,
+      icon: <img src="/Documents-icon.png" alt="Documents" />,
       title: "Documents",
       id: "documents",
     },
     {
-      icon: <img src="/reports-icon.png" alt="Holidays" />,
+      icon: <img src="/holiday-icon.png" alt="Holidays" />,
       title: "Holidays",
       id: "holidays",
     },
     {
-      icon: <img src="/statistics-icon.png" alt="Reports" />,
+      icon: <img src="/reports-icon.png" alt="Reports" />,
       title: "Reports",
       id: "reports",
     },
