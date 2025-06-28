@@ -4,6 +4,59 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 export default function EmployeeAttendanceCard() {
+  const [selectedBranch, setSelectedBranch] = useState("All Branches");
+  const [selectedFilter, setSelectedFilter] = useState("All");
+  const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
+  const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
+
+  const branches = [
+    {
+      name: "All Branches",
+      subtitle: "Manage/View all the branches",
+      icon: "🏢",
+    },
+    {
+      name: "Head office",
+      subtitle:
+        "104, 3rd Floor , Shyama Prasad Mukherjee Road, Hazra, Kalighat, Kalighat, Kolkata, West Bengal 700026, India",
+      icon: "🏢",
+    },
+    {
+      name: "Haldia",
+      subtitle:
+        "336G+34V, Sukanta Nagar, WARD NO-15, Haldia, West Bengal 721657, India",
+      icon: "🏢",
+    },
+    {
+      name: "Ahmedabad office",
+      subtitle: "C/142, Vishwas City 1, Sola, Ahmedabad, Gujarat 380061, India",
+      icon: "🏢",
+    },
+    {
+      name: "Paradip",
+      subtitle: "7J9X+5GG, Paradeep, Odisha 754142, India",
+      icon: "🏢",
+    },
+    {
+      name: "New Delhi",
+      subtitle:
+        "New Delhi,415, District Centre, Janakpuri, New Delhi, Delhi, 110058, India",
+      icon: "🏢",
+    },
+    { name: "Your View", subtitle: "", icon: "👁️" },
+  ];
+
+  const filterOptions = [
+    { name: "All", count: null },
+    { name: "Present", count: 79 },
+    { name: "Absent", count: 24 },
+    { name: "Half Day", count: 0 },
+    { name: "Late", count: 0 },
+    { name: "Leave", count: 0 },
+    { name: "Week off", count: 119 },
+    { name: "Holiday", count: 0 },
+  ];
+
   const attendanceData = [
     {
       label: "Present",
