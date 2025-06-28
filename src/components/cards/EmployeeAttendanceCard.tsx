@@ -156,11 +156,11 @@ export default function EmployeeAttendanceCard() {
         {/* Search and Filter Section */}
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-700" />
             <input
               type="text"
               placeholder="Search"
-              className="w-full pl-10 pr-4 py-2 text-sm border-0 rounded-lg bg-gray-100 text-gray-700 placeholder-gray-400 focus:outline-none"
+              className="w-full pl-10 pr-4 py-2 text-sm border border-gray-400 rounded-lg bg-gray-100 text-gray-700 placeholder-gray-700 focus:outline-none focus:border-gray-600"
             />
           </div>
           <div className="relative">
