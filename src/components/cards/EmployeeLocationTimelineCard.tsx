@@ -79,9 +79,10 @@ export default function EmployeeLocationTimelineCard() {
   const googleMapOptions = {
     disableDefaultUI: false,
     zoomControl: true,
-    streetViewControl: false,
+    streetViewControl: true,
     mapTypeControl: true,
     fullscreenControl: true,
+    styles: [], // Use default Google Maps styling
   };
 
   // Calculate center point of all branches for Google Maps
