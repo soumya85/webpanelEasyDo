@@ -509,7 +509,7 @@ export default function EmployeeLocationTimelineCard() {
             /* Google Maps Implementation */
             <LoadScript
               googleMapsApiKey={
-                process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "demo-key"
+                import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "demo-key"
               }
               loadingElement={
                 <div className="w-full h-full flex items-center justify-center bg-gray-100">
