@@ -167,9 +167,11 @@ export default function EmployeeLocationTimelineCard() {
                             selectedHour,
                         )
                       : -1;
-                  const maxIndex =
+                  // Show green segments up to the selected time (if any) or current time
+                  const targetIndex =
                     selectedIndex >= 0 ? selectedIndex : activeIndex;
-                  const shouldShowGreen = maxIndex >= 0 && index < maxIndex;
+                  const shouldShowGreen =
+                    targetIndex >= 0 && index < targetIndex;
                   const segmentWidth = `${100 / (timeSlots.length - 1)}%`;
 
                   return (
