@@ -21,33 +21,33 @@ export default function EmployeeLocationTimelineCard() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  // Branch locations data
+  // Branch locations data with pixel positions for custom map
   const branches = [
     {
       id: "0",
       name: "Mumbai Head Office",
-      position: { lat: 19.076, lng: 72.8777 },
+      position: { x: 160, y: 280 }, // Left side, middle-lower
       address: "Mumbai, Maharashtra",
       employees: 8,
     },
     {
       id: "1",
       name: "Hyderabad Branch",
-      position: { lat: 17.385, lng: 78.4867 },
+      position: { x: 350, y: 320 }, // Center-right, lower
       address: "Hyderabad, Telangana",
       employees: 5,
     },
     {
       id: "3",
       name: "Delhi Branch",
-      position: { lat: 28.6139, lng: 77.209 },
+      position: { x: 300, y: 180 }, // Center, upper
       address: "New Delhi",
       employees: 12,
     },
     {
       id: "10",
       name: "Bangalore Tech Hub",
-      position: { lat: 12.9716, lng: 77.5946 },
+      position: { x: 320, y: 380 }, // Center-right, bottom
       address: "Bangalore, Karnataka",
       employees: 4,
     },
