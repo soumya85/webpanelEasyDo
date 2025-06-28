@@ -14,37 +14,12 @@ export default function EmployeeLocationTimelineCard() {
   const [windowOffset, setWindowOffset] = useState(0);
   // State to track single selected time slot (current time as initial selection)
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
-  // State for Google Maps
+  // State for custom interactive map
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
-  const [isMapLoaded, setIsMapLoaded] = useState(false);
-
-  // Google Maps configuration
-  const mapContainerStyle = {
-    width: "100%",
-    height: "100%",
-  };
-
-  const center = {
-    lat: 20.5937, // Center of India
-    lng: 78.9629,
-  };
-
-  const mapOptions = {
-    zoom: 5,
-    center: center,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: false,
-    zoomControl: true,
-    gestureHandling: "cooperative" as const,
-    styles: [
-      {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }],
-      },
-    ],
-  };
+  const [zoomLevel, setZoomLevel] = useState(5);
+  const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   // Branch locations data
   const branches = [
