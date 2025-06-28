@@ -1,16 +1,7 @@
-import {
-  Search,
-  ChevronLeft,
-  ChevronRight,
-  ZoomIn,
-  ZoomOut,
-  MapPin,
-  Satellite,
-  Map as MapIcon,
-} from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState } from "react";
 
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
