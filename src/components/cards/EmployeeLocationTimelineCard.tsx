@@ -146,6 +146,29 @@ export default function EmployeeLocationTimelineCard() {
     setSelectedMarker(selectedMarker === branchId ? null : branchId);
   };
 
+  // Function to get dynamic marker number based on selected timestamp and branch
+  const getMarkerNumber = (branchId: string, hour: number | null) => {
+    if (hour === null) return branchId;
+
+    // Create different marker numbers based on time and branch
+    // Using a hash-like function to generate consistent but varying numbers
+    const baseHash = parseInt(branchId) || 0;
+    const timeMultiplier = hour || 1;
+
+    // Generate different patterns for different times
+    const patterns = [
+      (base: number, time: number) => ((base * 3 + time * 2) % 50) + 1,
+      (base: number, time: number) => ((base * 7 + time * 3) % 99) + 1,
+      (base: number, time: number) => ((base * 5 + time * 4) % 30) + 1,
+      (base: number, time: number) => ((base * 11 + time * 1) % 75) + 1,
+    ];
+
+    const branchIndex = branches.findIndex((b) => b.id === branchId);
+    const pattern = patterns[branchIndex % patterns.length];
+
+    return pattern(baseHash, timeMultiplier).toString();
+  };
+
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
       <CardContent className="p-2 flex flex-col h-full">
