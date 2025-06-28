@@ -203,20 +203,13 @@ export default function EmployeeLocationTimelineCard() {
               <span className="font-semibold text-gray-900">All Branches</span>
             </div>
             <div className="flex items-center gap-2">
-              {/* Clean person icon with raised arms */}
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-8 h-8"
+              {/* Google Material Symbol: Hail */}
+              <span
+                className="material-symbols-outlined w-8 h-8 flex items-center justify-center"
+                style={{ color: "#4766E5", fontSize: "32px" }}
               >
-                <path
-                  d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2M4 8L8 6L10 8V22H14V8L16 6L20 8L18 10L16 8L14 10V12L10 12V10L8 8L6 10L4 8Z"
-                  fill="#4766E5"
-                />
-              </svg>
+                hail
+              </span>
               {/* Green vertical bar */}
               <div className="w-0.5 h-6 bg-green-500"></div>
               <span className="text-2xl font-bold text-gray-900">29</span>
