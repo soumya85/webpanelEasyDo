@@ -130,69 +130,10 @@ export default function EmployeeLocationTimelineCard() {
     }
   };
 
-  // Custom map interaction handlers
-  const handleMarkerClick = useCallback(
-    (branchId: string) => {
-      setSelectedMarker(selectedMarker === branchId ? null : branchId);
-    },
-    [selectedMarker],
-  );
-
-  const handleMapClick = useCallback(() => {
-    setSelectedMarker(null);
-  }, []);
-
-  const handleZoomIn = useCallback(() => {
-    setZoomLevel((prev) => Math.min(prev + 1, 10));
-  }, []);
-
-  const handleZoomOut = useCallback(() => {
-    setZoomLevel((prev) => Math.max(prev - 1, 1));
-  }, []);
-
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent) => {
-      setIsDragging(true);
-      setDragStart({
-        x: e.clientX - mapPosition.x,
-        y: e.clientY - mapPosition.y,
-      });
-    },
-    [mapPosition],
-  );
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (isDragging) {
-        setMapPosition({
-          x: e.clientX - dragStart.x,
-          y: e.clientY - dragStart.y,
-        });
-      }
-    },
-    [isDragging, dragStart],
-  );
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
-
-  const handleMapTypeToggle = useCallback(() => {
-    if (mapType === "custom") {
-      // Check if Google Maps API key is available
-      if (!import.meta.env.VITE_GOOGLE_MAPS_API_KEY) {
-        alert(
-          "Google Maps API key is required. Please add VITE_GOOGLE_MAPS_API_KEY to your environment variables.",
-        );
-        return;
-      }
-      setMapType("google");
-    } else {
-      setMapType("custom");
-    }
-    // Reset selection when switching map types
-    setSelectedMarker(null);
-  }, [mapType]);
+  // Simple marker click handler
+  const handleMarkerClick = (branchId: string) => {
+    setSelectedMarker(selectedMarker === branchId ? null : branchId);
+  };
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
