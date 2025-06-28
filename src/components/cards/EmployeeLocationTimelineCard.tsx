@@ -11,12 +11,6 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useMemo, useState, useCallback } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
 
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
@@ -29,15 +23,8 @@ export default function EmployeeLocationTimelineCard() {
   const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  // Google Maps state
-  const [mapType, setMapType] = useState<"custom" | "google">("google");
-  const [googleMapType, setGoogleMapType] = useState<
-    "roadmap" | "satellite" | "hybrid" | "terrain"
-  >("terrain");
-  const [googleZoom, setGoogleZoom] = useState(5);
-  const [selectedGoogleMarker, setSelectedGoogleMarker] = useState<
-    string | null
-  >(null);
+  // Map type state - defaulting to custom since Google Maps needs API key
+  const [mapType, setMapType] = useState<"custom" | "google">("custom");
 
   // Branch locations data with both pixel positions for custom map and real coordinates for Google Maps
   const branches = [
@@ -74,27 +61,6 @@ export default function EmployeeLocationTimelineCard() {
       employees: 18,
     },
   ];
-
-  // Google Maps configuration
-  const googleMapOptions = {
-    disableDefaultUI: false,
-    zoomControl: true,
-    streetViewControl: true,
-    mapTypeControl: true,
-    fullscreenControl: true,
-    styles: [], // Use default Google Maps styling
-  };
-
-  // Calculate center point of all branches for Google Maps
-  const googleMapCenter = useMemo(() => {
-    const avgLat =
-      branches.reduce((sum, branch) => sum + branch.coordinates.lat, 0) /
-      branches.length;
-    const avgLng =
-      branches.reduce((sum, branch) => sum + branch.coordinates.lng, 0) /
-      branches.length;
-    return { lat: avgLat, lng: avgLng };
-  }, [branches]);
 
   // Define all possible time slots
   const allSlots = useMemo(
@@ -230,29 +196,22 @@ export default function EmployeeLocationTimelineCard() {
     setIsDragging(false);
   }, []);
 
-  // Google Maps handlers
-  const handleGoogleMarkerClick = useCallback(
-    (branchId: string) => {
-      setSelectedGoogleMarker(
-        selectedGoogleMarker === branchId ? null : branchId,
-      );
-    },
-    [selectedGoogleMarker],
-  );
-
   const handleMapTypeToggle = useCallback(() => {
-    setMapType(mapType === "custom" ? "google" : "custom");
+    if (mapType === "custom") {
+      // Check if Google Maps API key is available
+      if (!import.meta.env.VITE_GOOGLE_MAPS_API_KEY) {
+        alert(
+          "Google Maps API key is required. Please add VITE_GOOGLE_MAPS_API_KEY to your environment variables.",
+        );
+        return;
+      }
+      setMapType("google");
+    } else {
+      setMapType("custom");
+    }
     // Reset selection when switching map types
     setSelectedMarker(null);
-    setSelectedGoogleMarker(null);
   }, [mapType]);
-
-  const handleGoogleMapTypeChange = useCallback(
-    (type: "roadmap" | "satellite" | "hybrid" | "terrain") => {
-      setGoogleMapType(type);
-    },
-    [],
-  );
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
@@ -449,150 +408,47 @@ export default function EmployeeLocationTimelineCard() {
             >
               <MapPin className="w-4 h-4" />
               Google Maps
+              {!import.meta.env.VITE_GOOGLE_MAPS_API_KEY && (
+                <span className="text-xs bg-orange-100 text-orange-600 px-1 rounded">
+                  API key needed
+                </span>
+              )}
             </button>
           </div>
-
-          {/* Google Maps Type Controls */}
-          {mapType === "google" && (
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => handleGoogleMapTypeChange("roadmap")}
-                className={cn(
-                  "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === "roadmap"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
-                )}
-              >
-                Road
-              </button>
-              <button
-                onClick={() => handleGoogleMapTypeChange("satellite")}
-                className={cn(
-                  "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === "satellite"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
-                )}
-              >
-                <Satellite className="w-3 h-3" />
-              </button>
-              <button
-                onClick={() => handleGoogleMapTypeChange("hybrid")}
-                className={cn(
-                  "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === "hybrid"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
-                )}
-              >
-                Hybrid
-              </button>
-              <button
-                onClick={() => handleGoogleMapTypeChange("terrain")}
-                className={cn(
-                  "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === "terrain"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
-                )}
-              >
-                Terrain
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Maps Container */}
         <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200">
           {mapType === "google" ? (
-            /* Google Maps Implementation */
-            import.meta.env.VITE_GOOGLE_MAPS_API_KEY ? (
-              <LoadScript
-                googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
-                loadingElement={
-                  <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                    <div className="text-center">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
-                      <p className="text-sm text-gray-600">
-                        Loading Google Maps...
-                      </p>
-                    </div>
-                  </div>
-                }
-              >
-              <GoogleMap
-                mapContainerStyle={{ width: "100%", height: "100%" }}
-                center={googleMapCenter}
-                zoom={googleZoom}
-                options={{
-                  ...googleMapOptions,
-                  mapTypeId: googleMapType,
-                }}
-                onZoomChanged={() => {
-                  // Handle zoom changes if needed
-                }}
-              >
-                {/* Branch Markers */}
-                {branches.map((branch) => (
-                  <div key={branch.id}>
-                    <Marker
-                      position={branch.coordinates}
-                      onClick={() => handleGoogleMarkerClick(branch.id)}
-                      icon={{
-                        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-                          <svg width="32" height="48" viewBox="0 0 32 48" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
-                              </filter>
-                            </defs>
-                            <path d="M16 0C7.163 0 0 7.163 0 16C0 28 16 48 16 48S32 28 32 16C32 7.163 24.837 0 16 0Z" fill="#EA4335" filter="url(#shadow)"/>
-                            <circle cx="16" cy="16" r="11" fill="#FFFFFF"/>
-                            <circle cx="16" cy="16" r="10" fill="#FFFFFF" stroke="#EA4335" stroke-width="0.5"/>
-                            <text x="16" y="21" text-anchor="middle" fill="#EA4335" font-size="12" font-weight="bold" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
-                          </svg>
-                        `),
-                        scaledSize: { width: 32, height: 48 },
-                        anchor: { x: 16, y: 48 },
-                      }}
-                    />
-                  </div>
-                ))}
-
-                {/* Info Window */}
-                {selectedGoogleMarker && (
-                  <InfoWindow
-                    position={
-                      branches.find((b) => b.id === selectedGoogleMarker)
-                        ?.coordinates
-                    }
-                    onCloseClick={() => setSelectedGoogleMarker(null)}
-                  >
-                    <div className="p-2">
-                      {(() => {
-                        const branch = branches.find(
-                          (b) => b.id === selectedGoogleMarker,
-                        );
-                        return branch ? (
-                          <div>
-                            <h3 className="font-semibold text-gray-900 mb-1">
-                              {branch.name}
-                            </h3>
-                            <p className="text-sm text-gray-600 mb-1">
-                              {branch.address}
-                            </p>
-                            <p className="text-sm text-blue-600">
-                              {branch.employees} employees present
-                            </p>
-                          </div>
-                        ) : null;
-                      })()}
-                    </div>
-                  </InfoWindow>
-                )}
-              </GoogleMap>
-            </LoadScript>
+            /* Google Maps Placeholder */
+            <div className="w-full h-full flex items-center justify-center bg-gray-100">
+              <div className="text-center p-8">
+                <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
+                  <MapPin className="w-8 h-8 text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Google Maps API Required
+                </h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  To enable Google Maps, please add your Google Maps API key to
+                  the environment variables.
+                </p>
+                <div className="bg-gray-50 rounded-lg p-4 text-left">
+                  <p className="text-xs text-gray-500 mb-2">
+                    Add to .env file:
+                  </p>
+                  <code className="text-xs bg-white p-2 rounded border block">
+                    VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
+                  </code>
+                </div>
+                <button
+                  onClick={() => setMapType("custom")}
+                  className="mt-4 px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition-colors"
+                >
+                  Use Custom Map Instead
+                </button>
+              </div>
+            </div>
           ) : (
             /* Custom Map Implementation */
             <div
