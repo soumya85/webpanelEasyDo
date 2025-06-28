@@ -551,14 +551,20 @@ export default function EmployeeLocationTimelineCard() {
                       url:
                         "data:image/svg+xml;charset=UTF-8," +
                         encodeURIComponent(`
-                        <svg width="27" height="43" viewBox="0 0 27 43" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M13.5 0C6.044 0 0 6.044 0 13.5C0 21.75 13.5 43 13.5 43S27 21.75 27 13.5C27 6.044 20.956 0 13.5 0Z" fill="#EA4335"/>
-                          <circle cx="13.5" cy="13.5" r="8" fill="#FFFFFF"/>
-                          <text x="13.5" y="18" text-anchor="middle" fill="#333" font-size="10" font-weight="bold" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
+                        <svg width="32" height="48" viewBox="0 0 32 48" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+                            </filter>
+                          </defs>
+                          <path d="M16 0C7.163 0 0 7.163 0 16C0 28 16 48 16 48S32 28 32 16C32 7.163 24.837 0 16 0Z" fill="#EA4335" filter="url(#shadow)"/>
+                          <circle cx="16" cy="16" r="11" fill="#FFFFFF"/>
+                          <circle cx="16" cy="16" r="10" fill="#FFFFFF" stroke="#EA4335" stroke-width="0.5"/>
+                          <text x="16" y="21" text-anchor="middle" fill="#EA4335" font-size="12" font-weight="bold" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
                         </svg>
                       `),
-                      scaledSize: { width: 27, height: 43 },
-                      anchor: { x: 13.5, y: 43 },
+                      scaledSize: { width: 32, height: 48 },
+                      anchor: { x: 16, y: 48 },
                     }}
                   />
                 ))}
