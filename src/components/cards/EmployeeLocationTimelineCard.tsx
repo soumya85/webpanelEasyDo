@@ -43,14 +43,14 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 80, y: 45 }, // Eastern India - West Bengal coastal area near Kolkata
+      position: { x: 78, y: 48 }, // East Medinipur, West Bengal - coastal industrial area
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 75, y: 50 }, // Eastern coast - Odisha state coastline
+      position: { x: 73, y: 52 }, // Odisha coast - major port city
       address: "Paradip, Odisha",
       employees: 18,
     },
