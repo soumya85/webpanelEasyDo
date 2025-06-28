@@ -325,49 +325,49 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Simple circle pin with tiny point */}
+                {/* Perfect Google Maps pin shape */}
                 <div className="relative">
                   <svg
-                    width="26"
-                    height="32"
-                    viewBox="0 0 26 32"
+                    width="24"
+                    height="30"
+                    viewBox="0 0 24 30"
                     className="drop-shadow-lg"
                   >
                     {/* Pin shadow */}
                     <ellipse
-                      cx="13"
-                      cy="30"
-                      rx="2"
+                      cx="12"
+                      cy="28"
+                      rx="1.5"
                       ry="0.5"
                       fill="rgba(0,0,0,0.3)"
                     />
 
-                    {/* Main circle */}
-                    <circle cx="13" cy="13" r="11" fill="#EA4335" />
+                    {/* Perfect circle */}
+                    <circle cx="12" cy="12" r="10" fill="#EA4335" />
 
-                    {/* Small triangular point */}
-                    <path d="M13 24 L8 19 L18 19 Z" fill="#EA4335" />
+                    {/* Tiny sharp point */}
+                    <path d="M12 22 L7 17 L17 17 Z" fill="#EA4335" />
 
-                    {/* White inner circle */}
-                    <circle cx="13" cy="13" r="8" fill="white" />
+                    {/* White center */}
+                    <circle cx="12" cy="12" r="7.5" fill="white" />
 
-                    {/* Red border */}
+                    {/* Red ring */}
                     <circle
-                      cx="13"
-                      cy="13"
-                      r="8"
+                      cx="12"
+                      cy="12"
+                      r="7.5"
                       fill="none"
                       stroke="#EA4335"
-                      strokeWidth="2.5"
+                      strokeWidth="2"
                     />
 
                     {/* Number */}
                     <text
-                      x="13"
-                      y="17.5"
+                      x="12"
+                      y="16"
                       textAnchor="middle"
                       fill="#EA4335"
-                      fontSize="12"
+                      fontSize="11"
                       fontWeight="bold"
                       fontFamily="Arial, sans-serif"
                     >
