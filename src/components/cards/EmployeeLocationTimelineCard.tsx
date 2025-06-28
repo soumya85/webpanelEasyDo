@@ -325,55 +325,49 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Google Maps location pin */}
+                {/* Classic Google Maps pin marker */}
                 <div className="relative">
                   <svg
-                    width="32"
-                    height="44"
-                    viewBox="0 0 32 44"
+                    width="30"
+                    height="40"
+                    viewBox="0 0 30 40"
                     className="drop-shadow-lg"
                   >
                     {/* Pin shadow */}
                     <ellipse
-                      cx="16"
-                      cy="41"
+                      cx="15"
+                      cy="37"
                       rx="3"
                       ry="1"
-                      fill="rgba(0,0,0,0.3)"
+                      fill="rgba(0,0,0,0.25)"
                     />
 
-                    {/* Pin shape - circle with point */}
-                    <g>
-                      {/* Circle top */}
-                      <circle cx="16" cy="16" r="13" fill="#E53E3E" />
-
-                      {/* Triangular point */}
-                      <path
-                        d="M16 29 L7 22 A13 13 0 0 0 25 22 Z"
-                        fill="#E53E3E"
-                      />
-                    </g>
+                    {/* Main pin shape */}
+                    <path
+                      d="M15 3 C22.18 3, 28 8.82, 28 16 C28 16, 28 16, 28 16 C28 16, 15 35, 15 35 C15 35, 2 16, 2 16 C2 8.82, 7.82 3, 15 3 Z"
+                      fill="#E53E3E"
+                    />
 
                     {/* White inner circle */}
-                    <circle cx="16" cy="16" r="9" fill="white" />
+                    <circle cx="15" cy="16" r="9" fill="white" />
 
-                    {/* Red inner border */}
+                    {/* Red border ring */}
                     <circle
-                      cx="16"
+                      cx="15"
                       cy="16"
                       r="9"
                       fill="none"
                       stroke="#E53E3E"
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                     />
 
                     {/* Number text */}
                     <text
-                      x="16"
+                      x="15"
                       y="21"
                       textAnchor="middle"
                       fill="#E53E3E"
-                      fontSize="14"
+                      fontSize="13"
                       fontWeight="bold"
                       fontFamily="system-ui, sans-serif"
                     >
