@@ -163,29 +163,17 @@ export default function EmployeeLocationTimelineCard() {
               {/* Timeline Active Segments */}
               <div className="absolute top-2 left-0 right-0 flex">
                 {timeSlots.slice(0, -1).map((slot, index) => {
-                  const activeIndex = timeSlots.findIndex((s) => s.active);
-                  const selectedIndices = selectedHours
-                    .map((hour) =>
-                      timeSlots.findIndex(
-                        (s) =>
-                          allSlots.find((as) => as.time === s.time)?.hour ===
-                          hour,
-                      ),
-                    )
-                    .filter((idx) => idx >= 0);
-
-                  // Include both current time and selected times
-                  const allHighlightedIndices = [
-                    activeIndex,
-                    ...selectedIndices,
-                  ].filter((idx) => idx >= 0);
-                  const maxHighlightedIndex =
-                    allHighlightedIndices.length > 0
-                      ? Math.max(...allHighlightedIndices)
+                  const selectedIndex =
+                    selectedHour !== null
+                      ? timeSlots.findIndex(
+                          (s) =>
+                            allSlots.find((as) => as.time === s.time)?.hour ===
+                            selectedHour,
+                        )
                       : -1;
 
                   const shouldShowGreen =
-                    maxHighlightedIndex >= 0 && index < maxHighlightedIndex;
+                    selectedIndex >= 0 && index < selectedIndex;
                   const segmentWidth = `${100 / (timeSlots.length - 1)}%`;
 
                   return (
