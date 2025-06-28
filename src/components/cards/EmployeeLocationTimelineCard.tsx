@@ -29,7 +29,7 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 42, y: 32 }, // Northern India - positioned where New Delhi actually is
+      position: { x: 45, y: 28 }, // Northern India - positioned where New Delhi actually is
       address: "New Delhi",
       employees: 15,
     },
