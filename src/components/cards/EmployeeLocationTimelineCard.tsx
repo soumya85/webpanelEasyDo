@@ -150,44 +150,7 @@ export default function EmployeeLocationTimelineCard() {
 
           {/* Timeline */}
           <div className="p-4">
-            {/* Navigation Controls */}
-            <div className="flex items-center justify-between mb-4">
-              <button
-                onClick={handlePrevious}
-                disabled={!canGoPrevious}
-                className={cn(
-                  "flex items-center gap-1 text-sm font-medium transition-colors",
-                  canGoPrevious
-                    ? "text-gray-600 hover:text-gray-800 cursor-pointer"
-                    : "text-gray-400 cursor-not-allowed",
-                )}
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Previous
-              </button>
-
-              <div className="text-sm font-medium text-gray-900">
-                {timeSlots.find((slot) => slot.active)?.time ||
-                  timeSlots[Math.floor(timeSlots.length / 2)]?.time ||
-                  "Current Time"}
-              </div>
-
-              <button
-                onClick={handleNext}
-                disabled={!canGoNext}
-                className={cn(
-                  "flex items-center gap-1 text-sm font-medium transition-colors",
-                  canGoNext
-                    ? "text-gray-600 hover:text-gray-800 cursor-pointer"
-                    : "text-gray-400 cursor-not-allowed",
-                )}
-              >
-                Next
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="relative">
+            <div className="relative mb-4">
               {/* Timeline Segments - individual bars between dots */}
               <div className="absolute top-3 left-6 right-6 flex">
                 {timeSlots.slice(0, -1).map((slot, index) => {
@@ -233,6 +196,37 @@ export default function EmployeeLocationTimelineCard() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Navigation Controls - Below Timeline */}
+            <div className="flex items-center justify-between">
+              <button
+                onClick={handlePrevious}
+                disabled={!canGoPrevious}
+                className={cn(
+                  "flex items-center gap-1 text-sm font-medium transition-colors",
+                  canGoPrevious
+                    ? "text-gray-600 hover:text-gray-800 cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed",
+                )}
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </button>
+
+              <button
+                onClick={handleNext}
+                disabled={!canGoNext}
+                className={cn(
+                  "flex items-center gap-1 text-sm font-medium transition-colors",
+                  canGoNext
+                    ? "text-gray-600 hover:text-gray-800 cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed",
+                )}
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
