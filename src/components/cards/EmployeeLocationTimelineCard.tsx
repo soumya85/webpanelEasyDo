@@ -374,20 +374,18 @@ export default function EmployeeLocationTimelineCard() {
               zoom={5}
               options={mapOptions}
               onClick={handleMapClick}
+              onLoad={handleMapLoad}
             >
-              {/* Branch Markers */}
-              {branches.map((branch) => (
-                <Marker
-                  key={branch.id}
-                  position={branch.position}
-                  onClick={() => handleMarkerClick(branch.id)}
-                  icon={{
-                    url: `data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23EF4444' stroke='white' stroke-width='3'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='14' font-weight='bold'%3E${branch.id}%3C/text%3E%3C/svg%3E`,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    anchor: new window.google.maps.Point(20, 20),
-                  }}
-                />
-              ))}
+              {/* Branch Markers - Only render when map is loaded */}
+              {isMapLoaded &&
+                branches.map((branch) => (
+                  <Marker
+                    key={branch.id}
+                    position={branch.position}
+                    onClick={() => handleMarkerClick(branch.id)}
+                    icon={createMarkerIcon(branch.id)}
+                  />
+                ))}
 
               {/* Info Windows */}
               {selectedMarker && (
