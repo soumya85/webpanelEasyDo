@@ -202,7 +202,8 @@ export default function EmployeeLocationTimelineCard() {
                   const slotHour = allSlots.find(
                     (as) => as.time === slot.time,
                   )?.hour;
-                  const isSelected = selectedHour === slotHour;
+                  const isSelected =
+                    slotHour !== undefined && selectedHours.includes(slotHour);
                   const isActiveOrSelected = slot.active || isSelected;
 
                   return (
@@ -210,8 +211,11 @@ export default function EmployeeLocationTimelineCard() {
                       <button
                         onClick={() => {
                           if (slotHour !== undefined) {
-                            setSelectedHour(
-                              selectedHour === slotHour ? null : slotHour,
+                            setSelectedHours(
+                              (prev) =>
+                                prev.includes(slotHour)
+                                  ? prev.filter((hour) => hour !== slotHour) // Remove if already selected
+                                  : [...prev, slotHour], // Add if not selected
                             );
                           }
                         }}
