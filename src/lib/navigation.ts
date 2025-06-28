@@ -27,7 +27,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "dashboard",
     labelKey: "dashboard",
-    icon: LayoutDashboard,
+    icon: Calendar,
     href: "/dashboard",
   },
   {
