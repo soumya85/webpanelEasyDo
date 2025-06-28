@@ -31,6 +31,9 @@ import Holiday from "@/pages/Holiday";
 import Dashboard from "@/pages/Dashboard";
 import Login from "@/pages/Login";
 import OTPVerification from "@/pages/OTPVerification";
+import SamplePage1 from "@/pages/SamplePage1";
+import SamplePage2 from "@/pages/SamplePage2";
+import SamplePage3 from "@/pages/SamplePage3";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -89,6 +92,9 @@ const AppContent = () => {
                     <Route path="/leave" element={<Leave />} />
                     <Route path="/notes-reminder" element={<NotesReminder />} />
                     <Route path="/reports" element={<Reports />} />
+                    <Route path="/sample-page-1" element={<SamplePage1 />} />
+                    <Route path="/sample-page-2" element={<SamplePage2 />} />
+                    <Route path="/sample-page-3" element={<SamplePage3 />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

@@ -22,6 +22,7 @@ export const translations = {
     overview: "Overview",
     sample: "Sample",
     sample2: "Sample 2",
+    samplePage3: "Sample Page 3",
     dashboardTitle: "Dashboard",
     chats: "Chats",
     todaysSchedule: "Today's Schedule",
@@ -895,7 +896,7 @@ export const translations = {
     layoutSavedAutomatically:
       "आपका लेआउट और कार्ड आकार स्वचालित रूप से सहेजे जाते हैं और सत्रों में बने रहते हैं",
     useResetLayoutButton:
-      'डि���़ॉल्ट व्यवस्थ�� को पुनर्स्थापित करने के लिए "रीसेट लेआउट" बटन क�� उपयोग करें',
+      'डि���़ॉल्ट व्य���स्थ�� को पुनर्स्थापित करने के लिए "रीसेट लेआउट" बटन क�� उपयोग करें',
 
     // Layout Controls
     layoutAutoSaved: "ल��आउट स्वतः सहेजा गया",
@@ -958,7 +959,7 @@ export const translations = {
 
     // Search placeholders
     searchTasks: "कार्य, असाइनी या विवरण खोजें",
-    searchDocument: "दस्तावेज़ खोजें",
+    searchDocument: "दस्त��वेज़ खोजें",
     typeAMessage: "संदेश टाइप करें",
     typeHere: "यहाँ ट��इप करें...",
     searchOrStartNewChat: "चैट खोजें या नई शुरू करें",
@@ -1080,7 +1081,7 @@ export const translations = {
     totalEmployeeSalary: "कुल कर्मचारी वेतन",
     amountTotal: "राशि/कुल",
     clickToSelectKolkata: "कोलकाता चुनने के लिए क्लिक करें (डेमो)",
-    selectAttachmentSource: "अटैचमेंट स्रोत चुनें",
+    selectAttachmentSource: "अटैचमेंट स्रोत चु���ें",
     allBranches: "सभी श��खाएं",
     headOffice: "मुख्य कार्यालय",
     secondBranch: "दूसरी शाखा",
@@ -1120,7 +1121,7 @@ export const translations = {
 
     // Employee creation
     whenNewEmployeeCreated:
-      "जब एप्लिकेशन में एक नया कर्मचारी बनाया जाता है, तो हम कर���मचारी की शाखा छुट्टी नियमों के आधार पर छुट्टियां असाइन करते हैं।",
+      "जब एप्लिकेशन में एक नया कर्मचारी बनाया जाता है, तो हम कर���मचारी की शाखा छुट्ट�� नियमों के आधार पर छुट्टियां असाइन करते हैं।",
     onEmployeeUpdate: "कर्मचारी अपडेट पर",
     whenEmployeeUpdated:
       "जब को��� कर्मचारी अपडेट किया जाता है, तो हम जांचते हैं कि क्या कर्मचारी ने एप्लिकेशन ज्वाइन डेट जोड़ी है।",
@@ -1410,7 +1411,7 @@ export const translations = {
     newBuildReadyForTesting: "পরীক্ষার জন্য নতুন বিল্ড প্রস্তুত",
     sureIllSendByEOD: "অবশ্যই, আমি দিনের শ���ষে পাঠাব",
     letsScheduleCallTomorrow: "কাল কল নির্ধারণ করি",
-    filesReadyForDownload: "ফাইলগুলি ডাউনলোডের জন্য প্রস্তুত",
+    filesReadyForDownload: "ফাইলগুলি ডা���নলোডের জন্য প্রস্তুত",
     campaignResultsLookingGreat: "প্রচারণার ফলাফল দু���্দান্ত দেখাচ্ছে!",
     greatWorkOnPresentation: "উপস্থাপনায় দুর্দান্ত কাজ!",
     documentsUploadedToSharedFolder: "শেয়ার করা ফোল্ডারে নথি আপলোড করা হয়েছে",
@@ -1768,7 +1769,7 @@ export const translations = {
     followUpOnClientProposal: "क्लायंट प्रस्त���वावर फॉलो अप",
     reviewQ4BudgetAllocation: "Q4 बजेट वाटप पुनरावलोकन",
     updateTeamOnProjectTimeline: "प्रकल्प वेळापत्रकावर टीम अपडेट",
-    addedHoursAgo: "{hours} तासांपूर्वी जोडले",
+    addedHoursAgo: "{hours} त���सांपूर्वी जोडले",
     addedYesterday: "काल जोडले",
     addedDaysAgo: "{days} दिवसांपूर्वी जो���ले",
     addNewNote: "नवीन नोट जोडा",
@@ -2081,7 +2082,7 @@ export const translations = {
     sameRowEqualHeight:
       "ایک ہی قطار کے تمام کارڈز خودکار طور پر برابر اونچائی برقرار رکھتے ہیں",
     layoutSavedAutomatically:
-      "آپ کا لے آؤٹ اور کارڈ سائز خودکار ط��ر پر محفو�� ہو جاتے ہیں اور سیشنز میں برقرار رہتے ہیں",
+      "آپ کا لے آؤٹ اور کارڈ سائز خودکار ط��ر پر محف���� ہو جاتے ہیں اور سیشنز میں برقرار رہتے ہیں",
     useResetLayoutButton:
       'ڈیفالٹ ترتیب بحال کرنے کے لیے "ری سیٹ لے آؤٹ" بٹن استعمال کریں',
   },
@@ -2175,7 +2176,7 @@ export const translations = {
     dashboardTitle: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     chats: "ಚಾಟ್‌ಗಳು",
     todaysSchedule: "ಇಂದಿನ ವೇಳಾಪಟ್ಟಿ",
-    employeeDashboard: "ಉದ್ಯೋಗಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    employeeDashboard: "ಉದ್ಯೋಗ�� ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     companyDashboard: "ಕಂಪನಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     tasks: "ಕಾರ್ಯಗಳು",
     meet: "ಸಭೆ",
@@ -2223,7 +2224,7 @@ export const translations = {
   },
   Odia: {
     welcomeToEasyDo: "EasyDo ���େ ଆପଣଙ୍କୁ ସ୍ୱାଗତ",
-    mobileNumberPlaceholder: "ମୋବାଇଲ୍ ନମ୍ବର",
+    mobileNumberPlaceholder: "ମୋବାଇଲ୍ ନ���୍ବର",
     bySigningUp: "ସାଇନ୍ ଅପ୍ କରି, ଆପଣ ଆମର",
     termsAndConditions: "ନିୟମ ଏବଂ ସର୍ତ୍ତାବଳୀ",
     and: "ଏବଂ",
@@ -2247,7 +2248,7 @@ export const translations = {
     companyDashboard: "କମ୍ପାନୀ ଡ୍ୟାସବୋର୍ଡ",
     tasks: "��ାର୍ଯ୍ୟଗୁଡ଼ିକ",
     meet: "ସାକ୍ଷାତ",
-    notesReminder: "ନୋଟ୍‌ଗୁଡ଼ିକ ଏବଂ ସ୍ମାରକ",
+    notesReminder: "ନୋଟ���‌ଗୁଡ଼ିକ ଏବଂ ସ୍ମାରକ",
     reports: "ରିପୋର୍ଟଗୁଡ଼ିକ",
     settings: "ସେଟିଂସ୍",
     helpSupport: "ସାହାଯ୍ୟ ଏବଂ ସହାୟତା",
@@ -2302,7 +2303,7 @@ export const translations = {
     resendTo: "ਮੁੜ ਭੇਜੋ",
     resendOTP: "OTP ਮੁੜ ਭੇਜੋ",
     resendOTPIn: "OTP ਮੁੜ ਭੇਜੋ",
-    seconds: "ਸਕਿੰਟਾਂ ਵ��ੱਚ",
+    seconds: "ਸ���ਿੰਟਾਂ ਵ��ੱਚ",
     verifyOTP: "OTP ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
     backToLogin: "← ਲਾਗਇਨ ਤੇ ਵਾਪਸ ਜਾਓ",
 
@@ -2340,7 +2341,7 @@ export const translations = {
     // Drag & Drop Instructions
     enhancedDragDropInstructions: "ਵਧੀਆ ਡਰੈੱਗ ਐਂਡ ਡਰਾਪ + ਚੌੜਾਈ ਰੀਸਾਈਜ਼ ਨਿਰਦੇਸ਼",
     hoverOverCardInstructions:
-      "ਡਰੈੱਗ ਹੈਂਡਲ (ਟਾਪ ਸੈਂਟਰ) ਅਤੇ ਚ���ੜਾਈ ਰੀਸਾਈਜ਼ ਹੈਂਡਲ (ਸੱਜੇ ਕਿਨਾ��ੇ) ਵੇਖਣ ਲਈ ਕਿਸੇ ਵੀ ਕਾਰਡ 'ਤੇ ਹੋ��ਰ ਕਰੋ",
+      "ਡਰੈੱਗ ਹੈਂਡਲ (ਟਾਪ ਸੈਂਟਰ) ਅਤੇ ਚ���ੜਾਈ ਰੀਸਾਈਜ਼ ਹੈਂਡਲ (ਸੱਜੇ ਕਿਨਾ��ੇ) ਵੇਖਣ ਲ�� ਕਿਸੇ ਵੀ ਕਾਰਡ 'ਤੇ ਹੋ��ਰ ਕਰੋ",
     dragCardsBetweenSections:
       "ਪੁਨਰ-ਵਿਵਸਥਾ ਲਈ ਭਾਗਾਂ ਵਿਚਕਾਰ ਜਾਂ ਭਾਗਾਂ ਦੇ ਅੰਦਰ ਕਾਰਡਾਂ ਨੂੰ ਡਰੈੱਗ ਕਰੋ - ਚੌੜਾਈ ਸੁਰੱਖਿਅਤ ਰਹਿ��ਦੀ ਹੈ",
     dropCardsOnPurpleZones:
@@ -2379,7 +2380,7 @@ export const translations = {
     chats: "ചാറ്റുകൾ",
     todaysSchedule: "ഇന്നത്തെ ഷെഡ്യൂൾ",
     employeeDashboard: "ജീവനക്കാരുടെ ഡാഷ്ബോർഡ്",
-    companyDashboard: "കമ്പനി ഡാഷ്ബോർഡ്",
+    companyDashboard: "��മ്പനി ഡാഷ്ബോർഡ്",
     tasks: "ജോലികൾ",
     meet: "കൂടിക്കാഴ്ച",
     notesReminder: "കുറിപ്പുകളും ഓർമ്മപ്പെടുത്തലുകളും",
@@ -2422,7 +2423,7 @@ export const translations = {
     layoutSavedAutomatically:
       "നിങ്ങളുടെ ലേഔട്ടും കാർഡ് വലുപ്പങ്ങളും സ്വയമേവ സംരക്ഷിക്കപ്പെടുകയും സെഷനുകളിലുടനീളം നിലനിൽക്കുകയും ചെയ്യുന്നു",
     useResetLayoutButton:
-      'സ്ഥിരസ്ഥിതി ക്രമീകരണം ��ുനഃസ്ഥാപിക്ക��ൻ "റീസെറ്റ് ലേഔട്ട്" ബട്ടൺ ഉപയോഗിക്കുക',
+      'സ്ഥിരസ്ഥിതി ക്രമീ���രണം ��ുനഃസ്ഥാപിക്ക��ൻ "റീസെറ്റ് ലേഔട്ട്" ബട്ടൺ ഉപയോഗിക്കുക',
   },
 } as const;
 
