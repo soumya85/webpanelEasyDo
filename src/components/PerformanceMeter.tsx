@@ -5,18 +5,14 @@ import { useState } from "react";
 export default function PerformanceMeter() {
   const [currentTime, setCurrentTime] = useState("10 AM");
   const [searchValue, setSearchValue] = useState("");
-  const [totalEmployees] = useState(29);
 
-  // Sample branch data
-  const branches = [
-    { name: "New Delhi Branch", count: 3, lat: 28.6, lng: 77.2 },
-    { name: "Ahmedabad Office Branch", count: 0, lat: 23.0, lng: 72.6 },
-    { name: "Halasuru Branch", count: 12, lat: 12.97, lng: 77.6 },
-    { name: "Paradip Branch", count: 10, lat: 20.26, lng: 86.7 },
-  ];
-
-  // Timeline hours
+  // Timeline hours with full day coverage
   const timelineHours = [
+    "1 AM",
+    "2 AM",
+    "3 AM",
+    "4 AM",
+    "5 AM",
     "6 AM",
     "7 AM",
     "8 AM",
@@ -35,7 +31,84 @@ export default function PerformanceMeter() {
     "9 PM",
     "10 PM",
     "11 PM",
+    "11:59 PM",
   ];
+
+  // Get current timeline slice based on current time
+  const getCurrentTimelineSlice = () => {
+    const currentIndex = timelineHours.indexOf(currentTime);
+    if (currentIndex === -1) return timelineHours.slice(0, 8);
+
+    // Show 8 hours starting from current time position
+    const startIndex = Math.max(0, currentIndex - 3);
+    return timelineHours.slice(startIndex, startIndex + 8);
+  };
+
+  // Dynamic data based on selected time
+  const getDataForTime = (time: string) => {
+    const timeData = {
+      "1 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "2 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "3 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "4 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "5 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "6 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "7 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "8 AM": { total: 63, branches: [6, 0, 20, 22] },
+      "9 AM": { total: 29, branches: [3, 0, 12, 10] },
+      "10 AM": { total: 29, branches: [3, 0, 12, 10] },
+      "11 AM": { total: 29, branches: [3, 0, 12, 10] },
+      "12 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "1 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "2 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "3 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "4 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "5 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "6 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "7 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "8 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "9 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "10 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "11 PM": { total: 29, branches: [3, 0, 12, 10] },
+      "11:59 PM": { total: 29, branches: [3, 0, 12, 10] },
+    };
+    return timeData[time] || { total: 29, branches: [3, 0, 12, 10] };
+  };
+
+  const currentData = getDataForTime(currentTime);
+  const totalEmployees = currentData.total;
+
+  // Sample branch data with dynamic counts
+  const branches = [
+    {
+      name: "New Delhi Branch",
+      count: currentData.branches[0],
+      lat: 28.6,
+      lng: 77.2,
+    },
+    {
+      name: "Ahmedabad Office Branch",
+      count: currentData.branches[1],
+      lat: 23.0,
+      lng: 72.6,
+    },
+    {
+      name: "Halasuru Branch",
+      count: currentData.branches[2],
+      lat: 12.97,
+      lng: 77.6,
+    },
+    {
+      name: "Paradip Branch",
+      count: currentData.branches[3],
+      lat: 20.26,
+      lng: 86.7,
+    },
+  ];
+
+  const handleTimeSelect = (time: string) => {
+    setCurrentTime(time);
+  };
 
   const getCurrentDate = () => {
     const today = new Date();
