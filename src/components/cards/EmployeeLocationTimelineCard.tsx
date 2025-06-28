@@ -211,6 +211,16 @@ export default function EmployeeLocationTimelineCard() {
               >
                 <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z" />
               </svg>
+              {/* Hail Icon */}
+              <svg
+                className="w-4 h-4 text-gray-600"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12.5 2C13.88 2 15 3.12 15 4.5C15 5.88 13.88 7 12.5 7S10 5.88 10 4.5 11.12 2 12.5 2M17.5 12C18.88 12 20 13.12 20 14.5S18.88 17 17.5 17 15 15.88 15 14.5 16.12 12 17.5 12M9.5 11C10.88 11 12 12.12 12 13.5S10.88 16 9.5 16 7 14.88 7 13.5 8.12 11 9.5 11M6 20C7.38 20 8.5 21.12 8.5 22.5S7.38 25 6 25 3.5 23.88 3.5 22.5 4.62 20 6 20M16.5 20C17.88 20 19 21.12 19 22.5S17.88 25 16.5 25 14 23.88 14 22.5 15.12 20 16.5 20Z" />
+              </svg>
+              {/* Green vertical bar */}
+              <div className="w-0.5 h-6 bg-green-500"></div>
               <span className="text-2xl font-bold text-gray-900">29</span>
             </div>
           </div>
