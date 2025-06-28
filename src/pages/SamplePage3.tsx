@@ -15,34 +15,51 @@ export default function SamplePage3() {
   // Sample card data for this page with business-focused actions
   const cardData = [
     {
-      icon: <img src="/reports-icon.png" alt="Dashboard" />,
-      title: "Dashboard",
-      id: "dashboard",
+      icon: <img src="/register-icon.png" alt="Register" />,
+      title: "Register",
+      id: "register",
     },
     {
-      icon: <img src="/statistics-icon.png" alt="Metrics" />,
-      title: "Metrics",
-      id: "metrics",
+      icon: (
+        <img src="/backgroundcheck-icon.png" alt="Background Verification" />
+      ),
+      title: "Background Verification",
+      id: "background-verification",
     },
     {
-      icon: <img src="/leave-icon.png" alt="Projects" />,
-      title: "Projects",
-      id: "projects",
+      icon: (
+        <img src="/performamance_review-icon.png" alt="Performance Review" />
+      ),
+      title: "Performance Review",
+      id: "performance-review",
+      notificationCount: 18,
     },
     {
-      icon: <img src="/holiday-icon.png" alt="Timeline" />,
-      title: "Timeline",
-      id: "timeline",
+      icon: <img src="/branch-icon.png" alt="Branch" />,
+      title: "Branch",
+      id: "branch",
     },
     {
-      icon: <img src="/leave_request-icon.png" alt="Resources" />,
-      title: "Resources",
-      id: "resources",
+      icon: <img src="/announce-icon.png" alt="Announce" />,
+      title: "Announce",
+      id: "announce",
+      notificationCount: 5,
     },
     {
-      icon: <img src="/OT_request-icon.png" alt="Team" />,
-      title: "Team",
-      id: "team",
+      icon: <img src="/Documents-icon.png" alt="Documents" />,
+      title: "Documents",
+      id: "documents",
+    },
+    {
+      icon: <img src="/pendingapproval-icon.png" alt="Pending Approval" />,
+      title: "Pending Approval",
+      id: "pending-approval",
+      notificationCount: 3,
+    },
+    {
+      icon: <img src="/reports-icon.png" alt="Reports" />,
+      title: "Reports",
+      id: "reports",
     },
   ];
 
@@ -56,7 +73,7 @@ export default function SamplePage3() {
       >
         {/* Quick Action Cards Grid - Fewer cards */}
         <div className="w-full">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4 w-full max-w-4xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3 lg:gap-4 w-full">
             {cardData.map((card, index) => (
               <div
                 key={card.id}
@@ -64,20 +81,31 @@ export default function SamplePage3() {
                   console.log(`Clicked ${card.title}`);
                 }}
                 className={cn(
-                  "flex w-full h-[90px] sm:h-[95px] lg:h-[100px]",
-                  "px-1 sm:px-2 lg:px-3 py-3 sm:py-4 lg:py-5 justify-center items-center flex-shrink-0",
+                  "flex w-full h-[100px]",
+                  "px-2 py-3 justify-center items-center flex-shrink-0",
                   "rounded-[8px] sm:rounded-[10px] border-b-[4px] sm:border-b-[6px] border-[#7C3AED] bg-white",
                   "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
                 )}
               >
-                <div className="flex flex-col items-center justify-center gap-1 sm:gap-1.5">
-                  <div className="flex w-[20px] sm:w-[24px] lg:w-[28px] flex-col items-center justify-center flex-shrink-0">
-                    {card.icon}
+                <div className="flex flex-col items-center justify-center w-full h-full">
+                  <div className="flex items-center justify-center h-[40px] mb-1 relative">
+                    <img
+                      src={card.icon.props.src}
+                      alt={card.icon.props.alt}
+                      className="w-[32px] h-[32px] object-contain"
+                    />
+                    {card.notificationCount && (
+                      <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                        {card.notificationCount}
+                      </div>
+                    )}
                   </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-xs lg:text-sm leading-[12px] sm:leading-[14px] lg:leading-[16px] text-center">
-                    {card.title}
-                  </h3>
+                  <div className="flex items-start justify-center h-[32px] text-center">
+                    <h3 className="text-[#283C50] font-inter font-bold text-sm leading-tight max-w-full">
+                      {card.title}
+                    </h3>
+                  </div>
                 </div>
               </div>
             ))}
