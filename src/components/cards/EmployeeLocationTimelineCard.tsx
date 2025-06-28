@@ -11,33 +11,33 @@ export default function EmployeeLocationTimelineCard() {
   // State for map marker selection
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
 
-  // Branch locations data matching the screenshot
+  // Branch locations data positioned accurately on the terrain map
   const branches = [
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 52, y: 25 }, // Position as percentage
+      position: { x: 48, y: 32 }, // Northern India, near Delhi location on map
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 25, y: 45 },
+      position: { x: 38, y: 42 }, // Western India, Gujarat region
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 75, y: 35 },
+      position: { x: 73, y: 48 }, // Eastern India, near Kolkata/West Bengal
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 65, y: 50 },
+      position: { x: 68, y: 55 }, // Eastern coast, Odisha region
       address: "Paradip, Odisha",
       employees: 18,
     },
