@@ -390,7 +390,7 @@ export default function EmployeeLocationTimelineCard() {
                 </div>
 
                 {/* Branch Label - Below the marker */}
-                <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2">
                   <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap text-center">
                     {branch.name}
                   </div>
