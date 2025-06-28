@@ -332,37 +332,63 @@ export default function EmployeeLocationTimelineCard() {
                 strokeWidth="0.2"
               />
 
-              {/* Main India Land Mass - Accurate Geographic Shape */}
+              {/* Accurate India Map Shape */}
               <path
-                d="M35 30 L40 20 L50 18 L60 17 L70 20 L78 25 L85 32 L90 40 L92 48 L94 58 L95 68 L93 78 L90 86 L85 92 L82 96 L78 99 L75 101 L70 103 L65 104 L60 105 L55 105.5 L50 105 L48 103 L46 100 L44 96 L43 92 L42 87 L41 82 L40 76 L39 70 L38 64 L37 58 L36 52 L35 46 L34 40 L33 35 L32 30 L30 25 L28 30 L27 35 L26 42 L25 50 L24 58 L25 66 L27 74 L30 82 L34 89 L38 95 L42 100 L46 103 Z"
-                fill="#C8E6C9"
+                d="M38 28 C42 22 50 20 58 19 C66 18 72 20 78 24 C84 28 88 34 90 40 C92 46 93 52 94 58 C95 64 94 70 93 76 C91 82 88 87 84 91 C80 95 75 98 70 100 C65 102 60 103 55 103.5 C52 104 49 103.5 47 102 C45 100 43 97 42 94 C41 90 40.5 86 40 82 C39.5 78 39 74 38.5 70 C38 66 37.5 62 37 58 C36.5 54 36 50 35.5 46 C35 42 34.5 38 34 34 C33.5 32 33 30 32 28 C30 26 28 28 26 30 C24 32 22 36 21 40 C20 44 19.5 48 19 52 C18.5 56 19 60 20 64 C21 68 23 72 25 76 C27 80 30 84 33 87 C36 90 40 93 44 95 C46 96 48 97 49 99 C50 101 49.5 103 47 103 Z"
+                fill="#E8F5E8"
                 stroke="#B8D4B9"
                 strokeWidth="0.3"
               />
 
-              {/* Additional geographic features for accuracy */}
-              {/* Gujarat peninsula */}
+              {/* Detailed coastline features */}
+              {/* Western coastline (Gujarat/Maharashtra) */}
               <path
-                d="M25 50 L20 48 L18 52 L20 56 L25 58 L28 55 Z"
-                fill="#C8E6C9"
+                d="M21 52 C18 50 16 53 17 56 C18 59 21 60 24 58 C26 56 25 53 23 52"
+                fill="#E8F5E8"
                 stroke="#B8D4B9"
                 strokeWidth="0.2"
               />
 
-              {/* Eastern coast detail (West Bengal area) */}
+              {/* Eastern coastline (West Bengal/Odisha) */}
               <path
-                d="M85 40 L88 38 L90 42 L88 46 L85 44 Z"
-                fill="#C8E6C9"
+                d="M88 38 C90 36 92 39 91 42 C90 45 87 46 84 44 C82 42 84 39 86 38"
+                fill="#E8F5E8"
                 stroke="#B8D4B9"
                 strokeWidth="0.2"
               />
 
-              {/* Southern tip detail */}
+              {/* Southern peninsula detail */}
               <path
-                d="M48 103 L46 105 L47 107 L49 106 L50 104 Z"
-                fill="#C8E6C9"
+                d="M47 102 C45 104 46 106 48 107 C50 106 51 104 49 102 C48 101 47 101 47 102"
+                fill="#E8F5E8"
                 stroke="#B8D4B9"
                 strokeWidth="0.2"
+              />
+
+              {/* Andaman and Nicobar Islands */}
+              <circle
+                cx="85"
+                cy="75"
+                r="1"
+                fill="#E8F5E8"
+                stroke="#B8D4B9"
+                strokeWidth="0.1"
+              />
+              <circle
+                cx="86"
+                cy="80"
+                r="0.8"
+                fill="#E8F5E8"
+                stroke="#B8D4B9"
+                strokeWidth="0.1"
+              />
+              <circle
+                cx="87"
+                cy="85"
+                r="0.6"
+                fill="#E8F5E8"
+                stroke="#B8D4B9"
+                strokeWidth="0.1"
               />
 
               {/* Sri Lanka */}
