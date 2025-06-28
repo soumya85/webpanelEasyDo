@@ -96,7 +96,7 @@ export default function SamplePage3() {
                       className="w-[32px] h-[32px] object-contain"
                     />
                     {card.notificationCount && (
-                      <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                      <div className="absolute -top-1 -right-3 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                         {card.notificationCount}
                       </div>
                     )}
