@@ -151,26 +151,6 @@ export default function EmployeeLocationTimelineCard() {
           {/* Timeline */}
           <div className="p-4">
             <div className="relative mb-4">
-              {/* Timeline Segments - individual bars between dots */}
-              <div className="absolute top-3 left-6 right-6 flex">
-                {timeSlots.slice(0, -1).map((slot, index) => {
-                  const activeIndex = timeSlots.findIndex((s) => s.active);
-                  const shouldShowGreen =
-                    activeIndex >= 0 && index < activeIndex;
-
-                  return (
-                    <div key={index} className="flex-1 flex items-center">
-                      <div
-                        className={cn(
-                          "h-1 flex-1 mx-1",
-                          shouldShowGreen ? "bg-green-500" : "bg-gray-300",
-                        )}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-
               {/* Timeline Dots */}
               <div className="flex justify-between items-center relative">
                 {timeSlots.map((slot, index) => (
@@ -195,6 +175,26 @@ export default function EmployeeLocationTimelineCard() {
                     </span>
                   </div>
                 ))}
+
+                {/* Timeline Segments - individual bars between dots */}
+                <div className="absolute top-1/2 left-0 right-0 flex transform -translate-y-1/2 px-2">
+                  {timeSlots.slice(0, -1).map((slot, index) => {
+                    const activeIndex = timeSlots.findIndex((s) => s.active);
+                    const shouldShowGreen =
+                      activeIndex >= 0 && index < activeIndex;
+
+                    return (
+                      <div key={index} className="flex-1 flex items-center">
+                        <div
+                          className={cn(
+                            "h-1 flex-1 mx-1",
+                            shouldShowGreen ? "bg-green-500" : "bg-gray-300",
+                          )}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
