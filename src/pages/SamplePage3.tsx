@@ -48,13 +48,6 @@ export default function SamplePage3() {
 
   return (
     <div className={cn("w-full p-3 sm:p-4 lg:p-6 pt-8 font-inter")}>
-      {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl lg:text-3xl font-bold text-[#283C50] mb-2">
-          Sample Page 3
-        </h1>
-      </div>
-
       {/* Page Area */}
       <div
         className={cn(
