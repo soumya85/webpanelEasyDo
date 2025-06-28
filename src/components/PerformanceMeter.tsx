@@ -266,64 +266,51 @@ export default function PerformanceMeter() {
             </div>
 
             {/* Map Container */}
-            <div className="flex-1 bg-gradient-to-br from-blue-100 to-green-100 rounded-lg border relative overflow-hidden min-h-[300px]">
+            <div className="flex-1 bg-white rounded-lg border relative overflow-hidden min-h-[300px]">
               {/* Map Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50">
-                <svg
-                  viewBox="0 0 400 300"
-                  className="w-full h-full"
-                  style={{ filter: "drop-shadow(2px 2px 4px rgba(0,0,0,0.1))" }}
-                >
-                  {/* India Map Outline (Simplified) */}
-                  <path
-                    d="M100 80 Q120 60 140 70 Q160 50 180 60 Q200 40 220 50 Q240 45 250 55 Q270 50 280 65 Q300 60 320 75 Q340 80 350 100 Q360 120 350 140 Q345 160 340 180 Q330 200 320 220 Q300 240 280 250 Q260 255 240 250 Q220 245 200 240 Q180 235 160 230 Q140 225 120 220 Q100 210 90 190 Q85 170 90 150 Q95 130 100 110 Q105 90 100 80 Z"
-                    fill="#e8f5e8"
-                    stroke="#a8d8a8"
-                    strokeWidth="1"
-                  />
+              <div className="absolute inset-0">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F8583191a47d44dd9bdafe859141fb375%2F7583651bfe0c474185fe766e3678b252?format=webp&width=800"
+                  alt="India Map"
+                  className="w-full h-full object-cover"
+                />
 
-                  {/* Branch Markers */}
+                {/* Branch Markers Overlay */}
+                <div className="absolute inset-0">
                   {branches.map((branch, index) => {
                     const positions = [
-                      { x: 160, y: 90 }, // New Delhi
-                      { x: 120, y: 140 }, // Ahmedabad
-                      { x: 200, y: 180 }, // Halasuru
-                      { x: 220, y: 160 }, // Paradip
+                      { x: "42%", y: "35%", name: "New Delhi\nBranch" }, // New Delhi
+                      { x: "25%", y: "55%", name: "Ahmedabad\noffice Branch" }, // Ahmedabad
+                      { x: "58%", y: "70%", name: "Halasuru Branch" }, // Halasuru
+                      { x: "62%", y: "62%", name: "Paradip Branch" }, // Paradip
                     ];
 
                     return (
-                      <g key={branch.name}>
-                        {/* Pin */}
-                        <circle
-                          cx={positions[index].x}
-                          cy={positions[index].y}
-                          r="20"
-                          fill="#ef4444"
-                          stroke="white"
-                          strokeWidth="3"
-                        />
-                        {/* Count */}
-                        <text
-                          x={positions[index].x}
-                          y={positions[index].y + 5}
-                          textAnchor="middle"
-                          className="text-sm font-bold fill-white"
-                        >
-                          {branch.count}
-                        </text>
-                        {/* Branch Name */}
-                        <text
-                          x={positions[index].x}
-                          y={positions[index].y + 35}
-                          textAnchor="middle"
-                          className="text-xs font-medium fill-gray-700"
-                        >
-                          {branch.name}
-                        </text>
-                      </g>
+                      <div
+                        key={branch.name}
+                        className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                        style={{
+                          left: positions[index].x,
+                          top: positions[index].y,
+                        }}
+                      >
+                        {/* Pin Marker */}
+                        <div className="relative">
+                          <div className="w-12 h-12 bg-red-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                            <span className="text-white font-bold text-lg">
+                              {branch.count}
+                            </span>
+                          </div>
+
+                          {/* Branch Name Label */}
+                          <div className="absolute top-14 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded shadow-md border text-xs font-medium text-gray-800 whitespace-pre-line text-center min-w-max">
+                            {positions[index].name}
+                          </div>
+                        </div>
+                      </div>
                     );
                   })}
-                </svg>
+                </div>
               </div>
 
               {/* Location Button (Bottom Left) */}
@@ -333,13 +320,57 @@ export default function PerformanceMeter() {
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  <circle cx="12" cy="12" r="3" fill="currentColor" />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="8"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                  />
                 </svg>
               </button>
 
               {/* Google Logo (Bottom Right) */}
-              <div className="absolute bottom-4 right-4 bg-white px-2 py-1 rounded text-xs font-medium text-gray-600 shadow-sm">
-                Google
+              <div className="absolute bottom-4 right-4">
+                <svg
+                  width="66"
+                  height="26"
+                  viewBox="0 0 66 26"
+                  className="bg-white px-1 rounded"
+                >
+                  <g fill="none" fillRule="evenodd">
+                    <path
+                      d="M9.5 14.5v-3h8.5c.1.5.1 1.1.1 1.8 0 5.7-3.8 9.7-8.6 9.7-5 0-9-4-9-9s4-9 9-9c2.4 0 4.4.9 5.9 2.3L13 10.7c-.8-.8-2-1.4-3.5-1.4-2.9 0-5.2 2.4-5.2 5.2s2.3 5.2 5.2 5.2c3.3 0 4.6-2.4 4.8-3.6H9.5v-1.6z"
+                      fill="#4285F4"
+                    />
+                    <path
+                      d="M25 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
+                      fill="#EA4335"
+                    />
+                    <path
+                      d="M38.5 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
+                      fill="#FBBC05"
+                    />
+                    <path
+                      d="M52 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
+                      fill="#34A853"
+                    />
+                    <path
+                      d="M65.5 9.5c3.2 0 5.7 2.5 5.7 6s-2.5 6-5.7 6-5.7-2.5-5.7-6 2.5-6 5.7-6zm0 1.8c-2.3 0-3.9 1.9-3.9 4.2s1.6 4.2 3.9 4.2 3.9-1.9 3.9-4.2-1.6-4.2-3.9-4.2z"
+                      fill="#EA4335"
+                    />
+                  </g>
+                </svg>
               </div>
             </div>
           </div>
