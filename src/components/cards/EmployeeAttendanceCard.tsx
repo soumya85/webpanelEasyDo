@@ -78,7 +78,12 @@ export default function EmployeeAttendanceCard() {
           <h2 className="text-lg font-semibold text-gray-900">
             Employee Attendance
           </h2>
-          <span className="text-sm text-blue-600 font-medium">June, 2025</span>
+          <div className="flex items-center gap-1">
+            <span className="text-sm text-blue-600 font-medium">
+              Today (Sat, 28 Jun 2025)
+            </span>
+            <ChevronDown className="w-4 h-4 text-blue-600 rotate-[-90deg]" />
+          </div>
         </div>
 
         {/* Attendance Grid */}
