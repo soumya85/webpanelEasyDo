@@ -298,7 +298,7 @@ export default function EmployeeAttendanceCard() {
         <div className="relative mb-4" ref={filterDropdownRef}>
           <button
             onClick={() => setFilterDropdownOpen(!filterDropdownOpen)}
-            className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors min-w-[120px]"
           >
             <span>{selectedFilter}</span>
             <ChevronDown className="w-4 h-4 text-gray-600" />
