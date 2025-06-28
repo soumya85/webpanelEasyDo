@@ -30,11 +30,11 @@ export default function EmployeeLocationTimelineCard() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   // Google Maps state
-  const [mapType, setMapType] = useState<"custom" | "google">("custom");
+  const [mapType, setMapType] = useState<"custom" | "google">("google");
   const [googleMapType, setGoogleMapType] = useState<
     "roadmap" | "satellite" | "hybrid" | "terrain"
-  >("roadmap");
-  const [googleZoom, setGoogleZoom] = useState(6);
+  >("terrain");
+  const [googleZoom, setGoogleZoom] = useState(5);
   const [selectedGoogleMarker, setSelectedGoogleMarker] = useState<
     string | null
   >(null);
