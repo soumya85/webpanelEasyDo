@@ -11,7 +11,12 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useMemo, useState, useCallback } from "react";
-import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
@@ -25,42 +30,46 @@ export default function EmployeeLocationTimelineCard() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   // Google Maps state
-  const [mapType, setMapType] = useState<'custom' | 'google'>('custom');
-  const [googleMapType, setGoogleMapType] = useState<'roadmap' | 'satellite' | 'hybrid' | 'terrain'>('roadmap');
+  const [mapType, setMapType] = useState<"custom" | "google">("custom");
+  const [googleMapType, setGoogleMapType] = useState<
+    "roadmap" | "satellite" | "hybrid" | "terrain"
+  >("roadmap");
   const [googleZoom, setGoogleZoom] = useState(6);
-  const [selectedGoogleMarker, setSelectedGoogleMarker] = useState<string | null>(null);
+  const [selectedGoogleMarker, setSelectedGoogleMarker] = useState<
+    string | null
+  >(null);
 
   // Branch locations data with both pixel positions for custom map and real coordinates for Google Maps
   const branches = [
     {
       id: "6",
       name: "New Delhi Branch",
-      position: { x: 300, y: 140 }, // Northern region
-      coordinates: { lat: 28.6139, lng: 77.2090 }, // Real Delhi coordinates
+      position: { x: 300, y: 140 },
+      coordinates: { lat: 28.6139, lng: 77.209 },
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 180, y: 230 }, // Western region
-      coordinates: { lat: 23.0225, lng: 72.5714 }, // Real Ahmedabad coordinates
+      position: { x: 180, y: 230 },
+      coordinates: { lat: 23.0225, lng: 72.5714 },
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
       id: "18",
       name: "Haldia Branch",
-      position: { x: 460, y: 220 }, // Eastern region
-      coordinates: { lat: 22.0667, lng: 88.1167 }, // Real Haldia coordinates
+      position: { x: 460, y: 220 },
+      coordinates: { lat: 22.0667, lng: 88.1167 },
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "22",
       name: "Paradip Branch",
-      position: { x: 380, y: 280 }, // Central-eastern region
-      coordinates: { lat: 20.3167, lng: 86.6167 }, // Real Paradip coordinates
+      position: { x: 380, y: 280 },
+      coordinates: { lat: 20.3167, lng: 86.6167 },
       address: "Paradip, Odisha",
       employees: 18,
     },
@@ -77,10 +86,15 @@ export default function EmployeeLocationTimelineCard() {
 
   // Calculate center point of all branches for Google Maps
   const googleMapCenter = useMemo(() => {
-    const avgLat = branches.reduce((sum, branch) => sum + branch.coordinates.lat, 0) / branches.length;
-    const avgLng = branches.reduce((sum, branch) => sum + branch.coordinates.lng, 0) / branches.length;
+    const avgLat =
+      branches.reduce((sum, branch) => sum + branch.coordinates.lat, 0) /
+      branches.length;
+    const avgLng =
+      branches.reduce((sum, branch) => sum + branch.coordinates.lng, 0) /
+      branches.length;
     return { lat: avgLat, lng: avgLng };
   }, [branches]);
+
   // Define all possible time slots
   const allSlots = useMemo(
     () => [
@@ -216,20 +230,28 @@ export default function EmployeeLocationTimelineCard() {
   }, []);
 
   // Google Maps handlers
-  const handleGoogleMarkerClick = useCallback((branchId: string) => {
-    setSelectedGoogleMarker(selectedGoogleMarker === branchId ? null : branchId);
-  }, [selectedGoogleMarker]);
+  const handleGoogleMarkerClick = useCallback(
+    (branchId: string) => {
+      setSelectedGoogleMarker(
+        selectedGoogleMarker === branchId ? null : branchId,
+      );
+    },
+    [selectedGoogleMarker],
+  );
 
   const handleMapTypeToggle = useCallback(() => {
-    setMapType(mapType === 'custom' ? 'google' : 'custom');
+    setMapType(mapType === "custom" ? "google" : "custom");
     // Reset selection when switching map types
     setSelectedMarker(null);
     setSelectedGoogleMarker(null);
   }, [mapType]);
 
-  const handleGoogleMapTypeChange = useCallback((type: 'roadmap' | 'satellite' | 'hybrid' | 'terrain') => {
-    setGoogleMapType(type);
-  }, []);
+  const handleGoogleMapTypeChange = useCallback(
+    (type: "roadmap" | "satellite" | "hybrid" | "terrain") => {
+      setGoogleMapType(type);
+    },
+    [],
+  );
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
@@ -407,9 +429,9 @@ export default function EmployeeLocationTimelineCard() {
               onClick={handleMapTypeToggle}
               className={cn(
                 "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
-                mapType === 'custom'
+                mapType === "custom"
                   ? "bg-blue-100 text-blue-700 border border-blue-200"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200",
               )}
             >
               <MapIcon className="w-4 h-4" />
@@ -419,9 +441,9 @@ export default function EmployeeLocationTimelineCard() {
               onClick={handleMapTypeToggle}
               className={cn(
                 "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
-                mapType === 'google'
+                mapType === "google"
                   ? "bg-blue-100 text-blue-700 border border-blue-200"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200",
               )}
             >
               <MapPin className="w-4 h-4" />
@@ -430,40 +452,48 @@ export default function EmployeeLocationTimelineCard() {
           </div>
 
           {/* Google Maps Type Controls */}
-          {mapType === 'google' && (
+          {mapType === "google" && (
             <div className="flex items-center gap-1">
               <button
-                onClick={() => handleGoogleMapTypeChange('roadmap')}
+                onClick={() => handleGoogleMapTypeChange("roadmap")}
                 className={cn(
                   "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === 'roadmap' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  googleMapType === "roadmap"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
                 )}
               >
                 Road
               </button>
               <button
-                onClick={() => handleGoogleMapTypeChange('satellite')}
+                onClick={() => handleGoogleMapTypeChange("satellite")}
                 className={cn(
                   "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === 'satellite' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  googleMapType === "satellite"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
                 )}
               >
                 <Satellite className="w-3 h-3" />
               </button>
               <button
-                onClick={() => handleGoogleMapTypeChange('hybrid')}
+                onClick={() => handleGoogleMapTypeChange("hybrid")}
                 className={cn(
                   "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === 'hybrid' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  googleMapType === "hybrid"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
                 )}
               >
                 Hybrid
               </button>
               <button
-                onClick={() => handleGoogleMapTypeChange('terrain')}
+                onClick={() => handleGoogleMapTypeChange("terrain")}
                 className={cn(
                   "px-2 py-1 text-xs rounded transition-colors",
-                  googleMapType === 'terrain' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  googleMapType === "terrain"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-300",
                 )}
               >
                 Terrain
@@ -474,11 +504,25 @@ export default function EmployeeLocationTimelineCard() {
 
         {/* Maps Container */}
         <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200">
-          {mapType === 'google' ? (
+          {mapType === "google" ? (
             /* Google Maps Implementation */
-            <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || 'demo-key'}>
+            <LoadScript
+              googleMapsApiKey={
+                process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "demo-key"
+              }
+              loadingElement={
+                <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
+                    <p className="text-sm text-gray-600">
+                      Loading Google Maps...
+                    </p>
+                  </div>
+                </div>
+              }
+            >
               <GoogleMap
-                mapContainerStyle={{ width: '100%', height: '100%' }}
+                mapContainerStyle={{ width: "100%", height: "100%" }}
                 center={googleMapCenter}
                 zoom={googleZoom}
                 options={{
@@ -497,21 +541,9 @@ export default function EmployeeLocationTimelineCard() {
                     onClick={() => handleGoogleMarkerClick(branch.id)}
                     label={{
                       text: branch.id,
-                      color: '#FFFFFF',
-                      fontWeight: 'bold',
-                      fontSize: '14px',
-                    }}
-                    icon={{
-                      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-                        <svg width="40" height="52" viewBox="0 0 40 52" xmlns="http://www.w3.org/2000/svg">
-                          <ellipse cx="20" cy="48" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
-                          <path d="M20 0C10.5 0 3 7.5 3 17c0 12.5 17 35 17 35s17-22.5 17-35C37 7.5 29.5 0 20 0z" fill="#EA4335" stroke="#FFFFFF" stroke-width="2"/>
-                          <circle cx="20" cy="17" r="10" fill="#FFFFFF"/>
-                          <text x="20" y="22" text-anchor="middle" fill="#EA4335" font-size="14" font-weight="700" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
-                        </svg>
-                      `),
-                      scaledSize: new window.google.maps.Size(40, 52),
-                      anchor: new window.google.maps.Point(20, 52),
+                      color: "#FFFFFF",
+                      fontWeight: "bold",
+                      fontSize: "14px",
                     }}
                   />
                 ))}
@@ -519,12 +551,17 @@ export default function EmployeeLocationTimelineCard() {
                 {/* Info Window */}
                 {selectedGoogleMarker && (
                   <InfoWindow
-                    position={branches.find(b => b.id === selectedGoogleMarker)?.coordinates}
+                    position={
+                      branches.find((b) => b.id === selectedGoogleMarker)
+                        ?.coordinates
+                    }
                     onCloseClick={() => setSelectedGoogleMarker(null)}
                   >
                     <div className="p-2">
                       {(() => {
-                        const branch = branches.find((b) => b.id === selectedGoogleMarker);
+                        const branch = branches.find(
+                          (b) => b.id === selectedGoogleMarker,
+                        );
                         return branch ? (
                           <div>
                             <h3 className="font-semibold text-gray-900 mb-1">
@@ -550,537 +587,178 @@ export default function EmployeeLocationTimelineCard() {
               className="relative w-full h-full"
               style={{ backgroundColor: "#AAD3DF" }}
             >
-          <div
-            className="relative w-full h-full cursor-grab select-none"
-            style={{
-              transform: `translate(${mapPosition.x}px, ${mapPosition.y}px) scale(${0.8 + (zoomLevel - 1) * 0.1})`,
-              transformOrigin: "center center",
-            }}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            onClick={handleMapClick}
-          >
-            {/* Google Maps Style Geographic Base - Exact Match */}
-            <svg
-              viewBox="0 0 600 400"
-              className="absolute inset-0 w-full h-full"
-              style={{ backgroundColor: "#AAD3DF" }}
-            >
-              {/* Ocean Background - Exact Google Maps Blue */}
-              <rect width="600" height="400" fill="#AAD3DF" />
-
-              {/* Pakistan Land Mass - Very Light Cream */}
-              <path
-                d="M50 80 L180 70 L230 90 L210 140 L170 160 L120 140 L80 120 Z"
-                fill="#FAF9F7"
-                stroke="#E5E5E5"
-                strokeWidth="0.5"
-              />
-
-              {/* India Main Land Mass - Light Cream like Google Maps */}
-              <path
-                d="M200 120 L220 100 L280 95 L350 90 L420 110 L480 130 L520 170 L550 210 L580 270 L590 330 L580 390 L560 440 L520 470 L460 490 L400 500 L340 490 L280 470 L240 440 L200 390 L180 330 L170 270 L180 210 Z"
-                fill="#FAF9F7"
-                stroke="#E5E5E5"
-                strokeWidth="0.5"
-              />
-
-              {/* Green Forest/Vegetation Areas - Scattered like Google Maps */}
-              <ellipse
-                cx="120"
-                cy="140"
-                rx="35"
-                ry="25"
-                fill="#C8E6C9"
-                opacity="0.8"
-              />
-              <ellipse
-                cx="250"
-                cy="160"
-                rx="40"
-                ry="30"
-                fill="#B8E6B8"
-                opacity="0.7"
-              />
-              <ellipse
-                cx="380"
-                cy="180"
-                rx="45"
-                ry="35"
-                fill="#C8E6C9"
-                opacity="0.8"
-              />
-              <ellipse
-                cx="480"
-                cy="200"
-                rx="30"
-                ry="40"
-                fill="#B8E6B8"
-                opacity="0.7"
-              />
-              <ellipse
-                cx="350"
-                cy="250"
-                rx="25"
-                ry="30"
-                fill="#C8E6C9"
-                opacity="0.6"
-              />
-              <ellipse
-                cx="450"
-                cy="280"
-                rx="35"
-                ry="25"
-                fill="#B8E6B8"
-                opacity="0.7"
-              />
-              <ellipse
-                cx="300"
-                cy="320"
-                rx="40"
-                ry="35"
-                fill="#C8E6C9"
-                opacity="0.6"
-              />
-              <ellipse
-                cx="200"
-                cy="350"
-                rx="30"
-                ry="25"
-                fill="#B8E6B8"
-                opacity="0.5"
-              />
-
-              {/* Large forest area in northern region */}
-              <path
-                d="M200 120 L280 110 L350 115 L420 125 L400 150 L350 145 L280 140 L220 145 Z"
-                fill="#C8E6C9"
-                opacity="0.6"
-              />
-
-              {/* Myanmar vegetation */}
-              <ellipse
-                cx="540"
-                cy="220"
-                rx="25"
-                ry="45"
-                fill="#C8E6C9"
-                opacity="0.7"
-              />
-
-              {/* Nepal - Small mountainous region */}
-              <path
-                d="M380 140 L420 135 L440 150 L430 165 L390 160 Z"
-                fill="#FAF9F7"
-                stroke="#E5E5E5"
-                strokeWidth="0.5"
-              />
-
-              {/* Bangladesh */}
-              <path
-                d="M460 200 L490 195 L510 210 L505 230 L480 235 L465 220 Z"
-                fill="#FAF9F7"
-                stroke="#E5E5E5"
-                strokeWidth="0.5"
-              />
-
-              {/* Sri Lanka */}
-              <path
-                d="M310 480 L330 475 L340 490 L335 505 L320 510 L305 500 Z"
-                fill="#FAF9F7"
-                stroke="#E5E5E5"
-                strokeWidth="0.5"
-              />
-
-              {/* Myanmar */}
-              <path
-                d="M510 180 L540 175 L560 200 L570 250 L550 300 L530 280 L520 220 Z"
-                fill="#FAF9F7"
-                stroke="#E5E5E5"
-                strokeWidth="0.5"
-              />
-
-              {/* Bhutan - Small region */}
-              <path
-                d="M450 150 L480 145 L490 160 L480 170 L460 165 Z"
-                fill="#FAF9F7"
-                stroke="#E5E5E5"
-                strokeWidth="0.5"
-              />
-
-              {/* Very subtle state boundaries */}
-              <g stroke="#F0F0F0" strokeWidth="0.3" fill="none" opacity="0.3">
-                <path d="M200 200 L350 190 L400 200" />
-                <path d="M250 250 L450 240" />
-                <path d="M220 300 L380 290 L480 300" />
-                <path d="M280 350 L420 340" />
-              </g>
-
-              {/* Major Rivers - Very Subtle Blue */}
-              <path
-                d="M420 160 Q380 180 350 200 Q320 220 290 240 Q250 260 220 280"
-                fill="none"
-                stroke="#AAD3DF"
-                strokeWidth="1"
-                opacity="0.5"
-              />
-
-              <path
-                d="M480 170 Q460 180 440 190 Q420 200 400 210"
-                fill="none"
-                stroke="#AAD3DF"
-                strokeWidth="0.8"
-                opacity="0.5"
-              />
-            </svg>
-
-            {/* Text Labels Layer - Google Maps Style */}
-            <div className="absolute inset-0 w-full h-full pointer-events-none">
-              {/* Country/Region Labels - Google Maps Font Style */}
               <div
-                className="absolute top-1 left-2 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                Tajikistan
-              </div>
-              <div
-                className="absolute top-8 right-4 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                XINJIANG
-              </div>
-              <div
-                className="absolute top-12 left-2 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                Pakistan
-              </div>
-              <div
-                className="absolute top-16 right-8 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                TIBET
-              </div>
-              <div
-                className="absolute top-20 right-16 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                QINGHAI
-              </div>
-              <div
-                className="absolute bottom-12 right-2 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                Myanmar
-                <br />
-                (Burma)
-              </div>
-              <div
-                className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                Sri Lanka
-              </div>
-              <div
-                className="absolute bottom-1 right-8 text-xs text-gray-700"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                Andaman
-              </div>
-
-              {/* India Central Label */}
-              <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-normal text-gray-800"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                India
-              </div>
-
-              {/* State Abbreviations */}
-              <div className="absolute" style={{ top: "42%", left: "50%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  UP
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "60%", right: "28%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  OD
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "48%", right: "22%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  ML
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "45%", right: "18%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  NL
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "42%", right: "20%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  AR
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "52%", right: "12%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  MZ
-                </span>
-              </div>
-              <div className="absolute" style={{ bottom: "32%", left: "12%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  GA
-                </span>
-              </div>
-              <div className="absolute" style={{ bottom: "25%", left: "16%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  TN
-                </span>
-              </div>
-              <div className="absolute" style={{ bottom: "28%", left: "20%" }}>
-                <span
-                  className="text-xs text-gray-600"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  KL
-                </span>
-              </div>
-
-              {/* Branch Labels - Matching Google Maps Style */}
-              <div className="absolute" style={{ top: "28%", left: "42%" }}>
-                <span
-                  className="text-xs text-gray-800"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  New Delhi
-                  <br />
-                  Branch
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "50%", left: "20%" }}>
-                <span
-                  className="text-xs text-gray-800"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  Ahmedabad
-                  <br />
-                  office Branch
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "52%", right: "22%" }}>
-                <span
-                  className="text-xs text-gray-800"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  Haldia Branch
-                </span>
-              </div>
-              <div className="absolute" style={{ bottom: "32%", left: "35%" }}>
-                <span
-                  className="text-xs text-gray-800"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  Hyderabad
-                  <br />
-                  హైదరాబాద్
-                </span>
-              </div>
-              <div className="absolute" style={{ bottom: "42%", right: "20%" }}>
-                <span
-                  className="text-xs text-gray-800"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  Paradip Branch
-                </span>
-              </div>
-              <div
-                className="absolute bottom-16 left-8 text-xs text-gray-800"
-                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-              >
-                Mumbai
-                <br />
-                मुंबई
-              </div>
-
-              {/* Nepal label */}
-              <div className="absolute" style={{ top: "38%", right: "28%" }}>
-                <span
-                  className="text-xs text-gray-700"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  Nepal
-                </span>
-              </div>
-
-              {/* Water Body Labels - Blue text like Google Maps */}
-              <div className="absolute" style={{ bottom: "20%", right: "30%" }}>
-                <span
-                  className="text-sm text-blue-700"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  Bay of Bengal
-                </span>
-              </div>
-              <div className="absolute" style={{ top: "65%", left: "5%" }}>
-                <span
-                  className="text-sm text-blue-700"
-                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
-                >
-                  Arabian Sea
-                </span>
-              </div>
-            </div>
-
-            {/* Branch Markers - Google Maps Pointer Pin Style */}
-            {branches.map((branch) => (
-              <div
-                key={branch.id}
-                className="absolute cursor-pointer hover:scale-105 transition-transform z-10"
+                className="relative w-full h-full cursor-grab select-none"
                 style={{
-                  left: `${branch.position.x}px`,
-                  top: `${branch.position.y}px`,
-                  transform: "translate(-50%, -100%)",
+                  transform: `translate(${mapPosition.x}px, ${mapPosition.y}px) scale(${0.8 + (zoomLevel - 1) * 0.1})`,
+                  transformOrigin: "center center",
                 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleMarkerClick(branch.id);
-                }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onClick={handleMapClick}
               >
-                {/* Google Maps Pin Container */}
-                <div className="relative">
-                  {/* Pin Shape - SVG */}
-                  <svg
-                    width="40"
-                    height="52"
-                    viewBox="0 0 40 52"
-                    className="drop-shadow-lg"
-                  >
-                    {/* Pin Shadow */}
-                    <ellipse
-                      cx="20"
-                      cy="48"
-                      rx="8"
-                      ry="3"
-                      fill="rgba(0,0,0,0.2)"
-                    />
-                    {/* Main Pin Shape */}
-                    <path
-                      d="M20 0C10.5 0 3 7.5 3 17c0 12.5 17 35 17 35s17-22.5 17-35C37 7.5 29.5 0 20 0z"
-                      fill="#EA4335"
-                      stroke="#FFFFFF"
-                      strokeWidth="2"
-                    />
-                    {/* White Circle Inside */}
-                    <circle cx="20" cy="17" r="10" fill="#FFFFFF" />
-                  </svg>
+                {/* Custom SVG Map */}
+                <svg
+                  viewBox="0 0 600 400"
+                  className="absolute inset-0 w-full h-full"
+                  style={{ backgroundColor: "#AAD3DF" }}
+                >
+                  <rect width="600" height="400" fill="#AAD3DF" />
 
-                  {/* Number Text */}
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{
-                      top: "6px",
-                      color: "#EA4335",
-                      fontSize: "14px",
-                      fontWeight: "700",
-                      fontFamily: "Roboto, Arial, sans-serif",
-                    }}
-                  >
-                    {branch.id}
+                  {/* India Land Mass */}
+                  <path
+                    d="M200 120 L220 100 L280 95 L350 90 L420 110 L480 130 L520 170 L550 210 L580 270 L590 330 L580 390 L560 440 L520 470 L460 490 L400 500 L340 490 L280 470 L240 440 L200 390 L180 330 L170 270 L180 210 Z"
+                    fill="#FAF9F7"
+                    stroke="#E5E5E5"
+                    strokeWidth="0.5"
+                  />
+
+                  {/* Vegetation Areas */}
+                  <ellipse
+                    cx="250"
+                    cy="160"
+                    rx="40"
+                    ry="30"
+                    fill="#C8E6C9"
+                    opacity="0.7"
+                  />
+                  <ellipse
+                    cx="380"
+                    cy="180"
+                    rx="45"
+                    ry="35"
+                    fill="#C8E6C9"
+                    opacity="0.8"
+                  />
+                  <ellipse
+                    cx="350"
+                    cy="250"
+                    rx="25"
+                    ry="30"
+                    fill="#C8E6C9"
+                    opacity="0.6"
+                  />
+                </svg>
+
+                {/* Map Labels */}
+                <div className="absolute inset-0 w-full h-full pointer-events-none">
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-normal text-gray-800">
+                    India
                   </div>
                 </div>
-              </div>
-            ))}
 
-            {/* Info Window */}
-            {selectedMarker && (
-              <div
-                className="absolute z-20 bg-white rounded-lg shadow-lg border border-gray-200 p-3 min-w-48"
-                style={{
-                  left: `${(branches.find((b) => b.id === selectedMarker)?.position.x || 0) + 20}px`,
-                  top: `${(branches.find((b) => b.id === selectedMarker)?.position.y || 0) - 60}px`,
-                }}
-              >
-                {(() => {
-                  const branch = branches.find((b) => b.id === selectedMarker);
-                  return branch ? (
-                    <div>
-                      <button
-                        onClick={() => setSelectedMarker(null)}
-                        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300"
+                {/* Branch Markers */}
+                {branches.map((branch) => (
+                  <div
+                    key={branch.id}
+                    className="absolute cursor-pointer hover:scale-105 transition-transform z-10"
+                    style={{
+                      left: `${branch.position.x}px`,
+                      top: `${branch.position.y}px`,
+                      transform: "translate(-50%, -100%)",
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleMarkerClick(branch.id);
+                    }}
+                  >
+                    <div className="relative">
+                      <svg
+                        width="40"
+                        height="52"
+                        viewBox="0 0 40 52"
+                        className="drop-shadow-lg"
                       >
-                        ×
-                      </button>
-                      <h3 className="font-semibold text-gray-900 mb-1">
-                        {branch.name}
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-1">
-                        {branch.address}
-                      </p>
-                      <p className="text-sm text-blue-600">
-                        {branch.employees} employees present
-                      </p>
+                        <ellipse
+                          cx="20"
+                          cy="48"
+                          rx="8"
+                          ry="3"
+                          fill="rgba(0,0,0,0.2)"
+                        />
+                        <path
+                          d="M20 0C10.5 0 3 7.5 3 17c0 12.5 17 35 17 35s17-22.5 17-35C37 7.5 29.5 0 20 0z"
+                          fill="#EA4335"
+                          stroke="#FFFFFF"
+                          strokeWidth="2"
+                        />
+                        <circle cx="20" cy="17" r="10" fill="#FFFFFF" />
+                      </svg>
+                      <div
+                        className="absolute inset-0 flex items-center justify-center"
+                        style={{
+                          top: "6px",
+                          color: "#EA4335",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                        }}
+                      >
+                        {branch.id}
+                      </div>
                     </div>
-                  ) : null;
-                })()}
+                  </div>
+                ))}
+
+                {/* Info Window */}
+                {selectedMarker && (
+                  <div
+                    className="absolute z-20 bg-white rounded-lg shadow-lg border border-gray-200 p-3 min-w-48"
+                    style={{
+                      left: `${(branches.find((b) => b.id === selectedMarker)?.position.x || 0) + 20}px`,
+                      top: `${(branches.find((b) => b.id === selectedMarker)?.position.y || 0) - 60}px`,
+                    }}
+                  >
+                    {(() => {
+                      const branch = branches.find(
+                        (b) => b.id === selectedMarker,
+                      );
+                      return branch ? (
+                        <div>
+                          <button
+                            onClick={() => setSelectedMarker(null)}
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300"
+                          >
+                            ×
+                          </button>
+                          <h3 className="font-semibold text-gray-900 mb-1">
+                            {branch.name}
+                          </h3>
+                          <p className="text-sm text-gray-600 mb-1">
+                            {branch.address}
+                          </p>
+                          <p className="text-sm text-blue-600">
+                            {branch.employees} employees present
+                          </p>
+                        </div>
+                      ) : null;
+                    })()}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
 
-          {/* Google Logo */}
-          <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs text-gray-700 font-semibold shadow z-30">
-            Google
-          </div>
+              {/* Custom Map Controls */}
+              <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs text-gray-700 font-semibold shadow z-30">
+                Custom Map
+              </div>
 
-          {/* Zoom Controls */}
-          <div className="absolute bottom-4 right-4 flex flex-col bg-white rounded shadow-lg border border-gray-200 z-30">
-            <button
-              onClick={handleZoomIn}
-              className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600 border-b border-gray-200"
-            >
-              <ZoomIn className="w-4 h-4" />
-            </button>
-            <button
-              onClick={handleZoomOut}
-              className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600"
-            >
-              <ZoomOut className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Location Pin Control */}
-          <div className="absolute bottom-3 right-16">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-200">
-              <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+              <div className="absolute bottom-4 right-4 flex flex-col bg-white rounded shadow-lg border border-gray-200 z-30">
+                <button
+                  onClick={handleZoomIn}
+                  className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600 border-b border-gray-200"
+                >
+                  <ZoomIn className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleZoomOut}
+                  className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600"
+                >
+                  <ZoomOut className="w-4 h-4" />
+                </button>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </CardContent>
     </Card>
