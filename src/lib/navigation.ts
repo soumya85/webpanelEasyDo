@@ -11,6 +11,7 @@ import {
   Settings,
   HelpCircle,
   Zap,
+  Star,
 } from "lucide-react";
 import { type TranslationKey } from "@/data/translations";
 
