@@ -6,7 +6,8 @@ import { useMemo, useState } from "react";
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
   const [windowOffset, setWindowOffset] = useState(0);
-
+  // State to track selected time slot by hour value
+  const [selectedHour, setSelectedHour] = useState<number | null>(null);
   // Define all possible time slots
   const allSlots = useMemo(
     () => [
@@ -151,50 +152,95 @@ export default function EmployeeLocationTimelineCard() {
           {/* Timeline */}
           <div className="p-4">
             <div className="relative mb-4">
-              {/* Timeline Segments - individual bars between dots */}
-              <div className="absolute top-3 left-6 right-6 flex">
+              {/* Timeline Background Bar */}
+              <div className="absolute top-2 left-0 right-0 h-0.5 bg-gray-300"></div>
+
+              {/* Timeline Active Segments */}
+              <div className="absolute top-2 left-0 right-0 flex">
                 {timeSlots.slice(0, -1).map((slot, index) => {
                   const activeIndex = timeSlots.findIndex((s) => s.active);
-                  const shouldShowGreen =
-                    activeIndex >= 0 && index < activeIndex;
+                  const selectedIndex =
+                    selectedHour !== null
+                      ? timeSlots.findIndex(
+                          (s) =>
+                            allSlots.find((as) => as.time === s.time)?.hour ===
+                            selectedHour,
+                        )
+                      : -1;
+                  const maxIndex =
+                    selectedIndex >= 0 ? selectedIndex : activeIndex;
+                  const shouldShowGreen = maxIndex >= 0 && index < maxIndex;
+                  const segmentWidth = `${100 / (timeSlots.length - 1)}%`;
 
                   return (
-                    <div key={index} className="flex-1 flex items-center">
+                    <div
+                      key={index}
+                      className="relative"
+                      style={{ width: segmentWidth }}
+                    >
                       <div
                         className={cn(
-                          "h-1 flex-1 mx-1",
-                          shouldShowGreen ? "bg-green-500" : "bg-gray-300",
+                          "h-0.5 w-full",
+                          shouldShowGreen ? "bg-green-500" : "bg-transparent",
                         )}
                       />
                     </div>
                   );
                 })}
               </div>
-
               {/* Timeline Dots */}
               <div className="flex justify-between items-center relative">
-                {timeSlots.map((slot, index) => (
-                  <div key={slot.time} className="flex flex-col items-center">
-                    <div
-                      className={cn(
-                        "rounded-full z-10",
-                        slot.active
-                          ? "w-5 h-5 bg-green-500"
-                          : "w-4 h-4 bg-gray-300",
-                      )}
-                    />
-                    <span
-                      className={cn(
-                        "text-xs mt-2 font-medium whitespace-nowrap",
-                        slot.active
-                          ? "text-green-600 font-semibold"
-                          : "text-gray-500",
-                      )}
-                    >
-                      {slot.time}
-                    </span>
-                  </div>
-                ))}
+                {timeSlots.map((slot, index) => {
+                  const slotHour = allSlots.find(
+                    (as) => as.time === slot.time,
+                  )?.hour;
+                  const isSelected = selectedHour === slotHour;
+                  const isActiveOrSelected = slot.active || isSelected;
+                  const selectedIndex =
+                    selectedHour !== null
+                      ? timeSlots.findIndex(
+                          (s) =>
+                            allSlots.find((as) => as.time === s.time)?.hour ===
+                            selectedHour,
+                        )
+                      : -1;
+                  const isDisabled =
+                    selectedIndex >= 0 && index > selectedIndex;
+
+                  return (
+                    <div key={slot.time} className="flex flex-col items-center">
+                      <button
+                        onClick={() => {
+                          if (!isDisabled && slotHour !== undefined) {
+                            setSelectedHour(
+                              selectedHour === slotHour ? null : slotHour,
+                            );
+                          }
+                        }}
+                        disabled={isDisabled}
+                        className={cn(
+                          "rounded-full z-10 relative transition-all duration-200",
+                          !isDisabled && "hover:scale-110 cursor-pointer",
+                          isDisabled && "cursor-not-allowed opacity-50",
+                          isActiveOrSelected
+                            ? "w-4 h-4 bg-green-500"
+                            : "w-3 h-3 bg-gray-400",
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          "text-xs mt-2 font-medium whitespace-nowrap transition-colors duration-200",
+                          isDisabled && "opacity-50",
+                          isActiveOrSelected
+                            ? "text-green-600 font-semibold"
+                            : "text-gray-500",
+                        )}
+                      >
+                        {slot.time}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
