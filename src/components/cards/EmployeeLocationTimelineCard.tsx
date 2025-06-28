@@ -356,7 +356,7 @@ export default function EmployeeLocationTimelineCard() {
         </div>
 
         {/* Custom Interactive Map Section - Expanded */}
-        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200 bg-gradient-to-br from-green-100 via-blue-50 to-cyan-100">
+        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200 bg-blue-200">
           <div
             className="relative w-full h-full cursor-grab select-none"
             style={{
@@ -369,122 +369,275 @@ export default function EmployeeLocationTimelineCard() {
             onMouseLeave={handleMouseUp}
             onClick={handleMapClick}
           >
-            {/* India Map Base with Geographic Labels */}
-            <div className="absolute inset-0 w-full h-full">
+            {/* Geographic Map Base with SVG Shapes */}
+            <svg
+              viewBox="0 0 600 400"
+              className="absolute inset-0 w-full h-full"
+              style={{
+                background: "linear-gradient(180deg, #87CEEB 0%, #4169E1 100%)",
+              }}
+            >
+              {/* Water Bodies - Ocean Background */}
+              <rect width="600" height="400" fill="url(#oceanGradient)" />
+
+              {/* Gradient Definitions */}
+              <defs>
+                <linearGradient
+                  id="oceanGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="0%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#87CEEB" />
+                  <stop offset="100%" stopColor="#4169E1" />
+                </linearGradient>
+                <linearGradient
+                  id="landGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="0%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#98FB98" />
+                  <stop offset="50%" stopColor="#90EE90" />
+                  <stop offset="100%" stopColor="#228B22" />
+                </linearGradient>
+                <linearGradient
+                  id="mountainGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="0%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#D2B48C" />
+                  <stop offset="100%" stopColor="#8B7355" />
+                </linearGradient>
+              </defs>
+
+              {/* India Main Land Mass */}
+              <path
+                d="M200 120 L220 100 L280 95 L350 90 L420 110 L480 130 L520 170 L550 210 L580 270 L590 330 L580 390 L560 440 L520 470 L460 490 L400 500 L340 490 L280 470 L240 440 L200 390 L180 330 L170 270 L180 210 Z"
+                fill="url(#landGradient)"
+                stroke="#556B2F"
+                strokeWidth="1"
+              />
+
+              {/* Himalayan Mountain Range */}
+              <path
+                d="M200 120 L280 95 L350 90 L420 110 L480 130 L450 140 L380 125 L320 115 L250 125 L200 140 Z"
+                fill="url(#mountainGradient)"
+                stroke="#8B7355"
+                strokeWidth="0.5"
+              />
+
+              {/* Pakistan */}
+              <path
+                d="M120 80 L200 70 L250 90 L220 120 L180 140 L140 120 Z"
+                fill="#E6F3E6"
+                stroke="#7CB342"
+                strokeWidth="1"
+              />
+
+              {/* Nepal - Small mountainous region */}
+              <path
+                d="M380 140 L420 135 L440 150 L430 165 L390 160 Z"
+                fill="#F0E68C"
+                stroke="#B8860B"
+                strokeWidth="0.5"
+              />
+
+              {/* Bangladesh */}
+              <path
+                d="M460 200 L490 195 L510 210 L505 230 L480 235 L465 220 Z"
+                fill="#E8F5E8"
+                stroke="#7CB342"
+                strokeWidth="1"
+              />
+
+              {/* Sri Lanka */}
+              <path
+                d="M310 480 L330 475 L340 490 L335 505 L320 510 L305 500 Z"
+                fill="#E8F5E8"
+                stroke="#7CB342"
+                strokeWidth="1"
+              />
+
+              {/* Myanmar */}
+              <path
+                d="M510 180 L540 175 L560 200 L570 250 L550 300 L530 280 L520 220 Z"
+                fill="#E8F5E8"
+                stroke="#7CB342"
+                strokeWidth="1"
+              />
+
+              {/* Major Rivers - Ganges */}
+              <path
+                d="M420 160 Q380 180 350 200 Q320 220 290 240"
+                fill="none"
+                stroke="#4682B4"
+                strokeWidth="2"
+                opacity="0.7"
+              />
+
+              {/* Brahmaputra River */}
+              <path
+                d="M480 170 Q460 180 440 190 Q420 200 400 210"
+                fill="none"
+                stroke="#4682B4"
+                strokeWidth="2"
+                opacity="0.7"
+              />
+
+              {/* Coastal Lines */}
+              <path
+                d="M200 390 Q250 380 300 370 Q350 365 400 370 Q450 375 500 380"
+                fill="none"
+                stroke="#87CEEB"
+                strokeWidth="3"
+                opacity="0.8"
+              />
+
+              {/* Arabian Sea */}
+              <circle cx="150" cy="350" r="30" fill="#4682B4" opacity="0.3" />
+
+              {/* Bay of Bengal */}
+              <ellipse
+                cx="500"
+                cy="350"
+                rx="40"
+                ry="50"
+                fill="#4682B4"
+                opacity="0.3"
+              />
+            </svg>
+
+            {/* Text Labels Layer */}
+            <div className="absolute inset-0 w-full h-full pointer-events-none">
               {/* Country/Region Labels */}
-              <div className="absolute top-1 left-4 text-xs font-medium text-gray-700">
+              <div className="absolute top-4 left-8 text-xs font-medium text-gray-800">
                 Kyrgyzstan
               </div>
-              <div className="absolute top-4 left-6 text-xs font-medium text-gray-700">
+              <div className="absolute top-8 left-12 text-xs font-medium text-gray-800">
                 Tajikistan
               </div>
-              <div className="absolute top-1 right-4 text-xs text-gray-600">
+              <div className="absolute top-2 right-8 text-xs text-gray-700">
                 XINJIANG
               </div>
-              <div className="absolute top-8 left-1 text-xs font-medium text-gray-700">
+              <div className="absolute top-16 left-2 text-xs font-medium text-gray-800">
                 Pakistan
               </div>
-              <div className="absolute top-12 right-4 text-xs text-gray-600">
+              <div className="absolute top-20 right-8 text-xs text-gray-700">
                 TIBET
               </div>
-              <div className="absolute top-14 right-10 text-xs text-gray-600">
+              <div className="absolute top-24 right-16 text-xs text-gray-700">
                 QINGHAI
               </div>
-              <div className="absolute bottom-16 left-4 text-xs font-medium text-gray-700">
+              <div className="absolute bottom-20 left-8 text-xs font-medium text-gray-800">
                 Mumbai
                 <br />
                 मुंबई
               </div>
-              <div className="absolute bottom-12 right-1 text-xs font-medium text-gray-700">
+              <div className="absolute bottom-16 right-4 text-xs font-medium text-gray-800">
                 Myanmar
                 <br />
                 (Burma)
               </div>
-              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-700">
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-800">
                 Sri Lanka
               </div>
-              <div className="absolute bottom-1 right-6 text-xs text-gray-600">
+              <div className="absolute bottom-2 right-12 text-xs text-gray-700">
                 Andaman
               </div>
 
               {/* India Central Label */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-gray-800">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-gray-900 bg-white bg-opacity-80 px-2 py-1 rounded">
                 India
               </div>
 
               {/* State Abbreviations */}
-              <div className="absolute" style={{ top: "35%", left: "46%" }}>
-                <span className="text-xs text-gray-600">UP</span>
+              <div className="absolute" style={{ top: "40%", left: "52%" }}>
+                <span className="text-xs text-gray-700 font-medium">UP</span>
               </div>
-              <div className="absolute" style={{ top: "58%", right: "25%" }}>
-                <span className="text-xs text-gray-600">OD</span>
+              <div className="absolute" style={{ top: "65%", right: "30%" }}>
+                <span className="text-xs text-gray-700 font-medium">OD</span>
               </div>
-              <div className="absolute" style={{ top: "45%", right: "20%" }}>
-                <span className="text-xs text-gray-600">ML</span>
+              <div className="absolute" style={{ top: "50%", right: "25%" }}>
+                <span className="text-xs text-gray-700 font-medium">ML</span>
               </div>
-              <div className="absolute" style={{ top: "42%", right: "16%" }}>
-                <span className="text-xs text-gray-600">NL</span>
+              <div className="absolute" style={{ top: "47%", right: "20%" }}>
+                <span className="text-xs text-gray-700 font-medium">NL</span>
               </div>
-              <div className="absolute" style={{ top: "38%", right: "18%" }}>
-                <span className="text-xs text-gray-600">AR</span>
+              <div className="absolute" style={{ top: "43%", right: "22%" }}>
+                <span className="text-xs text-gray-700 font-medium">AR</span>
               </div>
-              <div className="absolute" style={{ top: "49%", right: "10%" }}>
-                <span className="text-xs text-gray-600">MZ</span>
+              <div className="absolute" style={{ top: "54%", right: "15%" }}>
+                <span className="text-xs text-gray-700 font-medium">MZ</span>
               </div>
-              <div className="absolute" style={{ bottom: "28%", left: "12%" }}>
-                <span className="text-xs text-gray-600">KA</span>
+              <div className="absolute" style={{ bottom: "35%", left: "15%" }}>
+                <span className="text-xs text-gray-700 font-medium">KA</span>
               </div>
-              <div className="absolute" style={{ bottom: "22%", left: "16%" }}>
-                <span className="text-xs text-gray-600">TN</span>
+              <div className="absolute" style={{ bottom: "28%", left: "20%" }}>
+                <span className="text-xs text-gray-700 font-medium">TN</span>
               </div>
-              <div className="absolute" style={{ bottom: "24%", left: "20%" }}>
-                <span className="text-xs text-gray-600">KL</span>
+              <div className="absolute" style={{ bottom: "30%", left: "25%" }}>
+                <span className="text-xs text-gray-700 font-medium">KL</span>
               </div>
-              <div className="absolute" style={{ bottom: "32%", left: "14%" }}>
-                <span className="text-xs text-gray-600">GA</span>
+              <div className="absolute" style={{ bottom: "40%", left: "18%" }}>
+                <span className="text-xs text-gray-700 font-medium">GA</span>
               </div>
-              <div className="absolute" style={{ bottom: "28%", left: "32%" }}>
-                <span className="text-xs text-gray-600">AP</span>
+              <div className="absolute" style={{ bottom: "35%", left: "38%" }}>
+                <span className="text-xs text-gray-700 font-medium">AP</span>
               </div>
 
               {/* Branch Labels */}
-              <div className="absolute" style={{ top: "28%", left: "40%" }}>
-                <span className="text-xs font-medium text-gray-800">
-                  Delhi
+              <div className="absolute" style={{ top: "32%", left: "45%" }}>
+                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+                  New Delhi
                   <br />
                   Branch
                 </span>
               </div>
-              <div className="absolute" style={{ top: "42%", left: "18%" }}>
-                <span className="text-xs font-medium text-gray-800">
-                  Mumbai
+              <div className="absolute" style={{ top: "48%", left: "22%" }}>
+                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+                  Ahmedabad
                   <br />
-                  Head Office
+                  office Branch
                 </span>
               </div>
-              <div className="absolute" style={{ bottom: "28%", left: "38%" }}>
-                <span className="text-xs font-medium text-gray-800">
+              <div className="absolute" style={{ top: "58%", right: "25%" }}>
+                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+                  Haldia Branch
+                </span>
+              </div>
+              <div className="absolute" style={{ bottom: "35%", left: "42%" }}>
+                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
                   Hyderabad
                   <br />
                   హైదరాబాద్
                 </span>
               </div>
-              <div className="absolute" style={{ bottom: "20%", left: "35%" }}>
-                <span className="text-xs font-medium text-gray-800">
-                  Bangalore
-                  <br />
-                  Tech Hub
+              <div className="absolute" style={{ bottom: "45%", right: "18%" }}>
+                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+                  Paradip Branch
                 </span>
               </div>
 
               {/* Nepal label */}
-              <div className="absolute" style={{ top: "35%", right: "25%" }}>
-                <span className="text-xs font-medium text-gray-700">Nepal</span>
+              <div className="absolute" style={{ top: "40%", right: "30%" }}>
+                <span className="text-xs font-medium text-gray-800">Nepal</span>
               </div>
 
-              {/* Bay of Bengal label */}
-              <div className="absolute" style={{ bottom: "20%", right: "28%" }}>
-                <span className="text-xs text-gray-600">Bay of Bengal</span>
+              {/* Water Body Labels */}
+              <div className="absolute" style={{ bottom: "25%", right: "32%" }}>
+                <span className="text-sm text-blue-800 font-medium">
+                  Bay of Bengal
+                </span>
+              </div>
+              <div className="absolute" style={{ top: "60%", left: "8%" }}>
+                <span className="text-sm text-blue-800 font-medium">
+                  Arabian Sea
+                </span>
               </div>
             </div>
 
