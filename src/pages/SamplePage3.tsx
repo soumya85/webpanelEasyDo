@@ -51,9 +51,10 @@ export default function SamplePage3() {
       id: "documents",
     },
     {
-      icon: <img src="/holiday-icon.png" alt="Holidays" />,
-      title: "Holidays",
-      id: "holidays",
+      icon: <img src="/pendingapproval-icon.png" alt="Pending Approval" />,
+      title: "Pending Approval",
+      id: "pending-approval",
+      notificationCount: 3,
     },
     {
       icon: <img src="/reports-icon.png" alt="Reports" />,
