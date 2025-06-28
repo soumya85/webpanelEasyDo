@@ -20,7 +20,10 @@ export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
   const [windowOffset, setWindowOffset] = useState(0);
   // State to track single selected time slot (current time as initial selection)
-  const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  const [selectedHour, setSelectedHour] = useState<number | null>(() => {
+    const now = new Date();
+    return now.getHours();
+  });
   // State for map marker selection
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
 
@@ -50,7 +53,7 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 45, y: 60 }, // Positioned on eastern coast of India, in Odisha
+      position: { x: 40, y: 60 }, // Positioned on eastern coast of India, in Odisha - adjusted right
       address: "Paradip, Odisha",
       employees: 18,
     },
@@ -91,11 +94,6 @@ export default function EmployeeLocationTimelineCard() {
   const { timeSlots, currentHour, canGoPrevious, canGoNext } = useMemo(() => {
     const now = new Date();
     const currentHour = now.getHours();
-
-    // Set current time as initial selection if no selection exists
-    if (selectedHour === null) {
-      setSelectedHour(currentHour);
-    }
 
     // Find the current active hour slot
     const activeSlotIndex = allSlots.findIndex(
@@ -148,6 +146,29 @@ export default function EmployeeLocationTimelineCard() {
     setSelectedMarker(selectedMarker === branchId ? null : branchId);
   };
 
+  // Function to get dynamic marker number based on selected timestamp and branch
+  const getMarkerNumber = (branchId: string, hour: number | null) => {
+    if (hour === null) return branchId;
+
+    // Create different marker numbers based on time and branch
+    // Using a hash-like function to generate consistent but varying numbers
+    const baseHash = parseInt(branchId) || 0;
+    const timeMultiplier = hour || 1;
+
+    // Generate different patterns for different times
+    const patterns = [
+      (base: number, time: number) => ((base * 3 + time * 2) % 50) + 1,
+      (base: number, time: number) => ((base * 7 + time * 3) % 99) + 1,
+      (base: number, time: number) => ((base * 5 + time * 4) % 30) + 1,
+      (base: number, time: number) => ((base * 11 + time * 1) % 75) + 1,
+    ];
+
+    const branchIndex = branches.findIndex((b) => b.id === branchId);
+    const pattern = patterns[branchIndex % patterns.length];
+
+    return pattern(baseHash, timeMultiplier).toString();
+  };
+
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
       <CardContent className="p-2 flex flex-col h-full">
@@ -190,6 +211,22 @@ export default function EmployeeLocationTimelineCard() {
               >
                 <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z" />
               </svg>
+              {/* Custom User Icon */}
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 50 51"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5"
+              >
+                <path
+                  d="M17.5 29.1744H20.5V35.1744H17.5V29.1744ZM32.5 15.5806C32.4375 17.0494 32.0625 18.3306 31.375 19.4244C30.6875 20.4869 29.7344 21.2056 28.5156 21.5806V35.1744H26.5V29.1744H24.5312V35.1744H22.5156V23.2681C22.2344 23.3619 22.0312 23.4713 21.9062 23.5963C20.9688 24.3463 20.5 25.3775 20.5 26.69V27.2056H18.5312V26.69C18.5312 24.7213 19.2344 23.1275 20.6406 21.9088C22.0469 20.7525 23.6719 20.1744 25.5156 20.1744C26.9219 20.1744 28.0781 19.8306 28.9844 19.1431C30.0156 18.2994 30.5312 17.1431 30.5312 15.6744V15.2056H32.5V15.5806ZM26.9219 18.5806C26.5156 18.9869 26.0469 19.19 25.5156 19.19C24.9844 19.19 24.5156 18.9869 24.1094 18.5806C23.7031 18.1744 23.5 17.7056 23.5 17.1744C23.5 16.6431 23.7031 16.19 24.1094 15.815C24.5156 15.4088 24.9844 15.2056 25.5156 15.2056C26.0469 15.2056 26.5156 15.4088 26.9219 15.815C27.3281 16.19 27.5312 16.6431 27.5312 17.1744C27.5312 17.7056 27.3281 18.1744 26.9219 18.5806Z"
+                  fill="#4766E5"
+                />
+              </svg>
+              {/* Green vertical bar */}
+              <div className="w-0.5 h-6 bg-green-500"></div>
               <span className="text-2xl font-bold text-gray-900">29</span>
             </div>
           </div>
@@ -380,11 +417,11 @@ export default function EmployeeLocationTimelineCard() {
                       y="32"
                       textAnchor="middle"
                       fill="#EA4335"
-                      fontSize="18"
+                      fontSize="12"
                       fontWeight="bold"
                       fontFamily="system-ui, sans-serif"
                     >
-                      {branch.id}
+                      {getMarkerNumber(branch.id, selectedHour)}
                     </text>
                   </svg>
                 </div>
