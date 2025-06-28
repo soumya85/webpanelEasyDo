@@ -36,12 +36,6 @@ export const navigationItems: NavigationItem[] = [
     href: "/chats",
   },
   {
-    id: "todays-schedule",
-    labelKey: "sample2",
-    icon: Calendar,
-    href: "/todays-schedule",
-  },
-  {
     id: "employee-dashboard",
     labelKey: "employeeDashboard",
     icon: Users,
@@ -94,5 +88,11 @@ export const navigationItems: NavigationItem[] = [
     labelKey: "sample",
     icon: Zap,
     href: "/sample",
+  },
+  {
+    id: "todays-schedule",
+    labelKey: "sample2",
+    icon: Calendar,
+    href: "/todays-schedule",
   },
 ];
