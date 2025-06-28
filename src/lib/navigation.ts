@@ -11,6 +11,7 @@ import {
   Settings,
   HelpCircle,
   Zap,
+  Star,
 } from "lucide-react";
 import { type TranslationKey } from "@/data/translations";
 
@@ -26,7 +27,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "dashboard",
     labelKey: "dashboard",
-    icon: LayoutDashboard,
+    icon: Calendar,
     href: "/dashboard",
   },
   {
@@ -34,12 +35,6 @@ export const navigationItems: NavigationItem[] = [
     labelKey: "chats",
     icon: MessageSquare,
     href: "/chats",
-  },
-  {
-    id: "todays-schedule",
-    labelKey: "todaysSchedule",
-    icon: Calendar,
-    href: "/todays-schedule",
   },
   {
     id: "employee-dashboard",
@@ -91,8 +86,14 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     id: "sample",
-    labelKey: "dashboard",
+    labelKey: "sample",
     icon: Zap,
     href: "/sample",
+  },
+  {
+    id: "todays-schedule",
+    labelKey: "sample2",
+    icon: Star,
+    href: "/todays-schedule",
   },
 ];
