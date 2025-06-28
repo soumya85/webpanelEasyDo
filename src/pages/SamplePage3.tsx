@@ -2,11 +2,6 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
-import AttendanceSummary from "@/components/AttendanceSummary";
-import PerformanceMeter from "@/components/PerformanceMeter";
-import WagesSummary from "@/components/WagesSummary";
-import LeaveBalance from "@/components/LeaveBalance";
-import UpcomingHolidays from "@/components/UpcomingHolidays";
 
 export default function SamplePage3() {
   const { t } = useGlobalTranslation();
@@ -109,19 +104,6 @@ export default function SamplePage3() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Dashboard Sections - Vertical Layout */}
-        <div className="flex flex-col gap-6 w-full">
-          {/* Performance and Attendance side by side */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="min-h-[300px]">
-              <PerformanceMeter />
-            </div>
-            <div className="min-h-[250px]">
-              <AttendanceSummary />
-            </div>
           </div>
         </div>
       </div>
