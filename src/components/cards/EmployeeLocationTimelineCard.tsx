@@ -380,136 +380,165 @@ export default function EmployeeLocationTimelineCard() {
             >
               {/* Gradient Definitions for Google Maps Style */}
               <defs>
-                <linearGradient
-                  id="landColor"
-                  x1="0%"
-                  y1="0%"
-                  x2="0%"
-                  y2="100%"
+                <pattern
+                  id="forestPattern"
+                  patternUnits="userSpaceOnUse"
+                  width="20"
+                  height="20"
                 >
-                  <stop offset="0%" stopColor="#F5F5DC" />
-                  <stop offset="50%" stopColor="#E6E6FA" />
-                  <stop offset="100%" stopColor="#D3D3D3" />
-                </linearGradient>
-                <linearGradient
-                  id="waterColor"
-                  x1="0%"
-                  y1="0%"
-                  x2="0%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#AAD3DF" />
-                  <stop offset="100%" stopColor="#7FB8C4" />
-                </linearGradient>
-                <linearGradient
-                  id="mountainColor"
-                  x1="0%"
-                  y1="0%"
-                  x2="0%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#DEB887" />
-                  <stop offset="100%" stopColor="#CD853F" />
-                </linearGradient>
+                  <rect width="20" height="20" fill="#C8E6C9" />
+                  <circle cx="5" cy="5" r="2" fill="#A5D6A7" opacity="0.6" />
+                  <circle
+                    cx="15"
+                    cy="10"
+                    r="1.5"
+                    fill="#81C784"
+                    opacity="0.7"
+                  />
+                  <circle
+                    cx="10"
+                    cy="15"
+                    r="1.8"
+                    fill="#A5D6A7"
+                    opacity="0.5"
+                  />
+                </pattern>
               </defs>
 
-              {/* Ocean Background - Light Blue like Google Maps */}
+              {/* Ocean Background - Google Maps Blue */}
               <rect width="600" height="400" fill="#AAD3DF" />
 
               {/* Pakistan Land Mass */}
               <path
                 d="M50 80 L180 70 L230 90 L210 140 L170 160 L120 140 L80 120 Z"
-                fill="#F5F5DC"
-                stroke="#D0D0D0"
+                fill="#F5F1E8"
+                stroke="#E0E0E0"
+                strokeWidth="0.8"
+              />
+
+              {/* India Main Land Mass - Google Maps Cream */}
+              <path
+                d="M200 120 L220 100 L280 95 L350 90 L420 110 L480 130 L520 170 L550 210 L580 270 L590 330 L580 390 L560 440 L520 470 L460 490 L400 500 L340 490 L280 470 L240 440 L200 390 L180 330 L170 270 L180 210 Z"
+                fill="#F5F1E8"
+                stroke="#E0E0E0"
                 strokeWidth="1"
               />
 
-              {/* India Main Land Mass - Google Maps Beige */}
+              {/* Forest/Vegetation Areas - Green patches like Google Maps */}
               <path
-                d="M200 120 L220 100 L280 95 L350 90 L420 110 L480 130 L520 170 L550 210 L580 270 L590 330 L580 390 L560 440 L520 470 L460 490 L400 500 L340 490 L280 470 L240 440 L200 390 L180 330 L170 270 L180 210 Z"
-                fill="#F5F5DC"
-                stroke="#D0D0D0"
-                strokeWidth="1.5"
-              />
-
-              {/* Mountain Regions - Northern India/Himalayas */}
-              <path
-                d="M200 120 L280 95 L350 90 L420 110 L480 130 L450 140 L380 125 L320 115 L250 125 L200 140 Z"
-                fill="#E0E0E0"
-                stroke="#C0C0C0"
-                strokeWidth="0.5"
+                d="M200 140 L250 135 L300 145 L280 170 L230 165 Z"
+                fill="#C8E6C9"
                 opacity="0.7"
               />
 
-              {/* Nepal - Small region */}
+              <path
+                d="M80 140 L130 135 L150 155 L120 170 L90 160 Z"
+                fill="#C8E6C9"
+                opacity="0.7"
+              />
+
+              <ellipse
+                cx="320"
+                cy="180"
+                rx="30"
+                ry="15"
+                fill="#C8E6C9"
+                opacity="0.6"
+              />
+              <ellipse
+                cx="450"
+                cy="200"
+                rx="25"
+                ry="20"
+                fill="#C8E6C9"
+                opacity="0.6"
+              />
+              <ellipse
+                cx="380"
+                cy="250"
+                rx="20"
+                ry="25"
+                fill="#C8E6C9"
+                opacity="0.5"
+              />
+
+              <path
+                d="M520 190 L560 185 L570 210 L550 220 L530 210 Z"
+                fill="#C8E6C9"
+                opacity="0.6"
+              />
+
+              {/* Nepal - Small mountainous region */}
               <path
                 d="M380 140 L420 135 L440 150 L430 165 L390 160 Z"
-                fill="#F0F0F0"
-                stroke="#D0D0D0"
-                strokeWidth="1"
+                fill="#F5F1E8"
+                stroke="#E0E0E0"
+                strokeWidth="0.8"
               />
 
               {/* Bangladesh */}
               <path
                 d="M460 200 L490 195 L510 210 L505 230 L480 235 L465 220 Z"
-                fill="#F5F5DC"
-                stroke="#D0D0D0"
-                strokeWidth="1"
+                fill="#F5F1E8"
+                stroke="#E0E0E0"
+                strokeWidth="0.8"
               />
 
               {/* Sri Lanka */}
               <path
                 d="M310 480 L330 475 L340 490 L335 505 L320 510 L305 500 Z"
-                fill="#F5F5DC"
-                stroke="#D0D0D0"
-                strokeWidth="1"
+                fill="#F5F1E8"
+                stroke="#E0E0E0"
+                strokeWidth="0.8"
               />
 
               {/* Myanmar */}
               <path
                 d="M510 180 L540 175 L560 200 L570 250 L550 300 L530 280 L520 220 Z"
-                fill="#F5F5DC"
-                stroke="#D0D0D0"
-                strokeWidth="1"
+                fill="#F5F1E8"
+                stroke="#E0E0E0"
+                strokeWidth="0.8"
               />
 
               {/* Bhutan - Small region */}
               <path
                 d="M450 150 L480 145 L490 160 L480 170 L460 165 Z"
-                fill="#F0F0F0"
-                stroke="#D0D0D0"
-                strokeWidth="1"
+                fill="#F5F1E8"
+                stroke="#E0E0E0"
+                strokeWidth="0.8"
               />
 
-              {/* State Boundaries - Light Gray Lines */}
-              <g stroke="#E0E0E0" strokeWidth="0.5" fill="none" opacity="0.5">
-                {/* Major state divisions */}
+              {/* State Boundaries - Very Light Gray */}
+              <g stroke="#E8E8E8" strokeWidth="0.5" fill="none" opacity="0.4">
                 <path d="M200 200 L350 190 L400 200" />
                 <path d="M250 250 L450 240" />
                 <path d="M220 300 L380 290 L480 300" />
                 <path d="M280 350 L420 340" />
               </g>
 
-              {/* Major Cities - Small Dots */}
-              <circle cx="200" cy="280" r="2" fill="#808080" opacity="0.6" />
-              <circle cx="350" cy="320" r="2" fill="#808080" opacity="0.6" />
-              <circle cx="320" cy="380" r="2" fill="#808080" opacity="0.6" />
-              <circle cx="300" cy="180" r="2" fill="#808080" opacity="0.6" />
-
-              {/* Major Rivers - Subtle Blue Lines */}
+              {/* Major Rivers - Google Maps Blue */}
               <path
                 d="M420 160 Q380 180 350 200 Q320 220 290 240 Q250 260 220 280"
                 fill="none"
-                stroke="#AAD3DF"
-                strokeWidth="2"
-                opacity="0.6"
+                stroke="#7FB8C4"
+                strokeWidth="1.5"
+                opacity="0.8"
               />
 
               <path
                 d="M480 170 Q460 180 440 190 Q420 200 400 210"
                 fill="none"
-                stroke="#AAD3DF"
-                strokeWidth="1.5"
+                stroke="#7FB8C4"
+                strokeWidth="1.2"
+                opacity="0.8"
+              />
+
+              {/* Coastal details */}
+              <path
+                d="M200 390 Q250 385 300 380 Q350 375 400 380 Q450 385 500 390"
+                fill="none"
+                stroke="#9BCBDA"
+                strokeWidth="1"
                 opacity="0.6"
               />
             </svg>
