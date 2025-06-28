@@ -767,11 +767,11 @@ export default function EmployeeLocationTimelineCard() {
               </div>
             </div>
 
-            {/* Branch Markers */}
+            {/* Branch Markers - Google Maps Style */}
             {branches.map((branch) => (
               <div
                 key={branch.id}
-                className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform z-10"
+                className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 hover:scale-105 transition-transform z-10"
                 style={{
                   left: `${branch.position.x}px`,
                   top: `${branch.position.y}px`,
@@ -781,7 +781,22 @@ export default function EmployeeLocationTimelineCard() {
                   handleMarkerClick(branch.id);
                 }}
               >
-                <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold border-3 border-white shadow-lg">
+                <div
+                  className="relative flex items-center justify-center"
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                    backgroundColor: "#EA4335",
+                    borderRadius: "50%",
+                    border: "3px solid white",
+                    boxShadow:
+                      "0 2px 6px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2)",
+                    color: "white",
+                    fontSize: "14px",
+                    fontWeight: "700",
+                    fontFamily: "Roboto, Arial, sans-serif",
+                  }}
+                >
                   {branch.id}
                 </div>
               </div>
