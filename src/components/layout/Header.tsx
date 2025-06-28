@@ -171,7 +171,7 @@ export function Header() {
               </svg>
             </button>
             {/* Red Badge */}
-            <div className="absolute -top-1 right-0 flex items-center justify-center min-w-[18px] h-[18px] px-1.5 py-1 bg-[#EA4D4D] rounded-full">
+            <div className="absolute -top-1 -right-2 flex items-center justify-center min-w-[18px] h-[18px] px-1.5 py-1 bg-[#EA4D4D] rounded-full">
               <span className="text-white text-[9px] font-semibold leading-[9px]">
                 3
               </span>
