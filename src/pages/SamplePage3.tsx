@@ -90,11 +90,11 @@ export default function SamplePage3() {
                     <img
                       src={card.icon.props.src}
                       alt={card.icon.props.alt}
-                      className="w-[28px] h-[28px] object-contain"
+                      className="w-[32px] h-[32px] object-contain"
                     />
                   </div>
                   <div className="flex items-start justify-center h-[32px] text-center">
-                    <h3 className="text-[#283C50] font-inter font-bold text-xs leading-tight max-w-full">
+                    <h3 className="text-[#283C50] font-inter font-bold text-sm leading-tight max-w-full">
                       {card.title}
                     </h3>
                   </div>
