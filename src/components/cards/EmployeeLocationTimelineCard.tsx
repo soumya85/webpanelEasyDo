@@ -325,50 +325,50 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Google Maps style pin marker */}
+                {/* Precise Google Maps pin marker */}
                 <div className="relative">
                   <svg
-                    width="32"
-                    height="40"
-                    viewBox="0 0 32 40"
+                    width="28"
+                    height="36"
+                    viewBox="0 0 28 36"
                     className="drop-shadow-lg"
                   >
                     {/* Pin shadow */}
                     <ellipse
-                      cx="16"
-                      cy="37"
-                      rx="4"
-                      ry="1.5"
-                      fill="rgba(0,0,0,0.3)"
+                      cx="14"
+                      cy="33"
+                      rx="3"
+                      ry="1"
+                      fill="rgba(0,0,0,0.25)"
                     />
 
-                    {/* Main pin shape - perfect teardrop */}
+                    {/* Main pin shape - Google Maps style teardrop */}
                     <path
-                      d="M16 2 C23.732 2, 30 8.268, 30 16 C30 23.732, 16 36, 16 36 C16 36, 2 23.732, 2 16 C2 8.268, 8.268 2, 16 2 Z"
-                      fill="#EA4335"
+                      d="M14 3 C21.18 3, 27 8.82, 27 16 C27 20.5, 23 26, 14 32 C5 26, 1 20.5, 1 16 C1 8.82, 6.82 3, 14 3 Z"
+                      fill="#E53E3E"
                     />
 
                     {/* White inner circle */}
-                    <circle cx="16" cy="16" r="11" fill="white" />
+                    <circle cx="14" cy="16" r="9" fill="white" />
 
-                    {/* Red border ring */}
+                    {/* Red inner border */}
                     <circle
-                      cx="16"
+                      cx="14"
                       cy="16"
-                      r="11"
+                      r="9"
                       fill="none"
-                      stroke="#EA4335"
-                      strokeWidth="2"
+                      stroke="#E53E3E"
+                      strokeWidth="2.5"
                     />
 
                     {/* Number text */}
                     <text
-                      x="16"
-                      y="21"
+                      x="14"
+                      y="20.5"
                       textAnchor="middle"
-                      fill="#EA4335"
-                      fontSize="14"
-                      fontWeight="bold"
+                      fill="#E53E3E"
+                      fontSize="12"
+                      fontWeight="700"
                       fontFamily="system-ui, -apple-system, sans-serif"
                     >
                       {branch.id}
