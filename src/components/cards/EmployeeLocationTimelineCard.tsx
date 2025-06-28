@@ -43,7 +43,7 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 50, y: 35 }, // Positioned near Kolkata in West Bengal
+      position: { x: 50, y: 40 }, // Positioned near Kolkata in West Bengal
       address: "Haldia, West Bengal",
       employees: 12,
     },
