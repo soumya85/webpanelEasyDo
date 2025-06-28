@@ -36,7 +36,7 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 25, y: 42 }, // Far Western India - Gujarat state, near Mumbai region
+      position: { x: 18, y: 42 }, // Far Western India - Gujarat state, near Mumbai region
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
