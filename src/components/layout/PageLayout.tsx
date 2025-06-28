@@ -27,7 +27,7 @@ export function PageLayout({ children }: PageLayoutProps) {
           "ml-0 lg:pt-[70px] pt-[135px]", // Reduced padding for desktop and mobile
         )}
       >
-        <div className="min-h-[calc(100vh-86px-64px)]">
+        <div className="min-h-[calc(100vh-86px-64px)] pt-6">
           {" "}
           {/* Account for header and footer */}
           {children}
