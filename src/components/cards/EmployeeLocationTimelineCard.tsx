@@ -188,17 +188,24 @@ export default function EmployeeLocationTimelineCard() {
                 {timeSlots.map((slot, index) => {
                   const isSelected = selectedSlotIndex === index;
                   const isActiveOrSelected = slot.active || isSelected;
+                  const isDisabled =
+                    selectedSlotIndex !== null && index > selectedSlotIndex;
 
                   return (
                     <div key={slot.time} className="flex flex-col items-center">
                       <button
-                        onClick={() =>
-                          setSelectedSlotIndex(
-                            selectedSlotIndex === index ? null : index,
-                          )
-                        }
+                        onClick={() => {
+                          if (!isDisabled) {
+                            setSelectedSlotIndex(
+                              selectedSlotIndex === index ? null : index,
+                            );
+                          }
+                        }}
+                        disabled={isDisabled}
                         className={cn(
-                          "rounded-full z-10 relative transition-all duration-200 hover:scale-110 cursor-pointer",
+                          "rounded-full z-10 relative transition-all duration-200",
+                          !isDisabled && "hover:scale-110 cursor-pointer",
+                          isDisabled && "cursor-not-allowed opacity-50",
                           isActiveOrSelected
                             ? "w-4 h-4 bg-green-500"
                             : "w-3 h-3 bg-gray-400",
@@ -207,6 +214,7 @@ export default function EmployeeLocationTimelineCard() {
                       <span
                         className={cn(
                           "text-xs mt-2 font-medium whitespace-nowrap transition-colors duration-200",
+                          isDisabled && "opacity-50",
                           isActiveOrSelected
                             ? "text-green-600 font-semibold"
                             : "text-gray-500",
