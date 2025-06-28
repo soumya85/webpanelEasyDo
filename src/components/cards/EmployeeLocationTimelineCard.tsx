@@ -21,35 +21,35 @@ export default function EmployeeLocationTimelineCard() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  // Branch locations data with pixel positions for custom map
+  // Branch locations data with pixel positions matching screenshot
   const branches = [
     {
+      id: "6",
+      name: "New Delhi Branch",
+      position: { x: 300, y: 140 }, // Northern region
+      address: "New Delhi",
+      employees: 15,
+    },
+    {
       id: "0",
-      name: "Mumbai Head Office",
-      position: { x: 160, y: 280 }, // Left side, middle-lower
-      address: "Mumbai, Maharashtra",
+      name: "Ahmedabad Office Branch",
+      position: { x: 180, y: 230 }, // Western region
+      address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
-      id: "1",
-      name: "Hyderabad Branch",
-      position: { x: 350, y: 320 }, // Center-right, lower
-      address: "Hyderabad, Telangana",
-      employees: 5,
-    },
-    {
-      id: "3",
-      name: "Delhi Branch",
-      position: { x: 300, y: 180 }, // Center, upper
-      address: "New Delhi",
+      id: "18",
+      name: "Haldia Branch",
+      position: { x: 460, y: 220 }, // Eastern region
+      address: "Haldia, West Bengal",
       employees: 12,
     },
     {
-      id: "10",
-      name: "Bangalore Tech Hub",
-      position: { x: 320, y: 380 }, // Center-right, bottom
-      address: "Bangalore, Karnataka",
-      employees: 4,
+      id: "22",
+      name: "Paradip Branch",
+      position: { x: 380, y: 280 }, // Central-eastern region
+      address: "Paradip, Odisha",
+      employees: 18,
     },
   ];
   // Define all possible time slots
