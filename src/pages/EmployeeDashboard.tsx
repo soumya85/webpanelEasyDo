@@ -1093,41 +1093,6 @@ export default function EmployeeDashboard() {
           "flex w-full flex-col items-start gap-4 sm:gap-5 lg:gap-6",
         )}
       >
-        {/* Breadcrumb Section Row */}
-        <div
-          className={cn(
-            "flex min-h-[50px] sm:min-h-[60px] lg:min-h-[65px]",
-            "px-4 py-3 sm:px-6 sm:py-3 lg:px-[30px] lg:py-[13.5px]",
-            "justify-between items-center self-stretch",
-            "rounded-lg border-l-[6px] border-[#4766E5] bg-white",
-            "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
-            "flex-row gap-2 lg:gap-0",
-          )}
-        >
-          <div className="flex items-center gap-2 sm:gap-[8px] lg:gap-[10px] flex-wrap flex-1">
-            <span className="text-[#283C50] font-inter text-base sm:text-xl lg:text-base font-bold leading-[20px] sm:leading-[24px] lg:leading-[19.2px]">
-              Employee Dashboard
-            </span>
-            <span className="text-[#DBD9D9] font-inter text-sm sm:text-base font-normal leading-[16px] sm:leading-[19.2px] hidden sm:block">
-              |
-            </span>
-            <span className="text-[#283C50] font-inter text-xs sm:text-[13px] font-bold leading-[16px] sm:leading-[20.8px] hidden sm:block">
-              Liberty Highrise PVT Ltd
-            </span>
-            <div className="hidden sm:block">
-              <ChevronRightIcon />
-            </div>
-            <span className="text-[#222] font-inter text-xs sm:text-[13px] font-normal leading-[16px] sm:leading-[20.8px] hidden sm:block">
-              Head Office Kolkata
-            </span>
-          </div>
-          <div className="flex justify-end items-center gap-2 lg:gap-[10px] flex-shrink-0">
-            <div className="w-[171px] h-[41.19px] flex items-center justify-end">
-              <div className="h-full bg-transparent"></div>
-            </div>
-          </div>
-        </div>
-
         {/* Quick Action Cards Grid - Single Row */}
         <div className="w-full">
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3 lg:gap-4 w-full">
