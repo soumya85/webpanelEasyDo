@@ -355,61 +355,223 @@ export default function EmployeeLocationTimelineCard() {
           </div>
         </div>
 
-        {/* Google Map Section */}
-        <div className="relative mt-4 h-64 rounded-xl overflow-hidden border border-gray-200">
-          <LoadScript googleMapsApiKey="AIzaSyBrOPBk_4GdKGzp1Gt8Ps7EKz1yCj5k2TM">
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={center}
-              zoom={5}
-              options={mapOptions}
-              onClick={handleMapClick}
-              onLoad={handleMapLoad}
-            >
-              {/* Branch Markers - Only render when map is loaded */}
-              {isMapLoaded &&
-                branches.map((branch) => (
-                  <Marker
-                    key={branch.id}
-                    position={branch.position}
-                    onClick={() => handleMarkerClick(branch.id)}
-                    icon={createMarkerIcon(branch.id)}
-                  />
-                ))}
+        {/* Custom Interactive Map Section */}
+        <div className="relative mt-4 h-64 rounded-xl overflow-hidden border border-gray-200 bg-gradient-to-br from-green-100 via-blue-50 to-cyan-100">
+          <div
+            className="relative w-full h-full cursor-grab select-none"
+            style={{
+              transform: `translate(${mapPosition.x}px, ${mapPosition.y}px) scale(${0.8 + (zoomLevel - 1) * 0.1})`,
+              transformOrigin: "center center",
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onClick={handleMapClick}
+          >
+            {/* India Map Base with Geographic Labels */}
+            <div className="absolute inset-0 w-full h-full">
+              {/* Country/Region Labels */}
+              <div className="absolute top-1 left-4 text-xs font-medium text-gray-700">
+                Kyrgyzstan
+              </div>
+              <div className="absolute top-4 left-6 text-xs font-medium text-gray-700">
+                Tajikistan
+              </div>
+              <div className="absolute top-1 right-4 text-xs text-gray-600">
+                XINJIANG
+              </div>
+              <div className="absolute top-8 left-1 text-xs font-medium text-gray-700">
+                Pakistan
+              </div>
+              <div className="absolute top-12 right-4 text-xs text-gray-600">
+                TIBET
+              </div>
+              <div className="absolute top-14 right-10 text-xs text-gray-600">
+                QINGHAI
+              </div>
+              <div className="absolute bottom-16 left-4 text-xs font-medium text-gray-700">
+                Mumbai
+                <br />
+                मुंबई
+              </div>
+              <div className="absolute bottom-12 right-1 text-xs font-medium text-gray-700">
+                Myanmar
+                <br />
+                (Burma)
+              </div>
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-700">
+                Sri Lanka
+              </div>
+              <div className="absolute bottom-1 right-6 text-xs text-gray-600">
+                Andaman
+              </div>
 
-              {/* Info Windows */}
-              {selectedMarker && (
-                <InfoWindow
-                  position={
-                    branches.find((b) => b.id === selectedMarker)?.position ||
-                    center
-                  }
-                  onCloseClick={() => setSelectedMarker(null)}
-                >
-                  <div className="p-2 max-w-xs">
-                    {(() => {
-                      const branch = branches.find(
-                        (b) => b.id === selectedMarker,
-                      );
-                      return branch ? (
-                        <div>
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            {branch.name}
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-1">
-                            {branch.address}
-                          </p>
-                          <p className="text-sm text-blue-600">
-                            {branch.employees} employees present
-                          </p>
-                        </div>
-                      ) : null;
-                    })()}
-                  </div>
-                </InfoWindow>
-              )}
-            </GoogleMap>
-          </LoadScript>
+              {/* India Central Label */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-gray-800">
+                India
+              </div>
+
+              {/* State Abbreviations */}
+              <div className="absolute" style={{ top: "35%", left: "46%" }}>
+                <span className="text-xs text-gray-600">UP</span>
+              </div>
+              <div className="absolute" style={{ top: "58%", right: "25%" }}>
+                <span className="text-xs text-gray-600">OD</span>
+              </div>
+              <div className="absolute" style={{ top: "45%", right: "20%" }}>
+                <span className="text-xs text-gray-600">ML</span>
+              </div>
+              <div className="absolute" style={{ top: "42%", right: "16%" }}>
+                <span className="text-xs text-gray-600">NL</span>
+              </div>
+              <div className="absolute" style={{ top: "38%", right: "18%" }}>
+                <span className="text-xs text-gray-600">AR</span>
+              </div>
+              <div className="absolute" style={{ top: "49%", right: "10%" }}>
+                <span className="text-xs text-gray-600">MZ</span>
+              </div>
+              <div className="absolute" style={{ bottom: "28%", left: "12%" }}>
+                <span className="text-xs text-gray-600">KA</span>
+              </div>
+              <div className="absolute" style={{ bottom: "22%", left: "16%" }}>
+                <span className="text-xs text-gray-600">TN</span>
+              </div>
+              <div className="absolute" style={{ bottom: "24%", left: "20%" }}>
+                <span className="text-xs text-gray-600">KL</span>
+              </div>
+              <div className="absolute" style={{ bottom: "32%", left: "14%" }}>
+                <span className="text-xs text-gray-600">GA</span>
+              </div>
+              <div className="absolute" style={{ bottom: "28%", left: "32%" }}>
+                <span className="text-xs text-gray-600">AP</span>
+              </div>
+
+              {/* Branch Labels */}
+              <div className="absolute" style={{ top: "28%", left: "40%" }}>
+                <span className="text-xs font-medium text-gray-800">
+                  Delhi
+                  <br />
+                  Branch
+                </span>
+              </div>
+              <div className="absolute" style={{ top: "42%", left: "18%" }}>
+                <span className="text-xs font-medium text-gray-800">
+                  Mumbai
+                  <br />
+                  Head Office
+                </span>
+              </div>
+              <div className="absolute" style={{ bottom: "28%", left: "38%" }}>
+                <span className="text-xs font-medium text-gray-800">
+                  Hyderabad
+                  <br />
+                  హైదరాబాద్
+                </span>
+              </div>
+              <div className="absolute" style={{ bottom: "20%", left: "35%" }}>
+                <span className="text-xs font-medium text-gray-800">
+                  Bangalore
+                  <br />
+                  Tech Hub
+                </span>
+              </div>
+
+              {/* Nepal label */}
+              <div className="absolute" style={{ top: "35%", right: "25%" }}>
+                <span className="text-xs font-medium text-gray-700">Nepal</span>
+              </div>
+
+              {/* Bay of Bengal label */}
+              <div className="absolute" style={{ bottom: "20%", right: "28%" }}>
+                <span className="text-xs text-gray-600">Bay of Bengal</span>
+              </div>
+            </div>
+
+            {/* Branch Markers */}
+            {branches.map((branch) => (
+              <div
+                key={branch.id}
+                className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform z-10"
+                style={{
+                  left: `${branch.position.x}px`,
+                  top: `${branch.position.y}px`,
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleMarkerClick(branch.id);
+                }}
+              >
+                <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold border-3 border-white shadow-lg">
+                  {branch.id}
+                </div>
+              </div>
+            ))}
+
+            {/* Info Window */}
+            {selectedMarker && (
+              <div
+                className="absolute z-20 bg-white rounded-lg shadow-lg border border-gray-200 p-3 min-w-48"
+                style={{
+                  left: `${(branches.find((b) => b.id === selectedMarker)?.position.x || 0) + 20}px`,
+                  top: `${(branches.find((b) => b.id === selectedMarker)?.position.y || 0) - 60}px`,
+                }}
+              >
+                {(() => {
+                  const branch = branches.find((b) => b.id === selectedMarker);
+                  return branch ? (
+                    <div>
+                      <button
+                        onClick={() => setSelectedMarker(null)}
+                        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300"
+                      >
+                        ×
+                      </button>
+                      <h3 className="font-semibold text-gray-900 mb-1">
+                        {branch.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        {branch.address}
+                      </p>
+                      <p className="text-sm text-blue-600">
+                        {branch.employees} employees present
+                      </p>
+                    </div>
+                  ) : null;
+                })()}
+              </div>
+            )}
+          </div>
+
+          {/* Google Logo */}
+          <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs text-gray-700 font-semibold shadow z-30">
+            Google
+          </div>
+
+          {/* Zoom Controls */}
+          <div className="absolute bottom-4 right-4 flex flex-col bg-white rounded shadow-lg border border-gray-200 z-30">
+            <button
+              onClick={handleZoomIn}
+              className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600 border-b border-gray-200"
+            >
+              <ZoomIn className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleZoomOut}
+              className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-600"
+            >
+              <ZoomOut className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Location Pin Control */}
+          <div className="absolute bottom-3 right-16">
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-200">
+              <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
