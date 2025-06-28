@@ -545,6 +545,20 @@ export default function EmployeeLocationTimelineCard() {
                       color: "#FFFFFF",
                       fontWeight: "bold",
                       fontSize: "14px",
+                      fontFamily: "Roboto, Arial, sans-serif",
+                    }}
+                    icon={{
+                      url:
+                        "data:image/svg+xml;charset=UTF-8," +
+                        encodeURIComponent(`
+                        <svg width="27" height="43" viewBox="0 0 27 43" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13.5 0C6.044 0 0 6.044 0 13.5C0 21.75 13.5 43 13.5 43S27 21.75 27 13.5C27 6.044 20.956 0 13.5 0Z" fill="#EA4335"/>
+                          <circle cx="13.5" cy="13.5" r="8" fill="#FFFFFF"/>
+                          <text x="13.5" y="18" text-anchor="middle" fill="#333" font-size="10" font-weight="bold" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
+                        </svg>
+                      `),
+                      scaledSize: { width: 27, height: 43 },
+                      anchor: { x: 13.5, y: 43 },
                     }}
                   />
                 ))}
