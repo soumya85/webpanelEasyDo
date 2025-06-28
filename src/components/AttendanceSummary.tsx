@@ -407,7 +407,9 @@ export default function AttendanceSummary() {
         </div>
 
         <div className="flex items-center justify-between px-4 pb-3 border-b border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900">Attendance</h3>
+          <h3 className="text-lg font-bold text-gray-900">
+            Employee Attendance
+          </h3>
           <span className="text-blue-600 font-medium">
             {tabOptions.find((tab) => tab.id === activeTab)?.fullLabel ||
               "This Month (June)"}
