@@ -8,46 +8,36 @@ export default function EmployeeLocationTimelineCard() {
   const [windowOffset, setWindowOffset] = useState(0);
   // State to track single selected time slot (current time as initial selection)
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
-  // State for custom interactive map
+  // State for map marker selection
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
-  const [zoomLevel, setZoomLevel] = useState(5);
-  const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  // Map type state - defaulting to custom since Google Maps needs API key
-  const [mapType, setMapType] = useState<"custom" | "google">("custom");
 
-  // Branch locations data with both pixel positions for custom map and real coordinates for Google Maps
+  // Branch locations data matching the screenshot
   const branches = [
     {
-      id: "6",
+      id: "3",
       name: "New Delhi Branch",
-      position: { x: 300, y: 140 },
-      coordinates: { lat: 28.6139, lng: 77.209 },
+      position: { x: 52, y: 25 }, // Position as percentage
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 180, y: 230 },
-      coordinates: { lat: 23.0225, lng: 72.5714 },
+      position: { x: 25, y: 45 },
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
-      id: "18",
+      id: "42",
       name: "Haldia Branch",
-      position: { x: 460, y: 220 },
-      coordinates: { lat: 22.0667, lng: 88.1167 },
+      position: { x: 75, y: 35 },
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
-      id: "22",
+      id: "10",
       name: "Paradip Branch",
-      position: { x: 380, y: 280 },
-      coordinates: { lat: 20.3167, lng: 86.6167 },
+      position: { x: 65, y: 50 },
       address: "Paradip, Odisha",
       employees: 18,
     },
