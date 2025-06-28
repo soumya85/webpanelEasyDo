@@ -78,18 +78,26 @@ export default function SamplePage3() {
                   console.log(`Clicked ${card.title}`);
                 }}
                 className={cn(
-                  "flex w-full h-[90px] sm:h-[95px] lg:h-[100px]",
-                  "px-2 py-4 justify-center items-center flex-shrink-0",
+                  "flex w-full h-[100px]",
+                  "px-2 py-3 justify-center items-center flex-shrink-0",
                   "rounded-[8px] sm:rounded-[10px] border-b-[4px] sm:border-b-[6px] border-[#7C3AED] bg-white",
                   "shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)]",
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
                 )}
               >
-                <div className="flex flex-col items-center justify-center h-full gap-1">
-                  {card.icon}
-                  <h3 className="text-[#283C50] font-inter font-bold text-xs text-center leading-tight">
-                    {card.title}
-                  </h3>
+                <div className="flex flex-col items-center justify-center w-full h-full">
+                  <div className="flex items-center justify-center w-[28px] h-[28px] mb-2">
+                    <img
+                      src={card.icon.props.src}
+                      alt={card.icon.props.alt}
+                      className="w-[24px] h-[24px] object-contain"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-[#283C50] font-inter font-bold text-xs leading-tight">
+                      {card.title}
+                    </h3>
+                  </div>
                 </div>
               </div>
             ))}
