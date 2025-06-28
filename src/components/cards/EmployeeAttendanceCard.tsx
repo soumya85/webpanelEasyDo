@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function EmployeeAttendanceCard() {
   const [selectedBranch, setSelectedBranch] = useState("All Branches");
-  const [selectedFilter, setSelectedFilter] = useState("All");
+  const [selectedFilter, setSelectedFilter] = useState("Present");
   const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
 
