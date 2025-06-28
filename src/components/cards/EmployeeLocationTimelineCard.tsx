@@ -78,25 +78,20 @@ export default function EmployeeLocationTimelineCard() {
           {/* Timeline */}
           <div className="p-4">
             <div className="relative">
-              {/* Timeline base line */}
-              <div className="absolute top-3 left-6 right-6 h-1 bg-gray-300"></div>
-
-              {/* Green line segments connecting dots up to active time */}
+              {/* Timeline Segments - individual bars between dots */}
               <div className="absolute top-3 left-6 right-6 flex">
-                {timeSlots.map((slot, index) => {
+                {timeSlots.slice(0, -1).map((slot, index) => {
                   const activeIndex = timeSlots.findIndex((s) => s.active);
                   const shouldShowGreen = index < activeIndex;
 
                   return (
                     <div key={index} className="flex-1 flex items-center">
-                      {index < timeSlots.length - 1 && (
-                        <div
-                          className={cn(
-                            "h-1 flex-1",
-                            shouldShowGreen ? "bg-green-500" : "bg-gray-300",
-                          )}
-                        />
-                      )}
+                      <div
+                        className={cn(
+                          "h-1 flex-1 mx-1",
+                          shouldShowGreen ? "bg-green-500" : "bg-gray-300",
+                        )}
+                      />
                     </div>
                   );
                 })}
@@ -108,7 +103,7 @@ export default function EmployeeLocationTimelineCard() {
                   <div key={slot.time} className="flex flex-col items-center">
                     <div
                       className={cn(
-                        "rounded-full shadow-sm z-10",
+                        "rounded-full z-10",
                         slot.active
                           ? "w-5 h-5 bg-green-500"
                           : "w-4 h-4 bg-gray-300",
