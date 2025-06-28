@@ -1,7 +1,7 @@
 import { User, Search, ChevronDown, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function EmployeeAttendanceCard() {
   const [selectedBranch, setSelectedBranch] = useState("All Branches");
