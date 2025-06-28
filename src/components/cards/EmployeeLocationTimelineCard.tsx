@@ -11,33 +11,33 @@ export default function EmployeeLocationTimelineCard() {
   // State for map marker selection
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
 
-  // Branch locations data positioned accurately on the terrain map
+  // Branch locations positioned at actual geographic coordinates on India map
   const branches = [
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 48, y: 32 }, // Northern India, near Delhi location on map
+      position: { x: 52, y: 28 }, // Northern India - actual Delhi location
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 38, y: 42 }, // Western India, Gujarat region
+      position: { x: 41, y: 38 }, // Western India - actual Ahmedabad, Gujarat location
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 73, y: 48 }, // Eastern India, near Kolkata/West Bengal
+      position: { x: 77, y: 44 }, // Eastern India - actual Haldia, West Bengal location
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 68, y: 55 }, // Eastern coast, Odisha region
+      position: { x: 70, y: 50 }, // Eastern coast - actual Paradip, Odisha location
       address: "Paradip, Odisha",
       employees: 18,
     },
@@ -325,56 +325,65 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Pin-style Marker with Circular Badge */}
+                {/* Large Google Maps pin with good padding */}
                 <div className="relative">
                   <svg
                     width="48"
-                    height="60"
-                    viewBox="0 0 48 60"
+                    height="64"
+                    viewBox="0 0 48 64"
                     className="drop-shadow-lg"
                   >
-                    {/* Pin Shadow */}
+                    {/* Pin shadow */}
                     <ellipse
                       cx="24"
-                      cy="56"
-                      rx="8"
-                      ry="3"
+                      cy="59"
+                      rx="4"
+                      ry="2"
                       fill="rgba(0,0,0,0.3)"
                     />
 
-                    {/* Pin Bottom Point */}
-                    <path d="M24 48L18 54L30 54Z" fill="#EA4335" />
-
-                    {/* Main Circular Badge */}
-                    <circle
-                      cx="24"
-                      cy="24"
-                      r="20"
+                    {/* Classic pin shape - teardrop */}
+                    <path
+                      d="M24 6 C35.05 6 44 14.95 44 26 C44 37.05 24 56 24 56 C24 56 4 37.05 4 26 C4 14.95 12.95 6 24 6 Z"
                       fill="#EA4335"
-                      stroke="#FFFFFF"
-                      strokeWidth="3"
                     />
 
-                    {/* Inner White Circle */}
-                    <circle cx="24" cy="24" r="16" fill="#FFFFFF" />
+                    {/* White center circle */}
+                    <circle cx="24" cy="26" r="14" fill="white" />
 
-                    {/* Number Text */}
+                    {/* Red inner border */}
+                    <circle
+                      cx="24"
+                      cy="26"
+                      r="14"
+                      fill="none"
+                      stroke="#EA4335"
+                      strokeWidth="4"
+                    />
+
+                    {/* Number text */}
                     <text
                       x="24"
-                      y="30"
+                      y="32"
                       textAnchor="middle"
                       fill="#EA4335"
-                      fontSize="16"
+                      fontSize="18"
                       fontWeight="bold"
-                      fontFamily="Arial, sans-serif"
+                      fontFamily="system-ui, sans-serif"
                     >
                       {branch.id}
                     </text>
                   </svg>
                 </div>
 
-                {/* Branch Label */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1">
+                {/* Branch Label - Beside the marker */}
+                <div
+                  className={`absolute top-1/2 transform -translate-y-1/2 ${
+                    branch.position.x > 70
+                      ? "right-full mr-2"
+                      : "left-full ml-2"
+                  }`}
+                >
                   <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap">
                     {branch.name}
                   </div>
