@@ -325,37 +325,37 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Perfect Google Maps pin shape */}
+                {/* Exact Google Maps pin */}
                 <div className="relative">
                   <svg
-                    width="24"
-                    height="30"
-                    viewBox="0 0 24 30"
+                    width="22"
+                    height="27"
+                    viewBox="0 0 22 27"
                     className="drop-shadow-lg"
                   >
                     {/* Pin shadow */}
                     <ellipse
-                      cx="12"
-                      cy="28"
+                      cx="11"
+                      cy="25"
                       rx="1.5"
                       ry="0.5"
                       fill="rgba(0,0,0,0.3)"
                     />
 
-                    {/* Perfect circle */}
-                    <circle cx="12" cy="12" r="10" fill="#EA4335" />
+                    {/* Circle */}
+                    <circle cx="11" cy="11" r="9" fill="#EA4335" />
 
-                    {/* Tiny sharp point */}
-                    <path d="M12 22 L7 17 L17 17 Z" fill="#EA4335" />
+                    {/* Very small sharp point */}
+                    <path d="M11 20 L9 18 L13 18 Z" fill="#EA4335" />
 
-                    {/* White center */}
-                    <circle cx="12" cy="12" r="7.5" fill="white" />
+                    {/* White inner circle */}
+                    <circle cx="11" cy="11" r="6.5" fill="white" />
 
-                    {/* Red ring */}
+                    {/* Red border */}
                     <circle
-                      cx="12"
-                      cy="12"
-                      r="7.5"
+                      cx="11"
+                      cy="11"
+                      r="6.5"
                       fill="none"
                       stroke="#EA4335"
                       strokeWidth="2"
@@ -363,11 +363,11 @@ export default function EmployeeLocationTimelineCard() {
 
                     {/* Number */}
                     <text
-                      x="12"
-                      y="16"
+                      x="11"
+                      y="15"
                       textAnchor="middle"
                       fill="#EA4335"
-                      fontSize="11"
+                      fontSize="10"
                       fontWeight="bold"
                       fontFamily="Arial, sans-serif"
                     >
