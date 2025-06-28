@@ -583,7 +583,8 @@ export const translations = {
 
     // Navigation & Layout
     dashboard: "अवलोकन",
-    dashboardTitle: "डैशबोर्ड",
+    overview: "अवलोकन",
+    dashboardTitle: "डैशब��र्ड",
     chats: "चैट्स",
     todaysSchedule: "आज का शेड्यूल",
     employeeDashboard: "कर्मचारी डैशबोर्ड",
@@ -613,7 +614,7 @@ export const translations = {
     approvals: "अनुमोदन",
     meetings: "बैठकें",
     notes: "नोट्स",
-    notice: "सूचना",
+    notice: "सूच��ा",
 
     // Dashboard Cards
     taskAtGlance: "कार्यों की एक झलक",
@@ -673,7 +674,7 @@ export const translations = {
 
     // Employee Management
     employees: "कर्मचारी",
-    addEmployee: "कर्मचारी जोड़ें",
+    addEmployee: "कर्मचा���ी जोड़ें",
     employeeDetails: "कर्मचारी विवरण",
     employeeList: "कर्म���ारी सूची",
     employeeName: "कर्मचारी ����� नाम",
@@ -721,7 +722,7 @@ export const translations = {
     leave: "छुट्टी",
     applyLeave: "छुट्टी के लिए आवेदन करें",
     leaveBalance: "छुट्���ी का बैलेंस",
-    leaveHistory: "छुट्टी का इतिहास",
+    leaveHistory: "��ुट्टी का इतिहास",
     leaveType: "छुट्टी का प्रक���र",
     casualLeave: "आकस्मिक छुट्टी",
     sickLeave: "बीमारी की छुट्टी",
@@ -741,7 +742,7 @@ export const translations = {
     fileSize: "फ़ाइल का आकार",
 
     // Announcements
-    announcements: "घोषणाएं",
+    announcements: "घोषणाए���",
     newAnnouncement: "नई घोषणा",
     title: "शीर्षक",
     description: "विवरण",
@@ -824,7 +825,7 @@ export const translations = {
     newBuildReadyForTesting: "���रीक���षण के लिए नया बिल्ड तैयार है",
     sureIllSendByEOD: "जरूर, मैं दिन के अ���त तक भेज दूंगा",
     letsScheduleCallTomorrow: "कल ���ॉल शेड्यूल ��र���े हैं",
-    filesReadyForDownload: "फाइलें डाउनलोड के लिए तैयार हैं",
+    filesReadyForDownload: "फाइलें ��ाउनलोड के लिए तैयार हैं",
     campaignResultsLookingGreat: "अभियान के परिणाम बहुत अच्छे लग रहे हैं!",
     greatWorkOnPresentation: "प्रस्तुति पर बेहतरीन काम!",
     documentsUploadedToSharedFolder:
@@ -854,7 +855,7 @@ export const translations = {
     locationTimeline: "स्था��� समयरेखा",
     trackedOnlyBetween:
       "(कंपनी के नियम के अनु��ार केवल ���ंच-इन और पंच-आउट के बीच ट्रैक किया गया)",
-    clickHereForMoreDetail: "अधि��� विवरण के लिए यहां क्लिक करें",
+    clickHereForMoreDetail: "अधि��� विवर�� के लिए यहां क्लिक करें",
 
     // Performance Card
     myPerformance: "म��रा प्रदर्शन",
@@ -871,7 +872,7 @@ export const translations = {
     addedHoursAgo: "{hours} घंटे पहले ज��ड़ा गया",
     addedYesterday: "कल जोड़ा गया",
     addedDaysAgo: "{days} दिन पहले जोड़ा गया",
-    addNewNote: "नया नोट जोड़ें",
+    addNewNote: "नया नो��� जोड़ें",
 
     // Drag & Drop Instructions
     enhancedDragDropInstructions: "उन्नत ड्रैग & ड्रॉ�� + चौड़ाई आकार निर्देश",
@@ -923,7 +924,7 @@ export const translations = {
     low: "निम्न",
 
     // Common Placeholders
-    selectPriority: "प्राथमिकता चुनें",
+    selectPriority: "प्राथमिकता ���ुनें",
     selectBranch: "शाखा चुनें",
     selectContact: "संपर्क चुनें",
     enterName: "नाम दर्ज करें",
@@ -1058,7 +1059,7 @@ export const translations = {
     createContact: "संपर्क बनाएं",
     createGroup: "समूह बनाएं",
     createAnnouncement: "घोषणा बनाएं",
-    submitRequest: "अनुरोध जमा करें",
+    submitRequest: "अनुरो��� जमा करें",
     submitAdvanceRequest: "अग्रिम अनुरोध जमा करें",
     submitReimbursementRequest: "प्रतिपूर्ति अनुरोध जमा करें",
     submitOTRequest: "OT अनुरोध जमा करें",
@@ -1076,7 +1077,7 @@ export const translations = {
     amountTotal: "राशि/कुल",
     clickToSelectKolkata: "कोलकाता चुनने के लिए क्लिक करें (डेमो)",
     selectAttachmentSource: "अटैचमेंट स्रोत चुनें",
-    allBranches: "सभी शाखाएं",
+    allBranches: "सभी श��खाएं",
     headOffice: "मुख्य कार्यालय",
     secondBranch: "दूसरी शाखा",
 
@@ -1104,7 +1105,7 @@ export const translations = {
 
     // Common placeholders and hints
     manageViewAllBranches: "सभी शाख��ओं का प्रबंधन/देखना",
-    selectDateToViewLeaves: "उस दिन की छुट्टियां देखने के लिए एक तारीख चुनें",
+    selectDateToViewLeaves: "उस दि��� की छुट्टियां देखने के लिए एक तारीख चुनें",
     noDateSelected: "कोई तारीख चुनी नहीं गई",
 
     // Notifications
@@ -1159,7 +1160,7 @@ export const translations = {
     logout: "লগআউট",
     create: "তৈরি করুন",
     filter: "ফিল্���ার",
-    company: "কোম্পানি",
+    company: "কোম্পা��ি",
     branch: "শাখা",
     allBranch: "সকল শ���খা",
 
@@ -1265,7 +1266,7 @@ export const translations = {
     goodEvening: "শুভ সন্ধ্যা",
     authorityLevel: "কর্তৃত্বের স্তর",
     welcome: "স্বাগতম",
-    lastMessage: "শেষ বার্তা",
+    lastMessage: "শেষ বা���্তা",
     yesterday: "গতকাল",
     executiveDirector: "নির্বাহী ���রিচালক",
     headOffice: "প্রধান কার্যালয়",
@@ -1320,7 +1321,7 @@ export const translations = {
     present: "উপস্থিত",
     absent: "অনুপস্থিত",
     sunday: "রব���বার",
-    holiday: "ছুটি��� দি��",
+    holiday: "ছুটি����� দি��",
     late: "���েরি",
     redFlag: "লাল পতাকা",
     viewDetailedReport: "��িস্তারিত রিপোর্ট দেখুন",
@@ -1364,7 +1365,7 @@ export const translations = {
 
     // Quick Notes Card
     quickNotes: "দ্র��ত নোট",
-    followUpOnClientProposal: "ক্লায়েন্ট প্রস্তাবে ফলো আপ",
+    followUpOnClientProposal: "ক্লায়েন্ট প্রস্তাব�� ফলো আপ",
     reviewQ4BudgetAllocation: "Q4 বাজেট বরাদ্দ পর্যালোচনা",
     updateTeamOnProjectTimeline: "প্রকল্প সময়সূচীতে ��িম ���পডেট",
     addedHoursAgo: "{hours} ঘন্টা আগে যোগ করা হয়েছে",
@@ -1510,7 +1511,7 @@ export const translations = {
     delete: "తొలగించండి",
     edit: "సవరించండి",
     add: "జోడి��చండి",
-    remove: "తొలగించండ���",
+    remove: "తొలగించ���డ���",
     search: "వె���కండి",
     loading: "లోడ్ అవుతోంది...",
     noData: "డేటా లేదు",
@@ -1679,7 +1680,7 @@ export const translations = {
     reviewQ4BudgetAllocation: "Q4 బడ్జెట్ కేటాయింపు సమీక్ష",
     updateTeamOnProjectTimeline: "ప్రాజెక్ట్ టైమ్‌లైన్‌పై టీమ్ అప్‌డేట్",
     addedHoursAgo: "{hours} గంటల క్రితం జోడించబడింది",
-    addedYesterday: "నిన్న జోడించబడింది",
+    addedYesterday: "నిన్న జోడి��చబడింది",
     addedDaysAgo: "{days} రోజుల క్రితం జోడించబడింది",
     addNewNote: "క��త్త గమనిక జోడించండి",
 
@@ -1776,7 +1777,7 @@ export const translations = {
       "कार्डची रुंद��� समायोजित करण��यासाठी उजव्या बाजूचे निळे रीसाइझ हँडल ड्रॅग करा (लहान, मध्यम, म��ठे, अतिरिक्त मोठे)",
     sameRowEqualHeight: "एकाच पंक्तीतील सर्व कार्डे आपोआप समान उंची राखतात",
     layoutSavedAutomatically:
-      "तुमचे लेआउट आणि कार्ड आकार आप��आप जतन केले जातात आणि सत्रांमध्ये कायम राहतात",
+      "तुमचे लेआउट आणि कार्ड आकार आप��आप जतन केले जातात आणि सत्रा���मध्ये कायम राहतात",
     useResetLayoutButton:
       'ডিফল্ট বিন্যাস পুনরুদ্ধার করতে "রিসেট লেআউট" বোতাম ব্যবহার করুন',
 
@@ -1812,7 +1813,7 @@ export const translations = {
 
     // Common Placeholders
     selectPriority: "অগ্রাধিকার নির্বাচন করুন",
-    selectBranch: "শাখা নির্বাচন করুন",
+    selectBranch: "শাখা নি���্বাচন করুন",
     selectContact: "য��গাযোগ নি��্বাচন করুন",
     enterName: "নাম প্রবেশ করুন",
     phoneNumber: "ফোন নম্বর",
@@ -1870,7 +1871,7 @@ export const translations = {
     announcementTitle: "ঘোষ��ার শিরোনাম",
     writeAnnouncementDetails: "ঘোষণার বিবরণ লিখুন",
     reviewerName: "পর্যালোচকের নাম",
-    reviewTags: "টিমওয়ার্ক, গুণমান, ডেলিভারি",
+    reviewTags: "টিমওয়ার্ক, গুণমান, ডেল���ভারি",
     writeBriefSummary: "পর্যালোচনার সংক্ষিপ্ত সারসংক্ষ�����প লিখুন",
     takeANote: "একটি নোট নিন...",
     tellUsAboutYourself: "আপনার সম্পর্কে বলুন...",
@@ -1978,7 +1979,7 @@ export const translations = {
     allBranch: "அனைத்து கிளைகள்",
 
     // Quick Notes Card
-    quickNotes: "விரைவு குறிப்புகள்",
+    quickNotes: "வி��ைவு குறிப்புகள்",
     followUpOnClientProposal: "வாடிக்கையாளர் முன்மொழிவ���ல் பின்தொடர்தல்",
     reviewQ4BudgetAllocation: "Q4 பட்ஜெட் ஒதுக்கீடு மதிப்பாய்���ு",
     updateTeamOnProjectTimeline: "திட்ட கால அட்டவணையில் குழு புதுப்பிப்பு",
@@ -2104,7 +2105,7 @@ export const translations = {
     reports: "રિપોર્ટ્સ",
     settings: "સેટિંગ્સ",
     helpSupport: "મદદ અને સપોર્ટ",
-    profile: "પ્રોફાઇલ",
+    profile: "પ્ર��ફાઇલ",
     logout: "લૉગઆઉટ",
     create: "બનાવો",
     filter: "ફિલ્ટર",
@@ -2196,7 +2197,7 @@ export const translations = {
     hoverOverCardInstructions:
       "ಡ್ರ್ಯಾಗ್ ಹ್ಯಾಂಡಲ್ (ಮೇಲಿನ ಮಧ್ಯ) ಮತ್ತು ಅಗಲ ಮರುಗಾತ್ರೀಕರಣ ಹ್ಯಾಂಡಲ್ (ಬಲ ಅಂಚು) ನೋಡಲು ಯಾ�����ದ�� ಕಾರ್ಡ್ ಮೇಲೆ ಹೋವರ್ ಮಾಡಿ",
     dragCardsBetweenSections:
-      "ಮರುಸಂಘಟನೆಗಾಗಿ ವಿಭಾಗಗಳ ನಡುವೆ ಅಥವಾ ವಿಭಾಗಗಳಲ್ಲಿ ಕಾರ್ಡ್‌ಗಳನ್ನು ಡ್ರ್ಯಾಗ್ ಮಾಡಿ - ಅಗಲವ���್ನು ಸಂರಕ್ಷಿಸಲಾಗುತ್ತದೆ",
+      "ಮರುಸಂಘಟನೆಗಾಗಿ ವಿಭಾಗಗಳ ನಡುವೆ ಅಥವಾ ವಿಭಾಗಗಳಲ್ಲಿ ಕಾರ್ಡ್‌ಗಳನ್ನು ಡ್ರ್ಯಾಗ್ ಮಾಡಿ - ಅಗಲವ�����್ನು ಸಂರಕ್ಷಿಸಲಾಗುತ್ತದೆ",
     dropCardsOnPurpleZones:
       "ವಿಭಾಗದಲ್ಲಿ ಹೊಸ ಸ���ಲುಗಳನ್ನು ರಚಿಸಲು ನೇರಳೆ ವಲಯಗಳಲ್ಲಿ ಕಾರ್ಡ್‌ಗಳನ್ನು ಡ್ರಾಪ್ ಮಾಡಿ",
     dropCardsOnGreenZones:
@@ -2204,7 +2205,7 @@ export const translations = {
     dragBlueResizeHandle:
       "ಕಾರ್ಡ್ ಅಗಲವನ್ನು ಸರಿಹೊಂದಿಸ���ು ಬಲಭಾಗದ ನೀಲಿ ಮರುಗ��ತ್ರೀಕರಣ ಹ್ಯಾಂಡಲ್ ಅನ್ನು ಡ್ರ್ಯಾಗ್ ಮಾಡಿ (ಸಣ್ಣ, ಮಧ್ಯಮ, ದೊಡ್ಡ, ಹೆಚ್ಚುವರಿ ದೊಡ್ಡ)",
     sameRowEqualHeight:
-      "ಒಂದೇ ಸಾಲಿನಲ್ಲಿರುವ ����್ಲಾ ಕಾರ್ಡ್‌ಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸಮಾನ ಎತ್ತರವನ್ನು ನಿರ್ವಹಿಸುತ್ತವೆ",
+      "ಒಂದೇ ಸಾಲಿನಲ್ಲಿರುವ ����್ಲಾ ಕಾರ್ಡ��‌ಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸಮಾನ ಎತ್ತರವನ್ನು ನಿರ್ವಹಿಸುತ್ತವೆ",
     layoutSavedAutomatically:
       "ನಿಮ್ಮ ಲೇಔಟ್ ಮತ್ತು ಕಾರ್ಡ್ ಗಾತ್ರಗಳು ಸ್��ಯಂಚಾಲಿತವಾಗಿ ಉಳಿಸಲ್ಪಡುತ್ತವೆ ಮತ್ತು ಸೆಷನ್‌ಗಳಾದ್ಯಂತ ಮುಂದುವರಿಯುತ್ತವೆ",
     useResetLayoutButton:
@@ -2272,7 +2273,7 @@ export const translations = {
     dragBlueResizeHandle:
       "କାର୍ଡ ଓସାର ସଜାଡ଼ିବା ପାଇଁ ଡାହାଣ ପାର୍ଶ୍ୱର ନୀଳ ରିସାଇଜ୍ ହ୍ୟାଣ୍ଡଲ୍ ଡ୍ରାଗ୍ କରନ୍ତୁ (ଛୋଟ, ମଧ୍ୟମ, ବଡ଼, ଅତିରିକ୍ତ ବଡ଼)",
     sameRowEqualHeight:
-      "ସମାନ ଧାଡ଼ିର ସମସ୍ତ କାର୍ଡ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସମାନ ଉଚ୍ଚତା ବଜାୟ ରଖନ୍ତି",
+      "ସମାନ ଧାଡ���ିର ସମସ୍ତ କାର୍ଡ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସମାନ ଉଚ୍ଚତା ବଜାୟ ରଖନ୍ତି",
     layoutSavedAutomatically:
       "ଆପଣଙ୍କ ଲେଆଉଟ୍ ଏବଂ କାର୍ଡ ଆ��ାରଗୁଡ଼ିକ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସଞ���ଚିତ ହୋଇଥାଏ ଏବଂ ସେସନ୍ ଗୁଡ଼ିକରେ ରହିଥାଏ",
     useResetLayoutButton:
@@ -2337,7 +2338,7 @@ export const translations = {
     dropCardsOnGreenZones:
       "ਭਾਗ ਦੇ ਅੰਤ ਵਿੱਚ ਨਵੀਂ ਕਤਾਰਾਂ ਸ਼ਾਮਲ ਕ��ਨ ਲਈ ਹਰੇ ਜ਼ੋਨਾਂ 'ਤੇ ਕਾਰਡ ਛੱਡੋ",
     dragBlueResizeHandle:
-      "ਕਾਰਡ ਦੀ ਚੌੜਾਈ ਨਿਯੰਤਰਿਤ ਕਰਨ ਲਈ ਸੱਜੇ ਪਾਸੇ ਦੇ ਨੀਲੇ ਰੀਸਾਈਜ਼ ਹੈਂਡਲ ਨੂੰ ਡਰੈੱਗ ਕਰੋ (ਛੋਟਾ, ਮੱਧਮ, ਵੱਡਾ, ਵਾਧੂ ਵੱਡਾ)",
+      "ਕਾਰਡ ਦੀ ਚੌੜਾਈ ਨਿਯੰਤਰਿਤ ਕਰਨ ਲਈ ਸੱਜੇ ਪਾਸੇ ਦੇ ਨੀਲੇ ਰੀਸਾਈਜ਼ ਹੈਂਡਲ ਨੂੰ ਡਰੈੱਗ ਕਰੋ (ਛੋਟਾ, ਮ���ਧਮ, ਵੱਡਾ, ਵਾਧੂ ਵੱਡਾ)",
     sameRowEqualHeight:
       "ਇੱਕੋ ਕਤਾਰ ਦੇ ਸਾਰੇ ਕਾਰਡ ਆਪਣੇ ਆਪ ਬਰਾਬਰ ਉਚਾਈ ਬਣ��ਈ ਰੱਖਦੇ ਹਨ",
     layoutSavedAutomatically:
@@ -2355,7 +2356,7 @@ export const translations = {
     sendOTP: "OTP അയയ്ക്കുക",
     enterOTP: "6-അക്ക OTP നൽകുക",
     sentTo: "അയച്ചത്",
-    resendTo: "���ീണ്ടും അയയ്ക്കുക",
+    resendTo: "����ീണ്ടും അയയ്ക്കുക",
     resendOTP: "OTP വീണ്ടും അയയ്ക്��ുക",
     resendOTPIn: "OTP വീണ്ടും അയ���്ക്കുക",
     seconds: "സെക്കൻഡിൽ",
@@ -2411,7 +2412,7 @@ export const translations = {
     layoutSavedAutomatically:
       "നിങ്ങളുടെ ലേഔട്ടും കാർഡ് വലുപ്പങ്ങളും സ്വയമേവ സംരക്ഷിക്കപ്പെടുകയും സെഷനുകളിലുടനീളം നിലനിൽക്കുകയും ചെയ്യുന്നു",
     useResetLayoutButton:
-      'സ്ഥിരസ്ഥിതി ക്രമീകരണം പുനഃസ്ഥാപിക്ക��ൻ "റീസെറ്റ് ലേഔട്ട്" ബട്ടൺ ഉപയോഗിക്കുക',
+      'സ്ഥിരസ്ഥിതി ക്രമീകരണം ��ുനഃസ്ഥാപിക്ക��ൻ "റീസെറ്റ് ലേഔട്ട്" ബട്ടൺ ഉപയോഗിക്കുക',
   },
 } as const;
 
