@@ -188,16 +188,16 @@ export default function EmployeeLocationTimelineCard() {
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
-      <CardContent className="p-4">
+      <CardContent className="p-2 flex flex-col h-full">
         {/* Header */}
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 px-2">
           Employee Location Timeline
         </h2>
 
         {/* Main Content Container - White rounded card */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm mb-2">
           {/* Date and Status Row */}
-          <div className="flex items-center justify-between p-4 text-sm border-b border-gray-100">
+          <div className="flex items-center justify-between px-4 py-2 text-sm border-b border-gray-100">
             <span className="text-gray-600 font-medium">
               Today (Sat, 28 Jun 2025) IST
             </span>
@@ -205,7 +205,7 @@ export default function EmployeeLocationTimelineCard() {
           </div>
 
           {/* All Branches Section */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-100">
+          <div className="flex items-center justify-between px-4 py-2 border-b border-gray-100">
             <div className="flex items-center gap-3">
               {/* Building Icon */}
               <div className="w-7 h-7 bg-red-500 rounded flex items-center justify-center">
@@ -233,21 +233,21 @@ export default function EmployeeLocationTimelineCard() {
           </div>
 
           {/* Search Box */}
-          <div className="p-4 border-b border-gray-100">
+          <div className="px-4 py-2 border-b border-gray-100">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Enter employee name"
-                className="w-full pl-10 pr-4 py-2.5 text-sm border-0 rounded-lg bg-gray-100 text-gray-500 placeholder-gray-400 focus:outline-none"
+                className="w-full pl-10 pr-4 py-2 text-sm border-0 rounded-lg bg-gray-100 text-gray-500 placeholder-gray-400 focus:outline-none"
                 disabled
               />
             </div>
           </div>
 
           {/* Timeline */}
-          <div className="p-4">
-            <div className="relative mb-4">
+          <div className="px-4 py-2">
+            <div className="relative mb-3">
               {/* Timeline Background Bar */}
               <div className="absolute top-2 left-0 right-0 h-0.5 bg-gray-300"></div>
 
@@ -355,8 +355,8 @@ export default function EmployeeLocationTimelineCard() {
           </div>
         </div>
 
-        {/* Custom Interactive Map Section */}
-        <div className="relative mt-4 h-64 rounded-xl overflow-hidden border border-gray-200 bg-gradient-to-br from-green-100 via-blue-50 to-cyan-100">
+        {/* Custom Interactive Map Section - Expanded */}
+        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200 bg-gradient-to-br from-green-100 via-blue-50 to-cyan-100">
           <div
             className="relative w-full h-full cursor-grab select-none"
             style={{
