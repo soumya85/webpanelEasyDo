@@ -325,51 +325,57 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Exact Google Maps pin marker */}
+                {/* Google Maps location pin */}
                 <div className="relative">
                   <svg
-                    width="30"
-                    height="42"
-                    viewBox="0 0 30 42"
+                    width="32"
+                    height="44"
+                    viewBox="0 0 32 44"
                     className="drop-shadow-lg"
                   >
                     {/* Pin shadow */}
                     <ellipse
-                      cx="15"
-                      cy="39"
-                      rx="4"
-                      ry="1.5"
+                      cx="16"
+                      cy="41"
+                      rx="3"
+                      ry="1"
                       fill="rgba(0,0,0,0.3)"
                     />
 
-                    {/* Main pin shape - perfect circle top with pointed bottom */}
-                    <path
-                      d="M15 4 C22.18 4, 28 9.82, 28 17 C28 17, 28 17, 28 17 C28 24.18, 15 36, 15 36 C15 36, 2 24.18, 2 17 C2 9.82, 7.82 4, 15 4 Z"
-                      fill="#DC2626"
-                    />
+                    {/* Pin shape - circle with point */}
+                    <g>
+                      {/* Circle top */}
+                      <circle cx="16" cy="16" r="13" fill="#E53E3E" />
 
-                    {/* White center circle */}
-                    <circle cx="15" cy="17" r="10" fill="white" />
+                      {/* Triangular point */}
+                      <path
+                        d="M16 29 L7 22 A13 13 0 0 0 25 22 Z"
+                        fill="#E53E3E"
+                      />
+                    </g>
 
-                    {/* Red border ring */}
+                    {/* White inner circle */}
+                    <circle cx="16" cy="16" r="9" fill="white" />
+
+                    {/* Red inner border */}
                     <circle
-                      cx="15"
-                      cy="17"
-                      r="10"
+                      cx="16"
+                      cy="16"
+                      r="9"
                       fill="none"
-                      stroke="#DC2626"
-                      strokeWidth="3"
+                      stroke="#E53E3E"
+                      strokeWidth="2"
                     />
 
                     {/* Number text */}
                     <text
-                      x="15"
-                      y="22"
+                      x="16"
+                      y="21"
                       textAnchor="middle"
-                      fill="#DC2626"
-                      fontSize="13"
+                      fill="#E53E3E"
+                      fontSize="14"
                       fontWeight="bold"
-                      fontFamily="Arial, sans-serif"
+                      fontFamily="system-ui, sans-serif"
                     >
                       {branch.id}
                     </text>
