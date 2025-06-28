@@ -93,7 +93,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "todays-schedule",
     labelKey: "sample2",
-    icon: Calendar,
+    icon: Star,
     href: "/todays-schedule",
   },
 ];
