@@ -192,12 +192,16 @@ export default function EmployeeLocationTimelineCard() {
                   return (
                     <div key={slot.time} className="flex flex-col items-center">
                       <button
-                        onClick={() => setSelectedSlotIndex(index)}
+                        onClick={() =>
+                          setSelectedSlotIndex(
+                            selectedSlotIndex === index ? null : index,
+                          )
+                        }
                         className={cn(
                           "rounded-full z-10 relative transition-all duration-200 hover:scale-110 cursor-pointer",
                           isActiveOrSelected
                             ? "w-4 h-4 bg-green-500"
-                            : "w-3 h-3 bg-gray-500",
+                            : "w-3 h-3 bg-gray-400",
                         )}
                       />
                       <span
