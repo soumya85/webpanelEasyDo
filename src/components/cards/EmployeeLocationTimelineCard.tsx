@@ -514,130 +514,222 @@ export default function EmployeeLocationTimelineCard() {
               />
             </svg>
 
-            {/* Text Labels Layer */}
+            {/* Text Labels Layer - Google Maps Style */}
             <div className="absolute inset-0 w-full h-full pointer-events-none">
-              {/* Country/Region Labels */}
-              <div className="absolute top-4 left-8 text-xs font-medium text-gray-800">
-                Kyrgyzstan
-              </div>
-              <div className="absolute top-8 left-12 text-xs font-medium text-gray-800">
+              {/* Country/Region Labels - Google Maps Font Style */}
+              <div
+                className="absolute top-1 left-2 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 Tajikistan
               </div>
-              <div className="absolute top-2 right-8 text-xs text-gray-700">
+              <div
+                className="absolute top-8 right-4 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 XINJIANG
               </div>
-              <div className="absolute top-16 left-2 text-xs font-medium text-gray-800">
+              <div
+                className="absolute top-12 left-2 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 Pakistan
               </div>
-              <div className="absolute top-20 right-8 text-xs text-gray-700">
+              <div
+                className="absolute top-16 right-8 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 TIBET
               </div>
-              <div className="absolute top-24 right-16 text-xs text-gray-700">
+              <div
+                className="absolute top-20 right-16 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 QINGHAI
               </div>
-              <div className="absolute bottom-20 left-8 text-xs font-medium text-gray-800">
-                Mumbai
-                <br />
-                मुंबई
-              </div>
-              <div className="absolute bottom-16 right-4 text-xs font-medium text-gray-800">
+              <div
+                className="absolute bottom-12 right-2 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 Myanmar
                 <br />
                 (Burma)
               </div>
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-800">
+              <div
+                className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 Sri Lanka
               </div>
-              <div className="absolute bottom-2 right-12 text-xs text-gray-700">
+              <div
+                className="absolute bottom-1 right-8 text-xs text-gray-700"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 Andaman
               </div>
 
               {/* India Central Label */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-gray-900 bg-white bg-opacity-80 px-2 py-1 rounded">
+              <div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-normal text-gray-800"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
                 India
               </div>
 
               {/* State Abbreviations */}
-              <div className="absolute" style={{ top: "40%", left: "52%" }}>
-                <span className="text-xs text-gray-700 font-medium">UP</span>
+              <div className="absolute" style={{ top: "42%", left: "50%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  UP
+                </span>
               </div>
-              <div className="absolute" style={{ top: "65%", right: "30%" }}>
-                <span className="text-xs text-gray-700 font-medium">OD</span>
+              <div className="absolute" style={{ top: "60%", right: "28%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  OD
+                </span>
               </div>
-              <div className="absolute" style={{ top: "50%", right: "25%" }}>
-                <span className="text-xs text-gray-700 font-medium">ML</span>
+              <div className="absolute" style={{ top: "48%", right: "22%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  ML
+                </span>
               </div>
-              <div className="absolute" style={{ top: "47%", right: "20%" }}>
-                <span className="text-xs text-gray-700 font-medium">NL</span>
+              <div className="absolute" style={{ top: "45%", right: "18%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  NL
+                </span>
               </div>
-              <div className="absolute" style={{ top: "43%", right: "22%" }}>
-                <span className="text-xs text-gray-700 font-medium">AR</span>
+              <div className="absolute" style={{ top: "42%", right: "20%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  AR
+                </span>
               </div>
-              <div className="absolute" style={{ top: "54%", right: "15%" }}>
-                <span className="text-xs text-gray-700 font-medium">MZ</span>
+              <div className="absolute" style={{ top: "52%", right: "12%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  MZ
+                </span>
               </div>
-              <div className="absolute" style={{ bottom: "35%", left: "15%" }}>
-                <span className="text-xs text-gray-700 font-medium">KA</span>
+              <div className="absolute" style={{ bottom: "32%", left: "12%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  GA
+                </span>
+              </div>
+              <div className="absolute" style={{ bottom: "25%", left: "16%" }}>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  TN
+                </span>
               </div>
               <div className="absolute" style={{ bottom: "28%", left: "20%" }}>
-                <span className="text-xs text-gray-700 font-medium">TN</span>
-              </div>
-              <div className="absolute" style={{ bottom: "30%", left: "25%" }}>
-                <span className="text-xs text-gray-700 font-medium">KL</span>
-              </div>
-              <div className="absolute" style={{ bottom: "40%", left: "18%" }}>
-                <span className="text-xs text-gray-700 font-medium">GA</span>
-              </div>
-              <div className="absolute" style={{ bottom: "35%", left: "38%" }}>
-                <span className="text-xs text-gray-700 font-medium">AP</span>
+                <span
+                  className="text-xs text-gray-600"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  KL
+                </span>
               </div>
 
-              {/* Branch Labels */}
-              <div className="absolute" style={{ top: "32%", left: "45%" }}>
-                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+              {/* Branch Labels - Matching Google Maps Style */}
+              <div className="absolute" style={{ top: "28%", left: "42%" }}>
+                <span
+                  className="text-xs text-gray-800"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
                   New Delhi
                   <br />
                   Branch
                 </span>
               </div>
-              <div className="absolute" style={{ top: "48%", left: "22%" }}>
-                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+              <div className="absolute" style={{ top: "50%", left: "20%" }}>
+                <span
+                  className="text-xs text-gray-800"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
                   Ahmedabad
                   <br />
                   office Branch
                 </span>
               </div>
-              <div className="absolute" style={{ top: "58%", right: "25%" }}>
-                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+              <div className="absolute" style={{ top: "52%", right: "22%" }}>
+                <span
+                  className="text-xs text-gray-800"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
                   Haldia Branch
                 </span>
               </div>
-              <div className="absolute" style={{ bottom: "35%", left: "42%" }}>
-                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+              <div className="absolute" style={{ bottom: "32%", left: "35%" }}>
+                <span
+                  className="text-xs text-gray-800"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
                   Hyderabad
                   <br />
                   హైదరాబాద్
                 </span>
               </div>
-              <div className="absolute" style={{ bottom: "45%", right: "18%" }}>
-                <span className="text-xs font-medium text-gray-900 bg-white bg-opacity-90 px-1 rounded">
+              <div className="absolute" style={{ bottom: "42%", right: "20%" }}>
+                <span
+                  className="text-xs text-gray-800"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
                   Paradip Branch
                 </span>
               </div>
-
-              {/* Nepal label */}
-              <div className="absolute" style={{ top: "40%", right: "30%" }}>
-                <span className="text-xs font-medium text-gray-800">Nepal</span>
+              <div
+                className="absolute bottom-16 left-8 text-xs text-gray-800"
+                style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+              >
+                Mumbai
+                <br />
+                मुंबई
               </div>
 
-              {/* Water Body Labels */}
-              <div className="absolute" style={{ bottom: "25%", right: "32%" }}>
-                <span className="text-sm text-blue-800 font-medium">
+              {/* Nepal label */}
+              <div className="absolute" style={{ top: "38%", right: "28%" }}>
+                <span
+                  className="text-xs text-gray-700"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
+                  Nepal
+                </span>
+              </div>
+
+              {/* Water Body Labels - Blue text like Google Maps */}
+              <div className="absolute" style={{ bottom: "20%", right: "30%" }}>
+                <span
+                  className="text-sm text-blue-700"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
                   Bay of Bengal
                 </span>
               </div>
-              <div className="absolute" style={{ top: "60%", left: "8%" }}>
-                <span className="text-sm text-blue-800 font-medium">
+              <div className="absolute" style={{ top: "65%", left: "5%" }}>
+                <span
+                  className="text-sm text-blue-700"
+                  style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+                >
                   Arabian Sea
                 </span>
               </div>
