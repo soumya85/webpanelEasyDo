@@ -325,44 +325,13 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Pin Marker */}
+                {/* Circular Badge Marker */}
                 <div className="relative">
-                  <svg
-                    width="45"
-                    height="60"
-                    viewBox="0 0 45 60"
-                    className="drop-shadow-lg"
-                  >
-                    {/* Pin Shadow */}
-                    <ellipse
-                      cx="22.5"
-                      cy="55"
-                      rx="9"
-                      ry="3"
-                      fill="rgba(0,0,0,0.3)"
-                    />
-                    {/* Pin Shape */}
-                    <path
-                      d="M22.5 3C15.75 3 10 8.75 10 15.5C10 26 22.5 57 22.5 57S35 26 35 15.5C35 8.75 29.25 3 22.5 3Z"
-                      fill="#EA4335"
-                      stroke="#FFFFFF"
-                      strokeWidth="2"
-                    />
-                    {/* White Circle */}
-                    <circle cx="22.5" cy="15.5" r="10" fill="#FFFFFF" />
-                    {/* Number */}
-                    <text
-                      x="22.5"
-                      y="21"
-                      textAnchor="middle"
-                      fill="#EA4335"
-                      fontSize="14"
-                      fontWeight="bold"
-                      fontFamily="Arial, sans-serif"
-                    >
+                  <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+                    <span className="text-white font-bold text-lg">
                       {branch.id}
-                    </text>
-                  </svg>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Branch Label */}
