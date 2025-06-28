@@ -61,7 +61,7 @@ export default function PerformanceMeter() {
           {/* Section Header */}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[#283C50] font-inter text-xl font-bold">
-              Employee Score
+              Employee Location
             </h2>
             <Button
               variant="ghost"
