@@ -43,14 +43,14 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 58, y: 42 }, // Eastern India, near Kolkata area, within map boundaries
+      position: { x: 58, y: 55 }, // Much lower (further south) in eastern India
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 56, y: 45 }, // Eastern India, south of Kolkata, within map boundaries
+      position: { x: 56, y: 58 }, // Much lower (further south) in eastern India
       address: "Paradip, Odisha",
       employees: 18,
     },
