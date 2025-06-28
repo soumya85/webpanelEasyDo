@@ -90,8 +90,8 @@ export const navigationItems: NavigationItem[] = [
     href: "/help-support",
   },
   {
-    id: "overview",
-    labelKey: "overview",
+    id: "sample",
+    labelKey: "sample",
     icon: Zap,
     href: "/sample",
   },
