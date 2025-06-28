@@ -1,7 +1,20 @@
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Users,
+  Clock,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
@@ -11,33 +24,33 @@ export default function EmployeeLocationTimelineCard() {
   // State for map marker selection
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
 
-  // Branch locations positioned at actual geographic coordinates on India map
+  // Branch locations positioned accurately on the static India terrain map
   const branches = [
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 52, y: 28 }, // Northern India - actual Delhi location
+      position: { x: 45, y: 30 }, // North-central India - properly positioned within India borders
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 41, y: 38 }, // Western India - actual Ahmedabad, Gujarat location
+      position: { x: 25, y: 42 }, // Far Western India - Gujarat state, near Mumbai region
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 77, y: 44 }, // Eastern India - actual Haldia, West Bengal location
+      position: { x: 68, y: 48 }, // East Medinipur, West Bengal - near Kolkata
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 70, y: 50 }, // Eastern coast - actual Paradip, Odisha location
+      position: { x: 65, y: 52 }, // Odisha coast - south of Kolkata on eastern coast
       address: "Paradip, Odisha",
       employees: 18,
     },
@@ -376,15 +389,9 @@ export default function EmployeeLocationTimelineCard() {
                   </svg>
                 </div>
 
-                {/* Branch Label - Beside the marker */}
-                <div
-                  className={`absolute top-1/2 transform -translate-y-1/2 ${
-                    branch.position.x > 70
-                      ? "right-full mr-2"
-                      : "left-full ml-2"
-                  }`}
-                >
-                  <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap">
+                {/* Branch Label - Below the marker */}
+                <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-white px-2 py-1 rounded shadow-sm text-xs font-medium text-gray-800 whitespace-nowrap text-center">
                     {branch.name}
                   </div>
                 </div>
