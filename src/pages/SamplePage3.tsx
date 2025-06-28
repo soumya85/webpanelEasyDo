@@ -53,9 +53,6 @@ export default function SamplePage3() {
         <h1 className="text-2xl lg:text-3xl font-bold text-[#283C50] mb-2">
           Sample Page 3
         </h1>
-        <p className="text-gray-600">
-          A third sample page with minimal cards and vertical layout
-        </p>
       </div>
 
       {/* Page Area */}
