@@ -78,11 +78,15 @@ export default function EmployeeAttendanceCard() {
                 item.bgColor,
                 item.label === "Present"
                   ? "border-green-500"
-                  : item.label === "Leave"
-                    ? "border-orange-500"
-                    : item.label === "Red Flags"
-                      ? "border-red-500"
-                      : "border-gray-400",
+                  : item.label === "Total Staff"
+                    ? "border-blue-500"
+                    : item.label === "Week off"
+                      ? "border-orange-500"
+                      : item.label === "Absent"
+                        ? "border-red-500"
+                        : item.label === "Leave"
+                          ? "border-yellow-500"
+                          : "border-gray-400",
               )}
             >
               <div className="flex items-center gap-1 mb-1">
