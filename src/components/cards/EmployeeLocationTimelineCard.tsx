@@ -92,11 +92,6 @@ export default function EmployeeLocationTimelineCard() {
     const now = new Date();
     const currentHour = now.getHours();
 
-    // Set current time as initial selection if no selection exists
-    if (selectedHour === null) {
-      setSelectedHour(currentHour);
-    }
-
     // Find the current active hour slot
     const activeSlotIndex = allSlots.findIndex(
       (slot) => slot.hour === currentHour,
