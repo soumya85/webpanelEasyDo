@@ -325,13 +325,52 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Circular Badge Marker */}
+                {/* Pin-style Marker with Circular Badge */}
                 <div className="relative">
-                  <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
-                    <span className="text-white font-bold text-lg">
+                  <svg
+                    width="48"
+                    height="60"
+                    viewBox="0 0 48 60"
+                    className="drop-shadow-lg"
+                  >
+                    {/* Pin Shadow */}
+                    <ellipse
+                      cx="24"
+                      cy="56"
+                      rx="8"
+                      ry="3"
+                      fill="rgba(0,0,0,0.3)"
+                    />
+
+                    {/* Pin Bottom Point */}
+                    <path d="M24 48L18 54L30 54Z" fill="#EA4335" />
+
+                    {/* Main Circular Badge */}
+                    <circle
+                      cx="24"
+                      cy="24"
+                      r="20"
+                      fill="#EA4335"
+                      stroke="#FFFFFF"
+                      strokeWidth="3"
+                    />
+
+                    {/* Inner White Circle */}
+                    <circle cx="24" cy="24" r="16" fill="#FFFFFF" />
+
+                    {/* Number Text */}
+                    <text
+                      x="24"
+                      y="30"
+                      textAnchor="middle"
+                      fill="#EA4335"
+                      fontSize="16"
+                      fontWeight="bold"
+                      fontFamily="Arial, sans-serif"
+                    >
                       {branch.id}
-                    </span>
-                  </div>
+                    </text>
+                  </svg>
                 </div>
 
                 {/* Branch Label */}
