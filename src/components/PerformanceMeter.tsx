@@ -198,22 +198,18 @@ export default function PerformanceMeter() {
                     <button
                       key={hour}
                       onClick={() => handleTimeSelect(hour)}
-                      className="flex flex-col items-center cursor-pointer hover:scale-110 transition-transform"
+                      className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-200"
                     >
                       <div
                         className={`w-3 h-3 rounded-full mb-1 transition-all duration-200 ${
-                          isActive
-                            ? "bg-green-500 scale-125"
-                            : isPassed
-                              ? "bg-green-400"
-                              : "bg-gray-300"
+                          isActive ? "bg-green-500 scale-125" : "bg-gray-300"
                         }`}
                       />
                       <span
                         className={`text-xs font-medium transition-colors ${
                           isActive
                             ? "text-green-600 font-bold"
-                            : "text-gray-600"
+                            : "text-gray-500"
                         }`}
                       >
                         {hour}
@@ -235,7 +231,7 @@ export default function PerformanceMeter() {
               </div>
 
               {/* Time Navigation Arrows */}
-              <div className="flex justify-between items-center mt-3">
+              <div className="flex justify-between items-center mt-3 pt-3">
                 <button
                   onClick={() => {
                     const currentIndex = timelineHours.indexOf(currentTime);
@@ -244,11 +240,11 @@ export default function PerformanceMeter() {
                     }
                   }}
                   disabled={timelineHours.indexOf(currentTime) === 0}
-                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="text-gray-700 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed font-medium text-sm"
                 >
                   ← Previous
                 </button>
-                <span className="text-xs text-gray-500 font-medium">
+                <span className="text-xs text-gray-800 font-semibold">
                   {currentTime}
                 </span>
                 <button
@@ -262,7 +258,7 @@ export default function PerformanceMeter() {
                     timelineHours.indexOf(currentTime) ===
                     timelineHours.length - 1
                   }
-                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="text-gray-700 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed font-medium text-sm"
                 >
                   Next →
                 </button>
