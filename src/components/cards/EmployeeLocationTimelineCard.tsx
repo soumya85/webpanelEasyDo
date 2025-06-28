@@ -3,17 +3,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export default function EmployeeLocationTimelineCard() {
-  // Timeline showing 6 AM - 1 PM window with 10 AM as active (matching second screenshot)
-  // Green bars appear from 6 AM up to the active time (10 AM)
+  // Timeline showing 10 AM - 5 PM window with 2 PM as active (matching new screenshot)
+  // Green bars appear from 10 AM up to the active time (2 PM)
   const timeSlots = [
-    { time: "6 AM", active: false },
-    { time: "7 AM", active: false },
-    { time: "8 AM", active: false },
-    { time: "9 AM", active: false },
-    { time: "10 AM", active: true },
+    { time: "10 AM", active: false },
     { time: "11 AM", active: false },
     { time: "12 PM", active: false },
     { time: "1 PM", active: false },
+    { time: "2 PM", active: true },
+    { time: "3 PM", active: false },
+    { time: "4 PM", active: false },
+    { time: "5 PM", active: false },
   ];
 
   return (
