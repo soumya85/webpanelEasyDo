@@ -3,17 +3,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export default function EmployeeLocationTimelineCard() {
-  // Timeline showing 10 AM as active (green dot) - matching the second screenshot
-  // Green bars appear from start up to the active time (10 AM)
+  // Timeline showing 6 AM - 1 PM window with 10 AM as active (matching second screenshot)
+  // Green bars appear from 6 AM up to the active time (10 AM)
   const timeSlots = [
-    { time: "6 AM", active: false, hasBar: true },
-    { time: "7 AM", active: false, hasBar: true },
-    { time: "8 AM", active: false, hasBar: true },
-    { time: "9 AM", active: false, hasBar: true },
-    { time: "10 AM", active: true, hasBar: true },
-    { time: "11 AM", active: false, hasBar: false },
-    { time: "12 PM", active: false, hasBar: false },
-    { time: "1 PM", active: false, hasBar: false },
+    { time: "6 AM", active: false },
+    { time: "7 AM", active: false },
+    { time: "8 AM", active: false },
+    { time: "9 AM", active: false },
+    { time: "10 AM", active: true },
+    { time: "11 AM", active: false },
+    { time: "12 PM", active: false },
+    { time: "1 PM", active: false },
   ];
 
   return (
@@ -78,14 +78,29 @@ export default function EmployeeLocationTimelineCard() {
           {/* Timeline */}
           <div className="p-4">
             <div className="relative">
-              {/* Timeline Line - continuous line with segments */}
-              <div className="absolute top-3 left-6 right-6 h-1 bg-gray-300 rounded-full"></div>
+              {/* Timeline base line */}
+              <div className="absolute top-3 left-6 right-6 h-1 bg-gray-300"></div>
 
-              {/* Green segments up to active time */}
-              <div
-                className="absolute top-3 left-6 h-1 bg-green-500 rounded-full"
-                style={{ width: "62.5%" }}
-              ></div>
+              {/* Green line segments connecting dots up to active time */}
+              <div className="absolute top-3 left-6 right-6 flex">
+                {timeSlots.map((slot, index) => {
+                  const activeIndex = timeSlots.findIndex((s) => s.active);
+                  const shouldShowGreen = index < activeIndex;
+
+                  return (
+                    <div key={index} className="flex-1 flex items-center">
+                      {index < timeSlots.length - 1 && (
+                        <div
+                          className={cn(
+                            "h-1 flex-1",
+                            shouldShowGreen ? "bg-green-500" : "bg-gray-300",
+                          )}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
 
               {/* Timeline Dots */}
               <div className="flex justify-between items-center relative">
@@ -93,8 +108,10 @@ export default function EmployeeLocationTimelineCard() {
                   <div key={slot.time} className="flex flex-col items-center">
                     <div
                       className={cn(
-                        "w-4 h-4 rounded-full shadow-sm z-10",
-                        slot.active ? "bg-green-500" : "bg-gray-300",
+                        "rounded-full shadow-sm z-10",
+                        slot.active
+                          ? "w-5 h-5 bg-green-500"
+                          : "w-4 h-4 bg-gray-300",
                       )}
                     />
                     <span
