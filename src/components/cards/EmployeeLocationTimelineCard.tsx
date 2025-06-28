@@ -328,35 +328,35 @@ export default function EmployeeLocationTimelineCard() {
                 {/* Pin Marker */}
                 <div className="relative">
                   <svg
-                    width="30"
-                    height="40"
-                    viewBox="0 0 30 40"
-                    className="drop-shadow-md"
+                    width="45"
+                    height="60"
+                    viewBox="0 0 45 60"
+                    className="drop-shadow-lg"
                   >
                     {/* Pin Shadow */}
                     <ellipse
-                      cx="15"
-                      cy="37"
-                      rx="6"
-                      ry="2"
-                      fill="rgba(0,0,0,0.2)"
+                      cx="22.5"
+                      cy="55"
+                      rx="9"
+                      ry="3"
+                      fill="rgba(0,0,0,0.3)"
                     />
                     {/* Pin Shape */}
                     <path
-                      d="M15 2C9.5 2 5 6.5 5 12C5 20 15 38 15 38S25 20 25 12C25 6.5 20.5 2 15 2Z"
+                      d="M22.5 3C15.75 3 10 8.75 10 15.5C10 26 22.5 57 22.5 57S35 26 35 15.5C35 8.75 29.25 3 22.5 3Z"
                       fill="#EA4335"
                       stroke="#FFFFFF"
-                      strokeWidth="1.5"
+                      strokeWidth="2"
                     />
                     {/* White Circle */}
-                    <circle cx="15" cy="12" r="7" fill="#FFFFFF" />
+                    <circle cx="22.5" cy="15.5" r="10" fill="#FFFFFF" />
                     {/* Number */}
                     <text
-                      x="15"
-                      y="16"
+                      x="22.5"
+                      y="21"
                       textAnchor="middle"
                       fill="#EA4335"
-                      fontSize="10"
+                      fontSize="14"
                       fontWeight="bold"
                       fontFamily="Arial, sans-serif"
                     >
