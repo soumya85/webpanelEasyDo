@@ -318,7 +318,7 @@ export default function EmployeeLocationTimelineCard() {
         </div>
 
         {/* Realistic Google Maps Terrain Style Map */}
-        <div className="relative flex-1 min-h-96 rounded-xl overflow-hidden border border-gray-200">
+        <div className="relative flex-1 min-h-[500px] rounded-xl overflow-hidden border border-gray-200">
           <div className="relative w-full h-full">
             {/* Background Map Image */}
             <img
