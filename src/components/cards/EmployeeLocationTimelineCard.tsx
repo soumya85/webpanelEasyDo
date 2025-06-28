@@ -11,12 +11,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useMemo, useState, useCallback } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
@@ -30,14 +25,10 @@ export default function EmployeeLocationTimelineCard() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   // Google Maps state
-  const [mapType, setMapType] = useState<"custom" | "google">("custom");
-  const [googleMapType, setGoogleMapType] = useState<
-    "roadmap" | "satellite" | "hybrid" | "terrain"
-  >("roadmap");
+  const [mapType, setMapType] = useState<'custom' | 'google'>('custom');
+  const [googleMapType, setGoogleMapType] = useState<'roadmap' | 'satellite' | 'hybrid' | 'terrain'>('roadmap');
   const [googleZoom, setGoogleZoom] = useState(6);
-  const [selectedGoogleMarker, setSelectedGoogleMarker] = useState<
-    string | null
-  >(null);
+  const [selectedGoogleMarker, setSelectedGoogleMarker] = useState<string | null>(null);
 
   // Branch locations data with both pixel positions for custom map and real coordinates for Google Maps
   const branches = [
@@ -45,7 +36,7 @@ export default function EmployeeLocationTimelineCard() {
       id: "6",
       name: "New Delhi Branch",
       position: { x: 300, y: 140 }, // Northern region
-      coordinates: { lat: 28.6139, lng: 77.209 }, // Real Delhi coordinates
+      coordinates: { lat: 28.6139, lng: 77.2090 }, // Real Delhi coordinates
       address: "New Delhi",
       employees: 15,
     },
@@ -86,12 +77,8 @@ export default function EmployeeLocationTimelineCard() {
 
   // Calculate center point of all branches for Google Maps
   const googleMapCenter = useMemo(() => {
-    const avgLat =
-      branches.reduce((sum, branch) => sum + branch.coordinates.lat, 0) /
-      branches.length;
-    const avgLng =
-      branches.reduce((sum, branch) => sum + branch.coordinates.lng, 0) /
-      branches.length;
+    const avgLat = branches.reduce((sum, branch) => sum + branch.coordinates.lat, 0) / branches.length;
+    const avgLng = branches.reduce((sum, branch) => sum + branch.coordinates.lng, 0) / branches.length;
     return { lat: avgLat, lng: avgLng };
   }, [branches]);
   // Define all possible time slots
@@ -229,28 +216,20 @@ export default function EmployeeLocationTimelineCard() {
   }, []);
 
   // Google Maps handlers
-  const handleGoogleMarkerClick = useCallback(
-    (branchId: string) => {
-      setSelectedGoogleMarker(
-        selectedGoogleMarker === branchId ? null : branchId,
-      );
-    },
-    [selectedGoogleMarker],
-  );
+  const handleGoogleMarkerClick = useCallback((branchId: string) => {
+    setSelectedGoogleMarker(selectedGoogleMarker === branchId ? null : branchId);
+  }, [selectedGoogleMarker]);
 
   const handleMapTypeToggle = useCallback(() => {
-    setMapType(mapType === "custom" ? "google" : "custom");
+    setMapType(mapType === 'custom' ? 'google' : 'custom');
     // Reset selection when switching map types
     setSelectedMarker(null);
     setSelectedGoogleMarker(null);
   }, [mapType]);
 
-  const handleGoogleMapTypeChange = useCallback(
-    (type: "roadmap" | "satellite" | "hybrid" | "terrain") => {
-      setGoogleMapType(type);
-    },
-    [],
-  );
+  const handleGoogleMapTypeChange = useCallback((type: 'roadmap' | 'satellite' | 'hybrid' | 'terrain') => {
+    setGoogleMapType(type);
+  }, []);
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
@@ -421,11 +400,156 @@ export default function EmployeeLocationTimelineCard() {
           </div>
         </div>
 
-        {/* Custom Interactive Map Section - Google Maps Style */}
-        <div
-          className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200"
-          style={{ backgroundColor: "#AAD3DF" }}
-        >
+        {/* Map Type Toggle Controls */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleMapTypeToggle}
+              className={cn(
+                "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
+                mapType === 'custom'
+                  ? "bg-blue-100 text-blue-700 border border-blue-200"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              )}
+            >
+              <MapIcon className="w-4 h-4" />
+              Custom Map
+            </button>
+            <button
+              onClick={handleMapTypeToggle}
+              className={cn(
+                "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
+                mapType === 'google'
+                  ? "bg-blue-100 text-blue-700 border border-blue-200"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              )}
+            >
+              <MapPin className="w-4 h-4" />
+              Google Maps
+            </button>
+          </div>
+
+          {/* Google Maps Type Controls */}
+          {mapType === 'google' && (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => handleGoogleMapTypeChange('roadmap')}
+                className={cn(
+                  "px-2 py-1 text-xs rounded transition-colors",
+                  googleMapType === 'roadmap' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                )}
+              >
+                Road
+              </button>
+              <button
+                onClick={() => handleGoogleMapTypeChange('satellite')}
+                className={cn(
+                  "px-2 py-1 text-xs rounded transition-colors",
+                  googleMapType === 'satellite' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                )}
+              >
+                <Satellite className="w-3 h-3" />
+              </button>
+              <button
+                onClick={() => handleGoogleMapTypeChange('hybrid')}
+                className={cn(
+                  "px-2 py-1 text-xs rounded transition-colors",
+                  googleMapType === 'hybrid' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                )}
+              >
+                Hybrid
+              </button>
+              <button
+                onClick={() => handleGoogleMapTypeChange('terrain')}
+                className={cn(
+                  "px-2 py-1 text-xs rounded transition-colors",
+                  googleMapType === 'terrain' ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                )}
+              >
+                Terrain
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Maps Container */}
+        <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200">
+          {mapType === 'google' ? (
+            /* Google Maps Implementation */
+            <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || 'demo-key'}>
+              <GoogleMap
+                mapContainerStyle={{ width: '100%', height: '100%' }}
+                center={googleMapCenter}
+                zoom={googleZoom}
+                options={{
+                  ...googleMapOptions,
+                  mapTypeId: googleMapType,
+                }}
+                onZoomChanged={() => {
+                  // Handle zoom changes if needed
+                }}
+              >
+                {/* Branch Markers */}
+                {branches.map((branch) => (
+                  <Marker
+                    key={branch.id}
+                    position={branch.coordinates}
+                    onClick={() => handleGoogleMarkerClick(branch.id)}
+                    label={{
+                      text: branch.id,
+                      color: '#FFFFFF',
+                      fontWeight: 'bold',
+                      fontSize: '14px',
+                    }}
+                    icon={{
+                      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                        <svg width="40" height="52" viewBox="0 0 40 52" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="20" cy="48" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+                          <path d="M20 0C10.5 0 3 7.5 3 17c0 12.5 17 35 17 35s17-22.5 17-35C37 7.5 29.5 0 20 0z" fill="#EA4335" stroke="#FFFFFF" stroke-width="2"/>
+                          <circle cx="20" cy="17" r="10" fill="#FFFFFF"/>
+                          <text x="20" y="22" text-anchor="middle" fill="#EA4335" font-size="14" font-weight="700" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
+                        </svg>
+                      `),
+                      scaledSize: new window.google.maps.Size(40, 52),
+                      anchor: new window.google.maps.Point(20, 52),
+                    }}
+                  />
+                ))}
+
+                {/* Info Window */}
+                {selectedGoogleMarker && (
+                  <InfoWindow
+                    position={branches.find(b => b.id === selectedGoogleMarker)?.coordinates}
+                    onCloseClick={() => setSelectedGoogleMarker(null)}
+                  >
+                    <div className="p-2">
+                      {(() => {
+                        const branch = branches.find((b) => b.id === selectedGoogleMarker);
+                        return branch ? (
+                          <div>
+                            <h3 className="font-semibold text-gray-900 mb-1">
+                              {branch.name}
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-1">
+                              {branch.address}
+                            </p>
+                            <p className="text-sm text-blue-600">
+                              {branch.employees} employees present
+                            </p>
+                          </div>
+                        ) : null;
+                      })()}
+                    </div>
+                  </InfoWindow>
+                )}
+              </GoogleMap>
+            </LoadScript>
+          ) : (
+            /* Custom Map Implementation */
+            <div
+              className="relative w-full h-full"
+              style={{ backgroundColor: "#AAD3DF" }}
+            >
           <div
             className="relative w-full h-full cursor-grab select-none"
             style={{
