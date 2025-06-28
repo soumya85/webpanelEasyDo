@@ -20,7 +20,10 @@ export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
   const [windowOffset, setWindowOffset] = useState(0);
   // State to track single selected time slot (current time as initial selection)
-  const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  const [selectedHour, setSelectedHour] = useState<number | null>(() => {
+    const now = new Date();
+    return now.getHours();
+  });
   // State for map marker selection
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
 
