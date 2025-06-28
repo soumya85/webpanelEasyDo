@@ -66,7 +66,7 @@ export default function SamplePage3() {
       >
         {/* Quick Action Cards Grid - Fewer cards */}
         <div className="w-full">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4 w-full max-w-4xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3 lg:gap-4 w-full max-w-6xl">
             {cardData.map((card, index) => (
               <div
                 key={card.id}
