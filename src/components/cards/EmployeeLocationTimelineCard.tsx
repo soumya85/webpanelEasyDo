@@ -24,33 +24,33 @@ export default function EmployeeLocationTimelineCard() {
   // State for map marker selection
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
 
-  // Branch locations positioned at actual geographic coordinates on India map
+  // Branch locations positioned at precise geographic coordinates on India map
   const branches = [
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 52, y: 28 }, // Northern India - actual Delhi location
+      position: { x: 47, y: 25 }, // North-central India - precise Delhi location
       address: "New Delhi",
       employees: 15,
     },
     {
       id: "0",
       name: "Ahmedabad Office Branch",
-      position: { x: 41, y: 38 }, // Western India - actual Ahmedabad, Gujarat location
+      position: { x: 35, y: 42 }, // Western India - precise Ahmedabad, Gujarat location
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 77, y: 44 }, // Eastern India - actual Haldia, West Bengal location
+      position: { x: 78, y: 48 }, // Eastern India - precise Haldia, West Bengal location
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 70, y: 50 }, // Eastern coast - actual Paradip, Odisha location
+      position: { x: 73, y: 55 }, // Eastern coast - precise Paradip, Odisha location
       address: "Paradip, Odisha",
       employees: 18,
     },
