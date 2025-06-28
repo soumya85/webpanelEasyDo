@@ -4,10 +4,19 @@ import {
   ChevronRight,
   ZoomIn,
   ZoomOut,
+  MapPin,
+  Satellite,
+  Map as MapIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useMemo, useState, useCallback } from "react";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
