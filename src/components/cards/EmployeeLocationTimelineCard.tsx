@@ -325,52 +325,13 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Pin-style Marker with Circular Badge */}
+                {/* Circular Marker with Red Border (matching screenshot) */}
                 <div className="relative">
-                  <svg
-                    width="48"
-                    height="60"
-                    viewBox="0 0 48 60"
-                    className="drop-shadow-lg"
-                  >
-                    {/* Pin Shadow */}
-                    <ellipse
-                      cx="24"
-                      cy="56"
-                      rx="8"
-                      ry="3"
-                      fill="rgba(0,0,0,0.3)"
-                    />
-
-                    {/* Pin Bottom Point */}
-                    <path d="M24 48L18 54L30 54Z" fill="#EA4335" />
-
-                    {/* Main Circular Badge */}
-                    <circle
-                      cx="24"
-                      cy="24"
-                      r="20"
-                      fill="#EA4335"
-                      stroke="#FFFFFF"
-                      strokeWidth="3"
-                    />
-
-                    {/* Inner White Circle */}
-                    <circle cx="24" cy="24" r="16" fill="#FFFFFF" />
-
-                    {/* Number Text */}
-                    <text
-                      x="24"
-                      y="30"
-                      textAnchor="middle"
-                      fill="#EA4335"
-                      fontSize="16"
-                      fontWeight="bold"
-                      fontFamily="Arial, sans-serif"
-                    >
+                  <div className="w-10 h-10 rounded-full bg-white border-4 border-red-500 flex items-center justify-center shadow-lg">
+                    <span className="text-red-500 font-bold text-sm">
                       {branch.id}
-                    </text>
-                  </svg>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Branch Label */}
