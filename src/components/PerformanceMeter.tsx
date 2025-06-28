@@ -187,38 +187,85 @@ export default function PerformanceMeter() {
 
             {/* Timeline Scrubber */}
             <div className="bg-white border rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                {timelineHours.slice(0, 8).map((hour, index) => (
-                  <div key={hour} className="flex flex-col items-center">
-                    <div
-                      className={`w-3 h-3 rounded-full mb-1 ${
-                        hour === currentTime
-                          ? "bg-green-500"
-                          : index < 5
-                            ? "bg-green-400"
-                            : "bg-gray-300"
-                      }`}
-                    />
-                    <span
-                      className={`text-xs font-medium ${
-                        hour === currentTime
-                          ? "text-green-600"
-                          : "text-gray-600"
-                      }`}
+              <div className="flex items-center justify-between mb-3">
+                {getCurrentTimelineSlice().map((hour, index) => {
+                  const currentIndex = timelineHours.indexOf(currentTime);
+                  const hourIndex = timelineHours.indexOf(hour);
+                  const isActive = hour === currentTime;
+                  const isPassed = hourIndex < currentIndex;
+
+                  return (
+                    <button
+                      key={hour}
+                      onClick={() => handleTimeSelect(hour)}
+                      className="flex flex-col items-center cursor-pointer hover:scale-110 transition-transform"
                     >
-                      {hour}
-                    </span>
-                  </div>
-                ))}
+                      <div
+                        className={`w-3 h-3 rounded-full mb-1 transition-all duration-200 ${
+                          isActive
+                            ? "bg-green-500 scale-125"
+                            : isPassed
+                              ? "bg-green-400"
+                              : "bg-gray-300"
+                        }`}
+                      />
+                      <span
+                        className={`text-xs font-medium transition-colors ${
+                          isActive
+                            ? "text-green-600 font-bold"
+                            : "text-gray-600"
+                        }`}
+                      >
+                        {hour}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Timeline Line */}
-              <div className="relative">
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gray-200"></div>
+              <div className="relative mt-2">
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gray-200 rounded-full"></div>
                 <div
-                  className="absolute top-0 left-0 h-0.5 bg-green-500"
-                  style={{ width: "62%" }}
+                  className="absolute top-0 left-0 h-0.5 bg-green-500 rounded-full transition-all duration-300"
+                  style={{
+                    width: `${((timelineHours.indexOf(currentTime) + 1) / timelineHours.length) * 100}%`,
+                  }}
                 ></div>
+              </div>
+
+              {/* Time Navigation Arrows */}
+              <div className="flex justify-between items-center mt-3">
+                <button
+                  onClick={() => {
+                    const currentIndex = timelineHours.indexOf(currentTime);
+                    if (currentIndex > 0) {
+                      setCurrentTime(timelineHours[currentIndex - 1]);
+                    }
+                  }}
+                  disabled={timelineHours.indexOf(currentTime) === 0}
+                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  ← Previous
+                </button>
+                <span className="text-xs text-gray-500 font-medium">
+                  {currentTime}
+                </span>
+                <button
+                  onClick={() => {
+                    const currentIndex = timelineHours.indexOf(currentTime);
+                    if (currentIndex < timelineHours.length - 1) {
+                      setCurrentTime(timelineHours[currentIndex + 1]);
+                    }
+                  }}
+                  disabled={
+                    timelineHours.indexOf(currentTime) ===
+                    timelineHours.length - 1
+                  }
+                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  Next →
+                </button>
               </div>
             </div>
 
