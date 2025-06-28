@@ -228,6 +228,30 @@ export default function EmployeeLocationTimelineCard() {
     setIsDragging(false);
   }, []);
 
+  // Google Maps handlers
+  const handleGoogleMarkerClick = useCallback(
+    (branchId: string) => {
+      setSelectedGoogleMarker(
+        selectedGoogleMarker === branchId ? null : branchId,
+      );
+    },
+    [selectedGoogleMarker],
+  );
+
+  const handleMapTypeToggle = useCallback(() => {
+    setMapType(mapType === "custom" ? "google" : "custom");
+    // Reset selection when switching map types
+    setSelectedMarker(null);
+    setSelectedGoogleMarker(null);
+  }, [mapType]);
+
+  const handleGoogleMapTypeChange = useCallback(
+    (type: "roadmap" | "satellite" | "hybrid" | "terrain") => {
+      setGoogleMapType(type);
+    },
+    [],
+  );
+
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
       <CardContent className="p-2 flex flex-col h-full">
