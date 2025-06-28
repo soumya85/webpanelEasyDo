@@ -39,12 +39,13 @@ export default function EmployeeLocationTimelineCard() {
     string | null
   >(null);
 
-  // Branch locations data with pixel positions matching screenshot
+  // Branch locations data with both pixel positions for custom map and real coordinates for Google Maps
   const branches = [
     {
       id: "6",
       name: "New Delhi Branch",
       position: { x: 300, y: 140 }, // Northern region
+      coordinates: { lat: 28.6139, lng: 77.209 }, // Real Delhi coordinates
       address: "New Delhi",
       employees: 15,
     },
@@ -52,6 +53,7 @@ export default function EmployeeLocationTimelineCard() {
       id: "0",
       name: "Ahmedabad Office Branch",
       position: { x: 180, y: 230 }, // Western region
+      coordinates: { lat: 23.0225, lng: 72.5714 }, // Real Ahmedabad coordinates
       address: "Ahmedabad, Gujarat",
       employees: 8,
     },
@@ -59,6 +61,7 @@ export default function EmployeeLocationTimelineCard() {
       id: "18",
       name: "Haldia Branch",
       position: { x: 460, y: 220 }, // Eastern region
+      coordinates: { lat: 22.0667, lng: 88.1167 }, // Real Haldia coordinates
       address: "Haldia, West Bengal",
       employees: 12,
     },
@@ -66,10 +69,31 @@ export default function EmployeeLocationTimelineCard() {
       id: "22",
       name: "Paradip Branch",
       position: { x: 380, y: 280 }, // Central-eastern region
+      coordinates: { lat: 20.3167, lng: 86.6167 }, // Real Paradip coordinates
       address: "Paradip, Odisha",
       employees: 18,
     },
   ];
+
+  // Google Maps configuration
+  const googleMapOptions = {
+    disableDefaultUI: false,
+    zoomControl: true,
+    streetViewControl: false,
+    mapTypeControl: true,
+    fullscreenControl: true,
+  };
+
+  // Calculate center point of all branches for Google Maps
+  const googleMapCenter = useMemo(() => {
+    const avgLat =
+      branches.reduce((sum, branch) => sum + branch.coordinates.lat, 0) /
+      branches.length;
+    const avgLng =
+      branches.reduce((sum, branch) => sum + branch.coordinates.lng, 0) /
+      branches.length;
+    return { lat: avgLat, lng: avgLng };
+  }, [branches]);
   // Define all possible time slots
   const allSlots = useMemo(
     () => [
