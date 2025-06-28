@@ -16,6 +16,7 @@ export default function EmployeeLocationTimelineCard() {
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
   // State for Google Maps
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   // Google Maps configuration
   const mapContainerStyle = {
