@@ -203,8 +203,13 @@ export default function EmployeeLocationTimelineCard() {
               <span className="font-semibold text-gray-900">All Branches</span>
             </div>
             <div className="flex items-center gap-2">
-              {/* Users Icon */}
-              <Users className="w-8 h-8 text-primary" />
+              {/* Material Symbols Hail Icon */}
+              <span
+                className="material-symbols-outlined w-8 h-8 flex items-center justify-center"
+                style={{ color: "#4766E5", fontSize: "32px" }}
+              >
+                hail
+              </span>
               {/* Green vertical bar */}
               <div className="w-0.5 h-6 bg-green-500"></div>
               <span className="text-2xl font-bold text-gray-900">29</span>
