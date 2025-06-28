@@ -43,14 +43,14 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 68, y: 48 }, // East Medinipur, West Bengal - near Kolkata
+      position: { x: 58, y: 48 }, // East Medinipur, West Bengal - near Kolkata, correctly positioned in India
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 67, y: 49 }, // Positioned near Kolkata area, close to Haldia branch
+      position: { x: 56, y: 50 }, // Near Kolkata area in eastern India, not Myanmar
       address: "Paradip, Odisha",
       employees: 18,
     },
