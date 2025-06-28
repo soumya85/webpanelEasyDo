@@ -536,37 +536,31 @@ export default function EmployeeLocationTimelineCard() {
               >
                 {/* Branch Markers */}
                 {branches.map((branch) => (
-                  <Marker
-                    key={branch.id}
-                    position={branch.coordinates}
-                    onClick={() => handleGoogleMarkerClick(branch.id)}
-                    label={{
-                      text: branch.id,
-                      color: "#FFFFFF",
-                      fontWeight: "bold",
-                      fontSize: "14px",
-                      fontFamily: "Roboto, Arial, sans-serif",
-                    }}
-                    icon={{
-                      url:
-                        "data:image/svg+xml;charset=UTF-8," +
-                        encodeURIComponent(`
-                        <svg width="32" height="48" viewBox="0 0 32 48" xmlns="http://www.w3.org/2000/svg">
-                          <defs>
-                            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
-                            </filter>
-                          </defs>
-                          <path d="M16 0C7.163 0 0 7.163 0 16C0 28 16 48 16 48S32 28 32 16C32 7.163 24.837 0 16 0Z" fill="#EA4335" filter="url(#shadow)"/>
-                          <circle cx="16" cy="16" r="11" fill="#FFFFFF"/>
-                          <circle cx="16" cy="16" r="10" fill="#FFFFFF" stroke="#EA4335" stroke-width="0.5"/>
-                          <text x="16" y="21" text-anchor="middle" fill="#EA4335" font-size="12" font-weight="bold" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
-                        </svg>
-                      `),
-                      scaledSize: { width: 32, height: 48 },
-                      anchor: { x: 16, y: 48 },
-                    }}
-                  />
+                  <div key={branch.id}>
+                    <Marker
+                      position={branch.coordinates}
+                      onClick={() => handleGoogleMarkerClick(branch.id)}
+                      icon={{
+                        url:
+                          "data:image/svg+xml;charset=UTF-8," +
+                          encodeURIComponent(`
+                          <svg width="32" height="48" viewBox="0 0 32 48" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+                              </filter>
+                            </defs>
+                            <path d="M16 0C7.163 0 0 7.163 0 16C0 28 16 48 16 48S32 28 32 16C32 7.163 24.837 0 16 0Z" fill="#EA4335" filter="url(#shadow)"/>
+                            <circle cx="16" cy="16" r="11" fill="#FFFFFF"/>
+                            <circle cx="16" cy="16" r="10" fill="#FFFFFF" stroke="#EA4335" stroke-width="0.5"/>
+                            <text x="16" y="21" text-anchor="middle" fill="#EA4335" font-size="12" font-weight="bold" font-family="Roboto,Arial,sans-serif">${branch.id}</text>
+                          </svg>
+                        `),
+                        scaledSize: { width: 32, height: 48 },
+                        anchor: { x: 16, y: 48 },
+                      }}
+                    />
+                  </div>
                 ))}
 
                 {/* Info Window */}
