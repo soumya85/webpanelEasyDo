@@ -54,6 +54,20 @@ export default function EmployeeAttendanceCard() {
       bgColor: "bg-yellow-50",
       borderColor: "border-yellow-200",
     },
+    {
+      label: "Work From Home",
+      value: 0,
+      color: "text-purple-600",
+      bgColor: "bg-purple-50",
+      borderColor: "border-purple-200",
+    },
+    {
+      label: "Work On Holiday",
+      value: 0,
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-50",
+      borderColor: "border-indigo-200",
+    },
   ];
 
   return (
