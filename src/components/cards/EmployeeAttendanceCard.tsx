@@ -118,24 +118,34 @@ export default function EmployeeAttendanceCard() {
           ))}
         </div>
 
-        {/* Second Row */}
-        <div className="grid grid-cols-1 gap-2 mb-4">
-          <div
-            className={cn(
-              "flex flex-col items-center justify-center p-3 rounded-lg border-b-4 border-red-500",
-              "min-h-[80px] transition-all duration-200",
-              "bg-red-50",
-            )}
-          >
-            <div className="flex items-center gap-1 mb-1">
-              <div className="text-xl font-bold text-red-600">
-                {attendanceData[6].value}
+        {/* Second Row - 3 boxes */}
+        <div className="grid grid-cols-3 gap-2 mb-4">
+          {attendanceData.slice(6, 9).map((item) => (
+            <div
+              key={item.label}
+              className={cn(
+                "flex flex-col items-center justify-center p-3 rounded-lg border-b-4",
+                "min-h-[80px] transition-all duration-200",
+                item.bgColor,
+                item.label === "Leave"
+                  ? "border-yellow-500"
+                  : item.label === "Work From Home"
+                    ? "border-purple-500"
+                    : item.label === "Work On Holiday"
+                      ? "border-indigo-500"
+                      : "border-gray-400",
+              )}
+            >
+              <div className="flex items-center gap-1 mb-1">
+                <div className={cn("text-xl font-bold", item.color)}>
+                  {item.value}
+                </div>
+              </div>
+              <div className="text-xs text-gray-700 text-center font-medium">
+                {item.label}
               </div>
             </div>
-            <div className="text-xs text-gray-700 text-center font-medium">
-              {attendanceData[6].label}
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Footer Summary */}
