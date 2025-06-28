@@ -71,7 +71,6 @@ export default function EmployeeAttendanceCard() {
   ];
 
   const filterOptions = [
-    { name: "All", count: null },
     { name: "Present", count: 79 },
     { name: "Absent", count: 24 },
     { name: "Half Day", count: 0 },
