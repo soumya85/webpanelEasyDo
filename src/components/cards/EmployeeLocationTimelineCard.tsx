@@ -507,21 +507,20 @@ export default function EmployeeLocationTimelineCard() {
         <div className="relative flex-1 min-h-80 rounded-xl overflow-hidden border border-gray-200">
           {mapType === "google" ? (
             /* Google Maps Implementation */
-            <LoadScript
-              googleMapsApiKey={
-                import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "demo-key"
-              }
-              loadingElement={
-                <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                  <div className="text-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
-                    <p className="text-sm text-gray-600">
-                      Loading Google Maps...
-                    </p>
+            import.meta.env.VITE_GOOGLE_MAPS_API_KEY ? (
+              <LoadScript
+                googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+                loadingElement={
+                  <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
+                      <p className="text-sm text-gray-600">
+                        Loading Google Maps...
+                      </p>
+                    </div>
                   </div>
-                </div>
-              }
-            >
+                }
+              >
               <GoogleMap
                 mapContainerStyle={{ width: "100%", height: "100%" }}
                 center={googleMapCenter}
@@ -541,9 +540,7 @@ export default function EmployeeLocationTimelineCard() {
                       position={branch.coordinates}
                       onClick={() => handleGoogleMarkerClick(branch.id)}
                       icon={{
-                        url:
-                          "data:image/svg+xml;charset=UTF-8," +
-                          encodeURIComponent(`
+                        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
                           <svg width="32" height="48" viewBox="0 0 32 48" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                               <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
