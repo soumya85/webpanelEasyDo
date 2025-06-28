@@ -85,17 +85,19 @@ export default function SamplePage3() {
                   "cursor-pointer transition-transform hover:scale-[1.02] hover:shadow-md",
                 )}
               >
-                <div className="flex flex-col items-center justify-center gap-2 h-full">
-                  <div className="flex w-[24px] h-[24px] items-center justify-center flex-shrink-0">
+                <div className="flex flex-col items-center justify-center h-full">
+                  <div className="flex items-center justify-center w-[32px] h-[32px] mb-2">
                     <img
                       src={card.icon.props.src}
                       alt={card.icon.props.alt}
                       className="w-[24px] h-[24px] object-contain"
                     />
                   </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-xs text-center leading-tight min-h-[16px] flex items-center">
-                    {card.title}
-                  </h3>
+                  <div className="flex items-center justify-center h-[20px]">
+                    <h3 className="text-[#283C50] font-inter font-bold text-xs text-center leading-none">
+                      {card.title}
+                    </h3>
+                  </div>
                 </div>
               </div>
             ))}
