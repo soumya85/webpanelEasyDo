@@ -29,7 +29,7 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "3",
       name: "New Delhi Branch",
-      position: { x: 45, y: 30 }, // North-central India - properly positioned within India borders
+      position: { x: 38, y: 22 }, // Northern India - positioned where New Delhi actually is
       address: "New Delhi",
       employees: 15,
     },
@@ -43,14 +43,14 @@ export default function EmployeeLocationTimelineCard() {
     {
       id: "42",
       name: "Haldia Branch",
-      position: { x: 68, y: 48 }, // East Medinipur, West Bengal - near Kolkata
+      position: { x: 48, y: 65 }, // Moved westward to be on land in southern India
       address: "Haldia, West Bengal",
       employees: 12,
     },
     {
       id: "10",
       name: "Paradip Branch",
-      position: { x: 65, y: 52 }, // Odisha coast - south of Kolkata on eastern coast
+      position: { x: 46, y: 68 }, // Moved westward to be on land in southern India
       address: "Paradip, Odisha",
       employees: 18,
     },
