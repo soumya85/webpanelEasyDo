@@ -1,16 +1,15 @@
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 export default function EmployeeLocationTimelineCard() {
-  // Automatically determine current time and set active slot
-  const timeSlots = useMemo(() => {
-    const now = new Date();
-    const currentHour = now.getHours();
+  // State to track the current time window offset
+  const [windowOffset, setWindowOffset] = useState(0);
 
-    // Define all possible time slots
-    const allSlots = [
+  // Define all possible time slots
+  const allSlots = useMemo(
+    () => [
       { time: "1 AM", hour: 1 },
       { time: "2 AM", hour: 2 },
       { time: "3 AM", hour: 3 },
@@ -34,15 +33,26 @@ export default function EmployeeLocationTimelineCard() {
       { time: "9 PM", hour: 21 },
       { time: "10 PM", hour: 22 },
       { time: "11 PM", hour: 23 },
-    ];
+      { time: "12 AM", hour: 0 }, // Midnight
+    ],
+    [],
+  );
+
+  // Calculate current time slots based on window offset
+  const { timeSlots, currentHour, canGoPrevious, canGoNext } = useMemo(() => {
+    const now = new Date();
+    const currentHour = now.getHours();
 
     // Find the current active hour slot
     const activeSlotIndex = allSlots.findIndex(
       (slot) => slot.hour === currentHour,
     );
 
-    // Determine the 8-hour window around the current time
-    let startIndex = Math.max(0, activeSlotIndex - 4);
+    // Calculate the base start index (centered around current time)
+    let baseStartIndex = Math.max(0, activeSlotIndex - 4);
+
+    // Apply window offset
+    let startIndex = Math.max(0, baseStartIndex + windowOffset);
     let endIndex = Math.min(allSlots.length, startIndex + 8);
 
     // Adjust if we don't have enough slots at the end
@@ -53,12 +63,31 @@ export default function EmployeeLocationTimelineCard() {
     // Get the 8-hour window
     const windowSlots = allSlots.slice(startIndex, endIndex);
 
-    // Set active state for each slot
-    return windowSlots.map((slot) => ({
+    // Set active state for each slot (only if current hour is in this window)
+    const timeSlots = windowSlots.map((slot) => ({
       time: slot.time,
       active: slot.hour === currentHour,
     }));
-  }, []);
+
+    // Check if we can navigate
+    const canGoPrevious = startIndex > 0;
+    const canGoNext = endIndex < allSlots.length;
+
+    return { timeSlots, currentHour, canGoPrevious, canGoNext };
+  }, [allSlots, windowOffset]);
+
+  // Navigation handlers
+  const handlePrevious = () => {
+    if (canGoPrevious) {
+      setWindowOffset((offset) => offset - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (canGoNext) {
+      setWindowOffset((offset) => offset + 1);
+    }
+  };
 
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
@@ -121,12 +150,50 @@ export default function EmployeeLocationTimelineCard() {
 
           {/* Timeline */}
           <div className="p-4">
+            {/* Navigation Controls */}
+            <div className="flex items-center justify-between mb-4">
+              <button
+                onClick={handlePrevious}
+                disabled={!canGoPrevious}
+                className={cn(
+                  "flex items-center gap-1 text-sm font-medium transition-colors",
+                  canGoPrevious
+                    ? "text-gray-600 hover:text-gray-800 cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed",
+                )}
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </button>
+
+              <div className="text-sm font-medium text-gray-900">
+                {timeSlots.find((slot) => slot.active)?.time ||
+                  timeSlots[Math.floor(timeSlots.length / 2)]?.time ||
+                  "Current Time"}
+              </div>
+
+              <button
+                onClick={handleNext}
+                disabled={!canGoNext}
+                className={cn(
+                  "flex items-center gap-1 text-sm font-medium transition-colors",
+                  canGoNext
+                    ? "text-gray-600 hover:text-gray-800 cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed",
+                )}
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
             <div className="relative">
               {/* Timeline Segments - individual bars between dots */}
               <div className="absolute top-3 left-6 right-6 flex">
                 {timeSlots.slice(0, -1).map((slot, index) => {
                   const activeIndex = timeSlots.findIndex((s) => s.active);
-                  const shouldShowGreen = index < activeIndex;
+                  const shouldShowGreen =
+                    activeIndex >= 0 && index < activeIndex;
 
                   return (
                     <div key={index} className="flex-1 flex items-center">
