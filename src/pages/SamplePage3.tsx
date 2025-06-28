@@ -32,6 +32,7 @@ export default function SamplePage3() {
       ),
       title: "Performance Review",
       id: "performance-review",
+      notificationCount: 18,
     },
     {
       icon: <img src="/branch-icon.png" alt="Branch" />,
@@ -42,6 +43,7 @@ export default function SamplePage3() {
       icon: <img src="/announce-icon.png" alt="Announce" />,
       title: "Announce",
       id: "announce",
+      notificationCount: 5,
     },
     {
       icon: <img src="/Documents-icon.png" alt="Documents" />,
