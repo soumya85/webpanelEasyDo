@@ -6,6 +6,10 @@ import { useMemo, useState } from "react";
 export default function EmployeeLocationTimelineCard() {
   // State to track the current time window offset
   const [windowOffset, setWindowOffset] = useState(0);
+  // State to track selected time slot
+  const [selectedSlotIndex, setSelectedSlotIndex] = useState<number | null>(
+    null,
+  );
 
   // Define all possible time slots
   const allSlots = useMemo(
