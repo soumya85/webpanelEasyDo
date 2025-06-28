@@ -332,12 +332,37 @@ export default function EmployeeLocationTimelineCard() {
                 strokeWidth="0.2"
               />
 
-              {/* Main India Land Mass - Light Green */}
+              {/* Main India Land Mass - Accurate Geographic Shape */}
               <path
-                d="M30 35 L35 25 L45 23 L55 22 L65 25 L75 30 L82 38 L88 50 L92 65 L90 80 L85 95 L78 105 L68 110 L55 112 L45 108 L35 100 L28 85 L25 70 L27 55 L30 40 Z"
+                d="M35 30 L40 20 L50 18 L60 17 L70 20 L78 25 L85 32 L90 40 L92 48 L94 58 L95 68 L93 78 L90 86 L85 92 L82 96 L78 99 L75 101 L70 103 L65 104 L60 105 L55 105.5 L50 105 L48 103 L46 100 L44 96 L43 92 L42 87 L41 82 L40 76 L39 70 L38 64 L37 58 L36 52 L35 46 L34 40 L33 35 L32 30 L30 25 L28 30 L27 35 L26 42 L25 50 L24 58 L25 66 L27 74 L30 82 L34 89 L38 95 L42 100 L46 103 Z"
                 fill="#C8E6C9"
                 stroke="#B8D4B9"
                 strokeWidth="0.3"
+              />
+
+              {/* Additional geographic features for accuracy */}
+              {/* Gujarat peninsula */}
+              <path
+                d="M25 50 L20 48 L18 52 L20 56 L25 58 L28 55 Z"
+                fill="#C8E6C9"
+                stroke="#B8D4B9"
+                strokeWidth="0.2"
+              />
+
+              {/* Eastern coast detail (West Bengal area) */}
+              <path
+                d="M85 40 L88 38 L90 42 L88 46 L85 44 Z"
+                fill="#C8E6C9"
+                stroke="#B8D4B9"
+                strokeWidth="0.2"
+              />
+
+              {/* Southern tip detail */}
+              <path
+                d="M48 103 L46 105 L47 107 L49 106 L50 104 Z"
+                fill="#C8E6C9"
+                stroke="#B8D4B9"
+                strokeWidth="0.2"
               />
 
               {/* Sri Lanka */}
