@@ -405,7 +405,7 @@ export default function EmployeeLocationTimelineCard() {
                       fontWeight="bold"
                       fontFamily="system-ui, sans-serif"
                     >
-                      {branch.id}
+                      {getMarkerNumber(branch.id, selectedHour)}
                     </text>
                   </svg>
                 </div>
