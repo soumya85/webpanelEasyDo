@@ -151,16 +151,44 @@ export default function EmployeeLocationTimelineCard() {
           {/* Timeline */}
           <div className="p-4">
             <div className="relative mb-4">
+              {/* Timeline Background Bar */}
+              <div className="absolute top-2 left-0 right-0 h-0.5 bg-gray-300"></div>
+
+              {/* Timeline Active Segments */}
+              <div className="absolute top-2 left-0 right-0 flex">
+                {timeSlots.slice(0, -1).map((slot, index) => {
+                  const activeIndex = timeSlots.findIndex((s) => s.active);
+                  const shouldShowGreen =
+                    activeIndex >= 0 && index < activeIndex;
+                  const segmentWidth = `${100 / (timeSlots.length - 1)}%`;
+
+                  return (
+                    <div
+                      key={index}
+                      className="relative"
+                      style={{ width: segmentWidth }}
+                    >
+                      <div
+                        className={cn(
+                          "h-0.5 w-full",
+                          shouldShowGreen ? "bg-green-500" : "bg-transparent",
+                        )}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+
               {/* Timeline Dots */}
               <div className="flex justify-between items-center relative">
                 {timeSlots.map((slot, index) => (
                   <div key={slot.time} className="flex flex-col items-center">
                     <div
                       className={cn(
-                        "rounded-full z-10",
+                        "rounded-full z-10 relative",
                         slot.active
-                          ? "w-5 h-5 bg-green-500"
-                          : "w-4 h-4 bg-gray-300",
+                          ? "w-4 h-4 bg-green-500"
+                          : "w-3 h-3 bg-gray-300",
                       )}
                     />
                     <span
@@ -175,26 +203,6 @@ export default function EmployeeLocationTimelineCard() {
                     </span>
                   </div>
                 ))}
-
-                {/* Timeline Segments - individual bars between dots */}
-                <div className="absolute top-1/2 left-0 right-0 flex transform -translate-y-1/2 px-2">
-                  {timeSlots.slice(0, -1).map((slot, index) => {
-                    const activeIndex = timeSlots.findIndex((s) => s.active);
-                    const shouldShowGreen =
-                      activeIndex >= 0 && index < activeIndex;
-
-                    return (
-                      <div key={index} className="flex-1 flex items-center">
-                        <div
-                          className={cn(
-                            "h-1 flex-1 mx-1",
-                            shouldShowGreen ? "bg-green-500" : "bg-gray-300",
-                          )}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
               </div>
             </div>
 
