@@ -204,13 +204,15 @@ export default function EmployeeLocationTimelineCard() {
                   )?.hour;
                   const isSelected =
                     slotHour !== undefined && selectedHours.includes(slotHour);
-                  const isActiveOrSelected = slot.active || isSelected;
+                  const isCurrentTime = slot.active;
+                  const shouldHighlight = isCurrentTime || isSelected;
 
                   return (
                     <div key={slot.time} className="flex flex-col items-center">
                       <button
                         onClick={() => {
-                          if (slotHour !== undefined) {
+                          if (slotHour !== undefined && !isCurrentTime) {
+                            // Don't allow deselecting current time, only allow selecting/deselecting other times
                             setSelectedHours(
                               (prev) =>
                                 prev.includes(slotHour)
@@ -221,7 +223,7 @@ export default function EmployeeLocationTimelineCard() {
                         }}
                         className={cn(
                           "rounded-full z-10 relative transition-all duration-200 hover:scale-110 cursor-pointer",
-                          isActiveOrSelected
+                          shouldHighlight
                             ? "w-4 h-4 bg-green-500"
                             : "w-3 h-3 bg-gray-400",
                         )}
@@ -229,7 +231,7 @@ export default function EmployeeLocationTimelineCard() {
                       <span
                         className={cn(
                           "text-xs mt-2 font-medium whitespace-nowrap transition-colors duration-200",
-                          isActiveOrSelected
+                          shouldHighlight
                             ? "text-green-600 font-semibold"
                             : "text-gray-500",
                         )}
