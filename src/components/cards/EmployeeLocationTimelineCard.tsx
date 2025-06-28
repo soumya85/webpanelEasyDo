@@ -208,14 +208,21 @@ export default function EmployeeLocationTimelineCard() {
                   const isSelected =
                     slotHour !== undefined && selectedHours.includes(slotHour);
                   const isCurrentTime = slot.active;
-                  const shouldHighlight = isCurrentTime || isSelected;
+
+                  // Current time is ALWAYS highlighted, other times are highlighted only if selected
+                  const shouldHighlight =
+                    isCurrentTime || (!isCurrentTime && isSelected);
 
                   return (
                     <div key={slot.time} className="flex flex-col items-center">
                       <button
                         onClick={() => {
-                          if (slotHour !== undefined && !isCurrentTime) {
-                            // Don't allow deselecting current time, only allow selecting/deselecting other times
+                          if (slotHour !== undefined) {
+                            if (isCurrentTime) {
+                              // Current time can't be deselected - do nothing
+                              return;
+                            }
+                            // For non-current times, toggle selection
                             setSelectedHours(
                               (prev) =>
                                 prev.includes(slotHour)
@@ -225,7 +232,9 @@ export default function EmployeeLocationTimelineCard() {
                           }
                         }}
                         className={cn(
-                          "rounded-full z-10 relative transition-all duration-200 hover:scale-110 cursor-pointer",
+                          "rounded-full z-10 relative transition-all duration-200",
+                          !isCurrentTime && "hover:scale-110 cursor-pointer",
+                          isCurrentTime && "cursor-default", // Current time not interactive
                           shouldHighlight
                             ? "w-4 h-4 bg-green-500"
                             : "w-3 h-3 bg-gray-400",
