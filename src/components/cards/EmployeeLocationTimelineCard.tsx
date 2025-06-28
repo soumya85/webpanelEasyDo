@@ -14,6 +14,68 @@ export default function EmployeeLocationTimelineCard() {
   const [windowOffset, setWindowOffset] = useState(0);
   // State to track single selected time slot (current time as initial selection)
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  // State for Google Maps
+  const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
+
+  // Google Maps configuration
+  const mapContainerStyle = {
+    width: "100%",
+    height: "100%",
+  };
+
+  const center = {
+    lat: 20.5937, // Center of India
+    lng: 78.9629,
+  };
+
+  const mapOptions = {
+    zoom: 5,
+    center: center,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    zoomControl: true,
+    gestureHandling: "cooperative" as const,
+    styles: [
+      {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
+      },
+    ],
+  };
+
+  // Branch locations data
+  const branches = [
+    {
+      id: "0",
+      name: "Mumbai Head Office",
+      position: { lat: 19.076, lng: 72.8777 },
+      address: "Mumbai, Maharashtra",
+      employees: 8,
+    },
+    {
+      id: "1",
+      name: "Hyderabad Branch",
+      position: { lat: 17.385, lng: 78.4867 },
+      address: "Hyderabad, Telangana",
+      employees: 5,
+    },
+    {
+      id: "3",
+      name: "Delhi Branch",
+      position: { lat: 28.6139, lng: 77.209 },
+      address: "New Delhi",
+      employees: 12,
+    },
+    {
+      id: "10",
+      name: "Bangalore Tech Hub",
+      position: { lat: 12.9716, lng: 77.5946 },
+      address: "Bangalore, Karnataka",
+      employees: 4,
+    },
+  ];
   // Define all possible time slots
   const allSlots = useMemo(
     () => [
