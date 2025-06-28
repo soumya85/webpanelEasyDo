@@ -163,6 +163,18 @@ export default function EmployeeLocationTimelineCard() {
     }
   };
 
+  // Google Maps marker handlers
+  const handleMarkerClick = useCallback(
+    (branchId: string) => {
+      setSelectedMarker(selectedMarker === branchId ? null : branchId);
+    },
+    [selectedMarker],
+  );
+
+  const handleMapClick = useCallback(() => {
+    setSelectedMarker(null);
+  }, []);
+
   return (
     <Card className="bg-white border border-gray-200 shadow-sm h-full overflow-hidden">
       <CardContent className="p-4">
