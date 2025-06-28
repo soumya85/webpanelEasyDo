@@ -272,44 +272,44 @@ export default function PerformanceMeter() {
               {/* Map Background */}
               <div className="absolute inset-0">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F8583191a47d44dd9bdafe859141fb375%2F2c2d38107bb34d34afb93eee2cd7252a?format=webp&width=800"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F8583191a47d44dd9bdafe859141fb375%2F3f02fa8c555545629b64314979fbe12e?format=webp&width=800"
                   alt="India Map"
                   className="w-full h-full object-cover"
                 />
 
-                {/* Branch Markers Overlay */}
+                {/* Branch Markers Overlay - Dynamic pins that change with time */}
                 <div className="absolute inset-0">
                   {branches.map((branch, index) => {
                     const positions = [
-                      { x: "42%", y: "28%", name: "New Delhi\nBranch" }, // New Delhi - top center
-                      { x: "22%", y: "50%", name: "Ahmedabad\noffice Branch" }, // Ahmedabad - left
-                      { x: "58%", y: "65%", name: "Halasuru Branch\noffice" }, // Halasuru - bottom right
-                      { x: "62%", y: "55%", name: "Paradip Branch" }, // Paradip - right center
+                      { x: "41%", y: "25%", name: "New Delhi\nBranch" }, // New Delhi - top center
+                      { x: "21%", y: "45%", name: "Ahmedabad\noffice Branch" }, // Ahmedabad - left
+                      { x: "58%", y: "62%", name: "Halasuru Branch\noffice" }, // Halasuru - bottom right
+                      { x: "62%", y: "52%", name: "Paradip Branch" }, // Paradip - right center
                     ];
 
                     return (
                       <div
                         key={`${branch.name}-${branch.count}-${currentTime}`}
-                        className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                        className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
                         style={{
                           left: positions[index].x,
                           top: positions[index].y,
                         }}
                       >
-                        {/* Pin Marker with Google Maps Style */}
+                        {/* Pin Marker - Exactly like Google Maps */}
                         <div className="relative">
-                          {/* Pin Drop Shadow */}
-                          <div className="absolute top-1 left-1 w-10 h-10 bg-black opacity-20 rounded-full blur-sm"></div>
+                          {/* Pin Shadow */}
+                          <div className="absolute top-1 left-1 w-9 h-9 bg-black opacity-15 rounded-full blur-sm"></div>
 
-                          {/* Main Pin */}
-                          <div className="relative w-10 h-10 bg-red-500 rounded-full border-3 border-white shadow-lg flex items-center justify-center">
+                          {/* Main Pin Circle */}
+                          <div className="relative w-9 h-9 bg-red-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
                             <span className="text-white font-bold text-sm">
                               {branch.count}
                             </span>
                           </div>
 
-                          {/* Branch Name Label - Positioned cleanly below */}
-                          <div className="absolute top-12 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded shadow-sm border text-xs font-medium text-gray-800 whitespace-pre-line text-center max-w-20">
+                          {/* Branch Name Label */}
+                          <div className="absolute top-11 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded shadow-sm border text-xs font-medium text-gray-800 whitespace-pre-line text-center min-w-max">
                             {positions[index].name}
                           </div>
                         </div>
@@ -320,14 +320,14 @@ export default function PerformanceMeter() {
               </div>
 
               {/* Location Button (Bottom Left) */}
-              <button className="absolute bottom-3 left-3 w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center border">
+              <button className="absolute bottom-4 left-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border hover:shadow-xl transition-shadow">
                 <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
                 </div>
               </button>
 
               {/* Google Logo (Bottom Right) */}
-              <div className="absolute bottom-3 right-3 bg-white px-2 py-1 rounded shadow-sm">
+              <div className="absolute bottom-4 right-4 bg-white px-2 py-1 rounded shadow-sm">
                 <span className="text-xs font-medium text-gray-700">
                   Google
                 </span>
