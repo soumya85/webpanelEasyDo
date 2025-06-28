@@ -87,9 +87,13 @@ export default function SamplePage3() {
               >
                 <div className="flex flex-col items-center justify-center gap-2 h-full">
                   <div className="flex w-[24px] h-[24px] items-center justify-center flex-shrink-0">
-                    {card.icon}
+                    <img
+                      src={card.icon.props.src}
+                      alt={card.icon.props.alt}
+                      className="w-[24px] h-[24px] object-contain"
+                    />
                   </div>
-                  <h3 className="text-[#283C50] font-inter font-bold text-xs text-center leading-tight">
+                  <h3 className="text-[#283C50] font-inter font-bold text-xs text-center leading-tight min-h-[16px] flex items-center">
                     {card.title}
                   </h3>
                 </div>
