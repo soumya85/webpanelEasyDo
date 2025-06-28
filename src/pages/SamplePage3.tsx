@@ -86,15 +86,15 @@ export default function SamplePage3() {
                 )}
               >
                 <div className="flex flex-col items-center justify-center w-full h-full">
-                  <div className="flex items-center justify-center w-[28px] h-[28px] mb-2">
+                  <div className="flex items-center justify-center h-[40px] mb-1">
                     <img
                       src={card.icon.props.src}
                       alt={card.icon.props.alt}
-                      className="w-[24px] h-[24px] object-contain"
+                      className="w-[28px] h-[28px] object-contain"
                     />
                   </div>
-                  <div className="text-center">
-                    <h3 className="text-[#283C50] font-inter font-bold text-xs leading-tight">
+                  <div className="flex items-start justify-center h-[32px] text-center">
+                    <h3 className="text-[#283C50] font-inter font-bold text-xs leading-tight max-w-full">
                       {card.title}
                     </h3>
                   </div>
