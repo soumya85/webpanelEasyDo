@@ -218,13 +218,43 @@ export default function EmployeeAttendanceCard() {
             />
           </div>
           <div className="relative">
-            <select className="appearance-none bg-white border-0 text-blue-600 text-sm font-medium px-3 py-2 pr-8 rounded-lg focus:outline-none cursor-pointer">
-              <option>All</option>
-              <option>Present</option>
-              <option>Absent</option>
-              <option>Late</option>
-            </select>
-            <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-600 pointer-events-none" />
+            <button
+              onClick={() => setBranchDropdownOpen(!branchDropdownOpen)}
+              className="flex items-center gap-2 bg-white border-0 text-blue-600 text-sm font-medium px-3 py-2 rounded-lg focus:outline-none cursor-pointer"
+            >
+              <span>All</span>
+              <ChevronDown className="w-4 h-4 text-blue-600" />
+            </button>
+
+            {branchDropdownOpen && (
+              <div className="absolute right-0 top-full mt-1 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                {branches.map((branch, index) => (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setSelectedBranch(branch.name);
+                      setBranchDropdownOpen(false);
+                    }}
+                    className="flex items-start gap-3 p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                  >
+                    <MapPin className="w-4 h-4 text-gray-600 mt-0.5" />
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-900">
+                        {branch.name}
+                      </div>
+                      {branch.subtitle && (
+                        <div className="text-xs text-gray-500 mt-1">
+                          {branch.subtitle}
+                        </div>
+                      )}
+                    </div>
+                    {branch.name === "All Branches" && (
+                      <div className="text-blue-600">✓</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
