@@ -88,12 +88,17 @@ export default function SamplePage3() {
                 )}
               >
                 <div className="flex flex-col items-center justify-center w-full h-full">
-                  <div className="flex items-center justify-center h-[40px] mb-1">
+                  <div className="flex items-center justify-center h-[40px] mb-1 relative">
                     <img
                       src={card.icon.props.src}
                       alt={card.icon.props.alt}
                       className="w-[32px] h-[32px] object-contain"
                     />
+                    {card.notificationCount && (
+                      <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                        {card.notificationCount}
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-start justify-center h-[32px] text-center">
                     <h3 className="text-[#283C50] font-inter font-bold text-sm leading-tight max-w-full">
