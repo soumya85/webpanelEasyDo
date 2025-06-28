@@ -289,7 +289,7 @@ export default function PerformanceMeter() {
 
                     return (
                       <div
-                        key={branch.name}
+                        key={`${branch.name}-${branch.count}-${currentTime}`}
                         className="absolute transform -translate-x-1/2 -translate-y-1/2"
                         style={{
                           left: positions[index].x,
