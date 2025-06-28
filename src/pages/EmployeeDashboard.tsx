@@ -1086,7 +1086,7 @@ export default function EmployeeDashboard() {
   ];
 
   return (
-    <div className={cn("w-full p-3 sm:p-4 lg:p-6 font-inter")}>
+    <div className={cn("w-full p-3 sm:p-4 lg:p-6 pt-8 font-inter")}>
       {/* Page Area */}
       <div
         className={cn(
