@@ -325,51 +325,51 @@ export default function EmployeeLocationTimelineCard() {
                 }}
                 onClick={() => handleMarkerClick(branch.id)}
               >
-                {/* Classic Google Maps pin marker */}
+                {/* Perfect Google Maps pin marker */}
                 <div className="relative">
                   <svg
-                    width="30"
-                    height="40"
-                    viewBox="0 0 30 40"
-                    className="drop-shadow-lg"
+                    width="32"
+                    height="45"
+                    viewBox="0 0 32 45"
+                    className="drop-shadow-md"
                   >
                     {/* Pin shadow */}
                     <ellipse
-                      cx="15"
-                      cy="37"
+                      cx="16"
+                      cy="42"
                       rx="3"
                       ry="1"
-                      fill="rgba(0,0,0,0.25)"
+                      fill="rgba(0,0,0,0.3)"
                     />
 
-                    {/* Main pin shape */}
+                    {/* Perfect teardrop pin shape */}
                     <path
-                      d="M15 3 C22.18 3, 28 8.82, 28 16 C28 16, 28 16, 28 16 C28 16, 15 35, 15 35 C15 35, 2 16, 2 16 C2 8.82, 7.82 3, 15 3 Z"
-                      fill="#E53E3E"
+                      d="M16,4 C23.732,4 30,10.268 30,18 C30,25.732 16,40 16,40 C16,40 2,25.732 2,18 C2,10.268 8.268,4 16,4 Z"
+                      fill="#EA4335"
                     />
 
                     {/* White inner circle */}
-                    <circle cx="15" cy="16" r="9" fill="white" />
+                    <circle cx="16" cy="18" r="10" fill="white" />
 
-                    {/* Red border ring */}
+                    {/* Red inner ring */}
                     <circle
-                      cx="15"
-                      cy="16"
-                      r="9"
+                      cx="16"
+                      cy="18"
+                      r="10"
                       fill="none"
-                      stroke="#E53E3E"
-                      strokeWidth="2.5"
+                      stroke="#EA4335"
+                      strokeWidth="3"
                     />
 
                     {/* Number text */}
                     <text
-                      x="15"
-                      y="21"
+                      x="16"
+                      y="23"
                       textAnchor="middle"
-                      fill="#E53E3E"
-                      fontSize="13"
-                      fontWeight="bold"
-                      fontFamily="system-ui, sans-serif"
+                      fill="#EA4335"
+                      fontSize="14"
+                      fontWeight="700"
+                      fontFamily="Roboto, Arial, sans-serif"
                     >
                       {branch.id}
                     </text>
