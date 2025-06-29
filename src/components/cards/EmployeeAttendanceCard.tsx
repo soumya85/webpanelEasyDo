@@ -304,10 +304,12 @@ export default function EmployeeAttendanceCard() {
               <div className="flex items-center gap-2">
                 <span>{selectedFilter}</span>
                 <span className="text-sm font-bold text-gray-600">
+                  (
                   {
                     filterOptions.find((opt) => opt.name === selectedFilter)
                       ?.count
                   }
+                  )
                 </span>
               </div>
               <ChevronDown className="w-4 h-4 text-gray-600" />
@@ -328,7 +330,7 @@ export default function EmployeeAttendanceCard() {
                       {option.name}
                     </span>
                     <span className="text-sm font-bold text-gray-600">
-                      {option.count}
+                      ({option.count})
                     </span>
                   </div>
                 ))}
