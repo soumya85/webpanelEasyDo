@@ -1875,12 +1875,223 @@ export default function SamplePage3() {
             </button>
           </DialogHeader>
 
-          {/* Modal Content Area - Currently Blank */}
-          <div className="flex-1 p-6">
-            {/* This area will be populated with specific content later */}
-            <div className="w-full h-full flex items-center justify-center text-gray-500">
-              <p>Content for {selectedCard?.title} will be added here</p>
-            </div>
+          {/* Modal Content Area */}
+          <div className="flex-1 overflow-hidden">
+            {selectedCard?.id === "register" ? (
+              // Employee Management Interface
+              <div className="h-full flex flex-col">
+                {/* Employee Header */}
+                <div className="flex items-center justify-between p-4 border-b">
+                  <h1 className="text-lg font-semibold text-gray-900">
+                    Employee
+                  </h1>
+                  <Popover
+                    open={showSortDropdown}
+                    onOpenChange={setShowSortDropdown}
+                  >
+                    <PopoverTrigger asChild>
+                      <button className="p-1">
+                        <Settings2 className="w-5 h-5 text-blue-500" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent align="end" className="w-80 p-0">
+                      <div className="bg-blue-50 p-4 space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">
+                            Alphabetically
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm">A</span>
+                            <div className="w-8 h-4 bg-gray-300 rounded-full relative">
+                              <div className="w-3 h-3 bg-white rounded-full absolute top-0.5 right-0.5"></div>
+                            </div>
+                            <span className="text-sm">Z</span>
+                            <ArrowLeft className="w-4 h-4 rotate-90" />
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => setSortBy("doj")}
+                          className="flex items-center justify-between w-full p-3 bg-white rounded-lg"
+                        >
+                          <span className="text-sm font-medium">
+                            Date Of Joining
+                          </span>
+                          <Calendar className="w-5 h-5" />
+                        </button>
+
+                        <button
+                          onClick={() => setSortBy("authority")}
+                          className="flex items-center justify-between w-full p-3 bg-white rounded-lg"
+                        >
+                          <span className="text-sm font-medium">Authority</span>
+                          <User className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+                  {/* Search Bar */}
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      placeholder="Search Employee"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-10 pr-10 bg-gray-100 border-none"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={clearSearch}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Status Tabs */}
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setSelectedStatus("accepted")}
+                      className={cn(
+                        "px-4 py-2 rounded-full text-sm font-medium",
+                        selectedStatus === "accepted"
+                          ? "bg-white text-gray-900 shadow-sm border"
+                          : "bg-gray-100 text-gray-600",
+                      )}
+                    >
+                      ACCEPTED ({statusCounts.accepted})
+                    </button>
+                    <button
+                      onClick={() => setSelectedStatus("pending")}
+                      className={cn(
+                        "px-4 py-2 rounded-full text-sm font-medium",
+                        selectedStatus === "pending"
+                          ? "bg-white text-gray-900 shadow-sm border"
+                          : "bg-gray-100 text-gray-600",
+                      )}
+                    >
+                      PENDING ({statusCounts.pending})
+                    </button>
+                    <button
+                      onClick={() => setSelectedStatus("exit")}
+                      className={cn(
+                        "px-4 py-2 rounded-full text-sm font-medium",
+                        selectedStatus === "exit"
+                          ? "bg-white text-gray-900 shadow-sm border"
+                          : "bg-gray-100 text-gray-600",
+                      )}
+                    >
+                      EXIT ({statusCounts.exit})
+                    </button>
+                  </div>
+
+                  {/* Branch Selector */}
+                  <button
+                    onClick={() => setShowBranchSheet(true)}
+                    className="w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg"
+                  >
+                    <span className="text-gray-900">
+                      {getBranchName(selectedBranch)}
+                    </span>
+                    <ChevronDown className="w-4 h-4 text-gray-400" />
+                  </button>
+
+                  {/* Employee List */}
+                  <div className="space-y-4">
+                    {filteredEmployees.map((employee) => (
+                      <div
+                        key={employee.id}
+                        className="bg-white border border-gray-200 rounded-lg p-4"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-start gap-3">
+                            <Avatar className="w-12 h-12">
+                              {employee.avatar ? (
+                                <AvatarImage
+                                  src={employee.avatar}
+                                  alt={employee.name}
+                                />
+                              ) : (
+                                <AvatarFallback className="bg-gray-400 text-white">
+                                  {employee.initials}
+                                </AvatarFallback>
+                              )}
+                            </Avatar>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2">
+                                <h3 className="font-semibold text-gray-900">
+                                  {employee.name}
+                                </h3>
+                                <div className="w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+                                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                              </div>
+                              <p className="text-sm text-gray-600">
+                                {employee.position}{" "}
+                                <span className="text-blue-500">
+                                  ({employee.branch})
+                                </span>
+                              </p>
+                              <div className="flex items-center gap-4 mt-2">
+                                <span className="text-sm text-gray-600">
+                                  DOJ : {employee.doj}
+                                </span>
+                                <Badge
+                                  variant="secondary"
+                                  className="bg-gray-100"
+                                >
+                                  Authority : {employee.authority}
+                                </Badge>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button className="p-2">
+                              <Phone className="w-5 h-5 text-gray-400" />
+                            </button>
+                            <button className="p-2">
+                              <MessageCircle className="w-5 h-5 text-gray-400" />
+                            </button>
+                            <button className="p-2">
+                              <MoreVertical className="w-5 h-5 text-gray-400" />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                          <span className="text-sm text-gray-600">
+                            Reporting Manager: {employee.reportingManager}
+                          </span>
+                          <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
+                            <span className="text-blue-500">★</span>
+                            <span className="text-sm text-blue-500">
+                              {employee.rating} (0)
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Add Employee Button */}
+                  <button
+                    onClick={() => setShowAddEmployee(true)}
+                    className="fixed bottom-6 right-6 bg-black text-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg"
+                  >
+                    <Plus className="w-5 h-5" />
+                    Add Employee
+                  </button>
+                </div>
+              </div>
+            ) : (
+              // Default placeholder for other modals
+              <div className="w-full h-full flex items-center justify-center text-gray-500 p-6">
+                <p>Content for {selectedCard?.title} will be added here</p>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
