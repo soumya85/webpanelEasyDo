@@ -461,7 +461,7 @@ export default function EmployeeAttendanceCard() {
 
         {/* Employee Details Card - Only show for Present filter */}
         {selectedFilter === "Present" && (
-          <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
             {/* Employee Profile */}
             <div className="flex items-center gap-2 mb-3">
               <div className="relative">
