@@ -1886,7 +1886,7 @@ export default function SamplePage3() {
           <div className="flex-1 overflow-hidden">
             {selectedCard?.id === "register" ? (
               // Employee Management Interface
-              <div className="h-full flex flex-col">
+              <div className="h-full flex flex-col -mt-px">
                 {/* Employee Header */}
                 <div className="flex items-center justify-between px-4 py-2 border-b bg-slate-100">
                   <h1 className="text-lg font-semibold text-gray-900">
