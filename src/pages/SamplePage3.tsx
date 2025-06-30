@@ -734,8 +734,11 @@ export default function SamplePage3() {
                     {Array.from({ length: 30 }, (_, i) => i + 1).map((date) => (
                       <div
                         key={date}
+                        onClick={() => setSelectedLeaveDate(date)}
                         className={`text-center p-1.5 relative cursor-pointer hover:bg-gray-50 rounded text-sm ${
-                          date === 18 ? "bg-blue-500 text-white rounded-lg" : ""
+                          date === selectedLeaveDate
+                            ? "bg-blue-500 text-white rounded-lg"
+                            : ""
                         } ${[1, 7, 14, 15, 21, 27, 28].includes(date) ? "text-red-500" : ""}`}
                       >
                         {date}
