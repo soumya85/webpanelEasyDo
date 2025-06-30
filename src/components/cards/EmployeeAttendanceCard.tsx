@@ -582,35 +582,39 @@ export default function EmployeeAttendanceCard() {
         {selectedFilter === "Half Day" && (
           <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
             {/* Employee Profile */}
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-start gap-3 mb-3">
               <div className="relative">
-                <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">SD</span>
+                <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">SD</span>
                 </div>
-                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border border-white flex items-center justify-center">
-                  <User className="w-1.5 h-1.5 text-white" />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                  <User className="w-2 h-2 text-white" />
                 </div>
               </div>
               <div className="flex-1">
-                <h4 className="text-sm font-semibold text-gray-900">
-                  SUSHANTA DAS
-                </h4>
-                <p className="text-xs text-gray-600">Driver</p>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-sm text-gray-500">📞</span>
-                  <span className="text-sm text-gray-500">💬</span>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-900">
+                      SUSHANTA DAS
+                    </h4>
+                    <p className="text-xs text-gray-600">Driver</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded">
+                        PRESENT
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      In: 11:01 AM - Ou...
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="text-right">
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-xs font-medium text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
-                    PRESENT
-                  </span>
+                <div className="flex items-center gap-3 mt-2">
+                  <span className="text-red-500 text-sm">📞</span>
+                  <span className="text-gray-400 text-sm">💬</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  In: 11:01 AM - Ou...
-                </p>
               </div>
             </div>
 
