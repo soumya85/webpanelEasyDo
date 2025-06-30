@@ -2408,123 +2408,21 @@ export default function SamplePage3() {
         open={showTeamMembersPopup}
         onOpenChange={setShowTeamMembersPopup}
       >
-        <DialogContent className="max-w-md h-[90vh] flex flex-col p-0">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b">
-            <button
-              onClick={() => setShowTeamMembersPopup(false)}
-              className="text-blue-500"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <h2 className="text-lg font-semibold">Employee</h2>
-            <button>
-              <Settings2 className="w-5 h-5 text-blue-500" />
-            </button>
-          </div>
-
-          {/* Search */}
-          <div className="px-4 py-2">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <Input
-                placeholder="Search Employee"
-                className="pl-10 bg-gray-100 border-none"
-              />
-            </div>
-          </div>
-
-          {/* Status Tabs */}
-          <div className="flex gap-2 px-4 pb-2">
-            <button className="px-4 py-2 bg-white border rounded-full text-sm font-medium">
-              ACCEPTED ({selectedManagerTeam?.length || 0})
-            </button>
-            <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
-              PENDING (0)
-            </button>
-            <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
-              EXIT (0)
-            </button>
-          </div>
-
-          {/* Branch Filter */}
-          <div className="px-4 pb-2">
-            <button className="w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg">
-              <span className="text-gray-900">All Branches</span>
-              <ChevronDown className="w-4 h-4 text-gray-700" />
-            </button>
-          </div>
-
-          {/* Employee List */}
-          <div className="flex-1 overflow-y-auto px-4 space-y-4">
-            {selectedManagerTeam?.map((member) => (
+        <DialogContent className="max-w-xs p-0">
+          {/* Simple list of team member names */}
+          <div className="bg-white rounded-lg overflow-hidden">
+            {selectedManagerTeam?.map((member, index) => (
               <div
                 key={member.id}
-                className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
+                className={`px-4 py-3 text-gray-900 ${
+                  index !== selectedManagerTeam.length - 1
+                    ? "border-b border-gray-200"
+                    : ""
+                }`}
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-3">
-                    <Avatar className="w-12 h-12">
-                      <AvatarFallback className="bg-gray-600 text-white">
-                        {member.initials}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-gray-900">
-                          {member.name}
-                        </h3>
-                        <span className="material-icons-outlined text-red-500 text-base">
-                          privacy_tip
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-600">
-                        {member.position}{" "}
-                        <span className="text-blue-500">({member.branch})</span>
-                      </p>
-                      <div className="flex items-center gap-4 mt-2">
-                        <span className="text-sm text-gray-600">
-                          DOJ : {member.doj}
-                        </span>
-                        <Badge variant="secondary" className="bg-gray-100">
-                          Authority : {member.authority}
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button className="p-2">
-                      <Phone className="w-5 h-5 text-gray-600" />
-                    </button>
-                    <button className="p-2">
-                      <MessageCircle className="w-5 h-5 text-gray-600" />
-                    </button>
-                    <button className="p-2">
-                      <MoreVertical className="w-5 h-5 text-gray-600" />
-                    </button>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-                  <span className="text-sm text-gray-600">
-                    Reporting Manager: {member.reportingManager}
-                  </span>
-                  <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
-                    <span className="text-blue-500">★</span>
-                    <span className="text-sm text-blue-500">
-                      {member.rating} (0)
-                    </span>
-                  </div>
-                </div>
+                {member.name}
               </div>
             ))}
-          </div>
-
-          {/* Add Employee Button */}
-          <div className="p-4">
-            <button className="w-full bg-black text-white rounded-lg py-3 flex items-center justify-center gap-2">
-              <Plus className="w-5 h-5" />
-              Add Employee
-            </button>
           </div>
         </DialogContent>
       </Dialog>
