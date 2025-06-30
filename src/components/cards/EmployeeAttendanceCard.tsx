@@ -190,14 +190,36 @@ export default function EmployeeAttendanceCard() {
     { name: "Your View", subtitle: "", icon: "👁️" },
   ];
 
+  // Dynamic filter counts based on actual employee cards shown
+  const getFilterCount = (filterName: string) => {
+    switch (filterName) {
+      case "Present":
+        return 1; // ABHIJIT MONDAL
+      case "Absent":
+        return 2; // ABHIRAM MOHAPATRA and AHSAN RAZA
+      case "Half Day":
+        return 1; // SUSHANTA DAS
+      case "Late":
+        return 0; // No cards implemented yet
+      case "Leave":
+        return 0; // No cards implemented yet
+      case "Week off":
+        return 0; // No cards implemented yet
+      case "Holiday":
+        return 0; // No cards implemented yet
+      default:
+        return 0;
+    }
+  };
+
   const filterOptions = [
-    { name: "Present", count: 79 },
-    { name: "Absent", count: 24 },
-    { name: "Half Day", count: 0 },
-    { name: "Late", count: 0 },
-    { name: "Leave", count: 0 },
-    { name: "Week off", count: 119 },
-    { name: "Holiday", count: 0 },
+    { name: "Present", count: getFilterCount("Present") },
+    { name: "Absent", count: getFilterCount("Absent") },
+    { name: "Half Day", count: getFilterCount("Half Day") },
+    { name: "Late", count: getFilterCount("Late") },
+    { name: "Leave", count: getFilterCount("Leave") },
+    { name: "Week off", count: getFilterCount("Week off") },
+    { name: "Holiday", count: getFilterCount("Holiday") },
   ];
 
   const attendanceData = [
