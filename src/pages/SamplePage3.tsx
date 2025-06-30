@@ -2018,22 +2018,15 @@ export default function SamplePage3() {
                         <div className="flex items-start justify-between">
                           <div className="flex items-start gap-3">
                             <Avatar className="w-12 h-12">
-                              {employee.avatar ? (
-                                <AvatarImage
-                                  src={employee.avatar}
-                                  alt={employee.name}
-                                />
-                              ) : (
-                                <AvatarFallback className="bg-black text-white">
-                                  {employee.initials ||
-                                    employee.name
-                                      .split(" ")
-                                      .map((word) => word[0])
-                                      .join("")
-                                      .substring(0, 2)
-                                      .toUpperCase()}
-                                </AvatarFallback>
-                              )}
+                              <AvatarFallback className="bg-black text-white">
+                                {employee.initials ||
+                                  employee.name
+                                    .split(" ")
+                                    .map((word) => word[0])
+                                    .join("")
+                                    .substring(0, 2)
+                                    .toUpperCase()}
+                              </AvatarFallback>
                             </Avatar>
                             <div className="flex-1">
                               <div className="flex items-center gap-2">
