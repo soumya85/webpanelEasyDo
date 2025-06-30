@@ -188,6 +188,11 @@ export default function SamplePage3() {
     setIsModalOpen(true);
   };
 
+  const getBranchName = (branchId: string) => {
+    const branch = branchData.find((b) => b.id === branchId);
+    return branch ? branch.name : "All Branches";
+  };
+
   // Filter and sort employees
   const filteredEmployees = useMemo(() => {
     let filtered = employeeData.filter((emp) => {
@@ -242,11 +247,6 @@ export default function SamplePage3() {
     });
     return counts;
   }, [employeeData]);
-
-  const getBranchName = (branchId: string) => {
-    const branch = branchData.find((b) => b.id === branchId);
-    return branch ? branch.name : "All Branches";
-  };
 
   const clearSearch = () => {
     setSearchQuery("");
