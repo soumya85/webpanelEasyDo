@@ -2410,7 +2410,14 @@ export default function SamplePage3() {
       >
         <DialogContent className="max-w-xs p-0">
           {/* Simple list of team member names */}
-          <div className="bg-white rounded-lg overflow-hidden">
+          <div className="bg-white rounded-lg overflow-hidden relative">
+            {/* Close button */}
+            <button
+              onClick={() => setShowTeamMembersPopup(false)}
+              className="absolute top-2 right-2 p-1 hover:bg-gray-100 rounded-full z-10"
+            >
+              <X className="w-4 h-4 text-gray-500" />
+            </button>
             {selectedManagerTeam?.map((member, index) => (
               <div
                 key={member.id}
