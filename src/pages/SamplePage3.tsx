@@ -611,38 +611,38 @@ export default function SamplePage3() {
         {/* Add Holiday Modal */}
         {isHolidayModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-lg w-full max-w-lg mx-4 max-h-[90vh] flex flex-col">
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-800">
+                  Add Holiday
+                </h2>
                 <button
                   onClick={() => setIsHolidayModalOpen(false)}
-                  className="text-primary-500"
+                  className="text-gray-500 hover:text-gray-700"
                 >
                   <svg
-                    width="20"
-                    height="20"
+                    width="24"
+                    height="24"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
                   >
-                    <path d="M15 18l-6-6 6-6" />
+                    <path d="M18 6L6 18" />
+                    <path d="M6 6l12 12" />
                   </svg>
                 </button>
-                <h2 className="text-lg font-semibold text-gray-800">
-                  Add Holiday
-                </h2>
-                <button className="text-primary-500 font-medium">Submit</button>
               </div>
 
               {/* Modal Content */}
-              <div className="p-4 space-y-4">
+              <div className="flex-1 p-6 space-y-6">
                 {/* Branch Dropdown */}
                 <div className="relative">
                   <select
                     value={selectedBranch}
                     onChange={(e) => setSelectedBranch(e.target.value)}
-                    className="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 appearance-none"
+                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 appearance-none"
                   >
                     <option value="Head office">Head office</option>
                     <option value="Haldia">Haldia</option>
@@ -651,9 +651,9 @@ export default function SamplePage3() {
                     <option value="New Delhi">New Delhi</option>
                   </select>
                   <svg
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-                    width="16"
-                    height="16"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -670,7 +670,7 @@ export default function SamplePage3() {
                     placeholder="Name"
                     value={holidayName}
                     onChange={(e) => setHolidayName(e.target.value)}
-                    className="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400"
+                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400"
                   />
                 </div>
 
@@ -680,13 +680,13 @@ export default function SamplePage3() {
                     type="date"
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
-                    className="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-800"
+                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800"
                     placeholder="Select Date"
                   />
                   <svg
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-                    width="16"
-                    height="16"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -700,12 +700,12 @@ export default function SamplePage3() {
                 </div>
 
                 {/* Holiday Type Buttons */}
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                   {["Company", "Public", "Regional"].map((type) => (
                     <button
                       key={type}
                       onClick={() => setHolidayType(type)}
-                      className={`flex-1 py-2 px-4 rounded-full font-medium transition-colors ${
+                      className={`flex-1 py-3 px-4 rounded-full font-medium transition-colors ${
                         holidayType === type
                           ? "bg-black text-white"
                           : "bg-white text-gray-700 border border-gray-300"
@@ -715,6 +715,13 @@ export default function SamplePage3() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Submit Button at Bottom */}
+              <div className="p-6 border-t border-gray-200">
+                <button className="w-full bg-primary-500 text-white py-4 rounded-lg font-medium text-lg hover:bg-primary-600 transition-colors">
+                  Submit
+                </button>
               </div>
             </div>
           </div>
