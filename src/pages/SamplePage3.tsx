@@ -886,11 +886,11 @@ export default function SamplePage3() {
                     {leaveFilter === "pending" && (
                       <div className="bg-gray-50 rounded-lg p-4">
                         <div className="flex items-center gap-3 mb-3">
-                          <img
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
-                            alt="Uttam Dey"
-                            className="w-10 h-10 rounded-full object-cover"
-                          />
+                          <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+                            <span className="text-white text-sm font-semibold">
+                              UD
+                            </span>
+                          </div>
                           <div className="flex-1">
                             <div className="font-semibold text-gray-800">
                               Uttam Dey
