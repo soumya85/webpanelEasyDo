@@ -4,6 +4,13 @@ import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText"
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 import EmployeeLocationTimelineCard from "@/components/cards/EmployeeLocationTimelineCard";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 export default function SamplePage3() {
   const { t } = useGlobalTranslation();
@@ -18,6 +25,18 @@ export default function SamplePage3() {
   const [leaveView, setLeaveView] = useState("day");
   const [leaveFilter, setLeaveFilter] = useState("pending");
   const [selectedLeaveDate, setSelectedLeaveDate] = useState(18);
+
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<{
+    title: string;
+    id: string;
+  } | null>(null);
+
+  const handleCardClick = (card: { title: string; id: string }) => {
+    setSelectedCard(card);
+    setIsModalOpen(true);
+  };
 
   // Get leave data for selected date
   const getLeaveDataForDate = (date: number) => {
@@ -265,9 +284,7 @@ export default function SamplePage3() {
             {cardData.map((card, index) => (
               <div
                 key={card.id}
-                onClick={() => {
-                  console.log(`Clicked ${card.title}`);
-                }}
+                onClick={() => handleCardClick(card)}
                 className={cn(
                   "flex w-full h-[100px]",
                   "px-2 py-3 justify-center items-center flex-shrink-0",
@@ -1634,6 +1651,32 @@ export default function SamplePage3() {
           </div>
         )}
       </div>
+
+      {/* Card Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
+          <DialogHeader className="flex flex-row items-center justify-between px-6 pt-2 pb-3 border-b">
+            <DialogTitle className="text-xl font-semibold text-[#283C50]">
+              {selectedCard?.title || ""}
+            </DialogTitle>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            >
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </button>
+          </DialogHeader>
+
+          {/* Modal Content Area - Currently Blank */}
+          <div className="flex-1 p-6">
+            {/* This area will be populated with specific content later */}
+            <div className="w-full h-full flex items-center justify-center text-gray-500">
+              <p>Content for {selectedCard?.title} will be added here</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
