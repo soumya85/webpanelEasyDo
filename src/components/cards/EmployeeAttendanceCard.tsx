@@ -200,7 +200,7 @@ export default function EmployeeAttendanceCard() {
       case "Half Day":
         return 1; // SUSHANTA DAS
       case "Late":
-        return 0; // No cards implemented yet
+        return 1; // GOLAM SAMADANI
       case "Leave":
         return 0; // No cards implemented yet
       case "Week off":
