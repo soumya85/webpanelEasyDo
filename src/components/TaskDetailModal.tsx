@@ -28,6 +28,7 @@ import {
   Save,
   User,
   Flag,
+  Paperclip,
 } from "lucide-react";
 import { format } from "date-fns";
 import { useState, useEffect } from "react";
@@ -97,6 +98,14 @@ export function TaskDetailModal({
     task?.dueDate ? new Date(task.dueDate) : undefined,
   );
 
+  // Mock companies for select (replace with your actual company list)
+  const companies = [
+    { id: "c1", name: "Acme Corp" },
+    { id: "c2", name: "Globex Inc" },
+  ];
+  const [company, setCompany] = useState(task?.companyId || "");
+  const [attachment, setAttachment] = useState<File | null>(null);
+
   useEffect(() => {
     setTitle(task?.title || "");
     setDescription(task?.description || "");
@@ -105,6 +114,7 @@ export function TaskDetailModal({
     setAssignee(task?.assignee?.name || "");
     setStartDate(task?.startDate ? new Date(task.startDate) : undefined);
     setDueDate(task?.dueDate ? new Date(task.dueDate) : undefined);
+    setCompany(task?.companyId || "");
     setEditMode(false);
   }, [task, open]);
 
@@ -119,6 +129,8 @@ export function TaskDetailModal({
       assignee: assignee ? { name: assignee } : undefined,
       startDate: startDate ? startDate.toISOString().slice(0, 10) : undefined,
       dueDate: dueDate ? dueDate.toISOString().slice(0, 10) : undefined,
+      companyId: company,
+      attachment,
     });
     setEditMode(false);
     onOpenChange(false);
@@ -126,13 +138,13 @@ export function TaskDetailModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl rounded-3xl shadow-2xl border-0 p-0 overflow-hidden">
+      <DialogContent className="max-w-md rounded-xl shadow-xl border-0 p-0 overflow-hidden">
         {/* Header */}
-        <DialogHeader className="bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 px-10 py-8">
-          <DialogTitle className="flex items-center gap-4">
-            <span className="flex items-center gap-3">
-              <Flag className="w-8 h-8 text-yellow-200 drop-shadow-lg" />
-              <span className="text-3xl font-black text-white tracking-tight drop-shadow-lg">
+        <DialogHeader className="bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 px-4 py-3">
+          <DialogTitle className="flex items-center gap-2">
+            <span className="flex items-center gap-2">
+              <Flag className="w-6 h-6 text-yellow-200 drop-shadow-lg" />
+              <span className="text-xl font-black text-white tracking-tight drop-shadow-lg">
                 <MultilingualText>{t("taskDetails")}</MultilingualText>
               </span>
             </span>
@@ -141,17 +153,43 @@ export function TaskDetailModal({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-10 w-10 text-white hover:bg-blue-700"
+                  className="h-7 w-7 text-white hover:bg-blue-700"
                 >
-                  <X className="h-6 w-6" />
+                  <X className="h-4 w-4" />
                 </Button>
               </DialogClose>
             </span>
           </DialogTitle>
         </DialogHeader>
-        <div className="px-10 py-10 bg-white space-y-10">
+        <div className="px-4 py-4 bg-white space-y-4">
+          {/* Company */}
+          <div>
+            <label className="block text-xs font-semibold text-gray-500 mb-1">
+              Company
+            </label>
+            {editMode ? (
+              <select
+                className="border rounded px-2 py-1 text-xs w-full"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+              >
+                <option value="">Select company</option>
+                {companies.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="text-xs font-medium text-gray-700">
+                {companies.find(
+                  (c) => c.id === (task.companyId || company),
+                )?.name || "-"}
+              </div>
+            )}
+          </div>
           {/* Title */}
-          <div className="flex flex-col md:flex-row md:items-center gap-4 border-b pb-6">
+          <div className="flex flex-col md:flex-row md:items-center gap-2 border-b pb-3">
             <div className="flex-1">
               <label className="block text-xs font-semibold text-gray-500 mb-1">
                 <MultilingualText>{t("title")}</MultilingualText>
@@ -160,28 +198,28 @@ export function TaskDetailModal({
                 <Input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="text-2xl font-bold border-2 border-blue-200 focus:border-blue-500 transition"
+                  className="text-lg font-bold border-2 border-blue-200 focus:border-blue-500 transition"
                 />
               ) : (
-                <div className="text-2xl font-extrabold text-blue-900 tracking-tight">
+                <div className="text-lg font-extrabold text-blue-900 tracking-tight">
                   {task.title}
                 </div>
               )}
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <Badge
                 className={
                   status === "Done"
                     ? "bg-green-100 text-green-700"
                     : status === "In Progress"
-                      ? "bg-blue-100 text-blue-700"
-                      : status === "Review"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : status === "Blocked"
-                          ? "bg-red-100 text-red-700"
-                          : status === "Cancelled"
-                            ? "bg-gray-200 text-gray-500"
-                            : "bg-gray-100 text-gray-700"
+                    ? "bg-blue-100 text-blue-700"
+                    : status === "Review"
+                    ? "bg-yellow-100 text-yellow-700"
+                    : status === "Blocked"
+                    ? "bg-red-100 text-red-700"
+                    : status === "Cancelled"
+                    ? "bg-gray-200 text-gray-500"
+                    : "bg-gray-100 text-gray-700"
                 }
               >
                 <MultilingualText>
@@ -193,10 +231,10 @@ export function TaskDetailModal({
                   priority === "urgent"
                     ? "bg-pink-100 text-pink-700"
                     : priority === "high"
-                      ? "bg-red-100 text-red-700"
-                      : priority === "medium"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-gray-100 text-gray-700"
+                    ? "bg-red-100 text-red-700"
+                    : priority === "medium"
+                    ? "bg-yellow-100 text-yellow-700"
+                    : "bg-gray-100 text-gray-700"
                 }
               >
                 <MultilingualText>
@@ -206,29 +244,30 @@ export function TaskDetailModal({
             </div>
           </div>
           {/* Assignee & Dates */}
-          <div className="flex flex-col md:flex-row gap-8 border-b pb-6">
-            <div className="flex-1 flex flex-col gap-2">
+          <div className="flex flex-col md:flex-row gap-3 border-b pb-3">
+            <div className="flex-1 flex flex-col gap-1">
               <label className="block text-xs font-semibold text-gray-500">
                 <MultilingualText>{t("assignee")}</MultilingualText>
               </label>
               {editMode ? (
-                <div className="flex items-center gap-2">
-                  <User className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-1">
+                  <User className="w-4 h-4 text-blue-400" />
                   <Input
                     value={assignee}
                     onChange={(e) => setAssignee(e.target.value)}
+                    className="h-7 text-xs"
                   />
                 </div>
               ) : (
-                <Badge className="bg-blue-100 text-blue-700 flex items-center gap-1 text-base px-3 py-1.5">
-                  <User className="w-5 h-5" />
+                <Badge className="bg-blue-100 text-blue-700 flex items-center gap-1 text-xs px-2 py-1">
+                  <User className="w-4 h-4" />
                   <MultilingualText>
                     {task.assignee?.name || t("unassigned")}
                   </MultilingualText>
                 </Badge>
               )}
             </div>
-            <div className="flex-1 flex flex-col gap-2">
+            <div className="flex-1 flex flex-col gap-1">
               <label className="block text-xs font-semibold text-gray-500">
                 <MultilingualText>{t("startDate")}</MultilingualText>
               </label>
@@ -237,7 +276,7 @@ export function TaskDetailModal({
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      className="w-full justify-start text-left font-normal"
+                      className="w-full justify-start text-left font-normal h-7 text-xs"
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       <MultilingualText>
@@ -257,14 +296,14 @@ export function TaskDetailModal({
                   </PopoverContent>
                 </Popover>
               ) : (
-                <span className="text-base font-medium">
+                <span className="text-xs font-medium">
                   {task.startDate
                     ? format(new Date(task.startDate), "yyyy-MM-dd")
                     : "-"}
                 </span>
               )}
             </div>
-            <div className="flex-1 flex flex-col gap-2">
+            <div className="flex-1 flex flex-col gap-1">
               <label className="block text-xs font-semibold text-gray-500">
                 <MultilingualText>{t("dueDate")}</MultilingualText>
               </label>
@@ -273,7 +312,7 @@ export function TaskDetailModal({
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      className="w-full justify-start text-left font-normal"
+                      className="w-full justify-start text-left font-normal h-7 text-xs"
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       <MultilingualText>
@@ -293,13 +332,54 @@ export function TaskDetailModal({
                   </PopoverContent>
                 </Popover>
               ) : (
-                <span className="text-base font-medium">
+                <span className="text-xs font-medium">
                   {task.dueDate
                     ? format(new Date(task.dueDate), "yyyy-MM-dd")
                     : "-"}
                 </span>
               )}
             </div>
+          </div>
+          {/* Attachment */}
+          <div>
+            <label className="block text-xs font-semibold text-gray-500 mb-1">
+              Attachment
+            </label>
+            {editMode ? (
+              <label className="flex items-center gap-2 cursor-pointer">
+                <Button
+                  variant="outline"
+                  className="w-fit flex items-center gap-2 h-7 text-xs"
+                  asChild
+                >
+                  <span>
+                    <Paperclip className="w-4 h-4 mr-1" />
+                    {attachment ? attachment.name : "Browse"}
+                  </span>
+                </Button>
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={(e) => setAttachment(e.target.files?.[0] || null)}
+                />
+              </label>
+            ) : (
+              <div className="text-xs text-blue-600 flex items-center gap-2">
+                {task.attachmentUrl ? (
+                  <a
+                    href={task.attachmentUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline flex items-center gap-1"
+                  >
+                    <Paperclip className="w-4 h-4" />
+                    {task.attachmentName || "Download"}
+                  </a>
+                ) : (
+                  <span className="text-gray-400">No attachment</span>
+                )}
+              </div>
+            )}
           </div>
           {/* Description */}
           <div>
@@ -308,12 +388,12 @@ export function TaskDetailModal({
             </label>
             {editMode ? (
               <textarea
-                className="w-full min-h-[80px] border rounded-lg px-3 py-2"
+                className="w-full min-h-[50px] border rounded-lg px-2 py-1 text-xs"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             ) : (
-              <div className="text-gray-700 text-base">
+              <div className="text-gray-700 text-xs">
                 {task.description || (
                   <span className="text-gray-400">
                     <MultilingualText>{t("noDescription")}</MultilingualText>
@@ -324,24 +404,24 @@ export function TaskDetailModal({
           </div>
         </div>
         {/* Actions */}
-        <div className="flex justify-end gap-3 pt-8 border-t mt-10">
+        <div className="flex justify-end gap-2 pt-3 border-t mt-3 px-4 pb-3 bg-white">
           {editMode ? (
             <Button
               type="button"
-              className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-bold px-8 py-3 rounded-lg flex items-center gap-2 shadow-lg hover:from-indigo-700 hover:to-blue-600 transition"
+              className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-bold px-5 py-2 rounded flex items-center gap-2 shadow-lg hover:from-indigo-700 hover:to-blue-600 transition text-xs"
               onClick={handleSave}
             >
-              <Save className="w-5 h-5" />
+              <Save className="w-4 h-4" />
               <MultilingualText>{t("save")}</MultilingualText>
             </Button>
           ) : (
             <Button
               type="button"
               variant="secondary"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-xs"
               onClick={() => setEditMode(true)}
             >
-              <Edit3 className="w-5 h-5" />
+              <Edit3 className="w-4 h-4" />
               <MultilingualText>{t("edit")}</MultilingualText>
             </Button>
           )}

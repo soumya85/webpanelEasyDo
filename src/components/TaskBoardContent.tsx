@@ -462,6 +462,9 @@ export function TaskBoardContent() {
   const [filterBy, setFilterBy] = useState<FilterOption>("all");
   const [groupBy, setGroupBy] = useState<GroupByOption>("status");
 
+  // New state to hold formData for AddTaskModal (for update mode)
+  const [addTaskFormData, setAddTaskFormData] = useState<any>(null);
+
   // Example: Replace "Current User" with your actual user logic
   const currentUser = "Current User";
 
@@ -475,11 +478,14 @@ export function TaskBoardContent() {
 
       if (!matchesSearch) return false;
 
+      // Only show delegated tasks for delegated-tasks filter
+      if (filterBy === "delegated-tasks") {
+        return task.assignee?.name !== currentUser;
+      }
+
       switch (filterBy) {
         case "my-tasks":
           return task.assignee?.name === currentUser;
-        case "delegated-tasks":
-          return task.assignee?.name !== currentUser && !!task.assignee;
         case "high-priority":
           return task.priority === "high" || task.priority === "urgent";
         case "due-today":
@@ -529,6 +535,14 @@ export function TaskBoardContent() {
       }
     });
   }, [tasks, searchTerm, sortBy, filterBy, currentUser]);
+
+  // --- Delegated Tasks Columns ---
+  const delegatedPending = filteredAndSortedTasks.filter(
+    (task) => filterBy === "delegated-tasks" && task.status !== "completed"
+  );
+  const delegatedCompleted = filteredAndSortedTasks.filter(
+    (task) => filterBy === "delegated-tasks" && task.status === "completed"
+  );
 
   // Task CRUD
   const addTask = (task: Task) => setTasks((prev) => [...prev, task]);
@@ -608,6 +622,23 @@ export function TaskBoardContent() {
       });
       // Optionally, update the backend or global state here
     }
+  };
+
+  // Handler to open AddTaskModal in edit mode with task data
+  const handleTaskClick = (task: any) => {
+    setAddTaskFormData({
+      company: task.companyId,
+      title: task.title,
+      assignees: task.assignees || [],
+      startDate: task.startDate ? new Date(task.startDate) : undefined,
+      endDate: task.dueDate ? new Date(task.dueDate) : undefined,
+      priority: task.priority,
+      instructions: task.description,
+      checklistItems: task.checklistItems || [""],
+      repeatType: task.repeatType,
+      attachment: null, // Map attachment if needed
+    });
+    setIsAddTaskModalOpen(true);
   };
 
   // UI
@@ -725,219 +756,274 @@ export function TaskBoardContent() {
         </div>
       </div>
 
-      {/* --- Main Content: 100% available height for board view --- */}
+      {/* --- Main Content --- */}
       <div className="flex-1 min-h-0 flex flex-col">
-        {currentView === "board" ? (
-          <DragDropContext onDragEnd={onDragEnd}>
-            <div
-              className="flex-1 min-h-0 overflow-auto"
-              style={{ height: "100%" }}
-            >
-              <div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 h-full"
-                style={{ minHeight: "100%" }}
-              >
-                {Object.entries(localGroupedTasks)
-                  .slice(0, 4)
-                  .map(([group, groupTasks]) => (
-                    <Droppable droppableId={group} key={group}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.droppableProps}
-                          className={`flex flex-col bg-white rounded-lg shadow p-2 min-h-0 h-full transition ${
-                            snapshot.isDraggingOver ? "bg-blue-50" : ""
-                          }`}
-                        >
-                          <div className="flex items-center justify-between mb-2">
-                            <h2 className="font-bold text-base text-gray-800 truncate">
-                              {group}
-                            </h2>
-                            <Badge className="bg-blue-100 text-blue-700">
-                              {groupTasks.length}
-                            </Badge>
-                          </div>
-                          <div className="flex-1 overflow-y-auto min-h-0">
-                            {groupTasks.slice(0, 4).map((task, idx) => (
-                              <Draggable
-                                draggableId={task.id}
-                                index={idx}
-                                key={task.id}
-                              >
-                                {(provided, snapshot) => (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    className={`mb-2 shadow-sm hover:shadow-md transition cursor-pointer border border-gray-100 rounded bg-gradient-to-br from-white to-blue-50 p-2 ${
-                                      snapshot.isDragging
-                                        ? "ring-2 ring-blue-400"
-                                        : ""
-                                    }`}
-                                    onClick={() => {
-                                      setSelectedTask(task);
-                                      setIsTaskDetailOpen(true);
-                                    }}
-                                    style={{
-                                      minHeight: 56,
-                                      ...provided.draggableProps.style,
-                                    }}
-                                  >
-                                    <div className="flex items-center justify-between">
-                                      <h3 className="font-semibold text-gray-900 text-sm truncate">
-                                        {task.title}
-                                      </h3>
-                                    </div>
-                                    <p className="text-gray-500 text-xs mt-1 line-clamp-2">
-                                      {task.description}
-                                    </p>
-                                    <div className="flex items-center gap-1 mt-2 flex-wrap">
-                                      <Badge
-                                        className={
-                                          task.priority === "high"
-                                            ? "bg-red-100 text-red-700"
-                                            : task.priority === "medium"
-                                              ? "bg-yellow-100 text-yellow-700"
-                                              : "bg-gray-100 text-gray-700"
-                                        }
-                                      >
-                                        {task.priority
-                                          ?.charAt(0)
-                                          .toUpperCase() +
-                                          task.priority?.slice(1)}
-                                      </Badge>
-                                      {task.assignee && (
-                                        <Badge className="bg-blue-100 text-blue-700">
-                                          {task.assignee.name}
-                                        </Badge>
-                                      )}
-                                      {task.dueDate && (
-                                        <Badge className="bg-gray-100 text-gray-700">
-                                          Due:{" "}
-                                          {new Date(
-                                            task.dueDate,
-                                          ).toLocaleDateString()}
-                                        </Badge>
-                                      )}
-                                    </div>
-                                  </div>
-                                )}
-                              </Draggable>
-                            ))}
-                            {provided.placeholder}
-                          </div>
-                        </div>
-                      )}
-                    </Droppable>
-                  ))}
+        {filterBy === "delegated-tasks" && currentView === "board" ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+            {/* Pending Column */}
+            <div className="bg-white rounded-lg shadow p-3 flex flex-col">
+              <div className="font-bold text-blue-700 mb-2 text-sm uppercase tracking-wide">
+                Pending
               </div>
+              {delegatedPending.length === 0 && (
+                <div className="text-xs text-gray-400">No pending tasks</div>
+              )}
+              {delegatedPending.map((task) => (
+                <div
+                  key={task.id}
+                  className="mb-2 last:mb-0 cursor-pointer"
+                  onClick={() => handleTaskClick(task)}
+                >
+                  <div className="p-2 rounded border border-blue-100 bg-blue-50 hover:bg-blue-100 text-xs">
+                    <div className="font-semibold">{task.title}</div>
+                    <div className="text-gray-500">{task.description}</div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </DragDropContext>
-        ) : currentView === "calendar" ? (
-          <CalendarView
-            tasks={filteredAndSortedTasks}
-            onTaskClick={(task) => {
-              setSelectedTask(task);
-              setIsTaskDetailOpen(true);
-            }}
-          />
-        ) : currentView === "gantt" ? (
-          <GanttChartView
-            tasks={filteredAndSortedTasks}
-            onTaskClick={(task) => {
-              setSelectedTask(task);
-              setIsTaskDetailOpen(true);
-            }}
-          />
-        ) : (
-          // List View
-          <div className="bg-white rounded-xl shadow-md border border-gray-100">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50 sticky top-0 z-10">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Title
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Assignee
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Priority
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Due Date
-                  </th>
-                  <th className="px-6 py-3"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredAndSortedTasks.length === 0 ? (
-                  <tr>
-                    <td colSpan={5} className="text-center text-gray-400 py-8">
-                      No tasks found.
-                    </td>
-                  </tr>
-                ) : (
-                  filteredAndSortedTasks.map((task) => (
-                    <tr
-                      key={task.id}
-                      className="hover:bg-blue-50 transition cursor-pointer"
-                      onClick={() => {
-                        setSelectedTask(task);
-                        setIsTaskDetailOpen(true);
-                      }}
-                    >
-                      <td className="px-6 py-4 font-medium text-gray-900">
-                        {task.title}
-                      </td>
-                      <td className="px-6 py-4">
-                        {task.assignee?.name || (
-                          <span className="text-gray-400">Unassigned</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4">
-                        <Badge
-                          className={
-                            task.priority === "high"
-                              ? "bg-red-100 text-red-700"
-                              : task.priority === "medium"
-                                ? "bg-yellow-100 text-yellow-700"
-                                : "bg-gray-100 text-gray-700"
-                          }
-                        >
-                          {task.priority?.charAt(0).toUpperCase() +
-                            task.priority?.slice(1)}
-                        </Badge>
-                      </td>
-                      <td className="px-6 py-4">
-                        {task.dueDate
-                          ? new Date(task.dueDate).toLocaleDateString()
-                          : "-"}
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <Button size="sm" variant="outline">
-                          View
-                        </Button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+            {/* Completed Column */}
+            <div className="bg-white rounded-lg shadow p-3 flex flex-col">
+              <div className="font-bold text-green-700 mb-2 text-sm uppercase tracking-wide">
+                Completed
+              </div>
+              {delegatedCompleted.length === 0 && (
+                <div className="text-xs text-gray-400">No completed tasks</div>
+              )}
+              {delegatedCompleted.map((task) => (
+                <div
+                  key={task.id}
+                  className="mb-2 last:mb-0 cursor-pointer"
+                  onClick={() => handleTaskClick(task)}
+                >
+                  <div className="p-2 rounded border border-green-100 bg-green-50 hover:bg-green-100 text-xs">
+                    <div className="font-semibold">{task.title}</div>
+                    <div className="text-gray-500">{task.description}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+        ) : (
+          <>
+            {currentView === "board" ? (
+              <DragDropContext onDragEnd={onDragEnd}>
+                <div
+                  className="flex-1 min-h-0 overflow-auto"
+                  style={{ height: "100%" }}
+                >
+                  <div
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 h-full"
+                    style={{ minHeight: "100%" }}
+                  >
+                    {Object.entries(localGroupedTasks)
+                      .slice(0, 4)
+                      .map(([group, groupTasks]) => (
+                        <Droppable droppableId={group} key={group}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.droppableProps}
+                              className={`flex flex-col bg-white rounded-lg shadow p-2 min-h-0 h-full transition ${
+                                snapshot.isDraggingOver ? "bg-blue-50" : ""
+                              }`}
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <h2 className="font-bold text-base text-gray-800 truncate">
+                                  {group}
+                                </h2>
+                                <Badge className="bg-blue-100 text-blue-700">
+                                  {groupTasks.length}
+                                </Badge>
+                              </div>
+                              <div className="flex-1 overflow-y-auto min-h-0">
+                                {groupTasks.slice(0, 4).map((task, idx) => (
+                                  <Draggable
+                                    draggableId={task.id}
+                                    index={idx}
+                                    key={task.id}
+                                  >
+                                    {(provided, snapshot) => (
+                                      <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        className={`mb-2 shadow-sm hover:shadow-md transition cursor-pointer border border-gray-100 rounded bg-gradient-to-br from-white to-blue-50 p-2 ${
+                                          snapshot.isDragging
+                                            ? "ring-2 ring-blue-400"
+                                            : ""
+                                        }`}
+                                        onClick={() => {
+                                          setSelectedTask(task);
+                                          setIsTaskDetailOpen(true);
+                                        }}
+                                        style={{
+                                          minHeight: 56,
+                                          ...provided.draggableProps.style,
+                                        }}
+                                      >
+                                        <div className="flex items-center justify-between">
+                                          <h3 className="font-semibold text-gray-900 text-sm truncate">
+                                            {task.title}
+                                          </h3>
+                                        </div>
+                                        <p className="text-gray-500 text-xs mt-1 line-clamp-2">
+                                          {task.description}
+                                        </p>
+                                        <div className="flex items-center gap-1 mt-2 flex-wrap">
+                                          <Badge
+                                            className={
+                                              task.priority === "high"
+                                                ? "bg-red-100 text-red-700"
+                                                : task.priority === "medium"
+                                                  ? "bg-yellow-100 text-yellow-700"
+                                                  : "bg-gray-100 text-gray-700"
+                                            }
+                                          >
+                                            {task.priority
+                                              ?.charAt(0)
+                                              .toUpperCase() +
+                                              task.priority?.slice(1)}
+                                          </Badge>
+                                          {task.assignee && (
+                                            <Badge className="bg-blue-100 text-blue-700">
+                                              {task.assignee.name}
+                                            </Badge>
+                                          )}
+                                          {task.dueDate && (
+                                            <Badge className="bg-gray-100 text-gray-700">
+                                              Due:{" "}
+                                              {new Date(
+                                                task.dueDate,
+                                              ).toLocaleDateString()}
+                                            </Badge>
+                                          )}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </Draggable>
+                                ))}
+                                {provided.placeholder}
+                              </div>
+                            </div>
+                          )}
+                        </Droppable>
+                      ))}
+                  </div>
+                </div>
+              </DragDropContext>
+            ) : currentView === "calendar" ? (
+              <CalendarView
+                tasks={filteredAndSortedTasks}
+                onTaskClick={(task) => {
+                  setSelectedTask(task);
+                  setIsTaskDetailOpen(true);
+                }}
+              />
+            ) : currentView === "gantt" ? (
+              <GanttChartView
+                tasks={filteredAndSortedTasks}
+                onTaskClick={(task) => {
+                  setSelectedTask(task);
+                  setIsTaskDetailOpen(true);
+                }}
+              />
+            ) : (
+              // List View
+              <div className="bg-white rounded-xl shadow-md border border-gray-100">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50 sticky top-0 z-10">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        Title
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        Assignee
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        Priority
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        Due Date
+                      </th>
+                      <th className="px-6 py-3"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredAndSortedTasks.length === 0 ? (
+                      <tr>
+                        <td colSpan={5} className="text-center text-gray-400 py-8">
+                          No tasks found.
+                        </td>
+                      </tr>
+                    ) : (
+                      filteredAndSortedTasks.map((task) => (
+                        <tr
+                          key={task.id}
+                          className="hover:bg-blue-50 transition cursor-pointer"
+                          onClick={() => {
+                            setSelectedTask(task);
+                            setIsTaskDetailOpen(true);
+                          }}
+                        >
+                          <td className="px-6 py-4 font-medium text-gray-900">
+                            {task.title}
+                          </td>
+                          <td className="px-6 py-4">
+                            {task.assignee?.name || (
+                              <span className="text-gray-400">Unassigned</span>
+                            )}
+                          </td>
+                          <td className="px-6 py-4">
+                            <Badge
+                              className={
+                                task.priority === "high"
+                                  ? "bg-red-100 text-red-700"
+                                  : task.priority === "medium"
+                                    ? "bg-yellow-100 text-yellow-700"
+                                    : "bg-gray-100 text-gray-700"
+                              }
+                            >
+                              {task.priority?.charAt(0).toUpperCase() +
+                                task.priority?.slice(1)}
+                            </Badge>
+                          </td>
+                          <td className="px-6 py-4">
+                            {task.dueDate
+                              ? new Date(task.dueDate).toLocaleDateString()
+                              : "-"}
+                          </td>
+                          <td className="px-6 py-4 text-right">
+                            <Button size="sm" variant="outline">
+                              View
+                            </Button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </>
         )}
       </div>
 
       {/* Modals */}
+      {/* For "Add Task" button, open empty form */}
       <AddTaskModal
         open={isAddTaskModalOpen}
-        onOpenChange={setIsAddTaskModalOpen}
+        onOpenChange={(open) => {
+          setIsAddTaskModalOpen(open);
+          if (!open) setAddTaskFormData(null);
+        }}
+        formData={addTaskFormData || undefined}
       />
+      {/* When clicking a task, open AddTaskModal in update mode with formData */}
       <TaskDetailModal
-        task={selectedTask}
         open={isTaskDetailOpen}
         onOpenChange={setIsTaskDetailOpen}
-        onUpdateTask={updateTask}
+        task={selectedTask}
+        onEditClick={handleTaskClick}
       />
     </div>
   );

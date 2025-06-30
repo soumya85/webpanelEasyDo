@@ -205,7 +205,7 @@ export default function Meet() {
   return (
     <main className="flex-1 w-full min-h-0 flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-inter">
       {/* Header */}
-      <div className="w-full sticky top-0 z-30 bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 shadow">
+      {/* <div className="w-full sticky top-0 z-30 bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 shadow">
         <div className="max-w-7xl mx-auto flex flex-col gap-1 px-4 py-6">
           <div className="flex items-center gap-3">
             <Users className="h-8 w-8 text-white bg-indigo-500 rounded-full p-1 shadow" />
@@ -216,7 +216,7 @@ export default function Meet() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Actions */}
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6 flex flex-col md:flex-row gap-2 md:gap-4 items-center">
