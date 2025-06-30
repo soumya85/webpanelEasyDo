@@ -71,6 +71,8 @@ export default function SamplePage3() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showBranchSheet, setShowBranchSheet] = useState(false);
   const [showAddEmployee, setShowAddEmployee] = useState(false);
+  const [showTeamMembersPopup, setShowTeamMembersPopup] = useState(false);
+  const [selectedManagerTeam, setSelectedManagerTeam] = useState(null);
 
   // Mock employee data
   const employeeData = [
@@ -138,6 +140,119 @@ export default function SamplePage3() {
       reportingManager: "Digambar Khuntia",
       status: "accepted",
       rating: 0,
+    },
+    {
+      id: 6,
+      name: "Amar Prasad Sahoo",
+      position: "HR manager",
+      branch: "Paradip",
+      doj: "Dec 01, 2018",
+      authority: 2,
+      avatar: "/api/placeholder/40/40",
+      initials: "APS",
+      reportingManager: "Amulya Kumar Kar",
+      status: "accepted",
+      rating: 3.0,
+    },
+    {
+      id: 7,
+      name: "Amlan Mallick",
+      position: "Branch Manager",
+      branch: "New Delhi",
+      doj: "Oct 01, 2018",
+      authority: 2,
+      avatar: "/api/placeholder/40/40",
+      initials: "AM",
+      reportingManager: "Bhaskar Sir",
+      status: "accepted",
+      rating: 4.4,
+      teamMembers: [
+        { initials: "AK", avatar: "/api/placeholder/40/40" },
+        { initials: "SK", avatar: "/api/placeholder/40/40" },
+        { initials: "RK", avatar: "/api/placeholder/40/40" },
+        { initials: "RS", avatar: "/api/placeholder/40/40" },
+      ],
+      totalTeamMembers: 6,
+      detailedTeamMembers: [
+        {
+          id: 101,
+          name: "Sunil Kumar",
+          position: "Assistant Manager",
+          branch: "New Delhi",
+          doj: "Jan 10, 2020",
+          authority: 3,
+          avatar: "/api/placeholder/40/40",
+          initials: "SK",
+          reportingManager: "Amlan Mallick",
+          status: "accepted",
+          rating: 0,
+        },
+        {
+          id: 102,
+          name: "Rajesh Kumar",
+          position: "Executive",
+          branch: "New Delhi",
+          doj: "Mar 05, 2021",
+          authority: 3,
+          avatar: "/api/placeholder/40/40",
+          initials: "RK",
+          reportingManager: "Amlan Mallick",
+          status: "accepted",
+          rating: 0,
+        },
+        {
+          id: 103,
+          name: "Ritesh Kumar Singh",
+          position: "Senior Executive",
+          branch: "New Delhi",
+          doj: "Jul 12, 2020",
+          authority: 3,
+          avatar: "/api/placeholder/40/40",
+          initials: "RS",
+          reportingManager: "Amlan Mallick",
+          status: "accepted",
+          rating: 0,
+        },
+        {
+          id: 104,
+          name: "Manoj Kumar",
+          position: "Junior Executive",
+          branch: "New Delhi",
+          doj: "Nov 20, 2021",
+          authority: 3,
+          avatar: "/api/placeholder/40/40",
+          initials: "MK",
+          reportingManager: "Amlan Mallick",
+          status: "accepted",
+          rating: 0,
+        },
+        {
+          id: 105,
+          name: "RAHUL KUMAR",
+          position: "Trainee",
+          branch: "New Delhi",
+          doj: "Feb 01, 2022",
+          authority: 2,
+          avatar: "/api/placeholder/40/40",
+          initials: "RK",
+          reportingManager: "Amlan Mallick",
+          status: "accepted",
+          rating: 0,
+        },
+        {
+          id: 106,
+          name: "Rakesh Shankar Jadhav",
+          position: "Supervisor",
+          branch: "New Delhi",
+          doj: "Sep 15, 2019",
+          authority: 3,
+          avatar: "/api/placeholder/40/40",
+          initials: "RSJ",
+          reportingManager: "Amlan Mallick",
+          status: "accepted",
+          rating: 0,
+        },
+      ],
     },
   ];
 
@@ -2013,7 +2128,7 @@ export default function SamplePage3() {
                     {filteredEmployees.map((employee) => (
                       <div
                         key={employee.id}
-                        className="bg-white border border-gray-200 rounded-lg p-4"
+                        className="bg-white border border-gray-200 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex items-start gap-3">
@@ -2058,13 +2173,13 @@ export default function SamplePage3() {
                           </div>
                           <div className="flex items-center gap-2">
                             <button className="p-2">
-                              <Phone className="w-5 h-5 text-gray-400" />
+                              <Phone className="w-5 h-5 text-gray-600" />
                             </button>
                             <button className="p-2">
-                              <MessageCircle className="w-5 h-5 text-gray-400" />
+                              <MessageCircle className="w-5 h-5 text-gray-600" />
                             </button>
                             <button className="p-2">
-                              <MoreVertical className="w-5 h-5 text-gray-400" />
+                              <MoreVertical className="w-5 h-5 text-gray-600" />
                             </button>
                           </div>
                         </div>
@@ -2072,13 +2187,80 @@ export default function SamplePage3() {
                           <span className="text-sm text-gray-600">
                             Reporting Manager: {employee.reportingManager}
                           </span>
-                          <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
-                            <span className="text-blue-500">★</span>
-                            <span className="text-sm text-blue-500">
-                              {employee.rating} (0)
-                            </span>
-                          </div>
+                          {!employee.teamMembers ||
+                          employee.teamMembers.length === 0 ? (
+                            <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
+                              <span className="text-blue-500">★</span>
+                              <span className="text-sm text-blue-500">
+                                {employee.rating} (0)
+                              </span>
+                            </div>
+                          ) : null}
                         </div>
+
+                        {/* Manager for section - only show for employees with team members */}
+                        {employee.teamMembers &&
+                          employee.teamMembers.length > 0 && (
+                            <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm text-blue-500 font-medium">
+                                  Manager for :
+                                </span>
+                                <div className="flex items-center">
+                                  {employee.teamMembers
+                                    .slice(0, 4)
+                                    .map((member, index) => (
+                                      <div
+                                        key={index}
+                                        className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-sm font-medium text-gray-700 -ml-1 first:ml-0"
+                                        style={{
+                                          zIndex:
+                                            employee.teamMembers.length - index,
+                                        }}
+                                      >
+                                        {member.initials}
+                                      </div>
+                                    ))}
+                                  {employee.totalTeamMembers > 4 && (
+                                    <>
+                                      <span className="text-sm text-blue-500 font-medium ml-2">
+                                        +{employee.totalTeamMembers - 4}
+                                      </span>
+                                      <button
+                                        onClick={() => {
+                                          setSelectedManagerTeam(
+                                            employee.detailedTeamMembers,
+                                          );
+                                          setShowTeamMembersPopup(true);
+                                        }}
+                                        className="ml-1"
+                                      >
+                                        <svg
+                                          className="w-4 h-4 text-blue-500"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9 5l7 7-7 7"
+                                          />
+                                        </svg>
+                                      </button>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
+                                <span className="text-blue-500">★</span>
+                                <span className="text-sm text-blue-500">
+                                  {employee.rating} (0)
+                                </span>
+                              </div>
+                            </div>
+                          )}
                       </div>
                     ))}
                   </div>
@@ -2220,6 +2402,37 @@ export default function SamplePage3() {
           </div>
         </SheetContent>
       </Sheet>
+
+      {/* Team Members Popup */}
+      <Dialog
+        open={showTeamMembersPopup}
+        onOpenChange={setShowTeamMembersPopup}
+      >
+        <DialogContent className="max-w-xs p-0">
+          {/* Simple list of team member names */}
+          <div className="bg-white rounded-lg overflow-hidden relative">
+            {/* Close button */}
+            <button
+              onClick={() => setShowTeamMembersPopup(false)}
+              className="absolute top-2 right-2 p-1 hover:bg-gray-100 rounded-full z-10"
+            >
+              <X className="w-4 h-4 text-gray-500" />
+            </button>
+            {selectedManagerTeam?.map((member, index) => (
+              <div
+                key={member.id}
+                className={`px-4 py-3 text-gray-900 ${
+                  index !== selectedManagerTeam.length - 1
+                    ? "border-b border-gray-200"
+                    : ""
+                }`}
+              >
+                {member.name}
+              </div>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
