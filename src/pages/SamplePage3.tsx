@@ -453,7 +453,7 @@ export default function SamplePage3() {
                 ].map((holiday, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 border-b border-gray-100 last:border-b-0"
+                    className="flex items-center justify-between p-3 mx-3 my-2 bg-white rounded-lg shadow-md border border-gray-100"
                   >
                     <div className="flex items-center gap-4">
                       <div className="text-center min-w-[50px]">
