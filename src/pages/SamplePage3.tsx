@@ -125,26 +125,131 @@ export default function SamplePage3() {
             <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                <div className="flex items-center gap-3">
-                  <button className="text-primary-500">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
+                <div className="flex items-center gap-4">
+                  <h2 className="text-lg font-semibold text-gray-800">
+                    Holiday list
+                  </h2>
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="flex items-center gap-1 text-primary-500 font-medium"
                     >
-                      <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                  </button>
-                  <span className="text-primary-500 font-medium">CDB</span>
+                      <span>All</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </button>
+                    {isDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                        <div className="p-4">
+                          <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                            Branches
+                          </h3>
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                              <div className="flex items-center gap-3">
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                >
+                                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                  <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                <div>
+                                  <div className="font-semibold text-gray-800">
+                                    All Branches
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Manage/View all the branches
+                                  </div>
+                                </div>
+                              </div>
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                className="text-primary-500"
+                              >
+                                <path d="M20 6 9 17l-5-5" />
+                              </svg>
+                            </div>
+                            {[
+                              {
+                                name: "Head office",
+                                address:
+                                  "104, 3rd Floor, Shyama Prasad Mukherjee Road, Hazra, Kalighat, Kalighat, Kolkata, West Bengal 700026, India",
+                              },
+                              {
+                                name: "Haldia",
+                                address:
+                                  "336G+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721667, India",
+                              },
+                              {
+                                name: "Ahmedabad office",
+                                address:
+                                  "C/142, Vishwas City 1, Sola, Ahmedabad, Gujarat 380061, India",
+                              },
+                              {
+                                name: "Paradip",
+                                address:
+                                  "7J9X+5GG, Paradeep, Odisha 754142, India",
+                              },
+                              {
+                                name: "New Delhi",
+                                address:
+                                  "New Delhi,405, District Centre, Janakpuri, New Delhi, Delhi, 110058, India",
+                              },
+                            ].map((branch, index) => (
+                              <div
+                                key={index}
+                                className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer"
+                              >
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  className="mt-1"
+                                >
+                                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                  <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                <div>
+                                  <div className="font-semibold text-gray-800">
+                                    {branch.name}
+                                  </div>
+                                  <div className="text-sm text-gray-600 mt-1">
+                                    {branch.address}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <h2 className="text-lg font-semibold text-gray-800">
-                  Holiday list
-                </h2>
-                <div className="flex items-center gap-1">
-                  <span className="text-primary-500 font-medium">All</span>
+                <button
+                  onClick={() => setIsHolidayModalOpen(true)}
+                  className="bg-black text-white rounded-lg p-2 hover:bg-gray-800 transition-colors"
+                >
                   <svg
                     width="16"
                     height="16"
@@ -153,11 +258,10 @@ export default function SamplePage3() {
                     stroke="currentColor"
                     strokeWidth="2"
                   >
-                    <path d="M6 9l6 6 6-6" />
+                    <path d="M12 5v14M5 12h14" />
                   </svg>
-                </div>
+                </button>
               </div>
-
               {/* Summary Stats */}
               <div className="p-4 border-b border-gray-200">
                 <div className="grid grid-cols-4 gap-3">
