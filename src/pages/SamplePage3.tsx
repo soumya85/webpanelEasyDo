@@ -139,6 +139,32 @@ export default function SamplePage3() {
       status: "accepted",
       rating: 0,
     },
+    {
+      id: 6,
+      name: "Amar Prasad Sahoo",
+      position: "HR manager",
+      branch: "Paradip",
+      doj: "Dec 01, 2018",
+      authority: 2,
+      avatar: "/api/placeholder/40/40",
+      initials: "APS",
+      reportingManager: "Amulya Kumar Kar",
+      status: "accepted",
+      rating: 3.0,
+    },
+    {
+      id: 7,
+      name: "Amlan Mallick",
+      position: "Branch Manager",
+      branch: "New Delhi",
+      doj: "Oct 01, 2018",
+      authority: 2,
+      avatar: "/api/placeholder/40/40",
+      initials: "AM",
+      reportingManager: "Bhaskar Sir",
+      status: "accepted",
+      rating: 4.4,
+    },
   ];
 
   // Mock branch data
