@@ -2013,7 +2013,7 @@ export default function SamplePage3() {
                     {filteredEmployees.map((employee) => (
                       <div
                         key={employee.id}
-                        className="bg-white border border-gray-200 rounded-lg p-4"
+                        className="bg-white border border-gray-200 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex items-start gap-3">
