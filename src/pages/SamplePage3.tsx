@@ -118,6 +118,30 @@ export default function SamplePage3() {
             <EmployeeLocationTimelineCard />
           </div>
         </div>
+
+        {/* Holidays and Leave Cards Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+          <div className="min-h-[400px]">
+            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                Holidays
+              </h2>
+              <div className="flex items-center justify-center h-[300px] text-gray-400">
+                <p>Card content coming soon...</p>
+              </div>
+            </div>
+          </div>
+          <div className="min-h-[400px]">
+            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                Leave
+              </h2>
+              <div className="flex items-center justify-center h-[300px] text-gray-400">
+                <p>Card content coming soon...</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
