@@ -1888,7 +1888,7 @@ export default function SamplePage3() {
               // Employee Management Interface
               <div className="h-full flex flex-col">
                 {/* Employee Header */}
-                <div className="flex items-center justify-between px-4 py-2 border-b bg-blue-50/30">
+                <div className="flex items-center justify-between px-4 py-2 border-b bg-slate-100">
                   <h1 className="text-lg font-semibold text-gray-900">
                     Employee
                   </h1>
