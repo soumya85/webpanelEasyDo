@@ -665,11 +665,11 @@ export default function SamplePage3() {
               {leaveView === "day" && (
                 <div className="p-4">
                   {/* Month Navigation */}
-                  <div className="flex items-center justify-between mb-6">
-                    <button className="p-2 rounded-lg border border-gray-200 hover:bg-gray-50">
+                  <div className="flex items-center justify-between mb-3">
+                    <button className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50">
                       <svg
-                        width="20"
-                        height="20"
+                        width="16"
+                        height="16"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -679,15 +679,17 @@ export default function SamplePage3() {
                       </svg>
                     </button>
                     <div className="text-center">
-                      <div className="text-xl font-semibold text-gray-800">
+                      <div className="text-lg font-semibold text-gray-800">
                         June
                       </div>
-                      <div className="text-red-500 font-semibold">2025</div>
+                      <div className="text-red-500 font-semibold text-sm">
+                        2025
+                      </div>
                     </div>
-                    <button className="p-2 rounded-lg border border-gray-200 hover:bg-gray-50">
+                    <button className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50">
                       <svg
-                        width="20"
-                        height="20"
+                        width="16"
+                        height="16"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -699,19 +701,19 @@ export default function SamplePage3() {
                   </div>
 
                   {/* Selected Date */}
-                  <div className="text-center mb-6">
-                    <div className="text-blue-500 font-semibold">
+                  <div className="text-center mb-3">
+                    <div className="text-blue-500 font-semibold text-sm">
                       18 Jun 2025
                     </div>
                   </div>
 
                   {/* Calendar Grid */}
-                  <div className="grid grid-cols-7 gap-1 mb-4">
+                  <div className="grid grid-cols-7 gap-0.5 mb-3">
                     {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
                       (day) => (
                         <div
                           key={day}
-                          className="text-center text-sm font-medium text-gray-600 py-2"
+                          className="text-center text-xs font-medium text-gray-600 py-1"
                         >
                           {day}
                         </div>
@@ -721,17 +723,17 @@ export default function SamplePage3() {
                     {[25, 26, 27, 28, 29, 30, 31].map((date) => (
                       <div
                         key={`prev-${date}`}
-                        className="text-center p-2 text-gray-400 relative"
+                        className="text-center p-1 text-gray-400 relative text-sm"
                       >
                         {date}
-                        <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-1"></div>
+                        <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
                       </div>
                     ))}
                     {/* Current month days */}
                     {Array.from({ length: 30 }, (_, i) => i + 1).map((date) => (
                       <div
                         key={date}
-                        className={`text-center p-2 relative cursor-pointer hover:bg-gray-50 rounded ${
+                        className={`text-center p-1 relative cursor-pointer hover:bg-gray-50 rounded text-sm ${
                           date === 18 ? "bg-blue-500 text-white rounded-lg" : ""
                         } ${[1, 7, 14, 15, 21, 27, 28].includes(date) ? "text-red-500" : ""}`}
                       >
@@ -740,7 +742,7 @@ export default function SamplePage3() {
                           1, 2, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20,
                           21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                         ].includes(date) && (
-                          <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-1"></div>
+                          <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
                         )}
                       </div>
                     ))}
@@ -748,10 +750,10 @@ export default function SamplePage3() {
                     {[1, 2, 3, 4, 5].map((date) => (
                       <div
                         key={`next-${date}`}
-                        className="text-center p-2 text-gray-400 relative"
+                        className="text-center p-1 text-gray-400 relative text-sm"
                       >
                         {date}
-                        <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-1"></div>
+                        <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
                       </div>
                     ))}
                   </div>
