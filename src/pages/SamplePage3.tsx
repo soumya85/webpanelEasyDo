@@ -8,6 +8,11 @@ import EmployeeLocationTimelineCard from "@/components/cards/EmployeeLocationTim
 export default function SamplePage3() {
   const { t } = useGlobalTranslation();
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState("Head office");
+  const [holidayName, setHolidayName] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [holidayType, setHolidayType] = useState("Public");
 
   // Sample card data for this page with business-focused actions
   const cardData = [
