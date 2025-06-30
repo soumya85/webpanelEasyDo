@@ -2040,7 +2040,9 @@ export default function SamplePage3() {
                                 <h3 className="font-semibold text-gray-900">
                                   {employee.name}
                                 </h3>
-                                <Shield className="w-4 h-4 text-red-500" />
+                                <span className="material-icons-outlined text-red-500 text-base">
+                                  privacy_tip
+                                </span>
                               </div>
                               <p className="text-sm text-gray-600">
                                 {employee.position}{" "}
