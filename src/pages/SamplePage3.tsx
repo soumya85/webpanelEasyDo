@@ -757,41 +757,41 @@ export default function SamplePage3() {
                   </div>
 
                   {/* Leave Details for Selected Date */}
-                  <div className="border-t border-gray-200 pt-4">
-                    <div className="bg-white rounded-lg border border-gray-200 p-4">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
-                          <span className="text-white text-sm font-semibold">
+                  <div className="border-t border-gray-200 pt-2">
+                    <div className="bg-white rounded-lg border border-gray-200 p-3">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
+                          <span className="text-white text-xs font-semibold">
                             SM
                           </span>
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-800">
+                          <div className="font-semibold text-gray-800 text-sm">
                             SAMIR PANDA
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-xs text-gray-600">
                             Liberty Highrise Pvt Ltd
                           </div>
                         </div>
                         <div className="ml-auto">
-                          <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                          <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
                             Approved
                           </span>
                         </div>
                       </div>
-                      <div className="border-t border-gray-100 pt-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="font-semibold text-gray-800">
+                      <div className="border-t border-gray-100 pt-2">
+                        <div className="flex items-center justify-between mb-1">
+                          <div className="font-semibold text-gray-800 text-sm">
                             Sick Leave
                           </div>
-                          <div className="text-red-500 font-medium">
+                          <div className="text-red-500 font-medium text-sm">
                             On Leave
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 text-gray-700 mb-2">
+                        <div className="flex items-center gap-2 text-gray-700 mb-1">
                           <svg
-                            width="16"
-                            height="16"
+                            width="14"
+                            height="14"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -809,11 +809,11 @@ export default function SamplePage3() {
                             <line x1="8" y1="2" x2="8" y2="6" />
                             <line x1="3" y1="10" x2="21" y2="10" />
                           </svg>
-                          <span className="font-semibold">
+                          <span className="font-semibold text-sm">
                             2 days from Jun 18 to Jun 19
                           </span>
                         </div>
-                        <div className="text-sm text-gray-600 mb-2">
+                        <div className="text-xs text-gray-600 mb-1">
                           Reporting Manager -{" "}
                           <span className="font-medium">Bhaskar Sir</span>
                         </div>
