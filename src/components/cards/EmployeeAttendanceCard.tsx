@@ -577,6 +577,99 @@ export default function EmployeeAttendanceCard() {
             </div>
           </div>
         )}
+
+        {/* Absent Employee Cards */}
+        {selectedFilter === "Absent" && (
+          <div className="space-y-3">
+            {/* ABHIRAM MOHAPATRA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">AM</span>
+                  </div>
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-red-500 rounded-full border border-white flex items-center justify-center">
+                    <User className="w-1.5 h-1.5 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    ABHIRAM MOHAPATRA
+                  </h4>
+                  <p className="text-xs text-gray-600">Supervisor</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-sm text-gray-500">📞</span>
+                    <span className="text-sm text-gray-500">💬</span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-xs font-medium text-red-600 bg-red-100 px-1.5 py-0.5 rounded">
+                      ABSENT
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* AHSAN RAZA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+                    alt="AHSAN RAZA"
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-red-500 rounded-full border border-white flex items-center justify-center">
+                    <User className="w-1.5 h-1.5 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    AHSAN RAZA
+                  </h4>
+                  <p className="text-xs text-gray-600">Supervisor</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-sm text-gray-500">📞</span>
+                    <span className="text-sm text-gray-500">💬</span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-xs font-medium text-red-600 bg-red-100 px-1.5 py-0.5 rounded">
+                      ABSENT
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
