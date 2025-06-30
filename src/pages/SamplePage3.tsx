@@ -2101,6 +2101,40 @@ export default function SamplePage3() {
                             </button>
                           </div>
                         </div>
+
+                        {/* Manager for section - only show for employees with team members */}
+                        {employee.teamMembers &&
+                          employee.teamMembers.length > 0 && (
+                            <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm text-blue-500 font-medium">
+                                  Manager for :
+                                </span>
+                                <div className="flex items-center">
+                                  {employee.teamMembers
+                                    .slice(0, 4)
+                                    .map((member, index) => (
+                                      <div
+                                        key={index}
+                                        className="w-6 h-6 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-700 -ml-1 first:ml-0"
+                                        style={{
+                                          zIndex:
+                                            employee.teamMembers.length - index,
+                                        }}
+                                      >
+                                        {member.initials}
+                                      </div>
+                                    ))}
+                                  {employee.totalTeamMembers > 4 && (
+                                    <span className="text-sm text-blue-500 font-medium ml-1">
+                                      +{employee.totalTeamMembers - 4}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
                         <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
                           <span className="text-sm text-gray-600">
                             Reporting Manager: {employee.reportingManager}
