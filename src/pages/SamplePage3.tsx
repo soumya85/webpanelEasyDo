@@ -588,40 +588,45 @@ export default function SamplePage3() {
                     type: "Public",
                     typeColor: "bg-primary-500",
                   },
-                ].map((holiday, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between p-3 mx-3 my-2 bg-white rounded-lg shadow-md border border-gray-100"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="text-center min-w-[50px]">
-                        <div className="text-lg font-bold text-gray-800">
-                          {holiday.date.split(" ")[1]}
-                        </div>
-                        <div className="text-xs text-gray-600">
-                          {holiday.date.split(" ")[0]}
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {holiday.month}
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-semibold text-gray-800 text-sm">
-                          {holiday.name}
-                        </div>
-                        <div className="text-xs text-gray-600">
-                          {holiday.location}
-                        </div>
-                        <div className="h-0.5 bg-primary-500 rounded-full mt-1 w-full"></div>
-                      </div>
-                    </div>
+                ]
+                  .filter((holiday) => {
+                    if (selectedBranchFilter === "All Branches") return true;
+                    return holiday.location === selectedBranchFilter;
+                  })
+                  .map((holiday, index) => (
                     <div
-                      className={`px-3 py-1 rounded text-white text-xs font-medium ${holiday.typeColor}`}
+                      key={index}
+                      className="flex items-center justify-between p-3 mx-3 my-2 bg-white rounded-lg shadow-md border border-gray-100"
                     >
-                      {holiday.type}
+                      <div className="flex items-center gap-4">
+                        <div className="text-center min-w-[50px]">
+                          <div className="text-lg font-bold text-gray-800">
+                            {holiday.date.split(" ")[1]}
+                          </div>
+                          <div className="text-xs text-gray-600">
+                            {holiday.date.split(" ")[0]}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {holiday.month}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-800 text-sm">
+                            {holiday.name}
+                          </div>
+                          <div className="text-xs text-gray-600">
+                            {holiday.location}
+                          </div>
+                          <div className="h-0.5 bg-primary-500 rounded-full mt-1 w-full"></div>
+                        </div>
+                      </div>
+                      <div
+                        className={`px-3 py-1 rounded text-white text-xs font-medium ${holiday.typeColor}`}
+                      >
+                        {holiday.type}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>
