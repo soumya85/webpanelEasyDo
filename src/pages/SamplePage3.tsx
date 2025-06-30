@@ -160,29 +160,29 @@ export default function SamplePage3() {
 
               {/* Summary Stats */}
               <div className="p-4 border-b border-gray-200">
-                <div className="grid grid-cols-4 gap-2">
-                  <div className="text-center">
+                <div className="grid grid-cols-4 gap-3">
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
                     <div className="text-2xl font-bold text-gray-800">37</div>
                     <div className="text-xs text-gray-600 font-medium">
                       TOTAL
                     </div>
                     <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
                     <div className="text-2xl font-bold text-gray-800">16</div>
                     <div className="text-xs text-gray-600 font-medium">
                       PUBLIC
                     </div>
                     <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
                     <div className="text-2xl font-bold text-gray-800">1</div>
                     <div className="text-xs text-gray-600 font-medium">
                       COMPANY
                     </div>
                     <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
                     <div className="text-2xl font-bold text-gray-800">10</div>
                     <div className="text-xs text-gray-600 font-medium">
                       REGIONAL
@@ -191,7 +191,6 @@ export default function SamplePage3() {
                   </div>
                 </div>
               </div>
-
               {/* Holiday List */}
               <div className="h-80 overflow-y-auto">
                 {[
