@@ -1062,6 +1062,13 @@ export default function EmployeeAttendanceCard() {
         {/* Holiday Employee Cards */}
         {selectedFilter === "Holiday" && (
           <div className="space-y-3">
+            {/* Holiday Banner */}
+            <div className="bg-red-300 text-center py-2 px-4 rounded-t-lg">
+              <span className="text-gray-800 font-semibold text-sm">
+                RATH YATRA
+              </span>
+            </div>
+
             {/* ABHIRAM MOHAPATRA Card */}
             <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
               {/* Employee Profile */}
