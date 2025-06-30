@@ -2105,12 +2105,15 @@ export default function SamplePage3() {
                           <span className="text-sm text-gray-600">
                             Reporting Manager: {employee.reportingManager}
                           </span>
-                          <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
-                            <span className="text-blue-500">★</span>
-                            <span className="text-sm text-blue-500">
-                              {employee.rating} (0)
-                            </span>
-                          </div>
+                          {!employee.teamMembers ||
+                          employee.teamMembers.length === 0 ? (
+                            <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
+                              <span className="text-blue-500">★</span>
+                              <span className="text-sm text-blue-500">
+                                {employee.rating} (0)
+                              </span>
+                            </div>
+                          ) : null}
                         </div>
 
                         {/* Manager for section - only show for employees with team members */}
@@ -2137,11 +2140,32 @@ export default function SamplePage3() {
                                       </div>
                                     ))}
                                   {employee.totalTeamMembers > 4 && (
-                                    <span className="text-sm text-blue-500 font-medium ml-2">
-                                      +{employee.totalTeamMembers - 4}
-                                    </span>
+                                    <>
+                                      <span className="text-sm text-blue-500 font-medium ml-2">
+                                        +{employee.totalTeamMembers - 4}
+                                      </span>
+                                      <svg
+                                        className="w-4 h-4 text-blue-500 ml-1"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M9 5l7 7-7 7"
+                                        />
+                                      </svg>
+                                    </>
                                   )}
                                 </div>
+                              </div>
+                              <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
+                                <span className="text-blue-500">★</span>
+                                <span className="text-sm text-blue-500">
+                                  {employee.rating} (0)
+                                </span>
                               </div>
                             </div>
                           )}
