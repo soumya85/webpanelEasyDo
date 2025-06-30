@@ -204,7 +204,7 @@ export default function EmployeeAttendanceCard() {
       case "Leave":
         return 2; // AMIT PARMAR and PRABIR KHANRA
       case "Week off":
-        return 0; // No cards implemented yet
+        return 2; // AMIT PARMAR and ANAND iOS DEVELOPER
       case "Holiday":
         return 0; // No cards implemented yet
       default:
@@ -945,6 +945,101 @@ export default function EmployeeAttendanceCard() {
                   </div>
                   <p className="text-xs text-gray-500 mt-0.5">
                     Prabir Khanra is o...
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Week Off Employee Cards */}
+        {selectedFilter === "Week off" && (
+          <div className="space-y-3">
+            {/* AMIT PARMAR Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AP</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-red-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Amit Parmar
+                  </h4>
+                  <p className="text-xs text-gray-600">IOS Developer</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-white bg-red-500">
+                      Week Off
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    It's Week Off(Saturday)
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* ANAND iOS DEVELOPER Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AI</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-red-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Anand iOS Developer
+                  </h4>
+                  <p className="text-xs text-gray-600">
+                    IOS Technical Developer
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-white bg-red-500">
+                      Week Off
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    It's Week Off(Saturday)
                   </p>
                 </div>
               </div>
