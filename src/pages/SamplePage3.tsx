@@ -1651,6 +1651,32 @@ export default function SamplePage3() {
           </div>
         )}
       </div>
+
+      {/* Card Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
+          <DialogHeader className="flex flex-row items-center justify-between p-6 border-b">
+            <DialogTitle className="text-xl font-semibold text-[#283C50]">
+              {selectedCard?.title || ""}
+            </DialogTitle>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            >
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </button>
+          </DialogHeader>
+
+          {/* Modal Content Area - Currently Blank */}
+          <div className="flex-1 p-6">
+            {/* This area will be populated with specific content later */}
+            <div className="w-full h-full flex items-center justify-center text-gray-500">
+              <p>Content for {selectedCard?.title} will be added here</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
