@@ -2226,19 +2226,29 @@ export default function SamplePage3() {
                                       <span className="text-sm text-blue-500 font-medium ml-2">
                                         +{employee.totalTeamMembers - 4}
                                       </span>
-                                      <svg
-                                        className="w-4 h-4 text-blue-500 ml-1"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
+                                      <button
+                                        onClick={() => {
+                                          setSelectedManagerTeam(
+                                            employee.detailedTeamMembers,
+                                          );
+                                          setShowTeamMembersPopup(true);
+                                        }}
+                                        className="ml-1"
                                       >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth={2}
-                                          d="M9 5l7 7-7 7"
-                                        />
-                                      </svg>
+                                        <svg
+                                          className="w-4 h-4 text-blue-500"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9 5l7 7-7 7"
+                                          />
+                                        </svg>
+                                      </button>
                                     </>
                                   )}
                                 </div>
