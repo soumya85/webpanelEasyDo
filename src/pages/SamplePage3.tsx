@@ -224,7 +224,13 @@ export default function SamplePage3() {
     }
 
     return filtered;
-  }, [employeeData, selectedStatus, selectedBranch, searchQuery, sortBy]);
+  }, [
+    employeeData,
+    selectedStatus,
+    selectedEmployeeBranch,
+    searchQuery,
+    sortBy,
+  ]);
 
   // Get counts for status tabs
   const statusCounts = useMemo(() => {
