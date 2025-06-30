@@ -1869,7 +1869,7 @@ export default function SamplePage3() {
       {/* Card Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
-          <DialogHeader className="flex flex-row items-center justify-between px-6 pt-2 pb-3 border-b">
+          <DialogHeader className="flex flex-row items-center justify-between px-4 pt-1 pb-2 border-b">
             <DialogTitle className="text-xl font-semibold text-[#283C50]">
               {selectedCard?.title || ""}
             </DialogTitle>
@@ -1888,7 +1888,7 @@ export default function SamplePage3() {
               // Employee Management Interface
               <div className="h-full flex flex-col">
                 {/* Employee Header */}
-                <div className="flex items-center justify-between p-4 border-b">
+                <div className="flex items-center justify-between px-4 py-2 border-b">
                   <h1 className="text-lg font-semibold text-gray-900">
                     Employee
                   </h1>
