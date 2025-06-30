@@ -808,8 +808,42 @@ export default function EmployeeAttendanceCard() {
                 <p className="text-xs text-gray-500 mt-0.5">In: 10:45 AM - Ou...</p>
               </div>
             </div>
-                    Amit Parmar is o...
-                  </p>
+
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                Too late for the attendance
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - 10:45 AM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  MU 10, Madhuban Market Complex, Port District, Jagatsinghpur, Paradeep, Odisha 754142, India
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: 07:15 PM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  Room No. 40, Madhuban Building Market Complex, near Hp gas outlet, Paradeep, Odisha 754142, India
                 </div>
               </div>
 
@@ -825,6 +859,8 @@ export default function EmployeeAttendanceCard() {
                 </button>
               </div>
             </div>
+          </div>
+        )}
 
             {/* PRABIR KHANRA Card */}
             <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
