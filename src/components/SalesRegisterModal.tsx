@@ -60,7 +60,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto p-0 gap-0 [&>button]:hidden !translate-y-[-60%] !top-[40%]">
+      <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto !p-0 !gap-0 [&>button]:hidden !translate-y-[-60%] !top-[40%] [&>*:first-child]:!mt-0">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10 -mx-0 -mt-0 rounded-t-lg">
           <div className="flex items-center gap-3">
