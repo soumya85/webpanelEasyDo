@@ -690,6 +690,95 @@ export default function EmployeeAttendanceCard() {
           </div>
         )}
 
+        {/* Late Employee Card */}
+        {selectedFilter === "Late" && (
+          <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+            {/* Employee Profile */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+                  alt="GOLAM SAMADANI"
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center bg-green-500">
+                  <User className="w-1.5 h-1.5 text-white" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  GOLAM SAMADANI
+                </h4>
+                <p className="text-xs text-gray-600">Executive</p>
+              </div>
+              <div className="text-right">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
+                    PRESENT
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  In: 10:45 AM - Ou...
+                </p>
+              </div>
+            </div>
+
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                Too late for the attendance
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - 10:45 AM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  MU 10, Madhuban Market Complex, Port District, Jagatsinghpur,
+                  Paradeep, Odisha 754142, India
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: 07:15 PM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  Room No. 40, Madhuban Building Market Complex, near Hp gas
+                  outlet, Paradeep, Odisha 754142, India
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Absent Employee Cards */}
         {selectedFilter === "Absent" && (
           <div className="space-y-3">
