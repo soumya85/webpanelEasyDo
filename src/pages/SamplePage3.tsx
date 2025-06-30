@@ -15,6 +15,8 @@ export default function SamplePage3() {
   const [holidayType, setHolidayType] = useState("Public");
   const [selectedBranchFilter, setSelectedBranchFilter] =
     useState("All Branches");
+  const [leaveView, setLeaveView] = useState("day");
+  const [leaveFilter, setLeaveFilter] = useState("pending");
 
   // Sample card data for this page with business-focused actions
   const cardData = [
