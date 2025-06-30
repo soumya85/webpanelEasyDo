@@ -1024,16 +1024,21 @@ export default function SamplePage3() {
 
                     {leaveFilter === "denied" && (
                       <>
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="flex items-center gap-3 mb-3">
-                            <img
-                              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
-                              alt="Smurti"
-                              className="w-10 h-10 rounded-full object-cover"
-                            />
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                SM
+                              </span>
+                            </div>
                             <div className="flex-1">
-                              <div className="font-semibold text-gray-800">
-                                Smurti
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  Smurti
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
                               </div>
                               <div className="text-sm font-semibold">
                                 2 days from May 16 to May 17
@@ -1047,34 +1052,34 @@ export default function SamplePage3() {
                               <div className="text-red-500 font-medium text-sm">
                                 ABSENT
                               </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">
+                                  Digambar Khuntia
+                                </span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                16 May 2025, 09:47 AM
+                              </div>
                             </div>
-                            <div className="ml-auto">
-                              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                                Rejected
-                              </span>
-                            </div>
-                          </div>
-                          <div className="text-sm text-gray-600 mb-1">
-                            Reporting Manager -{" "}
-                            <span className="font-medium">
-                              Digambar Khuntia
-                            </span>
-                          </div>
-                          <div className="text-xs text-gray-500">
-                            16 May 2025, 09:47 AM
                           </div>
                         </div>
 
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="flex items-center gap-3 mb-3">
-                            <img
-                              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop&crop=face"
-                              alt="Tusar Das"
-                              className="w-10 h-10 rounded-full object-cover"
-                            />
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                TD
+                              </span>
+                            </div>
                             <div className="flex-1">
-                              <div className="font-semibold text-gray-800">
-                                Tusar Das
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  Tusar Das
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
                               </div>
                               <div className="text-sm font-semibold">
                                 4 days from May 15 to May 18
@@ -1088,21 +1093,16 @@ export default function SamplePage3() {
                               <div className="text-red-500 font-medium text-sm">
                                 ABSENT
                               </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">
+                                  Digambar Khuntia
+                                </span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                15 May 2025, 09:50 AM
+                              </div>
                             </div>
-                            <div className="ml-auto">
-                              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                                Rejected
-                              </span>
-                            </div>
-                          </div>
-                          <div className="text-sm text-gray-600 mb-1">
-                            Reporting Manager -{" "}
-                            <span className="font-medium">
-                              Digambar Khuntia
-                            </span>
-                          </div>
-                          <div className="text-xs text-gray-500">
-                            15 May 2025, 09:50 AM
                           </div>
                         </div>
                       </>
