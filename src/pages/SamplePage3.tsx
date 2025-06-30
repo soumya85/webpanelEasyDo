@@ -330,7 +330,7 @@ export default function SamplePage3() {
                 </div>
               </div>
               {/* Holiday List */}
-              <div className="h-96 overflow-y-auto">
+              <div className="h-[500px] overflow-y-auto">
                 {[
                   {
                     date: "Wed 01",
