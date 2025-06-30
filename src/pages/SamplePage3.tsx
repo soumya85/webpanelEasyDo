@@ -39,6 +39,7 @@ import {
   Calendar,
   User,
   ArrowLeft,
+  Shield,
 } from "lucide-react";
 
 export default function SamplePage3() {
@@ -188,6 +189,11 @@ export default function SamplePage3() {
     setIsModalOpen(true);
   };
 
+  const getBranchName = (branchId: string) => {
+    const branch = branchData.find((b) => b.id === branchId);
+    return branch ? branch.name : "All Branches";
+  };
+
   // Filter and sort employees
   const filteredEmployees = useMemo(() => {
     let filtered = employeeData.filter((emp) => {
@@ -242,11 +248,6 @@ export default function SamplePage3() {
     });
     return counts;
   }, [employeeData]);
-
-  const getBranchName = (branchId: string) => {
-    const branch = branchData.find((b) => b.id === branchId);
-    return branch ? branch.name : "All Branches";
-  };
 
   const clearSearch = () => {
     setSearchQuery("");
@@ -1869,7 +1870,7 @@ export default function SamplePage3() {
       {/* Card Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
-          <DialogHeader className="flex flex-row items-center justify-between px-6 pt-2 pb-3 border-b">
+          <DialogHeader className="flex flex-row items-center justify-between px-4 pt-1 pb-2 border-b">
             <DialogTitle className="text-xl font-semibold text-[#283C50]">
               {selectedCard?.title || ""}
             </DialogTitle>
@@ -1886,9 +1887,9 @@ export default function SamplePage3() {
           <div className="flex-1 overflow-hidden">
             {selectedCard?.id === "register" ? (
               // Employee Management Interface
-              <div className="h-full flex flex-col">
+              <div className="h-full flex flex-col -mt-px">
                 {/* Employee Header */}
-                <div className="flex items-center justify-between p-4 border-b">
+                <div className="flex items-center justify-between px-4 py-2 border-b bg-slate-100">
                   <h1 className="text-lg font-semibold text-gray-900">
                     Employee
                   </h1>
@@ -1942,12 +1943,12 @@ export default function SamplePage3() {
                 <div className="flex-1 p-4 space-y-4 overflow-y-auto">
                   {/* Search Bar */}
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 w-4 h-4" />
                     <Input
                       placeholder="Search Employee"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 pr-10 bg-gray-100 border-none"
+                      className="pl-10 pr-10 bg-gray-100 border-none placeholder:text-gray-600"
                     />
                     {searchQuery && (
                       <button
@@ -2004,7 +2005,7 @@ export default function SamplePage3() {
                     <span className="text-gray-900">
                       {getBranchName(selectedEmployeeBranch)}
                     </span>
-                    <ChevronDown className="w-4 h-4 text-gray-400" />
+                    <ChevronDown className="w-4 h-4 text-gray-700" />
                   </button>
 
                   {/* Employee List */}
@@ -2017,25 +2018,24 @@ export default function SamplePage3() {
                         <div className="flex items-start justify-between">
                           <div className="flex items-start gap-3">
                             <Avatar className="w-12 h-12">
-                              {employee.avatar ? (
-                                <AvatarImage
-                                  src={employee.avatar}
-                                  alt={employee.name}
-                                />
-                              ) : (
-                                <AvatarFallback className="bg-gray-400 text-white">
-                                  {employee.initials}
-                                </AvatarFallback>
-                              )}
+                              <AvatarFallback className="bg-black text-white">
+                                {employee.initials ||
+                                  employee.name
+                                    .split(" ")
+                                    .map((word) => word[0])
+                                    .join("")
+                                    .substring(0, 2)
+                                    .toUpperCase()}
+                              </AvatarFallback>
                             </Avatar>
                             <div className="flex-1">
                               <div className="flex items-center gap-2">
                                 <h3 className="font-semibold text-gray-900">
                                   {employee.name}
                                 </h3>
-                                <div className="w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
-                                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                                </div>
+                                <span className="material-icons-outlined text-red-500 text-base">
+                                  privacy_tip
+                                </span>
                               </div>
                               <p className="text-sm text-gray-600">
                                 {employee.position}{" "}
