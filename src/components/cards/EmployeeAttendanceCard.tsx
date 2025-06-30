@@ -9,6 +9,126 @@ export default function EmployeeAttendanceCard() {
   const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
 
+  // Sample employee data for different statuses
+  const employeeData = {
+    Present: {
+      name: "ABHIJIT MONDAL",
+      department: "Jetty Sircar",
+      status: "PRESENT",
+      statusColor: "text-green-600",
+      statusBg: "bg-green-100",
+      dotColor: "bg-green-500",
+      inTime: "10:01 AM",
+      outTime: "07:02 PM",
+      inStatus: "Office",
+      inStatusColor: "text-green-600",
+      outStatus: "Unverified",
+      outStatusColor: "text-red-600",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+    },
+    Absent: {
+      name: "PRIYA SHARMA",
+      department: "Operations",
+      status: "ABSENT",
+      statusColor: "text-red-600",
+      statusBg: "bg-red-100",
+      dotColor: "bg-red-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "No Check-in",
+      inStatusColor: "text-red-600",
+      outStatus: "No Check-out",
+      outStatusColor: "text-red-600",
+      image:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+    },
+    "Half Day": {
+      name: "RAHUL GUPTA",
+      department: "Marketing",
+      status: "HALF DAY",
+      statusColor: "text-orange-600",
+      statusBg: "bg-orange-100",
+      dotColor: "bg-orange-500",
+      inTime: "10:15 AM",
+      outTime: "02:30 PM",
+      inStatus: "Office",
+      inStatusColor: "text-green-600",
+      outStatus: "Half Day Leave",
+      outStatusColor: "text-orange-600",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+    },
+    Late: {
+      name: "SNEHA PATEL",
+      department: "Finance",
+      status: "LATE",
+      statusColor: "text-yellow-600",
+      statusBg: "bg-yellow-100",
+      dotColor: "bg-yellow-500",
+      inTime: "11:45 AM",
+      outTime: "07:15 PM",
+      inStatus: "Late Entry",
+      inStatusColor: "text-yellow-600",
+      outStatus: "Office",
+      outStatusColor: "text-green-600",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+    },
+    Leave: {
+      name: "AMIT KUMAR",
+      department: "IT Support",
+      status: "LEAVE",
+      statusColor: "text-purple-600",
+      statusBg: "bg-purple-100",
+      dotColor: "bg-purple-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "On Leave",
+      inStatusColor: "text-purple-600",
+      outStatus: "Approved Leave",
+      outStatusColor: "text-purple-600",
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+    },
+    "Week off": {
+      name: "ANJALI SINGH",
+      department: "HR",
+      status: "WEEK OFF",
+      statusColor: "text-blue-600",
+      statusBg: "bg-blue-100",
+      dotColor: "bg-blue-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "Weekend",
+      inStatusColor: "text-blue-600",
+      outStatus: "Weekend",
+      outStatusColor: "text-blue-600",
+      image:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
+    },
+    Holiday: {
+      name: "RAJESH VERMA",
+      department: "Sales",
+      status: "HOLIDAY",
+      statusColor: "text-indigo-600",
+      statusBg: "bg-indigo-100",
+      dotColor: "bg-indigo-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "Public Holiday",
+      inStatusColor: "text-indigo-600",
+      outStatus: "Public Holiday",
+      outStatusColor: "text-indigo-600",
+      image:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop&crop=face",
+    },
+  };
+
+  const currentEmployee =
+    employeeData[selectedFilter as keyof typeof employeeData] ||
+    employeeData.Present;
+
   const branchDropdownRef = useRef<HTMLDivElement>(null);
   const filterDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -345,59 +465,113 @@ export default function EmployeeAttendanceCard() {
           <div className="flex items-center gap-2 mb-3">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
-                alt="Abhijit Mondal"
+                src={currentEmployee.image}
+                alt={currentEmployee.name}
                 className="w-8 h-8 rounded-full object-cover"
               />
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border border-white flex items-center justify-center">
+              <div
+                className={cn(
+                  "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center",
+                  currentEmployee.dotColor,
+                )}
+              >
                 <User className="w-1.5 h-1.5 text-white" />
               </div>
             </div>
             <div className="flex-1">
               <h4 className="text-sm font-semibold text-gray-900">
-                ABHIJIT MONDAL
+                {currentEmployee.name}
               </h4>
-              <p className="text-xs text-gray-600">Jetty Sircar</p>
+              <p className="text-xs text-gray-600">
+                {currentEmployee.department}
+              </p>
             </div>
             <div className="text-right">
               <div className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-xs font-medium text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
-                  PRESENT
+                <div
+                  className={cn(
+                    "w-2 h-2 rounded-full",
+                    currentEmployee.dotColor,
+                  )}
+                ></div>
+                <span
+                  className={cn(
+                    "text-xs font-medium px-1.5 py-0.5 rounded",
+                    currentEmployee.statusColor,
+                    currentEmployee.statusBg,
+                  )}
+                >
+                  {currentEmployee.status}
                 </span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">In: 10:01 AM</p>
+              <p className="text-xs text-gray-500 mt-0.5">
+                In: {currentEmployee.inTime}
+              </p>
             </div>
           </div>
 
           {/* Attendance Details */}
           <div className="space-y-2">
             <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
-              Attendance from Office
+              {selectedFilter === "Present" ||
+              selectedFilter === "Late" ||
+              selectedFilter === "Half Day"
+                ? "Attendance from Office"
+                : selectedFilter === "Absent"
+                  ? "No Attendance Record"
+                  : selectedFilter === "Leave"
+                    ? "Leave Information"
+                    : selectedFilter === "Week off"
+                      ? "Weekend Schedule"
+                      : "Holiday Schedule"}
             </div>
 
             {/* Check In & Out */}
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-gray-900">
-                  IN - 10:01 AM
+                  {currentEmployee.inTime === "--"
+                    ? "IN - Not Available"
+                    : `IN - ${currentEmployee.inTime}`}
                 </span>
                 <div className="flex items-center gap-1">
-                  <span className="text-xs font-medium text-green-600">
-                    Office
+                  <span
+                    className={cn(
+                      "text-xs font-medium",
+                      currentEmployee.inStatusColor,
+                    )}
+                  >
+                    {currentEmployee.inStatus}
                   </span>
-                  <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                  <div
+                    className={cn(
+                      "w-1.5 h-1.5 rounded-full",
+                      currentEmployee.dotColor,
+                    )}
+                  ></div>
                 </div>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-gray-900">
-                  OUT: 07:02 PM
+                  {currentEmployee.outTime === "--"
+                    ? "OUT: Not Available"
+                    : `OUT: ${currentEmployee.outTime}`}
                 </span>
                 <div className="flex items-center gap-1">
-                  <span className="text-xs font-medium text-red-600">
-                    Unverified
+                  <span
+                    className={cn(
+                      "text-xs font-medium",
+                      currentEmployee.outStatusColor,
+                    )}
+                  >
+                    {currentEmployee.outStatus}
                   </span>
-                  <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                  <div
+                    className={cn(
+                      "w-1.5 h-1.5 rounded-full",
+                      currentEmployee.dotColor,
+                    )}
+                  ></div>
                 </div>
               </div>
             </div>
