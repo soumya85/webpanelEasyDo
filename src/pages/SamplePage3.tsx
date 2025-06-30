@@ -2330,19 +2330,19 @@ export default function SamplePage3() {
         </SheetContent>
       </Sheet>
 
-      {/* Add Employee Sheet */}
-      <Sheet open={showAddEmployee} onOpenChange={setShowAddEmployee}>
-        <SheetContent side="bottom" className="h-[90vh]">
-          <SheetHeader>
-            <div className="flex items-center justify-between">
-              <button onClick={() => setShowAddEmployee(false)}>
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-              <SheetTitle>Add Employee</SheetTitle>
-              <button className="text-blue-500 font-medium">Submit</button>
-            </div>
-          </SheetHeader>
-          <div className="space-y-4 mt-6">
+      {/* Add Employee Modal */}
+      <Dialog open={showAddEmployee} onOpenChange={setShowAddEmployee}>
+        <DialogContent className="max-w-lg max-h-[90vh] flex flex-col">
+          <DialogHeader className="flex flex-row items-center justify-between px-0 pt-0 pb-4 border-b">
+            <button onClick={() => setShowAddEmployee(false)}>
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <DialogTitle className="text-lg font-semibold">
+              Add Employee
+            </DialogTitle>
+            <button className="text-blue-500 font-medium">Submit</button>
+          </DialogHeader>
+          <div className="flex-1 overflow-y-auto space-y-4 py-4">
             <select className="w-full p-4 bg-gray-100 rounded-lg border-none">
               <option>Head office</option>
             </select>
@@ -2400,8 +2400,8 @@ export default function SamplePage3() {
               when it is send directly from company dashboard.
             </p>
           </div>
-        </SheetContent>
-      </Sheet>
+        </DialogContent>
+      </Dialog>
 
       {/* Team Members Popup */}
       <Dialog
