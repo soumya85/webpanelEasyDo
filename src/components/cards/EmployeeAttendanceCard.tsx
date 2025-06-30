@@ -560,6 +560,9 @@ export default function EmployeeAttendanceCard() {
                     ></div>
                   </div>
                 </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  6, Kalighat, West Bengal 700026, India
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold text-gray-900">
                     OUT: {currentEmployee.outTime}
@@ -580,6 +583,10 @@ export default function EmployeeAttendanceCard() {
                       )}
                     ></div>
                   </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd, Kalighat,
+                  Kolkata, West Bengal 700026, India
                 </div>
               </div>
 
