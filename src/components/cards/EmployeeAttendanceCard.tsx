@@ -148,7 +148,7 @@ export default function EmployeeAttendanceCard() {
   ];
 
   return (
-    <Card className="bg-white border border-gray-200 shadow-sm h-full">
+    <Card className="bg-white border border-gray-200 shadow-lg h-full">
       <CardContent className="p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
