@@ -952,19 +952,33 @@ export default function SamplePage3() {
                               {/* Header with profile and status */}
                               <div className="flex items-start justify-between mb-4">
                                 <div className="flex items-center gap-3">
-                                  {leave.profileImage ? (
-                                    <img
-                                      src={leave.profileImage}
-                                      alt={leave.employee}
-                                      className="w-12 h-12 rounded-full object-cover"
-                                    />
-                                  ) : (
-                                    <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
-                                      <span className="text-white text-sm font-semibold">
+                                  <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+                                    <svg
+                                      width="48"
+                                      height="48"
+                                      viewBox="0 0 48 48"
+                                      className="rounded-full"
+                                    >
+                                      <circle
+                                        cx="24"
+                                        cy="24"
+                                        r="24"
+                                        fill="#4F46E5"
+                                      />
+                                      <text
+                                        x="24"
+                                        y="24"
+                                        textAnchor="middle"
+                                        dominantBaseline="central"
+                                        fill="white"
+                                        fontSize="16"
+                                        fontWeight="600"
+                                        fontFamily="Inter, sans-serif"
+                                      >
                                         {leave.avatar}
-                                      </span>
-                                    </div>
-                                  )}
+                                      </text>
+                                    </svg>
+                                  </div>
                                   <div>
                                     <div className="font-bold text-gray-900 text-lg">
                                       {leave.employee}
