@@ -37,9 +37,9 @@ export default function PendingApprovals() {
 
   return (
     <main className="flex-1 min-h-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-inter">
-      {/* <header className="bg-white border-b px-6 py-6 flex flex-col md:flex-row items-center justify-between shadow-sm sticky top-0 z-20">
+      <header className="bg-white border-b px-6 py-6 flex flex-col md:flex-row items-center justify-between shadow-sm sticky top-0 z-20">
         <h1 className="text-2xl font-extrabold text-indigo-800 tracking-tight">Pending Approvals</h1>
-      </header> */}
+      </header>
       <div className="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Admin Approvals */}
         <section>
