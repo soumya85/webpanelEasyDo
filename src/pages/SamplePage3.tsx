@@ -17,6 +17,184 @@ export default function SamplePage3() {
     useState("All Branches");
   const [leaveView, setLeaveView] = useState("day");
   const [leaveFilter, setLeaveFilter] = useState("pending");
+  const [selectedLeaveDate, setSelectedLeaveDate] = useState(18);
+
+  // Get leave data for selected date
+  const getLeaveDataForDate = (date: number) => {
+    const leaveData: Record<number, any[]> = {
+      18: [
+        {
+          id: 1,
+          employee: "SAMIR PANDA",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "SM",
+          leaveType: "Sick Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "On Leave",
+        },
+      ],
+      28: [
+        {
+          id: 1,
+          employee: "SMITA CHAKRABORTY",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "SC",
+          leaveType: "Sick Leave",
+          status: "Rejected",
+          statusColor: "red",
+          duration: "1 day Jun 28",
+          reportingManager: "Debashis Debnath",
+          date: "28 Jun 2025, 08:52 AM",
+          profileImage:
+            "https://cdn.builder.io/api/v1/image/assets%2F4151f6d04f9e4b7ea192f924bc09c466%2Fc6eefb5de19543c18843527f845b0a2b?format=webp&width=800",
+        },
+        {
+          id: 2,
+          employee: "SAMIR PANDA",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "SP",
+          leaveType: "Other Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "1 day Jun 28",
+          reportingManager: "Bhaskar Sir",
+          date: "27 Jun 2025, 09:50 PM",
+          profileImage:
+            "https://cdn.builder.io/api/v1/image/assets%2F4151f6d04f9e4b7ea192f924bc09c466%2F729d2c034fdc4d9c8f13ad645dea0b67?format=webp&width=800",
+        },
+        {
+          id: 3,
+          employee: "AmarPrasad",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "AP",
+          leaveType: "Other Leave",
+          status: "Rejected",
+          statusColor: "red",
+          duration: "0.5 day Jun 28 - First Half",
+          reportingManager: "Amulya Kumar Kar",
+          date: "27 Jun 2025, 07:00 PM",
+          profileImage:
+            "https://cdn.builder.io/api/v1/image/assets%2F4151f6d04f9e4b7ea192f924bc09c466%2F54d8c9e3a68a4573be08e8e04fd48e96?format=webp&width=800",
+        },
+        {
+          id: 4,
+          employee: "Rahul Kumar",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "RK",
+          leaveType: "Other Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "1 day Jun 28",
+          reportingManager: "Amlan Malick",
+          date: "27 Jun 2025, 06:32 PM",
+          profileImage:
+            "https://cdn.builder.io/api/v1/image/assets%2F4151f6d04f9e4b7ea192f924bc09c466%2F063515019b3a4d4cac9d87eb6777a45e?format=webp&width=800",
+        },
+        {
+          id: 5,
+          employee: "Shraban Kumar Mishra",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "SM",
+          leaveType: "Earned Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "1.5 days from Jun 27 to Jun 28 - First Half",
+          reportingManager: "Amulya Kumar Kar",
+          date: "26 Jun 2025, 11:50 AM",
+          profileImage:
+            "https://cdn.builder.io/api/v1/image/assets%2F4151f6d04f9e4b7ea192f924bc09c466%2F96367df235854d9196efd6d9d7f9fec0?format=webp&width=800",
+        },
+        {
+          id: 6,
+          employee: "Sambhunath ghosh",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "SG",
+          leaveType: "Other Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "2 days from Jun 27 to Jun 28",
+          reportingManager: "Debashis Debnath",
+          date: "26 Jun 2025, 11:50 AM",
+          profileImage:
+            "https://cdn.builder.io/api/v1/image/assets%2F4151f6d04f9e4b7ea192f924bc09c466%2Fda09e85359e2419d99a6282d61cbeea0?format=webp&width=800",
+        },
+        {
+          id: 7,
+          employee: "Suresh",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "S",
+          leaveType: "Casual Leave",
+          status: "Rejected",
+          statusColor: "red",
+          duration: "3 days from Jun 26 to Jun 28",
+          reportingManager: "Digambar Khuntia",
+          date: "25 Jun 2025, 10:38 PM",
+        },
+        {
+          id: 8,
+          employee: "Madhurika Pal",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "MP",
+          leaveType: "Earned Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "1 day Jun 28",
+          reportingManager: "Debashis Debnath",
+          date: "25 Jun 2025, 09:46 PM",
+        },
+        {
+          id: 9,
+          employee: "Prabir Khanra",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "PK",
+          leaveType: "Earned Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "3 days from Jun 26 to Jun 28",
+          reportingManager: "Debashis Debnath",
+          date: "25 Jun 2025, 05:39 PM",
+        },
+        {
+          id: 10,
+          employee: "Nitai Samanta",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "NS",
+          leaveType: "Casual Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "2 days from Jun 27 to Jun 28",
+          reportingManager: "Amulya Kumar Kar",
+          date: "25 Jun 2025, 04:22 PM",
+        },
+        {
+          id: 11,
+          employee: "Amulya Kumar Kar",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "AK",
+          leaveType: "Earned Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "2 days from Jun 27 to Jun 28",
+          reportingManager: "Bhaskar Sir",
+          date: "23 Jun 2025, 08:23 PM",
+        },
+      ],
+      14: [
+        {
+          id: 1,
+          employee: "MARY WILSON",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "MW",
+          leaveType: "Casual Leave",
+          status: "Denied",
+          statusColor: "red",
+          duration: "Full Day",
+        },
+      ],
+    };
+    return leaveData[date] || [];
+  };
 
   // Sample card data for this page with business-focused actions
   const cardData = [
@@ -703,7 +881,7 @@ export default function SamplePage3() {
                   {/* Selected Date */}
                   <div className="text-center mb-3">
                     <div className="text-blue-500 font-semibold text-sm">
-                      18 Jun 2025
+                      {selectedLeaveDate} Jun 2025
                     </div>
                   </div>
 
@@ -733,8 +911,11 @@ export default function SamplePage3() {
                     {Array.from({ length: 30 }, (_, i) => i + 1).map((date) => (
                       <div
                         key={date}
+                        onClick={() => setSelectedLeaveDate(date)}
                         className={`text-center p-1.5 relative cursor-pointer hover:bg-gray-50 rounded text-sm ${
-                          date === 18 ? "bg-blue-500 text-white rounded-lg" : ""
+                          date === selectedLeaveDate
+                            ? "bg-blue-500 text-white rounded-lg"
+                            : ""
                         } ${[1, 7, 14, 15, 21, 27, 28].includes(date) ? "text-red-500" : ""}`}
                       >
                         {date}
@@ -760,69 +941,123 @@ export default function SamplePage3() {
 
                   {/* Leave Details for Selected Date */}
                   <div className="border-t border-gray-200 pt-2">
-                    <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-md">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
-                          <span className="text-white text-xs font-semibold">
-                            SM
-                          </span>
+                    <div className="space-y-3 max-h-60 overflow-y-auto">
+                      {getLeaveDataForDate(selectedLeaveDate).length > 0 ? (
+                        getLeaveDataForDate(selectedLeaveDate).map(
+                          (leave, index) => (
+                            <div
+                              key={leave.id}
+                              className="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm mb-4"
+                            >
+                              {/* Header with profile and status */}
+                              <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+                                    <svg
+                                      width="48"
+                                      height="48"
+                                      viewBox="0 0 48 48"
+                                      className="rounded-full"
+                                    >
+                                      <circle
+                                        cx="24"
+                                        cy="24"
+                                        r="24"
+                                        fill="#000000"
+                                      />
+                                      <text
+                                        x="24"
+                                        y="24"
+                                        textAnchor="middle"
+                                        dominantBaseline="central"
+                                        fill="white"
+                                        fontSize="16"
+                                        fontWeight="600"
+                                        fontFamily="Inter, sans-serif"
+                                      >
+                                        {leave.avatar}
+                                      </text>
+                                    </svg>
+                                  </div>
+                                  <div>
+                                    <div className="font-bold text-gray-900 text-lg">
+                                      {leave.employee}
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                      {leave.company}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div>
+                                  <span
+                                    className={`px-3 py-1.5 rounded-full text-sm font-semibold ${
+                                      leave.statusColor === "green"
+                                        ? "bg-green-500 text-white"
+                                        : "bg-red-500 text-white"
+                                    }`}
+                                  >
+                                    {leave.status}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Leave Type */}
+                              <div className="mb-4">
+                                <h3 className="font-bold text-gray-900 text-xl mb-3">
+                                  {leave.leaveType}
+                                </h3>
+
+                                {/* Duration with calendar icon */}
+                                <div className="flex items-center gap-2 text-gray-700 mb-3">
+                                  <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    className="text-red-500"
+                                  >
+                                    <rect
+                                      x="3"
+                                      y="4"
+                                      width="18"
+                                      height="18"
+                                      rx="2"
+                                      ry="2"
+                                    />
+                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                  </svg>
+                                  <span className="font-bold text-gray-900 text-base">
+                                    {leave.duration}
+                                  </span>
+                                </div>
+
+                                {/* Reporting Manager */}
+                                <div className="text-sm text-gray-700 mb-3">
+                                  Reporting Manager -{" "}
+                                  <span className="font-bold text-gray-900">
+                                    {leave.reportingManager}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Timestamp */}
+                              <div className="text-right">
+                                <div className="text-xs text-gray-500">
+                                  {leave.date}
+                                </div>
+                              </div>
+                            </div>
+                          ),
+                        )
+                      ) : (
+                        <div className="text-center text-gray-500 text-sm py-8">
+                          No leave requests for this date
                         </div>
-                        <div>
-                          <div className="font-semibold text-gray-800 text-sm">
-                            SAMIR PANDA
-                          </div>
-                          <div className="text-xs text-gray-600">
-                            Liberty Highrise Pvt Ltd
-                          </div>
-                        </div>
-                        <div className="ml-auto">
-                          <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                            Approved
-                          </span>
-                        </div>
-                      </div>
-                      <div className="border-t border-gray-100 pt-2">
-                        <div className="flex items-center justify-between mb-1">
-                          <div className="font-semibold text-gray-800 text-sm">
-                            Sick Leave
-                          </div>
-                          <div className="text-red-500 font-medium text-sm">
-                            On Leave
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-700 mb-1">
-                          <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                          >
-                            <rect
-                              x="3"
-                              y="4"
-                              width="18"
-                              height="18"
-                              rx="2"
-                              ry="2"
-                            />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
-                          </svg>
-                          <span className="font-semibold text-sm">
-                            2 days from Jun 18 to Jun 19
-                          </span>
-                        </div>
-                        <div className="text-xs text-gray-600 mb-1">
-                          Reporting Manager -{" "}
-                          <span className="font-medium">Bhaskar Sir</span>
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          17 Jun 2025, 10:46 PM
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
