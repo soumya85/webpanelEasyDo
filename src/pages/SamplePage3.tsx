@@ -128,7 +128,7 @@ export default function SamplePage3() {
 
         {/* Holidays and Leave Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-          <div className="min-h-[400px]">
+          <div className="min-h-[600px]">
             <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-gray-200">
