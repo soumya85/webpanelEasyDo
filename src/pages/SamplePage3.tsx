@@ -164,6 +164,13 @@ export default function SamplePage3() {
       reportingManager: "Bhaskar Sir",
       status: "accepted",
       rating: 4.4,
+      teamMembers: [
+        { initials: "SK", avatar: "/api/placeholder/24/24" },
+        { initials: "RK", avatar: "/api/placeholder/24/24" },
+        { initials: "MJ", avatar: "/api/placeholder/24/24" },
+        { initials: "PR", avatar: "/api/placeholder/24/24" },
+      ],
+      totalTeamMembers: 6,
     },
   ];
 
