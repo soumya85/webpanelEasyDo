@@ -19,6 +19,69 @@ export default function SamplePage3() {
   const [leaveFilter, setLeaveFilter] = useState("pending");
   const [selectedLeaveDate, setSelectedLeaveDate] = useState(18);
 
+  // Get leave data for selected date
+  const getLeaveDataForDate = (date: number) => {
+    const leaveData: Record<number, any[]> = {
+      18: [
+        {
+          id: 1,
+          employee: "SAMIR PANDA",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "SM",
+          leaveType: "Sick Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "On Leave",
+        },
+      ],
+      28: [
+        {
+          id: 1,
+          employee: "JOHN DOE",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "JD",
+          leaveType: "Annual Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "Full Day",
+        },
+        {
+          id: 2,
+          employee: "JANE SMITH",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "JS",
+          leaveType: "Casual Leave",
+          status: "Pending",
+          statusColor: "orange",
+          duration: "Half Day",
+        },
+        {
+          id: 3,
+          employee: "ALEX BROWN",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "AB",
+          leaveType: "Sick Leave",
+          status: "Approved",
+          statusColor: "green",
+          duration: "Full Day",
+        },
+      ],
+      14: [
+        {
+          id: 1,
+          employee: "MARY WILSON",
+          company: "Liberty Highrise Pvt Ltd",
+          avatar: "MW",
+          leaveType: "Casual Leave",
+          status: "Denied",
+          statusColor: "red",
+          duration: "Full Day",
+        },
+      ],
+    };
+    return leaveData[date] || [];
+  };
+
   // Sample card data for this page with business-focused actions
   const cardData = [
     {
