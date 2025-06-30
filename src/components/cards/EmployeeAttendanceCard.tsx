@@ -202,7 +202,7 @@ export default function EmployeeAttendanceCard() {
       case "Late":
         return 1; // GOLAM SAMADANI
       case "Leave":
-        return 0; // No cards implemented yet
+        return 2; // AMIT PARMAR and PRABIR KHANRA
       case "Week off":
         return 0; // No cards implemented yet
       case "Holiday":
@@ -761,6 +761,103 @@ export default function EmployeeAttendanceCard() {
                 <div className="text-xs text-gray-500 pl-2">
                   Room No. 40, Madhuban Building Market Complex, near Hp gas
                   outlet, Paradeep, Odisha 754142, India
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Leave Employee Cards */}
+        {selectedFilter === "Leave" && (
+          <div className="space-y-3">
+            {/* AMIT PARMAR Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+                    alt="AMIT PARMAR"
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center bg-green-500">
+                    <User className="w-1.5 h-1.5 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Amit Parmar
+                  </h4>
+                  <p className="text-xs text-gray-600">IOS Developer</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
+                      LEAVE
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Amit Parmar is o...
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* PRABIR KHANRA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
+                    alt="PRABIR KHANRA"
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center bg-green-500">
+                    <User className="w-1.5 h-1.5 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Prabir Khanra
+                  </h4>
+                  <p className="text-xs text-gray-600">Dock Sirkar</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
+                      LEAVE
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Prabir Khanra is o...
+                  </p>
                 </div>
               </div>
 
