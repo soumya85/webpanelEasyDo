@@ -487,11 +487,9 @@ export default function EmployeeAttendanceCard() {
             {/* Employee Profile */}
             <div className="flex items-center gap-2 mb-3">
               <div className="relative">
-                <img
-                  src={currentEmployee.image}
-                  alt={currentEmployee.name}
-                  className="w-8 h-8 rounded-full object-cover"
-                />
+                <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">AM</span>
+                </div>
                 <div
                   className={cn(
                     "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center",
