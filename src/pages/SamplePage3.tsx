@@ -2002,7 +2002,7 @@ export default function SamplePage3() {
                     className="w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg"
                   >
                     <span className="text-gray-900">
-                      {getBranchName(selectedBranch)}
+                      {getBranchName(selectedEmployeeBranch)}
                     </span>
                     <ChevronDown className="w-4 h-4 text-gray-400" />
                   </button>
