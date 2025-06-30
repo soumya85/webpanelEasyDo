@@ -2095,6 +2095,124 @@ export default function SamplePage3() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Branch Selection Sheet */}
+      <Sheet open={showBranchSheet} onOpenChange={setShowBranchSheet}>
+        <SheetContent side="bottom" className="h-[80vh]">
+          <SheetHeader>
+            <SheetTitle>Branches</SheetTitle>
+          </SheetHeader>
+          <div className="space-y-4 mt-6">
+            {branchData.map((branch) => (
+              <button
+                key={branch.id}
+                onClick={() => {
+                  setSelectedBranch(branch.id);
+                  setShowBranchSheet(false);
+                }}
+                className="w-full text-left p-4 hover:bg-gray-50 rounded-lg"
+              >
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-semibold text-gray-900">
+                        {branch.name}
+                      </h3>
+                      {selectedBranch === branch.id && (
+                        <Check className="w-5 h-5 text-blue-500" />
+                      )}
+                    </div>
+                    {branch.description && (
+                      <p className="text-sm text-gray-600 mt-1">
+                        {branch.description}
+                      </p>
+                    )}
+                    {branch.address && (
+                      <p className="text-sm text-gray-500 mt-1">
+                        {branch.address}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      {/* Add Employee Sheet */}
+      <Sheet open={showAddEmployee} onOpenChange={setShowAddEmployee}>
+        <SheetContent side="bottom" className="h-[90vh]">
+          <SheetHeader>
+            <div className="flex items-center justify-between">
+              <button onClick={() => setShowAddEmployee(false)}>
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+              <SheetTitle>Add Employee</SheetTitle>
+              <button className="text-blue-500 font-medium">Submit</button>
+            </div>
+          </SheetHeader>
+          <div className="space-y-4 mt-6">
+            <select className="w-full p-4 bg-gray-100 rounded-lg border-none">
+              <option>Head office</option>
+            </select>
+
+            <button className="w-full p-4 bg-gray-100 rounded-lg border-none text-left flex items-center justify-between">
+              <span className="text-gray-600">Select Contact</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+
+            <Input placeholder="Name" className="bg-gray-100 border-none" />
+
+            <div className="flex gap-2">
+              <select className="p-4 bg-gray-100 rounded-lg border-none">
+                <option>IN +91</option>
+              </select>
+              <Input
+                placeholder="Mobile"
+                className="flex-1 bg-gray-100 border-none"
+              />
+            </div>
+
+            <Input placeholder="Email" className="bg-gray-100 border-none" />
+            <Input
+              placeholder="Employee Code"
+              className="bg-gray-100 border-none"
+            />
+
+            <div className="relative">
+              <Input
+                placeholder="Date Of Birth"
+                className="bg-gray-100 border-none pr-12"
+              />
+              <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            </div>
+
+            <Input
+              placeholder="Designation"
+              className="bg-gray-100 border-none"
+            />
+
+            <select className="w-full p-4 bg-gray-100 rounded-lg border-none">
+              <option>Role</option>
+            </select>
+
+            <p className="text-sm text-gray-600">
+              Note: Access rights will be granted base on role of the employee
+            </p>
+
+            <select className="w-full p-4 bg-gray-100 rounded-lg border-none">
+              <option>Reporting Manager</option>
+            </select>
+
+            <p className="text-sm text-gray-600">
+              Note: Attendance, approvals request will be send reporting manager
+              when it is send directly from company dashboard.
+            </p>
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
