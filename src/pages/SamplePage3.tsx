@@ -62,6 +62,127 @@ export default function SamplePage3() {
     id: string;
   } | null>(null);
 
+  // Employee Management State (for Register modal)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("accepted");
+  const [selectedBranch, setSelectedBranch] = useState("all");
+  const [sortBy, setSortBy] = useState("alphabetically");
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [showBranchSheet, setShowBranchSheet] = useState(false);
+  const [showAddEmployee, setShowAddEmployee] = useState(false);
+
+  // Mock employee data
+  const employeeData = [
+    {
+      id: 1,
+      name: "ABHIJIT MONDAL",
+      position: "Jetty Sircar",
+      branch: "Haldia",
+      doj: "Apr 09, 2024",
+      authority: 3,
+      avatar: "/api/placeholder/40/40",
+      initials: "AM",
+      reportingManager: "Nayanjyoti Mandal",
+      status: "accepted",
+      rating: 0,
+    },
+    {
+      id: 2,
+      name: "Abhijit Mukherjee",
+      position: "Operation Executive",
+      branch: "Head office",
+      doj: "Jan 01, 2017",
+      authority: 3,
+      avatar: "/api/placeholder/40/40",
+      initials: "AM",
+      reportingManager: "Debashis Debnath",
+      status: "accepted",
+      rating: 0,
+    },
+    {
+      id: 3,
+      name: "ABHIRAM MOHAPATRA",
+      position: "Supervisor",
+      branch: "Paradip",
+      doj: "N/A",
+      authority: 3,
+      avatar: null,
+      initials: "AM",
+      reportingManager: "Digambar Khuntia",
+      status: "accepted",
+      rating: 0,
+    },
+    {
+      id: 4,
+      name: "AHSAN RAZA",
+      position: "Manager",
+      branch: "Head office",
+      doj: "Mar 15, 2023",
+      authority: 2,
+      avatar: "/api/placeholder/40/40",
+      initials: "AR",
+      reportingManager: "Bhaskar Ghosh",
+      status: "accepted",
+      rating: 0,
+    },
+    {
+      id: 5,
+      name: "Bholanath Pal",
+      position: "Office Boy",
+      branch: "Head office",
+      doj: "Feb 14, 2022",
+      authority: 3,
+      avatar: null,
+      initials: "BP",
+      reportingManager: "Digambar Khuntia",
+      status: "accepted",
+      rating: 0,
+    },
+  ];
+
+  // Mock branch data
+  const branchData = [
+    {
+      id: "all",
+      name: "All Branches",
+      description: "Manage/View all the branches",
+      address: "",
+    },
+    {
+      id: "head-office",
+      name: "Head office",
+      description: "",
+      address:
+        "104, 3rd Floor , Shyama Prasad Mukherjee Road, Hazra, Kalighat, Kalighat, Kolkata, West Bengal 700026, India",
+    },
+    {
+      id: "haldia",
+      name: "Haldia",
+      description: "",
+      address:
+        "33GG+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721657, India",
+    },
+    {
+      id: "ahmedabad",
+      name: "Ahmedabad office",
+      description: "",
+      address: "C/142, Vishwas City 1, Sola, Ahmedabad, Gujarat 380061, India",
+    },
+    {
+      id: "paradip",
+      name: "Paradip",
+      description: "",
+      address: "7J9X+5GG, Paradeep, Odisha 754142, India",
+    },
+    {
+      id: "new-delhi",
+      name: "New Delhi",
+      description: "",
+      address:
+        "New Delhi,405, District Centre, Janakpuri, New Delhi, Delhi, 110058, India",
+    },
+  ];
+
   const handleCardClick = (card: { title: string; id: string }) => {
     setSelectedCard(card);
     setIsModalOpen(true);
