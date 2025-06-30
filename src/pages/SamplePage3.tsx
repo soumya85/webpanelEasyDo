@@ -4,6 +4,13 @@ import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText"
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 import EmployeeLocationTimelineCard from "@/components/cards/EmployeeLocationTimelineCard";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 export default function SamplePage3() {
   const { t } = useGlobalTranslation();
@@ -18,6 +25,18 @@ export default function SamplePage3() {
   const [leaveView, setLeaveView] = useState("day");
   const [leaveFilter, setLeaveFilter] = useState("pending");
   const [selectedLeaveDate, setSelectedLeaveDate] = useState(18);
+
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<{
+    title: string;
+    id: string;
+  } | null>(null);
+
+  const handleCardClick = (card: { title: string; id: string }) => {
+    setSelectedCard(card);
+    setIsModalOpen(true);
+  };
 
   // Get leave data for selected date
   const getLeaveDataForDate = (date: number) => {
@@ -265,9 +284,7 @@ export default function SamplePage3() {
             {cardData.map((card, index) => (
               <div
                 key={card.id}
-                onClick={() => {
-                  console.log(`Clicked ${card.title}`);
-                }}
+                onClick={() => handleCardClick(card)}
                 className={cn(
                   "flex w-full h-[100px]",
                   "px-2 py-3 justify-center items-center flex-shrink-0",
