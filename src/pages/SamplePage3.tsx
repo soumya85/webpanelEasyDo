@@ -39,6 +39,7 @@ import {
   Calendar,
   User,
   ArrowLeft,
+  Shield,
 } from "lucide-react";
 
 export default function SamplePage3() {
@@ -2033,9 +2034,7 @@ export default function SamplePage3() {
                                 <h3 className="font-semibold text-gray-900">
                                   {employee.name}
                                 </h3>
-                                <div className="w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
-                                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                                </div>
+                                <Shield className="w-4 h-4 text-red-500" />
                               </div>
                               <p className="text-sm text-gray-600">
                                 {employee.position}{" "}
