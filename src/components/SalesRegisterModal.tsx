@@ -1,29 +1,35 @@
-import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import React, { useState, useMemo } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { ArrowLeft } from "lucide-react";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
-import { useTranslation } from "@/hooks/useTranslation";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  ArrowLeft,
+  Search,
+  Settings2,
+  Phone,
+  MessageCircle,
+  MoreVertical,
+  ChevronDown,
+  MapPin,
+  Check,
+  Plus,
+  Calendar,
+  User,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface SalesRegisterModalProps {
   open: boolean;
@@ -31,22 +37,115 @@ interface SalesRegisterModalProps {
   onBackToReports: () => void;
 }
 
-// Sample data for the bar chart
-const chartData = [
+// Mock employee data
+const employeeData = [
   {
-    month: "Apr",
-    lastYear: 0.2,
-    currentYear: 0,
+    id: 1,
+    name: "ABHIJIT MONDAL",
+    position: "Jetty Sircar",
+    branch: "Haldia",
+    doj: "Apr 09, 2024",
+    authority: 3,
+    avatar: "/api/placeholder/40/40",
+    initials: "AM",
+    reportingManager: "Nayanjyoti Mandal",
+    status: "accepted",
+    rating: 0,
   },
   {
-    month: "May",
-    lastYear: 0,
-    currentYear: 0,
+    id: 2,
+    name: "Abhijit Mukherjee",
+    position: "Operation Executive",
+    branch: "Head office",
+    doj: "Jan 01, 2017",
+    authority: 3,
+    avatar: "/api/placeholder/40/40",
+    initials: "AM",
+    reportingManager: "Debashis Debnath",
+    status: "accepted",
+    rating: 0,
   },
   {
-    month: "Jun",
-    lastYear: 0,
-    currentYear: 0,
+    id: 3,
+    name: "ABHIRAM MOHAPATRA",
+    position: "Supervisor",
+    branch: "Paradip",
+    doj: "N/A",
+    authority: 3,
+    avatar: null,
+    initials: "AM",
+    reportingManager: "Digambar Khuntia",
+    status: "accepted",
+    rating: 0,
+  },
+  {
+    id: 4,
+    name: "AHSAN RAZA",
+    position: "Manager",
+    branch: "Head office",
+    doj: "Mar 15, 2023",
+    authority: 2,
+    avatar: "/api/placeholder/40/40",
+    initials: "AR",
+    reportingManager: "Bhaskar Ghosh",
+    status: "accepted",
+    rating: 0,
+  },
+  {
+    id: 5,
+    name: "Bholanath Pal",
+    position: "Office Boy",
+    branch: "Head office",
+    doj: "Feb 14, 2022",
+    authority: 3,
+    avatar: null,
+    initials: "BP",
+    reportingManager: "Digambar Khuntia",
+    status: "accepted",
+    rating: 0,
+  },
+];
+
+// Mock branch data
+const branchData = [
+  {
+    id: "all",
+    name: "All Branches",
+    description: "Manage/View all the branches",
+    address: "",
+  },
+  {
+    id: "head-office",
+    name: "Head office",
+    description: "",
+    address:
+      "104, 3rd Floor , Shyama Prasad Mukherjee Road, Hazra, Kalighat, Kalighat, Kolkata, West Bengal 700026, India",
+  },
+  {
+    id: "haldia",
+    name: "Haldia",
+    description: "",
+    address:
+      "33GG+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721657, India",
+  },
+  {
+    id: "ahmedabad",
+    name: "Ahmedabad office",
+    description: "",
+    address: "C/142, Vishwas City 1, Sola, Ahmedabad, Gujarat 380061, India",
+  },
+  {
+    id: "paradip",
+    name: "Paradip",
+    description: "",
+    address: "7J9X+5GG, Paradeep, Odisha 754142, India",
+  },
+  {
+    id: "new-delhi",
+    name: "New Delhi",
+    description: "",
+    address:
+      "New Delhi,405, District Centre, Janakpuri, New Delhi, Delhi, 110058, India",
   },
 ];
 
@@ -55,8 +154,13 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
   onClose,
   onBackToReports,
 }) => {
-  const { t } = useTranslation();
-  const [selectedPeriod, setSelectedPeriod] = useState(t("lastMonth"));
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("accepted");
+  const [selectedBranch, setSelectedBranch] = useState("all");
+  const [sortBy, setSortBy] = useState("alphabetically");
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [showBranchSheet, setShowBranchSheet] = useState(false);
+  const [showAddEmployee, setShowAddEmployee] = useState(false);
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
