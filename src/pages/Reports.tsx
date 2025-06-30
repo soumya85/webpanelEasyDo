@@ -10,14 +10,13 @@ import {
   ClipboardList
 } from "lucide-react";
 
-// Use high-quality SVGs or Lucide icons for best industry standard look
+// Use Lucide icons directly for best performance and consistency
 const reportItems = [
   {
     id: 1,
     title: "Attendance Report",
     icon: Calendar,
     color: "bg-blue-100 text-blue-700",
-    iconPath: "/icons/attendance-report.svg",
     route: "/attendance-report"
   },
   {
@@ -25,7 +24,6 @@ const reportItems = [
     title: "Sales Register",
     icon: FileText,
     color: "bg-green-100 text-green-700",
-    iconPath: "/icons/sales-register.svg",
     route: "/sales-register"
   },
   {
@@ -33,7 +31,6 @@ const reportItems = [
     title: "Approvals",
     icon: CheckSquare,
     color: "bg-yellow-100 text-yellow-700",
-    iconPath: "/icons/approvals.svg",
     route: "/approvals-report"
   },
   {
@@ -41,7 +38,6 @@ const reportItems = [
     title: "Operational Expenses",
     icon: HelpCircle,
     color: "bg-red-100 text-red-700",
-    iconPath: "/icons/expenses.svg",
     route: "/operational-expenses"
   },
   {
@@ -49,7 +45,6 @@ const reportItems = [
     title: "Salary Statement",
     icon: CreditCard,
     color: "bg-indigo-100 text-indigo-700",
-    iconPath: "/icons/salary-statement.svg",
     route: "/salary-statement"
   },
   {
@@ -57,7 +52,6 @@ const reportItems = [
     title: "Employee Performance Report",
     icon: TrendingUp,
     color: "bg-purple-100 text-purple-700",
-    iconPath: "/icons/performance-report.svg",
     route: "/performance-report"
   },
   {
@@ -65,7 +59,6 @@ const reportItems = [
     title: "Task Report",
     icon: ClipboardList,
     color: "bg-teal-100 text-teal-700",
-    iconPath: "/icons/task-report.svg",
     route: "/task-report"
   }
 ];
@@ -104,11 +97,7 @@ export default function Reports() {
             >
               <CardContent className="p-8 flex flex-col items-center text-center">
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-5 ${item.color} shadow-md group-hover:scale-105 transition-transform`}>
-                  {item.iconPath ? (
-                    <img src={item.iconPath} alt={item.title} className="w-10 h-10" />
-                  ) : (
-                    <item.icon className="w-10 h-10" />
-                  )}
+                  <item.icon className="w-10 h-10" />
                 </div>
                 <h3 className="font-semibold text-lg text-gray-900 group-hover:text-indigo-700 transition">
                   {item.title}

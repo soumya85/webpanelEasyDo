@@ -22,7 +22,10 @@ import {
   Check,
   X,
   Grid3X3,
-  List
+  List,
+  Calendar as CalendarIcon,
+  Clock,
+  Paperclip
 } from "lucide-react";
 
 interface Note {
@@ -87,6 +90,9 @@ export default function NotesReminder() {
   const [newNote, setNewNote] = useState({ title: "", content: "", color: "bg-white" });
   const [editingNote, setEditingNote] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [reminderDate, setReminderDate] = useState<string>("");
+  const [reminderTime, setReminderTime] = useState<string>("");
+  const [noteAttachment, setNoteAttachment] = useState<File | null>(null);
 
   const filteredNotes = notes.filter(note => 
     !note.isArchived && 
@@ -108,9 +114,15 @@ export default function NotesReminder() {
         isArchived: false,
         createdAt: new Date(),
         updatedAt: new Date(),
+        reminderDate,
+        reminderTime,
+        attachment: noteAttachment,
       };
       setNotes([note, ...notes]);
       setNewNote({ title: "", content: "", color: "bg-white" });
+      setReminderDate("");
+      setReminderTime("");
+      setNoteAttachment(null);
       setIsCreating(false);
     }
   };
@@ -318,7 +330,59 @@ export default function NotesReminder() {
                   className="border-none bg-transparent resize-none placeholder:text-gray-500"
                   rows={3}
                 />
-                
+
+                {/* Reminder Section */}
+                <div className="flex flex-col sm:flex-row gap-3 items-center">
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <CalendarIcon size={18} className="text-gray-400" />
+                    <Input
+                      type="date"
+                      value={reminderDate}
+                      onChange={e => setReminderDate(e.target.value)}
+                      className="w-36"
+                      placeholder="Date"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <Clock size={18} className="text-gray-400" />
+                    <Input
+                      type="time"
+                      value={reminderTime}
+                      onChange={e => setReminderTime(e.target.value)}
+                      className="w-28"
+                      placeholder="Time"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <Button
+                        variant="outline"
+                        className="w-fit flex items-center gap-2 h-8 text-xs"
+                        asChild
+                      >
+                        <span>
+                          <Paperclip className="w-4 h-4 mr-1" />
+                          {noteAttachment ? noteAttachment.name : "Attachment"}
+                        </span>
+                      </Button>
+                      <input
+                        type="file"
+                        className="hidden"
+                        onChange={e => setNoteAttachment(e.target.files?.[0] || null)}
+                      />
+                      {noteAttachment && (
+                        <button
+                          type="button"
+                          className="ml-2 text-xs text-red-500"
+                          onClick={() => setNoteAttachment(null)}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </label>
+                  </div>
+                </div>
+
                 <div className="flex items-center justify-between">
                   <div className="flex gap-1">
                     {noteColors.map((color) => (
@@ -329,7 +393,6 @@ export default function NotesReminder() {
                       />
                     ))}
                   </div>
-                  
                   <div className="flex gap-2">
                     <Button 
                       variant="ghost" 
@@ -337,6 +400,9 @@ export default function NotesReminder() {
                       onClick={() => {
                         setIsCreating(false);
                         setNewNote({ title: "", content: "", color: "bg-white" });
+                        setReminderDate("");
+                        setReminderTime("");
+                        setNoteAttachment(null);
                       }}
                     >
                       Cancel
