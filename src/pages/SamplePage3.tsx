@@ -630,7 +630,7 @@ export default function SamplePage3() {
               </div>
             </div>
           </div>
-          <div className="min-h-[400px]">
+          <div className="min-h-[600px]">
             <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm p-6">
               <h2 className="text-lg font-semibold text-gray-800 mb-4">
                 Leave
