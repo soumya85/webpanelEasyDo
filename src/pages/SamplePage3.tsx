@@ -122,12 +122,217 @@ export default function SamplePage3() {
         {/* Holidays and Leave Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           <div className="min-h-[400px]">
-            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                Holidays
-              </h2>
-              <div className="flex items-center justify-center h-[300px] text-gray-400">
-                <p>Card content coming soon...</p>
+            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                  <button className="text-primary-500">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <span className="text-primary-500 font-medium">CDB</span>
+                </div>
+                <h2 className="text-lg font-semibold text-gray-800">
+                  Holiday list
+                </h2>
+                <div className="flex items-center gap-1">
+                  <span className="text-primary-500 font-medium">All</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Summary Stats */}
+              <div className="p-4 border-b border-gray-200">
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-800">37</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      TOTAL
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-800">16</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      PUBLIC
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-800">1</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      COMPANY
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-800">10</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      REGIONAL
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Holiday List */}
+              <div className="h-80 overflow-y-auto">
+                {[
+                  {
+                    date: "Wed 01",
+                    month: "JAN 25",
+                    name: "ENGLISH NEW YEAR",
+                    location: "Haldia",
+                    type: "Company",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Tue 14",
+                    month: "JAN 25",
+                    name: "Uttrayan",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 15",
+                    month: "JAN 25",
+                    name: "Vasi Uttrayan",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Sun 26",
+                    month: "JAN 25",
+                    name: "REPUBLIC DAY",
+                    location: "Haldia",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 03",
+                    month: "FEB 25",
+                    name: "SARASWATI PUJA",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 05",
+                    month: "FEB 25",
+                    name: "Delhi Assembly Election",
+                    location: "New Delhi",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 26",
+                    month: "FEB 25",
+                    name: "MAHASHIVRATRI",
+                    location: "New Delhi",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Fri 14",
+                    month: "MAR 25",
+                    name: "Dhuleti",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Fri 14",
+                    month: "MAR 25",
+                    name: "DOLYATRA / HOLI",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Sat 15",
+                    month: "MAR 25",
+                    name: "Dolyatra/Holi",
+                    location: "Paradip",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 31",
+                    month: "MAR 25",
+                    name: "ID UL FITAR",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Thu 10",
+                    month: "APR 25",
+                    name: "MAHAVIR JAYANTI",
+                    location: "New Delhi",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Tue 15",
+                    month: "APR 25",
+                    name: "BENGALI NEW YEARS DAY",
+                    location: "Haldia",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                ].map((holiday, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-3 border-b border-gray-100 last:border-b-0"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="text-center min-w-[50px]">
+                        <div className="text-lg font-bold text-gray-800">
+                          {holiday.date.split(" ")[1]}
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          {holiday.date.split(" ")[0]}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {holiday.month}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-800 text-sm">
+                          {holiday.name}
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          {holiday.location}
+                        </div>
+                        <div className="h-0.5 bg-primary-500 rounded-full mt-1 w-full"></div>
+                      </div>
+                    </div>
+                    <div
+                      className={`px-3 py-1 rounded text-white text-xs font-medium ${holiday.typeColor}`}
+                    >
+                      {holiday.type}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
