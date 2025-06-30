@@ -141,7 +141,7 @@ export default function SamplePage3() {
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                       className="flex items-center gap-1 text-primary-500 font-medium"
                     >
-                      <span>All</span>
+                      <span>{selectedBranchFilter}</span>
                       <svg
                         width="16"
                         height="16"
@@ -154,13 +154,19 @@ export default function SamplePage3() {
                       </svg>
                     </button>
                     {isDropdownOpen && (
-                      <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                      <div className="absolute top-full left-0 mt-1 w-80 h-96 bg-white rounded-lg shadow-lg border border-gray-200 z-10 overflow-y-auto">
                         <div className="p-4">
                           <h3 className="text-lg font-semibold text-gray-800 mb-4">
                             Branches
                           </h3>
                           <div className="space-y-3">
-                            <div className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                            <div
+                              onClick={() => {
+                                setSelectedBranchFilter("All Branches");
+                                setIsDropdownOpen(false);
+                              }}
+                              className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer"
+                            >
                               <div className="flex items-center gap-3">
                                 <svg
                                   width="16"
@@ -182,17 +188,19 @@ export default function SamplePage3() {
                                   </div>
                                 </div>
                               </div>
-                              <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                className="text-primary-500"
-                              >
-                                <path d="M20 6 9 17l-5-5" />
-                              </svg>
+                              {selectedBranchFilter === "All Branches" && (
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  className="text-primary-500"
+                                >
+                                  <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                              )}
                             </div>
                             {[
                               {
@@ -223,28 +231,47 @@ export default function SamplePage3() {
                             ].map((branch, index) => (
                               <div
                                 key={index}
-                                className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer"
+                                onClick={() => {
+                                  setSelectedBranchFilter(branch.name);
+                                  setIsDropdownOpen(false);
+                                }}
+                                className="flex items-start justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer"
                               >
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  className="mt-1"
-                                >
-                                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                  <circle cx="12" cy="10" r="3" />
-                                </svg>
-                                <div>
-                                  <div className="font-semibold text-gray-800">
-                                    {branch.name}
-                                  </div>
-                                  <div className="text-sm text-gray-600 mt-1">
-                                    {branch.address}
+                                <div className="flex items-start gap-3">
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    className="mt-1"
+                                  >
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                  </svg>
+                                  <div>
+                                    <div className="font-semibold text-gray-800">
+                                      {branch.name}
+                                    </div>
+                                    <div className="text-sm text-gray-600 mt-1">
+                                      {branch.address}
+                                    </div>
                                   </div>
                                 </div>
+                                {selectedBranchFilter === branch.name && (
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    className="text-primary-500 mt-1"
+                                  >
+                                    <path d="M20 6 9 17l-5-5" />
+                                  </svg>
+                                )}
                               </div>
                             ))}
                           </div>
