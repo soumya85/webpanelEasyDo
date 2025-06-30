@@ -60,11 +60,9 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto p-0 [&>button]:hidden">
-        <DialogHeader>
-          <VisuallyHidden>
-            <DialogTitle>Sales Register</DialogTitle>
-          </VisuallyHidden>
+      <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto p-0 gap-0 [&>button]:hidden">
+        <DialogHeader className="sr-only">
+          <DialogTitle>Sales Register</DialogTitle>
         </DialogHeader>
 
         {/* Header */}
