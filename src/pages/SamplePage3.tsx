@@ -2126,7 +2126,7 @@ export default function SamplePage3() {
                       <h3 className="font-semibold text-gray-900">
                         {branch.name}
                       </h3>
-                      {selectedBranch === branch.id && (
+                      {selectedEmployeeBranch === branch.id && (
                         <Check className="w-5 h-5 text-blue-500" />
                       )}
                     </div>
