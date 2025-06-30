@@ -31,7 +31,11 @@ export default function SamplePage3() {
           leaveType: "Sick Leave",
           status: "Approved",
           statusColor: "green",
-          duration: "On Leave",
+          duration: "2 days from Jun 18 to Jun 19",
+          reportingManager: "Bhaskar Sir",
+          date: "17 Jun 2025, 10:46 PM",
+          profileImage:
+            "https://cdn.builder.io/api/v1/image/assets%2F4151f6d04f9e4b7ea192f924bc09c466%2Fc6eefb5de19543c18843527f845b0a2b?format=webp&width=800",
         },
       ],
       28: [
