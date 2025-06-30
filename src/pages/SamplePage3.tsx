@@ -15,6 +15,8 @@ export default function SamplePage3() {
   const [holidayType, setHolidayType] = useState("Public");
   const [selectedBranchFilter, setSelectedBranchFilter] =
     useState("All Branches");
+  const [leaveView, setLeaveView] = useState("day");
+  const [leaveFilter, setLeaveFilter] = useState("pending");
 
   // Sample card data for this page with business-focused actions
   const cardData = [
@@ -128,7 +130,7 @@ export default function SamplePage3() {
 
         {/* Holidays and Leave Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-          <div className="min-h-[400px]">
+          <div className="min-h-[600px]">
             <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-gray-200">
@@ -330,7 +332,7 @@ export default function SamplePage3() {
                 </div>
               </div>
               {/* Holiday List */}
-              <div className="h-80 overflow-y-auto">
+              <div className="h-[500px] overflow-y-auto">
                 {[
                   {
                     date: "Wed 01",
@@ -630,14 +632,484 @@ export default function SamplePage3() {
               </div>
             </div>
           </div>
-          <div className="min-h-[400px]">
-            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                Leave
-              </h2>
-              <div className="flex items-center justify-center h-[300px] text-gray-400">
-                <p>Card content coming soon...</p>
+          <div className="min-h-[600px]">
+            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-800">Leave</h2>
+                <div className="flex bg-gray-100 rounded-lg p-1">
+                  <button
+                    onClick={() => setLeaveView("day")}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      leaveView === "day"
+                        ? "bg-white text-gray-900 shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    Day
+                  </button>
+                  <button
+                    onClick={() => setLeaveView("list")}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      leaveView === "list"
+                        ? "bg-white text-gray-900 shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    List
+                  </button>
+                </div>
               </div>
+
+              {/* Day View - Calendar */}
+              {leaveView === "day" && (
+                <div className="p-4">
+                  {/* Month Navigation */}
+                  <div className="flex items-center justify-between mb-3">
+                    <button className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M15 18l-6-6 6-6" />
+                      </svg>
+                    </button>
+                    <div className="text-center">
+                      <div className="text-lg font-semibold text-gray-800">
+                        June
+                      </div>
+                      <div className="text-red-500 font-semibold text-sm">
+                        2025
+                      </div>
+                    </div>
+                    <button className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Selected Date */}
+                  <div className="text-center mb-3">
+                    <div className="text-blue-500 font-semibold text-sm">
+                      18 Jun 2025
+                    </div>
+                  </div>
+
+                  {/* Calendar Grid */}
+                  <div className="grid grid-cols-7 gap-0.5 mb-3">
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                      (day) => (
+                        <div
+                          key={day}
+                          className="text-center text-xs font-medium text-gray-600 py-1.5"
+                        >
+                          {day}
+                        </div>
+                      ),
+                    )}
+                    {/* Previous month days */}
+                    {[25, 26, 27, 28, 29, 30, 31].map((date) => (
+                      <div
+                        key={`prev-${date}`}
+                        className="text-center p-1.5 text-gray-400 relative text-sm"
+                      >
+                        {date}
+                        <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
+                      </div>
+                    ))}
+                    {/* Current month days */}
+                    {Array.from({ length: 30 }, (_, i) => i + 1).map((date) => (
+                      <div
+                        key={date}
+                        className={`text-center p-1.5 relative cursor-pointer hover:bg-gray-50 rounded text-sm ${
+                          date === 18 ? "bg-blue-500 text-white rounded-lg" : ""
+                        } ${[1, 7, 14, 15, 21, 27, 28].includes(date) ? "text-red-500" : ""}`}
+                      >
+                        {date}
+                        {[
+                          1, 2, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20,
+                          21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+                        ].includes(date) && (
+                          <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
+                        )}
+                      </div>
+                    ))}
+                    {/* Next month days */}
+                    {[1, 2, 3, 4, 5].map((date) => (
+                      <div
+                        key={`next-${date}`}
+                        className="text-center p-1.5 text-gray-400 relative text-sm"
+                      >
+                        {date}
+                        <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Leave Details for Selected Date */}
+                  <div className="border-t border-gray-200 pt-2">
+                    <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-md">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
+                          <span className="text-white text-xs font-semibold">
+                            SM
+                          </span>
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-800 text-sm">
+                            SAMIR PANDA
+                          </div>
+                          <div className="text-xs text-gray-600">
+                            Liberty Highrise Pvt Ltd
+                          </div>
+                        </div>
+                        <div className="ml-auto">
+                          <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Approved
+                          </span>
+                        </div>
+                      </div>
+                      <div className="border-t border-gray-100 pt-2">
+                        <div className="flex items-center justify-between mb-1">
+                          <div className="font-semibold text-gray-800 text-sm">
+                            Sick Leave
+                          </div>
+                          <div className="text-red-500 font-medium text-sm">
+                            On Leave
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-700 mb-1">
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <rect
+                              x="3"
+                              y="4"
+                              width="18"
+                              height="18"
+                              rx="2"
+                              ry="2"
+                            />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                          </svg>
+                          <span className="font-semibold text-sm">
+                            2 days from Jun 18 to Jun 19
+                          </span>
+                        </div>
+                        <div className="text-xs text-gray-600 mb-1">
+                          Reporting Manager -{" "}
+                          <span className="font-medium">Bhaskar Sir</span>
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          17 Jun 2025, 10:46 PM
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* List View */}
+              {leaveView === "list" && (
+                <div className="p-4">
+                  {/* Status Filters */}
+                  <div className="flex gap-6 mb-4">
+                    <button
+                      onClick={() => setLeaveFilter("pending")}
+                      className={`flex items-center gap-2 pb-2 border-b-2 transition-colors ${
+                        leaveFilter === "pending"
+                          ? "border-gray-800 text-gray-800"
+                          : "border-transparent text-gray-600"
+                      }`}
+                    >
+                      <span className="font-medium">PENDING</span>
+                      <span className="bg-black text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                        1
+                      </span>
+                    </button>
+                    <button
+                      onClick={() => setLeaveFilter("approved")}
+                      className={`flex items-center gap-2 pb-2 border-b-2 transition-colors ${
+                        leaveFilter === "approved"
+                          ? "border-gray-800 text-gray-800"
+                          : "border-transparent text-gray-600"
+                      }`}
+                    >
+                      <span className="font-medium">APPROVED</span>
+                      <span className="bg-black text-white rounded-full w-6 h-5 text-xs flex items-center justify-center">
+                        40
+                      </span>
+                    </button>
+                    <button
+                      onClick={() => setLeaveFilter("denied")}
+                      className={`flex items-center gap-2 pb-2 border-b-2 transition-colors ${
+                        leaveFilter === "denied"
+                          ? "border-gray-800 text-gray-800"
+                          : "border-transparent text-gray-600"
+                      }`}
+                    >
+                      <span className="font-medium">DENIED</span>
+                      <span className="bg-black text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                        6
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* Leave Approval Section */}
+                  <div className="bg-blue-50 rounded-lg p-3 mb-4">
+                    <div className="text-blue-600 font-medium text-sm">
+                      LEAVE APPROVAL
+                    </div>
+                  </div>
+
+                  {/* Leave List */}
+                  <div className="space-y-4 max-h-80 overflow-y-auto">
+                    {leaveFilter === "pending" && (
+                      <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                            <span className="text-white text-sm font-semibold">
+                              UD
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-semibold text-gray-800">
+                              Uttam Dey
+                            </div>
+                            <div className="text-sm font-semibold">
+                              1 day Jun 30
+                            </div>
+                            <div className="text-sm text-gray-600">Haldia</div>
+                            <div className="text-sm text-gray-600 font-medium">
+                              CASUAL LEAVE (CL)
+                            </div>
+                            <div className="text-xs text-gray-500 mt-2">
+                              30 June, 2025 5:56 AM
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {leaveFilter === "approved" && (
+                      <>
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                SC
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-semibold text-gray-800">
+                                SMITA CHAKRABORTY
+                              </div>
+                              <div className="text-sm font-semibold">
+                                1 day Jun 28
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Head office
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                SICK LEAVE (SL)
+                              </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                28 June, 2025 10:48 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                SM
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-semibold text-gray-800">
+                                SAMIR PANDA
+                              </div>
+                              <div className="text-sm font-semibold">
+                                1 day Jun 28
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Head office
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                OTHER LEAVE (OL)
+                              </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                27 June, 2025 9:50 PM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                RK
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-semibold text-gray-800">
+                                Rahul Kumar
+                              </div>
+                              <div className="text-sm font-semibold">
+                                1 day Jun 28
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                New Delhi
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                OTHER LEAVE (OL)
+                              </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                27 June, 2025 6:32 PM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                MK
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-semibold text-gray-800">
+                                Manoj Kumar
+                              </div>
+                              <div className="text-sm font-semibold">
+                                1 day Jun 27
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                New Delhi
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                CASUAL LEAVE (CL)
+                              </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                27 June, 2025 6:37 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {leaveFilter === "denied" && (
+                      <>
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                SM
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  Smurti
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
+                              </div>
+                              <div className="text-sm font-semibold">
+                                2 days from May 16 to May 17
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Liberty Highrise Pvt Ltd
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                SICK LEAVE
+                              </div>
+                              <div className="text-red-500 font-medium text-sm">
+                                ABSENT
+                              </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">
+                                  Digambar Khuntia
+                                </span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                16 May 2025, 09:47 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                TD
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  Tusar Das
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
+                              </div>
+                              <div className="text-sm font-semibold">
+                                4 days from May 15 to May 18
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Liberty Highrise Pvt Ltd
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                CASUAL LEAVE
+                              </div>
+                              <div className="text-red-500 font-medium text-sm">
+                                ABSENT
+                              </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">
+                                  Digambar Khuntia
+                                </span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                15 May 2025, 09:50 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
