@@ -459,136 +459,124 @@ export default function EmployeeAttendanceCard() {
           </div>
         </div>
 
-        {/* Employee Details Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          {/* Employee Profile */}
-          <div className="flex items-center gap-2 mb-3">
-            <div className="relative">
-              <img
-                src={currentEmployee.image}
-                alt={currentEmployee.name}
-                className="w-8 h-8 rounded-full object-cover"
-              />
-              <div
-                className={cn(
-                  "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center",
-                  currentEmployee.dotColor,
-                )}
-              >
-                <User className="w-1.5 h-1.5 text-white" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h4 className="text-sm font-semibold text-gray-900">
-                {currentEmployee.name}
-              </h4>
-              <p className="text-xs text-gray-600">
-                {currentEmployee.department}
-              </p>
-            </div>
-            <div className="text-right">
-              <div className="flex items-center gap-1">
+        {/* Employee Details Card - Only show for Present filter */}
+        {selectedFilter === "Present" && (
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            {/* Employee Profile */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative">
+                <img
+                  src={currentEmployee.image}
+                  alt={currentEmployee.name}
+                  className="w-8 h-8 rounded-full object-cover"
+                />
                 <div
                   className={cn(
-                    "w-2 h-2 rounded-full",
+                    "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center",
                     currentEmployee.dotColor,
                   )}
-                ></div>
-                <span
-                  className={cn(
-                    "text-xs font-medium px-1.5 py-0.5 rounded",
-                    currentEmployee.statusColor,
-                    currentEmployee.statusBg,
-                  )}
                 >
-                  {currentEmployee.status}
-                </span>
+                  <User className="w-1.5 h-1.5 text-white" />
+                </div>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">
-                In: {currentEmployee.inTime}
-              </p>
-            </div>
-          </div>
-
-          {/* Attendance Details */}
-          <div className="space-y-2">
-            <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
-              {selectedFilter === "Present" ||
-              selectedFilter === "Late" ||
-              selectedFilter === "Half Day"
-                ? "Attendance from Office"
-                : selectedFilter === "Absent"
-                  ? "No Attendance Record"
-                  : selectedFilter === "Leave"
-                    ? "Leave Information"
-                    : selectedFilter === "Week off"
-                      ? "Weekend Schedule"
-                      : "Holiday Schedule"}
-            </div>
-
-            {/* Check In & Out */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-gray-900">
-                  {currentEmployee.inTime === "--"
-                    ? "IN - Not Available"
-                    : `IN - ${currentEmployee.inTime}`}
-                </span>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  {currentEmployee.name}
+                </h4>
+                <p className="text-xs text-gray-600">
+                  {currentEmployee.department}
+                </p>
+              </div>
+              <div className="text-right">
                 <div className="flex items-center gap-1">
-                  <span
-                    className={cn(
-                      "text-xs font-medium",
-                      currentEmployee.inStatusColor,
-                    )}
-                  >
-                    {currentEmployee.inStatus}
-                  </span>
                   <div
                     className={cn(
-                      "w-1.5 h-1.5 rounded-full",
+                      "w-2 h-2 rounded-full",
                       currentEmployee.dotColor,
                     )}
                   ></div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-gray-900">
-                  {currentEmployee.outTime === "--"
-                    ? "OUT: Not Available"
-                    : `OUT: ${currentEmployee.outTime}`}
-                </span>
-                <div className="flex items-center gap-1">
                   <span
                     className={cn(
-                      "text-xs font-medium",
-                      currentEmployee.outStatusColor,
+                      "text-xs font-medium px-1.5 py-0.5 rounded",
+                      currentEmployee.statusColor,
+                      currentEmployee.statusBg,
                     )}
                   >
-                    {currentEmployee.outStatus}
+                    {currentEmployee.status}
                   </span>
-                  <div
-                    className={cn(
-                      "w-1.5 h-1.5 rounded-full",
-                      currentEmployee.dotColor,
-                    )}
-                  ></div>
                 </div>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  In: {currentEmployee.inTime}
+                </p>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-2 mt-2">
-              <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
-                Location Timeline
-                <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
-              </button>
-              <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
-                View Logs
-                <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
-              </button>
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                Attendance from Office
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - {currentEmployee.inTime}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span
+                      className={cn(
+                        "text-xs font-medium",
+                        currentEmployee.inStatusColor,
+                      )}
+                    >
+                      {currentEmployee.inStatus}
+                    </span>
+                    <div
+                      className={cn(
+                        "w-1.5 h-1.5 rounded-full",
+                        currentEmployee.dotColor,
+                      )}
+                    ></div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: {currentEmployee.outTime}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span
+                      className={cn(
+                        "text-xs font-medium",
+                        currentEmployee.outStatusColor,
+                      )}
+                    >
+                      {currentEmployee.outStatus}
+                    </span>
+                    <div
+                      className={cn(
+                        "w-1.5 h-1.5 rounded-full",
+                        currentEmployee.dotColor,
+                      )}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </CardContent>
     </Card>
   );
