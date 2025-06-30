@@ -66,6 +66,15 @@ const groupOptions: { value: GroupByOption; label: string }[] = [
   { value: "due-date", label: "Due Date" },
 ];
 
+// If you have a status list for tasks, update it like this:
+const statusOptions = [
+  { value: "pending", label: "Pending" },
+  { value: "in-progress", label: "In Progress" },
+  { value: "review", label: "Review" },
+  { value: "completed", label: "Completed" }, // <-- Use "Completed"
+  // Remove or replace "blocker"/"blocked"
+];
+
 // --- Calendar View Component ---
 function CalendarView({
   tasks,

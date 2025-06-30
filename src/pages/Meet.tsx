@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,7 @@ import {
   Clock,
   XCircle,
   ChevronRight,
+  Paperclip,
 } from "lucide-react";
 
 type Meeting = {
@@ -23,6 +24,13 @@ type Meeting = {
   participants: string[];
   meetingStatus?: "attended" | "missed" | "ignored";
 };
+
+// Add mock companies for selection
+const companies = [
+  { id: "abc", name: "ABC Corp" },
+  { id: "xyz", name: "XYZ Ltd" },
+  { id: "demo", name: "Demo Company" },
+];
 
 const mockMeetings: Meeting[] = [
   {
@@ -81,6 +89,32 @@ export default function Meet() {
   const [tab, setTab] = useState<"pending" | "completed" | "today">("pending");
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [newTitle, setNewTitle] = useState("");
+  const [company, setCompany] = useState("");
+  const [newDate, setNewDate] = useState(getTodayISO());
+  const [newTime, setNewTime] = useState("09:00");
+  const [selectedParticipants, setSelectedParticipants] = useState<string[]>(
+    [],
+  );
+  const [showParticipantsDropdown, setShowParticipantsDropdown] =
+    useState(false);
+  const [contacts, setContacts] = useState<any[]>([]); // Replace with your contacts logic
+  const [meetingType, setMeetingType] = useState<"online" | "offline">("online");
+
+  // Venue state
+  const [venue, setVenue] = useState("");
+  const [showMap, setShowMap] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<{
+    lat: number;
+    lng: number;
+    address: string;
+  } | null>(null);
+
+  // Additional fields
+  const [instructions, setInstructions] = useState("");
+  const [agenda, setAgenda] = useState("");
+  const [repeatType, setRepeatType] = useState<"none" | "weekly" | "monthly" | "yearly">("none");
+  const [attachment, setAttachment] = useState<File | null>(null);
 
   const filteredMeetings = useMemo(() => {
     let filtered = meetings.filter((m) =>
@@ -95,18 +129,6 @@ export default function Meet() {
     return filtered;
   }, [meetings, search, tab]);
 
-  // Modal state
-  const [newTitle, setNewTitle] = useState("");
-  const [newDate, setNewDate] = useState(getTodayISO());
-  const [newTime, setNewTime] = useState("09:00");
-  const [newParticipants, setNewParticipants] = useState("");
-  const [company, setCompany] = useState("");
-  const [selectedParticipants, setSelectedParticipants] = useState<string[]>(
-    [],
-  );
-  const [showParticipantsDropdown, setShowParticipantsDropdown] =
-    useState(false);
-
   const handleCreateMeeting = () => {
     setMeetings([
       ...meetings,
@@ -118,6 +140,12 @@ export default function Meet() {
         time: newTime,
         status: "pending",
         participants: selectedParticipants,
+        meetingType,
+        venue,
+        agenda,
+        instructions,
+        repeatType,
+        attachment,
       },
     ]);
     setShowModal(false);
@@ -127,10 +155,17 @@ export default function Meet() {
     setNewParticipants("");
     setCompany("");
     setSelectedParticipants([]);
+    setMeetingType("online");
+    setVenue("");
+    setSelectedLocation(null);
+    setAgenda("");
+    setInstructions("");
+    setRepeatType("none");
+    setAttachment(null);
   };
 
   // --- Contact & Group State ---
-  const [contacts, setContacts] = useState([
+  const [contactsState, setContactsState] = useState([
     { id: "1", name: "Alice Smith", email: "alice@email.com" },
     { id: "2", name: "Bob Johnson", email: "bob@email.com" },
   ]);
@@ -154,8 +189,8 @@ export default function Meet() {
 
   // Add contact handler
   const handleAddContact = () => {
-    setContacts([
-      ...contacts,
+    setContactsState([
+      ...contactsState,
       {
         id: Date.now().toString(),
         name: contactName,
@@ -201,6 +236,115 @@ export default function Meet() {
   const [pendingTab, setPendingTab] = useState<"today" | "upcoming" | "all">(
     "today",
   );
+
+  // Google Maps loader (simple script loader)
+  function loadGoogleMapsScript(callback: () => void) {
+    if (window.google && window.google.maps) {
+      callback();
+      return;
+    }
+    const existingScript = document.getElementById("googleMapsScript");
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = "googleMapsScript";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places`;
+      script.async = true;
+      script.onload = callback;
+      document.body.appendChild(script);
+    } else {
+      existingScript.onload = callback;
+    }
+  }
+
+  // Google Map Picker Component
+  function GoogleMapPicker({
+    onSelect,
+    onClose,
+  }: {
+    onSelect: (location: {
+      lat: number;
+      lng: number;
+      address: string;
+    }) => void;
+    onClose: () => void;
+  }) {
+    const mapRef = useRef<HTMLDivElement>(null);
+    const markerRef = useRef<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      loadGoogleMapsScript(() => {
+        setLoading(false);
+        if (window.google && mapRef.current) {
+          const defaultLatLng = { lat: 28.6139, lng: 77.209 }; // New Delhi
+          const map = new window.google.maps.Map(mapRef.current, {
+            center: defaultLatLng,
+            zoom: 13,
+          });
+
+          let marker = new window.google.maps.Marker({
+            position: defaultLatLng,
+            map,
+            draggable: true,
+          });
+          markerRef.current = marker;
+
+          // On map click, move marker
+          map.addListener("click", (e: any) => {
+            marker.setPosition(e.latLng);
+          });
+        }
+      });
+    }, []);
+
+    const handleSelect = () => {
+      if (window.google && markerRef.current) {
+        const pos = markerRef.current.getPosition();
+        const lat = pos.lat();
+        const lng = pos.lng();
+
+        // Get address using Geocoder
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode(
+          { location: { lat, lng } },
+          (results: any, status: any) => {
+            let address = `${lat}, ${lng}`;
+            if (status === "OK" && results && results[0]) {
+              address = results[0].formatted_address;
+            }
+            onSelect({ lat, lng, address });
+          },
+        );
+      }
+    };
+
+    return (
+      <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center">
+        <div className="bg-white rounded-lg shadow-lg p-4 w-full max-w-md relative">
+          <button
+            className="absolute top-2 right-2 text-gray-500"
+            onClick={onClose}
+          >
+            ×
+          </button>
+          <div className="mb-2 font-semibold text-sm">Pick a location</div>
+          <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded mb-2">
+            {loading ? (
+              <span>Loading map...</span>
+            ) : (
+              <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
+            )}
+          </div>
+          <Button
+            className="bg-blue-600 text-white w-full"
+            onClick={handleSelect}
+          >
+            Select Location
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="flex-1 w-full min-h-0 flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-inter">
@@ -534,110 +678,309 @@ export default function Meet() {
       {/* Schedule Meeting Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
-          <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg">
-            <h2 className="text-xl font-bold mb-4">Schedule Meeting</h2>
-            <div className="flex flex-col gap-3">
-              <Input
-                placeholder="Meeting Title"
-                value={newTitle}
-                onChange={(e) => setNewTitle(e.target.value)}
-              />
-              <Input
-                type="date"
-                value={newDate}
-                onChange={(e) => setNewDate(e.target.value)}
-              />
-              <Input
-                type="time"
-                value={newTime}
-                onChange={(e) => setNewTime(e.target.value)}
-              />
-              {/* Participants Input with dropdown */}
-              <div className="relative">
-                <div
-                  className="border rounded px-3 py-2 text-sm min-h-[38px] flex flex-wrap gap-1 cursor-pointer bg-white"
-                  onClick={() => setShowParticipantsDropdown((v) => !v)}
-                  tabIndex={0}
-                  onBlur={() =>
-                    setTimeout(() => setShowParticipantsDropdown(false), 150)
-                  }
+          <div className="bg-white rounded-2xl shadow-2xl p-0 w-full max-w-2xl max-h-[90vh] flex flex-col">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-8 py-5 border-b bg-gradient-to-r from-blue-700 via-blue-500 to-indigo-500 rounded-t-2xl">
+              <h2 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24" className="text-yellow-200 drop-shadow-lg">
+                  <circle cx="12" cy="12" r="10" fill="currentColor" />
+                  <path d="M8 12l2 2 4-4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Schedule Meeting
+              </h2>
+              <button
+                className="text-white hover:text-red-200 text-3xl font-bold transition-colors rounded-full w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20"
+                onClick={() => setShowModal(false)}
+                aria-label="Close"
+                type="button"
+              >
+                ×
+              </button>
+            </div>
+            {/* Scrollable Modal Body */}
+            <form
+              className="px-8 py-6 space-y-5 overflow-y-auto flex-1"
+              style={{ minHeight: 0 }}
+              onSubmit={e => {
+                e.preventDefault();
+                handleCreateMeeting();
+              }}
+            >
+              {/* Title */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Meeting Title
+                </label>
+                <Input
+                  placeholder="Meeting Title"
+                  value={newTitle}
+                  onChange={(e) => setNewTitle(e.target.value)}
+                  required
+                />
+              </div>
+              {/* Company */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Company
+                </label>
+                <select
+                  className="border rounded px-3 py-2 text-sm w-full"
+                  value={company}
+                  onChange={e => setCompany(e.target.value)}
+                  required
                 >
-                  {selectedParticipants.length === 0 && (
-                    <span className="text-gray-400">
-                      Select participants...
-                    </span>
-                  )}
-                  {selectedParticipants.map((participant) => (
-                    <span
-                      key={participant}
-                      className="bg-blue-100 text-blue-700 rounded px-2 py-0.5 flex items-center gap-1"
-                    >
-                      {participant}
-                      <button
-                        type="button"
-                        className="ml-1 text-xs text-red-500"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedParticipants(
-                            selectedParticipants.filter(
-                              (p) => p !== participant,
-                            ),
-                          );
-                        }}
-                      >
-                        ×
-                      </button>
-                    </span>
+                  <option value="">Select company</option>
+                  {companies.map(c => (
+                    <option key={c.id} value={c.name}>
+                      {c.name}
+                    </option>
                   ))}
+                </select>
+              </div>
+              {/* Date & Time */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    Date
+                  </label>
+                  <Input
+                    type="date"
+                    value={newDate}
+                    onChange={(e) => setNewDate(e.target.value)}
+                    required
+                  />
                 </div>
-                {showParticipantsDropdown && (
-                  <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
-                    {contacts
-                      .filter((c) => !selectedParticipants.includes(c.name))
-                      .map((c) => (
-                        <div
-                          key={c.id}
-                          className="px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
-                          onClick={() => {
-                            setSelectedParticipants([
-                              ...selectedParticipants,
-                              c.name,
-                            ]);
-                            setShowParticipantsDropdown(false);
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    Time
+                  </label>
+                  <Input
+                    type="time"
+                    value={newTime}
+                    onChange={(e) => setNewTime(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              {/* Participants */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Participants
+                </label>
+                <div className="relative">
+                  <div
+                    className="border rounded px-3 py-2 text-sm min-h-[38px] flex flex-wrap gap-1 cursor-pointer bg-white"
+                    onClick={() => setShowParticipantsDropdown(true)}
+                    tabIndex={0}
+                    onBlur={() => setTimeout(() => setShowParticipantsDropdown(false), 150)}
+                  >
+                    {selectedParticipants.length === 0 && (
+                      <span className="text-gray-400">
+                        Select participants...
+                      </span>
+                    )}
+                    {selectedParticipants.map((participant) => (
+                      <span
+                        key={participant}
+                        className="bg-blue-100 text-blue-700 rounded px-2 py-0.5 flex items-center gap-1"
+                      >
+                        {participant}
+                        <button
+                          type="button"
+                          className="ml-1 text-xs text-red-500"
+                          onClick={e => {
+                            e.stopPropagation();
+                            setSelectedParticipants(
+                              selectedParticipants.filter((p) => p !== participant)
+                            );
                           }}
                         >
-                          {c.name}{" "}
-                          <span className="text-xs text-gray-400">
-                            ({c.email})
-                          </span>
-                        </div>
-                      ))}
-                    {contacts.filter(
-                      (c) => !selectedParticipants.includes(c.name),
-                    ).length === 0 && (
-                      <div className="px-3 py-2 text-gray-400 text-sm">
-                        No more contacts
-                      </div>
-                    )}
+                          ×
+                        </button>
+                      </span>
+                    ))}
                   </div>
-                )}
+                  {showParticipantsDropdown && contacts && contacts.length > 0 && (
+                    <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
+                      {contacts
+                        .filter((c) => !selectedParticipants.includes(c.name))
+                        .map((c) => (
+                          <div
+                            key={c.id}
+                            className="px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
+                            onClick={() => {
+                              setSelectedParticipants([...selectedParticipants, c.name]);
+                              setShowParticipantsDropdown(false);
+                            }}
+                          >
+                            {c.name}{" "}
+                            <span className="text-xs text-gray-400">
+                              ({c.email})
+                            </span>
+                          </div>
+                        ))}
+                      {contacts.filter((c) => !selectedParticipants.includes(c.name)).length === 0 && (
+                        <div className="px-3 py-2 text-gray-400 text-sm">
+                          No more contacts
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {showParticipantsDropdown && (!contacts || contacts.length === 0) && (
+                    <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
+                      <div className="px-3 py-2 text-gray-400 text-sm">
+                        No contacts found
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <Input
-                placeholder="Company"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-              />
-            </div>
-            <div className="flex justify-end gap-2 mt-6">
-              <Button variant="ghost" onClick={() => setShowModal(false)}>
+              {/* Virtual Meeting Toggle */}
+              <div className="flex items-center gap-3">
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Virtual Meeting
+                </label>
+                <label className="inline-flex items-center cursor-pointer ml-2">
+                  <input
+                    type="checkbox"
+                    checked={meetingType === "online"}
+                    onChange={() => {
+                      setMeetingType(meetingType === "online" ? "offline" : "online");
+                      if (meetingType === "online") {
+                        setVenue("");
+                        setSelectedLocation(null);
+                      }
+                    }}
+                    className="sr-only peer"
+                  />
+                  <div className="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 transition-colors relative">
+                    <div className={`absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow transition-transform ${meetingType === "online" ? "translate-x-5" : ""}`}></div>
+                  </div>
+                  <span className="ml-2 text-xs text-gray-600">{meetingType === "online" ? "Yes" : "No"}</span>
+                </label>
+              </div>
+              {/* Venue & Map (only if offline) */}
+              {meetingType === "offline" && (
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    Venue
+                  </label>
+                  <div className="flex gap-2 items-center">
+                    <Input
+                      placeholder="Select venue"
+                      value={venue}
+                      readOnly
+                      className="flex-1"
+                    />
+                    <Button
+                      type="button"
+                      className="bg-blue-600 text-white px-3 py-1 text-xs"
+                      onClick={() => setShowMap(true)}
+                    >
+                      Select on Map
+                    </Button>
+                  </div>
+                  {selectedLocation && (
+                    <div className="text-xs text-green-700 mt-1">
+                      Selected: {selectedLocation.address}
+                    </div>
+                  )}
+                  {showMap && (
+                    <GoogleMapPicker
+                      onSelect={(location) => {
+                        setSelectedLocation(location);
+                        setVenue(location.address);
+                        setShowMap(false);
+                      }}
+                      onClose={() => setShowMap(false)}
+                    />
+                  )}
+                </div>
+              )}
+              {/* Agenda */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Agenda
+                </label>
+                <Input
+                  placeholder="Meeting Agenda"
+                  value={agenda}
+                  onChange={e => setAgenda(e.target.value)}
+                />
+              </div>
+              {/* Instructions */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Instructions
+                </label>
+                <textarea
+                  placeholder="Instructions for the meeting"
+                  value={instructions}
+                  onChange={e => setInstructions(e.target.value)}
+                  className="w-full min-h-[60px] px-2 py-1 border border-input rounded-lg resize-none text-sm"
+                />
+              </div>
+              {/* Repeat Option */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Repeat
+                </label>
+                <select
+                  className="border rounded px-3 py-2 text-sm w-full"
+                  value={repeatType}
+                  onChange={e => setRepeatType(e.target.value as any)}
+                >
+                  <option value="none">Does Not Repeat</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </div>
+              {/* Attachment */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  Attachment
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer mt-1">
+                  <Button
+                    variant="outline"
+                    className="w-fit flex items-center gap-2 h-8 text-xs"
+                    asChild
+                  >
+                    <span>
+                      <Paperclip className="w-4 h-4 mr-1" />
+                      {attachment ? attachment.name : "Browse"}
+                    </span>
+                  </Button>
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={(e) => setAttachment(e.target.files?.[0] || null)}
+                  />
+                  {attachment && (
+                    <button
+                      type="button"
+                      className="ml-2 text-xs text-red-500"
+                      onClick={() => setAttachment(null)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </label>
+              </div>
+            </form>
+            {/* Fixed Modal Footer */}
+            <div className="flex justify-end gap-2 px-8 py-4 border-t bg-white rounded-b-2xl sticky bottom-0">
+              <Button variant="ghost" type="button" onClick={() => setShowModal(false)}>
                 Cancel
               </Button>
               <Button
                 className="bg-blue-700 text-white"
-                onClick={handleCreateMeeting}
+                type="submit"
+                form="meeting-form"
                 disabled={!newTitle}
               >
-                <ReactiveMultilingualText translationKey="create" />
+                Schedule
               </Button>
             </div>
           </div>
