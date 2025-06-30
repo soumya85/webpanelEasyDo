@@ -607,6 +607,118 @@ export default function SamplePage3() {
             </div>
           </div>
         </div>
+
+        {/* Add Holiday Modal */}
+        {isHolidayModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <button
+                  onClick={() => setIsHolidayModalOpen(false)}
+                  className="text-primary-500"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <h2 className="text-lg font-semibold text-gray-800">
+                  Add Holiday
+                </h2>
+                <button className="text-primary-500 font-medium">Submit</button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-4 space-y-4">
+                {/* Branch Dropdown */}
+                <div className="relative">
+                  <select
+                    value={selectedBranch}
+                    onChange={(e) => setSelectedBranch(e.target.value)}
+                    className="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 appearance-none"
+                  >
+                    <option value="Head office">Head office</option>
+                    <option value="Haldia">Haldia</option>
+                    <option value="Ahmedabad office">Ahmedabad office</option>
+                    <option value="Paradip">Paradip</option>
+                    <option value="New Delhi">New Delhi</option>
+                  </select>
+                  <svg
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+
+                {/* Name Input */}
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    value={holidayName}
+                    onChange={(e) => setHolidayName(e.target.value)}
+                    className="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400"
+                  />
+                </div>
+
+                {/* Date Picker */}
+                <div className="relative">
+                  <input
+                    type="date"
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-800"
+                    placeholder="Select Date"
+                  />
+                  <svg
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+
+                {/* Holiday Type Buttons */}
+                <div className="flex gap-2">
+                  {["Company", "Public", "Regional"].map((type) => (
+                    <button
+                      key={type}
+                      onClick={() => setHolidayType(type)}
+                      className={`flex-1 py-2 px-4 rounded-full font-medium transition-colors ${
+                        holidayType === type
+                          ? "bg-black text-white"
+                          : "bg-white text-gray-700 border border-gray-300"
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
