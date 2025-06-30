@@ -188,6 +188,63 @@ export default function SamplePage3() {
     setIsModalOpen(true);
   };
 
+  // Filter and sort employees
+  const filteredEmployees = useMemo(() => {
+    let filtered = employeeData.filter((emp) => {
+      // Filter by status
+      if (emp.status !== selectedStatus) return false;
+
+      // Filter by branch
+      if (
+        selectedBranch !== "all" &&
+        emp.branch.toLowerCase() !== getBranchName(selectedBranch).toLowerCase()
+      )
+        return false;
+
+      // Filter by search query
+      if (
+        searchQuery &&
+        !emp.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+        return false;
+
+      return true;
+    });
+
+    // Sort employees
+    if (sortBy === "alphabetically") {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === "doj") {
+      filtered.sort(
+        (a, b) => new Date(a.doj).getTime() - new Date(b.doj).getTime(),
+      );
+    } else if (sortBy === "authority") {
+      filtered.sort((a, b) => a.authority - b.authority);
+    }
+
+    return filtered;
+  }, [employeeData, selectedStatus, selectedBranch, searchQuery, sortBy]);
+
+  // Get counts for status tabs
+  const statusCounts = useMemo(() => {
+    const counts = { accepted: 0, pending: 0, exit: 0 };
+    employeeData.forEach((emp) => {
+      if (counts.hasOwnProperty(emp.status)) {
+        counts[emp.status as keyof typeof counts]++;
+      }
+    });
+    return counts;
+  }, [employeeData]);
+
+  const getBranchName = (branchId: string) => {
+    const branch = branchData.find((b) => b.id === branchId);
+    return branch ? branch.name : "All Branches";
+  };
+
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
+
   // Get leave data for selected date
   const getLeaveDataForDate = (date: number) => {
     const leaveData: Record<number, any[]> = {
