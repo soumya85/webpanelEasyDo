@@ -69,7 +69,7 @@ export default function Reports() {
   return (
     <main className="flex-1 overflow-auto bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen font-inter">
       {/* Header with subtle shadow and breadcrumb */}
-      <header className="bg-white border-b px-6 py-6 flex flex-col md:flex-row items-center justify-between shadow-sm sticky top-0 z-20">
+      {/* <header className="bg-white border-b px-6 py-6 flex flex-col md:flex-row items-center justify-between shadow-sm sticky top-0 z-20">
         <div>
           <h1 className="text-2xl font-extrabold text-indigo-800 tracking-tight">Reports</h1>
           <nav className="text-xs text-gray-500 mt-1">
@@ -83,7 +83,7 @@ export default function Reports() {
             <span className="text-indigo-700">Reports</span>
           </nav>
         </div>
-      </header>
+      </header> */}
 
       <div className="max-w-7xl mx-auto p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8">
