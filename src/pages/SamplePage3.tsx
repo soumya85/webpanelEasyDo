@@ -196,8 +196,9 @@ export default function SamplePage3() {
 
       // Filter by branch
       if (
-        selectedBranch !== "all" &&
-        emp.branch.toLowerCase() !== getBranchName(selectedBranch).toLowerCase()
+        selectedEmployeeBranch !== "all" &&
+        emp.branch.toLowerCase() !==
+          getBranchName(selectedEmployeeBranch).toLowerCase()
       )
         return false;
 
