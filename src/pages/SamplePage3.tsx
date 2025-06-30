@@ -2114,7 +2114,7 @@ export default function SamplePage3() {
               <button
                 key={branch.id}
                 onClick={() => {
-                  setSelectedBranch(branch.id);
+                  setSelectedEmployeeBranch(branch.id);
                   setShowBranchSheet(false);
                 }}
                 className="w-full text-left p-4 hover:bg-gray-50 rounded-lg"
