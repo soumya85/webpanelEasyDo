@@ -578,6 +578,92 @@ export default function EmployeeAttendanceCard() {
           </div>
         )}
 
+        {/* Half Day Employee Card */}
+        {selectedFilter === "Half Day" && (
+          <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+            {/* Employee Profile */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative">
+                <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">SD</span>
+                </div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border border-white flex items-center justify-center">
+                  <User className="w-1.5 h-1.5 text-white" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  SUSHANTA DAS
+                </h4>
+                <p className="text-xs text-gray-600">Driver</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-sm text-gray-500">📞</span>
+                  <span className="text-sm text-gray-500">💬</span>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-xs font-medium text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
+                    PRESENT
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  In: 11:01 AM - Ou...
+                </p>
+              </div>
+            </div>
+
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                On half day
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - 11:01 AM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-red-600">
+                      Unverified
+                    </span>
+                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  7J9X+HRS, Paradeep, Odisha 754142, India
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: 07:15 PM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-red-600">
+                      Unverified
+                    </span>
+                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Absent Employee Cards */}
         {selectedFilter === "Absent" && (
           <div className="space-y-3">
