@@ -912,13 +912,13 @@ export default function SamplePage3() {
 
                     {leaveFilter === "approved" && (
                       <>
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="flex items-center gap-3 mb-3">
-                            <img
-                              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
-                              alt="SMITA CHAKRABORTY"
-                              className="w-10 h-10 rounded-full object-cover"
-                            />
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                SC
+                              </span>
+                            </div>
                             <div className="flex-1">
                               <div className="font-semibold text-gray-800">
                                 SMITA CHAKRABORTY
@@ -932,16 +932,16 @@ export default function SamplePage3() {
                               <div className="text-sm text-gray-600 font-medium">
                                 SICK LEAVE (SL)
                               </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                28 June, 2025 10:48 AM
+                              </div>
                             </div>
-                          </div>
-                          <div className="text-xs text-gray-500 text-right">
-                            28 June, 2025 10:48 AM
                           </div>
                         </div>
 
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
                               <span className="text-white text-sm font-semibold">
                                 SM
                               </span>
@@ -959,20 +959,20 @@ export default function SamplePage3() {
                               <div className="text-sm text-gray-600 font-medium">
                                 OTHER LEAVE (OL)
                               </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                27 June, 2025 9:50 PM
+                              </div>
                             </div>
-                          </div>
-                          <div className="text-xs text-gray-500 text-right">
-                            27 June, 2025 9:50 PM
                           </div>
                         </div>
 
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="flex items-center gap-3 mb-3">
-                            <img
-                              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop&crop=face"
-                              alt="Rahul Kumar"
-                              className="w-10 h-10 rounded-full object-cover"
-                            />
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                RK
+                              </span>
+                            </div>
                             <div className="flex-1">
                               <div className="font-semibold text-gray-800">
                                 Rahul Kumar
@@ -986,20 +986,20 @@ export default function SamplePage3() {
                               <div className="text-sm text-gray-600 font-medium">
                                 OTHER LEAVE (OL)
                               </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                27 June, 2025 6:32 PM
+                              </div>
                             </div>
-                          </div>
-                          <div className="text-xs text-gray-500 text-right">
-                            27 June, 2025 6:32 PM
                           </div>
                         </div>
 
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="flex items-center gap-3 mb-3">
-                            <img
-                              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
-                              alt="Manoj Kumar"
-                              className="w-10 h-10 rounded-full object-cover"
-                            />
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                MK
+                              </span>
+                            </div>
                             <div className="flex-1">
                               <div className="font-semibold text-gray-800">
                                 Manoj Kumar
@@ -1013,10 +1013,10 @@ export default function SamplePage3() {
                               <div className="text-sm text-gray-600 font-medium">
                                 CASUAL LEAVE (CL)
                               </div>
+                              <div className="text-xs text-gray-500 mt-2">
+                                27 June, 2025 6:37 AM
+                              </div>
                             </div>
-                          </div>
-                          <div className="text-xs text-gray-500 text-right">
-                            27 June, 2025 6:37 AM
                           </div>
                         </div>
                       </>
