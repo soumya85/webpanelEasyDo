@@ -8,6 +8,13 @@ import EmployeeLocationTimelineCard from "@/components/cards/EmployeeLocationTim
 export default function SamplePage3() {
   const { t } = useGlobalTranslation();
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState("Head office");
+  const [holidayName, setHolidayName] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [holidayType, setHolidayType] = useState("Public");
+  const [selectedBranchFilter, setSelectedBranchFilter] =
+    useState("All Branches");
 
   // Sample card data for this page with business-focused actions
   const cardData = [
@@ -118,6 +125,641 @@ export default function SamplePage3() {
             <EmployeeLocationTimelineCard />
           </div>
         </div>
+
+        {/* Holidays and Leave Cards Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+          <div className="min-h-[400px]">
+            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <div className="flex items-center gap-4">
+                  <h2 className="text-lg font-semibold text-gray-800">
+                    Holiday list
+                  </h2>
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="flex items-center gap-1 text-primary-500 font-medium"
+                    >
+                      <span>{selectedBranchFilter}</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </button>
+                    {isDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-1 w-80 h-96 bg-white rounded-lg shadow-lg border border-gray-200 z-10 overflow-y-auto">
+                        <div className="p-4">
+                          <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                            Branches
+                          </h3>
+                          <div className="space-y-3">
+                            <div
+                              onClick={() => {
+                                setSelectedBranchFilter("All Branches");
+                                setIsDropdownOpen(false);
+                              }}
+                              className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer"
+                            >
+                              <div className="flex items-center gap-3">
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                >
+                                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                  <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                <div>
+                                  <div className="font-semibold text-gray-800">
+                                    All Branches
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Manage/View all the branches
+                                  </div>
+                                </div>
+                              </div>
+                              {selectedBranchFilter === "All Branches" && (
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  className="text-primary-500"
+                                >
+                                  <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                              )}
+                            </div>
+                            {[
+                              {
+                                name: "Head office",
+                                address:
+                                  "104, 3rd Floor, Shyama Prasad Mukherjee Road, Hazra, Kalighat, Kalighat, Kolkata, West Bengal 700026, India",
+                              },
+                              {
+                                name: "Haldia",
+                                address:
+                                  "336G+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721667, India",
+                              },
+                              {
+                                name: "Ahmedabad office",
+                                address:
+                                  "C/142, Vishwas City 1, Sola, Ahmedabad, Gujarat 380061, India",
+                              },
+                              {
+                                name: "Paradip",
+                                address:
+                                  "7J9X+5GG, Paradeep, Odisha 754142, India",
+                              },
+                              {
+                                name: "New Delhi",
+                                address:
+                                  "New Delhi,405, District Centre, Janakpuri, New Delhi, Delhi, 110058, India",
+                              },
+                            ].map((branch, index) => (
+                              <div
+                                key={index}
+                                onClick={() => {
+                                  setSelectedBranchFilter(branch.name);
+                                  setIsDropdownOpen(false);
+                                }}
+                                className="flex items-start justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer"
+                              >
+                                <div className="flex items-start gap-3">
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    className="mt-1"
+                                  >
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                  </svg>
+                                  <div>
+                                    <div className="font-semibold text-gray-800">
+                                      {branch.name}
+                                    </div>
+                                    <div className="text-sm text-gray-600 mt-1">
+                                      {branch.address}
+                                    </div>
+                                  </div>
+                                </div>
+                                {selectedBranchFilter === branch.name && (
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    className="text-primary-500 mt-1"
+                                  >
+                                    <path d="M20 6 9 17l-5-5" />
+                                  </svg>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsHolidayModalOpen(true)}
+                  className="bg-black text-white rounded-lg p-2 hover:bg-gray-800 transition-colors"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </button>
+              </div>
+              {/* Summary Stats */}
+              <div className="p-4 border-b border-gray-200">
+                <div className="grid grid-cols-4 gap-3">
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
+                    <div className="text-2xl font-bold text-gray-800">37</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      TOTAL
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
+                    <div className="text-2xl font-bold text-gray-800">16</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      PUBLIC
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
+                    <div className="text-2xl font-bold text-gray-800">1</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      COMPANY
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                  <div className="text-center bg-white rounded-lg p-3 shadow-md border border-gray-100">
+                    <div className="text-2xl font-bold text-gray-800">10</div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      REGIONAL
+                    </div>
+                    <div className="h-1 bg-primary-500 rounded-full mt-1"></div>
+                  </div>
+                </div>
+              </div>
+              {/* Holiday List */}
+              <div className="h-80 overflow-y-auto">
+                {[
+                  {
+                    date: "Wed 01",
+                    month: "JAN 25",
+                    name: "ENGLISH NEW YEAR",
+                    location: "Haldia",
+                    type: "Company",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Tue 14",
+                    month: "JAN 25",
+                    name: "Uttrayan",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 15",
+                    month: "JAN 25",
+                    name: "Vasi Uttrayan",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Sun 26",
+                    month: "JAN 25",
+                    name: "REPUBLIC DAY",
+                    location: "Haldia",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 03",
+                    month: "FEB 25",
+                    name: "SARASWATI PUJA",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 05",
+                    month: "FEB 25",
+                    name: "Delhi Assembly Election",
+                    location: "New Delhi",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 26",
+                    month: "FEB 25",
+                    name: "MAHASHIVRATRI",
+                    location: "New Delhi",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Fri 14",
+                    month: "MAR 25",
+                    name: "Dhuleti",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Fri 14",
+                    month: "MAR 25",
+                    name: "DOLYATRA / HOLI",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Sat 15",
+                    month: "MAR 25",
+                    name: "Dolyatra/Holi",
+                    location: "Paradip",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 31",
+                    month: "MAR 25",
+                    name: "ID UL FITAR",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Thu 10",
+                    month: "APR 25",
+                    name: "MAHAVIR JAYANTI",
+                    location: "New Delhi",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Tue 15",
+                    month: "APR 25",
+                    name: "BENGALI NEW YEARS DAY",
+                    location: "Haldia",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Fri 18",
+                    month: "APR 25",
+                    name: "GOODFRIDAY",
+                    location: "Head office",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 12",
+                    month: "MAY 25",
+                    name: "BUDDHA PURNIMA",
+                    location: "New Delhi",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Sat 07",
+                    month: "JUN 25",
+                    name: "BAKRID",
+                    location: "New Delhi",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Sun 15",
+                    month: "JUN 25",
+                    name: "RAJA SANKRANTI",
+                    location: "Paradip",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Fri 27",
+                    month: "JUN 25",
+                    name: "RATH YATRA",
+                    location: "Paradip",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Sun 06",
+                    month: "AUG 25",
+                    name: "MUHARRAM",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Tue 30",
+                    month: "SEP 25",
+                    name: "MAHA ASTAMI",
+                    location: "Paradip",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 01",
+                    month: "OCT 25",
+                    name: "MAHA NABAMI",
+                    location: "Head office",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Thu 02",
+                    month: "OCT 25",
+                    name: "Dussehra",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Thu 02",
+                    month: "OCT 25",
+                    name: "DUSSHERA / GANDHI BIRTHDAY",
+                    location: "Head office",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 06",
+                    month: "OCT 25",
+                    name: "LAXMI PUJA",
+                    location: "Haldia",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 20",
+                    month: "OCT 25",
+                    name: "Diwali",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Mon 20",
+                    month: "OCT 25",
+                    name: "KALI PUJA",
+                    location: "Paradip",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Tue 21",
+                    month: "OCT 25",
+                    name: "Gujarati New Year",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Tue 21",
+                    month: "OCT 25",
+                    name: "KALI PUJA/DIWALI",
+                    location: "New Delhi",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 22",
+                    month: "OCT 25",
+                    name: "Gujarati New Year",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Thu 23",
+                    month: "OCT 25",
+                    name: "Bhai Bij",
+                    location: "Ahmedabad office",
+                    type: "Regional",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Wed 05",
+                    month: "NOV 25",
+                    name: "GURU NANAK BIRTHDAY",
+                    location: "Haldia",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
+                    date: "Thu 25",
+                    month: "DEC 25",
+                    name: "X MAS DAY",
+                    location: "Haldia",
+                    type: "Public",
+                    typeColor: "bg-primary-500",
+                  },
+                ]
+                  .filter((holiday) => {
+                    if (selectedBranchFilter === "All Branches") return true;
+                    return holiday.location === selectedBranchFilter;
+                  })
+                  .map((holiday, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 mx-3 my-2 bg-white rounded-lg shadow-md border border-gray-100"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="text-center min-w-[50px]">
+                          <div className="text-lg font-bold text-gray-800">
+                            {holiday.date.split(" ")[1]}
+                          </div>
+                          <div className="text-xs text-gray-600">
+                            {holiday.date.split(" ")[0]}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {holiday.month}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-800 text-sm">
+                            {holiday.name}
+                          </div>
+                          <div className="text-xs text-gray-600">
+                            {holiday.location}
+                          </div>
+                          <div className="h-0.5 bg-primary-500 rounded-full mt-1 w-full"></div>
+                        </div>
+                      </div>
+                      <div
+                        className={`px-3 py-1 rounded text-white text-xs font-medium ${holiday.typeColor}`}
+                      >
+                        {holiday.type}
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+          <div className="min-h-[400px]">
+            <div className="w-full h-full bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                Leave
+              </h2>
+              <div className="flex items-center justify-center h-[300px] text-gray-400">
+                <p>Card content coming soon...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Holiday Modal */}
+        {isHolidayModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg w-full max-w-lg mx-4 max-h-[90vh] flex flex-col">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-800">
+                  Add Holiday
+                </h2>
+                <button
+                  onClick={() => setIsHolidayModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M18 6L6 18" />
+                    <path d="M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="flex-1 p-6 space-y-6">
+                {/* Branch Dropdown */}
+                <div className="relative">
+                  <select
+                    value={selectedBranch}
+                    onChange={(e) => setSelectedBranch(e.target.value)}
+                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 appearance-none"
+                  >
+                    <option value="Head office">Head office</option>
+                    <option value="Haldia">Haldia</option>
+                    <option value="Ahmedabad office">Ahmedabad office</option>
+                    <option value="Paradip">Paradip</option>
+                    <option value="New Delhi">New Delhi</option>
+                  </select>
+                  <svg
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+
+                {/* Name Input */}
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    value={holidayName}
+                    onChange={(e) => setHolidayName(e.target.value)}
+                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-600"
+                  />
+                </div>
+
+                {/* Date Picker */}
+                <div className="relative">
+                  <input
+                    type="date"
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800"
+                    placeholder="Select Date"
+                  />
+                  <svg
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+
+                {/* Holiday Type Buttons */}
+                <div className="flex gap-3">
+                  {["Company", "Public", "Regional"].map((type) => (
+                    <button
+                      key={type}
+                      onClick={() => setHolidayType(type)}
+                      className={`flex-1 py-3 px-4 rounded-full font-medium transition-colors ${
+                        holidayType === type
+                          ? "bg-black text-white"
+                          : "bg-white text-gray-700 border border-gray-300"
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Submit Button at Bottom */}
+              <div className="p-6 border-t border-gray-200">
+                <button className="w-full bg-primary-500 text-white py-4 rounded-lg font-medium text-lg hover:bg-primary-600 transition-colors">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
