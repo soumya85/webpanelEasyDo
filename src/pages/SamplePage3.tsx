@@ -2285,13 +2285,15 @@ export default function SamplePage3() {
         </DialogContent>
       </Dialog>
 
-      {/* Branch Selection Sheet */}
-      <Sheet open={showBranchSheet} onOpenChange={setShowBranchSheet}>
-        <SheetContent side="bottom" className="h-[80vh]">
-          <SheetHeader>
-            <SheetTitle>Branches</SheetTitle>
-          </SheetHeader>
-          <div className="space-y-4 mt-6">
+      {/* Branch Selection Modal */}
+      <Dialog open={showBranchSheet} onOpenChange={setShowBranchSheet}>
+        <DialogContent className="max-w-md max-h-[80vh] flex flex-col">
+          <DialogHeader className="pb-4 border-b">
+            <DialogTitle className="text-lg font-semibold text-center">
+              Branches
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex-1 overflow-y-auto space-y-4 py-4">
             {branchData.map((branch) => (
               <button
                 key={branch.id}
@@ -2299,7 +2301,7 @@ export default function SamplePage3() {
                   setSelectedEmployeeBranch(branch.id);
                   setShowBranchSheet(false);
                 }}
-                className="w-full text-left p-4 hover:bg-gray-50 rounded-lg"
+                className="w-full text-left p-4 hover:bg-gray-50 rounded-lg transition-colors"
               >
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-gray-400 mt-1" />
@@ -2327,8 +2329,8 @@ export default function SamplePage3() {
               </button>
             ))}
           </div>
-        </SheetContent>
-      </Sheet>
+        </DialogContent>
+      </Dialog>
 
       {/* Add Employee Modal */}
       <Dialog open={showAddEmployee} onOpenChange={setShowAddEmployee}>
