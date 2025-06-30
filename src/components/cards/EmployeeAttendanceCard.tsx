@@ -200,13 +200,13 @@ export default function EmployeeAttendanceCard() {
       case "Half Day":
         return 1; // SUSHANTA DAS
       case "Late":
-        return 0; // No cards implemented yet
+        return 1; // GOLAM SAMADANI
       case "Leave":
-        return 0; // No cards implemented yet
+        return 2; // AMIT PARMAR and PRABIR KHANRA
       case "Week off":
-        return 0; // No cards implemented yet
+        return 2; // AMIT PARMAR and ANAND iOS DEVELOPER
       case "Holiday":
-        return 0; // No cards implemented yet
+        return 2; // ABHIRAM MOHAPATRA and AHSAN RAZA
       default:
         return 0;
     }
@@ -487,18 +487,16 @@ export default function EmployeeAttendanceCard() {
             {/* Employee Profile */}
             <div className="flex items-center gap-2 mb-3">
               <div className="relative">
-                <img
-                  src={currentEmployee.image}
-                  alt={currentEmployee.name}
-                  className="w-8 h-8 rounded-full object-cover"
-                />
+                <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">AM</span>
+                </div>
                 <div
                   className={cn(
-                    "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center",
+                    "absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center",
                     currentEmployee.dotColor,
                   )}
                 >
-                  <User className="w-1.5 h-1.5 text-white" />
+                  <User className="w-2 h-2 text-white" />
                 </div>
               </div>
               <div className="flex-1">
@@ -562,6 +560,9 @@ export default function EmployeeAttendanceCard() {
                     ></div>
                   </div>
                 </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  6, Kalighat, West Bengal 700026, India
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold text-gray-900">
                     OUT: {currentEmployee.outTime}
@@ -582,6 +583,10 @@ export default function EmployeeAttendanceCard() {
                       )}
                     ></div>
                   </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd, Kalighat,
+                  Kolkata, West Bengal 700026, India
                 </div>
               </div>
 
@@ -690,6 +695,470 @@ export default function EmployeeAttendanceCard() {
           </div>
         )}
 
+        {/* Late Employee Card */}
+        {selectedFilter === "Late" && (
+          <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+            {/* Employee Profile */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+                  alt="GOLAM SAMADANI"
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center bg-green-500">
+                  <User className="w-1.5 h-1.5 text-white" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  GOLAM SAMADANI
+                </h4>
+                <p className="text-xs text-gray-600">Executive</p>
+              </div>
+              <div className="text-right">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
+                    PRESENT
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  In: 10:45 AM - Ou...
+                </p>
+              </div>
+            </div>
+
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                Too late for the attendance
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - 10:45 AM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  MU 10, Madhuban Market Complex, Port District, Jagatsinghpur,
+                  Paradeep, Odisha 754142, India
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: 07:15 PM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  Room No. 40, Madhuban Building Market Complex, near Hp gas
+                  outlet, Paradeep, Odisha 754142, India
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Late Employee Card */}
+        {selectedFilter === "Late" && (
+          <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+            {/* Employee Profile */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">GS</span>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-green-500">
+                  <User className="w-2 h-2 text-white" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  GOLAM SAMADANI
+                </h4>
+                <p className="text-xs text-gray-600">Executive</p>
+              </div>
+              <div className="text-right">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
+                    PRESENT
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  In: 10:45 AM - Ou...
+                </p>
+              </div>
+            </div>
+
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                Too late for the attendance
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - 10:45 AM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  MU 10, Madhuban Market Complex, Port District, Jagatsinghpur,
+                  Paradeep, Odisha 754142, India
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: 07:15 PM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-green-600">
+                      Office
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  Room No. 40, Madhuban Building Market Complex, near Hp gas
+                  outlet, Paradeep, Odisha 754142, India
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Leave Employee Cards */}
+        {selectedFilter === "Leave" && (
+          <div className="space-y-3">
+            {/* AMIT PARMAR Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AP</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-green-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Amit Parmar
+                  </h4>
+                  <p className="text-xs text-gray-600">IOS Developer</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
+                      LEAVE
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Amit Parmar is o...
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* PRABIR KHANRA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">PK</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-green-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Prabir Khanra
+                  </h4>
+                  <p className="text-xs text-gray-600">Dock Sirkar</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
+                      LEAVE
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Prabir Khanra is o...
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Week Off Employee Cards */}
+        {selectedFilter === "Week off" && (
+          <div className="space-y-3">
+            {/* AMIT PARMAR Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AP</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-red-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Amit Parmar
+                  </h4>
+                  <p className="text-xs text-gray-600">IOS Developer</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-white bg-red-500">
+                      Week Off
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    It's Week Off(Saturday)
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* ANAND iOS DEVELOPER Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AI</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-red-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Anand iOS Developer
+                  </h4>
+                  <p className="text-xs text-gray-600">
+                    IOS Technical Developer
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-white bg-red-500">
+                      Week Off
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    It's Week Off(Saturday)
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Holiday Employee Cards */}
+        {selectedFilter === "Holiday" && (
+          <div className="space-y-3">
+            {/* Holiday Banner */}
+            <div className="bg-red-300 text-center py-2 px-4 rounded-t-lg">
+              <span className="text-gray-800 font-semibold text-sm">
+                RATH YATRA
+              </span>
+            </div>
+
+            {/* ABHIRAM MOHAPATRA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AM</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-green-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    ABHIRAM MOHAPATRA
+                  </h4>
+                  <p className="text-xs text-gray-600">Supervisor</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-white bg-green-500">
+                      Holiday
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    It's Holiday Enjoy Your Day
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* AHSAN RAZA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              {/* Employee Profile */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AR</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center bg-green-500">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    AHSAN RAZA
+                  </h4>
+                  <p className="text-xs text-gray-600">Supervisor</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-white bg-green-500">
+                      Holiday
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    It's Holiday Enjoy Your Day
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Absent Employee Cards */}
         {selectedFilter === "Absent" && (
           <div className="space-y-3">
@@ -742,11 +1211,9 @@ export default function EmployeeAttendanceCard() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
               <div className="flex items-start gap-3 mb-3">
                 <div className="relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
-                    alt="AHSAN RAZA"
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AR</span>
+                  </div>
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
                     <User className="w-2 h-2 text-white" />
                   </div>
