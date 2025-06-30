@@ -77,7 +77,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
           <div className="w-6"></div>
         </div>
 
-        <div className="p-4 space-y-6 mx-6">
+        <div className="p-4 space-y-6">
           {/* Title */}
           <div className="text-center">
             <h2 className="text-xl font-semibold text-gray-900">
