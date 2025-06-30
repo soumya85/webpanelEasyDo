@@ -72,24 +72,12 @@ export function AddTaskModal({ open, onOpenChange, formData }: AddTaskModalProps
   const [endDate, setEndDate] = useState<Date | undefined>(formData?.endDate);
   const [priority, setPriority] = useState(formData?.priority || "medium");
   const [instructions, setInstructions] = useState(formData?.instructions || "");
-  const [checklistItems, setChecklistItems] = useState<string[]>(formData?.checklistItems && formData?.checklistItems.length > 0 ? formData.checklistItems : [""]);
+  const [checklistItems, setChecklistItems] = useState<string[]>([""]);
   const [repeatType, setRepeatType] = useState(formData?.repeatType || "does-not-repeat");
   const [attachment, setAttachment] = useState<File | null>(formData?.attachment || null);
   const [showAssigneeDropdown, setShowAssigneeDropdown] = useState(false);
 
   const isUpdate = !!formData;
-
-  const addChecklistItem = () => setChecklistItems([...checklistItems, ""]);
-  const updateChecklistItem = (index: number, value: string) => {
-    const newItems = [...checklistItems];
-    newItems[index] = value;
-    setChecklistItems(newItems);
-  };
-  const removeChecklistItem = (index: number) => {
-    if (checklistItems.length > 1) {
-      setChecklistItems(checklistItems.filter((_, i) => i !== index));
-    }
-  };
 
   // Handle assignee add/remove
   const handleAddAssignee = (item: { id: string; name: string; type: "group" | "employee" }) => {
@@ -102,11 +90,22 @@ export function AddTaskModal({ open, onOpenChange, formData }: AddTaskModalProps
     setAssignees(assignees.filter(a => !(a.id === id && a.type === type)));
   };
 
+  function addChecklistItem() {
+    setChecklistItems([...checklistItems, ""]);
+  }
+  // Add these helper functions for checklist
+  function updateChecklistItem(index: number, value: string) {
+    setChecklistItems(items => items.map((item, i) => (i === index ? value : item)));
+  }
+  function removeChecklistItem(index: number) {
+    setChecklistItems(items => items.length > 1 ? items.filter((_, i) => i !== index) : items);
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl border-0 p-0">
-        {/* Header */}
-        <DialogHeader className="bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 px-6 py-5">
+      <DialogContent className="max-w-xl max-h-[90vh] p-0 rounded-2xl shadow-2xl border-0 flex flex-col">
+        {/* Fixed DialogTitle */}
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 px-6 py-5 rounded-t-2xl">
           <DialogTitle className="text-2xl font-extrabold text-white flex items-center justify-between tracking-tight">
             <span>
               <CheckCircle2 className="inline-block mr-2 text-green-300" size={28} />
@@ -122,8 +121,15 @@ export function AddTaskModal({ open, onOpenChange, formData }: AddTaskModalProps
               </Button>
             </DialogClose>
           </DialogTitle>
-        </DialogHeader>
-        <form className="px-6 py-6 bg-white space-y-6">
+        </div>
+        {/* Scrollable Content */}
+        <form
+          className="flex-1 overflow-y-auto px-6 py-6 bg-white space-y-6 min-h-0"
+          onSubmit={e => {
+            e.preventDefault();
+            // handle submit logic here
+          }}
+        >
           {/* Company Dropdown at Top */}
           <div>
             <Label htmlFor="company" className="font-semibold text-gray-700">
@@ -425,8 +431,8 @@ export function AddTaskModal({ open, onOpenChange, formData }: AddTaskModalProps
             </label>
           </div>
 
-          {/* Actions */}
-          <div className="flex justify-end gap-3 pt-6 border-t mt-6">
+          {/* Fixed Actions Footer (now inside the form, always at the bottom) */}
+          <div className="flex justify-end gap-3 px-0 py-4 border-t bg-white rounded-b-2xl sticky bottom-0 z-10">
             <DialogClose asChild>
               <Button variant="outline" type="button" className="font-semibold h-9 px-4 text-sm">
                 Cancel

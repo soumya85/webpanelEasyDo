@@ -36,6 +36,7 @@ import SamplePage2 from "@/pages/SamplePage2";
 import SamplePage3 from "@/pages/SamplePage3";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import PendingApprovals from "./pages/PendingApprovals";
+import AttendanceReport from "./pages/AttendanceReport";
 
 const queryClient = new QueryClient();
 
@@ -92,6 +93,7 @@ const AppContent = () => {
                     <Route path="/documents" element={<Documents />} />
                     <Route path="/leave" element={<Leave />} />
                      <Route path="/pending-approvals" element={<PendingApprovals />} />
+                      <Route path="/attendance-report" element={<AttendanceReport />} />
                     <Route path="/notes-reminder" element={<NotesReminder />} />
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/sample-page-1" element={<SamplePage1 />} />
