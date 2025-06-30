@@ -66,7 +66,7 @@ export const SalesRegisterModal: React.FC<SalesRegisterModalProps> = ({
         </DialogHeader>
 
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
+        <div className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10 -mt-1">
           <div className="flex items-center gap-3">
             <button onClick={onBackToReports} className="p-1">
               <ArrowLeft className="w-5 h-5 text-blue-500" />
