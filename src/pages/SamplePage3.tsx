@@ -670,7 +670,7 @@ export default function SamplePage3() {
                     placeholder="Name"
                     value={holidayName}
                     onChange={(e) => setHolidayName(e.target.value)}
-                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400"
+                    className="w-full p-4 bg-gray-100 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-600"
                   />
                 </div>
 
