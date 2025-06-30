@@ -884,9 +884,9 @@ export default function SamplePage3() {
                   {/* Leave List */}
                   <div className="space-y-4 max-h-80 overflow-y-auto">
                     {leaveFilter === "pending" && (
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+                      <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
                             <span className="text-white text-sm font-semibold">
                               UD
                             </span>
@@ -902,10 +902,10 @@ export default function SamplePage3() {
                             <div className="text-sm text-gray-600 font-medium">
                               CASUAL LEAVE (CL)
                             </div>
+                            <div className="text-xs text-gray-500 mt-2">
+                              30 June, 2025 5:56 AM
+                            </div>
                           </div>
-                        </div>
-                        <div className="text-xs text-gray-500 text-right">
-                          30 June, 2025 5:56 AM
                         </div>
                       </div>
                     )}
