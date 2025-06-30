@@ -9,6 +9,126 @@ export default function EmployeeAttendanceCard() {
   const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
 
+  // Sample employee data for different statuses
+  const employeeData = {
+    Present: {
+      name: "ABHIJIT MONDAL",
+      department: "Jetty Sircar",
+      status: "PRESENT",
+      statusColor: "text-green-600",
+      statusBg: "bg-green-100",
+      dotColor: "bg-green-500",
+      inTime: "10:01 AM",
+      outTime: "07:02 PM",
+      inStatus: "Office",
+      inStatusColor: "text-green-600",
+      outStatus: "Unverified",
+      outStatusColor: "text-red-600",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+    },
+    Absent: {
+      name: "PRIYA SHARMA",
+      department: "Operations",
+      status: "ABSENT",
+      statusColor: "text-red-600",
+      statusBg: "bg-red-100",
+      dotColor: "bg-red-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "No Check-in",
+      inStatusColor: "text-red-600",
+      outStatus: "No Check-out",
+      outStatusColor: "text-red-600",
+      image:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+    },
+    "Half Day": {
+      name: "RAHUL GUPTA",
+      department: "Marketing",
+      status: "HALF DAY",
+      statusColor: "text-orange-600",
+      statusBg: "bg-orange-100",
+      dotColor: "bg-orange-500",
+      inTime: "10:15 AM",
+      outTime: "02:30 PM",
+      inStatus: "Office",
+      inStatusColor: "text-green-600",
+      outStatus: "Half Day Leave",
+      outStatusColor: "text-orange-600",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+    },
+    Late: {
+      name: "SNEHA PATEL",
+      department: "Finance",
+      status: "LATE",
+      statusColor: "text-yellow-600",
+      statusBg: "bg-yellow-100",
+      dotColor: "bg-yellow-500",
+      inTime: "11:45 AM",
+      outTime: "07:15 PM",
+      inStatus: "Late Entry",
+      inStatusColor: "text-yellow-600",
+      outStatus: "Office",
+      outStatusColor: "text-green-600",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+    },
+    Leave: {
+      name: "AMIT KUMAR",
+      department: "IT Support",
+      status: "LEAVE",
+      statusColor: "text-purple-600",
+      statusBg: "bg-purple-100",
+      dotColor: "bg-purple-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "On Leave",
+      inStatusColor: "text-purple-600",
+      outStatus: "Approved Leave",
+      outStatusColor: "text-purple-600",
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+    },
+    "Week off": {
+      name: "ANJALI SINGH",
+      department: "HR",
+      status: "WEEK OFF",
+      statusColor: "text-blue-600",
+      statusBg: "bg-blue-100",
+      dotColor: "bg-blue-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "Weekend",
+      inStatusColor: "text-blue-600",
+      outStatus: "Weekend",
+      outStatusColor: "text-blue-600",
+      image:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
+    },
+    Holiday: {
+      name: "RAJESH VERMA",
+      department: "Sales",
+      status: "HOLIDAY",
+      statusColor: "text-indigo-600",
+      statusBg: "bg-indigo-100",
+      dotColor: "bg-indigo-500",
+      inTime: "--",
+      outTime: "--",
+      inStatus: "Public Holiday",
+      inStatusColor: "text-indigo-600",
+      outStatus: "Public Holiday",
+      outStatusColor: "text-indigo-600",
+      image:
+        "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop&crop=face",
+    },
+  };
+
+  const currentEmployee =
+    employeeData[selectedFilter as keyof typeof employeeData] ||
+    employeeData.Present;
+
   const branchDropdownRef = useRef<HTMLDivElement>(null);
   const filterDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -70,14 +190,36 @@ export default function EmployeeAttendanceCard() {
     { name: "Your View", subtitle: "", icon: "👁️" },
   ];
 
+  // Dynamic filter counts based on actual employee cards shown
+  const getFilterCount = (filterName: string) => {
+    switch (filterName) {
+      case "Present":
+        return 1; // ABHIJIT MONDAL
+      case "Absent":
+        return 2; // ABHIRAM MOHAPATRA and AHSAN RAZA
+      case "Half Day":
+        return 1; // SUSHANTA DAS
+      case "Late":
+        return 0; // No cards implemented yet
+      case "Leave":
+        return 0; // No cards implemented yet
+      case "Week off":
+        return 0; // No cards implemented yet
+      case "Holiday":
+        return 0; // No cards implemented yet
+      default:
+        return 0;
+    }
+  };
+
   const filterOptions = [
-    { name: "Present", count: 79 },
-    { name: "Absent", count: 24 },
-    { name: "Half Day", count: 0 },
-    { name: "Late", count: 0 },
-    { name: "Leave", count: 0 },
-    { name: "Week off", count: 119 },
-    { name: "Holiday", count: 0 },
+    { name: "Present", count: getFilterCount("Present") },
+    { name: "Absent", count: getFilterCount("Absent") },
+    { name: "Half Day", count: getFilterCount("Half Day") },
+    { name: "Late", count: getFilterCount("Late") },
+    { name: "Leave", count: getFilterCount("Leave") },
+    { name: "Week off", count: getFilterCount("Week off") },
+    { name: "Holiday", count: getFilterCount("Holiday") },
   ];
 
   const attendanceData = [
@@ -148,7 +290,7 @@ export default function EmployeeAttendanceCard() {
   ];
 
   return (
-    <Card className="bg-white border border-gray-200 shadow-sm h-full">
+    <Card className="bg-white border border-gray-200 shadow-lg h-full">
       <CardContent className="p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
@@ -304,10 +446,12 @@ export default function EmployeeAttendanceCard() {
               <div className="flex items-center gap-2">
                 <span>{selectedFilter}</span>
                 <span className="text-sm font-bold text-gray-600">
+                  (
                   {
                     filterOptions.find((opt) => opt.name === selectedFilter)
                       ?.count
                   }
+                  )
                 </span>
               </div>
               <ChevronDown className="w-4 h-4 text-gray-600" />
@@ -328,7 +472,7 @@ export default function EmployeeAttendanceCard() {
                       {option.name}
                     </span>
                     <span className="text-sm font-bold text-gray-600">
-                      {option.count}
+                      ({option.count})
                     </span>
                   </div>
                 ))}
@@ -337,94 +481,311 @@ export default function EmployeeAttendanceCard() {
           </div>
         </div>
 
-        {/* Employee Details Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          {/* Employee Profile */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
-                alt="Abhijit Mondal"
-                className="w-12 h-12 rounded-full object-cover"
-              />
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-                <User className="w-2.5 h-2.5 text-white" />
+        {/* Employee Details Card - Only show for Present filter */}
+        {selectedFilter === "Present" && (
+          <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+            {/* Employee Profile */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative">
+                <img
+                  src={currentEmployee.image}
+                  alt={currentEmployee.name}
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+                <div
+                  className={cn(
+                    "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center",
+                    currentEmployee.dotColor,
+                  )}
+                >
+                  <User className="w-1.5 h-1.5 text-white" />
+                </div>
               </div>
-            </div>
-            <div className="flex-1">
-              <h4 className="font-semibold text-gray-900">ABHIJIT MONDAL</h4>
-              <p className="text-sm text-gray-600">Jetty Sircar</p>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-sm text-gray-500">📞</span>
-                <span className="text-sm text-gray-500">💬</span>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  {currentEmployee.name}
+                </h4>
+                <p className="text-xs text-gray-600">
+                  {currentEmployee.department}
+                </p>
               </div>
-            </div>
-            <div className="text-right">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded">
-                  PRESENT
-                </span>
-              </div>
-              <p className="text-xs text-gray-500 mt-1">In: 10:01 AM - Ou...</p>
-            </div>
-          </div>
-
-          {/* Attendance Details */}
-          <div className="space-y-3">
-            <div className="text-sm text-gray-600 font-medium bg-gray-100 px-3 py-1 rounded">
-              Attendance from Office
-            </div>
-
-            {/* Check In */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-gray-900">
-                  IN - 10:01 AM
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-green-600">
-                  Office
-                </span>
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              </div>
-            </div>
-            <div className="text-xs text-gray-500 pl-2">
-              336G+34V, Sukanta Nagar, WARD NO-15, Haldia, West Bengal 721657,
-              India
-            </div>
-
-            {/* Check Out */}
-            <div className="flex items-center justify-between mt-3">
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-gray-900">
-                  OUT: 07:02 PM
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-red-600">
-                  Unverified
-                </span>
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+              <div className="text-right">
+                <div className="flex items-center gap-1">
+                  <div
+                    className={cn(
+                      "w-2 h-2 rounded-full",
+                      currentEmployee.dotColor,
+                    )}
+                  ></div>
+                  <span
+                    className={cn(
+                      "text-xs font-medium px-1.5 py-0.5 rounded",
+                      currentEmployee.statusColor,
+                      currentEmployee.statusBg,
+                    )}
+                  >
+                    {currentEmployee.status}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  In: {currentEmployee.inTime}
+                </p>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col gap-2 mt-4">
-              <button className="flex items-center justify-between p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                <span className="text-blue-600 font-medium">
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                Attendance from Office
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - {currentEmployee.inTime}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span
+                      className={cn(
+                        "text-xs font-medium",
+                        currentEmployee.inStatusColor,
+                      )}
+                    >
+                      {currentEmployee.inStatus}
+                    </span>
+                    <div
+                      className={cn(
+                        "w-1.5 h-1.5 rounded-full",
+                        currentEmployee.dotColor,
+                      )}
+                    ></div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: {currentEmployee.outTime}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span
+                      className={cn(
+                        "text-xs font-medium",
+                        currentEmployee.outStatusColor,
+                      )}
+                    >
+                      {currentEmployee.outStatus}
+                    </span>
+                    <div
+                      className={cn(
+                        "w-1.5 h-1.5 rounded-full",
+                        currentEmployee.dotColor,
+                      )}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
                   Location Timeline
-                </span>
-                <ChevronDown className="w-4 h-4 text-blue-600 rotate-[-90deg]" />
-              </button>
-              <button className="flex items-center justify-between p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                <span className="text-blue-600 font-medium">View Logs</span>
-                <ChevronDown className="w-4 h-4 text-blue-600 rotate-[-90deg]" />
-              </button>
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+
+        {/* Half Day Employee Card */}
+        {selectedFilter === "Half Day" && (
+          <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+            {/* Employee Profile */}
+            <div className="flex items-start gap-3 mb-3">
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">SD</span>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                  <User className="w-2 h-2 text-white" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-900">
+                      SUSHANTA DAS
+                    </h4>
+                    <p className="text-xs text-gray-600">Driver</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded">
+                        PRESENT
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      In: 11:01 AM - Ou...
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 mt-2">
+                  <span className="text-red-500 text-sm">📞</span>
+                  <span className="text-gray-400 text-sm">💬</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Attendance Details */}
+            <div className="space-y-2">
+              <div className="text-xs text-gray-600 font-medium bg-gray-100 px-2 py-1 rounded">
+                On half day
+              </div>
+
+              {/* Check In & Out */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    IN - 11:01 AM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-red-600">
+                      Unverified
+                    </span>
+                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 pl-2">
+                  7J9X+HRS, Paradeep, Odisha 754142, India
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-900">
+                    OUT: 07:15 PM
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium text-red-600">
+                      Unverified
+                    </span>
+                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 mt-2">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Absent Employee Cards */}
+        {selectedFilter === "Absent" && (
+          <div className="space-y-3">
+            {/* ABHIRAM MOHAPATRA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AM</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900">
+                        ABHIRAM MOHAPATRA
+                      </h4>
+                      <p className="text-xs text-gray-600">Supervisor</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-red-600 bg-red-100 px-2 py-1 rounded">
+                        ABSENT
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="text-red-500 text-sm">📞</span>
+                    <span className="text-gray-400 text-sm">💬</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-3">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* AHSAN RAZA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+                    alt="AHSAN RAZA"
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900">
+                        AHSAN RAZA
+                      </h4>
+                      <p className="text-xs text-gray-600">Supervisor</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-red-600 bg-red-100 px-2 py-1 rounded">
+                        ABSENT
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="text-red-500 text-sm">📞</span>
+                    <span className="text-gray-400 text-sm">💬</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-3">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
