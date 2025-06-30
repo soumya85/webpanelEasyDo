@@ -340,6 +340,14 @@ export default function SamplePage3() {
                     typeColor: "bg-primary-500",
                   },
                   {
+                    date: "Sun 06",
+                    month: "AUG 25",
+                    name: "MUHARRAM",
+                    location: "Head office",
+                    type: "General",
+                    typeColor: "bg-primary-500",
+                  },
+                  {
                     date: "Tue 30",
                     month: "SEP 25",
                     name: "MAHA ASTAMI",
