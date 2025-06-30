@@ -760,7 +760,7 @@ export default function SamplePage3() {
 
                   {/* Leave Details for Selected Date */}
                   <div className="border-t border-gray-200 pt-2">
-                    <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-md">
                       <div className="flex items-center gap-3 mb-2">
                         <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
                           <span className="text-white text-xs font-semibold">
