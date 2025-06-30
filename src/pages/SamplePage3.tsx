@@ -882,7 +882,7 @@ export default function SamplePage3() {
                   </div>
 
                   {/* Leave List */}
-                  <div className="space-y-4 max-h-96 overflow-y-auto">
+                  <div className="space-y-4 max-h-[500px] overflow-y-auto">
                     {leaveFilter === "pending" && (
                       <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
                         <div className="flex items-start gap-3">
