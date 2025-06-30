@@ -271,7 +271,7 @@ export default function SamplePage3() {
   ];
 
   return (
-    <div className={cn("w-full p-3 sm:p-4 lg:p-6 pt-8 font-inter")}>
+    <div className={cn("w-full p-3 sm:p-4 lg:p-6 pt-0 font-inter")}>
       {/* Page Area */}
       <div
         className={cn(
