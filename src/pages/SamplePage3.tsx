@@ -882,7 +882,7 @@ export default function SamplePage3() {
                   </div>
 
                   {/* Leave List */}
-                  <div className="space-y-4 max-h-80 overflow-y-auto">
+                  <div className="space-y-4 max-h-[500px] overflow-y-auto">
                     {leaveFilter === "pending" && (
                       <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
                         <div className="flex items-start gap-3">
@@ -1101,6 +1101,164 @@ export default function SamplePage3() {
                               </div>
                               <div className="text-xs text-gray-500 mt-1">
                                 15 May 2025, 09:50 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                RJ
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  Rajesh Joshi
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
+                              </div>
+                              <div className="text-sm font-semibold">
+                                3 days from May 12 to May 14
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Haldia
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                SICK LEAVE (SL)
+                              </div>
+                              <div className="text-red-500 font-medium text-sm">
+                                ABSENT
+                              </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">Amit Sharma</span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                12 May 2025, 08:15 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                AP
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  AmarPrasad
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
+                              </div>
+                              <div className="text-sm font-semibold">
+                                1 day May 10
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                New Delhi
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                CASUAL LEAVE (CL)
+                              </div>
+                              <div className="text-red-500 font-medium text-sm">
+                                ABSENT
+                              </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">Priya Singh</span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                10 May 2025, 07:30 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                NK
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  Neha Kapoor
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
+                              </div>
+                              <div className="text-sm font-semibold">
+                                2 days from May 8 to May 9
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Paradip
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                OTHER LEAVE (OL)
+                              </div>
+                              <div className="text-red-500 font-medium text-sm">
+                                ABSENT
+                              </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">
+                                  Vikash Kumar
+                                </span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                08 May 2025, 06:45 AM
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg p-4 shadow-md border border-gray-200">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-semibold">
+                                AS
+                              </span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="font-semibold text-gray-800">
+                                  Anil Sinha
+                                </div>
+                                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
+                                </span>
+                              </div>
+                              <div className="text-sm font-semibold">
+                                5 days from May 5 to May 9
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                Ahmedabad office
+                              </div>
+                              <div className="text-sm text-gray-600 font-medium">
+                                ANNUAL LEAVE (AL)
+                              </div>
+                              <div className="text-red-500 font-medium text-sm">
+                                ABSENT
+                              </div>
+                              <div className="text-sm text-gray-600 mt-2">
+                                Reporting Manager -{" "}
+                                <span className="font-medium">Ravi Patel</span>
+                              </div>
+                              <div className="text-xs text-gray-500 mt-1">
+                                05 May 2025, 05:20 AM
                               </div>
                             </div>
                           </div>
