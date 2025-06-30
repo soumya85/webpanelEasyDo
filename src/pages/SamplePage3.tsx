@@ -963,7 +963,7 @@ export default function SamplePage3() {
                                         cx="24"
                                         cy="24"
                                         r="24"
-                                        fill="#4F46E5"
+                                        fill="#000000"
                                       />
                                       <text
                                         x="24"
