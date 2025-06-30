@@ -71,6 +71,8 @@ export default function SamplePage3() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showBranchSheet, setShowBranchSheet] = useState(false);
   const [showAddEmployee, setShowAddEmployee] = useState(false);
+  const [showTeamMembersPopup, setShowTeamMembersPopup] = useState(false);
+  const [selectedManagerTeam, setSelectedManagerTeam] = useState(null);
 
   // Mock employee data
   const employeeData = [
