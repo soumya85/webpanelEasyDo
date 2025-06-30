@@ -50,6 +50,8 @@ type SortOption =
   | "name";
 type FilterOption =
   | "all"
+  | "my-tasks"
+  | "delegated-tasks"
   | "high-priority"
   | "due-today"
   | "overdue"
@@ -459,23 +461,13 @@ export function TaskBoardContent() {
   const [sortBy, setSortBy] = useState<SortOption>("created-desc");
   const [filterBy, setFilterBy] = useState<FilterOption>("all");
   const [groupBy, setGroupBy] = useState<GroupByOption>("status");
-  const [topFilter, setTopFilter] = useState<"my" | "delegated">("my");
 
   // Example: Replace "Current User" with your actual user logic
   const currentUser = "Current User";
 
-  // Top-level filter logic
-  const topLevelFilteredTasks = useMemo(() => {
-    if (topFilter === "my") {
-      return tasks.filter((task) => task.assignee?.name === currentUser);
-    } else {
-      return tasks.filter((task) => task.assignee?.name !== currentUser);
-    }
-  }, [tasks, topFilter, currentUser]);
-
   // Filtering and sorting logic
   const filteredAndSortedTasks = useMemo(() => {
-    let filtered = topLevelFilteredTasks.filter((task) => {
+    let filtered = tasks.filter((task) => {
       const matchesSearch =
         task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         task.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -484,6 +476,10 @@ export function TaskBoardContent() {
       if (!matchesSearch) return false;
 
       switch (filterBy) {
+        case "my-tasks":
+          return task.assignee?.name === currentUser;
+        case "delegated-tasks":
+          return task.assignee?.name !== currentUser && !!task.assignee;
         case "high-priority":
           return task.priority === "high" || task.priority === "urgent";
         case "due-today":
@@ -532,7 +528,7 @@ export function TaskBoardContent() {
           return 0;
       }
     });
-  }, [topLevelFilteredTasks, searchTerm, sortBy, filterBy, currentUser]);
+  }, [tasks, searchTerm, sortBy, filterBy, currentUser]);
 
   // Task CRUD
   const addTask = (task: Task) => setTasks((prev) => [...prev, task]);
@@ -624,7 +620,7 @@ export function TaskBoardContent() {
             <LayoutGrid className="w-6 h-6 text-indigo-500" />
             Task Board
           </h1>
-          <div className="text-xs text-gray-400 mt-1 font-medium">
+          <div className="text-xs text-gray-600 mt-1 font-medium">
             Organize, track, and complete your work efficiently.
           </div>
         </div>
@@ -647,34 +643,8 @@ export function TaskBoardContent() {
         </div>
       </div>
 
-      {/* --- Top-level filter --- */}
-      <div className="flex gap-2 px-4 py-2 bg-gradient-to-r from-indigo-700 via-blue-600 to-blue-400 border-b sticky top-[56px] z-40 shadow-sm">
-        <Button
-          variant={topFilter === "my" ? "default" : "outline"}
-          className={`font-semibold text-sm px-4 py-1 rounded-full transition-all shadow-sm ${
-            topFilter === "my"
-              ? "bg-white text-blue-700 border border-blue-600"
-              : "bg-blue-100 text-blue-700 hover:bg-white"
-          }`}
-          onClick={() => setTopFilter("my")}
-        >
-          My Tasks
-        </Button>
-        <Button
-          variant={topFilter === "delegated" ? "default" : "outline"}
-          className={`font-semibold text-sm px-4 py-1 rounded-full transition-all shadow-sm ${
-            topFilter === "delegated"
-              ? "bg-white text-blue-700 border border-blue-600"
-              : "bg-blue-100 text-blue-700 hover:bg-white"
-          }`}
-          onClick={() => setTopFilter("delegated")}
-        >
-          Delegated Tasks
-        </Button>
-      </div>
-
       {/* --- Controls --- */}
-      <div className="flex flex-wrap items-center gap-2 px-4 py-2 bg-white border-b sticky top-[88px] z-30 shadow-sm">
+      <div className="flex flex-wrap items-center gap-2 px-4 py-2 bg-white border-b sticky top-[56px] z-30 shadow-sm">
         <Tabs
           value={currentView}
           onValueChange={(v) =>
@@ -716,6 +686,8 @@ export function TaskBoardContent() {
             onChange={(e) => setFilterBy(e.target.value as FilterOption)}
           >
             <option value="all">All Tasks</option>
+            <option value="my-tasks">My Tasks</option>
+            <option value="delegated-tasks">Delegated Tasks</option>
             <option value="high-priority">High Priority</option>
             <option value="due-today">Due Today</option>
             <option value="overdue">Overdue</option>
