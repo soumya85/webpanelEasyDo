@@ -704,7 +704,7 @@ export default function SamplePage3() {
                   {/* Selected Date */}
                   <div className="text-center mb-3">
                     <div className="text-blue-500 font-semibold text-sm">
-                      18 Jun 2025
+                      {selectedLeaveDate} Jun 2025
                     </div>
                   </div>
 
