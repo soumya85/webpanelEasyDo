@@ -927,13 +927,7 @@ export default function SamplePage3() {
                           1, 2, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
                           20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                         ].includes(date) && (
-                          <div
-                            className={`w-1 h-1 rounded-full mx-auto mt-0.5 ${
-                              date === selectedLeaveDate
-                                ? "bg-white"
-                                : "bg-blue-500"
-                            }`}
-                          ></div>
+                          <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
                         )}
                       </div>
                     ))}
