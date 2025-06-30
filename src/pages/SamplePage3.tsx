@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
@@ -10,7 +10,36 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  X,
+  Search,
+  Settings2,
+  Phone,
+  MessageCircle,
+  MoreVertical,
+  ChevronDown,
+  MapPin,
+  Check,
+  Plus,
+  Calendar,
+  User,
+  ArrowLeft,
+} from "lucide-react";
 
 export default function SamplePage3() {
   const { t } = useGlobalTranslation();
