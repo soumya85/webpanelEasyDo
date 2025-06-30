@@ -760,11 +760,11 @@ export default function SamplePage3() {
                   <div className="border-t border-gray-200 pt-4">
                     <div className="bg-white rounded-lg border border-gray-200 p-4">
                       <div className="flex items-center gap-3 mb-3">
-                        <img
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
-                          alt="SAMIR PANDA"
-                          className="w-10 h-10 rounded-full object-cover"
-                        />
+                        <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+                          <span className="text-white text-sm font-semibold">
+                            SM
+                          </span>
+                        </div>
                         <div>
                           <div className="font-semibold text-gray-800">
                             SAMIR PANDA
