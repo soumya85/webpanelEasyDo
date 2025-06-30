@@ -805,7 +805,9 @@ export default function EmployeeAttendanceCard() {
                     PRESENT
                   </span>
                 </div>
-                <p className="text-xs text-gray-500 mt-0.5">In: 10:45 AM - Ou...</p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  In: 10:45 AM - Ou...
+                </p>
               </div>
             </div>
 
@@ -829,7 +831,8 @@ export default function EmployeeAttendanceCard() {
                   </div>
                 </div>
                 <div className="text-xs text-gray-500 pl-2">
-                  MU 10, Madhuban Market Complex, Port District, Jagatsinghpur, Paradeep, Odisha 754142, India
+                  MU 10, Madhuban Market Complex, Port District, Jagatsinghpur,
+                  Paradeep, Odisha 754142, India
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold text-gray-900">
@@ -843,55 +846,8 @@ export default function EmployeeAttendanceCard() {
                   </div>
                 </div>
                 <div className="text-xs text-gray-500 pl-2">
-                  Room No. 40, Madhuban Building Market Complex, near Hp gas outlet, Paradeep, Odisha 754142, India
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex gap-2 mt-2">
-                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
-                  Location Timeline
-                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
-                </button>
-                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
-                  View Logs
-                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-            {/* PRABIR KHANRA Card */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
-              {/* Employee Profile */}
-              <div className="flex items-center gap-2 mb-3">
-                <div className="relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
-                    alt="PRABIR KHANRA"
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
-                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border border-white flex items-center justify-center bg-green-500">
-                    <User className="w-1.5 h-1.5 text-white" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-sm font-semibold text-gray-900">
-                    Prabir Khanra
-                  </h4>
-                  <p className="text-xs text-gray-600">Dock Sirkar</p>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    <span className="text-xs font-medium px-1.5 py-0.5 rounded text-green-600 bg-green-100">
-                      LEAVE
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-0.5">
-                    Prabir Khanra is o...
-                  </p>
+                  Room No. 40, Madhuban Building Market Complex, near Hp gas
+                  outlet, Paradeep, Odisha 754142, India
                 </div>
               </div>
 
@@ -938,7 +894,9 @@ export default function EmployeeAttendanceCard() {
                       LEAVE
                     </span>
                   </div>
-                  <p className="text-xs text-gray-500 mt-0.5">Amit Parmar is o...</p>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Amit Parmar is o...
+                  </p>
                 </div>
               </div>
 
@@ -980,7 +938,9 @@ export default function EmployeeAttendanceCard() {
                       LEAVE
                     </span>
                   </div>
-                  <p className="text-xs text-gray-500 mt-0.5">Prabir Khanra is o...</p>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Prabir Khanra is o...
+                  </p>
                 </div>
               </div>
 
@@ -998,6 +958,97 @@ export default function EmployeeAttendanceCard() {
             </div>
           </div>
         )}
+
+        {/* Absent Employee Cards */}
+        {selectedFilter === "Absent" && (
+          <div className="space-y-3">
+            {/* ABHIRAM MOHAPATRA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AM</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900">
+                        ABHIRAM MOHAPATRA
+                      </h4>
+                      <p className="text-xs text-gray-600">Supervisor</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-red-600 bg-red-100 px-2 py-1 rounded">
+                        ABSENT
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="text-red-500 text-sm">📞</span>
+                    <span className="text-gray-400 text-sm">💬</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-3">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+              </div>
+            </div>
+
+            {/* AHSAN RAZA Card */}
+            <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-3">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">AR</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
+                    <User className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900">
+                        AHSAN RAZA
+                      </h4>
+                      <p className="text-xs text-gray-600">Supervisor</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-red-600 bg-red-100 px-2 py-1 rounded">
+                        ABSENT
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="text-red-500 text-sm">📞</span>
+                    <span className="text-gray-400 text-sm">💬</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-3">
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  Location Timeline
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-1 p-2 bg-blue-50 rounded text-xs text-blue-600 font-medium hover:bg-blue-100 transition-colors">
+                  View Logs
+                  <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                </button>
               </div>
             </div>
           </div>
