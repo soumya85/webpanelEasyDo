@@ -1655,7 +1655,7 @@ export default function SamplePage3() {
       {/* Card Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
-          <DialogHeader className="flex flex-row items-center justify-between px-6 py-2 border-b">
+          <DialogHeader className="flex flex-row items-center justify-between px-6 py-1 border-b">
             <DialogTitle className="text-xl font-semibold text-[#283C50]">
               {selectedCard?.title || ""}
             </DialogTitle>
