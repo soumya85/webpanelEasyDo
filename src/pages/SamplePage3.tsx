@@ -1942,12 +1942,12 @@ export default function SamplePage3() {
                 <div className="flex-1 p-4 space-y-4 overflow-y-auto">
                   {/* Search Bar */}
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 w-4 h-4" />
                     <Input
                       placeholder="Search Employee"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 pr-10 bg-gray-100 border-none"
+                      className="pl-10 pr-10 bg-gray-100 border-none placeholder:text-gray-600"
                     />
                     {searchQuery && (
                       <button
@@ -2004,7 +2004,7 @@ export default function SamplePage3() {
                     <span className="text-gray-900">
                       {getBranchName(selectedEmployeeBranch)}
                     </span>
-                    <ChevronDown className="w-4 h-4 text-gray-400" />
+                    <ChevronDown className="w-4 h-4 text-gray-700" />
                   </button>
 
                   {/* Employee List */}
@@ -2023,7 +2023,7 @@ export default function SamplePage3() {
                                   alt={employee.name}
                                 />
                               ) : (
-                                <AvatarFallback className="bg-gray-400 text-white">
+                                <AvatarFallback className="bg-black text-white">
                                   {employee.initials}
                                 </AvatarFallback>
                               )}
