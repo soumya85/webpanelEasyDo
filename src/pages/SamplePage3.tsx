@@ -17,6 +17,7 @@ export default function SamplePage3() {
     useState("All Branches");
   const [leaveView, setLeaveView] = useState("day");
   const [leaveFilter, setLeaveFilter] = useState("pending");
+  const [selectedLeaveDate, setSelectedLeaveDate] = useState(18);
 
   // Sample card data for this page with business-focused actions
   const cardData = [
