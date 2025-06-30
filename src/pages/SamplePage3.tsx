@@ -13,6 +13,8 @@ export default function SamplePage3() {
   const [holidayName, setHolidayName] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [holidayType, setHolidayType] = useState("Public");
+  const [selectedBranchFilter, setSelectedBranchFilter] =
+    useState("All Branches");
 
   // Sample card data for this page with business-focused actions
   const cardData = [
