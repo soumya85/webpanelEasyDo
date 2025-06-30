@@ -2025,7 +2025,13 @@ export default function SamplePage3() {
                                 />
                               ) : (
                                 <AvatarFallback className="bg-black text-white">
-                                  {employee.initials}
+                                  {employee.initials ||
+                                    employee.name
+                                      .split(" ")
+                                      .map((word) => word[0])
+                                      .join("")
+                                      .substring(0, 2)
+                                      .toUpperCase()}
                                 </AvatarFallback>
                               )}
                             </Avatar>
