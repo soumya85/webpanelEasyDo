@@ -265,12 +265,14 @@ export function Header() {
             </div>
 
             {/* Create Button */}
-            <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
-              <Plus className="h-4 w-4" />
-              <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
-                {t("create")}
-              </MultilingualText>
-            </Button>
+            <CreateMenu>
+              <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
+                <Plus className="h-4 w-4" />
+                <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
+                  {t("create")}
+                </MultilingualText>
+              </Button>
+            </CreateMenu>
           </div>
         </div>
 
