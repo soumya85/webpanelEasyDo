@@ -44,6 +44,12 @@ export const navigationItems: NavigationItem[] = [
     href: "/employee-dashboard",
   },
   {
+    id: "company-dashboard",
+    labelKey: "companyDashboard",
+    icon: Building,
+    href: "/sample-page-3",
+  },
+  {
     id: "tasks",
     labelKey: "tasks",
     icon: CheckSquare,
@@ -78,11 +84,5 @@ export const navigationItems: NavigationItem[] = [
     labelKey: "helpSupport",
     icon: HelpCircle,
     href: "/help-support",
-  },
-  {
-    id: "sample-page-3",
-    labelKey: "samplePage3",
-    icon: Layers,
-    href: "/sample-page-3",
   },
 ];
