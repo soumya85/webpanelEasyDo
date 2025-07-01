@@ -74,6 +74,65 @@ export default function SamplePage3() {
   const [showTeamMembersPopup, setShowTeamMembersPopup] = useState(false);
   const [selectedManagerTeam, setSelectedManagerTeam] = useState(null);
 
+  // Announcement state
+  const [announcementSearch, setAnnouncementSearch] = useState("");
+
+  // Mock announcement data
+  const announcementData = [
+    {
+      id: "1",
+      branch: "Ahmedabad office",
+      date: "07-08-2024",
+      time: "06:39 PM",
+      title: "Server Maintenance..",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "2",
+      branch: "Haldia",
+      date: "07-08-2024",
+      time: "06:38 PM",
+      title: "Server Maintenance",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "3",
+      branch: "Head office",
+      date: "07-08-2024",
+      time: "06:37 PM",
+      title: "Server Maintenance..",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "4",
+      branch: "Head office",
+      date: "24-05-2024",
+      time: "04:40 PM",
+      title: "NOTICE",
+      description:
+        "Due to the Loksava Election on 1st June 2024 at Kolkata Aera,Our Kolkata Office will be closed on that day..but if there is any urgent work then the work should be done from home..",
+    },
+    {
+      id: "5",
+      branch: "Head office",
+      date: "09-01-2024",
+      time: "01:34 AM",
+      title: "Saturday - Full Working Days",
+      description: "2024 - all Saturday will be a full working day.",
+    },
+    {
+      id: "6",
+      branch: "All Branch",
+      date: "19-10-2023",
+      time: "02:03 AM",
+      title: "Test 2",
+      description: "1234567",
+    },
+  ];
+
   // Mock employee data
   const employeeData = [
     {
