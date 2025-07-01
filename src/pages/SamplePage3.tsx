@@ -4081,10 +4081,20 @@ export default function SamplePage3() {
         onOpenChange={setShowAttendanceDetail}
       >
         <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0">
-          <DialogHeader className="hidden">
-            <DialogTitle>Attendance Details</DialogTitle>
+          {/* Header with Title and Close Button */}
+          <DialogHeader className="flex flex-row items-center justify-between p-4 border-b border-gray-200">
+            <DialogTitle className="text-lg font-semibold text-gray-900">
+              Attendance
+            </DialogTitle>
+            <button
+              onClick={() => setShowAttendanceDetail(false)}
+              className="p-1 hover:bg-gray-100 rounded transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-600" />
+            </button>
           </DialogHeader>
-          {/* Header with Date Navigation */}
+
+          {/* Date Navigation */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <button className="p-1 hover:bg-gray-100 rounded transition-colors">
               <ChevronDown className="w-5 h-5 text-gray-600 rotate-90" />
