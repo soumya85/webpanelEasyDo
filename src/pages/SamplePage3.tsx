@@ -2574,33 +2574,88 @@ export default function SamplePage3() {
                     </h3>
 
                     {/* PAN Card Section */}
-                    <div className="border rounded-lg overflow-hidden">
-                      <div className="bg-blue-50 p-3">
-                        <img
-                          src="https://cdn.builder.io/api/v1/image/assets%2F1c15142b9104444983823918cb3b3624%2Fafea0b095a9246eaa09c53d9d8cc4b95?format=webp&width=800"
-                          alt="PAN Card Document"
-                          className="w-full h-auto rounded"
-                        />
+                    <div className="border rounded-lg overflow-hidden bg-white">
+                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-semibold text-sm">
+                              INCOME TAX DEPARTMENT
+                            </h4>
+                            <p className="text-xs opacity-90">GOVT. OF INDIA</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-xs opacity-90">
+                              PERMANENT ACCOUNT NUMBER
+                            </p>
+                            <p className="text-xs">23/06/2005</p>
+                          </div>
+                        </div>
+                        <div className="mt-4">
+                          <p className="text-sm font-medium">
+                            LIBERTY RIGHRISE PRIVATE LIMITED
+                          </p>
+                        </div>
                       </div>
-                      <div className="p-3 bg-white">
+                      <div className="p-4 bg-white">
                         <p className="text-sm font-medium text-gray-900">
                           Pan No.
                         </p>
-                        <p className="text-lg font-semibold text-gray-900 mt-1">
+                        <p className="text-xl font-bold text-gray-900 mt-1">
                           AABCL0949H
                         </p>
                       </div>
                     </div>
 
-                    {/* Additional Document */}
-                    <div className="border rounded-lg overflow-hidden">
-                      <div className="bg-gray-900 p-3 h-32 flex items-center justify-center">
-                        <div className="bg-white rounded p-2 w-24 h-20 flex items-center justify-center">
-                          <div className="text-xs text-gray-600 text-center">
-                            <div className="w-8 h-8 mx-auto mb-1 bg-gray-200 rounded-full flex items-center justify-center">
-                              <span className="text-gray-500 text-lg">📄</span>
-                            </div>
-                            Document
+                    {/* Additional Documents */}
+                    <div className="space-y-3">
+                      <div className="border rounded-lg p-4 bg-white">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <svg
+                              className="w-5 h-5 text-gray-600"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-gray-900">
+                              Certificate of Incorporation
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              Company registration document
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="border rounded-lg p-4 bg-white">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <svg
+                              className="w-5 h-5 text-gray-600"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-gray-900">
+                              GST Registration
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              Tax registration certificate
+                            </p>
                           </div>
                         </div>
                       </div>
