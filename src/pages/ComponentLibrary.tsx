@@ -41,7 +41,44 @@ export default function ComponentLibrary() {
 
           {/* Company Module Tab */}
           <TabsContent value="company" className="space-y-8">
-            {/* Add company components here */}
+            <ComponentSection
+              title="Employee Performance"
+              description="Components for tracking and displaying employee performance metrics"
+            >
+              <ComponentShowcase
+                title="Performance Meter"
+                description="A comprehensive performance dashboard with gauge visualization and detailed metrics breakdown"
+                component={
+                  <div className="w-full max-w-md mx-auto">
+                    <PerformanceMeter />
+                  </div>
+                }
+                code={`import PerformanceMeter from "@/components/PerformanceMeter";
+
+export function EmployeePerformanceWidget() {
+  return (
+    <div className="w-full">
+      <PerformanceMeter />
+    </div>
+  );
+}`}
+                props={[
+                  {
+                    name: "overallScore",
+                    type: "number",
+                    default: "25.5",
+                    description: "The overall performance score percentage",
+                  },
+                  {
+                    name: "performanceData",
+                    type: "Array<{category: string, percentage: number}>",
+                    description:
+                      "Array of performance categories and their scores",
+                  },
+                ]}
+                variants={["default", "with-modal"]}
+              />
+            </ComponentSection>
           </TabsContent>
         </Tabs>
       </div>
