@@ -76,6 +76,9 @@ export default function SamplePage3() {
 
   // Announcement state
   const [announcementSearch, setAnnouncementSearch] = useState("");
+  const [announcementFilter, setAnnouncementFilter] = useState("All");
+  const [showAnnouncementDropdown, setShowAnnouncementDropdown] =
+    useState(false);
 
   // Mock announcement data
   const announcementData = [
