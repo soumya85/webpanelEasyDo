@@ -27,44 +27,72 @@ interface ApprovalsModalProps {
   onBackToReports: () => void;
 }
 
-// Sample data for approval status chart
-const approvalStatusData = [
-  { name: "Approved", value: 2, color: "#4A90E2" },
-  { name: "Pending", value: 0, color: "#F5A623" },
-  { name: "Rejected", value: 0, color: "#D0021B" },
-];
+interface ApprovalCard {
+  id: string;
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  count?: number;
+  onClick?: () => void;
+}
 
-// Sample data for approvals by category chart
-const approvalsCategoryData = [
-  { name: "General Request", value: 0, color: "#8E44AD" },
-  { name: "Leave Request", value: 1, color: "#5D9CEC" },
-  { name: "Advance Salary", value: 0, color: "#F39C12" },
-  { name: "Travel Expense", value: 0, color: "#4A90E2" },
-  { name: "Operational Expense", value: 0, color: "#E74C3C" },
-  { name: "Vendor Quotation", value: 0, color: "#F8A5C2" },
-  { name: "Contract Approval", value: 0, color: "#A8DADC" },
-  { name: "Release Payment", value: 0, color: "#C8A2C8" },
-  { name: "Overtime Request", value: 0, color: "#52E5E7" },
-  { name: "Punch-in Approval", value: 1, color: "#41C9A7" },
-];
-
-// Sample approval details data
-const approvalDetails = [
+const adminApprovals: ApprovalCard[] = [
   {
-    employeeName: "Soumyadeep Goswami",
-    type: "LEAVE APPROVAL",
-    approvalDate: "12th May 2025",
-    notes:
-      "Type: Casual Leave- From: 14th May 2025 - To: 14th May 2025- Casual Leave (CL) - Will be doing medical tests for ear problems prescribed by the doctor.",
-    approvedBy: "Amulya Kumar Kar",
+    id: "leave",
+    title: "Leave Request",
+    icon: UserCheck,
+    count: 1,
   },
   {
-    employeeName: "Soumyadeep Goswami",
-    type: "PUNCH IN APPROVAL",
-    approvalDate: "15th May 2025",
-    notes:
-      "From: 15th May 2025 - To: 15th May 2025- Punch In Time: 9:34 AM- Punch In Approval",
-    approvedBy: "Amulya Kumar Kar",
+    id: "salary",
+    title: "Salary Adv. Request",
+    icon: DollarSign,
+  },
+  {
+    id: "overtime",
+    title: "Overtime Request",
+    icon: Clock,
+  },
+  {
+    id: "quotation",
+    title: "Quotation Approval",
+    icon: FileText,
+  },
+  {
+    id: "contract",
+    title: "Contract Approval",
+    icon: FileCheck,
+  },
+  {
+    id: "punchin",
+    title: "Punch-in Approval",
+    icon: UserPlus,
+    count: 1,
+  },
+];
+
+const employeeExpenseApprovals: ApprovalCard[] = [
+  {
+    id: "operational",
+    title: "Operational",
+    icon: Settings,
+  },
+  {
+    id: "general",
+    title: "General",
+    icon: CreditCard,
+  },
+  {
+    id: "travel",
+    title: "Travel",
+    icon: Plane,
+  },
+];
+
+const vendorPayments: ApprovalCard[] = [
+  {
+    id: "payment",
+    title: "Payment Request",
+    icon: HandCoins,
   },
 ];
 
