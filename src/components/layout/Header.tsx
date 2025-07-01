@@ -30,6 +30,7 @@ import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
 import { useTranslation } from "@/hooks/useTranslation";
 import { MultilingualText } from "@/components/MultilingualText";
+import { CreateMenu } from "@/components/CreateMenu";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
