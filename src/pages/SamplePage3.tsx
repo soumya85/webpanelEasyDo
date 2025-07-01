@@ -3877,15 +3877,7 @@ export default function SamplePage3() {
               // Pending Approval Modal Content
               <div className="w-full h-full">
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
-                  <button onClick={() => setIsModalOpen(false)} className="p-1">
-                    <ArrowLeft className="w-5 h-5 text-blue-500" />
-                  </button>
-                  <h1 className="text-lg font-semibold text-gray-900 absolute left-1/2 transform -translate-x-1/2">
-                    Approvals
-                  </h1>
-                  <div className="w-6"></div>
-                </div>
+                <div className="p-4 border-b sticky top-0 bg-white z-10"></div>
 
                 <div className="p-6 space-y-8 overflow-y-auto">
                   {/* Admin Approval Section */}
