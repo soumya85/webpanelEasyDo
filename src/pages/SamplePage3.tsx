@@ -3590,303 +3590,190 @@ export default function SamplePage3() {
                 </div>
               </div>
             ) : selectedCard?.id === "reports" ? (
-              // Reports Modal - Company Reports Interface
+              // Reports Modal - Same as EmployeeDashboard but independent
               <div className="w-full h-full flex flex-col">
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
-                  <h1 className="text-xl font-bold text-gray-900">
-                    Company Reports
-                  </h1>
-                  <div className="flex items-center gap-2">
+                  <h1 className="text-xl font-bold text-[#283C50]">Reports</h1>
+                </div>
+
+                {/* Reports Content */}
+                <div className="p-6">
+                  {/* Description */}
+                  <div className="text-center mb-8 p-4 bg-gray-50 rounded-lg">
+                    <p className="text-gray-600 leading-relaxed">
+                      Company consolidated, Individual Branch and / or Employee
+                      wise Reports can be generated & saved in your cloud drive
+                      or emailed.
+                    </p>
+                  </div>
+
+                  {/* Reports List */}
+                  <div className="space-y-1">
+                    {/* Attendance Report */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Attendance Report
+                      </span>
+                    </div>
+
+                    {/* Sales Register */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Sales Register
+                      </span>
+                    </div>
+
+                    {/* Approvals */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Approvals
+                      </span>
+                    </div>
+
+                    {/* Operational Expenses */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Operational Expenses
+                      </span>
+                    </div>
+
+                    {/* Salary Statement */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Salary Statement
+                      </span>
+                    </div>
+
+                    {/* Employee Performance Rating */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Employee Performance Rating
+                      </span>
+                    </div>
+
+                    {/* Task Report */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Task Report
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Cancel Button */}
+                  <div className="mt-8 text-center">
                     <Button
                       variant="outline"
-                      size="sm"
-                      className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                      onClick={() => setIsModalOpen(false)}
+                      className="px-8 py-2 text-blue-500 border-blue-500 hover:bg-blue-50"
                     >
-                      Export All
+                      Cancel
                     </Button>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div className="p-6 bg-blue-50 border-b border-gray-200">
-                  <p className="text-gray-700 text-sm leading-relaxed">
-                    Generate comprehensive reports for company operations,
-                    employee data, financial summaries, and performance
-                    analytics. All reports can be exported to PDF or Excel
-                    formats and scheduled for regular delivery.
-                  </p>
-                </div>
-
-                {/* Reports Grid */}
-                <div className="flex-1 overflow-y-auto p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Employee Analytics Report */}
-                    <div className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <svg
-                            className="w-5 h-5 text-blue-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            Employee Analytics
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3">
-                            Comprehensive employee performance, attendance, and
-                            productivity metrics across all branches.
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              Last generated: 2 days ago
-                            </span>
-                            <Button
-                              size="sm"
-                              className="bg-blue-600 hover:bg-blue-700"
-                            >
-                              Generate
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Financial Summary Report */}
-                    <div className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <svg
-                            className="w-5 h-5 text-green-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            Financial Summary
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3">
-                            Revenue, expenses, profit margins, and budget
-                            analysis for all business operations.
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              Last generated: 1 week ago
-                            </span>
-                            <Button
-                              size="sm"
-                              className="bg-blue-600 hover:bg-blue-700"
-                            >
-                              Generate
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Operations Dashboard */}
-                    <div className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <svg
-                            className="w-5 h-5 text-purple-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            Operations Dashboard
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3">
-                            Real-time operational metrics, logistics
-                            performance, and workflow efficiency data.
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              Last generated: 3 hours ago
-                            </span>
-                            <Button
-                              size="sm"
-                              className="bg-blue-600 hover:bg-blue-700"
-                            >
-                              Generate
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Branch Performance Report */}
-                    <div className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <svg
-                            className="w-5 h-5 text-orange-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            Branch Performance
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3">
-                            Individual branch analysis including revenue, costs,
-                            and efficiency comparisons.
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              Last generated: 5 days ago
-                            </span>
-                            <Button
-                              size="sm"
-                              className="bg-blue-600 hover:bg-blue-700"
-                            >
-                              Generate
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Compliance Report */}
-                    <div className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <svg
-                            className="w-5 h-5 text-red-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            Compliance Report
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3">
-                            Regulatory compliance status, audit results, and
-                            risk assessment documentation.
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              Last generated: 1 month ago
-                            </span>
-                            <Button
-                              size="sm"
-                              className="bg-blue-600 hover:bg-blue-700"
-                            >
-                              Generate
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Customer Analytics */}
-                    <div className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <svg
-                            className="w-5 h-5 text-teal-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">
-                            Customer Analytics
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3">
-                            Customer satisfaction, retention rates, and service
-                            quality metrics analysis.
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              Last generated: 1 week ago
-                            </span>
-                            <Button
-                              size="sm"
-                              className="bg-blue-600 hover:bg-blue-700"
-                            >
-                              Generate
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Quick Actions */}
-                  <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-                    <h3 className="font-semibold text-gray-900 mb-3">
-                      Quick Actions
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      <Button variant="outline" size="sm">
-                        Schedule Report
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        Report Templates
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        Export Settings
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        View History
-                      </Button>
-                    </div>
                   </div>
                 </div>
               </div>
