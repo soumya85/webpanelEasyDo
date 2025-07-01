@@ -169,6 +169,58 @@ export function EmployeeWagesWidget() {
                 variants={["default", "with-modal", "interactive"]}
               />
             </ComponentSection>
+
+            <ComponentSection
+              title="Employee Leave Management"
+              description="Components for tracking and managing employee leave balances and requests"
+            >
+              <ComponentShowcase
+                title="Leave Balance"
+                description="A comprehensive leave balance dashboard showing different leave types (Earned, Sick, Casual, Other) with approval status and detailed modal"
+                component={
+                  <div className="w-full max-w-md mx-auto">
+                    <LeaveBalance />
+                  </div>
+                }
+                code={`import LeaveBalance from "@/components/LeaveBalance";
+
+export function EmployeeLeaveWidget() {
+  return (
+    <div className="w-full">
+      <LeaveBalance />
+    </div>
+  );
+}`}
+                props={[
+                  {
+                    name: "className",
+                    type: "string",
+                    default: "undefined",
+                    description:
+                      "Additional CSS classes for styling customization",
+                  },
+                  {
+                    name: "leaveData",
+                    type: "Array<{label: string, value: string, color: string}>",
+                    description:
+                      "Array of leave types with their balances (Earned, Sick, Casual, Other)",
+                  },
+                  {
+                    name: "approvedCount",
+                    type: "number",
+                    default: "3",
+                    description: "Number of approved leave requests",
+                  },
+                  {
+                    name: "pendingCount",
+                    type: "number",
+                    default: "0",
+                    description: "Number of pending leave requests",
+                  },
+                ]}
+                variants={["default", "with-modal", "with-status-badges"]}
+              />
+            </ComponentSection>
           </TabsContent>
         </Tabs>
       </div>
