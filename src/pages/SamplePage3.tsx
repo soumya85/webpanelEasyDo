@@ -4161,13 +4161,13 @@ export default function SamplePage3() {
 
           {/* Employee Attendance Detail */}
           <div className="flex-1 overflow-y-auto p-4">
-            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
               {/* Employee Header */}
-              <div className="flex items-start justify-between p-4">
+              <div className="flex items-center justify-between p-4">
                 <div className="flex items-center gap-3">
-                  <Avatar className="w-10 h-10">
+                  <Avatar className="w-12 h-12">
                     <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
-                    <AvatarFallback className="bg-gray-800 text-white font-semibold text-sm">
+                    <AvatarFallback className="bg-gray-800 text-white font-semibold">
                       AM
                     </AvatarFallback>
                   </Avatar>
@@ -4175,17 +4175,17 @@ export default function SamplePage3() {
                     <h3 className="font-semibold text-gray-900 text-base">
                       ABHIJIT MONDAL
                     </h3>
-                    <p className="text-sm text-gray-600 mt-0.5">Jetty Sircar</p>
+                    <p className="text-sm text-gray-500">Jetty Sircar</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 justify-end">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span className="text-sm font-medium text-green-600">
                       PRESENT
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600">In: 10:01 AM</p>
+                  <p className="text-sm text-gray-500 mt-1">In: 10:01 AM</p>
                 </div>
               </div>
 
@@ -4197,7 +4197,7 @@ export default function SamplePage3() {
 
                 {/* Check In */}
                 <div className="mb-4">
-                  <div className="flex items-start justify-between mb-1">
+                  <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-gray-900">
                       IN - 10:01 AM
                     </span>
@@ -4208,14 +4208,14 @@ export default function SamplePage3() {
                       </span>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-gray-500">
                     6, Kalighat, West Bengal 700026, India
                   </p>
                 </div>
 
                 {/* Check Out */}
                 <div className="mb-6">
-                  <div className="flex items-start justify-between mb-1">
+                  <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-gray-900">
                       OUT: 07:02 PM
                     </span>
@@ -4226,25 +4226,25 @@ export default function SamplePage3() {
                       </span>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-gray-500">
                     102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd,
                     Kalighat, Kolkata, West Bengal 700026, India
                   </p>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-blue-600 border-blue-600 hover:bg-blue-50 bg-blue-50/30"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 bg-blue-50/50 justify-center"
                   >
                     Location Timeline ›
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-blue-600 border-blue-600 hover:bg-blue-50 bg-blue-50/30"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 bg-blue-50/50 justify-center"
                   >
                     View Logs ›
                   </Button>
