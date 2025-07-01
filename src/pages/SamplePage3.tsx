@@ -3593,7 +3593,7 @@ export default function SamplePage3() {
               // Reports Modal - Same as EmployeeDashboard but independent
               <div className="w-full h-full flex flex-col">
                 {/* Reports Content */}
-                <div className="p-6 flex-1 overflow-y-auto">
+                <div className="px-6 pt-0 pb-6 flex-1 overflow-y-auto">
                   {/* Description */}
                   <div className="text-center mb-8 p-4 bg-gray-50 rounded-lg">
                     <p className="text-gray-600 leading-relaxed">
