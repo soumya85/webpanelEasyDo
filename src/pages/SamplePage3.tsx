@@ -3738,7 +3738,7 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Operational Metrics
+                        Employee Performance Rating
                       </span>
                     </div>
 
