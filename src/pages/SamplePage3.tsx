@@ -3676,7 +3676,7 @@ export default function SamplePage3() {
                       </span>
                     </div>
 
-                    {/* Cost Analysis */}
+                    {/* Operational Expenses */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
