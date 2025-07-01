@@ -121,6 +121,53 @@ export function EmployeeAttendanceWidget() {
                 variants={["default", "with-modal", "interactive"]}
               />
             </ComponentSection>
+
+            <ComponentSection
+              title="Employee Wages & Payroll"
+              description="Components for displaying employee salary, earnings, deductions, and payroll information"
+            >
+              <ComponentShowcase
+                title="Wages Summary"
+                description="A comprehensive wages dashboard showing earnings, deductions, and net pay with detailed payslip modal"
+                component={
+                  <div className="w-full max-w-md mx-auto">
+                    <WagesSummary />
+                  </div>
+                }
+                code={`import WagesSummary from "@/components/WagesSummary";
+
+export function EmployeeWagesWidget() {
+  return (
+    <div className="w-full">
+      <WagesSummary />
+    </div>
+  );
+}`}
+                props={[
+                  {
+                    name: "className",
+                    type: "string",
+                    default: "undefined",
+                    description:
+                      "Additional CSS classes for styling customization",
+                  },
+                  {
+                    name: "month",
+                    type: "string",
+                    default: "May 2025",
+                    description:
+                      "The month and year for which wages are displayed",
+                  },
+                  {
+                    name: "wagesData",
+                    type: "Array<{label: string, amount: string, color: string}>",
+                    description:
+                      "Array of wage components including earnings, deductions, and net pay",
+                  },
+                ]}
+                variants={["default", "with-modal", "interactive"]}
+              />
+            </ComponentSection>
           </TabsContent>
         </Tabs>
       </div>
