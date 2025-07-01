@@ -2391,6 +2391,75 @@ export default function SamplePage3() {
                   </button>
                 </div>
               </div>
+            ) : selectedCard?.id === "announce" ? (
+              // Announcement Interface
+              <div className="h-full flex flex-col bg-gray-50">
+                {/* Search Box */}
+                <div className="p-4 bg-white border-b">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Input
+                      placeholder="Search"
+                      value={announcementSearch}
+                      onChange={(e) => setAnnouncementSearch(e.target.value)}
+                      className="pl-12 bg-gray-100 border-none rounded-full text-gray-600 placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Announcements List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-6">
+                  {Object.entries(groupedAnnouncements).map(
+                    ([monthYear, announcements]) => (
+                      <div key={monthYear} className="space-y-4">
+                        {/* Month Header */}
+                        <h2 className="text-lg font-semibold text-gray-900 sticky top-0 bg-gray-50 py-2">
+                          {monthYear}
+                        </h2>
+
+                        {/* Announcement Cards */}
+                        <div className="space-y-4">
+                          {announcements.map((announcement) => (
+                            <div
+                              key={announcement.id}
+                              className="bg-white rounded-lg p-4 shadow-sm"
+                            >
+                              {/* Branch and Date */}
+                              <div className="flex items-center justify-between mb-2">
+                                <h3 className="text-base font-semibold text-gray-900">
+                                  {announcement.branch}
+                                </h3>
+                                <span className="text-sm text-gray-500">
+                                  {announcement.date} {announcement.time}
+                                </span>
+                              </div>
+
+                              {/* Title */}
+                              <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                                {announcement.title}
+                              </h4>
+
+                              {/* Description */}
+                              <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                                {announcement.description}
+                              </p>
+
+                              {/* Blue Underline */}
+                              <div className="w-full h-1 bg-blue-500 rounded-full"></div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ),
+                  )}
+
+                  {Object.keys(groupedAnnouncements).length === 0 && (
+                    <div className="text-center text-gray-500 py-12">
+                      <p>No announcements found.</p>
+                    </div>
+                  )}
+                </div>
+              </div>
             ) : (
               // Default placeholder for other modals
               <div className="w-full h-full flex items-center justify-center text-gray-500 p-6">
