@@ -3382,9 +3382,9 @@ export default function SamplePage3() {
                 {/* Employee List */}
                 <div className="flex-1 overflow-y-auto p-4 space-y-4">
                   {(() => {
-                    // Sample employee data matching the screenshots
+                    // Sample employee data matching the exact tab counts: Pending (93), Incomplete (27), Verified (1)
                     const verificationEmployees = [
-                      // Pending employees (default status)
+                      // Pending employees (showing first 4 of 93)
                       {
                         id: "emp1",
                         name: "ABHIJIT MONDAL",
@@ -3421,43 +3421,44 @@ export default function SamplePage3() {
                         reportingManager: "Security Head",
                         verificationStatus: "pending",
                       },
-                      // Verified employees
+                      // Incomplete employees (showing first 4 of 27)
                       {
                         id: "emp5",
-                        name: "Amulya Kumar Kar",
-                        position: "Chief Accountant",
+                        name: "Rahul Kumar",
+                        position: "Assistant Manager",
                         branch: "Head office",
-                        doj: "Oct 01, 2017",
-                        reportingManager: "Bhaskar Sir",
-                        verificationStatus: "verified",
+                        doj: "Mar 15, 2023",
+                        reportingManager: "Manager Head",
+                        verificationStatus: "incomplete",
                       },
                       {
                         id: "emp6",
-                        name: "Bhaskar IOS",
-                        position: "Exec Director",
-                        branch: "Head office",
-                        doj: "Mar 14, 2021",
-                        reportingManager: "Bhaskar Sir",
-                        verificationStatus: "verified",
+                        name: "Priya Sharma",
+                        position: "HR Executive",
+                        branch: "Ahmedabad office",
+                        doj: "Jun 20, 2023",
+                        reportingManager: "HR Head",
+                        verificationStatus: "incomplete",
                       },
                       {
                         id: "emp7",
-                        name: "Bhaskar Sir",
-                        position: "CEO",
-                        branch: "Head office",
-                        doj: "Sep 10, 2016",
-                        reportingManager: "Dakshay Sanghvi Devstree",
-                        verificationStatus: "verified",
+                        name: "Rajesh Patel",
+                        position: "Accountant",
+                        branch: "Haldia",
+                        doj: "Aug 10, 2023",
+                        reportingManager: "Finance Head",
+                        verificationStatus: "incomplete",
                       },
                       {
                         id: "emp8",
-                        name: "Devanshu Uk",
-                        position: "Manager",
-                        branch: "Head office",
-                        doj: "N/A",
-                        reportingManager: "Bhaskar Sir",
-                        verificationStatus: "verified",
+                        name: "Sneha Gupta",
+                        position: "Admin Officer",
+                        branch: "Paradip",
+                        doj: "Sep 05, 2023",
+                        reportingManager: "Admin Head",
+                        verificationStatus: "incomplete",
                       },
+                      // Verified employees (only 1 as per count)
                       {
                         id: "emp9",
                         name: "Amit Parmar",
