@@ -2634,7 +2634,7 @@ export default function SamplePage3() {
                               PERMANENT ACCOUNT NUMBER
                             </text>
                             <text x="320" y="45" fill="white" fontSize="10">
-                              23/06/2005
+                              XX/XX/XXXX
                             </text>
 
                             {/* Company Name */}
