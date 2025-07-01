@@ -323,43 +323,42 @@ export default function SamplePage3() {
   // Mock branch data
   const branchData = [
     {
-      id: "all",
-      name: "All Branches",
-      description: "Manage/View all the branches",
-      address: "",
-    },
-    {
       id: "head-office",
       name: "Head office",
       description: "",
       address:
         "104, 3rd Floor , Shyama Prasad Mukherjee Road, Hazra, Kalighat, Kalighat, Kolkata, West Bengal 700026, India",
+      hours: "10:15 AM - 07:15 PM",
+      status: "Open",
+      employeeCount: 28,
     },
     {
       id: "haldia",
       name: "Haldia",
       description: "",
       address:
-        "33GG+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721657, India",
+        "336G+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721657, India",
+      hours: "10:15 AM - 7:15 PM",
+      status: "Open",
+      employeeCount: 37,
     },
     {
       id: "ahmedabad",
       name: "Ahmedabad office",
       description: "",
       address: "C/142, Vishwas City 1, Sola, Ahmedabad, Gujarat 380061, India",
+      hours: "9:30 AM - 7:00 PM",
+      status: "Open",
+      employeeCount: 8,
     },
     {
       id: "paradip",
       name: "Paradip",
       description: "",
       address: "7J9X+5GG, Paradeep, Odisha 754142, India",
-    },
-    {
-      id: "new-delhi",
-      name: "New Delhi",
-      description: "",
-      address:
-        "New Delhi,405, District Centre, Janakpuri, New Delhi, Delhi, 110058, India",
+      hours: "10:00 AM - 6:00 PM",
+      status: "Open",
+      employeeCount: 15,
     },
   ];
 
