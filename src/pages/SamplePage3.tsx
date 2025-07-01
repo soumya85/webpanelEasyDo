@@ -2539,17 +2539,6 @@ export default function SamplePage3() {
                   <div></div>
                 </div>
 
-                {/* Search Bar */}
-                <div className="p-4 bg-gray-50">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <Input
-                      placeholder="Search Employee"
-                      className="pl-10 bg-white border-gray-200"
-                    />
-                  </div>
-                </div>
-
                 {/* Tabs */}
                 <div className="flex gap-2 p-4 pt-2">
                   <button
