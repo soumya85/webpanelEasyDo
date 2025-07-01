@@ -4150,48 +4150,44 @@ export default function SamplePage3() {
           </div>
 
           {/* Employee Attendance Detail */}
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+          <div className="flex-1 overflow-y-auto p-4">
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
               {/* Employee Header */}
-              <div className="flex items-center justify-between p-4 bg-white">
+              <div className="flex items-start justify-between p-4">
                 <div className="flex items-center gap-3">
-                  <Avatar className="w-12 h-12">
+                  <Avatar className="w-10 h-10">
                     <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
-                    <AvatarFallback className="bg-gray-700 text-white font-semibold text-sm">
+                    <AvatarFallback className="bg-gray-800 text-white font-semibold text-sm">
                       AM
                     </AvatarFallback>
                   </Avatar>
-                  <div className="flex-1">
+                  <div>
                     <h3 className="font-semibold text-gray-900 text-base">
                       ABHIJIT MONDAL
                     </h3>
                     <p className="text-sm text-gray-600 mt-0.5">Jetty Sircar</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-sm font-medium text-green-600">
-                    PRESENT
-                  </span>
+                <div className="text-right">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-green-600">
+                      PRESENT
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600">In: 10:01 AM</p>
                 </div>
               </div>
 
-              {/* Time Header */}
-              <div className="px-4 py-2 bg-gray-50 border-t border-gray-100">
-                <span className="text-sm text-gray-600 font-medium">
-                  In: 10:01 AM
-                </span>
-              </div>
-
               {/* Attendance Details */}
-              <div className="p-4 bg-white">
+              <div className="px-4 pb-4">
                 <div className="text-sm text-gray-600 mb-4">
                   Attendance from Office
                 </div>
 
                 {/* Check In */}
                 <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-start justify-between mb-1">
                     <span className="font-semibold text-gray-900">
                       IN - 10:01 AM
                     </span>
@@ -4209,7 +4205,7 @@ export default function SamplePage3() {
 
                 {/* Check Out */}
                 <div className="mb-6">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-start justify-between mb-1">
                     <span className="font-semibold text-gray-900">
                       OUT: 07:02 PM
                     </span>
@@ -4227,21 +4223,20 @@ export default function SamplePage3() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="flex items-center gap-3">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 font-medium"
+                    className="text-blue-600 border-blue-600 hover:bg-blue-50 bg-blue-50/30"
                   >
-                    <MapPin className="w-4 h-4 mr-2" />
-                    Location Timeline
+                    Location Timeline ›
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 font-medium"
+                    className="text-blue-600 border-blue-600 hover:bg-blue-50 bg-blue-50/30"
                   >
-                    View Logs
+                    View Logs ›
                   </Button>
                 </div>
               </div>
