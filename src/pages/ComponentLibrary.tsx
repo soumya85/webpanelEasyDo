@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ComponentSection } from "@/components/docs/ComponentSection";
 import { ComponentShowcase } from "@/components/docs/ComponentShowcase";
 import PerformanceMeter from "@/components/PerformanceMeter";
+import AttendanceSummary from "@/components/AttendanceSummary";
 
 export default function ComponentLibrary() {
   return (
