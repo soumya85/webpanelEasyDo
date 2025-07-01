@@ -82,6 +82,15 @@ export default function SamplePage3() {
   const [showAnnouncementDropdown, setShowAnnouncementDropdown] =
     useState(false);
 
+  // Attendance Detail Modal state
+  const [showAttendanceDetail, setShowAttendanceDetail] = useState(false);
+  const [attendanceDetailSearch, setAttendanceDetailSearch] = useState("");
+  const [attendanceDetailFilter, setAttendanceDetailFilter] =
+    useState("Present");
+  const [selectedAttendanceDate, setSelectedAttendanceDate] = useState(
+    "Saturday, 28 Jun, 2025",
+  );
+
   // Mock announcement data
   const announcementData = [
     {
