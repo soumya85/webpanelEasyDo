@@ -4150,84 +4150,100 @@ export default function SamplePage3() {
           </div>
 
           {/* Employee Attendance Detail */}
-          <div className="flex-1 overflow-y-auto p-4">
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
               {/* Employee Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center justify-between p-4 bg-white">
                 <div className="flex items-center gap-3">
-                  <Avatar className="w-10 h-10">
+                  <Avatar className="w-12 h-12">
                     <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
-                    <AvatarFallback className="bg-blue-500 text-white font-semibold">
+                    <AvatarFallback className="bg-gray-700 text-white font-semibold text-sm">
                       AM
                     </AvatarFallback>
                   </Avatar>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900 text-base">
                       ABHIJIT MONDAL
                     </h3>
-                    <p className="text-sm text-gray-600">Jetty Sircar</p>
+                    <p className="text-sm text-gray-600 mt-0.5">Jetty Sircar</p>
                   </div>
                 </div>
-                <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
-                  PRESENT
-                </Badge>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm font-medium text-green-600">
+                    PRESENT
+                  </span>
+                </div>
               </div>
 
-              {/* Time Details */}
-              <div className="space-y-4">
-                <div className="text-sm text-gray-600 mb-2">
+              {/* Time Header */}
+              <div className="px-4 py-2 bg-gray-50 border-t border-gray-100">
+                <span className="text-sm text-gray-600 font-medium">
+                  In: 10:01 AM
+                </span>
+              </div>
+
+              {/* Attendance Details */}
+              <div className="p-4 bg-white">
+                <div className="text-sm text-gray-600 mb-4">
                   Attendance from Office
                 </div>
 
                 {/* Check In */}
-                <div className="flex items-start justify-between">
-                  <div>
-                    <div className="font-semibold text-gray-900 mb-1">
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-semibold text-gray-900">
                       IN - 10:01 AM
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      6, Kalighat, West Bengal 700026, India
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-sm font-medium text-green-600">
+                        Office
+                      </span>
                     </div>
                   </div>
-                  <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
-                    Office
-                  </Badge>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    6, Kalighat, West Bengal 700026, India
+                  </p>
                 </div>
 
                 {/* Check Out */}
-                <div className="flex items-start justify-between">
-                  <div>
-                    <div className="font-semibold text-gray-900 mb-1">
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-semibold text-gray-900">
                       OUT: 07:02 PM
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd,
-                      Kalighat, Kolkata, West Bengal 700026, India
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-sm font-medium text-red-600">
+                        Unverified
+                      </span>
                     </div>
                   </div>
-                  <Badge className="bg-red-100 text-red-700 hover:bg-red-100">
-                    Unverified
-                  </Badge>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd,
+                    Kalighat, Kolkata, West Bengal 700026, India
+                  </p>
                 </div>
-              </div>
 
-              {/* Action Buttons */}
-              <div className="flex items-center gap-3 mt-6 pt-4 border-t border-gray-200">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-blue-600 border-blue-600 hover:bg-blue-50"
-                >
-                  <MapPin className="w-4 h-4 mr-2" />
-                  Location Timeline
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-blue-600 border-blue-600 hover:bg-blue-50"
-                >
-                  View Logs
-                </Button>
+                {/* Action Buttons */}
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 font-medium"
+                  >
+                    <MapPin className="w-4 h-4 mr-2" />
+                    Location Timeline
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 font-medium"
+                  >
+                    View Logs
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
