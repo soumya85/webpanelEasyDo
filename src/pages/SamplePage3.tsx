@@ -3284,6 +3284,172 @@ export default function SamplePage3() {
                   </div>
                 </div>
               </div>
+            ) : selectedCard?.id === "background-verification" ? (
+              // Background Verification Modal - Employee Verification Interface
+              <div className="w-full h-full flex flex-col">
+                {/* Search Bar */}
+                <div className="px-4 py-3 border-b bg-gray-50">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Input
+                      placeholder="Search Employee"
+                      className="pl-10 bg-white border-gray-200"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                {/* Status Tabs */}
+                <div className="px-4 py-3 border-b bg-white">
+                  <div className="flex gap-2">
+                    {[
+                      { key: "pending", label: "Pending", count: 93 },
+                      { key: "incomplete", label: "Incomplete", count: 27 },
+                      { key: "verified", label: "Verified", count: 1 },
+                    ].map((tab) => (
+                      <button
+                        key={tab.key}
+                        onClick={() => setSelectedStatus(tab.key)}
+                        className={cn(
+                          "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                          selectedStatus === tab.key
+                            ? "bg-blue-50 text-blue-600 border border-blue-200"
+                            : "text-gray-600 hover:bg-gray-50",
+                        )}
+                      >
+                        {tab.label} ({tab.count})
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Branch Filter */}
+                <div className="px-4 py-3 border-b bg-white">
+                  <Popover
+                    open={showBranchSheet}
+                    onOpenChange={setShowBranchSheet}
+                  >
+                    <PopoverTrigger asChild>
+                      <button className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg bg-white text-left">
+                        <span className="text-gray-700">
+                          {selectedEmployeeBranch === "all"
+                            ? "All Branches"
+                            : getBranchName(selectedEmployeeBranch)}
+                        </span>
+                        <ChevronDown className="w-4 h-4 text-gray-500" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent align="start" className="w-80 p-0">
+                      <div className="p-4 space-y-2">
+                        {[
+                          { id: "all", name: "All Branches" },
+                          ...branchData,
+                        ].map((branch) => (
+                          <button
+                            key={branch.id}
+                            onClick={() => {
+                              setSelectedEmployeeBranch(branch.id);
+                              setShowBranchSheet(false);
+                            }}
+                            className={cn(
+                              "w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100",
+                              selectedEmployeeBranch === branch.id
+                                ? "bg-blue-50 text-blue-600"
+                                : "text-gray-700",
+                            )}
+                          >
+                            {branch.name}
+                          </button>
+                        ))}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                {/* Employee List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                  {filteredEmployees.map((employee) => {
+                    const verificationStatus =
+                      employee.id === "emp1"
+                        ? "verified"
+                        : employee.id === "emp2"
+                          ? "incomplete"
+                          : "pending";
+
+                    return (
+                      <div
+                        key={employee.id}
+                        className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-start gap-3">
+                            <Avatar className="w-12 h-12">
+                              {employee.avatar ? (
+                                <img
+                                  src={employee.avatar}
+                                  alt={employee.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              ) : (
+                                <AvatarFallback className="bg-gray-300 text-gray-700">
+                                  {employee.name
+                                    .split(" ")
+                                    .map((word) => word[0])
+                                    .join("")
+                                    .substring(0, 2)
+                                    .toUpperCase()}
+                                </AvatarFallback>
+                              )}
+                            </Avatar>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <h3 className="font-semibold text-gray-900 text-lg">
+                                  {employee.name}
+                                </h3>
+                                {verificationStatus === "verified" ? (
+                                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                    <Check className="w-4 h-4 text-white" />
+                                  </div>
+                                ) : (
+                                  <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                                    <span className="text-white text-xs font-bold">
+                                      !
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                              <p className="text-sm text-gray-600 mb-1">
+                                DOJ: {employee.doj}
+                              </p>
+                              <p className="text-sm text-gray-600 mb-2">
+                                {employee.position}{" "}
+                                <span className="text-blue-500">
+                                  ({employee.branch})
+                                </span>
+                              </p>
+                              <div className="flex items-center justify-between">
+                                <span className="text-sm text-gray-600">
+                                  Reporting Manager: {employee.reportingManager}
+                                </span>
+                                <button className="text-blue-500 text-sm font-medium hover:underline">
+                                  More Info
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  {filteredEmployees.length === 0 && (
+                    <div className="text-center py-8 text-gray-500">
+                      No employees found matching your criteria
+                    </div>
+                  )}
+                </div>
+              </div>
             ) : (
               // Default placeholder for other modals
               <div className="w-full h-full flex items-center justify-center text-gray-500 p-6">
