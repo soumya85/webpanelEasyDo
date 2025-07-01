@@ -3520,9 +3520,13 @@ export default function SamplePage3() {
                                   </span>
                                 ) : employee.verificationStatus ===
                                   "incomplete" ? (
-                                  <span className="material-icons-outlined text-green-500 text-2xl ml-2">
-                                    verified_user
-                                  </span>
+                                  <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center ml-2 relative">
+                                    <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+                                      <span className="text-orange-500 text-sm font-bold">
+                                        ?
+                                      </span>
+                                    </div>
+                                  </div>
                                 ) : (
                                   <span className="material-icons-outlined text-red-500 text-2xl ml-2">
                                     gpp_maybe
