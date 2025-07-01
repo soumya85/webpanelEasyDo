@@ -74,6 +74,68 @@ export default function SamplePage3() {
   const [showTeamMembersPopup, setShowTeamMembersPopup] = useState(false);
   const [selectedManagerTeam, setSelectedManagerTeam] = useState(null);
 
+  // Announcement state
+  const [announcementSearch, setAnnouncementSearch] = useState("");
+  const [announcementFilter, setAnnouncementFilter] = useState("All");
+  const [showAnnouncementDropdown, setShowAnnouncementDropdown] =
+    useState(false);
+
+  // Mock announcement data
+  const announcementData = [
+    {
+      id: "1",
+      branch: "Ahmedabad office",
+      date: "07-08-2024",
+      time: "06:39 PM",
+      title: "Server Maintenance..",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "2",
+      branch: "Haldia",
+      date: "07-08-2024",
+      time: "06:38 PM",
+      title: "Server Maintenance",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "3",
+      branch: "Head office",
+      date: "07-08-2024",
+      time: "06:37 PM",
+      title: "Server Maintenance..",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "4",
+      branch: "Head office",
+      date: "24-05-2024",
+      time: "04:40 PM",
+      title: "NOTICE",
+      description:
+        "Due to the Loksava Election on 1st June 2024 at Kolkata Aera,Our Kolkata Office will be closed on that day..but if there is any urgent work then the work should be done from home..",
+    },
+    {
+      id: "5",
+      branch: "Head office",
+      date: "09-01-2024",
+      time: "01:34 AM",
+      title: "Saturday - Full Working Days",
+      description: "2024 - all Saturday will be a full working day.",
+    },
+    {
+      id: "6",
+      branch: "All Branch",
+      date: "19-10-2023",
+      time: "02:03 AM",
+      title: "Test 2",
+      description: "1234567",
+    },
+  ];
+
   // Mock employee data
   const employeeData = [
     {
@@ -363,6 +425,72 @@ export default function SamplePage3() {
     });
     return counts;
   }, [employeeData]);
+
+  // Filter and group announcements
+  const groupedAnnouncements = useMemo(() => {
+    const filtered = announcementData.filter((announcement) => {
+      // Filter by branch
+      if (
+        announcementFilter !== "All" &&
+        announcement.branch !== announcementFilter
+      ) {
+        return false;
+      }
+
+      // Filter by search
+      if (!announcementSearch) return true;
+
+      return (
+        announcement.title
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase()) ||
+        announcement.description
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase()) ||
+        announcement.branch
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase())
+      );
+    });
+
+    // Group by month and year
+    const grouped: Record<string, typeof filtered> = {};
+
+    filtered.forEach((announcement) => {
+      const [day, month, year] = announcement.date.split("-");
+      const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      const monthKey = `${monthNames[parseInt(month) - 1]} ${year}`;
+
+      if (!grouped[monthKey]) {
+        grouped[monthKey] = [];
+      }
+      grouped[monthKey].push(announcement);
+    });
+
+    // Sort each group by date (newest first)
+    Object.keys(grouped).forEach((key) => {
+      grouped[key].sort((a, b) => {
+        const dateA = new Date(a.date.split("-").reverse().join("-"));
+        const dateB = new Date(b.date.split("-").reverse().join("-"));
+        return dateB.getTime() - dateA.getTime();
+      });
+    });
+
+    return grouped;
+  }, [announcementData, announcementSearch, announcementFilter]);
 
   const clearSearch = () => {
     setSearchQuery("");
@@ -1986,9 +2114,50 @@ export default function SamplePage3() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
           <DialogHeader className="flex flex-row items-center justify-between px-4 pt-1 pb-2 border-b">
-            <DialogTitle className="text-xl font-semibold text-[#283C50]">
-              {selectedCard?.title || ""}
-            </DialogTitle>
+            <div className="flex items-center gap-4">
+              <DialogTitle className="text-xl font-semibold text-[#283C50]">
+                {selectedCard?.title || ""}
+              </DialogTitle>
+              {selectedCard?.id === "announce" && (
+                <Popover
+                  open={showAnnouncementDropdown}
+                  onOpenChange={setShowAnnouncementDropdown}
+                >
+                  <PopoverTrigger asChild>
+                    <button className="flex items-center gap-1 text-blue-500 font-medium text-lg">
+                      {announcementFilter}
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent align="start" className="w-48 p-2">
+                    <div className="space-y-1">
+                      {[
+                        "All",
+                        "Head office",
+                        "Ahmedabad office",
+                        "Haldia",
+                        "All Branch",
+                      ].map((filter) => (
+                        <button
+                          key={filter}
+                          onClick={() => {
+                            setAnnouncementFilter(filter);
+                            setShowAnnouncementDropdown(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 ${
+                            announcementFilter === filter
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          {filter}
+                        </button>
+                      ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
+            </div>
             <button
               onClick={() => setIsModalOpen(false)}
               className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
@@ -2274,6 +2443,81 @@ export default function SamplePage3() {
                     Add Employee
                   </button>
                 </div>
+              </div>
+            ) : selectedCard?.id === "announce" ? (
+              // Announcement Interface
+              <div className="h-full flex flex-col bg-gray-50">
+                {/* Search Box */}
+                <div className="p-4 bg-white border-b">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Input
+                      placeholder="Search"
+                      value={announcementSearch}
+                      onChange={(e) => setAnnouncementSearch(e.target.value)}
+                      className="pl-12 bg-gray-100 border-none rounded-full text-gray-600 placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Announcements List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-6">
+                  {Object.entries(groupedAnnouncements).map(
+                    ([monthYear, announcements]) => (
+                      <div key={monthYear} className="space-y-4">
+                        {/* Month Header */}
+                        <h2 className="text-lg font-semibold text-gray-900 py-2">
+                          {monthYear}
+                        </h2>
+
+                        {/* Announcement Cards */}
+                        <div className="space-y-4">
+                          {announcements.map((announcement) => (
+                            <div
+                              key={announcement.id}
+                              className="bg-white rounded-lg p-4 shadow-sm"
+                            >
+                              {/* Branch and Date */}
+                              <div className="flex items-center justify-between mb-2">
+                                <h3 className="text-base font-semibold text-gray-900">
+                                  {announcement.branch}
+                                </h3>
+                                <span className="text-sm text-gray-500">
+                                  {announcement.date} {announcement.time}
+                                </span>
+                              </div>
+
+                              {/* Title */}
+                              <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                                {announcement.title}
+                              </h4>
+
+                              {/* Description */}
+                              <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                                {announcement.description}
+                              </p>
+
+                              {/* Blue Underline */}
+                              <div className="w-full h-1 bg-blue-500 rounded-full"></div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ),
+                  )}
+
+                  {Object.keys(groupedAnnouncements).length === 0 && (
+                    <div className="text-center text-gray-500 py-12">
+                      <p>No announcements found.</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Add Announcement Floating Button */}
+                <button className="fixed bottom-6 right-6 bg-black text-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg hover:bg-gray-800 transition-colors">
+                  <Plus className="w-5 h-5" />
+                  Add Announcement
+                </button>
               </div>
             ) : (
               // Default placeholder for other modals
