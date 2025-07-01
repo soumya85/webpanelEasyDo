@@ -3518,6 +3518,15 @@ export default function SamplePage3() {
                                   <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center ml-2">
                                     <Check className="w-5 h-5 text-white stroke-[3]" />
                                   </div>
+                                ) : employee.verificationStatus ===
+                                  "incomplete" ? (
+                                  <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center ml-2 relative">
+                                    <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+                                      <span className="text-orange-500 text-sm font-bold">
+                                        ?
+                                      </span>
+                                    </div>
+                                  </div>
                                 ) : (
                                   <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center ml-2 relative">
                                     <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
