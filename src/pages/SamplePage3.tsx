@@ -3760,7 +3760,7 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Strategic Dashboard
+                        Task Report
                       </span>
                     </div>
                   </div>
