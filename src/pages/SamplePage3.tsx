@@ -2466,7 +2466,7 @@ export default function SamplePage3() {
                     ([monthYear, announcements]) => (
                       <div key={monthYear} className="space-y-4">
                         {/* Month Header */}
-                        <h2 className="text-lg font-semibold text-gray-900 sticky top-0 bg-gray-50 py-2">
+                        <h2 className="text-lg font-semibold text-gray-900 py-2">
                           {monthYear}
                         </h2>
 
