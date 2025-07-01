@@ -4081,6 +4081,9 @@ export default function SamplePage3() {
         onOpenChange={setShowAttendanceDetail}
       >
         <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0">
+          <DialogHeader className="hidden">
+            <DialogTitle>Attendance Details</DialogTitle>
+          </DialogHeader>
           {/* Header with Date Navigation */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <button className="p-1 hover:bg-gray-100 rounded transition-colors">
