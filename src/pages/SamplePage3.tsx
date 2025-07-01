@@ -4074,6 +4074,162 @@ export default function SamplePage3() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Attendance Detail Modal */}
+      <Dialog
+        open={showAttendanceDetail}
+        onOpenChange={setShowAttendanceDetail}
+      >
+        <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0">
+          {/* Header with Date Navigation */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+              <ChevronDown className="w-5 h-5 text-gray-600 rotate-90" />
+            </button>
+            <h2 className="text-lg font-semibold text-gray-900">
+              {selectedAttendanceDate}
+            </h2>
+            <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+              <ChevronDown className="w-5 h-5 text-gray-600 -rotate-90" />
+            </button>
+          </div>
+
+          {/* Search Bar */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                placeholder="Search"
+                value={attendanceDetailSearch}
+                onChange={(e) => setAttendanceDetailSearch(e.target.value)}
+                className="pl-10 bg-gray-50 border-gray-200 rounded-lg"
+              />
+            </div>
+          </div>
+
+          {/* Filter Dropdown */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-auto justify-between bg-white border-gray-300"
+                >
+                  {attendanceDetailFilter} (1)
+                  <ChevronDown className="w-4 h-4 ml-2" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-48 p-0" align="start">
+                <div className="p-1">
+                  {[
+                    { name: "Present", count: 1 },
+                    { name: "Absent", count: 0 },
+                    { name: "Half Day", count: 0 },
+                    { name: "Late", count: 0 },
+                    { name: "Leave", count: 0 },
+                    { name: "Week off", count: 0 },
+                    { name: "Holiday", count: 0 },
+                  ].map((option) => (
+                    <button
+                      key={option.name}
+                      onClick={() => setAttendanceDetailFilter(option.name)}
+                      className="w-full flex items-center justify-between px-3 py-2 text-left hover:bg-gray-100 rounded"
+                    >
+                      <span className="text-sm">{option.name}</span>
+                      <span className="text-xs text-gray-500">
+                        ({option.count})
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          {/* Employee Attendance Detail */}
+          <div className="flex-1 overflow-y-auto p-4">
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              {/* Employee Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Avatar className="w-10 h-10">
+                    <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
+                    <AvatarFallback className="bg-blue-500 text-white font-semibold">
+                      AM
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">
+                      ABHIJIT MONDAL
+                    </h3>
+                    <p className="text-sm text-gray-600">Jetty Sircar</p>
+                  </div>
+                </div>
+                <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
+                  PRESENT
+                </Badge>
+              </div>
+
+              {/* Time Details */}
+              <div className="space-y-4">
+                <div className="text-sm text-gray-600 mb-2">
+                  Attendance from Office
+                </div>
+
+                {/* Check In */}
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="font-semibold text-gray-900 mb-1">
+                      IN - 10:01 AM
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      6, Kalighat, West Bengal 700026, India
+                    </div>
+                  </div>
+                  <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
+                    Office
+                  </Badge>
+                </div>
+
+                {/* Check Out */}
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="font-semibold text-gray-900 mb-1">
+                      OUT: 07:02 PM
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd,
+                      Kalighat, Kolkata, West Bengal 700026, India
+                    </div>
+                  </div>
+                  <Badge className="bg-red-100 text-red-700 hover:bg-red-100">
+                    Unverified
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-3 mt-6 pt-4 border-t border-gray-200">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                >
+                  <MapPin className="w-4 h-4 mr-2" />
+                  Location Timeline
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                >
+                  View Logs
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
