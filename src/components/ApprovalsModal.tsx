@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,16 +6,20 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { ArrowLeft } from "lucide-react";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+  ArrowLeft,
+  UserCheck,
+  DollarSign,
+  Clock,
+  FileText,
+  FileCheck,
+  UserPlus,
+  Settings,
+  CreditCard,
+  Plane,
+  HandCoins,
+} from "lucide-react";
 
 interface ApprovalsModalProps {
   open: boolean;
