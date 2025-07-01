@@ -2863,11 +2863,11 @@ export default function SamplePage3() {
                       {/* Pending Employee 3 */}
                       <div className="bg-white rounded-lg border border-gray-200 p-4">
                         <div className="flex items-start gap-4">
-                          <Avatar className="w-12 h-12 bg-gray-300">
-                            <AvatarFallback className="text-white font-semibold">
+                          <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                            <span className="text-white font-semibold text-sm">
                               AM
-                            </AvatarFallback>
-                          </Avatar>
+                            </span>
+                          </div>
                           <div className="flex-1">
                             <div className="flex items-start justify-between mb-3">
                               <div>
