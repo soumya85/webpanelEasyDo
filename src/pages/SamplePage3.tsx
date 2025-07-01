@@ -3873,6 +3873,13 @@ export default function SamplePage3() {
                   </button>
                 </div>
               </div>
+            ) : selectedCard?.id === "pending-approval" ? (
+              // Pending Approval Modal Content
+              <ApprovalsModal
+                open={true}
+                onClose={() => setIsModalOpen(false)}
+                onBackToReports={() => setIsModalOpen(false)}
+              />
             ) : (
               // Default placeholder for other modals
               <div className="w-full h-full flex items-center justify-center text-gray-500 p-6">
