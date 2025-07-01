@@ -3381,85 +3381,210 @@ export default function SamplePage3() {
 
                 {/* Employee List */}
                 <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                  {filteredEmployees.map((employee) => {
-                    const verificationStatus =
-                      employee.id === "emp1"
-                        ? "verified"
-                        : employee.id === "emp2"
-                          ? "incomplete"
-                          : "pending";
+                  {(() => {
+                    // Sample employee data matching the screenshots
+                    const verificationEmployees = [
+                      // Pending employees (default status)
+                      {
+                        id: "emp1",
+                        name: "ABHIJIT MONDAL",
+                        position: "Jetty Sircar",
+                        branch: "Haldia",
+                        doj: "Apr 09, 2024",
+                        reportingManager: "Nayanjyoti Mandal",
+                        verificationStatus: "pending",
+                      },
+                      {
+                        id: "emp2",
+                        name: "Abhijit Mukherjee",
+                        position: "Operation Executive",
+                        branch: "Head office",
+                        doj: "Jan 01, 2017",
+                        reportingManager: "Debashis Debnath",
+                        verificationStatus: "pending",
+                      },
+                      {
+                        id: "emp3",
+                        name: "ABHIRAM MOHAPATRA",
+                        position: "Supervisor",
+                        branch: "Paradip",
+                        doj: "N/A",
+                        reportingManager: "Digambar Khuntia",
+                        verificationStatus: "pending",
+                      },
+                      {
+                        id: "emp4",
+                        name: "AHSAN RAZA",
+                        position: "Security Guard",
+                        branch: "Head office",
+                        doj: "N/A",
+                        reportingManager: "Security Head",
+                        verificationStatus: "pending",
+                      },
+                      // Verified employees
+                      {
+                        id: "emp5",
+                        name: "Amulya Kumar Kar",
+                        position: "Chief Accountant",
+                        branch: "Head office",
+                        doj: "Oct 01, 2017",
+                        reportingManager: "Bhaskar Sir",
+                        verificationStatus: "verified",
+                      },
+                      {
+                        id: "emp6",
+                        name: "Bhaskar IOS",
+                        position: "Exec Director",
+                        branch: "Head office",
+                        doj: "Mar 14, 2021",
+                        reportingManager: "Bhaskar Sir",
+                        verificationStatus: "verified",
+                      },
+                      {
+                        id: "emp7",
+                        name: "Bhaskar Sir",
+                        position: "CEO",
+                        branch: "Head office",
+                        doj: "Sep 10, 2016",
+                        reportingManager: "Dakshay Sanghvi Devstree",
+                        verificationStatus: "verified",
+                      },
+                      {
+                        id: "emp8",
+                        name: "Devanshu Uk",
+                        position: "Manager",
+                        branch: "Head office",
+                        doj: "N/A",
+                        reportingManager: "Bhaskar Sir",
+                        verificationStatus: "verified",
+                      },
+                      {
+                        id: "emp9",
+                        name: "Amit Parmar",
+                        position: "IOS Developer",
+                        branch: "Ahmedabad office",
+                        doj: "May 02, 2024",
+                        reportingManager: "Dakshay Sanghvi Devstree",
+                        verificationStatus: "verified",
+                      },
+                    ];
 
-                    return (
+                    // Filter employees based on status
+                    const filteredByStatus = verificationEmployees.filter(
+                      (emp) => {
+                        if (selectedStatus === "pending")
+                          return emp.verificationStatus === "pending";
+                        if (selectedStatus === "verified")
+                          return emp.verificationStatus === "verified";
+                        if (selectedStatus === "incomplete")
+                          return emp.verificationStatus === "incomplete";
+                        return true;
+                      },
+                    );
+
+                    // Filter by search
+                    const searchFiltered = filteredByStatus.filter(
+                      (emp) =>
+                        !searchQuery ||
+                        emp.name
+                          .toLowerCase()
+                          .includes(searchQuery.toLowerCase()),
+                    );
+
+                    return searchFiltered.map((employee) => (
                       <div
                         key={employee.id}
-                        className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
+                        className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"
                       >
                         <div className="flex items-start justify-between">
-                          <div className="flex items-start gap-3">
+                          <div className="flex items-start gap-3 flex-1">
                             <Avatar className="w-12 h-12">
-                              {employee.avatar ? (
-                                <img
-                                  src={employee.avatar}
-                                  alt={employee.name}
-                                  className="w-full h-full object-cover"
-                                />
-                              ) : (
-                                <AvatarFallback className="bg-gray-300 text-gray-700">
-                                  {employee.name
-                                    .split(" ")
-                                    .map((word) => word[0])
-                                    .join("")
-                                    .substring(0, 2)
-                                    .toUpperCase()}
-                                </AvatarFallback>
-                              )}
+                              <AvatarFallback className="bg-gray-300 text-gray-700 text-sm font-medium">
+                                {employee.name
+                                  .split(" ")
+                                  .map((word) => word[0])
+                                  .join("")
+                                  .substring(0, 2)
+                                  .toUpperCase()}
+                              </AvatarFallback>
                             </Avatar>
                             <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <h3 className="font-semibold text-gray-900 text-lg">
+                              <div className="flex items-start justify-between mb-1">
+                                <h3 className="font-semibold text-gray-900 text-base">
                                   {employee.name}
                                 </h3>
-                                {verificationStatus === "verified" ? (
-                                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                                    <Check className="w-4 h-4 text-white" />
+                                {employee.verificationStatus === "verified" ? (
+                                  <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center ml-2">
+                                    <Check className="w-5 h-5 text-white stroke-[3]" />
                                   </div>
                                 ) : (
-                                  <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                                    <span className="text-white text-xs font-bold">
-                                      !
-                                    </span>
+                                  <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center ml-2 relative">
+                                    <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+                                      <span className="text-red-500 text-sm font-bold">
+                                        !
+                                      </span>
+                                    </div>
                                   </div>
                                 )}
                               </div>
                               <p className="text-sm text-gray-600 mb-1">
-                                DOJ: {employee.doj}
+                                DOJ : {employee.doj}
                               </p>
-                              <p className="text-sm text-gray-600 mb-2">
+                              <p className="text-sm text-gray-600 mb-3">
                                 {employee.position}{" "}
                                 <span className="text-blue-500">
                                   ({employee.branch})
                                 </span>
                               </p>
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm text-gray-600">
-                                  Reporting Manager: {employee.reportingManager}
-                                </span>
-                                <button className="text-blue-500 text-sm font-medium hover:underline">
-                                  More Info
-                                </button>
+                              <div className="border-t border-gray-100 pt-3">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-sm text-gray-600">
+                                    Reporting Manager:{" "}
+                                    {employee.reportingManager}
+                                  </span>
+                                  <button className="text-blue-500 text-sm font-medium hover:underline">
+                                    More Info
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
+                    ));
+                  })()}
 
-                  {filteredEmployees.length === 0 && (
-                    <div className="text-center py-8 text-gray-500">
-                      No employees found matching your criteria
-                    </div>
-                  )}
+                  {(() => {
+                    const verificationEmployees = [
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                    ];
+
+                    const filteredByStatus = verificationEmployees.filter(
+                      (emp) => {
+                        if (selectedStatus === "pending")
+                          return emp.verificationStatus === "pending";
+                        if (selectedStatus === "verified")
+                          return emp.verificationStatus === "verified";
+                        if (selectedStatus === "incomplete")
+                          return emp.verificationStatus === "incomplete";
+                        return true;
+                      },
+                    );
+
+                    return filteredByStatus.length === 0 ? (
+                      <div className="text-center py-8 text-gray-500">
+                        No employees found for {selectedStatus} status
+                      </div>
+                    ) : null;
+                  })()}
                 </div>
               </div>
             ) : (
