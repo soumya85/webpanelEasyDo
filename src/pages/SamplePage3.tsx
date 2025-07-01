@@ -3853,8 +3853,11 @@ export default function SamplePage3() {
 
                 {/* Floating Action Button */}
                 <div className="absolute bottom-6 right-6">
-                  <button className="w-12 h-12 bg-black rounded-xl flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors">
-                    <Plus className="w-6 h-6 text-white" />
+                  <button className="bg-black rounded-xl flex items-center justify-center gap-2 shadow-lg hover:bg-gray-800 transition-colors px-4 py-3">
+                    <Plus className="w-5 h-5 text-white" />
+                    <span className="text-white text-sm font-medium">
+                      Add Branch
+                    </span>
                   </button>
                 </div>
               </div>
