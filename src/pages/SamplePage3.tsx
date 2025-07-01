@@ -4,6 +4,7 @@ import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText"
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 import EmployeeLocationTimelineCard from "@/components/cards/EmployeeLocationTimelineCard";
+import { ApprovalsModal } from "@/components/ApprovalsModal";
 import {
   Dialog,
   DialogContent,
