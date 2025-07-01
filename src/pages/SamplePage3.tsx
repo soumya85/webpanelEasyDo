@@ -490,7 +490,7 @@ export default function SamplePage3() {
     });
 
     return grouped;
-  }, [announcementData, announcementSearch]);
+  }, [announcementData, announcementSearch, announcementFilter]);
 
   const clearSearch = () => {
     setSearchQuery("");
