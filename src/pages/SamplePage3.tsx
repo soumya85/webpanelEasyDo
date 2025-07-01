@@ -429,6 +429,15 @@ export default function SamplePage3() {
   // Filter and group announcements
   const groupedAnnouncements = useMemo(() => {
     const filtered = announcementData.filter((announcement) => {
+      // Filter by branch
+      if (
+        announcementFilter !== "All" &&
+        announcement.branch !== announcementFilter
+      ) {
+        return false;
+      }
+
+      // Filter by search
       if (!announcementSearch) return true;
 
       return (
