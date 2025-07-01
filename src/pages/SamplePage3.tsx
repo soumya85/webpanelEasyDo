@@ -2512,6 +2512,12 @@ export default function SamplePage3() {
                     </div>
                   )}
                 </div>
+
+                {/* Add Announcement Floating Button */}
+                <button className="fixed bottom-6 right-6 bg-black text-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg hover:bg-gray-800 transition-colors">
+                  <Plus className="w-5 h-5" />
+                  Add Announcement
+                </button>
               </div>
             ) : (
               // Default placeholder for other modals
