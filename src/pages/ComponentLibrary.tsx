@@ -52,28 +52,48 @@ export default function ComponentLibrary() {
           {/* Productivity Module Tab */}
           <TabsContent value="productivity" className="space-y-12">
             <ComponentSection
-              title="Form Components"
-              description="Interactive components for user input and forms"
+              title="Essential Components"
+              description="Core UI components for productivity applications"
             >
-              <ButtonDemos />
-              <InputDemos />
-              <FormDemos />
+              <Suspense
+                fallback={
+                  <div className="p-8 text-center text-muted-foreground">
+                    Loading components...
+                  </div>
+                }
+              >
+                <ButtonDemos />
+              </Suspense>
             </ComponentSection>
 
             <ComponentSection
-              title="Feedback & Status"
+              title="Status & Feedback"
               description="Components for user feedback and status indication"
             >
-              <FeedbackDemos />
-              <BadgeDemos />
+              <Suspense
+                fallback={
+                  <div className="p-8 text-center text-muted-foreground">
+                    Loading components...
+                  </div>
+                }
+              >
+                <BadgeDemos />
+              </Suspense>
             </ComponentSection>
 
             <ComponentSection
-              title="Navigation & Layout"
-              description="Components for navigation and page structure"
+              title="More Components"
+              description="Additional productivity components"
             >
-              <NavigationDemos />
-              <LayoutDemos />
+              <div className="text-center py-12 text-muted-foreground">
+                <p className="text-lg">
+                  More productivity components coming soon...
+                </p>
+                <p className="text-sm mt-2">
+                  Forms, inputs, navigation, and layout components will be added
+                  here.
+                </p>
+              </div>
             </ComponentSection>
           </TabsContent>
 
@@ -83,19 +103,19 @@ export default function ComponentLibrary() {
               title="Data Display"
               description="Components for displaying and organizing company data"
             >
-              <DataDisplayDemos />
-              <CardDemos />
+              <Suspense
+                fallback={
+                  <div className="p-8 text-center text-muted-foreground">
+                    Loading components...
+                  </div>
+                }
+              >
+                <CardDemos />
+              </Suspense>
             </ComponentSection>
 
             <ComponentSection
-              title="Overlays & Modals"
-              description="Components for overlays and modal interactions"
-            >
-              <OverlayDemos />
-            </ComponentSection>
-
-            <ComponentSection
-              title="Company Analytics"
+              title="Company Dashboard"
               description="Specialized components for company metrics and analytics"
             >
               <div className="text-center py-12 text-muted-foreground">
@@ -104,7 +124,21 @@ export default function ComponentLibrary() {
                 </p>
                 <p className="text-sm mt-2">
                   This section will include dashboard widgets, analytics charts,
-                  and company-specific UI components.
+                  employee management components, and company-specific UI
+                  elements.
+                </p>
+              </div>
+            </ComponentSection>
+
+            <ComponentSection
+              title="Overlays & Modals"
+              description="Components for overlays and modal interactions"
+            >
+              <div className="text-center py-12 text-muted-foreground">
+                <p className="text-lg">Modal components coming soon...</p>
+                <p className="text-sm mt-2">
+                  Dialog boxes, alerts, and overlay components will be added
+                  here.
                 </p>
               </div>
             </ComponentSection>
