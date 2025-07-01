@@ -3694,7 +3694,7 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Cost Analysis
+                        Operational Expenses
                       </span>
                     </div>
 
