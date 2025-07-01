@@ -3528,13 +3528,9 @@ export default function SamplePage3() {
                                     </div>
                                   </div>
                                 ) : (
-                                  <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center ml-2 relative">
-                                    <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
-                                      <span className="text-red-500 text-sm font-bold">
-                                        !
-                                      </span>
-                                    </div>
-                                  </div>
+                                  <span className="material-icons-outlined text-red-500 text-2xl ml-2">
+                                    gpp_maybe
+                                  </span>
                                 )}
                               </div>
                               <p className="text-sm text-gray-600 mb-1">
