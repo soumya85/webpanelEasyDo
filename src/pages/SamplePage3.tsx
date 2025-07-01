@@ -2117,7 +2117,9 @@ export default function SamplePage3() {
           <DialogHeader className="flex flex-row items-center justify-between px-4 pt-1 pb-2 border-b">
             <div className="flex items-center gap-4">
               <DialogTitle className="text-xl font-semibold text-[#283C50]">
-                {selectedCard?.title || ""}
+                {selectedCard?.id === "performance-review"
+                  ? "Management Review"
+                  : selectedCard?.title || ""}
               </DialogTitle>
               {selectedCard?.id === "announce" && (
                 <Popover
