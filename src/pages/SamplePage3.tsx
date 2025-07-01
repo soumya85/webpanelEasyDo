@@ -2114,10 +2114,10 @@ export default function SamplePage3() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
           <DialogHeader className="flex flex-row items-center justify-between px-4 pt-1 pb-2 border-b">
-            <DialogTitle className="text-xl font-semibold text-[#283C50]">
-              {selectedCard?.title || ""}
-            </DialogTitle>
             <div className="flex items-center gap-4">
+              <DialogTitle className="text-xl font-semibold text-[#283C50]">
+                {selectedCard?.title || ""}
+              </DialogTitle>
               {selectedCard?.id === "announce" && (
                 <Popover
                   open={showAnnouncementDropdown}
@@ -2129,7 +2129,7 @@ export default function SamplePage3() {
                       <ChevronDown className="w-4 h-4" />
                     </button>
                   </PopoverTrigger>
-                  <PopoverContent align="end" className="w-48 p-2">
+                  <PopoverContent align="start" className="w-48 p-2">
                     <div className="space-y-1">
                       {[
                         "All",
@@ -2157,14 +2157,14 @@ export default function SamplePage3() {
                   </PopoverContent>
                 </Popover>
               )}
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close</span>
-              </button>
             </div>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            >
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </button>
           </DialogHeader>
 
           {/* Modal Content Area */}
