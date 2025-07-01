@@ -1,16 +1,23 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ComponentSection } from "@/components/docs/ComponentSection";
-import { ButtonDemos } from "@/components/docs/demos/ButtonDemos";
-import { InputDemos } from "@/components/docs/demos/InputDemos";
-import { FormDemos } from "@/components/docs/demos/FormDemos";
-import { FeedbackDemos } from "@/components/docs/demos/FeedbackDemos";
-import { NavigationDemos } from "@/components/docs/demos/NavigationDemos";
-import { LayoutDemos } from "@/components/docs/demos/LayoutDemos";
-import { CardDemos } from "@/components/docs/demos/CardDemos";
-import { DataDisplayDemos } from "@/components/docs/demos/DataDisplayDemos";
-import { OverlayDemos } from "@/components/docs/demos/OverlayDemos";
-import { BadgeDemos } from "@/components/docs/demos/BadgeDemos";
+
+// Lazy load demo components to avoid loading issues
+const ButtonDemos = React.lazy(() =>
+  import("@/components/docs/demos/ButtonDemos").then((m) => ({
+    default: m.ButtonDemos,
+  })),
+);
+const BadgeDemos = React.lazy(() =>
+  import("@/components/docs/demos/BadgeDemos").then((m) => ({
+    default: m.BadgeDemos,
+  })),
+);
+const CardDemos = React.lazy(() =>
+  import("@/components/docs/demos/CardDemos").then((m) => ({
+    default: m.CardDemos,
+  })),
+);
 
 export default function ComponentLibrary() {
   return (
