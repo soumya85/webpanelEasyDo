@@ -2674,10 +2674,11 @@ export default function SamplePage3() {
                       <div className="bg-white rounded-lg border border-gray-200 p-4">
                         <div className="flex items-start gap-4">
                           <div className="relative">
-                            <Avatar className="w-12 h-12">
-                              <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" />
-                              <AvatarFallback>BI</AvatarFallback>
-                            </Avatar>
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                BI
+                              </span>
+                            </div>
                             <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
                               <span className="text-white text-xs">⚠</span>
                             </div>
