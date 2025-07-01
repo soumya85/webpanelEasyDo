@@ -222,6 +222,60 @@ export function EmployeeLeaveWidget() {
                 variants={["default", "with-modal", "with-status-badges"]}
               />
             </ComponentSection>
+
+            <ComponentSection
+              title="Company Holidays & Events"
+              description="Components for displaying company holidays, events, and calendar information"
+            >
+              <ComponentShowcase
+                title="Upcoming Holidays"
+                description="A holiday calendar widget showing upcoming company holidays with details like date, type, location, and additional holiday count"
+                component={
+                  <div className="w-full max-w-md mx-auto">
+                    <UpcomingHolidays />
+                  </div>
+                }
+                code={`import UpcomingHolidays from "@/components/UpcomingHolidays";
+
+export function CompanyHolidaysWidget() {
+  return (
+    <div className="w-full">
+      <UpcomingHolidays />
+    </div>
+  );
+}`}
+                props={[
+                  {
+                    name: "className",
+                    type: "string",
+                    default: "undefined",
+                    description:
+                      "Additional CSS classes for styling customization",
+                  },
+                  {
+                    name: "holidayData",
+                    type: "Array<{name: string, date: string, type: string, location: string}>",
+                    description:
+                      "Array of upcoming holidays with their details",
+                  },
+                  {
+                    name: "branch",
+                    type: "string",
+                    default: "Head Office",
+                    description:
+                      "The branch/location for which holidays are displayed",
+                  },
+                  {
+                    name: "remainingCount",
+                    type: "number",
+                    default: "5",
+                    description:
+                      "Number of additional holidays available in calendar",
+                  },
+                ]}
+                variants={["default", "with-modal", "branch-specific"]}
+              />
+            </ComponentSection>
           </TabsContent>
         </Tabs>
       </div>
