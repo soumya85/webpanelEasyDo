@@ -3610,7 +3610,7 @@ export default function SamplePage3() {
 
                   {/* Reports List */}
                   <div className="space-y-1">
-                    {/* Attendance Report */}
+                    {/* Branch Performance Summary */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3628,11 +3628,11 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Attendance Report
+                        Branch Performance Summary
                       </span>
                     </div>
 
-                    {/* Sales Register */}
+                    {/* Revenue Analytics */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3650,11 +3650,11 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Sales Register
+                        Revenue Analytics
                       </span>
                     </div>
 
-                    {/* Approvals */}
+                    {/* Compliance Status */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3672,11 +3672,11 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Approvals
+                        Compliance Status
                       </span>
                     </div>
 
-                    {/* Operational Expenses */}
+                    {/* Cost Analysis */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3694,11 +3694,11 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Operational Expenses
+                        Cost Analysis
                       </span>
                     </div>
 
-                    {/* Salary Statement */}
+                    {/* Financial Overview */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3716,11 +3716,11 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Salary Statement
+                        Financial Overview
                       </span>
                     </div>
 
-                    {/* Employee Performance Rating */}
+                    {/* Operational Metrics */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3738,11 +3738,11 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Employee Performance Rating
+                        Operational Metrics
                       </span>
                     </div>
 
-                    {/* Task Report */}
+                    {/* Strategic Dashboard */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3760,7 +3760,7 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Task Report
+                        Strategic Dashboard
                       </span>
                     </div>
                   </div>
