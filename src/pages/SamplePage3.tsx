@@ -2108,13 +2108,54 @@ export default function SamplePage3() {
             <DialogTitle className="text-xl font-semibold text-[#283C50]">
               {selectedCard?.title || ""}
             </DialogTitle>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
-            >
-              <X className="h-4 w-4" />
-              <span className="sr-only">Close</span>
-            </button>
+            <div className="flex items-center gap-4">
+              {selectedCard?.id === "announce" && (
+                <Popover
+                  open={showAnnouncementDropdown}
+                  onOpenChange={setShowAnnouncementDropdown}
+                >
+                  <PopoverTrigger asChild>
+                    <button className="flex items-center gap-1 text-blue-500 font-medium text-lg">
+                      {announcementFilter}
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent align="end" className="w-48 p-2">
+                    <div className="space-y-1">
+                      {[
+                        "All",
+                        "Head office",
+                        "Ahmedabad office",
+                        "Haldia",
+                        "All Branch",
+                      ].map((filter) => (
+                        <button
+                          key={filter}
+                          onClick={() => {
+                            setAnnouncementFilter(filter);
+                            setShowAnnouncementDropdown(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 ${
+                            announcementFilter === filter
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          {filter}
+                        </button>
+                      ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              >
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </button>
+            </div>
           </DialogHeader>
 
           {/* Modal Content Area */}
