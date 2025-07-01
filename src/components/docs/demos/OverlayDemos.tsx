@@ -108,7 +108,18 @@ export function OverlayDemos() {
       </DialogDescription>
     </DialogHeader>
     <div className="grid gap-4 py-4">
-      {/* Form content */}
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Name
+        </Label>
+        <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="username" className="text-right">
+          Username
+        </Label>
+        <Input id="username" defaultValue="@peduarte" className="col-span-3" />
+      </div>
     </div>
     <DialogFooter>
       <Button type="submit">Save changes</Button>
@@ -218,7 +229,20 @@ export function OverlayDemos() {
           Set the dimensions for the layer.
         </p>
       </div>
-      {/* Form content */}
+      <div className="grid gap-2">
+        <div className="grid grid-cols-3 items-center gap-4">
+          <Label htmlFor="width">Width</Label>
+          <Input id="width" defaultValue="100%" className="col-span-2 h-8" />
+        </div>
+        <div className="grid grid-cols-3 items-center gap-4">
+          <Label htmlFor="maxWidth">Max. width</Label>
+          <Input id="maxWidth" defaultValue="300px" className="col-span-2 h-8" />
+        </div>
+        <div className="grid grid-cols-3 items-center gap-4">
+          <Label htmlFor="height">Height</Label>
+          <Input id="height" defaultValue="25px" className="col-span-2 h-8" />
+        </div>
+      </div>
     </div>
   </PopoverContent>
 </Popover>`}
@@ -365,7 +389,18 @@ export function OverlayDemos() {
       </SheetDescription>
     </SheetHeader>
     <div className="grid gap-4 py-4">
-      {/* Form content */}
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="sheet-name" className="text-right">
+          Name
+        </Label>
+        <Input id="sheet-name" value="Pedro Duarte" className="col-span-3" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="sheet-username" className="text-right">
+          Username
+        </Label>
+        <Input id="sheet-username" value="@peduarte" className="col-span-3" />
+      </div>
     </div>
   </SheetContent>
 </Sheet>`}
