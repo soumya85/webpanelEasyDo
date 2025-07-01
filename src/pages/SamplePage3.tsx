@@ -3592,13 +3592,8 @@ export default function SamplePage3() {
             ) : selectedCard?.id === "reports" ? (
               // Reports Modal - Same as EmployeeDashboard but independent
               <div className="w-full h-full flex flex-col">
-                {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
-                  <h1 className="text-xl font-bold text-[#283C50]">Reports</h1>
-                </div>
-
                 {/* Reports Content */}
-                <div className="p-6">
+                <div className="p-6 flex-1 overflow-y-auto">
                   {/* Description */}
                   <div className="text-center mb-8 p-4 bg-gray-50 rounded-lg">
                     <p className="text-gray-600 leading-relaxed">
