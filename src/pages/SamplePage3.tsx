@@ -3342,12 +3342,24 @@ export default function SamplePage3() {
                     </PopoverTrigger>
                     <PopoverContent align="start" className="w-80 p-0">
                       <div className="p-4 space-y-2">
-                        {[
-                          { id: "all", name: "All Branches" },
-                          ...branchData,
-                        ].map((branch) => (
+                        <button
+                          key="all-branches"
+                          onClick={() => {
+                            setSelectedEmployeeBranch("all");
+                            setShowBranchSheet(false);
+                          }}
+                          className={cn(
+                            "w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100",
+                            selectedEmployeeBranch === "all"
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700",
+                          )}
+                        >
+                          All Branches
+                        </button>
+                        {branchData.map((branch) => (
                           <button
-                            key={branch.id}
+                            key={`branch-${branch.id}`}
                             onClick={() => {
                               setSelectedEmployeeBranch(branch.id);
                               setShowBranchSheet(false);
