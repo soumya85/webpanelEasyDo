@@ -373,6 +373,15 @@ export default function SamplePage3() {
     return branch ? branch.name : "All Branches";
   };
 
+  // Filter branches based on search query
+  const filteredBranches = useMemo(() => {
+    return branchData.filter(
+      (branch) =>
+        branch.name.toLowerCase().includes(branchSearchQuery.toLowerCase()) ||
+        branch.address.toLowerCase().includes(branchSearchQuery.toLowerCase()),
+    );
+  }, [branchSearchQuery]);
+
   // Filter and sort employees
   const filteredEmployees = useMemo(() => {
     let filtered = employeeData.filter((emp) => {
