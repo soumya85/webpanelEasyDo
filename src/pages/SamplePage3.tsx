@@ -3515,13 +3515,13 @@ export default function SamplePage3() {
                                   {employee.name}
                                 </h3>
                                 {employee.verificationStatus === "verified" ? (
-                                  <span className="material-icons text-green-500 text-2xl ml-2">
-                                    verified
+                                  <span className="material-icons-outlined text-green-500 text-2xl ml-2">
+                                    verified_user
                                   </span>
                                 ) : employee.verificationStatus ===
                                   "incomplete" ? (
-                                  <span className="material-icons text-green-500 text-2xl ml-2">
-                                    verified
+                                  <span className="material-icons-outlined text-green-500 text-2xl ml-2">
+                                    verified_user
                                   </span>
                                 ) : (
                                   <span className="material-icons-outlined text-red-500 text-2xl ml-2">
