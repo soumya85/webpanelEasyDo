@@ -3782,6 +3782,82 @@ export default function SamplePage3() {
                   </div>
                 </div>
               </div>
+            ) : selectedCard?.id === "branch" ? (
+              // Branch Modal Content
+              <div className="w-full h-full flex flex-col p-0">
+                {/* Search Bar */}
+                <div className="px-6 pb-4 pt-2">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Input
+                      placeholder="Search"
+                      value={branchSearchQuery}
+                      onChange={(e) => setBranchSearchQuery(e.target.value)}
+                      className="pl-10 bg-gray-100 border-none rounded-lg text-gray-700 placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Branch List */}
+                <div className="flex-1 overflow-y-auto px-6 space-y-4">
+                  {filteredBranches.map((branch) => (
+                    <div
+                      key={branch.id}
+                      className="bg-white border-b border-gray-100 pb-4 last:border-b-0"
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {branch.name}
+                        </h3>
+                        <button className="p-1">
+                          <MoreVertical className="w-5 h-5 text-blue-500" />
+                        </button>
+                      </div>
+
+                      <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                        {branch.address}
+                      </p>
+
+                      {/* Hours and Status */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                        </div>
+                        <span className="text-sm text-gray-900 font-medium">
+                          {branch.hours}
+                        </span>
+                        <span className="text-sm text-green-600 font-medium ml-auto">
+                          {branch.status}
+                        </span>
+                      </div>
+
+                      {/* Employee Count */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">
+                          Total Employee: {branch.employeeCount}
+                        </span>
+                        <Button
+                          size="sm"
+                          className="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-1.5 text-sm font-medium"
+                        >
+                          <User className="w-4 h-4 mr-1" />
+                          Add
+                        </Button>
+                      </div>
+
+                      {/* Blue underline */}
+                      <div className="mt-3 h-1 bg-blue-500 rounded-full"></div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Floating Action Button */}
+                <div className="absolute bottom-6 right-6">
+                  <button className="w-12 h-12 bg-black rounded-xl flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors">
+                    <Plus className="w-6 h-6 text-white" />
+                  </button>
+                </div>
+              </div>
             ) : (
               // Default placeholder for other modals
               <div className="w-full h-full flex items-center justify-center text-gray-500 p-6">
