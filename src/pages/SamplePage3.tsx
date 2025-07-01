@@ -3875,11 +3875,11 @@ export default function SamplePage3() {
               </div>
             ) : selectedCard?.id === "pending-approval" ? (
               // Pending Approval Modal Content
-              <div className="w-full h-full">
+              <div className="w-full h-full flex flex-col max-h-[80vh]">
                 {/* Header */}
-                <div className="p-4 border-b sticky top-0 bg-white z-10"></div>
+                <div className="p-4 border-b sticky top-0 bg-white z-10 flex-shrink-0"></div>
 
-                <div className="p-6 space-y-8 overflow-y-auto">
+                <div className="p-6 space-y-8 overflow-y-auto flex-1">
                   {/* Admin Approval Section */}
                   <div className="space-y-4">
                     <div className="bg-blue-100 rounded-xl px-4 py-2 inline-block">
