@@ -368,6 +368,7 @@ export default function SamplePage3() {
   };
 
   const getBranchName = (branchId: string) => {
+    if (branchId === "all") return "All Branches";
     const branch = branchData.find((b) => b.id === branchId);
     return branch ? branch.name : "All Branches";
   };
