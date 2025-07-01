@@ -5,6 +5,7 @@ import { ComponentShowcase } from "@/components/docs/ComponentShowcase";
 import PerformanceMeter from "@/components/PerformanceMeter";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import WagesSummary from "@/components/WagesSummary";
+import LeaveBalance from "@/components/LeaveBalance";
 
 export default function ComponentLibrary() {
   return (
