@@ -2519,6 +2519,95 @@ export default function SamplePage3() {
                   Add Announcement
                 </button>
               </div>
+            ) : selectedCard?.id === "documents" ? (
+              // Documents Modal - Company Information
+              <div className="w-full h-full overflow-y-auto">
+                <div className="p-6 max-w-2xl mx-auto space-y-6">
+                  {/* Header */}
+                  <div className="text-center border-b pb-4">
+                    <h1 className="text-xl font-semibold text-gray-900">
+                      Transport, Logistics and Shipping
+                    </h1>
+                  </div>
+
+                  {/* Company Info Section */}
+                  <div className="flex items-start gap-4 bg-gray-50 p-4 rounded-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-bold text-xl">L</span>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                        Liberty Highrise Pvt Ltd
+                      </h2>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        104, 3rd Floor, Shyama Prasad Mukherjee Road, Hazra,
+                        Kalighat, Kalighat, Kolkata, West Bengal 700026, India
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Contacts Section */}
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Contacts
+                    </h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3">
+                        <Phone className="w-5 h-5 text-gray-500" />
+                        <span className="text-gray-700">
+                          Mobile: 9898404105
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <MessageCircle className="w-5 h-5 text-gray-500" />
+                        <span className="text-gray-700">
+                          Email: accounts@libertyhighrise.com
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Other Details Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Other Details
+                    </h3>
+
+                    {/* PAN Card Section */}
+                    <div className="border rounded-lg overflow-hidden">
+                      <div className="bg-blue-50 p-3">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets%2F1c15142b9104444983823918cb3b3624%2Fafea0b095a9246eaa09c53d9d8cc4b95?format=webp&width=800"
+                          alt="PAN Card Document"
+                          className="w-full h-auto rounded"
+                        />
+                      </div>
+                      <div className="p-3 bg-white">
+                        <p className="text-sm font-medium text-gray-900">
+                          Pan No.
+                        </p>
+                        <p className="text-lg font-semibold text-gray-900 mt-1">
+                          AABCL0949H
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Additional Document */}
+                    <div className="border rounded-lg overflow-hidden">
+                      <div className="bg-gray-900 p-3 h-32 flex items-center justify-center">
+                        <div className="bg-white rounded p-2 w-24 h-20 flex items-center justify-center">
+                          <div className="text-xs text-gray-600 text-center">
+                            <div className="w-8 h-8 mx-auto mb-1 bg-gray-200 rounded-full flex items-center justify-center">
+                              <span className="text-gray-500 text-lg">📄</span>
+                            </div>
+                            Document
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ) : (
               // Default placeholder for other modals
               <div className="w-full h-full flex items-center justify-center text-gray-500 p-6">
