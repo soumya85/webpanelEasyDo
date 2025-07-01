@@ -3515,9 +3515,9 @@ export default function SamplePage3() {
                                   {employee.name}
                                 </h3>
                                 {employee.verificationStatus === "verified" ? (
-                                  <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center ml-2">
-                                    <Check className="w-5 h-5 text-white stroke-[3]" />
-                                  </div>
+                                  <span className="material-icons text-green-500 text-2xl ml-2">
+                                    verified
+                                  </span>
                                 ) : employee.verificationStatus ===
                                   "incomplete" ? (
                                   <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center ml-2 relative">
