@@ -3,7 +3,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 
-export default function EmployeeAttendanceCard() {
+interface EmployeeAttendanceCardProps {
+  onDateClick?: () => void;
+}
+
+export default function EmployeeAttendanceCard({
+  onDateClick,
+}: EmployeeAttendanceCardProps) {
   const [selectedBranch, setSelectedBranch] = useState("All Branches");
   const [selectedFilter, setSelectedFilter] = useState("Present");
   const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
