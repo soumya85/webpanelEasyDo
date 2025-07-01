@@ -47,7 +47,7 @@ export const navigationItems: NavigationItem[] = [
     id: "company-dashboard",
     labelKey: "companyDashboard",
     icon: Building,
-    href: "/company-dashboard",
+    href: "/sample-page-3",
   },
   {
     id: "tasks",
@@ -84,23 +84,5 @@ export const navigationItems: NavigationItem[] = [
     labelKey: "helpSupport",
     icon: HelpCircle,
     href: "/help-support",
-  },
-  {
-    id: "sample",
-    labelKey: "sample",
-    icon: Zap,
-    href: "/sample",
-  },
-  {
-    id: "todays-schedule",
-    labelKey: "sample2",
-    icon: Star,
-    href: "/todays-schedule",
-  },
-  {
-    id: "sample-page-3",
-    labelKey: "samplePage3",
-    icon: Layers,
-    href: "/sample-page-3",
   },
 ];
