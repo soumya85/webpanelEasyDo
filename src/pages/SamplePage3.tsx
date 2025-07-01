@@ -2121,6 +2121,11 @@ export default function SamplePage3() {
                   ? "Management Review"
                   : selectedCard?.title || ""}
               </DialogTitle>
+              {selectedCard?.id === "performance-review" && (
+                <button className="text-blue-500">
+                  <Settings2 className="w-5 h-5" />
+                </button>
+              )}
               {selectedCard?.id === "announce" && (
                 <Popover
                   open={showAnnouncementDropdown}
