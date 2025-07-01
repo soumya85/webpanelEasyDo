@@ -2590,10 +2590,11 @@ export default function SamplePage3() {
                       <div className="bg-white rounded-lg border border-gray-200 p-4">
                         <div className="flex items-start gap-4">
                           <div className="relative">
-                            <Avatar className="w-12 h-12">
-                              <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" />
-                              <AvatarFallback>AP</AvatarFallback>
-                            </Avatar>
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                AP
+                              </span>
+                            </div>
                             <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
                               <span className="text-white text-xs">⚠</span>
                             </div>
