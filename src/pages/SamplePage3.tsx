@@ -67,6 +67,7 @@ export default function SamplePage3() {
   // Employee Management State (for Register modal)
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("accepted");
+  const [branchSearchQuery, setBranchSearchQuery] = useState("");
   const [selectedEmployeeBranch, setSelectedEmployeeBranch] = useState("all");
   const [sortBy, setSortBy] = useState("alphabetically");
   const [showSortDropdown, setShowSortDropdown] = useState(false);
