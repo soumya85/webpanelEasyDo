@@ -1,4 +1,8 @@
 import React from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ComponentSection } from "@/components/docs/ComponentSection";
+import { ComponentShowcase } from "@/components/docs/ComponentShowcase";
+import PerformanceMeter from "@/components/PerformanceMeter";
 
 export default function ComponentLibrary() {
   return (
@@ -16,6 +20,67 @@ export default function ComponentLibrary() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-8">
+        <Tabs defaultValue="productivity" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-8">
+            <TabsTrigger value="productivity" className="text-base">
+              Productivity Module
+            </TabsTrigger>
+            <TabsTrigger value="company" className="text-base">
+              Company Module
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Productivity Module Tab */}
+          <TabsContent value="productivity" className="space-y-8">
+            {/* Add productivity components here */}
+          </TabsContent>
+
+          {/* Company Module Tab */}
+          <TabsContent value="company" className="space-y-8">
+            <ComponentSection
+              title="Employee Performance"
+              description="Components for tracking and displaying employee performance metrics"
+            >
+              <ComponentShowcase
+                title="Performance Meter"
+                description="A comprehensive performance dashboard with gauge visualization and detailed metrics breakdown"
+                component={
+                  <div className="w-full max-w-md mx-auto">
+                    <PerformanceMeter />
+                  </div>
+                }
+                code={`import PerformanceMeter from "@/components/PerformanceMeter";
+
+export function EmployeePerformanceWidget() {
+  return (
+    <div className="w-full">
+      <PerformanceMeter />
+    </div>
+  );
+}`}
+                props={[
+                  {
+                    name: "overallScore",
+                    type: "number",
+                    default: "25.5",
+                    description: "The overall performance score percentage",
+                  },
+                  {
+                    name: "performanceData",
+                    type: "Array<{category: string, percentage: number}>",
+                    description:
+                      "Array of performance categories and their scores",
+                  },
+                ]}
+                variants={["default", "with-modal"]}
+              />
+            </ComponentSection>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
