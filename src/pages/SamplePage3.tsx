@@ -423,6 +423,63 @@ export default function SamplePage3() {
     return counts;
   }, [employeeData]);
 
+  // Filter and group announcements
+  const groupedAnnouncements = useMemo(() => {
+    const filtered = announcementData.filter((announcement) => {
+      if (!announcementSearch) return true;
+
+      return (
+        announcement.title
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase()) ||
+        announcement.description
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase()) ||
+        announcement.branch
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase())
+      );
+    });
+
+    // Group by month and year
+    const grouped: Record<string, typeof filtered> = {};
+
+    filtered.forEach((announcement) => {
+      const [day, month, year] = announcement.date.split("-");
+      const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      const monthKey = `${monthNames[parseInt(month) - 1]} ${year}`;
+
+      if (!grouped[monthKey]) {
+        grouped[monthKey] = [];
+      }
+      grouped[monthKey].push(announcement);
+    });
+
+    // Sort each group by date (newest first)
+    Object.keys(grouped).forEach((key) => {
+      grouped[key].sort((a, b) => {
+        const dateA = new Date(a.date.split("-").reverse().join("-"));
+        const dateB = new Date(b.date.split("-").reverse().join("-"));
+        return dateB.getTime() - dateA.getTime();
+      });
+    });
+
+    return grouped;
+  }, [announcementData, announcementSearch]);
+
   const clearSearch = () => {
     setSearchQuery("");
   };
