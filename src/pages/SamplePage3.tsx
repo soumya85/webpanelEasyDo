@@ -3610,7 +3610,7 @@ export default function SamplePage3() {
 
                   {/* Reports List */}
                   <div className="space-y-1">
-                    {/* Branch Performance Summary */}
+                    {/* Attendance Report */}
                     <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
                       <div className="w-8 h-8 text-blue-500">
                         <svg
@@ -3628,7 +3628,7 @@ export default function SamplePage3() {
                         </svg>
                       </div>
                       <span className="text-blue-500 font-medium">
-                        Branch Performance Summary
+                        Attendance Report
                       </span>
                     </div>
 
