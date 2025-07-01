@@ -82,6 +82,15 @@ export default function SamplePage3() {
   const [showAnnouncementDropdown, setShowAnnouncementDropdown] =
     useState(false);
 
+  // Attendance Detail Modal state
+  const [showAttendanceDetail, setShowAttendanceDetail] = useState(false);
+  const [attendanceDetailSearch, setAttendanceDetailSearch] = useState("");
+  const [attendanceDetailFilter, setAttendanceDetailFilter] =
+    useState("Present");
+  const [selectedAttendanceDate, setSelectedAttendanceDate] = useState(
+    "Saturday, 28 Jun, 2025",
+  );
+
   // Mock announcement data
   const announcementData = [
     {
@@ -789,7 +798,9 @@ export default function SamplePage3() {
         {/* Employee Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           <div className="min-h-[400px]">
-            <EmployeeAttendanceCard />
+            <EmployeeAttendanceCard
+              onDateClick={() => setShowAttendanceDetail(true)}
+            />
           </div>
           <div className="min-h-[600px]">
             <EmployeeLocationTimelineCard />
@@ -3853,8 +3864,11 @@ export default function SamplePage3() {
 
                 {/* Floating Action Button */}
                 <div className="absolute bottom-6 right-6">
-                  <button className="w-12 h-12 bg-black rounded-xl flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors">
-                    <Plus className="w-6 h-6 text-white" />
+                  <button className="bg-black rounded-xl flex items-center justify-center gap-2 shadow-lg hover:bg-gray-800 transition-colors px-4 py-3">
+                    <Plus className="w-5 h-5 text-white" />
+                    <span className="text-white text-sm font-medium">
+                      Add Branch
+                    </span>
                   </button>
                 </div>
               </div>
@@ -4057,6 +4071,186 @@ export default function SamplePage3() {
                 {member.name}
               </div>
             ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Attendance Detail Modal */}
+      <Dialog
+        open={showAttendanceDetail}
+        onOpenChange={setShowAttendanceDetail}
+      >
+        <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0">
+          {/* Header with Title and Close Button */}
+          <DialogHeader className="flex flex-row items-center justify-between p-4 border-b border-gray-200">
+            <DialogTitle className="text-lg font-semibold text-gray-900">
+              Attendance
+            </DialogTitle>
+            <button
+              onClick={() => setShowAttendanceDetail(false)}
+              className="p-1 hover:bg-gray-100 rounded transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-600" />
+            </button>
+          </DialogHeader>
+
+          {/* Date Navigation */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+              <ChevronDown className="w-5 h-5 text-gray-600 rotate-90" />
+            </button>
+            <h2 className="text-lg font-semibold text-gray-900">
+              {selectedAttendanceDate}
+            </h2>
+            <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+              <ChevronDown className="w-5 h-5 text-gray-600 -rotate-90" />
+            </button>
+          </div>
+
+          {/* Search Bar */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                placeholder="Search"
+                value={attendanceDetailSearch}
+                onChange={(e) => setAttendanceDetailSearch(e.target.value)}
+                className="pl-10 bg-gray-50 border-gray-200 rounded-lg"
+              />
+            </div>
+          </div>
+
+          {/* Filter Dropdown */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-auto justify-between bg-white border-gray-300"
+                >
+                  {attendanceDetailFilter} (1)
+                  <ChevronDown className="w-4 h-4 ml-2" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-48 p-0" align="start">
+                <div className="p-1">
+                  {[
+                    { name: "Present", count: 1 },
+                    { name: "Absent", count: 0 },
+                    { name: "Half Day", count: 0 },
+                    { name: "Late", count: 0 },
+                    { name: "Leave", count: 0 },
+                    { name: "Week off", count: 0 },
+                    { name: "Holiday", count: 0 },
+                  ].map((option) => (
+                    <button
+                      key={option.name}
+                      onClick={() => setAttendanceDetailFilter(option.name)}
+                      className="w-full flex items-center justify-between px-3 py-2 text-left hover:bg-gray-100 rounded"
+                    >
+                      <span className="text-sm">{option.name}</span>
+                      <span className="text-xs text-gray-500">
+                        ({option.count})
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          {/* Employee Attendance Detail */}
+          <div className="flex-1 overflow-y-auto p-4">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+              {/* Employee Header */}
+              <div className="flex items-center justify-between p-4">
+                <div className="flex items-center gap-3">
+                  <Avatar className="w-12 h-12">
+                    <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
+                    <AvatarFallback className="bg-gray-800 text-white font-semibold">
+                      AM
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-base">
+                      ABHIJIT MONDAL
+                    </h3>
+                    <p className="text-sm text-gray-500">Jetty Sircar</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2 justify-end">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-green-600">
+                      PRESENT
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">In: 10:01 AM</p>
+                </div>
+              </div>
+
+              {/* Attendance Details */}
+              <div className="px-4 pb-4">
+                <div className="text-sm text-gray-600 mb-4">
+                  Attendance from Office
+                </div>
+
+                {/* Check In */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold text-gray-900">
+                      IN - 10:01 AM
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-sm font-medium text-green-600">
+                        Office
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    6, Kalighat, West Bengal 700026, India
+                  </p>
+                </div>
+
+                {/* Check Out */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold text-gray-900">
+                      OUT: 07:02 PM
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-sm font-medium text-red-600">
+                        Unverified
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd,
+                    Kalighat, Kolkata, West Bengal 700026, India
+                  </p>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="grid grid-cols-2 gap-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 bg-blue-50/50 justify-center"
+                  >
+                    Location Timeline ›
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 bg-blue-50/50 justify-center"
+                  >
+                    View Logs ›
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
