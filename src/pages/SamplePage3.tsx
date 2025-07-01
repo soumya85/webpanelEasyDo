@@ -798,7 +798,9 @@ export default function SamplePage3() {
         {/* Employee Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           <div className="min-h-[400px]">
-            <EmployeeAttendanceCard />
+            <EmployeeAttendanceCard
+              onDateClick={() => setShowAttendanceDetail(true)}
+            />
           </div>
           <div className="min-h-[600px]">
             <EmployeeLocationTimelineCard />
