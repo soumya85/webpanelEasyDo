@@ -2524,18 +2524,18 @@ export default function SamplePage3() {
               <div className="w-full h-full flex flex-col">
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b bg-white">
-                  <div className="flex items-center gap-3">
-                    <button className="text-blue-500">
-                      <ArrowLeft className="w-5 h-5" />
-                    </button>
-                    <span className="text-blue-500 font-medium">CDB</span>
-                  </div>
-                  <h1 className="text-lg font-semibold text-gray-900">
-                    Management Review
-                  </h1>
                   <button className="text-blue-500">
-                    <Settings2 className="w-5 h-5" />
+                    <ArrowLeft className="w-5 h-5" />
                   </button>
+                  <div className="flex items-center gap-3">
+                    <h1 className="text-lg font-semibold text-gray-900">
+                      Management Review
+                    </h1>
+                    <button className="text-blue-500">
+                      <Settings2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <div></div>
                 </div>
 
                 {/* Search Bar */}
