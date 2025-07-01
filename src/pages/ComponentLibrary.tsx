@@ -6,6 +6,7 @@ import PerformanceMeter from "@/components/PerformanceMeter";
 import AttendanceSummary from "@/components/AttendanceSummary";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
+import UpcomingHolidays from "@/components/UpcomingHolidays";
 
 export default function ComponentLibrary() {
   return (
