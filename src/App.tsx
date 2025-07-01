@@ -37,6 +37,7 @@ import SamplePage3 from "@/pages/SamplePage3";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import PendingApprovals from "./pages/PendingApprovals";
 import AttendanceReport from "./pages/AttendanceReport";
+import ComponentLibrary from "./pages/ComponentLibrary";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -112,6 +113,10 @@ const AppContent = () => {
                     <Route path="/sample-page-1" element={<SamplePage1 />} />
                     <Route path="/sample-page-2" element={<SamplePage2 />} />
                     <Route path="/sample-page-3" element={<SamplePage3 />} />
+                    <Route
+                      path="/component-library"
+                      element={<ComponentLibrary />}
+                    />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
