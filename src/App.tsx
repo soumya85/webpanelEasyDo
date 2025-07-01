@@ -38,7 +38,14 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import PendingApprovals from "./pages/PendingApprovals";
 import AttendanceReport from "./pages/AttendanceReport";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+  },
+});
 
 // Component to handle conditional layout based on route
 const AppContent = () => {
