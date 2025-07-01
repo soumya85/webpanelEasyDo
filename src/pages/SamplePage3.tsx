@@ -47,6 +47,7 @@ export default function SamplePage3() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head office");
+  const [reviewTab, setReviewTab] = useState("reviewed");
   const [holidayName, setHolidayName] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [holidayType, setHolidayType] = useState("Public");
