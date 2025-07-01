@@ -80,6 +80,46 @@ export function EmployeePerformanceWidget() {
                 variants={["default", "with-modal"]}
               />
             </ComponentSection>
+
+            <ComponentSection
+              title="Employee Attendance"
+              description="Components for tracking and displaying employee attendance data"
+            >
+              <ComponentShowcase
+                title="Attendance Summary"
+                description="A comprehensive attendance dashboard with detailed metrics, calendar view, and interactive modal with analytics"
+                component={
+                  <div className="w-full max-w-md mx-auto">
+                    <AttendanceSummary />
+                  </div>
+                }
+                code={`import AttendanceSummary from "@/components/AttendanceSummary";
+
+export function EmployeeAttendanceWidget() {
+  return (
+    <div className="w-full">
+      <AttendanceSummary />
+    </div>
+  );
+}`}
+                props={[
+                  {
+                    name: "className",
+                    type: "string",
+                    default: "undefined",
+                    description:
+                      "Additional CSS classes for styling customization",
+                  },
+                  {
+                    name: "data",
+                    type: "AttendanceData",
+                    description:
+                      "Attendance data including present, absent, leave, late, holidays, and summary statistics",
+                  },
+                ]}
+                variants={["default", "with-modal", "interactive"]}
+              />
+            </ComponentSection>
           </TabsContent>
         </Tabs>
       </div>
