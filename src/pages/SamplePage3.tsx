@@ -2907,8 +2907,9 @@ export default function SamplePage3() {
                 </div>
 
                 {/* Floating Add Button */}
-                <button className="fixed bottom-6 right-6 w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors">
-                  <Plus className="w-6 h-6" />
+                <button className="fixed bottom-6 right-6 bg-black text-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg hover:bg-gray-800 transition-colors">
+                  <Plus className="w-4 h-4" />
+                  <span className="text-sm font-medium">Add Employee</span>
                 </button>
               </div>
             ) : selectedCard?.id === "documents" ? (
