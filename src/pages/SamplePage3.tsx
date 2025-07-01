@@ -2519,6 +2519,371 @@ export default function SamplePage3() {
                   Add Announcement
                 </button>
               </div>
+            ) : selectedCard?.id === "performance-review" ? (
+              // Performance Review Modal - Management Review Interface
+              <div className="w-full h-full flex flex-col">
+                {/* Header */}
+                <div className="flex items-center justify-between p-4 border-b bg-white">
+                  <div className="flex items-center gap-3">
+                    <button className="text-blue-500">
+                      <ArrowLeft className="w-5 h-5" />
+                    </button>
+                    <span className="text-blue-500 font-medium">CDB</span>
+                  </div>
+                  <h1 className="text-lg font-semibold text-gray-900">
+                    Management Review
+                  </h1>
+                  <button className="text-blue-500">
+                    <Settings2 className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Search Bar */}
+                <div className="p-4 bg-gray-50">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Input
+                      placeholder="Search Employee"
+                      className="pl-10 bg-white border-gray-200"
+                    />
+                  </div>
+                </div>
+
+                {/* Tabs */}
+                <div className="flex gap-2 p-4 pt-2">
+                  <button className="flex-1 py-3 px-4 bg-white border border-gray-200 rounded-lg font-medium text-gray-900">
+                    Reviewed (6)
+                  </button>
+                  <button className="flex-1 py-3 px-4 bg-gray-100 border border-gray-200 rounded-lg font-medium text-gray-600">
+                    Pending (115)
+                  </button>
+                </div>
+
+                {/* Branch Filter */}
+                <div className="px-4 pb-4">
+                  <button className="w-full p-3 bg-white border border-gray-200 rounded-lg flex items-center justify-between">
+                    <span className="text-gray-900">All Branches</span>
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  </button>
+                </div>
+
+                {/* Employee List */}
+                <div className="flex-1 overflow-y-auto px-4 space-y-4">
+                  {/* Reviewed Employee 1 */}
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="relative">
+                        <Avatar className="w-12 h-12">
+                          <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" />
+                          <AvatarFallback>AP</AvatarFallback>
+                        </Avatar>
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">⚠</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h3 className="font-semibold text-gray-900">
+                              Amit Parmar
+                            </h3>
+                            <p className="text-sm text-blue-500">
+                              IOS Developer (Ahmedabad office)
+                            </p>
+                            <div className="flex items-center gap-4 mt-1">
+                              <span className="text-sm text-gray-600">
+                                DOJ: May 02, 2024
+                              </span>
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-100 text-gray-700"
+                              >
+                                Authority: 1
+                              </Badge>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button className="p-1">
+                              <svg
+                                className="w-5 h-5 text-gray-400"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                              </svg>
+                            </button>
+                            <button className="p-1">
+                              <MoreVertical className="w-5 h-5 text-gray-400" />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-sm text-gray-600">
+                                Evaluated on:{" "}
+                                <span className="font-medium">Jun 29 2025</span>
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                By:{" "}
+                                <span className="font-medium">
+                                  Soumyadeep Goswami
+                                </span>
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                (Web Designer)
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                <span className="text-green-600 text-sm">
+                                  👍
+                                </span>
+                              </div>
+                              <span className="text-2xl font-bold text-gray-900">
+                                93%
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Reviewed Employee 2 */}
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="relative">
+                        <Avatar className="w-12 h-12">
+                          <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" />
+                          <AvatarFallback>BI</AvatarFallback>
+                        </Avatar>
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">⚠</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h3 className="font-semibold text-gray-900">
+                              Bhaskar IOS
+                            </h3>
+                            <p className="text-sm text-blue-500">
+                              Exec Director (Head office)
+                            </p>
+                            <div className="flex items-center gap-4 mt-1">
+                              <span className="text-sm text-gray-600">
+                                DOJ: Mar 14, 2021
+                              </span>
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-100 text-gray-700"
+                              >
+                                Authority: 1
+                              </Badge>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button className="p-1">
+                              <svg
+                                className="w-5 h-5 text-gray-400"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                              </svg>
+                            </button>
+                            <button className="p-1">
+                              <MoreVertical className="w-5 h-5 text-gray-400" />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-sm text-gray-600">
+                                Evaluated on:{" "}
+                                <span className="font-medium">Jan 08 2025</span>
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                By:{" "}
+                                <span className="font-medium">Bhaskar IOS</span>
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                (Exec Director)
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                <span className="text-green-600 text-sm">
+                                  👍
+                                </span>
+                              </div>
+                              <span className="text-2xl font-bold text-gray-900">
+                                87%
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Pending Employee 1 */}
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="relative">
+                        <Avatar className="w-12 h-12">
+                          <AvatarImage src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" />
+                          <AvatarFallback>AM</AvatarFallback>
+                        </Avatar>
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">⚠</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h3 className="font-semibold text-gray-900">
+                              ABHIJIT MONDAL
+                            </h3>
+                            <p className="text-sm text-blue-500">
+                              Jetty Sircar (Haldia)
+                            </p>
+                            <div className="flex items-center gap-4 mt-1">
+                              <span className="text-sm text-gray-600">
+                                DOJ: Apr 09, 2024
+                              </span>
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-100 text-gray-700"
+                              >
+                                Authority: 3
+                              </Badge>
+                            </div>
+                          </div>
+                          <button className="p-1">
+                            <svg
+                              className="w-5 h-5 text-gray-400"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                            </svg>
+                          </button>
+                        </div>
+                        <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                          <Plus className="w-4 h-4 mr-2" />
+                          Add Review
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Pending Employee 2 */}
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="relative">
+                        <Avatar className="w-12 h-12">
+                          <AvatarImage src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face" />
+                          <AvatarFallback>AM</AvatarFallback>
+                        </Avatar>
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">⚠</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h3 className="font-semibold text-gray-900">
+                              Abhijit Mukherjee
+                            </h3>
+                            <p className="text-sm text-blue-500">
+                              Operation Executive (Head office)
+                            </p>
+                            <div className="flex items-center gap-4 mt-1">
+                              <span className="text-sm text-gray-600">
+                                DOJ: Jan 01, 2017
+                              </span>
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-100 text-gray-700"
+                              >
+                                Authority: 3
+                              </Badge>
+                            </div>
+                          </div>
+                          <button className="p-1">
+                            <svg
+                              className="w-5 h-5 text-gray-400"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                            </svg>
+                          </button>
+                        </div>
+                        <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                          <Plus className="w-4 h-4 mr-2" />
+                          Add Review
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Pending Employee 3 */}
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="flex items-start gap-4">
+                      <Avatar className="w-12 h-12 bg-gray-300">
+                        <AvatarFallback className="text-white font-semibold">
+                          AM
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h3 className="font-semibold text-gray-900">
+                              ABHIRAM MOHAPATRA
+                            </h3>
+                            <p className="text-sm text-blue-500">
+                              Supervisor (Paradip)
+                            </p>
+                            <div className="flex items-center gap-4 mt-1">
+                              <span className="text-sm text-gray-600">
+                                DOJ: N/A
+                              </span>
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-100 text-gray-700"
+                              >
+                                Authority: 3
+                              </Badge>
+                            </div>
+                          </div>
+                          <button className="p-1">
+                            <svg
+                              className="w-5 h-5 text-gray-400"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                            </svg>
+                          </button>
+                        </div>
+                        <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                          <Plus className="w-4 h-4 mr-2" />
+                          Add Review
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Add Button */}
+                <button className="fixed bottom-6 right-6 w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors">
+                  <Plus className="w-6 h-6" />
+                </button>
+              </div>
             ) : selectedCard?.id === "documents" ? (
               // Documents Modal - Company Information
               <div className="w-full h-full overflow-y-auto">
