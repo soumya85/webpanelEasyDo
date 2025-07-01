@@ -47,6 +47,7 @@ export default function SamplePage3() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head office");
+  const [reviewTab, setReviewTab] = useState("reviewed");
   const [holidayName, setHolidayName] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [holidayType, setHolidayType] = useState("Public");
@@ -2116,8 +2117,15 @@ export default function SamplePage3() {
           <DialogHeader className="flex flex-row items-center justify-between px-4 pt-1 pb-2 border-b">
             <div className="flex items-center gap-4">
               <DialogTitle className="text-xl font-semibold text-[#283C50]">
-                {selectedCard?.title || ""}
+                {selectedCard?.id === "performance-review"
+                  ? "Management Review"
+                  : selectedCard?.title || ""}
               </DialogTitle>
+              {selectedCard?.id === "performance-review" && (
+                <button className="text-blue-500">
+                  <Settings2 className="w-5 h-5" />
+                </button>
+              )}
               {selectedCard?.id === "announce" && (
                 <Popover
                   open={showAnnouncementDropdown}
@@ -2518,6 +2526,763 @@ export default function SamplePage3() {
                   <Plus className="w-5 h-5" />
                   Add Announcement
                 </button>
+              </div>
+            ) : selectedCard?.id === "performance-review" ? (
+              // Performance Review Modal - Management Review Interface
+              <div className="w-full h-full flex flex-col">
+                {/* Header */}
+                <div className="flex items-center justify-between p-4 border-b bg-white">
+                  <button className="text-blue-500">
+                    <ArrowLeft className="w-5 h-5" />
+                  </button>
+                  <div className="flex items-center gap-3">
+                    <h1 className="text-lg font-semibold text-gray-900">
+                      Management Review
+                    </h1>
+                    <button className="text-blue-500">
+                      <Settings2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <div></div>
+                </div>
+
+                {/* Tabs */}
+                <div className="flex gap-2 p-4 pt-2">
+                  <button
+                    onClick={() => setReviewTab("reviewed")}
+                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium transition-all ${
+                      reviewTab === "reviewed"
+                        ? "bg-white text-gray-900 shadow-lg"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    Reviewed (6)
+                  </button>
+                  <button
+                    onClick={() => setReviewTab("pending")}
+                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium transition-all ${
+                      reviewTab === "pending"
+                        ? "bg-white text-gray-900 shadow-lg"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    Pending (115)
+                  </button>
+                </div>
+
+                {/* Branch Filter */}
+                <div className="px-4 pb-4">
+                  <button className="w-full p-3 bg-white border border-gray-200 rounded-lg flex items-center justify-between">
+                    <span className="text-gray-900">All Branches</span>
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  </button>
+                </div>
+
+                {/* Employee List */}
+                <div className="flex-1 overflow-y-auto px-4 space-y-4">
+                  {reviewTab === "reviewed" ? (
+                    <>
+                      {/* Reviewed Employee 1 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                AP
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  Amit Parmar
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  IOS Developer (Ahmedabad office)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: May 02, 2024
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 1
+                                  </Badge>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <button className="p-1">
+                                  <svg
+                                    className="w-5 h-5 text-gray-400"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                  </svg>
+                                </button>
+                                <button className="p-1">
+                                  <MoreVertical className="w-5 h-5 text-gray-400" />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="mt-3 pt-3 border-t border-gray-100">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="text-sm text-gray-600">
+                                    Evaluated on:{" "}
+                                    <span className="font-medium">
+                                      Jun 29 2025
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    By:{" "}
+                                    <span className="font-medium">
+                                      Soumyadeep Goswami
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    (Web Designer)
+                                  </p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                    <span className="text-green-600 text-sm">
+                                      👍
+                                    </span>
+                                  </div>
+                                  <span className="text-2xl font-bold text-gray-900">
+                                    93%
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Reviewed Employee 2 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                BI
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  Bhaskar IOS
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Exec Director (Head office)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: Mar 14, 2021
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 1
+                                  </Badge>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <button className="p-1">
+                                  <svg
+                                    className="w-5 h-5 text-gray-400"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                  </svg>
+                                </button>
+                                <button className="p-1">
+                                  <MoreVertical className="w-5 h-5 text-gray-400" />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="mt-3 pt-3 border-t border-gray-100">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="text-sm text-gray-600">
+                                    Evaluated on:{" "}
+                                    <span className="font-medium">
+                                      Jan 08 2025
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    By:{" "}
+                                    <span className="font-medium">
+                                      Bhaskar IOS
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    (Exec Director)
+                                  </p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                    <span className="text-green-600 text-sm">
+                                      👍
+                                    </span>
+                                  </div>
+                                  <span className="text-2xl font-bold text-gray-900">
+                                    87%
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Pending Employee 1 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                AM
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  ABHIJIT MONDAL
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Jetty Sircar (Haldia)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: Apr 09, 2024
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 3
+                                  </Badge>
+                                </div>
+                              </div>
+                              <button className="p-1">
+                                <svg
+                                  className="w-5 h-5 text-gray-400"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                </svg>
+                              </button>
+                            </div>
+                            <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                              <Plus className="w-4 h-4 mr-2" />
+                              Add Review
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Pending Employee 2 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                AM
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  Abhijit Mukherjee
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Operation Executive (Head office)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: Jan 01, 2017
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 3
+                                  </Badge>
+                                </div>
+                              </div>
+                              <button className="p-1">
+                                <svg
+                                  className="w-5 h-5 text-gray-400"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                </svg>
+                              </button>
+                            </div>
+                            <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                              <Plus className="w-4 h-4 mr-2" />
+                              Add Review
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Pending Employee 3 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                            <span className="text-white font-semibold text-sm">
+                              AM
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  ABHIRAM MOHAPATRA
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Supervisor (Paradip)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: N/A
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 3
+                                  </Badge>
+                                </div>
+                              </div>
+                              <button className="p-1">
+                                <svg
+                                  className="w-5 h-5 text-gray-400"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                </svg>
+                              </button>
+                            </div>
+                            <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                              <Plus className="w-4 h-4 mr-2" />
+                              Add Review
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* Floating Add Button */}
+                <button className="fixed bottom-6 right-6 bg-black text-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg hover:bg-gray-800 transition-colors">
+                  <Plus className="w-4 h-4" />
+                  <span className="text-sm font-medium">Add Employee</span>
+                </button>
+              </div>
+            ) : selectedCard?.id === "documents" ? (
+              // Documents Modal - Company Information
+              <div className="w-full h-full overflow-y-auto">
+                <div className="p-6 max-w-2xl mx-auto space-y-6">
+                  {/* Header */}
+                  <div className="text-center border-b pb-4">
+                    <h1 className="text-xl font-semibold text-gray-900">
+                      Transport, Logistics and Shipping
+                    </h1>
+                  </div>
+
+                  {/* Company Info Section */}
+                  <div className="flex items-start gap-4 bg-gray-50 p-4 rounded-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-bold text-xl">L</span>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                        Liberty Highrise Pvt Ltd
+                      </h2>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        104, 3rd Floor, Shyama Prasad Mukherjee Road, Hazra,
+                        Kalighat, Kalighat, Kolkata, West Bengal 700026, India
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Contacts Section */}
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Contacts
+                    </h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3">
+                        <Phone className="w-5 h-5 text-gray-500" />
+                        <span className="text-gray-700">
+                          Mobile: 9898404105
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <MessageCircle className="w-5 h-5 text-gray-500" />
+                        <span className="text-gray-700">
+                          Email: accounts@libertyhighrise.com
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Other Details Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Other Details
+                    </h3>
+
+                    {/* PAN Card Section */}
+                    <div className="border rounded-lg overflow-hidden bg-white">
+                      <div className="p-4 bg-white flex items-center justify-center">
+                        <div className="w-full max-w-md">
+                          {/* PAN Card SVG */}
+                          <svg
+                            viewBox="0 0 400 240"
+                            className="w-full h-auto border rounded-lg"
+                          >
+                            <defs>
+                              <linearGradient
+                                id="panGradient"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%"
+                              >
+                                <stop offset="0%" stopColor="#4F46E5" />
+                                <stop offset="100%" stopColor="#3B82F6" />
+                              </linearGradient>
+                            </defs>
+
+                            {/* Card Background */}
+                            <rect
+                              width="400"
+                              height="240"
+                              fill="url(#panGradient)"
+                              rx="8"
+                            />
+
+                            {/* Header */}
+                            <text
+                              x="20"
+                              y="30"
+                              fill="white"
+                              fontSize="12"
+                              fontWeight="bold"
+                            >
+                              INCOME TAX DEPARTMENT
+                            </text>
+                            <text
+                              x="20"
+                              y="45"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.9"
+                            >
+                              GOVT. OF INDIA
+                            </text>
+
+                            {/* Date */}
+                            <text
+                              x="320"
+                              y="30"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.9"
+                            >
+                              PERMANENT ACCOUNT NUMBER
+                            </text>
+                            <text x="320" y="45" fill="white" fontSize="10">
+                              XX/XX/XXXX
+                            </text>
+
+                            {/* Company Name */}
+                            <text
+                              x="20"
+                              y="80"
+                              fill="white"
+                              fontSize="14"
+                              fontWeight="bold"
+                            >
+                              LIBERTY RIGHRISE PRIVATE LIMITED
+                            </text>
+
+                            {/* Emblem/Logo placeholder */}
+                            <circle
+                              cx="350"
+                              cy="80"
+                              r="25"
+                              fill="white"
+                              fillOpacity="0.3"
+                            />
+                            <text
+                              x="350"
+                              y="85"
+                              fill="white"
+                              fontSize="12"
+                              textAnchor="middle"
+                            >
+                              🏛️
+                            </text>
+
+                            {/* PAN Number Section */}
+                            <rect
+                              x="20"
+                              y="140"
+                              width="360"
+                              height="60"
+                              fill="white"
+                              fillOpacity="0.1"
+                              rx="4"
+                            />
+                            <text
+                              x="30"
+                              y="160"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.8"
+                            >
+                              Pan No.
+                            </text>
+                            <text
+                              x="30"
+                              y="180"
+                              fill="white"
+                              fontSize="24"
+                              fontWeight="bold"
+                              letterSpacing="2px"
+                            >
+                              XXXXXXXXXX
+                            </text>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Additional Documents */}
+                    <div className="space-y-4">
+                      {/* Certificate of Incorporation */}
+                      <div className="border rounded-lg p-4 bg-white">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-20">
+                            <svg
+                              viewBox="0 0 80 100"
+                              className="w-full h-full border rounded"
+                            >
+                              <rect
+                                width="80"
+                                height="100"
+                                fill="#f8f9fa"
+                                stroke="#e9ecef"
+                                strokeWidth="1"
+                              />
+                              <rect
+                                x="8"
+                                y="8"
+                                width="64"
+                                height="8"
+                                fill="#6c757d"
+                                rx="2"
+                              />
+                              <rect
+                                x="8"
+                                y="20"
+                                width="48"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="28"
+                                width="56"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="36"
+                                width="40"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <circle cx="40" cy="60" r="12" fill="#17C666" />
+                              <text
+                                x="40"
+                                y="65"
+                                fill="white"
+                                fontSize="12"
+                                textAnchor="middle"
+                              >
+                                ✓
+                              </text>
+                              <rect
+                                x="8"
+                                y="80"
+                                width="32"
+                                fill="#6c757d"
+                                height="3"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="87"
+                                width="24"
+                                fill="#6c757d"
+                                height="3"
+                                rx="1"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-gray-900 mb-1">
+                              Certificate of Incorporation
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              Company registration document
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              Document ID: XXXXXXXXXXXX
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* GST Registration */}
+                      <div className="border rounded-lg p-4 bg-white">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-20">
+                            <svg
+                              viewBox="0 0 80 100"
+                              className="w-full h-full border rounded"
+                            >
+                              <rect
+                                width="80"
+                                height="100"
+                                fill="#fff8e1"
+                                stroke="#ffc107"
+                                strokeWidth="1"
+                              />
+                              <rect
+                                x="8"
+                                y="8"
+                                width="64"
+                                height="8"
+                                fill="#ff9800"
+                                rx="2"
+                              />
+                              <rect
+                                x="8"
+                                y="20"
+                                width="48"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="28"
+                                width="56"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <text
+                                x="40"
+                                y="50"
+                                fill="#ff9800"
+                                fontSize="16"
+                                textAnchor="middle"
+                                fontWeight="bold"
+                              >
+                                GST
+                              </text>
+                              <rect
+                                x="8"
+                                y="60"
+                                width="64"
+                                height="6"
+                                fill="#ff9800"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="70"
+                                width="48"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="78"
+                                width="32"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="86"
+                                width="40"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-gray-900 mb-1">
+                              GST Registration
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              Tax registration certificate
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              GSTIN: XXXXXXXXXXXXXXXXXXXX
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
               // Default placeholder for other modals
