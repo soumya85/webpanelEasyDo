@@ -2575,86 +2575,314 @@ export default function SamplePage3() {
 
                     {/* PAN Card Section */}
                     <div className="border rounded-lg overflow-hidden bg-white">
-                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-semibold text-sm">
+                      <div className="p-4 bg-white flex items-center justify-center">
+                        <div className="w-full max-w-md">
+                          {/* PAN Card SVG */}
+                          <svg
+                            viewBox="0 0 400 240"
+                            className="w-full h-auto border rounded-lg"
+                          >
+                            <defs>
+                              <linearGradient
+                                id="panGradient"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%"
+                              >
+                                <stop offset="0%" stopColor="#4F46E5" />
+                                <stop offset="100%" stopColor="#3B82F6" />
+                              </linearGradient>
+                            </defs>
+
+                            {/* Card Background */}
+                            <rect
+                              width="400"
+                              height="240"
+                              fill="url(#panGradient)"
+                              rx="8"
+                            />
+
+                            {/* Header */}
+                            <text
+                              x="20"
+                              y="30"
+                              fill="white"
+                              fontSize="12"
+                              fontWeight="bold"
+                            >
                               INCOME TAX DEPARTMENT
-                            </h4>
-                            <p className="text-xs opacity-90">GOVT. OF INDIA</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-xs opacity-90">
+                            </text>
+                            <text
+                              x="20"
+                              y="45"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.9"
+                            >
+                              GOVT. OF INDIA
+                            </text>
+
+                            {/* Date */}
+                            <text
+                              x="320"
+                              y="30"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.9"
+                            >
                               PERMANENT ACCOUNT NUMBER
-                            </p>
-                            <p className="text-xs">23/06/2005</p>
-                          </div>
+                            </text>
+                            <text x="320" y="45" fill="white" fontSize="10">
+                              23/06/2005
+                            </text>
+
+                            {/* Company Name */}
+                            <text
+                              x="20"
+                              y="80"
+                              fill="white"
+                              fontSize="14"
+                              fontWeight="bold"
+                            >
+                              LIBERTY RIGHRISE PRIVATE LIMITED
+                            </text>
+
+                            {/* Emblem/Logo placeholder */}
+                            <circle
+                              cx="350"
+                              cy="80"
+                              r="25"
+                              fill="white"
+                              fillOpacity="0.3"
+                            />
+                            <text
+                              x="350"
+                              y="85"
+                              fill="white"
+                              fontSize="12"
+                              textAnchor="middle"
+                            >
+                              🏛️
+                            </text>
+
+                            {/* PAN Number Section */}
+                            <rect
+                              x="20"
+                              y="140"
+                              width="360"
+                              height="60"
+                              fill="white"
+                              fillOpacity="0.1"
+                              rx="4"
+                            />
+                            <text
+                              x="30"
+                              y="160"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.8"
+                            >
+                              Pan No.
+                            </text>
+                            <text
+                              x="30"
+                              y="180"
+                              fill="white"
+                              fontSize="24"
+                              fontWeight="bold"
+                              letterSpacing="2px"
+                            >
+                              XXXXXXXXXX
+                            </text>
+                          </svg>
                         </div>
-                        <div className="mt-4">
-                          <p className="text-sm font-medium">
-                            LIBERTY RIGHRISE PRIVATE LIMITED
-                          </p>
-                        </div>
-                      </div>
-                      <div className="p-4 bg-white">
-                        <p className="text-sm font-medium text-gray-900">
-                          Pan No.
-                        </p>
-                        <p className="text-xl font-bold text-gray-900 mt-1">
-                          AABCL0949H
-                        </p>
                       </div>
                     </div>
 
                     {/* Additional Documents */}
-                    <div className="space-y-3">
+                    <div className="space-y-4">
+                      {/* Certificate of Incorporation */}
                       <div className="border rounded-lg p-4 bg-white">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-20">
                             <svg
-                              className="w-5 h-5 text-gray-600"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
+                              viewBox="0 0 80 100"
+                              className="w-full h-full border rounded"
                             >
-                              <path
-                                fillRule="evenodd"
-                                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                clipRule="evenodd"
+                              <rect
+                                width="80"
+                                height="100"
+                                fill="#f8f9fa"
+                                stroke="#e9ecef"
+                                strokeWidth="1"
+                              />
+                              <rect
+                                x="8"
+                                y="8"
+                                width="64"
+                                height="8"
+                                fill="#6c757d"
+                                rx="2"
+                              />
+                              <rect
+                                x="8"
+                                y="20"
+                                width="48"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="28"
+                                width="56"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="36"
+                                width="40"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <circle cx="40" cy="60" r="12" fill="#17C666" />
+                              <text
+                                x="40"
+                                y="65"
+                                fill="white"
+                                fontSize="12"
+                                textAnchor="middle"
+                              >
+                                ✓
+                              </text>
+                              <rect
+                                x="8"
+                                y="80"
+                                width="32"
+                                fill="#6c757d"
+                                height="3"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="87"
+                                width="24"
+                                fill="#6c757d"
+                                height="3"
+                                rx="1"
                               />
                             </svg>
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-medium text-gray-900">
+                            <h4 className="font-medium text-gray-900 mb-1">
                               Certificate of Incorporation
                             </h4>
                             <p className="text-sm text-gray-500">
                               Company registration document
                             </p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              Document ID: XXXXXXXXXXXX
+                            </p>
                           </div>
                         </div>
                       </div>
 
+                      {/* GST Registration */}
                       <div className="border rounded-lg p-4 bg-white">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-20">
                             <svg
-                              className="w-5 h-5 text-gray-600"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
+                              viewBox="0 0 80 100"
+                              className="w-full h-full border rounded"
                             >
-                              <path
-                                fillRule="evenodd"
-                                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                clipRule="evenodd"
+                              <rect
+                                width="80"
+                                height="100"
+                                fill="#fff8e1"
+                                stroke="#ffc107"
+                                strokeWidth="1"
+                              />
+                              <rect
+                                x="8"
+                                y="8"
+                                width="64"
+                                height="8"
+                                fill="#ff9800"
+                                rx="2"
+                              />
+                              <rect
+                                x="8"
+                                y="20"
+                                width="48"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="28"
+                                width="56"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <text
+                                x="40"
+                                y="50"
+                                fill="#ff9800"
+                                fontSize="16"
+                                textAnchor="middle"
+                                fontWeight="bold"
+                              >
+                                GST
+                              </text>
+                              <rect
+                                x="8"
+                                y="60"
+                                width="64"
+                                height="6"
+                                fill="#ff9800"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="70"
+                                width="48"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="78"
+                                width="32"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="86"
+                                width="40"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
                               />
                             </svg>
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-medium text-gray-900">
+                            <h4 className="font-medium text-gray-900 mb-1">
                               GST Registration
                             </h4>
                             <p className="text-sm text-gray-500">
                               Tax registration certificate
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              GSTIN: XXXXXXXXXXXXXXXXXXXX
                             </p>
                           </div>
                         </div>
