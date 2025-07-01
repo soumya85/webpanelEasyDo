@@ -2360,7 +2360,7 @@ export default function SamplePage3() {
                           {!employee.teamMembers ||
                           employee.teamMembers.length === 0 ? (
                             <div className="flex items-center gap-1 px-3 py-1 border border-blue-200 rounded-full">
-                              <span className="text-blue-500">���</span>
+                              <span className="text-blue-500">★</span>
                               <span className="text-sm text-blue-500">
                                 {employee.rating} (0)
                               </span>
@@ -2554,9 +2554,9 @@ export default function SamplePage3() {
                 <div className="flex gap-2 p-4 pt-2">
                   <button
                     onClick={() => setReviewTab("reviewed")}
-                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium ${
+                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium transition-all ${
                       reviewTab === "reviewed"
-                        ? "bg-white text-gray-900"
+                        ? "bg-white text-gray-900 shadow-lg"
                         : "bg-gray-100 text-gray-600"
                     }`}
                   >
@@ -2564,9 +2564,9 @@ export default function SamplePage3() {
                   </button>
                   <button
                     onClick={() => setReviewTab("pending")}
-                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium ${
+                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium transition-all ${
                       reviewTab === "pending"
-                        ? "bg-white text-gray-900"
+                        ? "bg-white text-gray-900 shadow-lg"
                         : "bg-gray-100 text-gray-600"
                     }`}
                   >
