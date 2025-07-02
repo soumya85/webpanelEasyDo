@@ -2652,7 +2652,10 @@ export default function EmployeeDashboard() {
 
             {/* Notes (Optional) */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border">
+              <button
+                onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors"
+              >
                 <div className="flex items-center space-x-2">
                   <svg
                     className="w-5 h-5 text-[#283C50]"
@@ -2676,7 +2679,9 @@ export default function EmployeeDashboard() {
                     None
                   </span>
                   <svg
-                    className="w-5 h-5 text-[#4766E5]"
+                    className={`w-5 h-5 text-[#4766E5] transition-transform ${
+                      isNotesExpanded ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -2689,7 +2694,16 @@ export default function EmployeeDashboard() {
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
+
+              {isNotesExpanded && (
+                <div className="mt-2">
+                  <Textarea
+                    placeholder="Notes (Optional)"
+                    className="w-full min-h-[100px] input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5] resize-none"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Add Attachment */}
