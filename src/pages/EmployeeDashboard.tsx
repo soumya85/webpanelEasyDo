@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import AttendanceSummary from "@/components/AttendanceSummary";
@@ -41,6 +41,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 
 // Custom ChevronRight Icon to match Overview page
 const ChevronRightIcon = () => (
@@ -97,6 +104,51 @@ export default function EmployeeDashboard() {
   const [isTaskReportModalOpen, setIsTaskReportModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
+  const [otRequestDate, setOtRequestDate] = useState<Date | undefined>(
+    new Date(),
+  );
+  const [otDatePickerOpen, setOtDatePickerOpen] = useState(false);
+
+  // File input refs for attachment options
+  const scanFileInputRef = useRef<HTMLInputElement>(null);
+  const documentsFileInputRef = useRef<HTMLInputElement>(null);
+  const cameraFileInputRef = useRef<HTMLInputElement>(null);
+  const photosFileInputRef = useRef<HTMLInputElement>(null);
+
+  // File handling functions
+  const handleFileSelection = (type: string, files: FileList | null) => {
+    if (files && files.length > 0) {
+      const file = files[0];
+      console.log(`${type} file selected:`, file.name);
+      // Here you can add actual file handling logic
+      setIsAttachmentModalOpen(false);
+    }
+  };
+
+  const triggerFileUpload = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    // Close the attachment modal first
+    setIsAttachmentModalOpen(false);
+
+    // Use setTimeout to ensure the modal is closed before triggering file input
+    setTimeout(() => {
+      switch (type) {
+        case "scan":
+          scanFileInputRef.current?.click();
+          break;
+        case "documents":
+          documentsFileInputRef.current?.click();
+          break;
+        case "camera":
+          cameraFileInputRef.current?.click();
+          break;
+        case "photos":
+          photosFileInputRef.current?.click();
+          break;
+      }
+    }, 100);
+  };
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
@@ -1574,7 +1626,7 @@ export default function EmployeeDashboard() {
 
                 <Button
                   onClick={() => setIsLeaveCalendarOpen(true)}
-                  className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 h-12"
+                  className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12"
                 >
                   <svg
                     className="w-4 h-4 mr-2"
@@ -1598,7 +1650,7 @@ export default function EmployeeDashboard() {
           <div className="mt-6 pt-4 pb-6 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleLeaveSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
             >
               <ReactiveMultilingualText translationKey="submitRequest" />
             </Button>
@@ -2625,34 +2677,80 @@ export default function EmployeeDashboard() {
 
             {/* Start Date */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border">
-                <span className="text-base text-[#283C50] font-medium">
-                  Start date
-                </span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-[#4766E5] text-base font-medium">
-                    18 Jun 2025
-                  </span>
-                  <svg
-                    className="w-5 h-5 text-[#4766E5]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              <Popover
+                open={otDatePickerOpen}
+                onOpenChange={setOtDatePickerOpen}
+              >
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
+                    <span className="text-base text-[#283C50] font-medium">
+                      Start date
+                    </span>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-[#4766E5] text-base font-medium">
+                        {otRequestDate
+                          ? format(otRequestDate, "dd MMM yyyy")
+                          : "Select date"}
+                      </span>
+                      <svg
+                        className="w-5 h-5 text-[#4766E5]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto p-0 z-[9999] pointer-events-auto"
+                  align="start"
+                  side="bottom"
+                  sideOffset={8}
+                  avoidCollisions={true}
+                  collisionPadding={20}
+                  style={{
+                    position: "fixed",
+                    zIndex: 9999,
+                    pointerEvents: "auto",
+                  }}
+                >
+                  <div className="pointer-events-auto relative z-[9999]">
+                    <Calendar
+                      mode="single"
+                      selected={otRequestDate}
+                      onSelect={(date) => {
+                        setOtRequestDate(date);
+                        setOtDatePickerOpen(false);
+                      }}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        return date < today;
+                      }}
+                      initialFocus
+                      className="pointer-events-auto"
                     />
-                  </svg>
-                </div>
-              </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
 
             {/* Notes (Optional) */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border">
+              <button
+                onClick={() => setIsNotesExpanded(!isNotesExpanded)}
+                className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors"
+              >
                 <div className="flex items-center space-x-2">
                   <svg
                     className="w-5 h-5 text-[#283C50]"
@@ -2676,7 +2774,9 @@ export default function EmployeeDashboard() {
                     None
                   </span>
                   <svg
-                    className="w-5 h-5 text-[#4766E5]"
+                    className={`w-5 h-5 text-[#4766E5] transition-transform ${
+                      isNotesExpanded ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -2689,7 +2789,16 @@ export default function EmployeeDashboard() {
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
+
+              {isNotesExpanded && (
+                <div className="mt-2">
+                  <Textarea
+                    placeholder="Notes (Optional)"
+                    className="w-full min-h-[100px] input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5] resize-none"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Add Attachment */}
@@ -2742,7 +2851,7 @@ export default function EmployeeDashboard() {
           </div>
 
           <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
-            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8">
+            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8">
               <ReactiveMultilingualText translationKey="submitOTRequest" />
             </Button>
             <Button
@@ -2791,11 +2900,11 @@ export default function EmployeeDashboard() {
           {/* Company Name Display */}
           <div className="mb-6 p-4 bg-gray-100 rounded-lg">
             <p className="text-[#4766E5] text-lg font-medium">
-              Liberty Highrise Pvt Ltd
+              Liberty Righrise Pvt Ltd
             </p>
           </div>
 
-          <div className="space-y-4 pb-8 max-w-2xl">
+          <div className="space-y-4 pb-2 max-w-2xl">
             {/* Title Field */}
             <div className="space-y-2">
               <Input
@@ -2815,7 +2924,7 @@ export default function EmployeeDashboard() {
             <div className="space-y-2">
               <Input
                 placeholder={t("amountTotal")}
-                type="number"
+                type="text"
                 value={salaryAdvanceFormData.amount}
                 onChange={(e) =>
                   setSalaryAdvanceFormData((prev) => ({
@@ -2828,7 +2937,10 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Start Date Field */}
-            <div className="space-y-2">
+            <div className="flex items-center gap-4">
+              <label className="text-base font-medium text-[#283C50] min-w-[100px]">
+                Start Date
+              </label>
               <Input
                 type="date"
                 value={salaryAdvanceFormData.startDate}
@@ -2838,7 +2950,7 @@ export default function EmployeeDashboard() {
                     startDate: e.target.value,
                   }))
                 }
-                className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                className="flex-1 h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
               />
             </div>
 
@@ -3085,17 +3197,17 @@ export default function EmployeeDashboard() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+          <div className="mt-4 pt-3 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleSalaryAdvanceSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
             >
               <ReactiveMultilingualText translationKey="submitAdvanceRequest" />
             </Button>
             <Button
               variant="outline"
               onClick={() => setIsSalaryAdvanceModalOpen(false)}
-              className="h-12 px-8"
+              className="h-12 px-8 border-zinc-50/5 text-gray-600 hover:bg-gray-100"
             >
               Cancel
             </Button>
@@ -3299,7 +3411,7 @@ export default function EmployeeDashboard() {
           <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleReimburseSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
             >
               <ReactiveMultilingualText translationKey="submitReimbursementRequest" />
             </Button>
@@ -3328,12 +3440,10 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("scan");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("scan");
-                }
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("scan");
               }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
@@ -3355,14 +3465,41 @@ export default function EmployeeDashboard() {
               <span className="text-lg text-[#4766E5] font-medium">Scan</span>
             </button>
 
+            {/* Documents Option */}
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("documents");
+              }}
+              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
+            >
+              <div className="w-8 h-8 flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-[#4766E5]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <span className="text-lg text-[#4766E5] font-medium">
+                Documents
+              </span>
+            </button>
+
             {/* Camera Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("camera");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("camera");
-                }
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("camera");
               }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
@@ -3392,12 +3529,10 @@ export default function EmployeeDashboard() {
 
             {/* Photos Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("photos");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("photos");
-                }
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("photos");
               }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
@@ -5474,6 +5609,61 @@ export default function EmployeeDashboard() {
         onBackToReports={() => {
           setIsTaskReportModalOpen(false);
           setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Hidden File Input Elements for Attachments */}
+      <input
+        ref={scanFileInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx,.txt"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "scan");
+          }
+        }}
+      />
+      <input
+        ref={documentsFileInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx,.txt,.xlsx,.xls"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "documents");
+          }
+        }}
+      />
+      <input
+        ref={cameraFileInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "camera");
+          }
+        }}
+      />
+      <input
+        ref={photosFileInputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "photos");
+          }
         }}
       />
     </div>

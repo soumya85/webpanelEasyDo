@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SidebarProvider } from "./hooks/useSidebar";
 import { UserProvider } from "./hooks/useUser";
 import { PageLayout } from "./components/layout/PageLayout";
@@ -42,8 +42,17 @@ import ExpenseReport from "./pages/ExpenseReport";
 import Approvals from "./pages/Approvals";
 import SalaryStatement from "./pages/SalaryStatement";
 import TaskReport from "./pages/TaskReport";
+import ComponentLibrary from "./pages/ComponentLibrary";
 
-const queryClient = new QueryClient();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+  },
+});
 
 // Component to handle conditional layout based on route
 const AppContent = () => {
@@ -105,11 +114,23 @@ const AppContent = () => {
                       <Route path="/approvals-report" element={<Approvals />} />
                       <Route path="/salary-statement" element={<SalaryStatement />} />
                     <Route path="/task-report" element={<TaskReport />} />
+                    <Route
+                      path="/pending-approvals"
+                      element={<PendingApprovals />}
+                    />
+                    <Route
+                      path="/attendance-report"
+                      element={<AttendanceReport />}
+                    />
                     <Route path="/notes-reminder" element={<NotesReminder />} />
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/sample-page-1" element={<SamplePage1 />} />
                     <Route path="/sample-page-2" element={<SamplePage2 />} />
                     <Route path="/sample-page-3" element={<SamplePage3 />} />
+                    <Route
+                      path="/component-library"
+                      element={<ComponentLibrary />}
+                    />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

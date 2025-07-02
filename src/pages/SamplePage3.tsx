@@ -4,6 +4,7 @@ import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText"
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 import EmployeeLocationTimelineCard from "@/components/cards/EmployeeLocationTimelineCard";
+import { ApprovalsModal } from "@/components/ApprovalsModal";
 import {
   Dialog,
   DialogContent,
@@ -47,6 +48,7 @@ export default function SamplePage3() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head office");
+  const [reviewTab, setReviewTab] = useState("reviewed");
   const [holidayName, setHolidayName] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [holidayType, setHolidayType] = useState("Public");
@@ -66,6 +68,7 @@ export default function SamplePage3() {
   // Employee Management State (for Register modal)
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("accepted");
+  const [branchSearchQuery, setBranchSearchQuery] = useState("");
   const [selectedEmployeeBranch, setSelectedEmployeeBranch] = useState("all");
   const [sortBy, setSortBy] = useState("alphabetically");
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -73,6 +76,77 @@ export default function SamplePage3() {
   const [showAddEmployee, setShowAddEmployee] = useState(false);
   const [showTeamMembersPopup, setShowTeamMembersPopup] = useState(false);
   const [selectedManagerTeam, setSelectedManagerTeam] = useState(null);
+
+  // Announcement state
+  const [announcementSearch, setAnnouncementSearch] = useState("");
+  const [announcementFilter, setAnnouncementFilter] = useState("All");
+  const [showAnnouncementDropdown, setShowAnnouncementDropdown] =
+    useState(false);
+
+  // Attendance Detail Modal state
+  const [showAttendanceDetail, setShowAttendanceDetail] = useState(false);
+  const [attendanceDetailSearch, setAttendanceDetailSearch] = useState("");
+  const [attendanceDetailFilter, setAttendanceDetailFilter] =
+    useState("Present");
+  const [selectedAttendanceDate, setSelectedAttendanceDate] = useState(
+    "Saturday, 28 Jun, 2025",
+  );
+
+  // Mock announcement data
+  const announcementData = [
+    {
+      id: "1",
+      branch: "Ahmedabad office",
+      date: "07-08-2024",
+      time: "06:39 PM",
+      title: "Server Maintenance..",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "2",
+      branch: "Haldia",
+      date: "07-08-2024",
+      time: "06:38 PM",
+      title: "Server Maintenance",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "3",
+      branch: "Head office",
+      date: "07-08-2024",
+      time: "06:37 PM",
+      title: "Server Maintenance..",
+      description:
+        "Today night 9:00 PM to 11:00 PM, the server will be down for some maintenance work.",
+    },
+    {
+      id: "4",
+      branch: "Head office",
+      date: "24-05-2024",
+      time: "04:40 PM",
+      title: "NOTICE",
+      description:
+        "Due to the Loksava Election on 1st June 2024 at Kolkata Aera,Our Kolkata Office will be closed on that day..but if there is any urgent work then the work should be done from home..",
+    },
+    {
+      id: "5",
+      branch: "Head office",
+      date: "09-01-2024",
+      time: "01:34 AM",
+      title: "Saturday - Full Working Days",
+      description: "2024 - all Saturday will be a full working day.",
+    },
+    {
+      id: "6",
+      branch: "All Branch",
+      date: "19-10-2023",
+      time: "02:03 AM",
+      title: "Test 2",
+      description: "1234567",
+    },
+  ];
 
   // Mock employee data
   const employeeData = [
@@ -259,43 +333,42 @@ export default function SamplePage3() {
   // Mock branch data
   const branchData = [
     {
-      id: "all",
-      name: "All Branches",
-      description: "Manage/View all the branches",
-      address: "",
-    },
-    {
       id: "head-office",
       name: "Head office",
       description: "",
       address:
         "104, 3rd Floor , Shyama Prasad Mukherjee Road, Hazra, Kalighat, Kalighat, Kolkata, West Bengal 700026, India",
+      hours: "10:15 AM - 07:15 PM",
+      status: "Open",
+      employeeCount: 28,
     },
     {
       id: "haldia",
       name: "Haldia",
       description: "",
       address:
-        "33GG+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721657, India",
+        "336G+34V, Sukanta Nagar, WARD NO:15, Haldia, West Bengal 721657, India",
+      hours: "10:15 AM - 7:15 PM",
+      status: "Open",
+      employeeCount: 37,
     },
     {
       id: "ahmedabad",
       name: "Ahmedabad office",
       description: "",
       address: "C/142, Vishwas City 1, Sola, Ahmedabad, Gujarat 380061, India",
+      hours: "9:30 AM - 7:00 PM",
+      status: "Open",
+      employeeCount: 8,
     },
     {
       id: "paradip",
       name: "Paradip",
       description: "",
       address: "7J9X+5GG, Paradeep, Odisha 754142, India",
-    },
-    {
-      id: "new-delhi",
-      name: "New Delhi",
-      description: "",
-      address:
-        "New Delhi,405, District Centre, Janakpuri, New Delhi, Delhi, 110058, India",
+      hours: "10:00 AM - 6:00 PM",
+      status: "Open",
+      employeeCount: 15,
     },
   ];
 
@@ -305,9 +378,19 @@ export default function SamplePage3() {
   };
 
   const getBranchName = (branchId: string) => {
+    if (branchId === "all") return "All Branches";
     const branch = branchData.find((b) => b.id === branchId);
     return branch ? branch.name : "All Branches";
   };
+
+  // Filter branches based on search query
+  const filteredBranches = useMemo(() => {
+    return branchData.filter(
+      (branch) =>
+        branch.name.toLowerCase().includes(branchSearchQuery.toLowerCase()) ||
+        branch.address.toLowerCase().includes(branchSearchQuery.toLowerCase()),
+    );
+  }, [branchSearchQuery]);
 
   // Filter and sort employees
   const filteredEmployees = useMemo(() => {
@@ -363,6 +446,72 @@ export default function SamplePage3() {
     });
     return counts;
   }, [employeeData]);
+
+  // Filter and group announcements
+  const groupedAnnouncements = useMemo(() => {
+    const filtered = announcementData.filter((announcement) => {
+      // Filter by branch
+      if (
+        announcementFilter !== "All" &&
+        announcement.branch !== announcementFilter
+      ) {
+        return false;
+      }
+
+      // Filter by search
+      if (!announcementSearch) return true;
+
+      return (
+        announcement.title
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase()) ||
+        announcement.description
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase()) ||
+        announcement.branch
+          .toLowerCase()
+          .includes(announcementSearch.toLowerCase())
+      );
+    });
+
+    // Group by month and year
+    const grouped: Record<string, typeof filtered> = {};
+
+    filtered.forEach((announcement) => {
+      const [day, month, year] = announcement.date.split("-");
+      const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      const monthKey = `${monthNames[parseInt(month) - 1]} ${year}`;
+
+      if (!grouped[monthKey]) {
+        grouped[monthKey] = [];
+      }
+      grouped[monthKey].push(announcement);
+    });
+
+    // Sort each group by date (newest first)
+    Object.keys(grouped).forEach((key) => {
+      grouped[key].sort((a, b) => {
+        const dateA = new Date(a.date.split("-").reverse().join("-"));
+        const dateB = new Date(b.date.split("-").reverse().join("-"));
+        return dateB.getTime() - dateA.getTime();
+      });
+    });
+
+    return grouped;
+  }, [announcementData, announcementSearch, announcementFilter]);
 
   const clearSearch = () => {
     setSearchQuery("");
@@ -650,7 +799,9 @@ export default function SamplePage3() {
         {/* Employee Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           <div className="min-h-[400px]">
-            <EmployeeAttendanceCard />
+            <EmployeeAttendanceCard
+              onDateClick={() => setShowAttendanceDetail(true)}
+            />
           </div>
           <div className="min-h-[600px]">
             <EmployeeLocationTimelineCard />
@@ -1986,9 +2137,57 @@ export default function SamplePage3() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
           <DialogHeader className="flex flex-row items-center justify-between px-4 pt-1 pb-2 border-b">
-            <DialogTitle className="text-xl font-semibold text-[#283C50]">
-              {selectedCard?.title || ""}
-            </DialogTitle>
+            <div className="flex items-center gap-4">
+              <DialogTitle className="text-xl font-semibold text-[#283C50]">
+                {selectedCard?.id === "performance-review"
+                  ? "Management Review"
+                  : selectedCard?.title || ""}
+              </DialogTitle>
+              {selectedCard?.id === "performance-review" && (
+                <button className="text-blue-500">
+                  <Settings2 className="w-5 h-5" />
+                </button>
+              )}
+              {selectedCard?.id === "announce" && (
+                <Popover
+                  open={showAnnouncementDropdown}
+                  onOpenChange={setShowAnnouncementDropdown}
+                >
+                  <PopoverTrigger asChild>
+                    <button className="flex items-center gap-1 text-blue-500 font-medium text-lg">
+                      {announcementFilter}
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent align="start" className="w-48 p-2">
+                    <div className="space-y-1">
+                      {[
+                        "All",
+                        "Head office",
+                        "Ahmedabad office",
+                        "Haldia",
+                        "All Branch",
+                      ].map((filter) => (
+                        <button
+                          key={filter}
+                          onClick={() => {
+                            setAnnouncementFilter(filter);
+                            setShowAnnouncementDropdown(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 ${
+                            announcementFilter === filter
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          {filter}
+                        </button>
+                      ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
+            </div>
             <button
               onClick={() => setIsModalOpen(false)}
               className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
@@ -2275,6 +2474,1641 @@ export default function SamplePage3() {
                   </button>
                 </div>
               </div>
+            ) : selectedCard?.id === "announce" ? (
+              // Announcement Interface
+              <div className="h-full flex flex-col bg-gray-50">
+                {/* Search Box */}
+                <div className="p-4 bg-white border-b">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Input
+                      placeholder="Search"
+                      value={announcementSearch}
+                      onChange={(e) => setAnnouncementSearch(e.target.value)}
+                      className="pl-12 bg-gray-100 border-none rounded-full text-gray-600 placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Announcements List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-6">
+                  {Object.entries(groupedAnnouncements).map(
+                    ([monthYear, announcements]) => (
+                      <div key={monthYear} className="space-y-4">
+                        {/* Month Header */}
+                        <h2 className="text-lg font-semibold text-gray-900 py-2">
+                          {monthYear}
+                        </h2>
+
+                        {/* Announcement Cards */}
+                        <div className="space-y-4">
+                          {announcements.map((announcement) => (
+                            <div
+                              key={announcement.id}
+                              className="bg-white rounded-lg p-4 shadow-sm"
+                            >
+                              {/* Branch and Date */}
+                              <div className="flex items-center justify-between mb-2">
+                                <h3 className="text-base font-semibold text-gray-900">
+                                  {announcement.branch}
+                                </h3>
+                                <span className="text-sm text-gray-500">
+                                  {announcement.date} {announcement.time}
+                                </span>
+                              </div>
+
+                              {/* Title */}
+                              <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                                {announcement.title}
+                              </h4>
+
+                              {/* Description */}
+                              <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                                {announcement.description}
+                              </p>
+
+                              {/* Blue Underline */}
+                              <div className="w-full h-1 bg-blue-500 rounded-full"></div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ),
+                  )}
+
+                  {Object.keys(groupedAnnouncements).length === 0 && (
+                    <div className="text-center text-gray-500 py-12">
+                      <p>No announcements found.</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Add Announcement Floating Button */}
+                <button className="fixed bottom-6 right-6 bg-black text-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg hover:bg-gray-800 transition-colors">
+                  <Plus className="w-5 h-5" />
+                  Add Announcement
+                </button>
+              </div>
+            ) : selectedCard?.id === "performance-review" ? (
+              // Performance Review Modal - Management Review Interface
+              <div className="w-full h-full flex flex-col">
+                {/* Header */}
+                <div className="flex items-center justify-between p-4 border-b bg-white">
+                  <button className="text-blue-500">
+                    <ArrowLeft className="w-5 h-5" />
+                  </button>
+                  <div className="flex items-center gap-3">
+                    <h1 className="text-lg font-semibold text-gray-900">
+                      Management Review
+                    </h1>
+                    <button className="text-blue-500">
+                      <Settings2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <div></div>
+                </div>
+
+                {/* Tabs */}
+                <div className="flex gap-2 p-4 pt-2">
+                  <button
+                    onClick={() => setReviewTab("reviewed")}
+                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium transition-all ${
+                      reviewTab === "reviewed"
+                        ? "bg-white text-gray-900 shadow-lg"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    Reviewed (6)
+                  </button>
+                  <button
+                    onClick={() => setReviewTab("pending")}
+                    className={`flex-1 py-3 px-4 border border-gray-200 rounded-lg font-medium transition-all ${
+                      reviewTab === "pending"
+                        ? "bg-white text-gray-900 shadow-lg"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    Pending (115)
+                  </button>
+                </div>
+
+                {/* Branch Filter */}
+                <div className="px-4 pb-4">
+                  <button className="w-full p-3 bg-white border border-gray-200 rounded-lg flex items-center justify-between">
+                    <span className="text-gray-900">All Branches</span>
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  </button>
+                </div>
+
+                {/* Employee List */}
+                <div className="flex-1 overflow-y-auto px-4 space-y-4">
+                  {reviewTab === "reviewed" ? (
+                    <>
+                      {/* Reviewed Employee 1 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                AP
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  Amit Parmar
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  IOS Developer (Ahmedabad office)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: May 02, 2024
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 1
+                                  </Badge>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <button className="p-1">
+                                  <svg
+                                    className="w-5 h-5 text-gray-400"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                  </svg>
+                                </button>
+                                <button className="p-1">
+                                  <MoreVertical className="w-5 h-5 text-gray-400" />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="mt-3 pt-3 border-t border-gray-100">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="text-sm text-gray-600">
+                                    Evaluated on:{" "}
+                                    <span className="font-medium">
+                                      Jun 29 2025
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    By:{" "}
+                                    <span className="font-medium">
+                                      Soumyadeep Goswami
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    (Web Designer)
+                                  </p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                    <span className="text-green-600 text-sm">
+                                      👍
+                                    </span>
+                                  </div>
+                                  <span className="text-2xl font-bold text-gray-900">
+                                    93%
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Reviewed Employee 2 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                BI
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  Bhaskar IOS
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Exec Director (Head office)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: Mar 14, 2021
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 1
+                                  </Badge>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <button className="p-1">
+                                  <svg
+                                    className="w-5 h-5 text-gray-400"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                  </svg>
+                                </button>
+                                <button className="p-1">
+                                  <MoreVertical className="w-5 h-5 text-gray-400" />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="mt-3 pt-3 border-t border-gray-100">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="text-sm text-gray-600">
+                                    Evaluated on:{" "}
+                                    <span className="font-medium">
+                                      Jan 08 2025
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    By:{" "}
+                                    <span className="font-medium">
+                                      Bhaskar IOS
+                                    </span>
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    (Exec Director)
+                                  </p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                    <span className="text-green-600 text-sm">
+                                      👍
+                                    </span>
+                                  </div>
+                                  <span className="text-2xl font-bold text-gray-900">
+                                    87%
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Pending Employee 1 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                AM
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  ABHIJIT MONDAL
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Jetty Sircar (Haldia)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: Apr 09, 2024
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 3
+                                  </Badge>
+                                </div>
+                              </div>
+                              <button className="p-1">
+                                <svg
+                                  className="w-5 h-5 text-gray-400"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                </svg>
+                              </button>
+                            </div>
+                            <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                              <Plus className="w-4 h-4 mr-2" />
+                              Add Review
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Pending Employee 2 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">
+                                AM
+                              </span>
+                            </div>
+                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs">⚠</span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  Abhijit Mukherjee
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Operation Executive (Head office)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: Jan 01, 2017
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 3
+                                  </Badge>
+                                </div>
+                              </div>
+                              <button className="p-1">
+                                <svg
+                                  className="w-5 h-5 text-gray-400"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                </svg>
+                              </button>
+                            </div>
+                            <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                              <Plus className="w-4 h-4 mr-2" />
+                              Add Review
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Pending Employee 3 */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                            <span className="text-white font-semibold text-sm">
+                              AM
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h3 className="font-semibold text-gray-900">
+                                  ABHIRAM MOHAPATRA
+                                </h3>
+                                <p className="text-sm text-blue-500">
+                                  Supervisor (Paradip)
+                                </p>
+                                <div className="flex items-center gap-4 mt-1">
+                                  <span className="text-sm text-gray-600">
+                                    DOJ: N/A
+                                  </span>
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-gray-100 text-gray-700"
+                                  >
+                                    Authority: 3
+                                  </Badge>
+                                </div>
+                              </div>
+                              <button className="p-1">
+                                <svg
+                                  className="w-5 h-5 text-gray-400"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
+                                </svg>
+                              </button>
+                            </div>
+                            <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                              <Plus className="w-4 h-4 mr-2" />
+                              Add Review
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* Floating Add Button */}
+                <button className="fixed bottom-6 right-6 bg-black text-white rounded-full px-6 py-3 flex items-center gap-2 shadow-lg hover:bg-gray-800 transition-colors">
+                  <Plus className="w-4 h-4" />
+                  <span className="text-sm font-medium">Add Employee</span>
+                </button>
+              </div>
+            ) : selectedCard?.id === "documents" ? (
+              // Documents Modal - Company Information
+              <div className="w-full h-full overflow-y-auto">
+                <div className="p-6 max-w-2xl mx-auto space-y-6">
+                  {/* Header */}
+                  <div className="text-center border-b pb-4">
+                    <h1 className="text-xl font-semibold text-gray-900">
+                      Transport, Logistics and Shipping
+                    </h1>
+                  </div>
+
+                  {/* Company Info Section */}
+                  <div className="flex items-start gap-4 bg-gray-50 p-4 rounded-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-bold text-xl">L</span>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                        Liberty Highrise Pvt Ltd
+                      </h2>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        104, 3rd Floor, Shyama Prasad Mukherjee Road, Hazra,
+                        Kalighat, Kalighat, Kolkata, West Bengal 700026, India
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Contacts Section */}
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Contacts
+                    </h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3">
+                        <Phone className="w-5 h-5 text-gray-500" />
+                        <span className="text-gray-700">
+                          Mobile: 9898404105
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <MessageCircle className="w-5 h-5 text-gray-500" />
+                        <span className="text-gray-700">
+                          Email: accounts@libertyhighrise.com
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Other Details Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Other Details
+                    </h3>
+
+                    {/* PAN Card Section */}
+                    <div className="border rounded-lg overflow-hidden bg-white">
+                      <div className="p-4 bg-white flex items-center justify-center">
+                        <div className="w-full max-w-md">
+                          {/* PAN Card SVG */}
+                          <svg
+                            viewBox="0 0 400 240"
+                            className="w-full h-auto border rounded-lg"
+                          >
+                            <defs>
+                              <linearGradient
+                                id="panGradient"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%"
+                              >
+                                <stop offset="0%" stopColor="#4F46E5" />
+                                <stop offset="100%" stopColor="#3B82F6" />
+                              </linearGradient>
+                            </defs>
+
+                            {/* Card Background */}
+                            <rect
+                              width="400"
+                              height="240"
+                              fill="url(#panGradient)"
+                              rx="8"
+                            />
+
+                            {/* Header */}
+                            <text
+                              x="20"
+                              y="30"
+                              fill="white"
+                              fontSize="12"
+                              fontWeight="bold"
+                            >
+                              INCOME TAX DEPARTMENT
+                            </text>
+                            <text
+                              x="20"
+                              y="45"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.9"
+                            >
+                              GOVT. OF INDIA
+                            </text>
+
+                            {/* Date */}
+                            <text
+                              x="320"
+                              y="30"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.9"
+                            >
+                              PERMANENT ACCOUNT NUMBER
+                            </text>
+                            <text x="320" y="45" fill="white" fontSize="10">
+                              XX/XX/XXXX
+                            </text>
+
+                            {/* Company Name */}
+                            <text
+                              x="20"
+                              y="80"
+                              fill="white"
+                              fontSize="14"
+                              fontWeight="bold"
+                            >
+                              LIBERTY RIGHRISE PRIVATE LIMITED
+                            </text>
+
+                            {/* Emblem/Logo placeholder */}
+                            <circle
+                              cx="350"
+                              cy="80"
+                              r="25"
+                              fill="white"
+                              fillOpacity="0.3"
+                            />
+                            <text
+                              x="350"
+                              y="85"
+                              fill="white"
+                              fontSize="12"
+                              textAnchor="middle"
+                            >
+                              🏛️
+                            </text>
+
+                            {/* PAN Number Section */}
+                            <rect
+                              x="20"
+                              y="140"
+                              width="360"
+                              height="60"
+                              fill="white"
+                              fillOpacity="0.1"
+                              rx="4"
+                            />
+                            <text
+                              x="30"
+                              y="160"
+                              fill="white"
+                              fontSize="10"
+                              opacity="0.8"
+                            >
+                              Pan No.
+                            </text>
+                            <text
+                              x="30"
+                              y="180"
+                              fill="white"
+                              fontSize="24"
+                              fontWeight="bold"
+                              letterSpacing="2px"
+                            >
+                              XXXXXXXXXX
+                            </text>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Additional Documents */}
+                    <div className="space-y-4">
+                      {/* Certificate of Incorporation */}
+                      <div className="border rounded-lg p-4 bg-white">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-20">
+                            <svg
+                              viewBox="0 0 80 100"
+                              className="w-full h-full border rounded"
+                            >
+                              <rect
+                                width="80"
+                                height="100"
+                                fill="#f8f9fa"
+                                stroke="#e9ecef"
+                                strokeWidth="1"
+                              />
+                              <rect
+                                x="8"
+                                y="8"
+                                width="64"
+                                height="8"
+                                fill="#6c757d"
+                                rx="2"
+                              />
+                              <rect
+                                x="8"
+                                y="20"
+                                width="48"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="28"
+                                width="56"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="36"
+                                width="40"
+                                fill="#6c757d"
+                                height="4"
+                                rx="1"
+                              />
+                              <circle cx="40" cy="60" r="12" fill="#17C666" />
+                              <text
+                                x="40"
+                                y="65"
+                                fill="white"
+                                fontSize="12"
+                                textAnchor="middle"
+                              >
+                                ✓
+                              </text>
+                              <rect
+                                x="8"
+                                y="80"
+                                width="32"
+                                fill="#6c757d"
+                                height="3"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="87"
+                                width="24"
+                                fill="#6c757d"
+                                height="3"
+                                rx="1"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-gray-900 mb-1">
+                              Certificate of Incorporation
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              Company registration document
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              Document ID: XXXXXXXXXXXX
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* GST Registration */}
+                      <div className="border rounded-lg p-4 bg-white">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-20">
+                            <svg
+                              viewBox="0 0 80 100"
+                              className="w-full h-full border rounded"
+                            >
+                              <rect
+                                width="80"
+                                height="100"
+                                fill="#fff8e1"
+                                stroke="#ffc107"
+                                strokeWidth="1"
+                              />
+                              <rect
+                                x="8"
+                                y="8"
+                                width="64"
+                                height="8"
+                                fill="#ff9800"
+                                rx="2"
+                              />
+                              <rect
+                                x="8"
+                                y="20"
+                                width="48"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="28"
+                                width="56"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <text
+                                x="40"
+                                y="50"
+                                fill="#ff9800"
+                                fontSize="16"
+                                textAnchor="middle"
+                                fontWeight="bold"
+                              >
+                                GST
+                              </text>
+                              <rect
+                                x="8"
+                                y="60"
+                                width="64"
+                                height="6"
+                                fill="#ff9800"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="70"
+                                width="48"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="78"
+                                width="32"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                              <rect
+                                x="8"
+                                y="86"
+                                width="40"
+                                fill="#ff9800"
+                                height="4"
+                                rx="1"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-gray-900 mb-1">
+                              GST Registration
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              Tax registration certificate
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              GSTIN: XXXXXXXXXXXXXXXXXXXX
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : selectedCard?.id === "background-verification" ? (
+              // Background Verification Modal - Employee Verification Interface
+              <div className="w-full h-full flex flex-col">
+                {/* Search Bar */}
+                <div className="px-4 py-3 border-b bg-gray-50">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Input
+                      placeholder="Search Employee"
+                      className="pl-10 bg-white border-gray-200"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                {/* Status Tabs */}
+                <div className="px-4 py-3 border-b bg-white">
+                  <div className="flex gap-2">
+                    {[
+                      { key: "pending", label: "Pending", count: 93 },
+                      { key: "incomplete", label: "Incomplete", count: 27 },
+                      { key: "verified", label: "Verified", count: 1 },
+                    ].map((tab) => (
+                      <button
+                        key={tab.key}
+                        onClick={() => setSelectedStatus(tab.key)}
+                        className={cn(
+                          "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                          selectedStatus === tab.key
+                            ? "bg-blue-50 text-blue-600 border border-blue-200"
+                            : "text-gray-600 hover:bg-gray-50",
+                        )}
+                      >
+                        {tab.label} ({tab.count})
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Branch Filter */}
+                <div className="px-4 py-3 border-b bg-white">
+                  <Popover
+                    open={showBranchSheet}
+                    onOpenChange={setShowBranchSheet}
+                  >
+                    <PopoverTrigger asChild>
+                      <button className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg bg-white text-left">
+                        <span className="text-gray-700">
+                          {selectedEmployeeBranch === "all"
+                            ? "All Branches"
+                            : getBranchName(selectedEmployeeBranch)}
+                        </span>
+                        <ChevronDown className="w-4 h-4 text-gray-500" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent align="start" className="w-80 p-0">
+                      <div className="p-4 space-y-2">
+                        <button
+                          key="all-branches"
+                          onClick={() => {
+                            setSelectedEmployeeBranch("all");
+                            setShowBranchSheet(false);
+                          }}
+                          className={cn(
+                            "w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100",
+                            selectedEmployeeBranch === "all"
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700",
+                          )}
+                        >
+                          All Branches
+                        </button>
+                        {branchData.map((branch) => (
+                          <button
+                            key={`branch-${branch.id}`}
+                            onClick={() => {
+                              setSelectedEmployeeBranch(branch.id);
+                              setShowBranchSheet(false);
+                            }}
+                            className={cn(
+                              "w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100",
+                              selectedEmployeeBranch === branch.id
+                                ? "bg-blue-50 text-blue-600"
+                                : "text-gray-700",
+                            )}
+                          >
+                            {branch.name}
+                          </button>
+                        ))}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                {/* Employee List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                  {(() => {
+                    // Sample employee data matching the exact tab counts: Pending (93), Incomplete (27), Verified (1)
+                    const verificationEmployees = [
+                      // Pending employees (showing first 4 of 93)
+                      {
+                        id: "emp1",
+                        name: "ABHIJIT MONDAL",
+                        position: "Jetty Sircar",
+                        branch: "Haldia",
+                        doj: "Apr 09, 2024",
+                        reportingManager: "Nayanjyoti Mandal",
+                        verificationStatus: "pending",
+                      },
+                      {
+                        id: "emp2",
+                        name: "Abhijit Mukherjee",
+                        position: "Operation Executive",
+                        branch: "Head office",
+                        doj: "Jan 01, 2017",
+                        reportingManager: "Debashis Debnath",
+                        verificationStatus: "pending",
+                      },
+                      {
+                        id: "emp3",
+                        name: "ABHIRAM MOHAPATRA",
+                        position: "Supervisor",
+                        branch: "Paradip",
+                        doj: "N/A",
+                        reportingManager: "Digambar Khuntia",
+                        verificationStatus: "pending",
+                      },
+                      {
+                        id: "emp4",
+                        name: "AHSAN RAZA",
+                        position: "Security Guard",
+                        branch: "Head office",
+                        doj: "N/A",
+                        reportingManager: "Security Head",
+                        verificationStatus: "pending",
+                      },
+                      // Incomplete employees (showing first 4 of 27)
+                      {
+                        id: "emp5",
+                        name: "Rahul Kumar",
+                        position: "Assistant Manager",
+                        branch: "Head office",
+                        doj: "Mar 15, 2023",
+                        reportingManager: "Manager Head",
+                        verificationStatus: "incomplete",
+                      },
+                      {
+                        id: "emp6",
+                        name: "Priya Sharma",
+                        position: "HR Executive",
+                        branch: "Ahmedabad office",
+                        doj: "Jun 20, 2023",
+                        reportingManager: "HR Head",
+                        verificationStatus: "incomplete",
+                      },
+                      {
+                        id: "emp7",
+                        name: "Rajesh Patel",
+                        position: "Accountant",
+                        branch: "Haldia",
+                        doj: "Aug 10, 2023",
+                        reportingManager: "Finance Head",
+                        verificationStatus: "incomplete",
+                      },
+                      {
+                        id: "emp8",
+                        name: "Sneha Gupta",
+                        position: "Admin Officer",
+                        branch: "Paradip",
+                        doj: "Sep 05, 2023",
+                        reportingManager: "Admin Head",
+                        verificationStatus: "incomplete",
+                      },
+                      // Verified employees (only 1 as per count)
+                      {
+                        id: "emp9",
+                        name: "Amit Parmar",
+                        position: "IOS Developer",
+                        branch: "Ahmedabad office",
+                        doj: "May 02, 2024",
+                        reportingManager: "Dakshay Sanghvi Devstree",
+                        verificationStatus: "verified",
+                      },
+                    ];
+
+                    // Filter employees based on status
+                    const filteredByStatus = verificationEmployees.filter(
+                      (emp) => {
+                        if (selectedStatus === "pending")
+                          return emp.verificationStatus === "pending";
+                        if (selectedStatus === "verified")
+                          return emp.verificationStatus === "verified";
+                        if (selectedStatus === "incomplete")
+                          return emp.verificationStatus === "incomplete";
+                        return true;
+                      },
+                    );
+
+                    // Filter by search
+                    const searchFiltered = filteredByStatus.filter(
+                      (emp) =>
+                        !searchQuery ||
+                        emp.name
+                          .toLowerCase()
+                          .includes(searchQuery.toLowerCase()),
+                    );
+
+                    return searchFiltered.map((employee) => (
+                      <div
+                        key={employee.id}
+                        className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-start gap-3 flex-1">
+                            <Avatar className="w-12 h-12">
+                              <AvatarFallback className="bg-gray-300 text-gray-700 text-sm font-medium">
+                                {employee.name
+                                  .split(" ")
+                                  .map((word) => word[0])
+                                  .join("")
+                                  .substring(0, 2)
+                                  .toUpperCase()}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1">
+                              <div className="flex items-start justify-between mb-1">
+                                <h3 className="font-semibold text-gray-900 text-base">
+                                  {employee.name}
+                                </h3>
+                                {employee.verificationStatus === "verified" ? (
+                                  <span className="material-icons-outlined text-green-500 text-2xl ml-2">
+                                    verified_user
+                                  </span>
+                                ) : employee.verificationStatus ===
+                                  "incomplete" ? (
+                                  <span className="material-icons text-green-500 text-2xl ml-2">
+                                    verified
+                                  </span>
+                                ) : (
+                                  <span className="material-icons-outlined text-red-500 text-2xl ml-2">
+                                    gpp_maybe
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-sm text-gray-600 mb-1">
+                                DOJ : {employee.doj}
+                              </p>
+                              <p className="text-sm text-gray-600 mb-3">
+                                {employee.position}{" "}
+                                <span className="text-blue-500">
+                                  ({employee.branch})
+                                </span>
+                              </p>
+                              <div className="border-t border-gray-100 pt-3">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-sm text-gray-600">
+                                    Reporting Manager:{" "}
+                                    {employee.reportingManager}
+                                  </span>
+                                  <button className="text-blue-500 text-sm font-medium hover:underline">
+                                    More Info
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ));
+                  })()}
+
+                  {(() => {
+                    const verificationEmployees = [
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "pending" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                      { verificationStatus: "verified" },
+                    ];
+
+                    const filteredByStatus = verificationEmployees.filter(
+                      (emp) => {
+                        if (selectedStatus === "pending")
+                          return emp.verificationStatus === "pending";
+                        if (selectedStatus === "verified")
+                          return emp.verificationStatus === "verified";
+                        if (selectedStatus === "incomplete")
+                          return emp.verificationStatus === "incomplete";
+                        return true;
+                      },
+                    );
+
+                    return filteredByStatus.length === 0 ? (
+                      <div className="text-center py-8 text-gray-500">
+                        No employees found for {selectedStatus} status
+                      </div>
+                    ) : null;
+                  })()}
+                </div>
+              </div>
+            ) : selectedCard?.id === "reports" ? (
+              // Reports Modal - Same as EmployeeDashboard but independent
+              <div className="w-full h-full flex flex-col">
+                {/* Reports Content */}
+                <div className="px-6 pt-0 pb-6 flex-1 overflow-y-auto">
+                  {/* Description */}
+                  <div className="text-center mb-8 p-4 bg-gray-50 rounded-lg">
+                    <p className="text-gray-600 leading-relaxed">
+                      Company consolidated, Individual Branch and / or Employee
+                      wise Reports can be generated & saved in your cloud drive
+                      or emailed.
+                    </p>
+                  </div>
+
+                  {/* Reports List */}
+                  <div className="space-y-1">
+                    {/* Attendance Report */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Attendance Report
+                      </span>
+                    </div>
+
+                    {/* Sales Register */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Sales Register
+                      </span>
+                    </div>
+
+                    {/* Compliance Status */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Approvals
+                      </span>
+                    </div>
+
+                    {/* Operational Expenses */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Operational Expenses
+                      </span>
+                    </div>
+
+                    {/* Salary Statement */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Salary Statement
+                      </span>
+                    </div>
+
+                    {/* Employee Performance Rating */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Employee Performance Rating
+                      </span>
+                    </div>
+
+                    {/* Task Report */}
+                    <div className="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors">
+                      <div className="w-8 h-8 text-blue-500">
+                        <svg
+                          className="w-full h-full"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-blue-500 font-medium">
+                        Task Report
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Cancel Button */}
+                  <div className="mt-8 text-center">
+                    <Button
+                      variant="outline"
+                      onClick={() => setIsModalOpen(false)}
+                      className="px-8 py-2 text-blue-500 border-blue-500 hover:bg-blue-50"
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : selectedCard?.id === "branch" ? (
+              // Branch Modal Content
+              <div className="w-full h-full flex flex-col p-0">
+                {/* Search Bar */}
+                <div className="px-6 pb-4 pt-2">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Input
+                      placeholder="Search"
+                      value={branchSearchQuery}
+                      onChange={(e) => setBranchSearchQuery(e.target.value)}
+                      className="pl-10 bg-gray-100 border-none rounded-lg text-gray-700 placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Branch List */}
+                <div className="flex-1 overflow-y-auto px-6 space-y-4">
+                  {filteredBranches.map((branch) => (
+                    <div
+                      key={branch.id}
+                      className="bg-white border-b border-gray-100 pb-4 last:border-b-0"
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {branch.name}
+                        </h3>
+                        <button className="p-1">
+                          <MoreVertical className="w-5 h-5 text-blue-500" />
+                        </button>
+                      </div>
+
+                      <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                        {branch.address}
+                      </p>
+
+                      {/* Hours and Status */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                        </div>
+                        <span className="text-sm text-gray-900 font-medium">
+                          {branch.hours}
+                        </span>
+                        <span className="text-sm text-green-600 font-medium ml-auto">
+                          {branch.status}
+                        </span>
+                      </div>
+
+                      {/* Employee Count */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">
+                          Total Employee: {branch.employeeCount}
+                        </span>
+                        <Button
+                          size="sm"
+                          className="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-1.5 text-sm font-medium"
+                        >
+                          <User className="w-4 h-4 mr-1" />
+                          Add
+                        </Button>
+                      </div>
+
+                      {/* Blue underline */}
+                      <div className="mt-3 h-1 bg-blue-500 rounded-full"></div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Floating Action Button */}
+                <div className="absolute bottom-6 right-6">
+                  <button className="bg-black rounded-xl flex items-center justify-center gap-2 shadow-lg hover:bg-gray-800 transition-colors px-4 py-3">
+                    <Plus className="w-5 h-5 text-white" />
+                    <span className="text-white text-sm font-medium">
+                      Add Branch
+                    </span>
+                  </button>
+                </div>
+              </div>
+            ) : selectedCard?.id === "pending-approval" ? (
+              // Pending Approval Modal Content
+              <div className="w-full h-full flex flex-col max-h-[80vh]">
+                {/* Header */}
+                <div className="p-4 border-b sticky top-0 bg-white z-10 flex-shrink-0"></div>
+
+                <div className="p-6 space-y-8 overflow-y-auto flex-1">
+                  {/* Admin Approval Section */}
+                  <div className="space-y-4">
+                    <div className="bg-blue-100 rounded-xl px-4 py-2 inline-block">
+                      <h2 className="text-sm font-semibold text-gray-800">
+                        Admin Approval
+                      </h2>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      {/* Leave Request */}
+                      <button className="relative flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <Badge className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center p-0">
+                          1
+                        </Badge>
+                        <User className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors" />
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Leave Request
+                        </span>
+                      </button>
+
+                      {/* Salary Adv. Request */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Salary Adv. Request
+                        </span>
+                      </button>
+
+                      {/* Overtime Request */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Overtime Request
+                        </span>
+                      </button>
+
+                      {/* Quotation Approval */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Quotation Approval
+                        </span>
+                      </button>
+
+                      {/* Contract Approval */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Contract Approval
+                        </span>
+                      </button>
+
+                      {/* Punch-in Approval */}
+                      <button className="relative flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <Badge className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center p-0">
+                          1
+                        </Badge>
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Punch-in Approval
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Employee Expense Approval Section */}
+                  <div className="space-y-4">
+                    <div className="bg-blue-100 rounded-xl px-4 py-2 inline-block">
+                      <h2 className="text-sm font-semibold text-gray-800">
+                        Employee Expense Approval
+                      </h2>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      {/* Operational */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <Settings2 className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors" />
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Operational
+                        </span>
+                      </button>
+
+                      {/* General */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          General
+                        </span>
+                      </button>
+
+                      {/* Travel */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v4a2 2 0 01-2 2H9a2 2 0 01-2-2v-4m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Travel
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Vendor Payment Section */}
+                  <div className="space-y-4">
+                    <div className="bg-blue-100 rounded-xl px-4 py-2 inline-block">
+                      <h2 className="text-sm font-semibold text-gray-800">
+                        Vendor Payment
+                      </h2>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      {/* Payment Request */}
+                      <button className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 h-24 group">
+                        <div className="w-8 h-8 text-blue-500 mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center">
+                          <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-medium text-gray-800 text-center leading-tight">
+                          Payment Request
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ) : (
               // Default placeholder for other modals
               <div className="w-full h-full flex items-center justify-center text-gray-500 p-6">
@@ -2287,47 +4121,89 @@ export default function SamplePage3() {
 
       {/* Branch Selection Modal */}
       <Dialog open={showBranchSheet} onOpenChange={setShowBranchSheet}>
-        <DialogContent className="max-w-md max-h-[80vh] flex flex-col">
-          <DialogHeader className="pb-4 border-b">
-            <DialogTitle className="text-lg font-semibold text-center">
-              Branches
-            </DialogTitle>
-          </DialogHeader>
-          <div className="flex-1 overflow-y-auto space-y-4 py-4">
-            {branchData.map((branch) => (
-              <button
+        <DialogContent className="max-w-md max-h-[90vh] flex flex-col p-0">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 pb-3">
+            <h2 className="text-xl font-semibold text-gray-900">Branch</h2>
+            <button
+              onClick={() => setShowBranchSheet(false)}
+              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-500" />
+            </button>
+          </div>
+
+          {/* Search Bar */}
+          <div className="px-4 pb-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                placeholder="Search"
+                value={branchSearchQuery}
+                onChange={(e) => setBranchSearchQuery(e.target.value)}
+                className="pl-10 bg-gray-100 border-none rounded-lg text-gray-700 placeholder:text-gray-500"
+              />
+            </div>
+          </div>
+
+          {/* Branch List */}
+          <div className="flex-1 overflow-y-auto px-4 space-y-3">
+            {filteredBranches.map((branch) => (
+              <div
                 key={branch.id}
-                onClick={() => {
-                  setSelectedEmployeeBranch(branch.id);
-                  setShowBranchSheet(false);
-                }}
-                className="w-full text-left p-4 hover:bg-gray-50 rounded-lg transition-colors"
+                className="bg-white border-b border-gray-100 pb-4 last:border-b-0"
               >
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-semibold text-gray-900">
-                        {branch.name}
-                      </h3>
-                      {selectedEmployeeBranch === branch.id && (
-                        <Check className="w-5 h-5 text-blue-500" />
-                      )}
-                    </div>
-                    {branch.description && (
-                      <p className="text-sm text-gray-600 mt-1">
-                        {branch.description}
-                      </p>
-                    )}
-                    {branch.address && (
-                      <p className="text-sm text-gray-500 mt-1">
-                        {branch.address}
-                      </p>
-                    )}
-                  </div>
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {branch.name}
+                  </h3>
+                  <button className="p-1">
+                    <MoreVertical className="w-5 h-5 text-blue-500" />
+                  </button>
                 </div>
-              </button>
+
+                <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                  {branch.address}
+                </p>
+
+                {/* Hours and Status */}
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  </div>
+                  <span className="text-sm text-gray-900 font-medium">
+                    {branch.hours}
+                  </span>
+                  <span className="text-sm text-green-600 font-medium ml-auto">
+                    {branch.status}
+                  </span>
+                </div>
+
+                {/* Employee Count */}
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">
+                    Total Employee: {branch.employeeCount}
+                  </span>
+                  <Button
+                    size="sm"
+                    className="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-1.5 text-sm font-medium"
+                  >
+                    <User className="w-4 h-4 mr-1" />
+                    Add
+                  </Button>
+                </div>
+
+                {/* Blue underline */}
+                <div className="mt-3 h-1 bg-blue-500 rounded-full"></div>
+              </div>
             ))}
+          </div>
+
+          {/* Floating Action Button */}
+          <div className="absolute bottom-6 right-6">
+            <button className="w-12 h-12 bg-black rounded-xl flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors">
+              <Plus className="w-6 h-6 text-white" />
+            </button>
           </div>
         </DialogContent>
       </Dialog>
@@ -2432,6 +4308,186 @@ export default function SamplePage3() {
                 {member.name}
               </div>
             ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Attendance Detail Modal */}
+      <Dialog
+        open={showAttendanceDetail}
+        onOpenChange={setShowAttendanceDetail}
+      >
+        <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0">
+          {/* Header with Title and Close Button */}
+          <DialogHeader className="flex flex-row items-center justify-between p-4 border-b border-gray-200">
+            <DialogTitle className="text-lg font-semibold text-gray-900">
+              Attendance
+            </DialogTitle>
+            <button
+              onClick={() => setShowAttendanceDetail(false)}
+              className="p-1 hover:bg-gray-100 rounded transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-600" />
+            </button>
+          </DialogHeader>
+
+          {/* Date Navigation */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+              <ChevronDown className="w-5 h-5 text-gray-600 rotate-90" />
+            </button>
+            <h2 className="text-lg font-semibold text-gray-900">
+              {selectedAttendanceDate}
+            </h2>
+            <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+              <ChevronDown className="w-5 h-5 text-gray-600 -rotate-90" />
+            </button>
+          </div>
+
+          {/* Search Bar */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                placeholder="Search"
+                value={attendanceDetailSearch}
+                onChange={(e) => setAttendanceDetailSearch(e.target.value)}
+                className="pl-10 bg-gray-50 border-gray-200 rounded-lg"
+              />
+            </div>
+          </div>
+
+          {/* Filter Dropdown */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-auto justify-between bg-white border-gray-300"
+                >
+                  {attendanceDetailFilter} (1)
+                  <ChevronDown className="w-4 h-4 ml-2" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-48 p-0" align="start">
+                <div className="p-1">
+                  {[
+                    { name: "Present", count: 1 },
+                    { name: "Absent", count: 0 },
+                    { name: "Half Day", count: 0 },
+                    { name: "Late", count: 0 },
+                    { name: "Leave", count: 0 },
+                    { name: "Week off", count: 0 },
+                    { name: "Holiday", count: 0 },
+                  ].map((option) => (
+                    <button
+                      key={option.name}
+                      onClick={() => setAttendanceDetailFilter(option.name)}
+                      className="w-full flex items-center justify-between px-3 py-2 text-left hover:bg-gray-100 rounded"
+                    >
+                      <span className="text-sm">{option.name}</span>
+                      <span className="text-xs text-gray-500">
+                        ({option.count})
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          {/* Employee Attendance Detail */}
+          <div className="flex-1 overflow-y-auto p-4">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+              {/* Employee Header */}
+              <div className="flex items-center justify-between p-4">
+                <div className="flex items-center gap-3">
+                  <Avatar className="w-12 h-12">
+                    <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
+                    <AvatarFallback className="bg-gray-800 text-white font-semibold">
+                      AM
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-base">
+                      ABHIJIT MONDAL
+                    </h3>
+                    <p className="text-sm text-gray-500">Jetty Sircar</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2 justify-end">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-green-600">
+                      PRESENT
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">In: 10:01 AM</p>
+                </div>
+              </div>
+
+              {/* Attendance Details */}
+              <div className="px-4 pb-4">
+                <div className="text-sm text-gray-600 mb-4">
+                  Attendance from Office
+                </div>
+
+                {/* Check In */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold text-gray-900">
+                      IN - 10:01 AM
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-sm font-medium text-green-600">
+                        Office
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    6, Kalighat, West Bengal 700026, India
+                  </p>
+                </div>
+
+                {/* Check Out */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold text-gray-900">
+                      OUT: 07:02 PM
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-sm font-medium text-red-600">
+                        Unverified
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    102, S P Mukherjee Road, Shyama Prasad Mukherjee Rd,
+                    Kalighat, Kolkata, West Bengal 700026, India
+                  </p>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="grid grid-cols-2 gap-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 bg-blue-50/50 justify-center"
+                  >
+                    Location Timeline ›
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-600 border-blue-200 hover:bg-blue-50 bg-blue-50/50 justify-center"
+                  >
+                    View Logs ›
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </DialogContent>
       </Dialog>

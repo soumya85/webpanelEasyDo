@@ -30,6 +30,7 @@ import { useUser, getUserInitials, getProfileImageSrc } from "@/hooks/useUser";
 import { GlobalLanguageSelector } from "@/components/GlobalLanguageSelector";
 import { useTranslation } from "@/hooks/useTranslation";
 import { MultilingualText } from "@/components/MultilingualText";
+import { CreateMenu } from "@/components/CreateMenu";
 
 export function Header() {
   const { toggleExpanded, toggleMobile, isExpanded } = useSidebar();
@@ -103,20 +104,22 @@ export function Header() {
             </MultilingualText>
 
             {/* Create Button */}
-            <button className="flex items-center justify-center w-[26px] h-[24px] bg-[#4766E5] rounded-[3px] border border-[#4766E5]">
-              <svg
-                width="14"
-                height="12"
-                viewBox="0 0 18 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4.32812 9H8.32812V13C8.32812 13.1875 8.39323 13.3464 8.52344 13.4766C8.65365 13.6068 8.8125 13.6719 9 13.6719C9.1875 13.6719 9.34635 13.6068 9.47656 13.4766C9.60677 13.3464 9.67188 13.1875 9.67188 13V9H13.6719C13.849 9 14.0026 8.9349 14.1328 8.80469C14.263 8.67448 14.3281 8.51562 14.3281 8.32812C14.3281 8.15104 14.263 7.9974 14.1328 7.86719C14.0026 7.73698 13.849 7.67188 13.6719 7.67188H9.67188V3.67188C9.67188 3.48438 9.60677 3.32552 9.47656 3.19531C9.34635 3.0651 9.1875 3 9 3C8.8125 3 8.65365 3.0651 8.52344 3.19531C8.39323 3.32552 8.32812 3.48438 8.32812 3.67188V7.67188H4.32812C4.15104 7.67188 3.9974 7.73698 3.86719 7.86719C3.73698 7.9974 3.67188 8.15104 3.67188 8.32812C3.67188 8.51562 3.73698 8.67448 3.86719 8.80469C3.9974 8.9349 4.15104 9 4.32812 9Z"
-                  fill="white"
-                />
-              </svg>
-            </button>
+            <CreateMenu>
+              <button className="flex items-center justify-center w-[26px] h-[24px] bg-[#4766E5] rounded-[3px] border border-[#4766E5]">
+                <svg
+                  width="14"
+                  height="12"
+                  viewBox="0 0 18 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.32812 9H8.32812V13C8.32812 13.1875 8.39323 13.3464 8.52344 13.4766C8.65365 13.6068 8.8125 13.6719 9 13.6719C9.1875 13.6719 9.34635 13.6068 9.47656 13.4766C9.60677 13.3464 9.67188 13.1875 9.67188 13V9H13.6719C13.849 9 14.0026 8.9349 14.1328 8.80469C14.263 8.67448 14.3281 8.51562 14.3281 8.32812C14.3281 8.15104 14.263 7.9974 14.1328 7.86719C14.0026 7.73698 13.849 7.67188 13.6719 7.67188H9.67188V3.67188C9.67188 3.48438 9.60677 3.32552 9.47656 3.19531C9.34635 3.0651 9.1875 3 9 3C8.8125 3 8.65365 3.0651 8.52344 3.19531C8.39323 3.32552 8.32812 3.48438 8.32812 3.67188V7.67188H4.32812C4.15104 7.67188 3.9974 7.73698 3.86719 7.86719C3.73698 7.9974 3.67188 8.15104 3.67188 8.32812C3.67188 8.51562 3.73698 8.67448 3.86719 8.80469C3.9974 8.9349 4.15104 9 4.32812 9Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
+            </CreateMenu>
           </div>
         </div>
 
@@ -262,12 +265,14 @@ export function Header() {
             </div>
 
             {/* Create Button */}
-            <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
-              <Plus className="h-4 w-4" />
-              <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
-                {t("create")}
-              </MultilingualText>
-            </Button>
+            <CreateMenu>
+              <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
+                <Plus className="h-4 w-4" />
+                <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
+                  {t("create")}
+                </MultilingualText>
+              </Button>
+            </CreateMenu>
           </div>
         </div>
 

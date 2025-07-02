@@ -3,7 +3,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 
-export default function EmployeeAttendanceCard() {
+interface EmployeeAttendanceCardProps {
+  onDateClick?: () => void;
+}
+
+export default function EmployeeAttendanceCard({
+  onDateClick,
+}: EmployeeAttendanceCardProps) {
   const [selectedBranch, setSelectedBranch] = useState("All Branches");
   const [selectedFilter, setSelectedFilter] = useState("Present");
   const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
@@ -169,7 +175,7 @@ export default function EmployeeAttendanceCard() {
       name: "Haldia",
       subtitle:
         "336G+34V, Sukanta Nagar, WARD NO-15, Haldia, West Bengal 721657, India",
-      icon: "🏢",
+      icon: "���",
     },
     {
       name: "Ahmedabad office",
@@ -297,7 +303,10 @@ export default function EmployeeAttendanceCard() {
           <h2 className="text-lg font-semibold text-gray-900">
             Employee Attendance
           </h2>
-          <div className="flex items-center gap-1">
+          <div
+            className="flex items-center gap-1 cursor-pointer hover:bg-gray-50 rounded px-2 py-1 transition-colors"
+            onClick={onDateClick}
+          >
             <span className="text-sm text-blue-600 font-medium">
               Today (Sat, 28 Jun 2025)
             </span>

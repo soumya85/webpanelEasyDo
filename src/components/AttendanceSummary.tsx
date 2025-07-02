@@ -966,7 +966,7 @@ export default function AttendanceSummary() {
 
           {/* Attendance Cards Grid */}
           <div className="flex-1 flex flex-col">
-            <div className="grid grid-cols-3 gap-3 mb-4 flex-1">
+            <div className="grid grid-cols-3 gap-3 flex-1">
               {attendanceData.map((item, index) => (
                 <div
                   key={item.label}
@@ -1001,21 +1001,25 @@ export default function AttendanceSummary() {
                   )}
                 </div>
               ))}
-            </div>
 
-            {/* Footer with additional information */}
-            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-              <div className="flex items-center justify-center text-sm">
-                <span className="text-gray-700 font-medium">
-                  Total Days{" "}
-                  <span className="text-gray-800 font-semibold">
-                    {summaryData.totalDays}
-                  </span>
-                  , Working Days{" "}
-                  <span className="text-gray-800 font-semibold">
-                    {summaryData.workingDays}
-                  </span>
-                </span>
+              {/* Total Days Box */}
+              <div className="flex flex-col items-center justify-center p-3 rounded-lg border min-h-[80px] transition-all duration-200 hover:scale-105 hover:shadow-md bg-blue-50 border-blue-200">
+                <div className="text-2xl font-bold text-blue-600 mb-1">
+                  {summaryData.totalDays}
+                </div>
+                <div className="text-xs text-gray-700 text-center font-medium">
+                  Total Days
+                </div>
+              </div>
+
+              {/* Working Days Box */}
+              <div className="flex flex-col items-center justify-center p-3 rounded-lg border min-h-[80px] transition-all duration-200 hover:scale-105 hover:shadow-md bg-purple-50 border-purple-200">
+                <div className="text-2xl font-bold text-purple-600 mb-1">
+                  {summaryData.workingDays}
+                </div>
+                <div className="text-xs text-gray-700 text-center font-medium">
+                  Working Days
+                </div>
               </div>
             </div>
           </div>
