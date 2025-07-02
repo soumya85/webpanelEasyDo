@@ -1574,7 +1574,7 @@ export default function EmployeeDashboard() {
 
                 <Button
                   onClick={() => setIsLeaveCalendarOpen(true)}
-                  className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 h-12"
+                  className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12"
                 >
                   <svg
                     className="w-4 h-4 mr-2"
@@ -1598,7 +1598,7 @@ export default function EmployeeDashboard() {
           <div className="mt-6 pt-4 pb-6 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleLeaveSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
             >
               <ReactiveMultilingualText translationKey="submitRequest" />
             </Button>
