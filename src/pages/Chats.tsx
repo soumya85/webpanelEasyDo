@@ -3504,8 +3504,8 @@ const Chats: React.FC = () => {
             isExpanded ? "left-[280px]" : "left-[103px]",
           )}
           style={{
-            height: "calc(100vh - 200px)", // Adjust height for 140px margin
-            marginTop: "140px", // Increased to clear fixed header (86px + 48px padding + 6px buffer)
+            height: "calc(100vh - 240px)", // Adjust height for 180px margin
+            marginTop: "180px", // Increased to provide more top margin
             width: isExpanded ? "calc(100vw - 280px)" : "calc(100vw - 103px)", // Account for sidebar width
             right: 0,
           }}
