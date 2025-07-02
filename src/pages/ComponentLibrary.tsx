@@ -406,12 +406,21 @@ export function CompanyHolidaysWidget() {
                         <CompanyAttendanceDemo />
                       </div>
                     }
-                    code={`import { AttendanceCard } from "@/components/cards/AttendanceCard";
+                    code={`import { Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function CompanyAttendanceWidget() {
   return (
-    <div className="w-full">
-      <AttendanceCard id="attendance" index={0} />
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4 min-h-[280px]">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-green-50">
+          <Calendar className="w-5 h-5 text-green-600" />
+        </div>
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          Monthly Attendance Summary
+        </h3>
+      </div>
+      {/* Attendance stats grid and button... */}
     </div>
   );
 }`}
