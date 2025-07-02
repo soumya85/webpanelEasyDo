@@ -3471,6 +3471,17 @@ const Chats: React.FC = () => {
           <div className="flex items-center gap-6">
             <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
 
+            {/* Search Bar */}
+            <div className="relative">
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search"
+                className="pl-10 w-64 h-8 rounded-lg border-gray-300 bg-gray-50 text-sm"
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            </div>
+
             {/* Filter Tabs - matching screenshot style */}
             <div className="flex gap-2">
               {filterTabs.map((filter) => {
