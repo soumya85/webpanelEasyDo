@@ -491,6 +491,12 @@ export function EmployeeWagesWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "interactive"]}
+                    typescript={{
+                      filePath: "src/components/WagesSummary.tsx",
+                      startLine: 1,
+                      endLine: 95,
+                      importPath: `import WagesSummary from "@/components/WagesSummary";`,
+                    }}
                   />
                 </ComponentSection>
 
