@@ -3468,42 +3468,70 @@ const Chats: React.FC = () => {
           )}
         >
           {/* Chat Title and Filter Tabs */}
-          <div className="flex items-center gap-6">
-            <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center gap-6">
+              <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
 
-            {/* Search Bar */}
-            <div className="relative">
-              <Input
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search"
-                className="pl-10 w-80 h-10 rounded-lg border-gray-300 bg-gray-50"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              {/* Search Bar */}
+              <div className="relative">
+                <Input
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search"
+                  className="pl-10 w-80 h-10 rounded-lg border-gray-300 bg-gray-50"
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              </div>
+
+              {/* Filter Tabs - matching screenshot style */}
+              <div className="flex gap-1">
+                {filterTabs.map((filter) => {
+                  const count = getFilterCount(filter);
+                  return (
+                    <button
+                      key={filter}
+                      onClick={() => setSelectedFilter(filter)}
+                      className={cn(
+                        "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1",
+                        selectedFilter === filter
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                      )}
+                    >
+                      <span>{filter}</span>
+                      <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Filter Tabs - matching screenshot style */}
-            <div className="flex gap-1">
-              {filterTabs.map((filter) => {
-                const count = getFilterCount(filter);
-                return (
-                  <button
-                    key={filter}
-                    onClick={() => setSelectedFilter(filter)}
-                    className={cn(
-                      "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1",
-                      selectedFilter === filter
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                    )}
-                  >
-                    <span>{filter}</span>
-                    <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
-                      {count}
-                    </span>
-                  </button>
-                );
-              })}
+            {/* Metric Boxes - Far Right */}
+            <div className="flex items-center gap-3">
+              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
+                <div className="text-2xl font-bold text-blue-500">134</div>
+                <div className="text-xs text-gray-600 font-medium">
+                  My Tasks
+                </div>
+              </div>
+              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
+                <div className="text-2xl font-bold text-blue-500">23</div>
+                <div className="text-xs text-gray-600 font-medium">
+                  Delegated Tasks
+                </div>
+              </div>
+              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
+                <div className="text-2xl font-bold text-blue-500">8</div>
+                <div className="text-xs text-gray-600 font-medium">Meet</div>
+              </div>
+              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
+                <div className="text-2xl font-bold text-blue-500">7</div>
+                <div className="text-xs text-gray-600 font-medium">
+                  Notes & Reminder
+                </div>
+              </div>
             </div>
           </div>
         </div>
