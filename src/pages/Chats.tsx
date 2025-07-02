@@ -3509,26 +3509,28 @@ const Chats: React.FC = () => {
             </div>
 
             {/* Metric Boxes - Far Right */}
-            <div className="flex items-center gap-3">
-              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
-                <div className="text-2xl font-bold text-blue-500">134</div>
-                <div className="text-xs text-gray-600 font-medium">
+            <div className="flex items-center gap-2">
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">134</div>
+                <div className="text-[10px] text-gray-600 font-medium">
                   My Tasks
                 </div>
               </div>
-              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
-                <div className="text-2xl font-bold text-blue-500">23</div>
-                <div className="text-xs text-gray-600 font-medium">
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">23</div>
+                <div className="text-[10px] text-gray-600 font-medium">
                   Delegated Tasks
                 </div>
               </div>
-              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
-                <div className="text-2xl font-bold text-blue-500">8</div>
-                <div className="text-xs text-gray-600 font-medium">Meet</div>
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">8</div>
+                <div className="text-[10px] text-gray-600 font-medium">
+                  Meet
+                </div>
               </div>
-              <div className="bg-gray-100 rounded-lg px-4 py-3 text-center min-w-[90px]">
-                <div className="text-2xl font-bold text-blue-500">7</div>
-                <div className="text-xs text-gray-600 font-medium">
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">7</div>
+                <div className="text-[10px] text-gray-600 font-medium">
                   Notes & Reminder
                 </div>
               </div>
