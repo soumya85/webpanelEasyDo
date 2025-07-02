@@ -69,6 +69,26 @@ export default function ComponentLibrary() {
 
           {/* Company Module Tab */}
           <TabsContent value="company" className="space-y-8">
+            {/* Dashboard Type Selector */}
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Dashboard Components
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Select the dashboard type to view relevant components
+                </p>
+              </div>
+              <Select value={dashboardType} onValueChange={setDashboardType}>
+                <SelectTrigger className="w-64">
+                  <SelectValue placeholder="Select dashboard type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="employee">Employee Dashboard</SelectItem>
+                  <SelectItem value="company">Company Dashboard</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             <ComponentSection
               title="Employee Performance"
               description="Components for tracking and displaying employee performance metrics"
