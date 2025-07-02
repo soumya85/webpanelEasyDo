@@ -9,7 +9,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { ChevronDown } from "lucide-react";
 import { ComponentSection } from "@/components/docs/ComponentSection";
 import { ComponentShowcase } from "@/components/docs/ComponentShowcase";
 import PerformanceMeter from "@/components/PerformanceMeter";
@@ -17,6 +25,8 @@ import AttendanceSummary from "@/components/AttendanceSummary";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
+import { AttendanceCard } from "@/components/cards/AttendanceCard";
+import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 
 export default function ComponentLibrary() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
