@@ -4123,6 +4123,9 @@ export default function SamplePage3() {
       {/* Branch Selection Modal */}
       <Dialog open={showBranchSheet} onOpenChange={setShowBranchSheet}>
         <DialogContent className="max-w-md max-h-[90vh] flex flex-col p-0">
+          <VisuallyHidden>
+            <DialogTitle>Branch Selection</DialogTitle>
+          </VisuallyHidden>
           {/* Header */}
           <div className="flex items-center justify-between p-4 pb-3">
             <h2 className="text-xl font-semibold text-gray-900">Branch</h2>
