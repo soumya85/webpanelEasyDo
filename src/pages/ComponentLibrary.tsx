@@ -392,6 +392,12 @@ export function EmployeePerformanceWidget() {
                       },
                     ]}
                     variants={["default", "with-modal"]}
+                    typescript={{
+                      filePath: "src/components/PerformanceMeter.tsx",
+                      startLine: 1,
+                      endLine: 85,
+                      importPath: `import PerformanceMeter from "@/components/PerformanceMeter";`,
+                    }}
                   />
                 </ComponentSection>
 
@@ -432,6 +438,12 @@ export function EmployeeAttendanceWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "interactive"]}
+                    typescript={{
+                      filePath: "src/components/AttendanceSummary.tsx",
+                      startLine: 1,
+                      endLine: 120,
+                      importPath: `import AttendanceSummary from "@/components/AttendanceSummary";`,
+                    }}
                   />
                 </ComponentSection>
 
@@ -479,6 +491,12 @@ export function EmployeeWagesWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "interactive"]}
+                    typescript={{
+                      filePath: "src/components/WagesSummary.tsx",
+                      startLine: 1,
+                      endLine: 95,
+                      importPath: `import WagesSummary from "@/components/WagesSummary";`,
+                    }}
                   />
                 </ComponentSection>
 
@@ -531,6 +549,12 @@ export function EmployeeLeaveWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "with-status-badges"]}
+                    typescript={{
+                      filePath: "src/components/LeaveBalance.tsx",
+                      startLine: 1,
+                      endLine: 110,
+                      importPath: `import LeaveBalance from "@/components/LeaveBalance";`,
+                    }}
                   />
                 </ComponentSection>
 
@@ -587,6 +611,12 @@ export function CompanyHolidaysWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "branch-specific"]}
+                    typescript={{
+                      filePath: "src/components/UpcomingHolidays.tsx",
+                      startLine: 1,
+                      endLine: 78,
+                      importPath: `import UpcomingHolidays from "@/components/UpcomingHolidays";`,
+                    }}
                   />
                 </ComponentSection>
               </>
