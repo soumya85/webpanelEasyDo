@@ -2742,7 +2742,7 @@ export default function EmployeeDashboard() {
           </div>
 
           <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
-            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8">
+            <Button className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8">
               <ReactiveMultilingualText translationKey="submitOTRequest" />
             </Button>
             <Button
@@ -3088,7 +3088,7 @@ export default function EmployeeDashboard() {
           <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleSalaryAdvanceSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
             >
               <ReactiveMultilingualText translationKey="submitAdvanceRequest" />
             </Button>
@@ -3299,7 +3299,7 @@ export default function EmployeeDashboard() {
           <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleReimburseSubmit}
-              className="bg-[#4766E5] hover:bg-[#4766E5]/90 h-12 px-8"
+              className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
             >
               <ReactiveMultilingualText translationKey="submitReimbursementRequest" />
             </Button>
