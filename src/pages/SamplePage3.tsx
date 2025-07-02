@@ -4288,6 +4288,9 @@ export default function SamplePage3() {
         onOpenChange={setShowTeamMembersPopup}
       >
         <DialogContent className="max-w-xs p-0">
+          <VisuallyHidden>
+            <DialogTitle>Team Members</DialogTitle>
+          </VisuallyHidden>
           {/* Simple list of team member names */}
           <div className="bg-white rounded-lg overflow-hidden relative">
             {/* Close button */}
