@@ -403,7 +403,7 @@ export function CompanyHolidaysWidget() {
                     description="A comprehensive company-wide attendance tracking card showing monthly summaries and statistics"
                     component={
                       <div className="w-full max-w-md mx-auto">
-                        <AttendanceCard id="attendance-demo" index={0} />
+                        <CompanyAttendanceDemo />
                       </div>
                     }
                     code={`import { AttendanceCard } from "@/components/cards/AttendanceCard";
