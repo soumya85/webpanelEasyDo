@@ -395,102 +395,272 @@ export function CompanyHolidaysWidget() {
             {dashboardType === "company" && (
               <>
                 <ComponentSection
-                  title="Company Attendance Management"
-                  description="Components for managing and tracking employee attendance across the organization"
+                  title="Company Overview & Analytics"
+                  description="High-level company performance and statistics components for executive dashboards"
                 >
                   <ComponentShowcase
-                    title="Company Attendance Overview"
-                    description="A comprehensive company-wide attendance tracking card showing monthly summaries and statistics"
+                    title="Company Performance Overview"
+                    description="A comprehensive company-wide performance tracking card showing key metrics and KPIs"
                     component={
                       <div className="w-full max-w-md mx-auto">
-                        <CompanyAttendanceDemo />
+                        <CompanyPerformanceDemo />
                       </div>
                     }
-                    code={`import { Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
+                    code={`import { TrendingUp, Users, Building2, DollarSign } from "lucide-react";
 
-export function CompanyAttendanceWidget() {
+export function CompanyPerformanceWidget() {
   return (
-    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4 min-h-[280px]">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-green-50">
-          <Calendar className="w-5 h-5 text-green-600" />
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
+      <h3 className="text-sm font-semibold text-[#283C50] mb-4">Company Performance</h3>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="text-center p-3 bg-blue-50 rounded">
+          <TrendingUp className="w-6 h-6 text-blue-600 mx-auto mb-1" />
+          <div className="text-lg font-bold text-blue-600">85%</div>
+          <div className="text-xs text-blue-600">Overall Efficiency</div>
         </div>
-        <h3 className="text-sm font-semibold text-[#283C50]">
-          Monthly Attendance Summary
-        </h3>
+        {/* More metrics... */}
       </div>
-      {/* Attendance stats grid and button... */}
     </div>
   );
 }`}
                     props={[
                       {
-                        name: "className",
+                        name: "metrics",
+                        type: "PerformanceMetrics",
+                        description:
+                          "Company performance data including efficiency, revenue, employee count",
+                      },
+                      {
+                        name: "period",
                         type: "string",
-                        default: "undefined",
-                        description:
-                          "Additional CSS classes for styling customization",
-                      },
-                      {
-                        name: "data",
-                        type: "AttendanceData",
-                        description:
-                          "Company attendance data including present, absent, holiday counts",
-                      },
-                      {
-                        name: "onViewReport",
-                        type: "function",
-                        default: "undefined",
-                        description:
-                          "Optional callback function for viewing detailed reports",
+                        default: "current-month",
+                        description: "Time period for the metrics display",
                       },
                     ]}
-                    variants={["default", "with-modal", "company-wide"]}
+                    variants={["default", "quarterly", "annual"]}
                   />
                 </ComponentSection>
 
                 <ComponentSection
                   title="Employee Management"
-                  description="Components for tracking and managing individual employee status and attendance"
+                  description="Components for managing employee records, tracking, and administration across all branches"
                 >
                   <ComponentShowcase
-                    title="Employee Attendance Tracking"
-                    description="A detailed employee attendance card with branch filtering, status tracking, and employee details"
+                    title="Employee Register & Tracking"
+                    description="Comprehensive employee management interface with search, filtering, and status tracking"
                     component={
                       <div className="w-full max-w-md mx-auto">
-                        <EmployeeAttendanceCard />
+                        <EmployeeRegisterDemo />
                       </div>
                     }
-                    code={`import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
+                    code={`import { Users, Search, Filter } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
-export function EmployeeTrackingWidget() {
+export function EmployeeRegisterWidget() {
   return (
-    <div className="w-full">
-      <EmployeeAttendanceCard />
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-sm font-semibold text-[#283C50]">Employee Register</h3>
+        <Filter className="w-4 h-4 text-gray-500" />
+      </div>
+      {/* Employee list with avatars and details... */}
     </div>
   );
 }`}
                     props={[
                       {
-                        name: "onDateClick",
+                        name: "employees",
+                        type: "Employee[]",
+                        description:
+                          "Array of employee data including name, position, branch, status",
+                      },
+                      {
+                        name: "onEmployeeSelect",
                         type: "function",
                         default: "undefined",
+                        description: "Callback when an employee is selected",
+                      },
+                      {
+                        name: "filterOptions",
+                        type: "FilterOptions",
                         description:
-                          "Optional callback function for date selection",
+                          "Available filter options for branch, status, department",
                       },
                     ]}
-                    variants={["default", "with-filters", "interactive"]}
+                    variants={[
+                      "default",
+                      "with-search",
+                      "with-filters",
+                      "compact",
+                    ]}
                   />
                 </ComponentSection>
 
                 <ComponentSection
-                  title="Company Holidays & Events"
-                  description="Components for managing company-wide holidays, events, and calendar information"
+                  title="Financial Management"
+                  description="Company financial overview, expenses tracking, and revenue management components"
+                >
+                  <ComponentShowcase
+                    title="Operational Expenses Overview"
+                    description="Company-wide operational expenses tracking with period selection and branch breakdowns"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <OperationalExpensesDemo />
+                      </div>
+                    }
+                    code={`import { DollarSign, TrendingDown, BarChart3 } from "lucide-react";
+
+export function OperationalExpensesWidget() {
+  return (
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
+      <div className="flex items-center gap-3 mb-4">
+        <DollarSign className="w-5 h-5 text-green-600" />
+        <h3 className="text-sm font-semibold text-[#283C50]">Operational Expenses</h3>
+      </div>
+      {/* Expense charts and summaries... */}
+    </div>
+  );
+}`}
+                    props={[
+                      {
+                        name: "expenseData",
+                        type: "ExpenseData[]",
+                        description:
+                          "Operational expense data by category and period",
+                      },
+                      {
+                        name: "period",
+                        type: "string",
+                        default: "current-month",
+                        description:
+                          "Selected time period for expense tracking",
+                      },
+                      {
+                        name: "onViewDetails",
+                        type: "function",
+                        description: "Callback to open detailed expense modal",
+                      },
+                    ]}
+                    variants={["default", "with-charts", "summary-only"]}
+                  />
+                </ComponentSection>
+
+                <ComponentSection
+                  title="Branch & Location Management"
+                  description="Components for managing multiple company branches, locations, and organizational structure"
+                >
+                  <ComponentShowcase
+                    title="Branch Overview Dashboard"
+                    description="Multi-branch management interface showing branch performance, employee counts, and status"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <BranchManagementDemo />
+                      </div>
+                    }
+                    code={`import { MapPin, Users, Building2 } from "lucide-react";
+
+export function BranchManagementWidget() {
+  return (
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
+      <div className="flex items-center gap-3 mb-4">
+        <Building2 className="w-5 h-5 text-purple-600" />
+        <h3 className="text-sm font-semibold text-[#283C50]">Branch Management</h3>
+      </div>
+      {/* Branch cards with employee counts and status... */}
+    </div>
+  );
+}`}
+                    props={[
+                      {
+                        name: "branches",
+                        type: "Branch[]",
+                        description:
+                          "Array of branch data including location, employee count, status",
+                      },
+                      {
+                        name: "onBranchSelect",
+                        type: "function",
+                        description:
+                          "Callback when a branch is selected for management",
+                      },
+                      {
+                        name: "showPerformance",
+                        type: "boolean",
+                        default: "true",
+                        description:
+                          "Whether to show branch performance metrics",
+                      },
+                    ]}
+                    variants={[
+                      "default",
+                      "map-view",
+                      "list-view",
+                      "performance-focused",
+                    ]}
+                  />
+                </ComponentSection>
+
+                <ComponentSection
+                  title="Company Reports & Analytics"
+                  description="Advanced reporting components for company-wide analytics, compliance, and business intelligence"
+                >
+                  <ComponentShowcase
+                    title="Sales Register & Reports"
+                    description="Comprehensive sales and revenue tracking with employee performance and branch comparisons"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <SalesRegisterDemo />
+                      </div>
+                    }
+                    code={`import { BarChart3, TrendingUp, Users, Target } from "lucide-react";
+
+export function SalesRegisterWidget() {
+  return (
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
+      <div className="flex items-center gap-3 mb-4">
+        <Target className="w-5 h-5 text-indigo-600" />
+        <h3 className="text-sm font-semibold text-[#283C50]">Sales Register</h3>
+      </div>
+      {/* Sales metrics and employee performance... */}
+    </div>
+  );
+}`}
+                    props={[
+                      {
+                        name: "salesData",
+                        type: "SalesData[]",
+                        description:
+                          "Sales performance data by employee and branch",
+                      },
+                      {
+                        name: "timeframe",
+                        type: "string",
+                        default: "monthly",
+                        description: "Time period for sales analysis",
+                      },
+                      {
+                        name: "onViewEmployee",
+                        type: "function",
+                        description:
+                          "Callback to view individual employee performance",
+                      },
+                    ]}
+                    variants={[
+                      "default",
+                      "with-charts",
+                      "employee-focused",
+                      "branch-comparison",
+                    ]}
+                  />
+                </ComponentSection>
+
+                <ComponentSection
+                  title="Company Policies & Compliance"
+                  description="Components for managing company holidays, policies, announcements, and compliance tracking"
                 >
                   <ComponentShowcase
                     title="Company Holiday Management"
-                    description="A comprehensive holiday management widget for viewing and managing company holidays with branch filtering"
+                    description="Comprehensive holiday management for all branches with approval workflows and calendar integration"
                     component={
                       <div className="w-full max-w-md mx-auto">
                         <UpcomingHolidays
@@ -511,19 +681,27 @@ export function CompanyHolidayWidget() {
                       {
                         name: "onViewDetails",
                         type: "function",
-                        default: "undefined",
                         description:
-                          "Callback function to open detailed holiday modal",
+                          "Callback to open detailed holiday management modal",
                       },
                       {
-                        name: "className",
-                        type: "string",
-                        default: "undefined",
+                        name: "branchFilter",
+                        type: "string[]",
+                        description: "Array of branch IDs to filter holidays",
+                      },
+                      {
+                        name: "holidayTypes",
+                        type: "HolidayType[]",
                         description:
-                          "Additional CSS classes for styling customization",
+                          "Available holiday types (public, company, regional)",
                       },
                     ]}
-                    variants={["default", "with-modal", "company-wide"]}
+                    variants={[
+                      "default",
+                      "with-modal",
+                      "branch-specific",
+                      "admin-view",
+                    ]}
                   />
                 </ComponentSection>
               </>
