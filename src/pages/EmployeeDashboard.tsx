@@ -104,6 +104,9 @@ export default function EmployeeDashboard() {
   const [isTaskReportModalOpen, setIsTaskReportModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
+  const [otRequestDate, setOtRequestDate] = useState<Date | undefined>(
+    new Date(),
+  );
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
