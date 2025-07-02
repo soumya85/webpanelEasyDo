@@ -2636,9 +2636,15 @@ export default function EmployeeDashboard() {
 
             {/* Start Date */}
             <div className="space-y-2">
-              <Popover>
+              <Popover
+                open={otDatePickerOpen}
+                onOpenChange={setOtDatePickerOpen}
+              >
                 <PopoverTrigger asChild>
-                  <button className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors">
+                  <button
+                    type="button"
+                    className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors"
+                  >
                     <span className="text-base text-[#283C50] font-medium">
                       Start date
                     </span>
@@ -2664,11 +2670,18 @@ export default function EmployeeDashboard() {
                     </div>
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent
+                  className="w-auto p-0"
+                  align="start"
+                  sideOffset={4}
+                >
                   <Calendar
                     mode="single"
                     selected={otRequestDate}
-                    onSelect={setOtRequestDate}
+                    onSelect={(date) => {
+                      setOtRequestDate(date);
+                      setOtDatePickerOpen(false);
+                    }}
                     disabled={(date) => {
                       const today = new Date();
                       today.setHours(0, 0, 0, 0);
