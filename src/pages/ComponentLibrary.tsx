@@ -392,6 +392,12 @@ export function EmployeePerformanceWidget() {
                       },
                     ]}
                     variants={["default", "with-modal"]}
+                    typescript={{
+                      filePath: "src/components/PerformanceMeter.tsx",
+                      startLine: 1,
+                      endLine: 85,
+                      importPath: `import PerformanceMeter from "@/components/PerformanceMeter";`,
+                    }}
                   />
                 </ComponentSection>
 
