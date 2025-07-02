@@ -608,61 +608,6 @@ export function CompanyHolidaysWidget() {
             )}
 
                 <ComponentSection
-                  title="Employee Management"
-                  description="Components for managing employee records, tracking, and administration across all branches"
-                >
-                  <ComponentShowcase
-                    title="Employee Register & Tracking"
-                    description="Comprehensive employee management interface with search, filtering, and status tracking"
-                    component={
-                      <div className="w-full max-w-md mx-auto">
-                        <EmployeeRegisterDemo />
-                      </div>
-                    }
-                    code={`import { Users, Search, Filter } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
-export function EmployeeRegisterWidget() {
-  return (
-    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-[#283C50]">Employee Register</h3>
-        <Filter className="w-4 h-4 text-gray-500" />
-      </div>
-      {/* Employee list with avatars and details... */}
-    </div>
-  );
-}`}
-                    props={[
-                      {
-                        name: "employees",
-                        type: "Employee[]",
-                        description:
-                          "Array of employee data including name, position, branch, status",
-                      },
-                      {
-                        name: "onEmployeeSelect",
-                        type: "function",
-                        default: "undefined",
-                        description: "Callback when an employee is selected",
-                      },
-                      {
-                        name: "filterOptions",
-                        type: "FilterOptions",
-                        description:
-                          "Available filter options for branch, status, department",
-                      },
-                    ]}
-                    variants={[
-                      "default",
-                      "with-search",
-                      "with-filters",
-                      "compact",
-                    ]}
-                  />
-                </ComponentSection>
-
-                <ComponentSection
                   title="Financial Management"
                   description="Company financial overview, expenses tracking, and revenue management components"
                 >
