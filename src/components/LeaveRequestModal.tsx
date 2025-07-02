@@ -807,6 +807,486 @@ export function LeaveRequestModal({
           }
         }}
       />
+
+      {/* Leave Calendar Modal */}
+      <Dialog open={isLeaveCalendarOpen} onOpenChange={setIsLeaveCalendarOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col">
+          <VisuallyHidden>
+            <DialogTitle>Leave Calendar</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center px-4 py-3 bg-[#F8F9FA] border-b relative">
+            <div className="flex items-center flex-1">
+              <button
+                onClick={() => setIsLeaveCalendarOpen(false)}
+                className="flex items-center text-[#4766E5] text-sm font-medium hover:text-[#4766E5]/80"
+              >
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+                Back to Leave Request
+              </button>
+            </div>
+
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <h1 className="text-lg font-semibold text-[#283C50]">
+                Your Leave
+              </h1>
+            </div>
+
+            <div className="flex items-center flex-1 justify-end pr-16">
+              <div className="flex bg-white rounded-lg p-1 border">
+                <button
+                  onClick={() => setCalendarView("day")}
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
+                    calendarView === "day"
+                      ? "bg-[#4766E5] text-white"
+                      : "text-[#283C50] hover:bg-gray-100"
+                  }`}
+                >
+                  Day
+                </button>
+                <button
+                  onClick={() => setCalendarView("list")}
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
+                    calendarView === "list"
+                      ? "bg-[#4766E5] text-white"
+                      : "text-[#283C50] hover:bg-gray-100"
+                  }`}
+                >
+                  List
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="p-6 flex-1 min-h-0 overflow-y-auto">
+            {calendarView === "day" ? (
+              <>
+                {/* Month Navigation */}
+                <div className="flex items-center justify-between mb-6">
+                  <button
+                    onClick={() =>
+                      setCurrentMonth(
+                        new Date(
+                          currentMonth.getFullYear(),
+                          currentMonth.getMonth() - 1,
+                        ),
+                      )
+                    }
+                    className="p-2 rounded-lg border hover:bg-gray-50"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-[#283C50]">
+                      {currentMonth.toLocaleDateString("en-US", {
+                        month: "long",
+                      })}
+                    </div>
+                    <div className="text-lg text-red-500 font-medium">
+                      {currentMonth.getFullYear()}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() =>
+                      setCurrentMonth(
+                        new Date(
+                          currentMonth.getFullYear(),
+                          currentMonth.getMonth() + 1,
+                        ),
+                      )
+                    }
+                    className="p-2 rounded-lg border hover:bg-gray-50"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Calendar Grid */}
+                <div className="bg-white border rounded-lg overflow-hidden">
+                  {/* Days of week header */}
+                  <div className="grid grid-cols-7 bg-gray-50">
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                      (day) => (
+                        <div
+                          key={day}
+                          className="p-3 text-center text-sm font-medium text-gray-600 border-r border-b last:border-r-0"
+                        >
+                          {day}
+                        </div>
+                      ),
+                    )}
+                  </div>
+
+                  {/* Calendar days */}
+                  <div className="grid grid-cols-7">
+                    {Array.from({ length: 42 }, (_, index) => {
+                      const currentDate = new Date(currentMonth);
+                      const firstDay = new Date(
+                        currentMonth.getFullYear(),
+                        currentMonth.getMonth(),
+                        1,
+                      );
+                      const firstDayWeekday = firstDay.getDay();
+
+                      const dayNumber = index - firstDayWeekday + 1;
+                      const isValidDay =
+                        dayNumber > 0 &&
+                        dayNumber <=
+                          new Date(
+                            currentMonth.getFullYear(),
+                            currentMonth.getMonth() + 1,
+                            0,
+                          ).getDate();
+
+                      const isCurrentMonth =
+                        currentDate.getMonth() === currentMonth.getMonth();
+                      const isSelected =
+                        isValidDay &&
+                        dayNumber === selectedDate.getDate() &&
+                        currentMonth.getMonth() === selectedDate.getMonth();
+
+                      currentDate.setDate(isValidDay ? dayNumber : 1);
+
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            if (isValidDay) {
+                              setSelectedDate(
+                                new Date(
+                                  currentMonth.getFullYear(),
+                                  currentMonth.getMonth(),
+                                  dayNumber,
+                                ),
+                              );
+                            }
+                          }}
+                          className={`relative p-3 h-16 border-r border-b last:border-r-0 hover:bg-gray-50 transition-colors ${
+                            !isCurrentMonth ? "text-gray-400" : "text-[#283C50]"
+                          } ${isValidDay ? "cursor-pointer" : ""} ${
+                            isSelected ? "bg-blue-100" : ""
+                          }`}
+                        >
+                          {isValidDay && (
+                            <>
+                              <div className="text-sm font-medium">
+                                {dayNumber}
+                              </div>
+                              {/* Sample leave indicators */}
+                              {dayNumber === 14 && (
+                                <div className="absolute bottom-1 left-1 w-2 h-2 bg-green-500 rounded-full"></div>
+                              )}
+                              {dayNumber === 25 && (
+                                <div className="absolute bottom-1 left-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            ) : (
+              /* List View */
+              <div className="bg-white rounded-lg border">
+                <div className="p-4 border-b">
+                  <h3 className="text-lg font-semibold text-[#283C50]">
+                    Leave History
+                  </h3>
+                </div>
+                <div className="p-8 text-center text-gray-500">
+                  <p>No leave records found for the selected period.</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Leave Balance Info Modal */}
+      <Dialog
+        open={isLeaveBalanceInfoOpen}
+        onOpenChange={setIsLeaveBalanceInfoOpen}
+      >
+        <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+          <VisuallyHidden>
+            <DialogTitle>Leave Balance Summary</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 bg-[#F8F9FA] border-b">
+            {/* Left - Title */}
+            <h1 className="text-lg font-semibold text-[#283C50]">
+              Leave Balance Summary
+            </h1>
+
+            {/* Right - Close Button */}
+            <button
+              onClick={() => setIsLeaveBalanceInfoOpen(false)}
+              className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              aria-label="Close"
+            >
+              <svg
+                className="w-5 h-5 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="p-6 flex-1 overflow-y-auto bg-gray-50">
+            {/* Date Header */}
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-[#283C50] mb-4">
+                As on 18 Jun 2025
+              </h2>
+
+              {/* Policy Information */}
+              <div className="space-y-3 text-sm text-gray-700 mb-6">
+                <p>
+                  <strong>1.</strong> For 12 months of the current calendar year
+                  2025.
+                </p>
+                <p>
+                  <strong>2.</strong> For continuous months in service, since
+                  DOJ (Date of joining) - 30 May 2025.
+                </p>
+                <p>
+                  <strong>3.</strong> Earned leave Carried Forward from last
+                  year 2024 - 5.83 Days.
+                </p>
+                <p>
+                  <strong>4.</strong> Earned leave Opening Balance (added
+                  manually, if Any) - 0 Days.
+                </p>
+                <p>
+                  <strong>5.</strong> Figures below, are inclusive of carried
+                  forward & opening balance Earned leaves (SI no 3 & 4)
+                </p>
+              </div>
+            </div>
+
+            {/* Leave Balance Table */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+              {/* Table Header */}
+              <div className="bg-[#4766E5] text-white">
+                <div className="grid grid-cols-4 gap-4 p-4 font-semibold">
+                  <div>TYPE</div>
+                  <div className="text-center">ACCUMULATED</div>
+                  <div className="text-center">USED</div>
+                  <div className="text-center">AVAILABLE</div>
+                </div>
+              </div>
+
+              {/* Table Rows */}
+              <div className="divide-y">
+                <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50">
+                  <div className="font-medium text-[#283C50]">Earned</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center font-semibold">9.99</div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 p-4">
+                  <div className="font-medium text-[#283C50]">Sick</div>
+                  <div className="text-center">5</div>
+                  <div className="text-center">1</div>
+                  <div className="text-center font-semibold">4</div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50">
+                  <div className="font-medium text-[#283C50]">Casual</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center">2</div>
+                  <div className="text-center font-semibold">2.16</div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 p-4">
+                  <div className="font-medium text-[#283C50]">Other</div>
+                  <div className="text-center">6</div>
+                  <div className="text-center">0</div>
+                  <div className="text-center font-semibold">6</div>
+                </div>
+              </div>
+
+              {/* Total Bar */}
+              <div className="bg-[#4766E5] text-white p-4">
+                <div className="text-right">
+                  <span className="text-xl font-bold">22.15 Days</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Employee Leave Rules */}
+            <div className="mb-6">
+              <button
+                onClick={() => setIsLeaveRulesOpen(true)}
+                className="flex items-center justify-between w-full text-left text-[#4766E5] font-medium hover:text-[#4766E5]/80 transition-colors"
+              >
+                <span>Employee Leave Rules</span>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* List of Upcoming Leaves */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="p-4 border-b">
+                <h3 className="text-lg font-bold text-[#283C50] mb-4">
+                  List of Upcoming leaves:
+                </h3>
+
+                {/* Tabs */}
+                <div className="flex border-b">
+                  <button
+                    onClick={() => setSelectedLeaveTab("approved")}
+                    className={`px-4 py-2 border-b-2 font-medium rounded-t transition-colors ${
+                      selectedLeaveTab === "approved"
+                        ? "border-gray-300 bg-gray-100 text-gray-700"
+                        : "border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
+                    Approved
+                  </button>
+                  <button
+                    onClick={() => setSelectedLeaveTab("pending")}
+                    className={`px-4 py-2 border-b-2 font-medium rounded-colors ${
+                      selectedLeaveTab === "pending"
+                        ? "border-gray-300 bg-gray-100 text-gray-700"
+                        : "border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
+                    Pending
+                  </button>
+                  <button
+                    onClick={() => setSelectedLeaveTab("availed")}
+                    className={`px-4 py-2 border-b-2 font-medium rounded-t transition-colors ${
+                      selectedLeaveTab === "availed"
+                        ? "border-gray-300 bg-gray-100 text-gray-700"
+                        : "border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
+                    Availed/Taken
+                  </button>
+                </div>
+              </div>
+
+              {/* Table Header */}
+              <div className="bg-[#4766E5] text-white">
+                <div className="grid grid-cols-5 gap-4 p-3 text-sm font-semibold">
+                  <div>Start Date</div>
+                  <div>End Date</div>
+                  <div>Status</div>
+                  <div>approved by</div>
+                  <div>Days</div>
+                </div>
+              </div>
+
+              {/* Tab Content */}
+              <div className="p-8 text-center">
+                <div className="mb-6">
+                  <div className="w-32 h-32 mx-auto mb-4 relative">
+                    {/* Illustration placeholder */}
+                    <div className="w-full h-full bg-gradient-to-br from-yellow-200 to-orange-300 rounded-full flex items-center justify-center">
+                      <div className="w-20 h-20 bg-blue-400 rounded-lg flex items-center justify-center">
+                        <svg
+                          className="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-[#283C50] mb-2">
+                  {selectedLeaveTab === "approved" &&
+                    "No APPROVED leaves available"}
+                  {selectedLeaveTab === "pending" &&
+                    "No PENDING leaves available"}
+                  {selectedLeaveTab === "availed" &&
+                    "No AVAILED leaves available"}
+                </h3>
+                <p className="text-gray-600">
+                  {selectedLeaveTab === "approved" &&
+                    "No approved leave requests found"}
+                  {selectedLeaveTab === "pending" &&
+                    "No pending leave requests found"}
+                  {selectedLeaveTab === "availed" &&
+                    "No availed leave requests found"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
