@@ -596,226 +596,29 @@ export function CompanyHolidaysWidget() {
             {dashboardType === "company" && (
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <div className="text-gray-400 mb-4">
-                  <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m13-8V9a2 2 0 00-2-2H9a2 2 0 00-2 2v2.172a2 2 0 00.586 1.414l2 2a2 2 0 001.414.586h.172a2 2 0 001.414-.586l2-2A2 2 0 0015 9V7a2 2 0 00-2-2z" />
+                  <svg
+                    className="w-16 h-16 mx-auto"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1}
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m13-8V9a2 2 0 00-2-2H9a2 2 0 00-2 2v2.172a2 2 0 00.586 1.414l2 2a2 2 0 001.414.586h.172a2 2 0 001.414-.586l2-2A2 2 0 0015 9V7a2 2 0 00-2-2z"
+                    />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-600 mb-2">No Company Dashboard Components Yet</h3>
+                <h3 className="text-lg font-semibold text-gray-600 mb-2">
+                  No Company Dashboard Components Yet
+                </h3>
                 <p className="text-gray-500 max-w-md">
-                  Company Dashboard components haven't been created yet. All existing components are designed for Employee Dashboard use cases.
+                  Company Dashboard components haven't been created yet. All
+                  existing components are designed for Employee Dashboard use
+                  cases.
                 </p>
               </div>
-            )}
-
-                <ComponentSection
-                  title="Financial Management"
-                  description="Company financial overview, expenses tracking, and revenue management components"
-                >
-                  <ComponentShowcase
-                    title="Operational Expenses Overview"
-                    description="Company-wide operational expenses tracking with period selection and branch breakdowns"
-                    component={
-                      <div className="w-full max-w-md mx-auto">
-                        <OperationalExpensesDemo />
-                      </div>
-                    }
-                    code={`import { DollarSign, TrendingDown, BarChart3 } from "lucide-react";
-
-export function OperationalExpensesWidget() {
-  return (
-    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
-      <div className="flex items-center gap-3 mb-4">
-        <DollarSign className="w-5 h-5 text-green-600" />
-        <h3 className="text-sm font-semibold text-[#283C50]">Operational Expenses</h3>
-      </div>
-      {/* Expense charts and summaries... */}
-    </div>
-  );
-}`}
-                    props={[
-                      {
-                        name: "expenseData",
-                        type: "ExpenseData[]",
-                        description:
-                          "Operational expense data by category and period",
-                      },
-                      {
-                        name: "period",
-                        type: "string",
-                        default: "current-month",
-                        description:
-                          "Selected time period for expense tracking",
-                      },
-                      {
-                        name: "onViewDetails",
-                        type: "function",
-                        description: "Callback to open detailed expense modal",
-                      },
-                    ]}
-                    variants={["default", "with-charts", "summary-only"]}
-                  />
-                </ComponentSection>
-
-                <ComponentSection
-                  title="Branch & Location Management"
-                  description="Components for managing multiple company branches, locations, and organizational structure"
-                >
-                  <ComponentShowcase
-                    title="Branch Overview Dashboard"
-                    description="Multi-branch management interface showing branch performance, employee counts, and status"
-                    component={
-                      <div className="w-full max-w-md mx-auto">
-                        <BranchManagementDemo />
-                      </div>
-                    }
-                    code={`import { MapPin, Users, Building2 } from "lucide-react";
-
-export function BranchManagementWidget() {
-  return (
-    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
-      <div className="flex items-center gap-3 mb-4">
-        <Building2 className="w-5 h-5 text-purple-600" />
-        <h3 className="text-sm font-semibold text-[#283C50]">Branch Management</h3>
-      </div>
-      {/* Branch cards with employee counts and status... */}
-    </div>
-  );
-}`}
-                    props={[
-                      {
-                        name: "branches",
-                        type: "Branch[]",
-                        description:
-                          "Array of branch data including location, employee count, status",
-                      },
-                      {
-                        name: "onBranchSelect",
-                        type: "function",
-                        description:
-                          "Callback when a branch is selected for management",
-                      },
-                      {
-                        name: "showPerformance",
-                        type: "boolean",
-                        default: "true",
-                        description:
-                          "Whether to show branch performance metrics",
-                      },
-                    ]}
-                    variants={[
-                      "default",
-                      "map-view",
-                      "list-view",
-                      "performance-focused",
-                    ]}
-                  />
-                </ComponentSection>
-
-                <ComponentSection
-                  title="Company Reports & Analytics"
-                  description="Advanced reporting components for company-wide analytics, compliance, and business intelligence"
-                >
-                  <ComponentShowcase
-                    title="Sales Register & Reports"
-                    description="Comprehensive sales and revenue tracking with employee performance and branch comparisons"
-                    component={
-                      <div className="w-full max-w-md mx-auto">
-                        <SalesRegisterDemo />
-                      </div>
-                    }
-                    code={`import { BarChart3, TrendingUp, Users, Target } from "lucide-react";
-
-export function SalesRegisterWidget() {
-  return (
-    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
-      <div className="flex items-center gap-3 mb-4">
-        <Target className="w-5 h-5 text-indigo-600" />
-        <h3 className="text-sm font-semibold text-[#283C50]">Sales Register</h3>
-      </div>
-      {/* Sales metrics and employee performance... */}
-    </div>
-  );
-}`}
-                    props={[
-                      {
-                        name: "salesData",
-                        type: "SalesData[]",
-                        description:
-                          "Sales performance data by employee and branch",
-                      },
-                      {
-                        name: "timeframe",
-                        type: "string",
-                        default: "monthly",
-                        description: "Time period for sales analysis",
-                      },
-                      {
-                        name: "onViewEmployee",
-                        type: "function",
-                        description:
-                          "Callback to view individual employee performance",
-                      },
-                    ]}
-                    variants={[
-                      "default",
-                      "with-charts",
-                      "employee-focused",
-                      "branch-comparison",
-                    ]}
-                  />
-                </ComponentSection>
-
-                <ComponentSection
-                  title="Company Policies & Compliance"
-                  description="Components for managing company holidays, policies, announcements, and compliance tracking"
-                >
-                  <ComponentShowcase
-                    title="Company Holiday Management"
-                    description="Comprehensive holiday management for all branches with approval workflows and calendar integration"
-                    component={
-                      <div className="w-full max-w-md mx-auto">
-                        <UpcomingHolidays
-                          onViewDetails={() => setIsHolidayModalOpen(true)}
-                        />
-                      </div>
-                    }
-                    code={`import UpcomingHolidays from "@/components/UpcomingHolidays";
-
-export function CompanyHolidayWidget() {
-  return (
-    <div className="w-full">
-      <UpcomingHolidays onViewDetails={() => openHolidayModal()} />
-    </div>
-  );
-}`}
-                    props={[
-                      {
-                        name: "onViewDetails",
-                        type: "function",
-                        description:
-                          "Callback to open detailed holiday management modal",
-                      },
-                      {
-                        name: "branchFilter",
-                        type: "string[]",
-                        description: "Array of branch IDs to filter holidays",
-                      },
-                      {
-                        name: "holidayTypes",
-                        type: "HolidayType[]",
-                        description:
-                          "Available holiday types (public, company, regional)",
-                      },
-                    ]}
-                    variants={[
-                      "default",
-                      "with-modal",
-                      "branch-specific",
-                      "admin-view",
-                    ]}
-                  />
-                </ComponentSection>
-              </>
             )}
           </TabsContent>
         </Tabs>
