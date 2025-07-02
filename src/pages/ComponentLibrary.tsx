@@ -294,6 +294,360 @@ export function CompanyHolidaysWidget() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Holiday List Modal */}
+      <Dialog open={isHolidayModalOpen} onOpenChange={setIsHolidayModalOpen}>
+        <DialogContent className="max-w-2xl h-[90vh] max-h-[90vh] overflow-hidden p-0 flex flex-col [&>button]:hidden">
+          <VisuallyHidden>
+            <DialogTitle>Holiday List</DialogTitle>
+          </VisuallyHidden>
+
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b bg-white">
+            <div className="flex items-center gap-4">
+              <h1 className="text-lg font-semibold text-gray-900">
+                Holiday List
+              </h1>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                    {selectedBranch}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="w-4 h-4 ml-1"
+                    >
+                      <polyline points="6,9 12,15 18,9" />
+                    </svg>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-80">
+                  <DropdownMenuLabel className="px-3 py-2 text-sm font-semibold text-gray-900">
+                    Branches
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("All Branches")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          All Branches
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Manage/View all the branches
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("Head Office")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          Head Office
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Business Cinema, 9SK, Shyama Prasad Mukherjee Rd,
+                          More, Hazra, Kalighat, Kolkata, West Bengal 700026,
+                          India
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSelectedBranch("Second Branch")}
+                    className="px-3 py-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center mt-0.5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-3 h-3"
+                        >
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-gray-900">
+                          Second Branch
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          9S, Shyam Prasad Mukherjee Rd, Hazra, Kalighat,
+                          Kolkata, West Bengal 700026, India
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <button
+              onClick={() => setIsHolidayModalOpen(false)}
+              className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="w-4 h-4 text-gray-600"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Statistics Cards */}
+          <div className="grid grid-cols-4 gap-3 p-4 bg-gray-50">
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">17</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                TOTAL
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">11</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                PUBLIC
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">1</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                COMPANY
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-3 text-center border-b-2 border-blue-500 shadow-md">
+              <div className="text-2xl font-bold text-gray-900">5</div>
+              <div className="text-xs font-medium text-gray-600 uppercase">
+                REGIONAL
+              </div>
+            </div>
+          </div>
+
+          {/* Holiday List */}
+          <div className="flex-1 overflow-y-auto bg-gray-50">
+            {[
+              {
+                day: "Wed",
+                date: "01",
+                month: "JAN 25",
+                name: "ENGLISH NEW YEAR",
+                location: "Head office",
+                type: "Company",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Sun",
+                date: "26",
+                month: "JAN 25",
+                name: "REPUBLIC DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "03",
+                month: "FEB 25",
+                name: "SARASWATI PUJA",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Fri",
+                date: "14",
+                month: "MAR 25",
+                name: "DOLYATRA / HOLI",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "31",
+                month: "MAR 25",
+                name: "ID UL FITAR",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Tue",
+                date: "15",
+                month: "APR 25",
+                name: "BENGALI NEW YEARS DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Fri",
+                date: "18",
+                month: "APR 25",
+                name: "GOODFRIDAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Sat",
+                date: "07",
+                month: "JUN 25",
+                name: "BAKRID",
+                location: "Head office",
+                type: "General",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Fri",
+                date: "15",
+                month: "AUG 25",
+                name: "INDEPENDENCE DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "29",
+                month: "SEP 25",
+                name: "MAHA SAPTAMI",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Tue",
+                date: "30",
+                month: "SEP 25",
+                name: "MAHA ASTAMI",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Wed",
+                date: "01",
+                month: "OCT 25",
+                name: "MAHA NABAMI",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Thu",
+                date: "02",
+                month: "OCT 25",
+                name: "DUSSHERA / GANDHI BIRTHDAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "06",
+                month: "OCT 25",
+                name: "LAXMI PUJA",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Mon",
+                date: "20",
+                month: "OCT 25",
+                name: "KALI PUJA",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Wed",
+                date: "05",
+                month: "NOV 25",
+                name: "GURU NANAK BIRTHDAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+              {
+                day: "Thu",
+                date: "25",
+                month: "DEC 25",
+                name: "X MAS DAY",
+                location: "Head office",
+                type: "Public",
+                typeColor: "bg-blue-600",
+              },
+            ].map((holiday, index) => (
+              <div
+                key={index}
+                className="bg-white mx-4 mb-3 rounded-lg border-b-4 border-blue-500 overflow-hidden shadow-md"
+              >
+                <div className="flex items-center p-4">
+                  {/* Date Section */}
+                  <div className="text-center mr-4 min-w-[60px]">
+                    <div className="text-sm text-gray-600 font-medium">
+                      {holiday.day}
+                    </div>
+                    <div className="text-2xl font-bold text-gray-900">
+                      {holiday.date}
+                    </div>
+                    <div className="text-xs text-gray-600 font-medium">
+                      {holiday.month}
+                    </div>
+                  </div>
+
+                  {/* Holiday Details */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">
+                      {holiday.name}
+                    </h3>
+                    <p className="text-sm text-gray-600">{holiday.location}</p>
+                  </div>
+
+                  {/* Type Badge */}
+                  <div
+                    className={`px-3 py-1 rounded text-white text-sm font-medium ${holiday.typeColor}`}
+                  >
+                    {holiday.type}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
