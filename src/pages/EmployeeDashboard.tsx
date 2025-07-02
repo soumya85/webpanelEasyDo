@@ -3437,7 +3437,11 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => triggerFileUpload("scan")}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("scan");
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
