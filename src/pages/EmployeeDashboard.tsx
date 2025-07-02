@@ -3423,6 +3423,37 @@ export default function EmployeeDashboard() {
               <span className="text-lg text-[#4766E5] font-medium">Scan</span>
             </button>
 
+            {/* Documents Option */}
+            <button
+              onClick={() => {
+                if (isSalaryAdvanceModalOpen) {
+                  handleSalaryAdvanceAttachment("documents");
+                } else if (isReimburseRequestModalOpen) {
+                  handleReimburseAttachment("documents");
+                }
+              }}
+              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
+            >
+              <div className="w-8 h-8 flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-[#4766E5]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <span className="text-lg text-[#4766E5] font-medium">
+                Documents
+              </span>
+            </button>
+
             {/* Camera Option */}
             <button
               onClick={() => {
