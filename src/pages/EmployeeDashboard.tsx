@@ -14,6 +14,8 @@ import { TaskReportModal } from "@/components/TaskReportModal";
 import WagesSummary from "@/components/WagesSummary";
 import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
+import { LeaveRequestCard } from "@/components/LeaveRequestCard";
+import { LeaveRequestModal } from "@/components/LeaveRequestModal";
 import {
   Dialog,
   DialogContent,
