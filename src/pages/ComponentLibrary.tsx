@@ -549,6 +549,12 @@ export function EmployeeLeaveWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "with-status-badges"]}
+                    typescript={{
+                      filePath: "src/components/LeaveBalance.tsx",
+                      startLine: 1,
+                      endLine: 110,
+                      importPath: `import LeaveBalance from "@/components/LeaveBalance";`,
+                    }}
                   />
                 </ComponentSection>
 
