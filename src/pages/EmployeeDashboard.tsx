@@ -3207,7 +3207,7 @@ export default function EmployeeDashboard() {
             <Button
               variant="outline"
               onClick={() => setIsSalaryAdvanceModalOpen(false)}
-              className="h-12 px-8 border-gray-200/50 text-gray-600 hover:bg-gray-100"
+              className="h-12 px-8 border-gray-100/30 text-gray-600 hover:bg-gray-100"
             >
               Cancel
             </Button>
