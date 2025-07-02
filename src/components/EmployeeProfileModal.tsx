@@ -1,5 +1,12 @@
 import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -12,7 +19,11 @@ interface EmployeeProfileModalProps {
   onClose: () => void;
 }
 
-export default function EmployeeProfileModal({ open, employee, onClose }: EmployeeProfileModalProps) {
+export default function EmployeeProfileModal({
+  open,
+  employee,
+  onClose,
+}: EmployeeProfileModalProps) {
   if (!employee) return null;
 
   return (
@@ -28,18 +39,31 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
           <div className="flex-1 text-center md:text-left">
             <h2 className="text-2xl font-bold text-white">{employee.name}</h2>
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-2">
-              <span className="text-blue-100 text-base">{employee.position}</span>
-              <Badge className="bg-white text-blue-700 font-semibold">{employee.branch}</Badge>
-              <Badge className="bg-blue-700 text-white font-semibold">Authority: {employee.authority}</Badge>
+              <span className="text-blue-100 text-base">
+                {employee.position}
+              </span>
+              <Badge className="bg-white text-blue-700 font-semibold">
+                {employee.branch}
+              </Badge>
+              <Badge className="bg-blue-700 text-white font-semibold">
+                Authority: {employee.authority}
+              </Badge>
             </div>
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-2">
-              <span className="text-blue-100 text-sm">Reporting: {employee.reportingManager}</span>
-              <span className="text-blue-100 text-sm">Status: 
-                <span className={`ml-1 font-semibold ${employee.status === "approved" ? "text-green-200" : "text-red-200"}`}>
+              <span className="text-blue-100 text-sm">
+                Reporting: {employee.reportingManager}
+              </span>
+              <span className="text-blue-100 text-sm">
+                Status:
+                <span
+                  className={`ml-1 font-semibold ${employee.status === "approved" ? "text-green-200" : "text-red-200"}`}
+                >
                   {employee.status}
                 </span>
               </span>
-              <span className="text-blue-100 text-sm">Rating: <span className="font-semibold">{employee.rating}</span></span>
+              <span className="text-blue-100 text-sm">
+                Rating: <span className="font-semibold">{employee.rating}</span>
+              </span>
             </div>
           </div>
         </div>
@@ -47,20 +71,30 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
         <div className="px-8 pt-4 pb-2 bg-white">
           <Tabs defaultValue="personal" className="w-full">
             <TabsList className="w-full grid grid-cols-4 mb-6 bg-gray-100 rounded-lg">
-              <TabsTrigger value="personal" className="rounded-l-lg">Personal</TabsTrigger>
+              <TabsTrigger value="personal" className="rounded-l-lg">
+                Personal
+              </TabsTrigger>
               <TabsTrigger value="professional">Professional</TabsTrigger>
               <TabsTrigger value="verify">Verify</TabsTrigger>
-              <TabsTrigger value="documents" className="rounded-r-lg">Documents</TabsTrigger>
+              <TabsTrigger value="documents" className="rounded-r-lg">
+                Documents
+              </TabsTrigger>
             </TabsList>
             {/* Personal Tab */}
             <TabsContent value="personal">
               <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-2">
                 <div>
-                  <div className="text-gray-500 font-medium mb-1">Full Name:</div>
-                  <div className="text-gray-900 font-semibold">{employee.name}</div>
+                  <div className="text-gray-500 font-medium mb-1">
+                    Full Name:
+                  </div>
+                  <div className="text-gray-900 font-semibold">
+                    {employee.name}
+                  </div>
                 </div>
                 <div>
-                  <div className="text-gray-500 font-medium mb-1">Date of Joining:</div>
+                  <div className="text-gray-500 font-medium mb-1">
+                    Date of Joining:
+                  </div>
                   <div className="text-gray-900">{employee.doj}</div>
                 </div>
                 <div>
@@ -85,16 +119,24 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
                   <div className="text-gray-900">{employee.branch}</div>
                 </div>
                 <div>
-                  <div className="text-gray-500 font-medium mb-1">Authority</div>
+                  <div className="text-gray-500 font-medium mb-1">
+                    Authority
+                  </div>
                   <div className="text-gray-900">{employee.authority}</div>
                 </div>
                 <div>
-                  <div className="text-gray-500 font-medium mb-1">Reporting Manager</div>
-                  <div className="text-gray-900">{employee.reportingManager}</div>
+                  <div className="text-gray-500 font-medium mb-1">
+                    Reporting Manager
+                  </div>
+                  <div className="text-gray-900">
+                    {employee.reportingManager}
+                  </div>
                 </div>
                 <div>
                   <div className="text-gray-500 font-medium mb-1">Status</div>
-                  <div className={`font-semibold ${employee.status === "approved" ? "text-green-600" : "text-red-600"}`}>
+                  <div
+                    className={`font-semibold ${employee.status === "approved" ? "text-green-600" : "text-red-600"}`}
+                  >
                     {employee.status}
                   </div>
                 </div>
@@ -108,7 +150,9 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
             <TabsContent value="verify">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-500 font-medium">Aadhar Verified:</span>
+                  <span className="text-gray-500 font-medium">
+                    Aadhar Verified:
+                  </span>
                   {employee.aadharVerified ? (
                     <CheckCircle className="text-green-500 w-5 h-5" />
                   ) : (
@@ -116,7 +160,9 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
                   )}
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-500 font-medium">PAN Verified:</span>
+                  <span className="text-gray-500 font-medium">
+                    PAN Verified:
+                  </span>
                   {employee.panVerified ? (
                     <CheckCircle className="text-green-500 w-5 h-5" />
                   ) : (
@@ -124,7 +170,9 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
                   )}
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-500 font-medium">UAN Verified:</span>
+                  <span className="text-gray-500 font-medium">
+                    UAN Verified:
+                  </span>
                   {employee.uanVerified ? (
                     <CheckCircle className="text-green-500 w-5 h-5" />
                   ) : (
@@ -138,7 +186,9 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                 <div>
                   <div className="text-gray-500 font-medium mb-1">Aadhar</div>
-                  <div className="text-gray-900">{employee.aadhar || "N/A"}</div>
+                  <div className="text-gray-900">
+                    {employee.aadhar || "N/A"}
+                  </div>
                 </div>
                 <div>
                   <div className="text-gray-500 font-medium mb-1">PAN</div>
@@ -149,11 +199,15 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
                   <div className="text-gray-900">{employee.uan || "N/A"}</div>
                 </div>
                 <div>
-                  <div className="text-gray-500 font-medium mb-1">PF Number</div>
+                  <div className="text-gray-500 font-medium mb-1">
+                    PF Number
+                  </div>
                   <div className="text-gray-900">{employee.pf || "N/A"}</div>
                 </div>
                 <div>
-                  <div className="text-gray-500 font-medium mb-1">ESI Number</div>
+                  <div className="text-gray-500 font-medium mb-1">
+                    ESI Number
+                  </div>
                   <div className="text-gray-900">{employee.esi || "N/A"}</div>
                 </div>
               </div>
@@ -163,7 +217,9 @@ export default function EmployeeProfileModal({ open, employee, onClose }: Employ
         {/* Modal Actions */}
         <div className="flex justify-end px-8 py-4 bg-gray-50 border-t">
           <DialogClose asChild>
-            <Button variant="outline" className="min-w-[100px]">Close</Button>
+            <Button variant="outline" className="min-w-[100px]">
+              Close
+            </Button>
           </DialogClose>
         </div>
       </DialogContent>
