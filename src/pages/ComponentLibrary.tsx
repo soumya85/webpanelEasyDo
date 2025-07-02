@@ -1,5 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ComponentSection } from "@/components/docs/ComponentSection";
 import { ComponentShowcase } from "@/components/docs/ComponentShowcase";
 import PerformanceMeter from "@/components/PerformanceMeter";
