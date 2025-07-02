@@ -3501,8 +3501,8 @@ const Chats: React.FC = () => {
         <div
           className="flex"
           style={{
-            height: "calc(100vh - 86px - 80px)", // Subtract top offset (86px) and header height (~80px)
-            marginTop: "166px", // Position right below the fixed header (86px + 80px)
+            height: "calc(100vh - 186px)", // Adjust height for 100px margin
+            marginTop: "100px",
           }}
         >
           {/* Left Panel - Chat Contacts */}
