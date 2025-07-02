@@ -1150,13 +1150,21 @@ export default function EmployeeDashboard() {
         {/* Quick Action Cards Grid - Single Row */}
         <div className="w-full">
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3 lg:gap-4 w-full">
-            {cardData.map((card, index) => (
-              <div
-                key={card.id}
-                onClick={() => {
-                  if (card.id === "leave-request") {
-                    setIsLeaveRequestModalOpen(true);
-                  } else if (card.id === "ot-request") {
+            {cardData.map((card, index) => {
+              if (card.id === "leave-request") {
+                return (
+                  <LeaveRequestCard
+                    key={card.id}
+                    onClick={() => setIsLeaveRequestModalOpen(true)}
+                  />
+                );
+              }
+
+              return (
+                <div
+                  key={card.id}
+                  onClick={() => {
+                    if (card.id === "ot-request") {
                     setIsOTRequestModalOpen(true);
                   } else if (card.id === "salary-request") {
                     setIsSalaryAdvanceModalOpen(true);
