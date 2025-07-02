@@ -30,6 +30,67 @@ import UpcomingHolidays from "@/components/UpcomingHolidays";
 import { AttendanceCard } from "@/components/cards/AttendanceCard";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 
+// Standalone Company Attendance Component for demo purposes
+const CompanyAttendanceDemo = () => {
+  return (
+    <div className="w-full h-full">
+      <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-4 flex flex-col h-full min-h-[280px]">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="p-2 rounded-lg bg-green-50">
+            <Calendar className="w-5 h-5 text-green-600" />
+          </div>
+          <h3 className="text-sm font-semibold text-[#283C50]">
+            Monthly Attendance Summary
+          </h3>
+        </div>
+
+        <div className="text-xs text-gray-600 mb-3">- June 2025</div>
+        <div className="text-xs text-gray-600 mb-4">
+          Total Days: 30 | Working Days: 22
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="text-center p-2 bg-green-50 rounded">
+            <div className="text-lg font-bold text-green-600">22</div>
+            <div className="text-xs text-green-600">Present</div>
+          </div>
+          <div className="text-center p-2 bg-red-50 rounded">
+            <div className="text-lg font-bold text-red-600">0</div>
+            <div className="text-xs text-red-600">Absent</div>
+          </div>
+          <div className="text-center p-2 bg-blue-50 rounded">
+            <div className="text-lg font-bold text-blue-600">5</div>
+            <div className="text-xs text-blue-600">Sunday</div>
+          </div>
+          <div className="text-center p-2 bg-orange-50 rounded">
+            <div className="text-lg font-bold text-orange-600">3</div>
+            <div className="text-xs text-orange-600">Holiday</div>
+          </div>
+          <div className="text-center p-2 bg-purple-50 rounded">
+            <div className="text-lg font-bold text-purple-600">0</div>
+            <div className="text-xs text-purple-600">Late</div>
+          </div>
+          <div className="text-center p-2 bg-pink-50 rounded">
+            <div className="text-lg font-bold text-pink-600">0</div>
+            <div className="text-xs text-pink-600">Red Flag</div>
+          </div>
+        </div>
+
+        <Button
+          className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
+          style={{
+            backgroundColor: "#eff5ff",
+            borderColor: "#bfdbfe",
+            borderWidth: "1px",
+          }}
+        >
+          View Detailed Report
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 export default function ComponentLibrary() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
