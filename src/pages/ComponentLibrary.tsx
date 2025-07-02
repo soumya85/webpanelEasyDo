@@ -31,6 +31,7 @@ import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 export default function ComponentLibrary() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
+  const [dashboardType, setDashboardType] = useState("employee");
 
   return (
     <div className="min-h-screen bg-background">
