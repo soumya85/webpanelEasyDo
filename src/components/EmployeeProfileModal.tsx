@@ -29,6 +29,9 @@ export default function EmployeeProfileModal({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl rounded-2xl p-0 overflow-hidden shadow-2xl border-0">
+        <VisuallyHidden>
+          <DialogTitle>Employee Profile</DialogTitle>
+        </VisuallyHidden>
         {/* Profile Header */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-400 px-8 py-8 flex flex-col md:flex-row items-center gap-6">
           <Avatar className="w-24 h-24 ring-4 ring-white shadow-lg">
