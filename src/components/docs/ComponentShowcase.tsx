@@ -71,7 +71,9 @@ export function ComponentShowcase({
 
       <CardContent>
         <Tabs defaultValue="preview" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList
+            className={`grid w-full ${typescript ? "grid-cols-4" : "grid-cols-3"}`}
+          >
             <TabsTrigger value="preview" className="flex items-center gap-2">
               <Eye className="h-4 w-4" />
               Preview
@@ -81,6 +83,15 @@ export function ComponentShowcase({
               Code
             </TabsTrigger>
             {props.length > 0 && <TabsTrigger value="props">Props</TabsTrigger>}
+            {typescript && (
+              <TabsTrigger
+                value="typescript"
+                className="flex items-center gap-2"
+              >
+                <FileText className="h-4 w-4" />
+                TypeScript
+              </TabsTrigger>
+            )}
           </TabsList>
 
           <TabsContent value="preview" className="mt-6">
