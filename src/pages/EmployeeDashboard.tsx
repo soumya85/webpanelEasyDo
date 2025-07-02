@@ -2663,25 +2663,11 @@ export default function EmployeeDashboard() {
                     </div>
                   </button>
                 </PopoverTrigger>
-                <PopoverContent
-                  className="w-auto p-0 z-50"
-                  align="start"
-                  onOpenAutoFocus={(e) => e.preventDefault()}
-                  onClick={(e) => e.stopPropagation()}
-                >
+                <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
                     selected={otRequestDate}
-                    onSelect={(date) => {
-                      setOtRequestDate(date);
-                      // Close the popover after selection
-                      const popoverTrigger = document.querySelector(
-                        '[data-state="open"]',
-                      );
-                      if (popoverTrigger) {
-                        (popoverTrigger as HTMLElement).click();
-                      }
-                    }}
+                    onSelect={setOtRequestDate}
                     disabled={(date) => {
                       const today = new Date();
                       today.setHours(0, 0, 0, 0);
