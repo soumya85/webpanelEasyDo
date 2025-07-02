@@ -107,6 +107,7 @@ export default function EmployeeDashboard() {
   const [otRequestDate, setOtRequestDate] = useState<Date | undefined>(
     new Date(),
   );
+  const [otDatePickerOpen, setOtDatePickerOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
