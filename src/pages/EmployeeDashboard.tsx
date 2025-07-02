@@ -2668,9 +2668,11 @@ export default function EmployeeDashboard() {
                     mode="single"
                     selected={otRequestDate}
                     onSelect={setOtRequestDate}
-                    disabled={(date) =>
-                      date < new Date() || date < new Date("1900-01-01")
-                    }
+                    disabled={(date) => {
+                      const today = new Date();
+                      today.setHours(0, 0, 0, 0);
+                      return date < today;
+                    }}
                     initialFocus
                   />
                 </PopoverContent>
