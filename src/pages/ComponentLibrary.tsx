@@ -294,6 +294,26 @@ const SalesRegisterDemo = () => {
   );
 };
 
+const LeaveRequestCardDemo = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (data: any) => {
+    console.log("Leave request submitted:", data);
+    // Handle form submission here
+  };
+
+  return (
+    <>
+      <LeaveRequestCard onClick={() => setIsModalOpen(true)} />
+      <LeaveRequestModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onSubmit={handleSubmit}
+      />
+    </>
+  );
+};
+
 export default function ComponentLibrary() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
