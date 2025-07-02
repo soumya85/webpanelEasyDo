@@ -3499,11 +3499,19 @@ const Chats: React.FC = () => {
 
         {/* Main Content Area */}
         <div
-          className="flex pt-[30px]"
-          style={{ height: "calc(100vh - 30px)" }}
+          className={cn(
+            "flex fixed top-0",
+            isExpanded ? "left-[280px]" : "left-[103px]",
+          )}
+          style={{
+            height: "calc(100vh - 161px)", // Adjust height for 75px margin
+            marginTop: "75px",
+            width: isExpanded ? "calc(100vw - 280px)" : "calc(100vw - 103px)", // Account for sidebar width
+            right: 0,
+          }}
         >
           {/* Left Panel - Chat Contacts */}
-          <div className="w-1/3 min-w-[300px] max-w-[400px]">
+          <div className="w-1/3 min-w-[300px] max-w-[400px] overflow-y-auto">
             <ChatContactsList
               chatItems={filteredChats}
               selectedChat={selectedChat}
