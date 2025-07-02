@@ -3493,7 +3493,11 @@ export default function EmployeeDashboard() {
 
             {/* Camera Option */}
             <button
-              onClick={() => triggerFileUpload("camera")}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("camera");
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
