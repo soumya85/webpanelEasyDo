@@ -2900,11 +2900,11 @@ export default function EmployeeDashboard() {
           {/* Company Name Display */}
           <div className="mb-6 p-4 bg-gray-100 rounded-lg">
             <p className="text-[#4766E5] text-lg font-medium">
-              Liberty Highrise Pvt Ltd
+              Liberty Righrise Pvt Ltd
             </p>
           </div>
 
-          <div className="space-y-4 pb-8 max-w-2xl">
+          <div className="space-y-4 pb-2 max-w-2xl">
             {/* Title Field */}
             <div className="space-y-2">
               <Input
