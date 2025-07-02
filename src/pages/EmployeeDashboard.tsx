@@ -108,6 +108,12 @@ export default function EmployeeDashboard() {
     new Date(),
   );
   const [otDatePickerOpen, setOtDatePickerOpen] = useState(false);
+
+  // File input refs for attachment options
+  const scanFileInputRef = useRef<HTMLInputElement>(null);
+  const documentsFileInputRef = useRef<HTMLInputElement>(null);
+  const cameraFileInputRef = useRef<HTMLInputElement>(null);
+  const photosFileInputRef = useRef<HTMLInputElement>(null);
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
