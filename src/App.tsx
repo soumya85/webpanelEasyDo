@@ -37,6 +37,11 @@ import SamplePage3 from "@/pages/SamplePage3";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import PendingApprovals from "./pages/PendingApprovals";
 import AttendanceReport from "./pages/AttendanceReport";
+import SalesRegisterInvoice from "./pages/SalesRegisterInvoice";
+import ExpenseReport from "./pages/ExpenseReport";
+import Approvals from "./pages/Approvals";
+import SalaryStatement from "./pages/SalaryStatement";
+import TaskReport from "./pages/TaskReport";
 
 const queryClient = new QueryClient();
 
@@ -94,6 +99,12 @@ const AppContent = () => {
                     <Route path="/leave" element={<Leave />} />
                      <Route path="/pending-approvals" element={<PendingApprovals />} />
                       <Route path="/attendance-report" element={<AttendanceReport />} />
+                      <Route path="/pending-approvals" element={<PendingApprovals />} />
+                      <Route path="/sales-register" element={<SalesRegisterInvoice />} />
+                      <Route path="/operational-expenses" element={<ExpenseReport />} />
+                      <Route path="/approvals-report" element={<Approvals />} />
+                      <Route path="/salary-statement" element={<SalaryStatement />} />
+                    <Route path="/task-report" element={<TaskReport />} />
                     <Route path="/notes-reminder" element={<NotesReminder />} />
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/sample-page-1" element={<SamplePage1 />} />
