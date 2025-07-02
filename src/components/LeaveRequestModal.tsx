@@ -68,6 +68,9 @@ export function LeaveRequestModal({
     "approved" | "pending" | "availed"
   >("approved");
   const [isLeaveRulesOpen, setIsLeaveRulesOpen] = useState(false);
+  const [calendarView, setCalendarView] = useState<"day" | "list">("day");
+  const [currentMonth, setCurrentMonth] = useState(new Date(2025, 4)); // May 2025
+  const [selectedDate, setSelectedDate] = useState(new Date(2025, 4, 14)); // May 14, 2025
 
   const scanFileInputRef = useRef<HTMLInputElement>(null);
   const documentsFileInputRef = useRef<HTMLInputElement>(null);
