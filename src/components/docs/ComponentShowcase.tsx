@@ -9,7 +9,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Copy, Check, Code, Eye } from "lucide-react";
+import { Copy, Check, Code, Eye, FileText } from "lucide-react";
 
 interface ComponentShowcaseProps {
   title: string;
@@ -24,6 +24,12 @@ interface ComponentShowcaseProps {
     required?: boolean;
   }>;
   variants?: string[];
+  typescript?: {
+    filePath: string;
+    startLine: number;
+    endLine?: number;
+    importPath?: string;
+  };
 }
 
 export function ComponentShowcase({
