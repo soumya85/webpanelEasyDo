@@ -3463,36 +3463,77 @@ const Chats: React.FC = () => {
         {/* Fixed Chat Subheader - Simplified to match screenshot */}
         <div
           className={cn(
-            "fixed top-[86px] right-0 z-20 px-6 py-6 border-b border-gray-200 bg-white transition-all duration-300",
+            "fixed top-[86px] right-0 z-20 px-6 py-3 border-b border-gray-200 bg-white transition-all duration-300",
             isExpanded ? "left-[280px]" : "left-[103px]",
           )}
         >
           {/* Chat Title and Filter Tabs */}
-          <div className="flex items-center gap-6">
-            <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center gap-6">
+              <h1 className="text-xl font-semibold text-gray-900">Chats</h1>
 
-            {/* Filter Tabs - matching screenshot style */}
-            <div className="flex gap-2">
-              {filterTabs.map((filter) => {
-                const count = getFilterCount(filter);
-                return (
-                  <button
-                    key={filter}
-                    onClick={() => setSelectedFilter(filter)}
-                    className={cn(
-                      "px-3 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-2",
-                      selectedFilter === filter
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200",
-                    )}
-                  >
-                    <span>{filter}</span>
-                    <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
-                      {count}
-                    </span>
-                  </button>
-                );
-              })}
+              {/* Search Bar */}
+              <div className="relative">
+                <Input
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search"
+                  className="pl-10 w-80 h-10 rounded-lg border-gray-300 bg-gray-50"
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              </div>
+
+              {/* Filter Tabs - matching screenshot style */}
+              <div className="flex gap-1">
+                {filterTabs.map((filter) => {
+                  const count = getFilterCount(filter);
+                  return (
+                    <button
+                      key={filter}
+                      onClick={() => setSelectedFilter(filter)}
+                      className={cn(
+                        "px-2 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1",
+                        selectedFilter === filter
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                      )}
+                    >
+                      <span>{filter}</span>
+                      <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Metric Boxes - Far Right */}
+            <div className="flex items-center gap-2">
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">134</div>
+                <div className="text-[10px] text-gray-600 font-medium">
+                  My Tasks
+                </div>
+              </div>
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">23</div>
+                <div className="text-[10px] text-gray-600 font-medium">
+                  Delegated Tasks
+                </div>
+              </div>
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">8</div>
+                <div className="text-[10px] text-gray-600 font-medium">
+                  Meet
+                </div>
+              </div>
+              <div className="bg-gray-100 rounded px-3 py-1.5 text-center min-w-[70px]">
+                <div className="text-lg font-bold text-blue-500">7</div>
+                <div className="text-[10px] text-gray-600 font-medium">
+                  Notes & Reminder
+                </div>
+              </div>
             </div>
           </div>
         </div>
