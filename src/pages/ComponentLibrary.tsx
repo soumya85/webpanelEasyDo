@@ -426,30 +426,27 @@ export function CompanyAttendanceWidget() {
 }`}
                     props={[
                       {
-                        name: "id",
+                        name: "className",
                         type: "string",
-                        description: "Unique identifier for the card",
-                      },
-                      {
-                        name: "index",
-                        type: "number",
-                        description: "Index position for card ordering",
-                      },
-                      {
-                        name: "size",
-                        type: "CardSize",
                         default: "undefined",
-                        description: "Optional size configuration for the card",
+                        description:
+                          "Additional CSS classes for styling customization",
                       },
                       {
-                        name: "onResize",
+                        name: "data",
+                        type: "AttendanceData",
+                        description:
+                          "Company attendance data including present, absent, holiday counts",
+                      },
+                      {
+                        name: "onViewReport",
                         type: "function",
                         default: "undefined",
                         description:
-                          "Optional callback function for card resizing",
+                          "Optional callback function for viewing detailed reports",
                       },
                     ]}
-                    variants={["default", "resizable", "interactive"]}
+                    variants={["default", "with-modal", "company-wide"]}
                   />
                 </ComponentSection>
 
