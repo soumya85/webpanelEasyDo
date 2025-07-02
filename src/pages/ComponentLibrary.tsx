@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ChevronDown } from "lucide-react";
 import { ComponentSection } from "@/components/docs/ComponentSection";
@@ -59,8 +72,12 @@ export default function ComponentLibrary() {
             {/* Dashboard Type Selector */}
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg font-semibold text-foreground">Dashboard Components</h3>
-                <p className="text-sm text-muted-foreground">Select the dashboard type to view relevant components</p>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Dashboard Components
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Select the dashboard type to view relevant components
+                </p>
               </div>
               <Select value={dashboardType} onValueChange={setDashboardType}>
                 <SelectTrigger className="w-64">
@@ -79,15 +96,15 @@ export default function ComponentLibrary() {
                   title="Employee Performance"
                   description="Components for tracking and displaying employee performance metrics"
                 >
-              <ComponentShowcase
-                title="Performance Meter"
-                description="A comprehensive performance dashboard with gauge visualization and detailed metrics breakdown"
-                component={
-                  <div className="w-full max-w-md mx-auto">
-                    <PerformanceMeter />
-                  </div>
-                }
-                code={`import PerformanceMeter from "@/components/PerformanceMeter";
+                  <ComponentShowcase
+                    title="Performance Meter"
+                    description="A comprehensive performance dashboard with gauge visualization and detailed metrics breakdown"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <PerformanceMeter />
+                      </div>
+                    }
+                    code={`import PerformanceMeter from "@/components/PerformanceMeter";
 
 export function EmployeePerformanceWidget() {
   return (
@@ -96,37 +113,37 @@ export function EmployeePerformanceWidget() {
     </div>
   );
 }`}
-                props={[
-                  {
-                    name: "overallScore",
-                    type: "number",
-                    default: "25.5",
-                    description: "The overall performance score percentage",
-                  },
-                  {
-                    name: "performanceData",
-                    type: "Array<{category: string, percentage: number}>",
-                    description:
-                      "Array of performance categories and their scores",
-                  },
-                ]}
-                variants={["default", "with-modal"]}
-              />
-            </ComponentSection>
+                    props={[
+                      {
+                        name: "overallScore",
+                        type: "number",
+                        default: "25.5",
+                        description: "The overall performance score percentage",
+                      },
+                      {
+                        name: "performanceData",
+                        type: "Array<{category: string, percentage: number}>",
+                        description:
+                          "Array of performance categories and their scores",
+                      },
+                    ]}
+                    variants={["default", "with-modal"]}
+                  />
+                </ComponentSection>
 
-            <ComponentSection
-              title="Employee Attendance"
-              description="Components for tracking and displaying employee attendance data"
-            >
-              <ComponentShowcase
-                title="Attendance Summary"
-                description="A comprehensive attendance dashboard with detailed metrics, calendar view, and interactive modal with analytics"
-                component={
-                  <div className="w-full max-w-md mx-auto">
-                    <AttendanceSummary />
-                  </div>
-                }
-                code={`import AttendanceSummary from "@/components/AttendanceSummary";
+                <ComponentSection
+                  title="Employee Attendance"
+                  description="Components for tracking and displaying employee attendance data"
+                >
+                  <ComponentShowcase
+                    title="Attendance Summary"
+                    description="A comprehensive attendance dashboard with detailed metrics, calendar view, and interactive modal with analytics"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <AttendanceSummary />
+                      </div>
+                    }
+                    code={`import AttendanceSummary from "@/components/AttendanceSummary";
 
 export function EmployeeAttendanceWidget() {
   return (
@@ -135,38 +152,38 @@ export function EmployeeAttendanceWidget() {
     </div>
   );
 }`}
-                props={[
-                  {
-                    name: "className",
-                    type: "string",
-                    default: "undefined",
-                    description:
-                      "Additional CSS classes for styling customization",
-                  },
-                  {
-                    name: "data",
-                    type: "AttendanceData",
-                    description:
-                      "Attendance data including present, absent, leave, late, holidays, and summary statistics",
-                  },
-                ]}
-                variants={["default", "with-modal", "interactive"]}
-              />
-            </ComponentSection>
+                    props={[
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description:
+                          "Additional CSS classes for styling customization",
+                      },
+                      {
+                        name: "data",
+                        type: "AttendanceData",
+                        description:
+                          "Attendance data including present, absent, leave, late, holidays, and summary statistics",
+                      },
+                    ]}
+                    variants={["default", "with-modal", "interactive"]}
+                  />
+                </ComponentSection>
 
-            <ComponentSection
-              title="Employee Wages & Payroll"
-              description="Components for displaying employee salary, earnings, deductions, and payroll information"
-            >
-              <ComponentShowcase
-                title="Wages Summary"
-                description="A comprehensive wages dashboard showing earnings, deductions, and net pay with detailed payslip modal"
-                component={
-                  <div className="w-full max-w-md mx-auto">
-                    <WagesSummary />
-                  </div>
-                }
-                code={`import WagesSummary from "@/components/WagesSummary";
+                <ComponentSection
+                  title="Employee Wages & Payroll"
+                  description="Components for displaying employee salary, earnings, deductions, and payroll information"
+                >
+                  <ComponentShowcase
+                    title="Wages Summary"
+                    description="A comprehensive wages dashboard showing earnings, deductions, and net pay with detailed payslip modal"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <WagesSummary />
+                      </div>
+                    }
+                    code={`import WagesSummary from "@/components/WagesSummary";
 
 export function EmployeeWagesWidget() {
   return (
@@ -175,45 +192,45 @@ export function EmployeeWagesWidget() {
     </div>
   );
 }`}
-                props={[
-                  {
-                    name: "className",
-                    type: "string",
-                    default: "undefined",
-                    description:
-                      "Additional CSS classes for styling customization",
-                  },
-                  {
-                    name: "month",
-                    type: "string",
-                    default: "May 2025",
-                    description:
-                      "The month and year for which wages are displayed",
-                  },
-                  {
-                    name: "wagesData",
-                    type: "Array<{label: string, amount: string, color: string}>",
-                    description:
-                      "Array of wage components including earnings, deductions, and net pay",
-                  },
-                ]}
-                variants={["default", "with-modal", "interactive"]}
-              />
-            </ComponentSection>
+                    props={[
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description:
+                          "Additional CSS classes for styling customization",
+                      },
+                      {
+                        name: "month",
+                        type: "string",
+                        default: "May 2025",
+                        description:
+                          "The month and year for which wages are displayed",
+                      },
+                      {
+                        name: "wagesData",
+                        type: "Array<{label: string, amount: string, color: string}>",
+                        description:
+                          "Array of wage components including earnings, deductions, and net pay",
+                      },
+                    ]}
+                    variants={["default", "with-modal", "interactive"]}
+                  />
+                </ComponentSection>
 
-            <ComponentSection
-              title="Employee Leave Management"
-              description="Components for tracking and managing employee leave balances and requests"
-            >
-              <ComponentShowcase
-                title="Leave Balance"
-                description="A comprehensive leave balance dashboard showing different leave types (Earned, Sick, Casual, Other) with approval status and detailed modal"
-                component={
-                  <div className="w-full max-w-md mx-auto">
-                    <LeaveBalance />
-                  </div>
-                }
-                code={`import LeaveBalance from "@/components/LeaveBalance";
+                <ComponentSection
+                  title="Employee Leave Management"
+                  description="Components for tracking and managing employee leave balances and requests"
+                >
+                  <ComponentShowcase
+                    title="Leave Balance"
+                    description="A comprehensive leave balance dashboard showing different leave types (Earned, Sick, Casual, Other) with approval status and detailed modal"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <LeaveBalance />
+                      </div>
+                    }
+                    code={`import LeaveBalance from "@/components/LeaveBalance";
 
 export function EmployeeLeaveWidget() {
   return (
@@ -222,50 +239,52 @@ export function EmployeeLeaveWidget() {
     </div>
   );
 }`}
-                props={[
-                  {
-                    name: "className",
-                    type: "string",
-                    default: "undefined",
-                    description:
-                      "Additional CSS classes for styling customization",
-                  },
-                  {
-                    name: "leaveData",
-                    type: "Array<{label: string, value: string, color: string}>",
-                    description:
-                      "Array of leave types with their balances (Earned, Sick, Casual, Other)",
-                  },
-                  {
-                    name: "approvedCount",
-                    type: "number",
-                    default: "3",
-                    description: "Number of approved leave requests",
-                  },
-                  {
-                    name: "pendingCount",
-                    type: "number",
-                    default: "0",
-                    description: "Number of pending leave requests",
-                  },
-                ]}
-                variants={["default", "with-modal", "with-status-badges"]}
-              />
-            </ComponentSection>
+                    props={[
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description:
+                          "Additional CSS classes for styling customization",
+                      },
+                      {
+                        name: "leaveData",
+                        type: "Array<{label: string, value: string, color: string}>",
+                        description:
+                          "Array of leave types with their balances (Earned, Sick, Casual, Other)",
+                      },
+                      {
+                        name: "approvedCount",
+                        type: "number",
+                        default: "3",
+                        description: "Number of approved leave requests",
+                      },
+                      {
+                        name: "pendingCount",
+                        type: "number",
+                        default: "0",
+                        description: "Number of pending leave requests",
+                      },
+                    ]}
+                    variants={["default", "with-modal", "with-status-badges"]}
+                  />
+                </ComponentSection>
 
-            <ComponentSection
-              title="Company Holidays & Events"
-              description="Components for displaying company holidays, events, and calendar information"
-            >
-              <ComponentShowcase
-                title="Upcoming Holidays"
-                description="A holiday calendar widget showing upcoming company holidays with details like date, type, location, and additional holiday count"
-                component={
-                  <div className="w-full max-w-md mx-auto">
-                    <UpcomingHolidays onViewDetails={() => setIsHolidayModalOpen(true)} />
-                  </div>
-                }
-                code={`import UpcomingHolidays from "@/components/UpcomingHolidays";
+                <ComponentSection
+                  title="Company Holidays & Events"
+                  description="Components for displaying company holidays, events, and calendar information"
+                >
+                  <ComponentShowcase
+                    title="Upcoming Holidays"
+                    description="A holiday calendar widget showing upcoming company holidays with details like date, type, location, and additional holiday count"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <UpcomingHolidays
+                          onViewDetails={() => setIsHolidayModalOpen(true)}
+                        />
+                      </div>
+                    }
+                    code={`import UpcomingHolidays from "@/components/UpcomingHolidays";
 
 export function CompanyHolidaysWidget() {
   return (
@@ -274,38 +293,172 @@ export function CompanyHolidaysWidget() {
     </div>
   );
 }`}
-                props={[
-                  {
-                    name: "className",
-                    type: "string",
-                    default: "undefined",
-                    description:
-                      "Additional CSS classes for styling customization",
-                  },
-                  {
-                    name: "holidayData",
-                    type: "Array<{name: string, date: string, type: string, location: string}>",
-                    description:
-                      "Array of upcoming holidays with their details",
-                  },
-                  {
-                    name: "branch",
-                    type: "string",
-                    default: "Head Office",
-                    description:
-                      "The branch/location for which holidays are displayed",
-                  },
-                  {
-                    name: "remainingCount",
-                    type: "number",
-                    default: "5",
-                    description:
-                      "Number of additional holidays available in calendar",
-                  },
-                ]}
-                variants={["default", "with-modal", "branch-specific"]}
-              />
-            </ComponentSection>
+                    props={[
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description:
+                          "Additional CSS classes for styling customization",
+                      },
+                      {
+                        name: "holidayData",
+                        type: "Array<{name: string, date: string, type: string, location: string}>",
+                        description:
+                          "Array of upcoming holidays with their details",
+                      },
+                      {
+                        name: "branch",
+                        type: "string",
+                        default: "Head Office",
+                        description:
+                          "The branch/location for which holidays are displayed",
+                      },
+                      {
+                        name: "remainingCount",
+                        type: "number",
+                        default: "5",
+                        description:
+                          "Number of additional holidays available in calendar",
+                      },
+                    ]}
+                    variants={["default", "with-modal", "branch-specific"]}
+                  />
+                </ComponentSection>
+              </>
+            )}
+
+            {/* Company Dashboard Components */}
+            {dashboardType === "company" && (
+              <>
+                <ComponentSection
+                  title="Company Attendance Management"
+                  description="Components for managing and tracking employee attendance across the organization"
+                >
+                  <ComponentShowcase
+                    title="Company Attendance Overview"
+                    description="A comprehensive company-wide attendance tracking card showing monthly summaries and statistics"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <AttendanceCard id="attendance-demo" index={0} />
+                      </div>
+                    }
+                    code={`import { AttendanceCard } from "@/components/cards/AttendanceCard";
+
+export function CompanyAttendanceWidget() {
+  return (
+    <div className="w-full">
+      <AttendanceCard id="attendance" index={0} />
+    </div>
+  );
+}`}
+                    props={[
+                      {
+                        name: "id",
+                        type: "string",
+                        description: "Unique identifier for the card",
+                      },
+                      {
+                        name: "index",
+                        type: "number",
+                        description: "Index position for card ordering",
+                      },
+                      {
+                        name: "size",
+                        type: "CardSize",
+                        default: "undefined",
+                        description: "Optional size configuration for the card",
+                      },
+                      {
+                        name: "onResize",
+                        type: "function",
+                        default: "undefined",
+                        description:
+                          "Optional callback function for card resizing",
+                      },
+                    ]}
+                    variants={["default", "resizable", "interactive"]}
+                  />
+                </ComponentSection>
+
+                <ComponentSection
+                  title="Employee Management"
+                  description="Components for tracking and managing individual employee status and attendance"
+                >
+                  <ComponentShowcase
+                    title="Employee Attendance Tracking"
+                    description="A detailed employee attendance card with branch filtering, status tracking, and employee details"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <EmployeeAttendanceCard />
+                      </div>
+                    }
+                    code={`import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
+
+export function EmployeeTrackingWidget() {
+  return (
+    <div className="w-full">
+      <EmployeeAttendanceCard />
+    </div>
+  );
+}`}
+                    props={[
+                      {
+                        name: "onDateClick",
+                        type: "function",
+                        default: "undefined",
+                        description:
+                          "Optional callback function for date selection",
+                      },
+                    ]}
+                    variants={["default", "with-filters", "interactive"]}
+                  />
+                </ComponentSection>
+
+                <ComponentSection
+                  title="Company Holidays & Events"
+                  description="Components for managing company-wide holidays, events, and calendar information"
+                >
+                  <ComponentShowcase
+                    title="Company Holiday Management"
+                    description="A comprehensive holiday management widget for viewing and managing company holidays with branch filtering"
+                    component={
+                      <div className="w-full max-w-md mx-auto">
+                        <UpcomingHolidays
+                          onViewDetails={() => setIsHolidayModalOpen(true)}
+                        />
+                      </div>
+                    }
+                    code={`import UpcomingHolidays from "@/components/UpcomingHolidays";
+
+export function CompanyHolidayWidget() {
+  return (
+    <div className="w-full">
+      <UpcomingHolidays onViewDetails={() => openHolidayModal()} />
+    </div>
+  );
+}`}
+                    props={[
+                      {
+                        name: "onViewDetails",
+                        type: "function",
+                        default: "undefined",
+                        description:
+                          "Callback function to open detailed holiday modal",
+                      },
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description:
+                          "Additional CSS classes for styling customization",
+                      },
+                    ]}
+                    variants={["default", "with-modal", "company-wide"]}
+                  />
+                </ComponentSection>
+              </>
+            )}
           </TabsContent>
         </Tabs>
       </div>
