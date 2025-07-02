@@ -114,6 +114,35 @@ export default function EmployeeDashboard() {
   const documentsFileInputRef = useRef<HTMLInputElement>(null);
   const cameraFileInputRef = useRef<HTMLInputElement>(null);
   const photosFileInputRef = useRef<HTMLInputElement>(null);
+
+  // File handling functions
+  const handleFileSelection = (type: string, files: FileList | null) => {
+    if (files && files.length > 0) {
+      const file = files[0];
+      console.log(`${type} file selected:`, file.name);
+      // Here you can add actual file handling logic
+      setIsAttachmentModalOpen(false);
+    }
+  };
+
+  const triggerFileUpload = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    switch (type) {
+      case "scan":
+        scanFileInputRef.current?.click();
+        break;
+      case "documents":
+        documentsFileInputRef.current?.click();
+        break;
+      case "camera":
+        cameraFileInputRef.current?.click();
+        break;
+      case "photos":
+        photosFileInputRef.current?.click();
+        break;
+    }
+  };
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
