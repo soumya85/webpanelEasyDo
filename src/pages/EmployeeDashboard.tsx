@@ -3479,13 +3479,7 @@ export default function EmployeeDashboard() {
 
             {/* Camera Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("camera");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("camera");
-                }
-              }}
+              onClick={() => triggerFileUpload("camera")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
