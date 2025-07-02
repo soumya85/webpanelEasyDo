@@ -19,6 +19,9 @@ import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
 
 export default function ComponentLibrary() {
+  const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState("Head Office");
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
