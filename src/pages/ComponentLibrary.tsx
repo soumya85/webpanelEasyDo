@@ -29,6 +29,8 @@ import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
 import { AttendanceCard } from "@/components/cards/AttendanceCard";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
+import { LeaveRequestCard } from "@/components/LeaveRequestCard";
+import { LeaveRequestModal } from "@/components/LeaveRequestModal";
 
 // Demo components for Company Dashboard
 
