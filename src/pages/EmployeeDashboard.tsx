@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
 import { useGlobalTranslation } from "@/hooks/useGlobalTranslation";
 import AttendanceSummary from "@/components/AttendanceSummary";
@@ -107,6 +107,42 @@ export default function EmployeeDashboard() {
   const [otRequestDate, setOtRequestDate] = useState<Date | undefined>(
     new Date(),
   );
+  const [otDatePickerOpen, setOtDatePickerOpen] = useState(false);
+
+  // File input refs for attachment options
+  const scanFileInputRef = useRef<HTMLInputElement>(null);
+  const documentsFileInputRef = useRef<HTMLInputElement>(null);
+  const cameraFileInputRef = useRef<HTMLInputElement>(null);
+  const photosFileInputRef = useRef<HTMLInputElement>(null);
+
+  // File handling functions
+  const handleFileSelection = (type: string, files: FileList | null) => {
+    if (files && files.length > 0) {
+      const file = files[0];
+      console.log(`${type} file selected:`, file.name);
+      // Here you can add actual file handling logic
+      setIsAttachmentModalOpen(false);
+    }
+  };
+
+  const triggerFileUpload = (
+    type: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    switch (type) {
+      case "scan":
+        scanFileInputRef.current?.click();
+        break;
+      case "documents":
+        documentsFileInputRef.current?.click();
+        break;
+      case "camera":
+        cameraFileInputRef.current?.click();
+        break;
+      case "photos":
+        photosFileInputRef.current?.click();
+        break;
+    }
+  };
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
   // Holiday data for different branches
@@ -2635,9 +2671,15 @@ export default function EmployeeDashboard() {
 
             {/* Start Date */}
             <div className="space-y-2">
-              <Popover>
+              <Popover
+                open={otDatePickerOpen}
+                onOpenChange={setOtDatePickerOpen}
+              >
                 <PopoverTrigger asChild>
-                  <button className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors">
+                  <button
+                    type="button"
+                    className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors"
+                  >
                     <span className="text-base text-[#283C50] font-medium">
                       Start date
                     </span>
@@ -2663,16 +2705,36 @@ export default function EmployeeDashboard() {
                     </div>
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={otRequestDate}
-                    onSelect={setOtRequestDate}
-                    disabled={(date) =>
-                      date < new Date() || date < new Date("1900-01-01")
-                    }
-                    initialFocus
-                  />
+                <PopoverContent
+                  className="w-auto p-0 z-[9999] pointer-events-auto"
+                  align="start"
+                  side="bottom"
+                  sideOffset={8}
+                  avoidCollisions={true}
+                  collisionPadding={20}
+                  style={{
+                    position: "fixed",
+                    zIndex: 9999,
+                    pointerEvents: "auto",
+                  }}
+                >
+                  <div className="pointer-events-auto relative z-[9999]">
+                    <Calendar
+                      mode="single"
+                      selected={otRequestDate}
+                      onSelect={(date) => {
+                        setOtRequestDate(date);
+                        setOtDatePickerOpen(false);
+                      }}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        return date < today;
+                      }}
+                      initialFocus
+                      className="pointer-events-auto"
+                    />
+                  </div>
                 </PopoverContent>
               </Popover>
             </div>
@@ -3369,13 +3431,7 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("scan");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("scan");
-                }
-              }}
+              onClick={() => triggerFileUpload("scan")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3394,6 +3450,31 @@ export default function EmployeeDashboard() {
                 </svg>
               </div>
               <span className="text-lg text-[#4766E5] font-medium">Scan</span>
+            </button>
+
+            {/* Documents Option */}
+            <button
+              onClick={() => triggerFileUpload("documents")}
+              className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
+            >
+              <div className="w-8 h-8 flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-[#4766E5]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <span className="text-lg text-[#4766E5] font-medium">
+                Documents
+              </span>
             </button>
 
             {/* Camera Option */}
