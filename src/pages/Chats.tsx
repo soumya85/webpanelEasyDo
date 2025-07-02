@@ -3520,7 +3520,7 @@ const Chats: React.FC = () => {
               onSearchChange={setSearchQuery}
               selectedFilter={selectedFilter}
               onFilterChange={setSelectedFilter}
-              hideHeader={true}
+              hideHeader={false}
             />
           </div>
 
