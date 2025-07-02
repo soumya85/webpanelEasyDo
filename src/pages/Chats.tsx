@@ -3499,12 +3499,15 @@ const Chats: React.FC = () => {
 
         {/* Main Content Area */}
         <div
-          className="flex fixed"
+          className={cn(
+            "flex fixed top-0",
+            isExpanded ? "left-[280px]" : "left-[103px]",
+          )}
           style={{
             height: "calc(100vh - 161px)", // Adjust height for 75px margin
             marginTop: "75px",
-            width: "calc(100vw - 280px)", // Account for sidebar width when expanded
-            left: "280px", // Position after sidebar
+            width: isExpanded ? "calc(100vw - 280px)" : "calc(100vw - 103px)", // Account for sidebar width
+            right: 0,
           }}
         >
           {/* Left Panel - Chat Contacts */}
