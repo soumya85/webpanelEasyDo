@@ -611,6 +611,12 @@ export function CompanyHolidaysWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "branch-specific"]}
+                    typescript={{
+                      filePath: "src/components/UpcomingHolidays.tsx",
+                      startLine: 1,
+                      endLine: 78,
+                      importPath: `import UpcomingHolidays from "@/components/UpcomingHolidays";`,
+                    }}
                   />
                 </ComponentSection>
               </>
