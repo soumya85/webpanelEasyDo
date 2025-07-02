@@ -3499,14 +3499,16 @@ const Chats: React.FC = () => {
 
         {/* Main Content Area */}
         <div
-          className="flex"
+          className="flex fixed"
           style={{
             height: "calc(100vh - 161px)", // Adjust height for 75px margin
             marginTop: "75px",
+            width: "calc(100vw - 280px)", // Account for sidebar width when expanded
+            left: "280px", // Position after sidebar
           }}
         >
           {/* Left Panel - Chat Contacts */}
-          <div className="w-1/3 min-w-[300px] max-w-[400px]">
+          <div className="w-1/3 min-w-[300px] max-w-[400px] overflow-y-auto">
             <ChatContactsList
               chatItems={filteredChats}
               selectedChat={selectedChat}
