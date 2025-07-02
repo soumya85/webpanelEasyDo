@@ -3197,7 +3197,7 @@ export default function EmployeeDashboard() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+          <div className="mt-4 pt-3 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleSalaryAdvanceSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
@@ -4310,7 +4310,7 @@ export default function EmployeeDashboard() {
                                   ✨
                                 </div>
                                 <div className="absolute -bottom-2 -left-2 text-2xl">
-                                  ✨
+                                  ��
                                 </div>
                               </div>
                             </div>
