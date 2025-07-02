@@ -17,7 +17,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Calendar } from "lucide-react";
+import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { Button } from "@/components/ui/button";
 import { ComponentSection } from "@/components/docs/ComponentSection";
 import { ComponentShowcase } from "@/components/docs/ComponentShowcase";
 import PerformanceMeter from "@/components/PerformanceMeter";
