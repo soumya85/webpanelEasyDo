@@ -295,7 +295,7 @@ const SalesRegisterDemo = () => {
 export default function ComponentLibrary() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
-  const [dashboardType, setDashboardType] = useState("company");
+  const [dashboardType, setDashboardType] = useState("employee");
 
   return (
     <div className="min-h-screen bg-background">
