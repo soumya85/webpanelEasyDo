@@ -1,21 +1,8 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ChevronDown } from "lucide-react";
 import { ComponentSection } from "@/components/docs/ComponentSection";
@@ -72,12 +59,8 @@ export default function ComponentLibrary() {
             {/* Dashboard Type Selector */}
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg font-semibold text-foreground">
-                  Dashboard Components
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Select the dashboard type to view relevant components
-                </p>
+                <h3 className="text-lg font-semibold text-foreground">Dashboard Components</h3>
+                <p className="text-sm text-muted-foreground">Select the dashboard type to view relevant components</p>
               </div>
               <Select value={dashboardType} onValueChange={setDashboardType}>
                 <SelectTrigger className="w-64">
@@ -89,10 +72,13 @@ export default function ComponentLibrary() {
                 </SelectContent>
               </Select>
             </div>
-            <ComponentSection
-              title="Employee Performance"
-              description="Components for tracking and displaying employee performance metrics"
-            >
+            {/* Employee Dashboard Components */}
+            {dashboardType === "employee" && (
+              <>
+                <ComponentSection
+                  title="Employee Performance"
+                  description="Components for tracking and displaying employee performance metrics"
+                >
               <ComponentShowcase
                 title="Performance Meter"
                 description="A comprehensive performance dashboard with gauge visualization and detailed metrics breakdown"
@@ -276,9 +262,7 @@ export function EmployeeLeaveWidget() {
                 description="A holiday calendar widget showing upcoming company holidays with details like date, type, location, and additional holiday count"
                 component={
                   <div className="w-full max-w-md mx-auto">
-                    <UpcomingHolidays
-                      onViewDetails={() => setIsHolidayModalOpen(true)}
-                    />
+                    <UpcomingHolidays onViewDetails={() => setIsHolidayModalOpen(true)} />
                   </div>
                 }
                 code={`import UpcomingHolidays from "@/components/UpcomingHolidays";
