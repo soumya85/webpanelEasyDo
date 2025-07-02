@@ -1574,7 +1574,7 @@ export default function EmployeeDashboard() {
 
                 <Button
                   onClick={() => setIsLeaveCalendarOpen(true)}
-                  className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 h-12"
+                  className="w-full bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12"
                 >
                   <svg
                     className="w-4 h-4 mr-2"
