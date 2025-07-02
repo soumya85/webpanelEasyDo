@@ -11,6 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -4122,6 +4123,9 @@ export default function SamplePage3() {
       {/* Branch Selection Modal */}
       <Dialog open={showBranchSheet} onOpenChange={setShowBranchSheet}>
         <DialogContent className="max-w-md max-h-[90vh] flex flex-col p-0">
+          <VisuallyHidden>
+            <DialogTitle>Branch Selection</DialogTitle>
+          </VisuallyHidden>
           {/* Header */}
           <div className="flex items-center justify-between p-4 pb-3">
             <h2 className="text-xl font-semibold text-gray-900">Branch</h2>
@@ -4287,6 +4291,9 @@ export default function SamplePage3() {
         onOpenChange={setShowTeamMembersPopup}
       >
         <DialogContent className="max-w-xs p-0">
+          <VisuallyHidden>
+            <DialogTitle>Team Members</DialogTitle>
+          </VisuallyHidden>
           {/* Simple list of team member names */}
           <div className="bg-white rounded-lg overflow-hidden relative">
             {/* Close button */}
