@@ -438,6 +438,12 @@ export function EmployeeAttendanceWidget() {
                       },
                     ]}
                     variants={["default", "with-modal", "interactive"]}
+                    typescript={{
+                      filePath: "src/components/AttendanceSummary.tsx",
+                      startLine: 1,
+                      endLine: 120,
+                      importPath: `import AttendanceSummary from "@/components/AttendanceSummary";`,
+                    }}
                   />
                 </ComponentSection>
 
