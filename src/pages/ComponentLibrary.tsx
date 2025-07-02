@@ -619,6 +619,84 @@ export function CompanyHolidaysWidget() {
                     }}
                   />
                 </ComponentSection>
+
+                <ComponentSection
+                  title="Employee Leave Request System"
+                  description="Complete leave request system with card trigger and modal interface for employee leave management"
+                >
+                  <ComponentShowcase
+                    title="Leave Request Card & Modal"
+                    description="Interactive leave request card that triggers a comprehensive modal with form fields, file attachments, leave balance display, and calendar integration"
+                    component={
+                      <div className="w-full max-w-sm mx-auto">
+                        <LeaveRequestCardDemo />
+                      </div>
+                    }
+                    code={`import { LeaveRequestCard } from "@/components/LeaveRequestCard";
+import { LeaveRequestModal } from "@/components/LeaveRequestModal";
+import { useState } from "react";
+
+export function LeaveRequestSystem() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (data) => {
+    console.log("Leave request submitted:", data);
+    // Handle form submission
+  };
+
+  return (
+    <>
+      <LeaveRequestCard onClick={() => setIsModalOpen(true)} />
+      <LeaveRequestModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onSubmit={handleSubmit}
+      />
+    </>
+  );
+}`}
+                    props={[
+                      {
+                        name: "onClick",
+                        type: "() => void",
+                        default: "undefined",
+                        description: "Callback function when card is clicked",
+                      },
+                      {
+                        name: "open",
+                        type: "boolean",
+                        default: "false",
+                        description: "Controls modal visibility",
+                      },
+                      {
+                        name: "onOpenChange",
+                        type: "(open: boolean) => void",
+                        default: "undefined",
+                        description: "Callback when modal open state changes",
+                      },
+                      {
+                        name: "onSubmit",
+                        type: "(data: LeaveFormData) => void",
+                        default: "undefined",
+                        description: "Callback when leave request is submitted",
+                      },
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description: "Additional CSS classes for card styling",
+                      },
+                    ]}
+                    variants={["default", "with-custom-styling", "integrated"]}
+                    typescript={{
+                      filePath: "src/components/LeaveRequestCard.tsx",
+                      startLine: 1,
+                      endLine: 35,
+                      importPath: `import { LeaveRequestCard } from "@/components/LeaveRequestCard";
+import { LeaveRequestModal } from "@/components/LeaveRequestModal";`,
+                    }}
+                  />
+                </ComponentSection>
               </>
             )}
 
