@@ -160,6 +160,102 @@ export function ComponentShowcase({
               </div>
             </TabsContent>
           )}
+
+          {typescript && (
+            <TabsContent value="typescript" className="mt-6">
+              <div className="space-y-4">
+                <div className="bg-muted p-4 rounded-lg">
+                  <h4 className="font-semibold mb-3 text-sm">
+                    File Information
+                  </h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground font-medium">
+                        File Path:
+                      </span>
+                      <code className="bg-background px-2 py-1 rounded text-xs">
+                        {typescript.filePath}
+                      </code>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground font-medium">
+                        Lines:
+                      </span>
+                      <code className="bg-background px-2 py-1 rounded text-xs">
+                        {typescript.startLine}
+                        {typescript.endLine ? `-${typescript.endLine}` : ""}
+                      </code>
+                    </div>
+                    {typescript.importPath && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-muted-foreground font-medium">
+                          Import:
+                        </span>
+                        <code className="bg-background px-2 py-1 rounded text-xs">
+                          {typescript.importPath}
+                        </code>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="bg-muted p-4 rounded-lg">
+                  <h4 className="font-semibold mb-3 text-sm">Quick Import</h4>
+                  <div className="relative">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="absolute top-2 right-2 z-10"
+                      onClick={() => {
+                        const importStatement =
+                          typescript.importPath ||
+                          `import { ${title.replace(/\s+/g, "")} } from "${typescript.filePath.replace(/^src\//, "@/")}";`;
+                        navigator.clipboard.writeText(importStatement);
+                      }}
+                    >
+                      <Copy className="h-4 w-4" />
+                    </Button>
+                    <pre className="bg-background p-3 rounded text-xs overflow-x-auto">
+                      <code>
+                        {typescript.importPath ||
+                          `import { ${title.replace(/\s+/g, "")} } from "${typescript.filePath.replace(/^src\//, "@/")}";`}
+                      </code>
+                    </pre>
+                  </div>
+                </div>
+
+                <div className="bg-muted p-4 rounded-lg">
+                  <h4 className="font-semibold mb-3 text-sm">
+                    Development Info
+                  </h4>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-muted-foreground font-medium block mb-1">
+                        Component Type:
+                      </span>
+                      <Badge variant="secondary" className="text-xs">
+                        {typescript.filePath.includes("/ui/")
+                          ? "UI Component"
+                          : typescript.filePath.includes("/layout/")
+                            ? "Layout Component"
+                            : typescript.filePath.includes("/docs/")
+                              ? "Documentation Component"
+                              : "Business Component"}
+                      </Badge>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground font-medium block mb-1">
+                        Framework:
+                      </span>
+                      <Badge variant="secondary" className="text-xs">
+                        React + TypeScript
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          )}
         </Tabs>
       </CardContent>
     </Card>
