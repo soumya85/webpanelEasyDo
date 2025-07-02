@@ -2671,27 +2671,35 @@ export default function EmployeeDashboard() {
                   </button>
                 </PopoverTrigger>
                 <PopoverContent
-                  className="w-auto p-0 z-[100]"
+                  className="w-auto p-0 z-[9999] pointer-events-auto"
                   align="start"
                   side="bottom"
                   sideOffset={8}
                   avoidCollisions={true}
                   collisionPadding={20}
+                  style={{
+                    position: "fixed",
+                    zIndex: 9999,
+                    pointerEvents: "auto",
+                  }}
                 >
-                  <Calendar
-                    mode="single"
-                    selected={otRequestDate}
-                    onSelect={(date) => {
-                      setOtRequestDate(date);
-                      setOtDatePickerOpen(false);
-                    }}
-                    disabled={(date) => {
-                      const today = new Date();
-                      today.setHours(0, 0, 0, 0);
-                      return date < today;
-                    }}
-                    initialFocus
-                  />
+                  <div className="pointer-events-auto relative z-[9999]">
+                    <Calendar
+                      mode="single"
+                      selected={otRequestDate}
+                      onSelect={(date) => {
+                        setOtRequestDate(date);
+                        setOtDatePickerOpen(false);
+                      }}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        return date < today;
+                      }}
+                      initialFocus
+                      className="pointer-events-auto"
+                    />
+                  </div>
                 </PopoverContent>
               </Popover>
             </div>
