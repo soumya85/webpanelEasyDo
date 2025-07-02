@@ -3508,13 +3508,7 @@ export default function EmployeeDashboard() {
 
             {/* Photos Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("photos");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("photos");
-                }
-              }}
+              onClick={() => triggerFileUpload("photos")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
               <div className="w-8 h-8 flex items-center justify-center">
