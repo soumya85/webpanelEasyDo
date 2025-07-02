@@ -3431,13 +3431,7 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("scan");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("scan");
-                }
-              }}
+              onClick={() => triggerFileUpload("scan")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3460,13 +3454,7 @@ export default function EmployeeDashboard() {
 
             {/* Documents Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("documents");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("documents");
-                }
-              }}
+              onClick={() => triggerFileUpload("documents")}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
