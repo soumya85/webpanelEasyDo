@@ -5586,6 +5586,61 @@ export default function EmployeeDashboard() {
           setIsReportsModalOpen(true);
         }}
       />
+
+      {/* Hidden File Input Elements for Attachments */}
+      <input
+        ref={scanFileInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx,.txt"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "scan");
+          }
+        }}
+      />
+      <input
+        ref={documentsFileInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx,.txt,.xlsx,.xls"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "documents");
+          }
+        }}
+      />
+      <input
+        ref={cameraFileInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "camera");
+          }
+        }}
+      />
+      <input
+        ref={photosFileInputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "photos");
+          }
+        }}
+      />
     </div>
   );
 }
