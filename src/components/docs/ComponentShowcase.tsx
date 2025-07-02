@@ -39,6 +39,7 @@ export function ComponentShowcase({
   code,
   props = [],
   variants = [],
+  typescript,
 }: ComponentShowcaseProps) {
   const [copied, setCopied] = useState(false);
 
