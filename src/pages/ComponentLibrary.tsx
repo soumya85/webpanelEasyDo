@@ -30,63 +30,264 @@ import UpcomingHolidays from "@/components/UpcomingHolidays";
 import { AttendanceCard } from "@/components/cards/AttendanceCard";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 
-// Standalone Company Attendance Component for demo purposes
-const CompanyAttendanceDemo = () => {
+// Demo components for Company Dashboard
+
+const CompanyPerformanceDemo = () => {
   return (
-    <div className="w-full h-full">
-      <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10),0px_4px_8px_0px_rgba(0,0,0,0.05)] p-4 flex flex-col h-full min-h-[280px]">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 rounded-lg bg-green-50">
-            <Calendar className="w-5 h-5 text-green-600" />
-          </div>
-          <h3 className="text-sm font-semibold text-[#283C50]">
-            Monthly Attendance Summary
-          </h3>
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4 min-h-[280px]">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-blue-50">
+          <ChevronDown className="w-5 h-5 text-blue-600 rotate-180" />
         </div>
-
-        <div className="text-xs text-gray-600 mb-3">- June 2025</div>
-        <div className="text-xs text-gray-600 mb-4">
-          Total Days: 30 | Working Days: 22
-        </div>
-
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          <div className="text-center p-2 bg-green-50 rounded">
-            <div className="text-lg font-bold text-green-600">22</div>
-            <div className="text-xs text-green-600">Present</div>
-          </div>
-          <div className="text-center p-2 bg-red-50 rounded">
-            <div className="text-lg font-bold text-red-600">0</div>
-            <div className="text-xs text-red-600">Absent</div>
-          </div>
-          <div className="text-center p-2 bg-blue-50 rounded">
-            <div className="text-lg font-bold text-blue-600">5</div>
-            <div className="text-xs text-blue-600">Sunday</div>
-          </div>
-          <div className="text-center p-2 bg-orange-50 rounded">
-            <div className="text-lg font-bold text-orange-600">3</div>
-            <div className="text-xs text-orange-600">Holiday</div>
-          </div>
-          <div className="text-center p-2 bg-purple-50 rounded">
-            <div className="text-lg font-bold text-purple-600">0</div>
-            <div className="text-xs text-purple-600">Late</div>
-          </div>
-          <div className="text-center p-2 bg-pink-50 rounded">
-            <div className="text-lg font-bold text-pink-600">0</div>
-            <div className="text-xs text-pink-600">Red Flag</div>
-          </div>
-        </div>
-
-        <Button
-          className="w-full h-8 text-xs text-gray-700 hover:opacity-90"
-          style={{
-            backgroundColor: "#eff5ff",
-            borderColor: "#bfdbfe",
-            borderWidth: "1px",
-          }}
-        >
-          View Detailed Report
-        </Button>
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          Company Performance
+        </h3>
       </div>
+
+      <div className="grid grid-cols-2 gap-3 mb-4">
+        <div className="text-center p-3 bg-blue-50 rounded">
+          <div className="text-lg font-bold text-blue-600">85%</div>
+          <div className="text-xs text-blue-600">Overall Efficiency</div>
+        </div>
+        <div className="text-center p-3 bg-green-50 rounded">
+          <div className="text-lg font-bold text-green-600">₹2.4M</div>
+          <div className="text-xs text-green-600">Monthly Revenue</div>
+        </div>
+        <div className="text-center p-3 bg-purple-50 rounded">
+          <div className="text-lg font-bold text-purple-600">328</div>
+          <div className="text-xs text-purple-600">Total Employees</div>
+        </div>
+        <div className="text-center p-3 bg-orange-50 rounded">
+          <div className="text-lg font-bold text-orange-600">7</div>
+          <div className="text-xs text-orange-600">Active Branches</div>
+        </div>
+      </div>
+
+      <Button className="w-full h-8 text-xs" variant="outline">
+        View Detailed Analytics
+      </Button>
+    </div>
+  );
+};
+
+const EmployeeRegisterDemo = () => {
+  return (
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4 min-h-[280px]">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          Employee Register
+        </h3>
+        <div className="text-xs text-blue-600">328 Total</div>
+      </div>
+
+      <div className="space-y-3 mb-4">
+        <div className="flex items-center gap-3 p-2 bg-gray-50 rounded">
+          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+            AM
+          </div>
+          <div className="flex-1">
+            <div className="text-xs font-medium text-gray-900">
+              Abhijit Mondal
+            </div>
+            <div className="text-xs text-gray-500">Jetty Sircar • Haldia</div>
+          </div>
+          <div className="text-xs text-green-600 bg-green-100 px-2 py-1 rounded">
+            Active
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 p-2 bg-gray-50 rounded">
+          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+            AM
+          </div>
+          <div className="flex-1">
+            <div className="text-xs font-medium text-gray-900">
+              Abhijit Mukherjee
+            </div>
+            <div className="text-xs text-gray-500">
+              Operation Executive • Head Office
+            </div>
+          </div>
+          <div className="text-xs text-green-600 bg-green-100 px-2 py-1 rounded">
+            Active
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 p-2 bg-gray-50 rounded">
+          <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+            AR
+          </div>
+          <div className="flex-1">
+            <div className="text-xs font-medium text-gray-900">Ahsan Raza</div>
+            <div className="text-xs text-gray-500">Manager • Head Office</div>
+          </div>
+          <div className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">
+            Manager
+          </div>
+        </div>
+      </div>
+
+      <Button className="w-full h-8 text-xs" variant="outline">
+        View All Employees
+      </Button>
+    </div>
+  );
+};
+
+const OperationalExpensesDemo = () => {
+  return (
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4 min-h-[280px]">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-green-50">
+          <ChevronDown className="w-5 h-5 text-green-600" />
+        </div>
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          Operational Expenses
+        </h3>
+      </div>
+
+      <div className="text-xs text-gray-600 mb-3">May 2025</div>
+
+      <div className="space-y-3 mb-4">
+        <div className="flex justify-between">
+          <span className="text-xs text-gray-600">Total Amount</span>
+          <span className="text-xs font-semibold text-gray-900">₹1,24,500</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-xs text-gray-600">Paid Out Expenses</span>
+          <span className="text-xs font-semibold text-green-600">₹98,200</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-xs text-gray-600">Pending Expenses</span>
+          <span className="text-xs font-semibold text-orange-600">₹26,300</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        <div className="text-center p-2 bg-blue-50 rounded">
+          <div className="text-sm font-bold text-blue-600">42%</div>
+          <div className="text-xs text-blue-600">Travel</div>
+        </div>
+        <div className="text-center p-2 bg-green-50 rounded">
+          <div className="text-sm font-bold text-green-600">28%</div>
+          <div className="text-xs text-green-600">Office</div>
+        </div>
+        <div className="text-center p-2 bg-purple-50 rounded">
+          <div className="text-sm font-bold text-purple-600">30%</div>
+          <div className="text-xs text-purple-600">Other</div>
+        </div>
+      </div>
+
+      <Button className="w-full h-8 text-xs" variant="outline">
+        View Expense Report
+      </Button>
+    </div>
+  );
+};
+
+const BranchManagementDemo = () => {
+  return (
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4 min-h-[280px]">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-purple-50">
+          <ChevronDown className="w-5 h-5 text-purple-600" />
+        </div>
+        <h3 className="text-sm font-semibold text-[#283C50]">
+          Branch Management
+        </h3>
+      </div>
+
+      <div className="space-y-3 mb-4">
+        <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+          <div>
+            <div className="text-xs font-medium text-gray-900">Head Office</div>
+            <div className="text-xs text-gray-500">Kolkata, West Bengal</div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs font-semibold text-gray-900">
+              156 employees
+            </div>
+            <div className="text-xs text-green-600">95% attendance</div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+          <div>
+            <div className="text-xs font-medium text-gray-900">
+              Delhi Branch
+            </div>
+            <div className="text-xs text-gray-500">New Delhi, Delhi</div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs font-semibold text-gray-900">
+              84 employees
+            </div>
+            <div className="text-xs text-green-600">92% attendance</div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+          <div>
+            <div className="text-xs font-medium text-gray-900">
+              Mumbai Branch
+            </div>
+            <div className="text-xs text-gray-500">Mumbai, Maharashtra</div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs font-semibold text-gray-900">
+              88 employees
+            </div>
+            <div className="text-xs text-orange-600">88% attendance</div>
+          </div>
+        </div>
+      </div>
+
+      <Button className="w-full h-8 text-xs" variant="outline">
+        Manage All Branches
+      </Button>
+    </div>
+  );
+};
+
+const SalesRegisterDemo = () => {
+  return (
+    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4 min-h-[280px]">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-indigo-50">
+          <ChevronDown className="w-5 h-5 text-indigo-600" />
+        </div>
+        <h3 className="text-sm font-semibold text-[#283C50]">Sales Register</h3>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 mb-4">
+        <div className="text-center p-2 bg-green-50 rounded">
+          <div className="text-lg font-bold text-green-600">₹8.2M</div>
+          <div className="text-xs text-green-600">Total Sales</div>
+        </div>
+        <div className="text-center p-2 bg-blue-50 rounded">
+          <div className="text-lg font-bold text-blue-600">142</div>
+          <div className="text-xs text-blue-600">Active Clients</div>
+        </div>
+      </div>
+
+      <div className="space-y-2 mb-4">
+        <div className="flex justify-between text-xs">
+          <span className="text-gray-600">Top Performer:</span>
+          <span className="font-semibold text-gray-900">Abhijit Mondal</span>
+        </div>
+        <div className="flex justify-between text-xs">
+          <span className="text-gray-600">Best Branch:</span>
+          <span className="font-semibold text-gray-900">Head Office</span>
+        </div>
+        <div className="flex justify-between text-xs">
+          <span className="text-gray-600">Monthly Target:</span>
+          <span className="font-semibold text-green-600">108% achieved</span>
+        </div>
+      </div>
+
+      <Button className="w-full h-8 text-xs" variant="outline">
+        View Sales Report
+      </Button>
     </div>
   );
 };
