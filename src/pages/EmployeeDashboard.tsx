@@ -2938,6 +2938,9 @@ export default function EmployeeDashboard() {
 
             {/* Start Date Field */}
             <div className="space-y-2">
+              <label className="text-base font-medium text-[#283C50]">
+                Start Date
+              </label>
               <Input
                 type="date"
                 value={salaryAdvanceFormData.startDate}
