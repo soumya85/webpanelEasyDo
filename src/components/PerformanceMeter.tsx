@@ -17,6 +17,7 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 export default function PerformanceMeter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
