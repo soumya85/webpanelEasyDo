@@ -2635,29 +2635,46 @@ export default function EmployeeDashboard() {
 
             {/* Start Date */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border">
-                <span className="text-base text-[#283C50] font-medium">
-                  Start date
-                </span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-[#4766E5] text-base font-medium">
-                    18 Jun 2025
-                  </span>
-                  <svg
-                    className="w-5 h-5 text-[#4766E5]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </div>
-              </div>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button className="w-full flex items-center justify-between bg-gray-50 p-4 rounded-lg border hover:bg-gray-100 transition-colors">
+                    <span className="text-base text-[#283C50] font-medium">
+                      Start date
+                    </span>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-[#4766E5] text-base font-medium">
+                        {otRequestDate
+                          ? format(otRequestDate, "dd MMM yyyy")
+                          : "Select date"}
+                      </span>
+                      <svg
+                        className="w-5 h-5 text-[#4766E5]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={otRequestDate}
+                    onSelect={setOtRequestDate}
+                    disabled={(date) =>
+                      date < new Date() || date < new Date("1900-01-01")
+                    }
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
 
             {/* Notes (Optional) */}
