@@ -3463,7 +3463,7 @@ const Chats: React.FC = () => {
         {/* Fixed Chat Subheader - Simplified to match screenshot */}
         <div
           className={cn(
-            "fixed top-[86px] right-0 z-20 px-6 py-3 border-b border-gray-200 bg-white transition-all duration-300",
+            "fixed top-[86px] right-0 z-20 px-6 py-6 border-b border-gray-200 bg-white transition-all duration-300",
             isExpanded ? "left-[280px]" : "left-[103px]",
           )}
         >
@@ -3499,8 +3499,8 @@ const Chats: React.FC = () => {
 
         {/* Main Content Area */}
         <div
-          className="flex pt-[140px]"
-          style={{ height: "calc(100vh - 140px)" }}
+          className="flex pt-[30px]"
+          style={{ height: "calc(100vh - 30px)" }}
         >
           {/* Left Panel - Chat Contacts */}
           <div className="w-1/3 min-w-[300px] max-w-[400px]">
