@@ -128,20 +128,26 @@ export default function EmployeeDashboard() {
   const triggerFileUpload = (
     type: "scan" | "documents" | "camera" | "photos",
   ) => {
-    switch (type) {
-      case "scan":
-        scanFileInputRef.current?.click();
-        break;
-      case "documents":
-        documentsFileInputRef.current?.click();
-        break;
-      case "camera":
-        cameraFileInputRef.current?.click();
-        break;
-      case "photos":
-        photosFileInputRef.current?.click();
-        break;
-    }
+    // Close the attachment modal first
+    setIsAttachmentModalOpen(false);
+
+    // Use setTimeout to ensure the modal is closed before triggering file input
+    setTimeout(() => {
+      switch (type) {
+        case "scan":
+          scanFileInputRef.current?.click();
+          break;
+        case "documents":
+          documentsFileInputRef.current?.click();
+          break;
+        case "camera":
+          cameraFileInputRef.current?.click();
+          break;
+        case "photos":
+          photosFileInputRef.current?.click();
+          break;
+      }
+    }, 100);
   };
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
