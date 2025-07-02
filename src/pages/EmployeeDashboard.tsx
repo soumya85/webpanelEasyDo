@@ -3526,7 +3526,11 @@ export default function EmployeeDashboard() {
 
             {/* Photos Option */}
             <button
-              onClick={() => triggerFileUpload("photos")}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("photos");
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
               <div className="w-8 h-8 flex items-center justify-center">
