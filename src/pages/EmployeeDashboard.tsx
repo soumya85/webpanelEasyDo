@@ -2671,9 +2671,12 @@ export default function EmployeeDashboard() {
                   </button>
                 </PopoverTrigger>
                 <PopoverContent
-                  className="w-auto p-0"
+                  className="w-auto p-0 z-[100]"
                   align="start"
-                  sideOffset={4}
+                  side="bottom"
+                  sideOffset={8}
+                  avoidCollisions={true}
+                  collisionPadding={20}
                 >
                   <Calendar
                     mode="single"
