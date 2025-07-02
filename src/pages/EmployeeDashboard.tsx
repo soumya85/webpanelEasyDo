@@ -128,20 +128,26 @@ export default function EmployeeDashboard() {
   const triggerFileUpload = (
     type: "scan" | "documents" | "camera" | "photos",
   ) => {
-    switch (type) {
-      case "scan":
-        scanFileInputRef.current?.click();
-        break;
-      case "documents":
-        documentsFileInputRef.current?.click();
-        break;
-      case "camera":
-        cameraFileInputRef.current?.click();
-        break;
-      case "photos":
-        photosFileInputRef.current?.click();
-        break;
-    }
+    // Close the attachment modal first
+    setIsAttachmentModalOpen(false);
+
+    // Use setTimeout to ensure the modal is closed before triggering file input
+    setTimeout(() => {
+      switch (type) {
+        case "scan":
+          scanFileInputRef.current?.click();
+          break;
+        case "documents":
+          documentsFileInputRef.current?.click();
+          break;
+        case "camera":
+          cameraFileInputRef.current?.click();
+          break;
+        case "photos":
+          photosFileInputRef.current?.click();
+          break;
+      }
+    }, 100);
   };
   const [viewMode, setViewMode] = useState<"day" | "list">("day");
 
@@ -2894,11 +2900,11 @@ export default function EmployeeDashboard() {
           {/* Company Name Display */}
           <div className="mb-6 p-4 bg-gray-100 rounded-lg">
             <p className="text-[#4766E5] text-lg font-medium">
-              Liberty Highrise Pvt Ltd
+              Liberty Righrise Pvt Ltd
             </p>
           </div>
 
-          <div className="space-y-4 pb-8 max-w-2xl">
+          <div className="space-y-4 pb-2 max-w-2xl">
             {/* Title Field */}
             <div className="space-y-2">
               <Input
@@ -2918,7 +2924,7 @@ export default function EmployeeDashboard() {
             <div className="space-y-2">
               <Input
                 placeholder={t("amountTotal")}
-                type="number"
+                type="text"
                 value={salaryAdvanceFormData.amount}
                 onChange={(e) =>
                   setSalaryAdvanceFormData((prev) => ({
@@ -2931,7 +2937,10 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Start Date Field */}
-            <div className="space-y-2">
+            <div className="flex items-center gap-4">
+              <label className="text-base font-medium text-[#283C50] min-w-[100px]">
+                Start Date
+              </label>
               <Input
                 type="date"
                 value={salaryAdvanceFormData.startDate}
@@ -2941,7 +2950,7 @@ export default function EmployeeDashboard() {
                     startDate: e.target.value,
                   }))
                 }
-                className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                className="flex-1 h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
               />
             </div>
 
@@ -3188,7 +3197,7 @@ export default function EmployeeDashboard() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 flex flex-row justify-start space-x-2 border-t">
+          <div className="mt-4 pt-3 flex flex-row justify-start space-x-2 border-t">
             <Button
               onClick={handleSalaryAdvanceSubmit}
               className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
@@ -3198,7 +3207,7 @@ export default function EmployeeDashboard() {
             <Button
               variant="outline"
               onClick={() => setIsSalaryAdvanceModalOpen(false)}
-              className="h-12 px-8"
+              className="h-12 px-8 border-zinc-50/5 text-gray-600 hover:bg-gray-100"
             >
               Cancel
             </Button>
@@ -3431,7 +3440,11 @@ export default function EmployeeDashboard() {
           <div className="space-y-0">
             {/* Scan Option */}
             <button
-              onClick={() => triggerFileUpload("scan")}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("scan");
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3454,7 +3467,11 @@ export default function EmployeeDashboard() {
 
             {/* Documents Option */}
             <button
-              onClick={() => triggerFileUpload("documents")}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("documents");
+              }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
               <div className="w-8 h-8 flex items-center justify-center">
@@ -3479,12 +3496,10 @@ export default function EmployeeDashboard() {
 
             {/* Camera Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("camera");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("camera");
-                }
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("camera");
               }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
@@ -3514,12 +3529,10 @@ export default function EmployeeDashboard() {
 
             {/* Photos Option */}
             <button
-              onClick={() => {
-                if (isSalaryAdvanceModalOpen) {
-                  handleSalaryAdvanceAttachment("photos");
-                } else if (isReimburseRequestModalOpen) {
-                  handleReimburseAttachment("photos");
-                }
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFileUpload("photos");
               }}
               className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
@@ -5596,6 +5609,61 @@ export default function EmployeeDashboard() {
         onBackToReports={() => {
           setIsTaskReportModalOpen(false);
           setIsReportsModalOpen(true);
+        }}
+      />
+
+      {/* Hidden File Input Elements for Attachments */}
+      <input
+        ref={scanFileInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx,.txt"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "scan");
+          }
+        }}
+      />
+      <input
+        ref={documentsFileInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx,.txt,.xlsx,.xls"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "documents");
+          }
+        }}
+      />
+      <input
+        ref={cameraFileInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "camera");
+          }
+        }}
+      />
+      <input
+        ref={photosFileInputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleFileUpload(Array.from(files), "photos");
+          }
         }}
       />
     </div>
