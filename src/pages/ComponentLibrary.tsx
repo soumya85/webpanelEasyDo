@@ -245,7 +245,9 @@ export function EmployeeLeaveWidget() {
                 description="A holiday calendar widget showing upcoming company holidays with details like date, type, location, and additional holiday count"
                 component={
                   <div className="w-full max-w-md mx-auto">
-                    <UpcomingHolidays />
+                    <UpcomingHolidays
+                      onViewDetails={() => setIsHolidayModalOpen(true)}
+                    />
                   </div>
                 }
                 code={`import UpcomingHolidays from "@/components/UpcomingHolidays";
