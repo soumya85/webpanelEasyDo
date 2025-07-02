@@ -594,53 +594,18 @@ export function CompanyHolidaysWidget() {
 
             {/* Company Dashboard Components */}
             {dashboardType === "company" && (
-              <>
-                <ComponentSection
-                  title="Company Overview & Analytics"
-                  description="High-level company performance and statistics components for executive dashboards"
-                >
-                  <ComponentShowcase
-                    title="Company Performance Overview"
-                    description="A comprehensive company-wide performance tracking card showing key metrics and KPIs"
-                    component={
-                      <div className="w-full max-w-md mx-auto">
-                        <CompanyPerformanceDemo />
-                      </div>
-                    }
-                    code={`import { TrendingUp, Users, Building2, DollarSign } from "lucide-react";
-
-export function CompanyPerformanceWidget() {
-  return (
-    <div className="bg-white rounded-[10px] border-b-[6px] border-[#4766E5] shadow-sm p-4">
-      <h3 className="text-sm font-semibold text-[#283C50] mb-4">Company Performance</h3>
-      <div className="grid grid-cols-2 gap-3">
-        <div className="text-center p-3 bg-blue-50 rounded">
-          <TrendingUp className="w-6 h-6 text-blue-600 mx-auto mb-1" />
-          <div className="text-lg font-bold text-blue-600">85%</div>
-          <div className="text-xs text-blue-600">Overall Efficiency</div>
-        </div>
-        {/* More metrics... */}
-      </div>
-    </div>
-  );
-}`}
-                    props={[
-                      {
-                        name: "metrics",
-                        type: "PerformanceMetrics",
-                        description:
-                          "Company performance data including efficiency, revenue, employee count",
-                      },
-                      {
-                        name: "period",
-                        type: "string",
-                        default: "current-month",
-                        description: "Time period for the metrics display",
-                      },
-                    ]}
-                    variants={["default", "quarterly", "annual"]}
-                  />
-                </ComponentSection>
+              <div className="flex flex-col items-center justify-center py-16 text-center">
+                <div className="text-gray-400 mb-4">
+                  <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m13-8V9a2 2 0 00-2-2H9a2 2 0 00-2 2v2.172a2 2 0 00.586 1.414l2 2a2 2 0 001.414.586h.172a2 2 0 001.414-.586l2-2A2 2 0 0015 9V7a2 2 0 00-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-600 mb-2">No Company Dashboard Components Yet</h3>
+                <p className="text-gray-500 max-w-md">
+                  Company Dashboard components haven't been created yet. All existing components are designed for Employee Dashboard use cases.
+                </p>
+              </div>
+            )}
 
                 <ComponentSection
                   title="Employee Management"
