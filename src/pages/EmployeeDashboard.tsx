@@ -3207,7 +3207,7 @@ export default function EmployeeDashboard() {
             <Button
               variant="outline"
               onClick={() => setIsSalaryAdvanceModalOpen(false)}
-              className="h-12 px-8"
+              className="h-12 px-8 border-gray-800 text-gray-800 hover:bg-gray-100"
             >
               Cancel
             </Button>
@@ -4307,10 +4307,10 @@ export default function EmployeeDashboard() {
                                   <div className="text-6xl">👩‍💼</div>
                                 </div>
                                 <div className="absolute -top-2 -right-2 text-2xl">
-                                  ✨
+                                  ��
                                 </div>
                                 <div className="absolute -bottom-2 -left-2 text-2xl">
-                                  ��
+                                  ✨
                                 </div>
                               </div>
                             </div>
