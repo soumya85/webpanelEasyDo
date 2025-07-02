@@ -2937,8 +2937,8 @@ export default function EmployeeDashboard() {
             </div>
 
             {/* Start Date Field */}
-            <div className="space-y-2">
-              <label className="text-base font-medium text-[#283C50]">
+            <div className="flex items-center gap-4">
+              <label className="text-base font-medium text-[#283C50] min-w-[100px]">
                 Start Date
               </label>
               <Input
@@ -2950,7 +2950,7 @@ export default function EmployeeDashboard() {
                     startDate: e.target.value,
                   }))
                 }
-                className="w-full h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                className="flex-1 h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
               />
             </div>
 
