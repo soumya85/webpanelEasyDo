@@ -1249,6 +1249,16 @@ export default function EmployeeDashboard() {
         }}
       />
 
+      {/* OT Request Modal - Reusable Component */}
+      <OTRequestModal
+        open={isOTRequestModalOpen}
+        onOpenChange={setIsOTRequestModalOpen}
+        onSubmit={(data) => {
+          console.log("OT request submitted:", data);
+          // Handle form submission here
+        }}
+      />
+
       {/* Leave Calendar Modal */}
       <Dialog open={isLeaveCalendarOpen} onOpenChange={setIsLeaveCalendarOpen}>
         <DialogContent className="max-w-4xl h-[80vh] max-h-[80vh] overflow-hidden p-0 flex flex-col">
