@@ -91,4 +91,10 @@ export const navigationItems: NavigationItem[] = [
     icon: Layers,
     href: "/component-library",
   },
+  {
+    id: "extra",
+    labelKey: "extra",
+    icon: Star,
+    href: "/extra",
+  },
 ];
