@@ -251,7 +251,11 @@ export const useDashboardLayout = () => {
   const getSections = (): DashboardSection[] => [
     {
       id: "quick-overview",
-      title: t("quickOverview"),
+      title: `Today - ${new Date().toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })}`,
       cards: getCardsBySection("quick-overview"),
     },
     {
