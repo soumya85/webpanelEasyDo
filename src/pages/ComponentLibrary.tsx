@@ -31,6 +31,11 @@ import { AttendanceCard } from "@/components/cards/AttendanceCard";
 import EmployeeAttendanceCard from "@/components/cards/EmployeeAttendanceCard";
 import { LeaveRequestCard } from "@/components/LeaveRequestCard";
 import { LeaveRequestModal } from "@/components/LeaveRequestModal";
+import {
+  OTRequestCard,
+  OTRequestModal,
+  OTRequestSystem,
+} from "@/components/OTRequestCard";
 
 // Demo components for Company Dashboard
 
