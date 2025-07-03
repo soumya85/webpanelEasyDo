@@ -14,7 +14,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { json } from "stream/consumers";
 const Dashboard: React.FC = () => {
+
   const {
     sections,
     moveCard,
@@ -23,6 +25,7 @@ const Dashboard: React.FC = () => {
     resetLayout,
     isLoading,
   } = useDashboardLayout();
+
   const { t } = useTranslation();
 
   // Get time-based greeting
@@ -114,6 +117,7 @@ const Dashboard: React.FC = () => {
               cards={section.cards}
             >
               {section.cards.map((card, index) => (
+               
                 <CardFactory
                   key={card.id}
                   card={card}

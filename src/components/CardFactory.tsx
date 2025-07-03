@@ -11,6 +11,7 @@ import { NoticeCard } from "./cards/NoticeCard";
 import { AttendanceCard } from "./cards/AttendanceCard";
 import { SalaryCard } from "./cards/SalaryCard";
 import { PerformanceCard } from "./cards/PerformanceCard";
+import { TodayScheduleCard } from "./cards/TodayScheduleCard";
 
 interface CardFactoryProps {
   card: DashboardCard;
@@ -51,6 +52,8 @@ export const CardFactory: React.FC<CardFactoryProps> = ({
       return <SalaryCard {...commonProps} />;
     case "performance":
       return <PerformanceCard {...commonProps} />;
+    case "todaySchedule":
+      return <TodayScheduleCard {...commonProps} />;
 
     default:
       return null;

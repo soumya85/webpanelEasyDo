@@ -14,7 +14,8 @@ export interface DashboardCard {
     | "notice"
     | "attendance"
     | "salary"
-    | "performance";
+    | "performance"
+    | "todaySchedule";
   title: string;
   section: "quick-overview" | "productivity" | "information-hub";
   order: number;
@@ -64,11 +65,19 @@ const getDefaultLayout = (): DashboardCard[] => [
     size: "medium",
   },
   {
+    id: "todaySchedule",
+    type: "todaySchedule",
+    title: "todaySchedule",
+    section: "productivity",
+    order: 0,
+    size: "large",
+  },
+  {
     id: "chat",
     type: "chat",
     title: "teamChat",
     section: "productivity",
-    order: 0,
+    order: 1,
     size: "large",
   },
   {
@@ -76,7 +85,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     type: "workStatus",
     title: "workStatus",
     section: "productivity",
-    order: 1,
+    order: 2,
     size: "large",
   },
   {
