@@ -205,7 +205,7 @@ export function Header() {
         )}
       >
         {/* Left Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-0">
           {/* Sidebar Toggle */}
           <Button
             variant="ghost"
