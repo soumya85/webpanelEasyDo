@@ -14,9 +14,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { json } from "stream/consumers";
-const Dashboard: React.FC = () => {
 
+const Dashboard: React.FC = () => {
   const {
     sections,
     moveCard,
@@ -117,7 +116,6 @@ const Dashboard: React.FC = () => {
               cards={section.cards}
             >
               {section.cards.map((card, index) => (
-               
                 <CardFactory
                   key={card.id}
                   card={card}
