@@ -902,9 +902,18 @@ export function LeaveRequestModal({
               // Create a date string for comparison (YYYY-MM-DD format)
               const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
 
-              // Define specific dates for different states
-              const leaveDates = ["2025-05-14"]; // May 14, 2025
-              const absentDates = ["2025-06-18"]; // June 18, 2025
+              // Define specific dates for different states - Baskar Ghose's leave requests
+              const leaveDates = [
+                "2025-06-18", // June 18, 2025 - Approved sick leave (day 1)
+                "2025-06-19", // June 19, 2025 - Approved sick leave (day 2)
+                "2025-06-28", // June 28, 2025 - Rejected sick leave
+              ];
+              const absentDates = [
+                "2025-06-05", // June 5, 2025 - Absent
+                "2025-06-12", // June 12, 2025 - Absent
+                "2025-07-03", // July 3, 2025 - Absent
+                "2025-07-15", // July 15, 2025 - Absent
+              ];
 
               if (leaveDates.includes(dateString)) {
                 return "leave";
@@ -1054,27 +1063,38 @@ export function LeaveRequestModal({
                                 dateObj.date,
                               ).getDay() === 0;
 
-                            // Determine dot color based on specific dates
+                            // Determine dot color based on specific dates - Baskar Ghose's attendance
                             let dotColor = "bg-green-500"; // default present
+
+                            // Check for absent dates first (red dots)
                             if (
-                              currentMonth === 4 &&
-                              dateObj.date === 14 &&
+                              (currentMonth === 5 && // June
+                                (dateObj.date === 5 || dateObj.date === 12) &&
+                                dateObj.isCurrentMonth) ||
+                              (currentMonth === 6 && // July
+                                (dateObj.date === 3 || dateObj.date === 15) &&
+                                dateObj.isCurrentMonth)
+                            ) {
+                              dotColor = "bg-red-500"; // Absent days
+                            } else if (
+                              currentMonth === 5 && // June
+                              (dateObj.date === 18 || dateObj.date === 19) &&
                               dateObj.isCurrentMonth
                             ) {
-                              // May 14 - leave
+                              // June 18-19 - approved sick leave
                               dotColor = "bg-blue-500";
                             } else if (
-                              currentMonth === 5 &&
-                              dateObj.date === 18 &&
+                              currentMonth === 5 && // June
+                              dateObj.date === 28 &&
                               dateObj.isCurrentMonth
                             ) {
-                              // June 18 - absent
-                              dotColor = "bg-red-500";
+                              // June 28 - rejected sick leave (still shows red but different reason)
+                              dotColor = "bg-orange-500";
                             } else if (
-                              currentMonth === 5 &&
+                              (currentMonth === 5 || currentMonth === 6) && // June or July
                               dateObj.isCurrentMonth
                             ) {
-                              // Other June dates
+                              // Other June/July dates - present
                               dotColor = "bg-green-500";
                             }
 
@@ -1111,76 +1131,118 @@ export function LeaveRequestModal({
                       <div className="p-4">
                         {dateState === "leave" && (
                           <div className="bg-white rounded-lg border p-4">
-                            {/* Employee Info Row */}
-                            <div className="flex items-center justify-between mb-3">
-                              <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
-                                  <span className="text-white font-semibold text-sm">
-                                    SG
-                                  </span>
-                                </div>
-                                <div>
-                                  <div className="font-semibold text-gray-900 text-base">
-                                    Soumyadeep Goswami
+                            {(() => {
+                              const currentDateString = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
+
+                              // Determine leave details based on specific date
+                              let leaveDetails = {
+                                status: "Approved",
+                                statusColor: "bg-green-100 text-green-700",
+                                leaveType: "Sick Leave",
+                                duration: "",
+                                timestamp: "",
+                              };
+
+                              if (
+                                currentDateString === "2025-06-18" ||
+                                currentDateString === "2025-06-19"
+                              ) {
+                                // June 18-19: Approved 2-day sick leave
+                                leaveDetails = {
+                                  status: "Approved",
+                                  statusColor: "bg-green-100 text-green-700",
+                                  leaveType: "Sick Leave",
+                                  duration: "2 days from Jun 18 to Jun 19",
+                                  timestamp: "17 Jun 2025, 10:46 PM",
+                                };
+                              } else if (currentDateString === "2025-06-28") {
+                                // June 28: Rejected 1-day sick leave
+                                leaveDetails = {
+                                  status: "Rejected",
+                                  statusColor: "bg-red-100 text-red-700",
+                                  leaveType: "Sick Leave",
+                                  duration: "1 day Jun 28",
+                                  timestamp: "28 Jun 2025, 08:52 AM",
+                                };
+                              }
+
+                              return (
+                                <>
+                                  {/* Employee Info Row */}
+                                  <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center gap-3">
+                                      <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
+                                        <span className="text-white font-semibold text-sm">
+                                          BG
+                                        </span>
+                                      </div>
+                                      <div>
+                                        <div className="font-semibold text-gray-900 text-base">
+                                          Baskar Ghose
+                                        </div>
+                                        <div className="text-sm text-gray-600">
+                                          Liberty Highrise Pvt Ltd
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className={`px-3 py-1 text-sm font-medium rounded-md ${leaveDetails.statusColor}`}
+                                    >
+                                      {leaveDetails.status}
+                                    </div>
                                   </div>
-                                  <div className="text-sm text-gray-600">
-                                    Liberty Righrise Pvt Ltd
+
+                                  {/* Leave Type Row */}
+                                  <div className="flex items-center justify-between mb-3">
+                                    <div className="text-lg font-bold text-gray-900">
+                                      {leaveDetails.leaveType}
+                                    </div>
+                                    <div className="text-red-600 font-bold text-sm">
+                                      On Leave
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                              <div className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-md">
-                                Approved
-                              </div>
-                            </div>
 
-                            {/* Leave Type Row */}
-                            <div className="flex items-center justify-between mb-3">
-                              <div className="text-lg font-bold text-gray-900">
-                                Casual Leave
-                              </div>
-                              <div className="text-red-600 font-bold text-sm">
-                                On Leave
-                              </div>
-                            </div>
+                                  {/* Leave Duration Row */}
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <svg
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      className="w-4 h-4 text-red-500"
+                                    >
+                                      <rect
+                                        x="3"
+                                        y="4"
+                                        width="18"
+                                        height="18"
+                                        rx="2"
+                                        ry="2"
+                                      />
+                                      <line x1="16" y1="2" x2="16" y2="6" />
+                                      <line x1="8" y1="2" x2="8" y2="6" />
+                                      <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    <span className="font-bold text-gray-900">
+                                      {leaveDetails.duration}
+                                    </span>
+                                  </div>
 
-                            {/* Leave Duration Row */}
-                            <div className="flex items-center gap-2 mb-3">
-                              <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                className="w-4 h-4 text-gray-600"
-                              >
-                                <rect
-                                  x="3"
-                                  y="4"
-                                  width="18"
-                                  height="18"
-                                  rx="2"
-                                  ry="2"
-                                />
-                                <line x1="16" y1="2" x2="16" y2="6" />
-                                <line x1="8" y1="2" x2="8" y2="6" />
-                                <line x1="3" y1="10" x2="21" y2="10" />
-                              </svg>
-                              <span className="font-bold text-gray-900">
-                                1 day May 14
-                              </span>
-                            </div>
+                                  {/* Reporting Manager Row */}
+                                  <div className="text-sm text-gray-600 mb-2">
+                                    Reporting Manager -{" "}
+                                    <span className="font-semibold text-gray-900">
+                                      Bhaskar Sir
+                                    </span>
+                                  </div>
 
-                            {/* Reporting Manager Row */}
-                            <div className="text-sm text-gray-600 mb-2">
-                              Reporting Manager -{" "}
-                              <span className="font-semibold text-gray-900">
-                                Amulya Kumar Kar
-                              </span>
-                            </div>
-
-                            {/* Timestamp Row */}
-                            <div className="text-sm text-gray-500">
-                              12 May 2025, 08:14 PM
-                            </div>
+                                  {/* Timestamp Row */}
+                                  <div className="text-sm text-gray-500">
+                                    {leaveDetails.timestamp}
+                                  </div>
+                                </>
+                              );
+                            })()}
                           </div>
                         )}
 
@@ -1332,33 +1394,140 @@ export function LeaveRequestModal({
                         {selectedLeaveTab === "approved" ? (
                           /* Approved Leave Requests */
                           <div className="p-4">
-                            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
-                              <div className="text-blue-600 font-semibold text-sm mb-3">
-                                LEAVE APPROVAL
+                            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 mb-4">
+                              {/* Header with employee info and status */}
+                              <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
+                                    <span className="text-white font-semibold text-sm">
+                                      BG
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <div className="font-bold text-gray-900 text-lg">
+                                      BASKAR GHOSE
+                                    </div>
+                                    <div className="text-gray-600 text-sm">
+                                      Liberty Highrise Pvt Ltd
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Approved
+                                </div>
                               </div>
-                              <div className="flex items-start gap-3">
-                                <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
-                                  <span className="text-white font-semibold text-sm">
-                                    SG
-                                  </span>
+
+                              {/* Leave type heading */}
+                              <h3 className="text-lg font-bold text-gray-900 mb-3">
+                                Sick Leave
+                              </h3>
+
+                              {/* Leave duration */}
+                              <div className="flex items-center gap-2 mb-3">
+                                <svg
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  className="w-4 h-4 text-red-500"
+                                >
+                                  <rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="18"
+                                    rx="2"
+                                    ry="2"
+                                  />
+                                  <line x1="16" y1="2" x2="16" y2="6" />
+                                  <line x1="8" y1="2" x2="8" y2="6" />
+                                  <line x1="3" y1="10" x2="21" y2="10" />
+                                </svg>
+                                <span className="font-bold text-gray-900">
+                                  2 days from Jun 18 to Jun 19
+                                </span>
+                              </div>
+
+                              {/* Reporting Manager */}
+                              <div className="text-gray-600 text-sm mb-3">
+                                Reporting Manager -{" "}
+                                <span className="font-semibold text-gray-900">
+                                  Bhaskar Sir
+                                </span>
+                              </div>
+
+                              {/* Timestamp */}
+                              <div className="text-gray-500 text-sm">
+                                17 Jun 2025, 10:46 PM
+                              </div>
+                            </div>
+
+                            {/* Second leave request card */}
+                            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 mb-4">
+                              {/* Header with employee info and status */}
+                              <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
+                                    <span className="text-white font-semibold text-sm">
+                                      BG
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <div className="font-bold text-gray-900 text-lg">
+                                      BASKAR GHOSE
+                                    </div>
+                                    <div className="text-gray-600 text-sm">
+                                      Liberty Highrise Pvt Ltd
+                                    </div>
+                                  </div>
                                 </div>
-                                <div className="flex-1">
-                                  <div className="font-semibold text-gray-900 text-lg mb-1">
-                                    Soumyadeep Goswami
-                                  </div>
-                                  <div className="font-bold text-gray-900 text-base mb-1">
-                                    1 day May 14
-                                  </div>
-                                  <div className="text-gray-600 text-sm mb-1">
-                                    Head office
-                                  </div>
-                                  <div className="text-gray-900 font-semibold text-sm mb-3">
-                                    CASUAL LEAVE (CL)
-                                  </div>
-                                  <div className="text-gray-500 text-sm">
-                                    12 May, 2025 8:14 PM
-                                  </div>
+                                <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                  Rejected
                                 </div>
+                              </div>
+
+                              {/* Leave type heading */}
+                              <h3 className="text-lg font-bold text-gray-900 mb-3">
+                                Sick Leave
+                              </h3>
+
+                              {/* Leave duration */}
+                              <div className="flex items-center gap-2 mb-3">
+                                <svg
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  className="w-4 h-4 text-red-500"
+                                >
+                                  <rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="18"
+                                    rx="2"
+                                    ry="2"
+                                  />
+                                  <line x1="16" y1="2" x2="16" y2="6" />
+                                  <line x1="8" y1="2" x2="8" y2="6" />
+                                  <line x1="3" y1="10" x2="21" y2="10" />
+                                </svg>
+                                <span className="font-bold text-gray-900">
+                                  1 day Jun 28
+                                </span>
+                              </div>
+
+                              {/* Reporting Manager */}
+                              <div className="text-gray-600 text-sm mb-3">
+                                Reporting Manager -{" "}
+                                <span className="font-semibold text-gray-900">
+                                  Bhaskar Sir
+                                </span>
+                              </div>
+
+                              {/* Timestamp */}
+                              <div className="text-gray-500 text-sm">
+                                28 Jun 2025, 08:52 AM
                               </div>
                             </div>
                           </div>
