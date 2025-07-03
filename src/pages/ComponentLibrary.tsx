@@ -322,6 +322,18 @@ const LeaveRequestCardDemo = () => {
 export default function ComponentLibrary() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
+
+  // Demo component for OT Request Card
+  const OTRequestCardDemo = () => {
+    return (
+      <OTRequestSystem
+        onSubmit={(data) => {
+          console.log("OT request demo submitted:", data);
+          alert("OT request submitted successfully! (Demo mode)");
+        }}
+      />
+    );
+  };
   const [dashboardType, setDashboardType] = useState("employee");
 
   return (
