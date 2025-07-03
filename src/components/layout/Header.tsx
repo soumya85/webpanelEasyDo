@@ -135,7 +135,10 @@ export function Header() {
 
           {/* Chat Notification */}
           <div className="relative flex items-center justify-center">
-            <button className="flex items-center justify-center w-[22px] h-[22px]">
+            <button
+              className="flex items-center justify-center w-[22px] h-[22px]"
+              onClick={() => navigate("/chats")}
+            >
               <svg
                 width="22"
                 height="22"
@@ -289,7 +292,12 @@ export function Header() {
             />
 
             {/* Chat Notification */}
-            <Button variant="ghost" size="icon" className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              onClick={() => navigate("/chats")}
+            >
               <MessageSquare className="h-5 w-5 text-gray-500" />
               <NotificationBadge count={2} variant="success" />
             </Button>
