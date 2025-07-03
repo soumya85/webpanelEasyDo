@@ -1058,21 +1058,21 @@ export function LeaveRequestModal({
                                 dateObj.date,
                               ).getDay() === 0;
 
-                            // Determine dot color based on specific dates
+                            // Determine dot color based on specific dates - Baskar Ghose's leave
                             let dotColor = "bg-green-500"; // default present
                             if (
-                              currentMonth === 4 &&
-                              dateObj.date === 14 &&
+                              currentMonth === 5 && // June
+                              (dateObj.date === 18 || dateObj.date === 19) &&
                               dateObj.isCurrentMonth
                             ) {
-                              // May 14 - leave
+                              // June 18-19 - approved sick leave
                               dotColor = "bg-blue-500";
                             } else if (
-                              currentMonth === 5 &&
-                              dateObj.date === 18 &&
+                              currentMonth === 5 && // June
+                              dateObj.date === 28 &&
                               dateObj.isCurrentMonth
                             ) {
-                              // June 18 - absent
+                              // June 28 - rejected sick leave
                               dotColor = "bg-red-500";
                             } else if (
                               currentMonth === 5 &&
