@@ -22,7 +22,7 @@ export function Sidebar() {
       <aside
         className={cn(
           "fixed left-0 top-0 z-50 h-full bg-white border-r border-gray-400 transition-all duration-300 flex flex-col",
-          isExpanded ? "w-[280px]" : "w-[103px]",
+          isExpanded ? "w-[260px]" : "w-[103px]",
           // Mobile/Tablet behavior
           "lg:translate-x-0",
           isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
