@@ -67,6 +67,10 @@ const Login = () => {
     }
   };
 
+  const handleBackToQR = () => {
+    navigate("/login");
+  };
+
   const handleMobileNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, ""); // Only allow digits
     if (value.length <= 10) {
@@ -232,6 +236,16 @@ const Login = () => {
           >
             <ReactiveMultilingualText translationKey="sendOTP" />
           </Button>
+
+          {/* Back to QR Login */}
+          <div className="text-center pt-4">
+            <button
+              onClick={handleBackToQR}
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors underline underline-offset-2"
+            >
+              <ReactiveMultilingualText translationKey="backToQRLogin" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
