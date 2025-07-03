@@ -775,65 +775,9 @@ export default function EmployeeDashboard() {
     console.log(successMessage);
   };
 
-  const handleSalaryAdvanceSubmit = () => {
-    // Validate required fields
-    if (!salaryAdvanceFormData.title.trim()) {
-      alert("Please enter a title for your salary advance request.");
-      return;
-    }
-
-    if (
-      !salaryAdvanceFormData.amount ||
-      parseFloat(salaryAdvanceFormData.amount) <= 0
-    ) {
-      alert("Please enter a valid amount for your salary advance.");
-      return;
-    }
-
-    if (!salaryAdvanceFormData.startDate) {
-      alert("Please select a start date.");
-      return;
-    }
-
-    // Create submission data
-    const submissionData = {
-      id: Date.now().toString(),
-      title: salaryAdvanceFormData.title,
-      amount: parseFloat(salaryAdvanceFormData.amount),
-      startDate: salaryAdvanceFormData.startDate,
-      duration: salaryAdvanceFormData.duration,
-      notes: salaryAdvanceFormData.notes,
-      attachmentCount: salaryAdvanceFormData.attachments.length,
-      attachments: salaryAdvanceFormData.attachments.map((att) => ({
-        name: att.name,
-        size: att.size,
-        type: att.type,
-        source: att.source,
-      })),
-      submittedAt: new Date().toISOString(),
-      status: "pending",
-    };
-
-    // Here you would typically send this to your backend API
-    console.log("Salary Advance Request Submitted:", submissionData);
-
-    // Reset form
-    setSalaryAdvanceFormData({
-      title: "",
-      amount: "",
-      startDate: "",
-      duration: "1-month",
-      notes: "",
-      attachments: [],
-    });
-
-    // Close modal
-    setIsSalaryAdvanceModalOpen(false);
-
-    // Show success message
-    alert(
-      `Salary advance request for $${submissionData.amount} submitted successfully! Reference ID: ${submissionData.id}`,
-    );
+  const handleSalaryAdvanceSubmit = (data: SalaryAdvanceFormData) => {
+    console.log("Salary Advance Request Submitted:", data);
+    alert(`Salary advance request submitted successfully!`);
   };
 
   const handleReimburseAttachment = (
