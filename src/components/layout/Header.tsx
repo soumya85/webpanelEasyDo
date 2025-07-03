@@ -235,7 +235,7 @@ export function Header() {
                 value={selectedCompany}
                 onValueChange={setSelectedCompany}
               >
-                <SelectTrigger className="w-[220px] h-11 border-gray-200">
+                <SelectTrigger className="w-[200px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -253,7 +253,7 @@ export function Header() {
                 {t("branch")}
               </MultilingualText>
               <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                <SelectTrigger className="w-[130px] h-11 border-gray-200">
+                <SelectTrigger className="w-[120px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
