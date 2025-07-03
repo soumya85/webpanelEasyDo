@@ -602,7 +602,7 @@ export function TaskBoardContent() {
   return (
     <div className="h-full flex flex-col min-h-0 bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200">
       {/* --- Header --- */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-4 py-2 bg-white border-b sticky top-0 z-20 shadow-sm">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-4 py-2 bg-white border-b sticky top-0 z-50 shadow-sm">
         <div>
           <h1 className="text-xl font-black text-gray-800 tracking-tight flex items-center gap-2">
             <LayoutGrid className="w-6 h-6 text-gray-500" />
