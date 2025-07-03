@@ -279,7 +279,7 @@ export function Header() {
         {/* Right Controls */}
         <div className="flex items-center gap-4">
           {/* Desktop Icons */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             {/* Language Selector */}
             <GlobalLanguageSelector
               position="relative"
