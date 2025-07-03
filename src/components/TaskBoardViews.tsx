@@ -1,5 +1,4 @@
 import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
-import { KanbanColumn } from "@/components/KanbanColumn";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
