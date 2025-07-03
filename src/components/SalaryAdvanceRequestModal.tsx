@@ -204,18 +204,18 @@ export function SalaryAdvanceRequestModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
-        <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
+      <DialogContent className="max-w-lg max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden p-6">
+        <DialogHeader className="flex-shrink-0 pb-4">
           <div className="flex items-center justify-between">
-            <DialogTitle className="text-xl font-bold text-[#283C50]">
+            <DialogTitle className="text-lg font-semibold text-gray-800">
               Salary Advance Request
             </DialogTitle>
             <button
               onClick={() => onOpenChange(false)}
-              className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+              className="p-1 hover:bg-gray-100 rounded"
             >
               <svg
-                className="w-5 h-5 text-gray-500"
+                className="w-5 h-5 text-gray-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -232,262 +232,230 @@ export function SalaryAdvanceRequestModal({
         </DialogHeader>
 
         {/* Company Name Display */}
-        <div className="mb-6 p-4 bg-gray-100 rounded-lg">
-          <p className="text-[#4766E5] text-lg font-medium">{companyName}</p>
+        <div className="mb-4 p-3 bg-blue-50 rounded-lg">
+          <p className="text-[#4766E5] font-medium">{companyName}</p>
         </div>
 
-        <div className="space-y-4 pb-2 max-w-2xl">
+        <div className="space-y-4">
           {/* Title Field */}
-          <div className="space-y-2">
-            <Input
-              placeholder="Title"
-              value={formData.title || ""}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  title: e.target.value,
-                }))
-              }
-              className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
-            />
-          </div>
+          <Input
+            placeholder="Title"
+            value={formData.title || ""}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                title: e.target.value,
+              }))
+            }
+            className="w-full h-12 bg-gray-50 border-0 text-gray-900 placeholder-gray-400 focus:ring-0 focus:bg-white focus:border focus:border-gray-300"
+          />
 
           {/* Amount/Total Field */}
-          <div className="space-y-2">
-            <Input
-              placeholder={t("amountTotal")}
-              type="text"
-              value={formData.amount}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  amount: e.target.value,
-                }))
-              }
-              className="w-full h-12 bg-gray-100 border-0 text-gray-500 placeholder-gray-400 focus:ring-2 focus:ring-[#4766E5] focus:bg-white"
-            />
-          </div>
+          <Input
+            placeholder="Amount/Total"
+            type="text"
+            value={formData.amount}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                amount: e.target.value,
+              }))
+            }
+            className="w-full h-12 bg-gray-50 border-0 text-gray-900 placeholder-gray-400 focus:ring-0 focus:bg-white focus:border focus:border-gray-300"
+          />
 
           {/* Start Date Field */}
           <div className="flex items-center gap-4">
-            <label className="text-base font-medium text-[#283C50] min-w-[100px]">
+            <label className="text-sm font-medium text-gray-700 min-w-[80px]">
               Start Date
             </label>
-            <Input
-              type="date"
-              value={formData.startDate}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  startDate: e.target.value,
-                }))
-              }
-              className="flex-1 h-12 bg-gray-100 border-0 text-gray-900 focus:ring-2 focus:ring-[#4766E5] focus:bg-white [&::-webkit-calendar-picker-indicator]:cursor-pointer"
-            />
+            <div className="relative flex-1">
+              <Input
+                type="date"
+                value={formData.startDate}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    startDate: e.target.value,
+                  }))
+                }
+                placeholder="dd-mm-yyyy"
+                className="w-full h-12 bg-gray-50 border-0 text-gray-900 focus:ring-0 focus:bg-white focus:border focus:border-gray-300 [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+              />
+              <svg
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
           </div>
 
           {/* Duration Field */}
-          <div className="space-y-2">
-            <Select
-              value={formData.duration || "1-month"}
-              onValueChange={(value) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  duration: value,
-                }))
-              }
-            >
-              <SelectTrigger className="w-full h-12 bg-gray-100 border-0 text-gray-500 focus:ring-2 focus:ring-[#4766E5] focus:bg-white">
-                <SelectValue placeholder="Select duration" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1-month">1 Month</SelectItem>
-                <SelectItem value="2-months">2 Months</SelectItem>
-                <SelectItem value="3-months">3 Months</SelectItem>
-                <SelectItem value="6-months">6 Months</SelectItem>
-                <SelectItem value="12-months">12 Months</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <Select
+            value={formData.duration || "1-month"}
+            onValueChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                duration: value,
+              }))
+            }
+          >
+            <SelectTrigger className="w-full h-12 bg-gray-50 border-0 text-gray-900 focus:ring-0 focus:bg-white focus:border focus:border-gray-300">
+              <SelectValue placeholder="1 Month" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1-month">1 Month</SelectItem>
+              <SelectItem value="2-months">2 Months</SelectItem>
+              <SelectItem value="3-months">3 Months</SelectItem>
+              <SelectItem value="6-months">6 Months</SelectItem>
+              <SelectItem value="12-months">12 Months</SelectItem>
+            </SelectContent>
+          </Select>
 
           {/* Notes Section */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="text-base font-medium text-[#283C50]">
-                Notes
-              </label>
-              <span className="text-[#4766E5]">
-                {formData.notes ? "Added" : "None"}
-              </span>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-4">
-              <button
-                onClick={() => {
-                  const notesSection = document.getElementById("notes-section");
-                  if (notesSection) {
-                    notesSection.style.display =
-                      notesSection.style.display === "none" ? "block" : "none";
-                  }
-                }}
-                className="text-gray-500 text-sm hover:text-[#4766E5] transition-colors"
+          <div className="flex items-center justify-between py-2">
+            <button
+              onClick={() => {
+                const notesSection = document.getElementById("notes-section");
+                if (notesSection) {
+                  notesSection.style.display =
+                    notesSection.style.display === "none" ? "block" : "none";
+                }
+              }}
+              className="flex items-center gap-2 text-gray-700 hover:text-[#4766E5] transition-colors"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                {formData.notes ? "Edit notes" : "Add notes"}
-              </button>
-              <div
-                id="notes-section"
-                style={{ display: "none" }}
-                className="mt-3"
-              >
-                <Textarea
-                  placeholder="Add any additional information or justification for your salary advance request..."
-                  value={formData.notes}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      notes: e.target.value,
-                    }))
-                  }
-                  className="w-full bg-white border-gray-300 focus:border-[#4766E5] focus:ring-2 focus:ring-[#4766E5] resize-none"
-                  rows={4}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
                 />
-              </div>
-            </div>
+              </svg>
+              <span className="font-medium">Notes</span>
+            </button>
+            <span className="text-sm text-[#4766E5] font-medium">
+              {formData.notes ? "Added" : "None"}
+            </span>
+          </div>
+          <div
+            id="notes-section"
+            style={{ display: "none" }}
+            className="space-y-2"
+          >
+            <Textarea
+              placeholder="Add any additional information or justification for your salary advance request..."
+              value={formData.notes}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  notes: e.target.value,
+                }))
+              }
+              className="w-full bg-gray-50 border-0 text-gray-900 focus:ring-0 focus:bg-white focus:border focus:border-gray-300 resize-none"
+              rows={4}
+            />
           </div>
 
           {/* Attachments Section */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="text-base font-medium text-[#283C50]">
-                Attachments
-              </label>
-              <span className="text-[#4766E5]">
-                {formData.attachments.length}/10
-              </span>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-4">
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => handleAttachment("scan")}
-                  className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-[#4766E5] hover:bg-[#4766E5]/5 transition-all"
-                >
-                  <div className="w-6 h-6 bg-[#4766E5]/10 rounded flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#4766E5]"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                    </svg>
-                  </div>
-                  <span className="text-sm font-medium">Scan</span>
-                </button>
-                <button
-                  onClick={() => handleAttachment("documents")}
-                  className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-[#4766E5] hover:bg-[#4766E5]/5 transition-all"
-                >
-                  <div className="w-6 h-6 bg-[#4766E5]/10 rounded flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#4766E5]"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                    </svg>
-                  </div>
-                  <span className="text-sm font-medium">Documents</span>
-                </button>
-                <button
-                  onClick={() => handleAttachment("camera")}
-                  className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-[#4766E5] hover:bg-[#4766E5]/5 transition-all"
-                >
-                  <div className="w-6 h-6 bg-[#4766E5]/10 rounded flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#4766E5]"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
-                    </svg>
-                  </div>
-                  <span className="text-sm font-medium">Camera</span>
-                </button>
-                <button
-                  onClick={() => handleAttachment("photos")}
-                  className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-[#4766E5] hover:bg-[#4766E5]/5 transition-all"
-                >
-                  <div className="w-6 h-6 bg-[#4766E5]/10 rounded flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#4766E5]"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z" />
-                    </svg>
-                  </div>
-                  <span className="text-sm font-medium">Photos</span>
-                </button>
-              </div>
-
-              {/* Attachment List */}
-              {formData.attachments.length > 0 && (
-                <div className="space-y-2 mt-3">
-                  {formData.attachments.map((attachment) => (
-                    <div
-                      key={attachment.id}
-                      className="flex items-center justify-between p-2 bg-white rounded border"
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-[#4766E5]/10 rounded flex items-center justify-center">
-                          <svg
-                            className="w-4 h-4 text-[#4766E5]"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">
-                            {attachment.name}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {formatFileSize(attachment.size)} •{" "}
-                            {attachment.source}
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => removeAttachment(attachment.id)}
-                        className="p-1 hover:bg-red-100 rounded"
-                      >
-                        <svg
-                          className="w-4 h-4 text-red-500"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
-                        </svg>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+          <div className="flex items-center justify-between py-2">
+            <button
+              onClick={() => handleAttachment("documents")}
+              className="flex items-center gap-2 text-[#4766E5] hover:text-[#4766E5]/80 transition-colors"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                />
+              </svg>
+              <span className="font-medium">Add attachment</span>
+            </button>
           </div>
+
+          {/* Attachment List */}
+          {formData.attachments.length > 0 && (
+            <div className="space-y-2">
+              {formData.attachments.map((attachment) => (
+                <div
+                  key={attachment.id}
+                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded">
+                      <svg
+                        className="w-4 h-4 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">
+                        {attachment.name}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {formatFileSize(attachment.size)} • {attachment.source}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => removeAttachment(attachment.id)}
+                    className="p-1 hover:bg-red-100 rounded"
+                  >
+                    <svg
+                      className="w-4 h-4 text-red-500"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                    </svg>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 mt-6 pt-4 border-t border-gray-200">
+        <div className="flex gap-3 mt-6 pt-4">
           <Button
             onClick={handleSubmit}
-            className="bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 px-8"
+            className="flex-1 bg-[#4766E5] hover:bg-[#4766E5]/90 text-white h-12 font-medium"
           >
-            Submit Request
+            Submit Advance Request
           </Button>
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
-            className="h-12 px-8 border-zinc-50/5 text-gray-600 hover:bg-gray-100"
+            className="h-12 px-6 border-gray-300 text-gray-600 hover:bg-gray-50 font-medium"
           >
             Cancel
           </Button>
