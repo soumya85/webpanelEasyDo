@@ -341,7 +341,7 @@ export const OTRequestModal = ({
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="text-[#4766E5] text-base font-medium">
-                    None
+                    {notes ? "Added" : "None"}
                   </span>
                   <svg
                     className={`w-5 h-5 text-[#4766E5] transition-transform ${
