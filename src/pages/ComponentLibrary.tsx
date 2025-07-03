@@ -36,6 +36,7 @@ import {
   OTRequestModal,
   OTRequestSystem,
 } from "@/components/OTRequestCard";
+import { SalaryAdvanceRequestSystem } from "@/components/SalaryAdvanceRequestModal";
 
 // Demo components for Company Dashboard
 
