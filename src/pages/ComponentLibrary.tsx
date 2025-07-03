@@ -724,6 +724,102 @@ import { LeaveRequestModal } from "@/components/LeaveRequestModal";`,
                     }}
                   />
                 </ComponentSection>
+
+                <ComponentSection
+                  title="Employee OT Request System"
+                  description="Complete overtime request system with card trigger and modal interface for employee overtime management"
+                >
+                  <ComponentShowcase
+                    title="OT Request Card & Modal"
+                    description="Interactive overtime request card that triggers a comprehensive modal with form fields, date picker, file attachments, and notes section for submitting overtime requests"
+                    component={
+                      <div className="w-full max-w-sm mx-auto">
+                        <OTRequestCardDemo />
+                      </div>
+                    }
+                    code={`import { OTRequestCard, OTRequestModal, OTRequestSystem } from "@/components/OTRequestCard";
+import { useState } from "react";
+
+// Option 1: Using the combined system
+export function OTRequestSystemExample() {
+  const handleSubmit = (data) => {
+    console.log("OT request submitted:", data);
+    // Handle form submission
+  };
+
+  return <OTRequestSystem onSubmit={handleSubmit} />;
+}
+
+// Option 2: Using separate components
+export function CustomOTRequestExample() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (data) => {
+    console.log("OT request submitted:", data);
+    // Handle form submission
+  };
+
+  return (
+    <>
+      <OTRequestCard onClick={() => setIsModalOpen(true)} />
+      <OTRequestModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onSubmit={handleSubmit}
+      />
+    </>
+  );
+}`}
+                    props={[
+                      {
+                        name: "onClick",
+                        type: "() => void",
+                        default: "undefined",
+                        description:
+                          "Callback function when card is clicked (OTRequestCard)",
+                      },
+                      {
+                        name: "open",
+                        type: "boolean",
+                        default: "false",
+                        description:
+                          "Controls modal visibility (OTRequestModal)",
+                      },
+                      {
+                        name: "onOpenChange",
+                        type: "(open: boolean) => void",
+                        default: "undefined",
+                        description:
+                          "Callback when modal open state changes (OTRequestModal)",
+                      },
+                      {
+                        name: "onSubmit",
+                        type: "(data: any) => void",
+                        default: "undefined",
+                        description:
+                          "Callback when OT request is submitted (OTRequestModal/OTRequestSystem)",
+                      },
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description:
+                          "Additional CSS classes for card styling (OTRequestCard/OTRequestSystem)",
+                      },
+                    ]}
+                    variants={[
+                      "default",
+                      "with-custom-styling",
+                      "integrated-system",
+                    ]}
+                    typescript={{
+                      filePath: "src/components/OTRequestCard.tsx",
+                      startLine: 1,
+                      endLine: 450,
+                      importPath: `import { OTRequestCard, OTRequestModal, OTRequestSystem } from "@/components/OTRequestCard";`,
+                    }}
+                  />
+                </ComponentSection>
               </>
             )}
 
