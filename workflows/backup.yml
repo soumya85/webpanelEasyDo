@@ -1,8 +1,9 @@
 name: Auto Backup to Other GitHub Repo
 
 on:
-  push:         # Trigger on push to any branch
-    branches: ["*"]
+  push:
+    branches:
+      - '**'  # Match pushes on all branches
 
 jobs:
   backup:
