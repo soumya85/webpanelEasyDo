@@ -29,6 +29,7 @@ import Documents from "@/pages/Documents";
 import Leave from "@/pages/Leave";
 import Holiday from "@/pages/Holiday";
 import Dashboard from "@/pages/Dashboard";
+import QRLogin from "@/pages/QRLogin";
 import Login from "@/pages/Login";
 import OTPVerification from "@/pages/OTPVerification";
 import SamplePage1 from "@/pages/SamplePage1";
@@ -44,7 +45,6 @@ import SalaryStatement from "./pages/SalaryStatement";
 import TaskReport from "./pages/TaskReport";
 import ComponentLibrary from "./pages/ComponentLibrary";
 
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -59,7 +59,8 @@ const AppContent = () => {
   return (
     <Routes>
       {/* Public routes (no authentication required) */}
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<QRLogin />} />
+      <Route path="/login/phone" element={<Login />} />
       <Route path="/otp-verification" element={<OTPVerification />} />
 
       {/* Protected routes (authentication required) */}
@@ -106,13 +107,31 @@ const AppContent = () => {
                     <Route path="/announcement" element={<Announcement />} />
                     <Route path="/documents" element={<Documents />} />
                     <Route path="/leave" element={<Leave />} />
-                     <Route path="/pending-approvals" element={<PendingApprovals />} />
-                      <Route path="/attendance-report" element={<AttendanceReport />} />
-                      <Route path="/pending-approvals" element={<PendingApprovals />} />
-                      <Route path="/sales-register" element={<SalesRegisterInvoice />} />
-                      <Route path="/operational-expenses" element={<ExpenseReport />} />
-                      <Route path="/approvals-report" element={<Approvals />} />
-                      <Route path="/salary-statement" element={<SalaryStatement />} />
+                    <Route
+                      path="/pending-approvals"
+                      element={<PendingApprovals />}
+                    />
+                    <Route
+                      path="/attendance-report"
+                      element={<AttendanceReport />}
+                    />
+                    <Route
+                      path="/pending-approvals"
+                      element={<PendingApprovals />}
+                    />
+                    <Route
+                      path="/sales-register"
+                      element={<SalesRegisterInvoice />}
+                    />
+                    <Route
+                      path="/operational-expenses"
+                      element={<ExpenseReport />}
+                    />
+                    <Route path="/approvals-report" element={<Approvals />} />
+                    <Route
+                      path="/salary-statement"
+                      element={<SalaryStatement />}
+                    />
                     <Route path="/task-report" element={<TaskReport />} />
                     <Route
                       path="/pending-approvals"
