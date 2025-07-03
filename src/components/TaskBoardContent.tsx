@@ -806,11 +806,14 @@ export function TaskBoardContent() {
                                         <span className="text-[10px] bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
                                           {task.priority?.toUpperCase()}
                                         </span>
-                                        {task.dueDate && (
-                                          <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                            Due: {new Date(task.dueDate).toLocaleDateString()}
-                                          </span>
-                                        )}
+                                        {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
+                                          ? (
+                                            <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                                              Due: {new Date(task.dueDate).toLocaleDateString()}
+                                            </span>
+                                          )
+                                          : "-"
+                                        }
                                       </div>
                                     </div>
                                   )}
@@ -876,11 +879,14 @@ export function TaskBoardContent() {
                                       <span className="text-[10px] bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
                                         {task.priority?.toUpperCase()}
                                       </span>
-                                      {task.dueDate && (
-                                        <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                          Due: {new Date(task.dueDate).toLocaleDateString()}
-                                        </span>
-                                      )}
+                                      {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
+                                        ? (
+                                          <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                                            Due: {new Date(task.dueDate).toLocaleDateString()}
+                                          </span>
+                                        )
+                                        : "-"
+                                      }
                                     </div>
                                   </div>
                                 ))
@@ -910,11 +916,14 @@ export function TaskBoardContent() {
                               <span className="text-[10px] bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
                                 {task.priority?.toUpperCase()}
                               </span>
-                              {task.dueDate && (
-                                <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                  Due: {new Date(task.dueDate).toLocaleDateString()}
-                                </span>
-                              )}
+                              {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
+                                ? (
+                                  <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                                    Due: {new Date(task.dueDate).toLocaleDateString()}
+                                  </span>
+                                )
+                                : "-"
+                              }
                             </div>
                           </div>
                         ))
@@ -1002,7 +1011,7 @@ export function TaskBoardContent() {
                         </Badge>
                       </td>
                       <td className="px-4 py-2">
-                        {task.dueDate
+                        {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
                           ? new Date(task.dueDate).toLocaleDateString()
                           : "-"}
                       </td>

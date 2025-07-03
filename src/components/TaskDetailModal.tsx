@@ -45,6 +45,14 @@ interface TaskDetailModalProps {
 
 // These will be translated in the component using the translation hook
 
+// Safe date formatting utility
+function safeFormatDate(dateString: string | undefined, dateFormat: string) {
+  if (!dateString) return "-";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "-";
+  return format(date, dateFormat);
+}
+
 export function TaskDetailModal({
   task,
   open,
@@ -333,9 +341,7 @@ export function TaskDetailModal({
                 </Popover>
               ) : (
                 <span className="text-xs font-medium">
-                  {task.dueDate
-                    ? format(new Date(task.dueDate), "yyyy-MM-dd")
-                    : "-"}
+                  {safeFormatDate(task.dueDate, "yyyy-MM-dd")}
                 </span>
               )}
             </div>
