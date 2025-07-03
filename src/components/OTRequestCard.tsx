@@ -135,6 +135,70 @@ export const OTRequestModal = ({
     input.click();
   };
 
+  const handleFileUpload = (
+    files: File[],
+    source: "scan" | "documents" | "camera" | "photos",
+  ) => {
+    const maxFileSize = 10 * 1024 * 1024; // 10MB limit
+    const maxFiles = 5; // Maximum 5 files
+
+    // Validate file count
+    if (attachments.length + files.length > maxFiles) {
+      alert(
+        `Maximum ${maxFiles} files allowed. You currently have ${attachments.length} files.`,
+      );
+      return;
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > maxFileSize) {
+        alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    // Create attachment objects
+    const newAttachments: AttachmentFile[] = validFiles.map((file) => ({
+      id: Date.now() + Math.random().toString(36).substr(2, 9),
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      url: URL.createObjectURL(file),
+      source: source,
+    }));
+
+    setAttachments((prev) => [...prev, ...newAttachments]);
+
+    // Success feedback
+    const successMessage =
+      validFiles.length === 1
+        ? `"${validFiles[0].name}" uploaded successfully`
+        : `${validFiles.length} files uploaded successfully`;
+
+    console.log(successMessage);
+  };
+
+  const removeAttachment = (id: string) => {
+    setAttachments((prev) => {
+      const attachment = prev.find((att) => att.id === id);
+      if (attachment) {
+        URL.revokeObjectURL(attachment.url);
+      }
+      return prev.filter((att) => att.id !== id);
+    });
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+  };
+
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
