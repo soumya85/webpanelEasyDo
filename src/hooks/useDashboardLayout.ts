@@ -252,18 +252,25 @@ export const useDashboardLayout = () => {
     const today = new Date();
     const day = today.getDate();
     const getOrdinalSuffix = (day: number) => {
-      if (day > 3 && day < 21) return 'th';
+      if (day > 3 && day < 21) return "th";
       switch (day % 10) {
-        case 1: return 'st';
-        case 2: return 'nd';
-        case 3: return 'rd';
-        default: return 'th';
+        case 1:
+          return "st";
+        case 2:
+          return "nd";
+        case 3:
+          return "rd";
+        default:
+          return "th";
       }
     };
-    const formattedDate = `${day}${getOrdinalSuffix(day)} ${today.toLocaleDateString('en-GB', {
-      month: 'long',
-      year: 'numeric'
-    })}`;
+    const formattedDate = `${day}${getOrdinalSuffix(day)} ${today.toLocaleDateString(
+      "en-GB",
+      {
+        month: "long",
+        year: "numeric",
+      },
+    )}`;
 
     return [
       {
@@ -271,17 +278,18 @@ export const useDashboardLayout = () => {
         title: `Today - ${formattedDate}`,
         cards: getCardsBySection("quick-overview"),
       },
-    {
-      id: "productivity",
-      title: t("productivity"),
-      cards: getCardsBySection("productivity"),
-    },
-    {
-      id: "information-hub",
-      title: t("informationHub"),
-      cards: getCardsBySection("information-hub"),
-    },
-  ];
+      {
+        id: "productivity",
+        title: t("productivity"),
+        cards: getCardsBySection("productivity"),
+      },
+      {
+        id: "information-hub",
+        title: t("informationHub"),
+        cards: getCardsBySection("information-hub"),
+      },
+    ];
+  };
 
   return {
     cards,
