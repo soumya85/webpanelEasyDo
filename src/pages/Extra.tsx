@@ -1,4 +1,9 @@
 import { ReactiveMultilingualText } from "@/components/ReactiveMultilingualText";
+import { ScoresInsightCard } from "@/components/insights/ScoresInsightCard";
+import { TaskPendingCard } from "@/components/insights/TaskPendingCard";
+import { TaskPendingTrendsCard } from "@/components/insights/TaskPendingTrendsCard";
+import { TaskCompletedCard } from "@/components/insights/TaskCompletedCard";
+import { TaskCompletedTrendsCard } from "@/components/insights/TaskCompletedTrendsCard";
 
 const Extra = () => {
   return (
@@ -12,19 +17,28 @@ const Extra = () => {
         />
       </div>
 
-      {/* Main Content */}
+      {/* Task Insights Dashboard */}
       <div className="flex-1 overflow-auto px-6 pb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <ReactiveMultilingualText
-            as="h2"
-            className="text-lg font-semibold text-gray-700 mb-4"
-            translationKey="welcomeToExtra"
-          />
-          <ReactiveMultilingualText
-            as="p"
-            className="text-gray-600"
-            translationKey="extraPageDescription"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 xl:col-span-1">
+            <ScoresInsightCard />
+          </div>
+
+          <div className="lg:col-span-1 xl:col-span-1">
+            <TaskPendingCard />
+          </div>
+
+          <div className="lg:col-span-1 xl:col-span-1">
+            <TaskPendingTrendsCard />
+          </div>
+
+          <div className="lg:col-span-1 xl:col-span-1">
+            <TaskCompletedCard />
+          </div>
+
+          <div className="lg:col-span-2 xl:col-span-1">
+            <TaskCompletedTrendsCard />
+          </div>
         </div>
       </div>
     </div>
