@@ -1161,6 +1161,15 @@ export default function EmployeeDashboard() {
                 );
               }
 
+              if (card.id === "ot-request") {
+                return (
+                  <OTRequestCard
+                    key={card.id}
+                    onClick={() => setIsOTRequestModalOpen(true)}
+                  />
+                );
+              }
+
               return (
                 <div
                   key={card.id}
@@ -3915,7 +3924,7 @@ export default function EmployeeDashboard() {
                             <div className="mb-6 flex justify-center">
                               <div className="relative">
                                 <div className="w-32 h-32 bg-gradient-to-r from-yellow-300 to-orange-300 rounded-full flex items-center justify-center">
-                                  <div className="text-6xl">🤷‍♀️</div>
+                                  <div className="text-6xl">🤷‍♀���</div>
                                 </div>
                               </div>
                             </div>
