@@ -63,13 +63,12 @@ const QRLogin = () => {
                       <span className="text-gray-900 font-medium">
                         <ReactiveMultilingualText translationKey="openEasyDo365" />
                       </span>
-                      <div className="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="w-4 h-4 text-white fill-current"
-                        >
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
+                      <div className="w-6 h-6 rounded-md flex items-center justify-center overflow-hidden">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets%2Fc2392628841448619e48c27256156253%2F06958a7672024948a214dd571741d895?format=webp&width=800"
+                          alt="EasyDo 365"
+                          className="w-6 h-6 object-contain"
+                        />
                       </div>
                       <span className="text-gray-600 text-sm">
                         <ReactiveMultilingualText translationKey="onYourPhone" />
