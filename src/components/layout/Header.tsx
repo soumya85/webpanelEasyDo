@@ -225,7 +225,7 @@ export function Header() {
           </MultilingualText>
 
           {/* Desktop Controls */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Company Select */}
             <div className="flex items-center gap-4">
               <MultilingualText className="text-base font-semibold text-azure-24">
