@@ -82,7 +82,6 @@ export default function EmployeeDashboard() {
     "approved" | "pending" | "availed"
   >("approved");
   const [isLeaveRulesOpen, setIsLeaveRulesOpen] = useState(false);
-  const [isOTRequestModalOpen, setIsOTRequestModalOpen] = useState(false);
   const [isSalaryAdvanceModalOpen, setIsSalaryAdvanceModalOpen] =
     useState(false);
   const [isReimburseRequestModalOpen, setIsReimburseRequestModalOpen] =
