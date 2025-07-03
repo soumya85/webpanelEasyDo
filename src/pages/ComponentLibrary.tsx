@@ -833,6 +833,114 @@ export function CustomOTRequestExample() {
                     }}
                   />
                 </ComponentSection>
+
+                <ComponentSection
+                  title="Employee Salary Advance Request System"
+                  description="Complete salary advance request system with card trigger and modal interface for employee salary advance management"
+                >
+                  <ComponentShowcase
+                    title="Salary Advance Request Card & Modal"
+                    description="Interactive salary advance request card that triggers a comprehensive modal with form fields, amount input, duration selection, file attachments, and notes section for submitting salary advance requests"
+                    component={
+                      <div className="w-full max-w-sm mx-auto">
+                        <SalaryAdvanceRequestSystem
+                          onSubmit={(data) =>
+                            console.log("Salary advance request:", data)
+                          }
+                        />
+                      </div>
+                    }
+                    code={`import { SalaryAdvanceRequestModal, SalaryAdvanceRequestCard, SalaryAdvanceRequestSystem } from "@/components/SalaryAdvanceRequestModal";
+import { useState } from "react";
+
+// Option 1: Using the combined system
+export function SalaryAdvanceRequestSystemExample() {
+  const handleSubmit = (data) => {
+    console.log("Salary advance request submitted:", data);
+    // Handle form submission
+  };
+
+  return <SalaryAdvanceRequestSystem onSubmit={handleSubmit} />;
+}
+
+// Option 2: Using separate components
+export function CustomSalaryAdvanceRequestExample() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (data) => {
+    console.log("Salary advance request submitted:", data);
+    // Handle form submission
+  };
+
+  return (
+    <>
+      <SalaryAdvanceRequestCard onClick={() => setIsModalOpen(true)} />
+      <SalaryAdvanceRequestModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onSubmit={handleSubmit}
+        companyName="Your Company Name"
+      />
+    </>
+  );
+}`}
+                    props={[
+                      {
+                        name: "onClick",
+                        type: "() => void",
+                        default: "undefined",
+                        description:
+                          "Callback function when card is clicked (SalaryAdvanceRequestCard)",
+                      },
+                      {
+                        name: "open",
+                        type: "boolean",
+                        default: "false",
+                        description:
+                          "Controls modal visibility (SalaryAdvanceRequestModal)",
+                      },
+                      {
+                        name: "onOpenChange",
+                        type: "(open: boolean) => void",
+                        default: "undefined",
+                        description:
+                          "Callback when modal open state changes (SalaryAdvanceRequestModal)",
+                      },
+                      {
+                        name: "onSubmit",
+                        type: "(data: SalaryAdvanceFormData) => void",
+                        default: "undefined",
+                        description:
+                          "Callback when salary advance request is submitted (SalaryAdvanceRequestModal/SalaryAdvanceRequestSystem)",
+                      },
+                      {
+                        name: "companyName",
+                        type: "string",
+                        default: "Liberty Righrise Pvt Ltd",
+                        description:
+                          "Company name displayed in the modal header (SalaryAdvanceRequestModal/SalaryAdvanceRequestSystem)",
+                      },
+                      {
+                        name: "className",
+                        type: "string",
+                        default: "undefined",
+                        description:
+                          "Additional CSS classes for card styling (SalaryAdvanceRequestCard/SalaryAdvanceRequestSystem)",
+                      },
+                    ]}
+                    variants={[
+                      "default",
+                      "with-custom-styling",
+                      "integrated-system",
+                    ]}
+                    typescript={{
+                      filePath: "src/components/SalaryAdvanceRequestModal.tsx",
+                      startLine: 1,
+                      endLine: 550,
+                      importPath: `import { SalaryAdvanceRequestModal, SalaryAdvanceRequestCard, SalaryAdvanceRequestSystem } from "@/components/SalaryAdvanceRequestModal";`,
+                    }}
+                  />
+                </ComponentSection>
               </>
             )}
 
