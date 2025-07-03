@@ -106,10 +106,6 @@ export default function EmployeeDashboard() {
   const [isTaskReportModalOpen, setIsTaskReportModalOpen] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState("Head Office");
   const [leaveSelectedDate, setLeaveSelectedDate] = useState(new Date()); // Current date
-  const [otRequestDate, setOtRequestDate] = useState<Date | undefined>(
-    new Date(),
-  );
-  const [otDatePickerOpen, setOtDatePickerOpen] = useState(false);
 
   // File input refs for attachment options
   const scanFileInputRef = useRef<HTMLInputElement>(null);
