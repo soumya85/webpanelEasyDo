@@ -29,13 +29,13 @@ export const ScoresInsightCard: React.FC = () => {
 
   const getScoreColor = (score: number) => {
     if (score >= 60) return "text-green-600";
-    if (score >= 40) return "text-yellow-600";
+    if (score >= 40) return "text-blue-600";
     return "text-red-600";
   };
 
   const getProgressColor = (score: number) => {
     if (score >= 60) return "bg-green-500";
-    if (score >= 40) return "bg-yellow-500";
+    if (score >= 40) return "bg-blue-500";
     return "bg-red-500";
   };
 
