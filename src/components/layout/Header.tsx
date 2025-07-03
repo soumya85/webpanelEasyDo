@@ -201,11 +201,11 @@ export function Header() {
           // Mobile/Tablet: always full width (left-0)
           "left-0",
           // Desktop: adjust for sidebar
-          isExpanded ? "lg:left-[280px]" : "lg:left-[103px]",
+          isExpanded ? "lg:left-[260px]" : "lg:left-[103px]",
         )}
       >
         {/* Left Controls */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-0">
           {/* Sidebar Toggle */}
           <Button
             variant="ghost"
@@ -225,9 +225,9 @@ export function Header() {
           </MultilingualText>
 
           {/* Desktop Controls */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-1">
             {/* Company Select */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <MultilingualText className="text-base font-semibold text-azure-24">
                 {t("company")}
               </MultilingualText>
@@ -235,7 +235,7 @@ export function Header() {
                 value={selectedCompany}
                 onValueChange={setSelectedCompany}
               >
-                <SelectTrigger className="w-[241px] h-11 border-gray-200">
+                <SelectTrigger className="w-[180px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -248,12 +248,12 @@ export function Header() {
             </div>
 
             {/* Branch Select */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <MultilingualText className="text-base font-semibold text-azure-24">
                 {t("branch")}
               </MultilingualText>
               <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                <SelectTrigger className="w-[149px] h-11 border-gray-200">
+                <SelectTrigger className="w-[110px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -266,7 +266,7 @@ export function Header() {
 
             {/* Create Button */}
             <CreateMenu>
-              <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
+              <Button className="bg-primary hover:bg-primary-600 text-white px-3 h-11 gap-2">
                 <Plus className="h-4 w-4" />
                 <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
                   {t("create")}
@@ -277,9 +277,9 @@ export function Header() {
         </div>
 
         {/* Right Controls */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           {/* Desktop Icons */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             {/* Language Selector */}
             <GlobalLanguageSelector
               position="relative"
