@@ -647,7 +647,6 @@ export default function EmployeeDashboard() {
 
     // Close modals and reset form
     setIsLeaveRequestModalOpen(false);
-    setIsNotesExpanded(false);
     setIsAttachmentModalOpen(false);
 
     // Reset form with new attachment structure
