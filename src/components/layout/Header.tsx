@@ -225,9 +225,9 @@ export function Header() {
           </MultilingualText>
 
           {/* Desktop Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {/* Company Select */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <MultilingualText className="text-base font-semibold text-azure-24">
                 {t("company")}
               </MultilingualText>
@@ -235,7 +235,7 @@ export function Header() {
                 value={selectedCompany}
                 onValueChange={setSelectedCompany}
               >
-                <SelectTrigger className="w-[200px] h-11 border-gray-200">
+                <SelectTrigger className="w-[180px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -248,12 +248,12 @@ export function Header() {
             </div>
 
             {/* Branch Select */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <MultilingualText className="text-base font-semibold text-azure-24">
                 {t("branch")}
               </MultilingualText>
               <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                <SelectTrigger className="w-[120px] h-11 border-gray-200">
+                <SelectTrigger className="w-[110px] h-11 border-gray-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
