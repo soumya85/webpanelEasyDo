@@ -54,6 +54,15 @@ export const OTRequestCard = ({ onClick, className }: OTRequestCardProps) => {
   );
 };
 
+interface AttachmentFile {
+  id: string;
+  name: string;
+  type: string;
+  size: number;
+  url: string;
+  source: "scan" | "documents" | "camera" | "photos";
+}
+
 export const OTRequestModal = ({
   open,
   onOpenChange,
@@ -63,6 +72,8 @@ export const OTRequestModal = ({
   const [otDatePickerOpen, setOtDatePickerOpen] = useState(false);
   const [isNotesExpanded, setIsNotesExpanded] = useState(false);
   const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
+  const [attachments, setAttachments] = useState<AttachmentFile[]>([]);
+  const [notes, setNotes] = useState("");
 
   const handleSubmit = () => {
     const formData = {
