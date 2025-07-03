@@ -126,8 +126,7 @@ export const OTRequestModal = ({
     input.onchange = (e) => {
       const files = (e.target as HTMLInputElement).files;
       if (files) {
-        console.log("Files selected:", Array.from(files));
-        // Handle file upload logic here
+        handleFileUpload(Array.from(files), type);
       }
       document.body.removeChild(input);
     };
