@@ -365,6 +365,8 @@ export const OTRequestModal = ({
                 <div className="mt-2">
                   <Textarea
                     placeholder="Notes (Optional)"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
                     className="w-full min-h-[100px] input-focus-safe focus:ring-2 focus:ring-[#4766E5] focus:border-[#4766E5] resize-none"
                   />
                 </div>
