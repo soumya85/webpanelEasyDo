@@ -908,7 +908,12 @@ export function LeaveRequestModal({
                 "2025-06-19", // June 19, 2025 - Approved sick leave (day 2)
                 "2025-06-28", // June 28, 2025 - Rejected sick leave
               ];
-              const absentDates = []; // No absent dates for now
+              const absentDates = [
+                "2025-06-05", // June 5, 2025 - Absent
+                "2025-06-12", // June 12, 2025 - Absent
+                "2025-07-03", // July 3, 2025 - Absent
+                "2025-07-15", // July 15, 2025 - Absent
+              ];
 
               if (leaveDates.includes(dateString)) {
                 return "leave";
