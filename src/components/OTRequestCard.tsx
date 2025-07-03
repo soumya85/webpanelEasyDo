@@ -78,12 +78,19 @@ export const OTRequestModal = ({
   const handleSubmit = () => {
     const formData = {
       date: otRequestDate,
-      notes: "", // You can add a state for notes if needed
-      // Add other form fields as needed
+      notes: notes,
+      attachments: attachments,
+      title: "", // You can add title state if needed
     };
 
     onSubmit?.(formData);
     onOpenChange(false);
+
+    // Reset form
+    setOtRequestDate(undefined);
+    setNotes("");
+    setAttachments([]);
+    setIsNotesExpanded(false);
 
     // Show success message
     alert("OT request submitted successfully!");
