@@ -15,14 +15,19 @@ export const TaskInsightCard: React.FC<TaskInsightCardProps> = ({
 }) => {
   return (
     <Card
-      className={cn("bg-white border border-gray-200 shadow-sm", className)}
+      className={cn(
+        "bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 h-[400px] flex flex-col",
+        className,
+      )}
     >
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-4 flex-shrink-0">
         <CardTitle className="text-lg font-semibold text-gray-800">
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className="pt-0">{children}</CardContent>
+      <CardContent className="pt-0 flex-1 flex flex-col">
+        {children}
+      </CardContent>
     </Card>
   );
 };
