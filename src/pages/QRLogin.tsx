@@ -58,22 +58,20 @@ const QRLogin = () => {
                   <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-sm font-medium text-gray-700">
                     1
                   </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-gray-900 font-medium">
-                        <ReactiveMultilingualText translationKey="openEasyDo365" />
-                      </span>
-                      <div className="w-6 h-6 rounded-md flex items-center justify-center overflow-hidden">
-                        <img
-                          src="https://cdn.builder.io/api/v1/image/assets%2Fc2392628841448619e48c27256156253%2F06958a7672024948a214dd571741d895?format=webp&width=800"
-                          alt="EasyDo 365"
-                          className="w-6 h-6 object-contain"
-                        />
-                      </div>
-                      <span className="text-gray-600 text-sm">
-                        <ReactiveMultilingualText translationKey="onYourPhone" />
-                      </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-900 font-medium">
+                      <ReactiveMultilingualText translationKey="openEasyDo365" />
+                    </span>
+                    <div className="w-6 h-6 rounded-md flex items-center justify-center overflow-hidden">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2Fc2392628841448619e48c27256156253%2F06958a7672024948a214dd571741d895?format=webp&width=800"
+                        alt="EasyDo 365"
+                        className="w-6 h-6 object-contain"
+                      />
                     </div>
+                    <span className="text-gray-600 text-sm">
+                      <ReactiveMultilingualText translationKey="onYourPhone" />
+                    </span>
                   </div>
                 </div>
 
