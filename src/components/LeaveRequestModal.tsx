@@ -902,9 +902,13 @@ export function LeaveRequestModal({
               // Create a date string for comparison (YYYY-MM-DD format)
               const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
 
-              // Define specific dates for different states
-              const leaveDates = ["2025-05-14"]; // May 14, 2025
-              const absentDates = ["2025-06-18"]; // June 18, 2025
+              // Define specific dates for different states - Baskar Ghose's leave requests
+              const leaveDates = [
+                "2025-06-18", // June 18, 2025 - Approved sick leave (day 1)
+                "2025-06-19", // June 19, 2025 - Approved sick leave (day 2)
+                "2025-06-28", // June 28, 2025 - Rejected sick leave
+              ];
+              const absentDates = []; // No absent dates for now
 
               if (leaveDates.includes(dateString)) {
                 return "leave";
