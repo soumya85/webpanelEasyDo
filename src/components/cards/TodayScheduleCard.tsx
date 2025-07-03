@@ -16,10 +16,10 @@ interface Task {
 }
 
 interface TodayScheduleCardProps {
-    id: string;
-    index: number;
-    size?: CardSize;
-    onResize?: (cardId: string, newSize: CardSize) => void;
+  id: string;
+  index: number;
+  size?: CardSize;
+  onResize?: (cardId: string, newSize: CardSize) => void;
 }
 
 // Mock data for 7 days
@@ -75,10 +75,10 @@ const tagOptions = [
 ];
 
 export const TodayScheduleCard: React.FC<TodayScheduleCardProps> = ({
-    id,
-    index,
-    size,
-    onResize,
+  id,
+  index,
+  size,
+  onResize,
 }) => {
     // State for selected day and tag
     const [selectedDate, setSelectedDate] = useState(days[0].date);
