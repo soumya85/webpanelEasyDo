@@ -563,21 +563,7 @@ export default function EmployeeDashboard() {
       source: "scan" | "documents" | "camera" | "photos";
     }>,
   });
-  const [salaryAdvanceFormData, setSalaryAdvanceFormData] = useState({
-    title: "",
-    amount: "",
-    startDate: "",
-    duration: "1-month",
-    notes: "",
-    attachments: [] as Array<{
-      id: string;
-      name: string;
-      type: string;
-      size: number;
-      url: string;
-      source: "scan" | "documents" | "camera" | "photos";
-    }>,
-  });
+
   const [reimburseFormData, setReimburseFormData] = useState({
     title: "",
     amount: "",
