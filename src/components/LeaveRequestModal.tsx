@@ -1063,9 +1063,20 @@ export function LeaveRequestModal({
                                 dateObj.date,
                               ).getDay() === 0;
 
-                            // Determine dot color based on specific dates - Baskar Ghose's leave
+                            // Determine dot color based on specific dates - Baskar Ghose's attendance
                             let dotColor = "bg-green-500"; // default present
+
+                            // Check for absent dates first (red dots)
                             if (
+                              (currentMonth === 5 && // June
+                                (dateObj.date === 5 || dateObj.date === 12) &&
+                                dateObj.isCurrentMonth) ||
+                              (currentMonth === 6 && // July
+                                (dateObj.date === 3 || dateObj.date === 15) &&
+                                dateObj.isCurrentMonth)
+                            ) {
+                              dotColor = "bg-red-500"; // Absent days
+                            } else if (
                               currentMonth === 5 && // June
                               (dateObj.date === 18 || dateObj.date === 19) &&
                               dateObj.isCurrentMonth
@@ -1077,13 +1088,13 @@ export function LeaveRequestModal({
                               dateObj.date === 28 &&
                               dateObj.isCurrentMonth
                             ) {
-                              // June 28 - rejected sick leave
-                              dotColor = "bg-red-500";
+                              // June 28 - rejected sick leave (still shows red but different reason)
+                              dotColor = "bg-orange-500";
                             } else if (
-                              currentMonth === 5 &&
+                              (currentMonth === 5 || currentMonth === 6) && // June or July
                               dateObj.isCurrentMonth
                             ) {
-                              // Other June dates
+                              // Other June/July dates - present
                               dotColor = "bg-green-500";
                             }
 
