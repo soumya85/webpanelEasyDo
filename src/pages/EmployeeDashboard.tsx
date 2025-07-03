@@ -2067,10 +2067,12 @@ export default function EmployeeDashboard() {
       {/* OT Request Modal is now handled by the reusable OTRequestModal component */}
 
       {/* Salary Advance Request Modal */}
-      <Dialog
+      <SalaryAdvanceRequestModal
         open={isSalaryAdvanceModalOpen}
         onOpenChange={setIsSalaryAdvanceModalOpen}
-      >
+        onSubmit={handleSalaryAdvanceSubmit}
+        companyName="Liberty Righrise Pvt Ltd"
+      />
         <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto [&>button]:hidden">
           <DialogHeader className="flex-shrink-0 sticky top-0 bg-white z-10 pb-2">
             <div className="flex items-center justify-between">
@@ -3505,7 +3507,7 @@ export default function EmployeeDashboard() {
                             <div className="mb-6 flex justify-center">
                               <div className="relative">
                                 <div className="w-32 h-32 bg-gradient-to-r from-blue-100 to-pink-100 rounded-full flex items-center justify-center">
-                                  <div className="text-6xl">👩‍💼</div>
+                                  <div className="text-6xl">👩‍���</div>
                                 </div>
                                 <div className="absolute -top-2 -right-2 text-2xl">
                                   ✨
