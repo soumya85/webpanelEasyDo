@@ -18,6 +18,10 @@ import { LeaveRequestCard } from "@/components/LeaveRequestCard";
 import { LeaveRequestModal } from "@/components/LeaveRequestModal";
 import { OTRequestCard, OTRequestModal } from "@/components/OTRequestCard";
 import {
+  SalaryAdvanceRequestModal,
+  SalaryAdvanceFormData,
+} from "@/components/SalaryAdvanceRequestModal";
+import {
   Dialog,
   DialogContent,
   DialogHeader,
