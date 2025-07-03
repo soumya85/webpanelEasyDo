@@ -1,9 +1,8 @@
 name: Auto Backup to Other GitHub Repo
 
 on:
-  push:
-    branches:
-      - main  # or master if you're using that
+  push:         # Trigger on push to any branch
+    branches: ["*"]
 
 jobs:
   backup:
