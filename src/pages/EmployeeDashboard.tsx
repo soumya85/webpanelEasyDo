@@ -16,6 +16,7 @@ import LeaveBalance from "@/components/LeaveBalance";
 import UpcomingHolidays from "@/components/UpcomingHolidays";
 import { LeaveRequestCard } from "@/components/LeaveRequestCard";
 import { LeaveRequestModal } from "@/components/LeaveRequestModal";
+import { OTRequestCard, OTRequestModal } from "@/components/OTRequestCard";
 import {
   Dialog,
   DialogContent,
