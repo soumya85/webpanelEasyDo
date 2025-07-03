@@ -266,7 +266,7 @@ export function Header() {
 
             {/* Create Button */}
             <CreateMenu>
-              <Button className="bg-primary hover:bg-primary-600 text-white px-4 h-11 gap-2">
+              <Button className="bg-primary hover:bg-primary-600 text-white px-3 h-11 gap-2">
                 <Plus className="h-4 w-4" />
                 <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
                   {t("create")}
@@ -277,7 +277,7 @@ export function Header() {
         </div>
 
         {/* Right Controls */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           {/* Desktop Icons */}
           <div className="flex items-center gap-6">
             {/* Language Selector */}
