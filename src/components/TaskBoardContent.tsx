@@ -2,8 +2,17 @@ import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from "@hello-pangea/dnd";
 
 import { LayoutGrid, Search, Plus, Filter } from "lucide-react";
 import { TaskCalendarView } from "./TaskCalendarView";
@@ -11,11 +20,21 @@ import { TaskGanttView } from "./TaskGanttView";
 import { AddTaskModal } from "./AddTaskModal";
 import { TaskDetailModal } from "./TaskDetailModal";
 
-type SortOption = "created-desc" | "created-asc" | "due-date" | "priority" | "name";
+type SortOption =
+  | "created-desc"
+  | "created-asc"
+  | "due-date"
+  | "priority"
+  | "name";
 
 // Example: Task card data structure for all filters, sorting, and requirements
 
-export type TaskStatus = "noAction" | "inprogress" | "skip" | "done" | "completed";
+export type TaskStatus =
+  | "noAction"
+  | "inprogress"
+  | "skip"
+  | "done"
+  | "completed";
 export type TaskPriority = "urgent" | "high" | "medium" | "low";
 export type TaskTag = "NEW" | "G.Task" | "Group Task" | "SKIPPED" | "Delegated";
 
@@ -36,7 +55,7 @@ export interface TaskCardData {
   priority: TaskPriority;
   tags: TaskTag[];
   createdAt: string; // ISO date
-  dueDate?: string;  // ISO date
+  dueDate?: string; // ISO date
   completedAt?: string; // ISO date
   createdBy: User;
   assignedTo: User;
@@ -49,21 +68,21 @@ export interface TaskCardData {
 
 // Place this mock data at the top of your file, before your component
 
-
-
 // Example data
 export const taskCardData: TaskCardData[] = [
   // --- My Tasks (assigned to 'Current User') ---
   // noAction
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `my-noaction-${i+1}`,
-    title: `My No Action Task ${i+1}`,
-    description: `Description for my no action task ${i+1}`,
+    id: `my-noaction-${i + 1}`,
+    title: `My No Action Task ${i + 1}`,
+    description: `Description for my no action task ${i + 1}`,
     status: "noAction" as TaskStatus,
-    priority: (["urgent", "high", "medium", "low", "medium"] as TaskPriority[])[i],
+    priority: (["urgent", "high", "medium", "low", "medium"] as TaskPriority[])[
+      i
+    ],
     tags: ["NEW" as TaskTag],
-    createdAt: `2025-02-01T0${i+1}:00:00Z`,
-    dueDate: `2025-02-04T1${i+1}:00:00Z`,
+    createdAt: `2025-02-01T0${i + 1}:00:00Z`,
+    dueDate: `2025-02-04T1${i + 1}:00:00Z`,
     createdBy: {
       id: "u1",
       name: "Shibyjyoti Sarkar",
@@ -86,14 +105,16 @@ export const taskCardData: TaskCardData[] = [
   })),
   // inprogress
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `my-inprogress-${i+1}`,
-    title: `My In Progress Task ${i+1}`,
-    description: `Description for my in progress task ${i+1}`,
+    id: `my-inprogress-${i + 1}`,
+    title: `My In Progress Task ${i + 1}`,
+    description: `Description for my in progress task ${i + 1}`,
     status: "inprogress" as TaskStatus,
-    priority: (["high", "medium", "low", "urgent", "high"] as TaskPriority[])[i],
+    priority: (["high", "medium", "low", "urgent", "high"] as TaskPriority[])[
+      i
+    ],
     tags: ["G.Task" as TaskTag],
-    createdAt: `2025-02-02T0${i+1}:00:00Z`,
-    dueDate: `2025-02-05T1${i+1}:00:00Z`,
+    createdAt: `2025-02-02T0${i + 1}:00:00Z`,
+    dueDate: `2025-02-05T1${i + 1}:00:00Z`,
     createdBy: {
       id: "u3",
       name: "Jane Smith",
@@ -108,22 +129,24 @@ export const taskCardData: TaskCardData[] = [
       designation: "Developer",
       branch: "Main Branch",
     },
-    commentsCount: i+1,
-    attachmentsCount: (i+1) % 3,
+    commentsCount: i + 1,
+    attachmentsCount: (i + 1) % 3,
     watchers: [],
     isDelegated: false,
     daysLeft: 4 - i,
   })),
   // skip
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `my-skip-${i+1}`,
-    title: `My Skipped Task ${i+1}`,
-    description: `Description for my skipped task ${i+1}`,
+    id: `my-skip-${i + 1}`,
+    title: `My Skipped Task ${i + 1}`,
+    description: `Description for my skipped task ${i + 1}`,
     status: "skip" as TaskStatus,
-    priority: (["medium", "low", "urgent", "high", "medium"] as TaskPriority[])[i],
+    priority: (["medium", "low", "urgent", "high", "medium"] as TaskPriority[])[
+      i
+    ],
     tags: ["SKIPPED" as TaskTag],
-    createdAt: `2025-02-03T0${i+1}:00:00Z`,
-    dueDate: `2025-02-06T1${i+1}:00:00Z`,
+    createdAt: `2025-02-03T0${i + 1}:00:00Z`,
+    dueDate: `2025-02-06T1${i + 1}:00:00Z`,
     createdBy: {
       id: "u4",
       name: "Alex Johnson",
@@ -138,23 +161,23 @@ export const taskCardData: TaskCardData[] = [
       designation: "Developer",
       branch: "Main Branch",
     },
-    commentsCount: i+2,
-    attachmentsCount: (i+2) % 3,
+    commentsCount: i + 2,
+    attachmentsCount: (i + 2) % 3,
     watchers: [],
     isDelegated: false,
     daysLeft: 3 - i,
   })),
   // done
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `my-done-${i+1}`,
-    title: `My Done Task ${i+1}`,
-    description: `Description for my done task ${i+1}`,
+    id: `my-done-${i + 1}`,
+    title: `My Done Task ${i + 1}`,
+    description: `Description for my done task ${i + 1}`,
     status: "done" as TaskStatus,
     priority: (["low", "urgent", "high", "medium", "low"] as TaskPriority[])[i],
     tags: ["Group Task" as TaskTag],
-    createdAt: `2025-02-04T0${i+1}:00:00Z`,
-    dueDate: `2025-02-07T1${i+1}:00:00Z`,
-    completedAt: `2025-02-07T1${i+1}:30:00Z`,
+    createdAt: `2025-02-04T0${i + 1}:00:00Z`,
+    dueDate: `2025-02-07T1${i + 1}:00:00Z`,
+    completedAt: `2025-02-07T1${i + 1}:30:00Z`,
     createdBy: {
       id: "u5",
       name: "Soumyadeep Ghosh",
@@ -169,23 +192,25 @@ export const taskCardData: TaskCardData[] = [
       designation: "Developer",
       branch: "Main Branch",
     },
-    commentsCount: i+3,
-    attachmentsCount: (i+3) % 3,
+    commentsCount: i + 3,
+    attachmentsCount: (i + 3) % 3,
     watchers: [],
     isDelegated: false,
     daysLeft: 2 - i,
   })),
   // completed
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `my-completed-${i+1}`,
-    title: `My Completed Task ${i+1}`,
-    description: `Description for my completed task ${i+1}`,
+    id: `my-completed-${i + 1}`,
+    title: `My Completed Task ${i + 1}`,
+    description: `Description for my completed task ${i + 1}`,
     status: "completed" as TaskStatus,
-    priority: (["urgent", "high", "medium", "low", "urgent"] as TaskPriority[])[i],
+    priority: (["urgent", "high", "medium", "low", "urgent"] as TaskPriority[])[
+      i
+    ],
     tags: ["Delegated" as TaskTag],
-    createdAt: `2025-02-05T0${i+1}:00:00Z`,
-    dueDate: `2025-02-08T1${i+1}:00:00Z`,
-    completedAt: `2025-02-08T1${i+1}:30:00Z`,
+    createdAt: `2025-02-05T0${i + 1}:00:00Z`,
+    dueDate: `2025-02-08T1${i + 1}:00:00Z`,
+    completedAt: `2025-02-08T1${i + 1}:30:00Z`,
     createdBy: {
       id: "u6",
       name: "Priya Patel",
@@ -200,8 +225,8 @@ export const taskCardData: TaskCardData[] = [
       designation: "Developer",
       branch: "Main Branch",
     },
-    commentsCount: i+4,
-    attachmentsCount: (i+4) % 3,
+    commentsCount: i + 4,
+    attachmentsCount: (i + 4) % 3,
     watchers: [],
     isDelegated: false,
     daysLeft: 1 - i,
@@ -210,14 +235,16 @@ export const taskCardData: TaskCardData[] = [
   // --- Delegated Tasks (assigned to someone else) ---
   // noAction
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `del-noaction-${i+1}`,
-    title: `Delegated No Action Task ${i+1}`,
-    description: `Description for delegated no action task ${i+1}`,
+    id: `del-noaction-${i + 1}`,
+    title: `Delegated No Action Task ${i + 1}`,
+    description: `Description for delegated no action task ${i + 1}`,
     status: "noAction" as TaskStatus,
-    priority: (["urgent", "high", "medium", "low", "medium"] as TaskPriority[])[i],
+    priority: (["urgent", "high", "medium", "low", "medium"] as TaskPriority[])[
+      i
+    ],
     tags: ["NEW" as TaskTag],
-    createdAt: `2025-02-01T1${i+1}:00:00Z`,
-    dueDate: `2025-02-04T2${i+1}:00:00Z`,
+    createdAt: `2025-02-01T1${i + 1}:00:00Z`,
+    dueDate: `2025-02-04T2${i + 1}:00:00Z`,
     createdBy: {
       id: "u7",
       name: "Alex Johnson",
@@ -227,7 +254,7 @@ export const taskCardData: TaskCardData[] = [
     },
     assignedTo: {
       id: `u10${i}`,
-      name: `Delegated User ${i+1}`,
+      name: `Delegated User ${i + 1}`,
       department: "Engineering",
       designation: "Developer",
       branch: "South Branch",
@@ -240,14 +267,16 @@ export const taskCardData: TaskCardData[] = [
   })),
   // inprogress
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `del-inprogress-${i+1}`,
-    title: `Delegated In Progress Task ${i+1}`,
-    description: `Description for delegated in progress task ${i+1}`,
+    id: `del-inprogress-${i + 1}`,
+    title: `Delegated In Progress Task ${i + 1}`,
+    description: `Description for delegated in progress task ${i + 1}`,
     status: "inprogress" as TaskStatus,
-    priority: (["high", "medium", "low", "urgent", "high"] as TaskPriority[])[i],
+    priority: (["high", "medium", "low", "urgent", "high"] as TaskPriority[])[
+      i
+    ],
     tags: ["G.Task" as TaskTag],
-    createdAt: `2025-02-02T1${i+1}:00:00Z`,
-    dueDate: `2025-02-05T2${i+1}:00:00Z`,
+    createdAt: `2025-02-02T1${i + 1}:00:00Z`,
+    dueDate: `2025-02-05T2${i + 1}:00:00Z`,
     createdBy: {
       id: "u8",
       name: "Jane Smith",
@@ -257,27 +286,29 @@ export const taskCardData: TaskCardData[] = [
     },
     assignedTo: {
       id: `u11${i}`,
-      name: `Delegated User ${i+6}`,
+      name: `Delegated User ${i + 6}`,
       department: "Marketing",
       designation: "Analyst",
       branch: "North Branch",
     },
-    commentsCount: i+1,
-    attachmentsCount: (i+1) % 3,
+    commentsCount: i + 1,
+    attachmentsCount: (i + 1) % 3,
     watchers: [],
     isDelegated: true,
     daysLeft: 4 - i,
   })),
   // skip
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `del-skip-${i+1}`,
-    title: `Delegated Skipped Task ${i+1}`,
-    description: `Description for delegated skipped task ${i+1}`,
+    id: `del-skip-${i + 1}`,
+    title: `Delegated Skipped Task ${i + 1}`,
+    description: `Description for delegated skipped task ${i + 1}`,
     status: "skip" as TaskStatus,
-    priority: (["medium", "low", "urgent", "high", "medium"] as TaskPriority[])[i],
+    priority: (["medium", "low", "urgent", "high", "medium"] as TaskPriority[])[
+      i
+    ],
     tags: ["SKIPPED" as TaskTag],
-    createdAt: `2025-02-03T1${i+1}:00:00Z`,
-    dueDate: `2025-02-06T2${i+1}:00:00Z`,
+    createdAt: `2025-02-03T1${i + 1}:00:00Z`,
+    dueDate: `2025-02-06T2${i + 1}:00:00Z`,
     createdBy: {
       id: "u9",
       name: "Soumyadeep Ghosh",
@@ -287,28 +318,28 @@ export const taskCardData: TaskCardData[] = [
     },
     assignedTo: {
       id: `u12${i}`,
-      name: `Delegated User ${i+11}`,
+      name: `Delegated User ${i + 11}`,
       department: "Finance",
       designation: "Accountant",
       branch: "Main Branch",
     },
-    commentsCount: i+2,
-    attachmentsCount: (i+2) % 3,
+    commentsCount: i + 2,
+    attachmentsCount: (i + 2) % 3,
     watchers: [],
     isDelegated: true,
     daysLeft: 3 - i,
   })),
   // done
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `del-done-${i+1}`,
-    title: `Delegated Done Task ${i+1}`,
-    description: `Description for delegated done task ${i+1}`,
+    id: `del-done-${i + 1}`,
+    title: `Delegated Done Task ${i + 1}`,
+    description: `Description for delegated done task ${i + 1}`,
     status: "done" as TaskStatus,
     priority: (["low", "urgent", "high", "medium", "low"] as TaskPriority[])[i],
     tags: ["Group Task" as TaskTag],
-    createdAt: `2025-02-04T1${i+1}:00:00Z`,
-    dueDate: `2025-02-07T2${i+1}:00:00Z`,
-    completedAt: `2025-02-07T2${i+1}:30:00Z`,
+    createdAt: `2025-02-04T1${i + 1}:00:00Z`,
+    dueDate: `2025-02-07T2${i + 1}:00:00Z`,
+    completedAt: `2025-02-07T2${i + 1}:30:00Z`,
     createdBy: {
       id: "u13",
       name: "Priya Patel",
@@ -318,28 +349,30 @@ export const taskCardData: TaskCardData[] = [
     },
     assignedTo: {
       id: `u13${i}`,
-      name: `Delegated User ${i+16}`,
+      name: `Delegated User ${i + 16}`,
       department: "Procurement",
       designation: "Procurement Executive",
       branch: "Main Branch",
     },
-    commentsCount: i+3,
-    attachmentsCount: (i+3) % 3,
+    commentsCount: i + 3,
+    attachmentsCount: (i + 3) % 3,
     watchers: [],
     isDelegated: true,
     daysLeft: 2 - i,
   })),
   // completed
   ...Array.from({ length: 5 }, (_, i) => ({
-    id: `del-completed-${i+1}`,
-    title: `Delegated Completed Task ${i+1}`,
-    description: `Description for delegated completed task ${i+1}`,
+    id: `del-completed-${i + 1}`,
+    title: `Delegated Completed Task ${i + 1}`,
+    description: `Description for delegated completed task ${i + 1}`,
     status: "completed" as TaskStatus,
-    priority: (["urgent", "high", "medium", "low", "urgent"] as TaskPriority[])[i],
+    priority: (["urgent", "high", "medium", "low", "urgent"] as TaskPriority[])[
+      i
+    ],
     tags: ["Delegated" as TaskTag],
-    createdAt: `2025-02-05T1${i+1}:00:00Z`,
-    dueDate: `2025-02-08T2${i+1}:00:00Z`,
-    completedAt: `2025-02-08T2${i+1}:30:00Z`,
+    createdAt: `2025-02-05T1${i + 1}:00:00Z`,
+    dueDate: `2025-02-08T2${i + 1}:00:00Z`,
+    completedAt: `2025-02-08T2${i + 1}:30:00Z`,
     createdBy: {
       id: "u14",
       name: "Rahul Mehra",
@@ -349,13 +382,13 @@ export const taskCardData: TaskCardData[] = [
     },
     assignedTo: {
       id: `u14${i}`,
-      name: `Delegated User ${i+21}`,
+      name: `Delegated User ${i + 21}`,
       department: "Procurement",
       designation: "Procurement Executive",
       branch: "Main Branch",
     },
-    commentsCount: i+4,
-    attachmentsCount: (i+4) % 3,
+    commentsCount: i + 4,
+    attachmentsCount: (i + 4) % 3,
     watchers: [],
     isDelegated: true,
     daysLeft: 1 - i,
@@ -369,11 +402,17 @@ export function TaskBoardContent() {
   const [selectedTask, setSelectedTask] = useState<any | null>(null);
   const [isTaskDetailOpen, setIsTaskDetailOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentView, setCurrentView] = useState<"board" | "list" | "calendar" | "gantt">("board");
+  const [currentView, setCurrentView] = useState<
+    "board" | "list" | "calendar" | "gantt"
+  >("board");
   const [sortBy, setSortBy] = useState<SortOption>("created-desc");
   const [activeTab, setActiveTab] = useState<"my" | "delegated">("my");
-  const [groupBy, setGroupBy] = useState<"status" | "priority" | "assignedTo" | "createdBy">("status");
-  const [filterBy, setFilterBy] = useState<"all" | "my" | "delegated" | "high-priority">("all");
+  const [groupBy, setGroupBy] = useState<
+    "status" | "priority" | "assignedTo" | "createdBy"
+  >("status");
+  const [filterBy, setFilterBy] = useState<
+    "all" | "my" | "delegated" | "high-priority"
+  >("all");
 
   // 1. Define filter state as an object for multi-filtering (like ClickUp)
   type TaskFilter = {
@@ -418,9 +457,13 @@ export function TaskBoardContent() {
     return filtered.sort((a, b) => {
       switch (sortBy) {
         case "created-asc":
-          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+          return (
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          );
         case "created-desc":
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
         case "due-date":
           if (!a.dueDate && !b.dueDate) return 0;
           if (!a.dueDate) return 1;
@@ -428,8 +471,10 @@ export function TaskBoardContent() {
           return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
         case "priority":
           const priorityOrder = { urgent: 4, high: 3, medium: 2, low: 1 };
-          const aPriority = priorityOrder[a.priority as keyof typeof priorityOrder] || 0;
-          const bPriority = priorityOrder[b.priority as keyof typeof priorityOrder] || 0;
+          const aPriority =
+            priorityOrder[a.priority as keyof typeof priorityOrder] || 0;
+          const bPriority =
+            priorityOrder[b.priority as keyof typeof priorityOrder] || 0;
           return bPriority - aPriority;
         case "name":
           return a.title.localeCompare(b.title);
@@ -442,11 +487,12 @@ export function TaskBoardContent() {
   // Group tasks by the selected groupBy field
   const groupedTasks = useMemo(() => {
     const groups: Record<string, typeof tasks> = {};
-    filteredAndSortedTasks.forEach(task => {
+    filteredAndSortedTasks.forEach((task) => {
       let key = "";
       if (groupBy === "status") key = task.status;
       else if (groupBy === "priority") key = task.priority;
-      else if (groupBy === "assignedTo") key = task.assignedTo?.name || "Unassigned";
+      else if (groupBy === "assignedTo")
+        key = task.assignedTo?.name || "Unassigned";
       else if (groupBy === "createdBy") key = task.createdBy?.name || "Unknown";
       if (!groups[key]) groups[key] = [];
       groups[key].push(task);
@@ -455,7 +501,13 @@ export function TaskBoardContent() {
   }, [filteredAndSortedTasks, groupBy]);
 
   // --- Group tasks by status for "My Task" ---
-  const myTaskStatusOrder = ["noAction", "inprogress", "skip", "done", "completed"];
+  const myTaskStatusOrder = [
+    "noAction",
+    "inprogress",
+    "skip",
+    "done",
+    "completed",
+  ];
   const myTaskStatusLabels: Record<string, string> = {
     noAction: "No Action",
     inprogress: "In Progress",
@@ -465,7 +517,7 @@ export function TaskBoardContent() {
   };
 
   const myTasks = filteredAndSortedTasks.filter(
-    (task) => task.assignedTo?.name === "Current User"
+    (task) => task.assignedTo?.name === "Current User",
   );
 
   const myTaskGroups = myTaskStatusOrder.map((status) => ({
@@ -476,7 +528,7 @@ export function TaskBoardContent() {
 
   // --- Group tasks for "Delegated Task" ---
   const delegatedTasks = filteredAndSortedTasks.filter(
-    (task) => task.assignedTo?.name !== "Current User"
+    (task) => task.assignedTo?.name !== "Current User",
   );
 
   const delegatedGroups = [
@@ -484,7 +536,7 @@ export function TaskBoardContent() {
       section: "Pending",
       statuses: ["noAction", "inprogress", "skip"],
       tasks: delegatedTasks.filter((task) =>
-        ["noAction", "inprogress", "skip"].includes(task.status)
+        ["noAction", "inprogress", "skip"].includes(task.status),
       ),
     },
     {
@@ -507,9 +559,9 @@ export function TaskBoardContent() {
     { section: "done", label: "Done" },
     { section: "completed", label: "Completed" },
   ];
-  const sectionGroups = sectionList.map(section => ({
+  const sectionGroups = sectionList.map((section) => ({
     ...section,
-    tasks: tasks.filter(t => t.status === section.section),
+    tasks: tasks.filter((t) => t.status === section.section),
   }));
 
   // --- Drag and Drop Handler for sections ---
@@ -521,16 +573,17 @@ export function TaskBoardContent() {
     const destIdx = result.destination.index;
 
     // Find the dragged task
-    const sourceTasks = sectionGroups.find(g => g.section === sourceSection)?.tasks || [];
+    const sourceTasks =
+      sectionGroups.find((g) => g.section === sourceSection)?.tasks || [];
     const draggedTask = sourceTasks[sourceIdx];
     if (!draggedTask) return;
 
-    setTasks(prev => {
+    setTasks((prev) => {
       let newTasks = [...prev];
       // If moved to a new section, update status
       if (sourceSection !== destSection) {
-        newTasks = newTasks.map(t =>
-          t.id === draggedTask.id ? { ...t, status: destSection } : t
+        newTasks = newTasks.map((t) =>
+          t.id === draggedTask.id ? { ...t, status: destSection } : t,
         );
       }
       // Optionally: reorder within the same section (not persisted unless you store order)
@@ -539,8 +592,12 @@ export function TaskBoardContent() {
   }
 
   // Add these before the return statement in TaskBoardContent
-  const myTaskCount = tasks.filter(task => task.assignedTo?.name === "Current User").length;
-  const delegatedTaskCount = tasks.filter(task => task.assignedTo?.name !== "Current User").length;
+  const myTaskCount = tasks.filter(
+    (task) => task.assignedTo?.name === "Current User",
+  ).length;
+  const delegatedTaskCount = tasks.filter(
+    (task) => task.assignedTo?.name !== "Current User",
+  ).length;
 
   return (
     <div className="h-full flex flex-col min-h-0 bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200">
@@ -566,7 +623,9 @@ export function TaskBoardContent() {
             onClick={() => setActiveTab("my")}
           >
             My Task
-            <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{myTaskCount}</span>
+            <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">
+              {myTaskCount}
+            </span>
           </button>
           <button
             className={`px-3 py-1.5 rounded-full text-sm font-semibold transition shadow-sm ${
@@ -577,7 +636,9 @@ export function TaskBoardContent() {
             onClick={() => setActiveTab("delegated")}
           >
             Delegated Task
-            <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{delegatedTaskCount}</span>
+            <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">
+              {delegatedTaskCount}
+            </span>
           </button>
         </div>
         <div className="flex items-center gap-2 w-full md:w-auto">
@@ -622,7 +683,14 @@ export function TaskBoardContent() {
             onClick={() => setCurrentView("list")}
           >
             <span className="inline-block w-4 h-4">
-              <svg fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </span>
             List
           </button>
@@ -635,7 +703,15 @@ export function TaskBoardContent() {
             onClick={() => setCurrentView("calendar")}
           >
             <span className="inline-block w-4 h-4">
-              <svg fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
             </span>
             Calendar
           </button>
@@ -648,7 +724,15 @@ export function TaskBoardContent() {
             onClick={() => setCurrentView("gantt")}
           >
             <span className="inline-block w-4 h-4">
-              <svg fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><rect x="3" y="13" width="7" height="8" rx="2"/><rect x="14" y="3" width="7" height="8" rx="2"/></svg>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <rect x="3" y="13" width="7" height="8" rx="2" />
+                <rect x="14" y="3" width="7" height="8" rx="2" />
+              </svg>
             </span>
             Gantt
           </button>
@@ -661,29 +745,45 @@ export function TaskBoardContent() {
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-60 rounded-lg shadow-lg border border-gray-200 bg-white">
-            <div className="mb-2 font-semibold text-gray-700 text-base">Filter Tasks</div>
+            <div className="mb-2 font-semibold text-gray-700 text-base">
+              Filter Tasks
+            </div>
             <div className="mb-2">
-              <label className="block text-xs text-gray-500 mb-1">Assignee</label>
+              <label className="block text-xs text-gray-500 mb-1">
+                Assignee
+              </label>
               <select
                 className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                 value={filters.assignee || "all"}
-                onChange={e => setFilters(f => ({ ...f, assignee: e.target.value }))}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, assignee: e.target.value }))
+                }
               >
                 <option value="all">All</option>
                 <option value="me">Me</option>
-                {[...new Set(tasks.map(t => t.assignedTo?.name).filter(Boolean))]
-                  .filter(name => name !== "Current User")
-                  .map(name => (
-                    <option key={name} value={name}>{name}</option>
+                {[
+                  ...new Set(
+                    tasks.map((t) => t.assignedTo?.name).filter(Boolean),
+                  ),
+                ]
+                  .filter((name) => name !== "Current User")
+                  .map((name) => (
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
                   ))}
               </select>
             </div>
             <div className="mb-2">
-              <label className="block text-xs text-gray-500 mb-1">Priority</label>
+              <label className="block text-xs text-gray-500 mb-1">
+                Priority
+              </label>
               <select
                 className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                 value={filters.priority || "all"}
-                onChange={e => setFilters(f => ({ ...f, priority: e.target.value }))}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, priority: e.target.value }))
+                }
               >
                 <option value="all">All</option>
                 <option value="urgent">Urgent</option>
@@ -697,7 +797,9 @@ export function TaskBoardContent() {
               <select
                 className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                 value={filters.status || "all"}
-                onChange={e => setFilters(f => ({ ...f, status: e.target.value }))}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, status: e.target.value }))
+                }
               >
                 <option value="all">All</option>
                 <option value="noAction">No Action</option>
@@ -712,11 +814,15 @@ export function TaskBoardContent() {
               <select
                 className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                 value={filters.tag || "all"}
-                onChange={e => setFilters(f => ({ ...f, tag: e.target.value }))}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, tag: e.target.value }))
+                }
               >
                 <option value="all">All</option>
-                {[...new Set(tasks.flatMap(t => t.tags || []))].map(tag => (
-                  <option key={tag} value={tag}>{tag}</option>
+                {[...new Set(tasks.flatMap((t) => t.tags || []))].map((tag) => (
+                  <option key={tag} value={tag}>
+                    {tag}
+                  </option>
                 ))}
               </select>
             </div>
@@ -733,7 +839,7 @@ export function TaskBoardContent() {
         <select
           className="px-2.5 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
           value={sortBy}
-          onChange={e => setSortBy(e.target.value as SortOption)}
+          onChange={(e) => setSortBy(e.target.value as SortOption)}
         >
           <option value="created-desc">Newest</option>
           <option value="created-asc">Oldest</option>
@@ -742,11 +848,13 @@ export function TaskBoardContent() {
           <option value="name">Name</option>
         </select>
         {/* Group by */}
-        <span className="ml-1 text-blue-800 font-semibold text-sm">Group by</span>
+        <span className="ml-1 text-blue-800 font-semibold text-sm">
+          Group by
+        </span>
         <select
           className="px-2 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
           value={groupBy}
-          onChange={e => setGroupBy(e.target.value as typeof groupBy)}
+          onChange={(e) => setGroupBy(e.target.value as typeof groupBy)}
         >
           <option value="status">Status</option>
           <option value="priority">Priority</option>
@@ -761,15 +869,20 @@ export function TaskBoardContent() {
           activeTab === "my" ? (
             <DragDropContext onDragEnd={onDragEnd}>
               <div className="flex gap-3 h-full overflow-x-auto">
-                {myTaskGroups.map(group => (
-                  <div style={{ minWidth: '250px', width: '25%' }} key={group.status}>
+                {myTaskGroups.map((group) => (
+                  <div
+                    style={{ minWidth: "250px", width: "25%" }}
+                    key={group.status}
+                  >
                     <Droppable droppableId={group.status}>
                       {(provided, snapshot) => (
                         <div
                           ref={provided.innerRef}
                           {...provided.droppableProps}
                           className={`flex flex-col bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow p-2 min-h-0 h-full border border-gray-200 ${
-                            snapshot.isDraggingOver ? "ring-2 ring-gray-400" : ""
+                            snapshot.isDraggingOver
+                              ? "ring-2 ring-gray-400"
+                              : ""
                           }`}
                         >
                           <div className="flex items-center justify-between mb-2">
@@ -782,38 +895,58 @@ export function TaskBoardContent() {
                           </div>
                           <div className="flex-1 overflow-y-auto min-h-0">
                             {group.tasks.length === 0 ? (
-                              <div className="text-gray-300 text-sm text-center py-4">No tasks</div>
+                              <div className="text-gray-300 text-sm text-center py-4">
+                                No tasks
+                              </div>
                             ) : (
                               group.tasks.map((task, idx) => (
-                                <Draggable draggableId={String(task.id)} index={idx} key={task.id}>
+                                <Draggable
+                                  draggableId={String(task.id)}
+                                  index={idx}
+                                  key={task.id}
+                                >
                                   {(provided, snapshot) => (
                                     <div
                                       ref={provided.innerRef}
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
                                       className={`mb-2 shadow hover:shadow-md transition cursor-pointer border border-gray-200 rounded-lg bg-white p-2 ${
-                                        snapshot.isDragging ? "ring-2 ring-gray-400 bg-gray-50" : ""
+                                        snapshot.isDragging
+                                          ? "ring-2 ring-gray-400 bg-gray-50"
+                                          : ""
                                       }`}
-                                      style={{ minHeight: 44, ...provided.draggableProps.style }}
+                                      style={{
+                                        minHeight: 44,
+                                        ...provided.draggableProps.style,
+                                      }}
                                       onClick={() => {
                                         setSelectedTask(task);
                                         setIsTaskDetailOpen(true);
                                       }}
                                     >
-                                      <div className="font-semibold text-gray-900 text-sm truncate">{task.title}</div>
-                                      <p className="text-gray-500 text-xs mt-1 line-clamp-2">{task.description}</p>
+                                      <div className="font-semibold text-gray-900 text-sm truncate">
+                                        {task.title}
+                                      </div>
+                                      <p className="text-gray-500 text-xs mt-1 line-clamp-2">
+                                        {task.description}
+                                      </p>
                                       <div className="flex items-center gap-2 mt-1">
                                         <span className="text-[10px] bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
                                           {task.priority?.toUpperCase()}
                                         </span>
-                                        {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
-                                          ? (
-                                            <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                              Due: {new Date(task.dueDate).toLocaleDateString()}
-                                            </span>
-                                          )
-                                          : "-"
-                                        }
+                                        {task.dueDate &&
+                                        !isNaN(
+                                          new Date(task.dueDate).getTime(),
+                                        ) ? (
+                                          <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                                            Due:{" "}
+                                            {new Date(
+                                              task.dueDate,
+                                            ).toLocaleDateString()}
+                                          </span>
+                                        ) : (
+                                          "-"
+                                        )}
                                       </div>
                                     </div>
                                   )}
@@ -836,7 +969,11 @@ export function TaskBoardContent() {
                 <div
                   key={group.section}
                   className={`flex flex-col bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow p-2 min-h-0 h-full border border-gray-200`}
-                  style={group.section === 'Pending' ? { width: '66.66%', minWidth: '800px' } : { width: '25%', minWidth: '250px' }}
+                  style={
+                    group.section === "Pending"
+                      ? { width: "66.66%", minWidth: "800px" }
+                      : { width: "25%", minWidth: "250px" }
+                  }
                 >
                   <div className="flex items-center justify-between mb-2">
                     <h2 className="font-bold text-base text-gray-800 truncate">
@@ -852,14 +989,18 @@ export function TaskBoardContent() {
                         <div
                           key={status}
                           className="bg-white rounded-lg p-2 shadow-inner border border-gray-200 flex flex-col"
-                          style={{ width: '33.33%', minWidth: 250 }}
+                          style={{ width: "33.33%", minWidth: 250 }}
                         >
                           <div className="text-xs font-bold text-gray-700 mb-2 text-center tracking-wide uppercase">
                             {myTaskStatusLabels[status]}
                           </div>
                           <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar">
-                            {group.tasks.filter((task) => task.status === status).length === 0 ? (
-                              <div className="text-gray-300 text-sm text-center py-4">No tasks</div>
+                            {group.tasks.filter(
+                              (task) => task.status === status,
+                            ).length === 0 ? (
+                              <div className="text-gray-300 text-sm text-center py-4">
+                                No tasks
+                              </div>
                             ) : (
                               group.tasks
                                 .filter((task) => task.status === status)
@@ -873,20 +1014,29 @@ export function TaskBoardContent() {
                                     }}
                                     style={{ minHeight: 44 }}
                                   >
-                                    <div className="font-semibold text-gray-900 text-sm truncate">{task.title}</div>
-                                    <p className="text-gray-500 text-xs mt-1 line-clamp-2">{task.description}</p>
+                                    <div className="font-semibold text-gray-900 text-sm truncate">
+                                      {task.title}
+                                    </div>
+                                    <p className="text-gray-500 text-xs mt-1 line-clamp-2">
+                                      {task.description}
+                                    </p>
                                     <div className="flex items-center gap-2 mt-1">
                                       <span className="text-[10px] bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
                                         {task.priority?.toUpperCase()}
                                       </span>
-                                      {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
-                                        ? (
-                                          <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                            Due: {new Date(task.dueDate).toLocaleDateString()}
-                                          </span>
-                                        )
-                                        : "-"
-                                      }
+                                      {task.dueDate &&
+                                      !isNaN(
+                                        new Date(task.dueDate).getTime(),
+                                      ) ? (
+                                        <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                                          Due:{" "}
+                                          {new Date(
+                                            task.dueDate,
+                                          ).toLocaleDateString()}
+                                        </span>
+                                      ) : (
+                                        "-"
+                                      )}
                                     </div>
                                   </div>
                                 ))
@@ -898,7 +1048,9 @@ export function TaskBoardContent() {
                   ) : (
                     <div className="flex-1 overflow-y-auto min-h-0">
                       {group.tasks.length === 0 ? (
-                        <div className="text-gray-300 text-sm text-center py-4">No tasks</div>
+                        <div className="text-gray-300 text-sm text-center py-4">
+                          No tasks
+                        </div>
                       ) : (
                         group.tasks.map((task) => (
                           <div
@@ -910,20 +1062,25 @@ export function TaskBoardContent() {
                             }}
                             style={{ minHeight: 44 }}
                           >
-                            <div className="font-semibold text-gray-900 text-sm truncate">{task.title}</div>
-                            <p className="text-gray-500 text-xs mt-1 line-clamp-2">{task.description}</p>
+                            <div className="font-semibold text-gray-900 text-sm truncate">
+                              {task.title}
+                            </div>
+                            <p className="text-gray-500 text-xs mt-1 line-clamp-2">
+                              {task.description}
+                            </p>
                             <div className="flex items-center gap-2 mt-1">
                               <span className="text-[10px] bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
                                 {task.priority?.toUpperCase()}
                               </span>
-                              {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
-                                ? (
-                                  <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                    Due: {new Date(task.dueDate).toLocaleDateString()}
-                                  </span>
-                                )
-                                : "-"
-                              }
+                              {task.dueDate &&
+                              !isNaN(new Date(task.dueDate).getTime()) ? (
+                                <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                                  Due:{" "}
+                                  {new Date(task.dueDate).toLocaleDateString()}
+                                </span>
+                              ) : (
+                                "-"
+                              )}
                             </div>
                           </div>
                         ))
@@ -1002,8 +1159,8 @@ export function TaskBoardContent() {
                             task.priority === "high"
                               ? "bg-red-100 text-red-700"
                               : task.priority === "medium"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : "bg-gray-200 text-gray-700"
+                                ? "bg-yellow-100 text-yellow-700"
+                                : "bg-gray-200 text-gray-700"
                           }
                         >
                           {task.priority?.charAt(0).toUpperCase() +
@@ -1011,12 +1168,17 @@ export function TaskBoardContent() {
                         </Badge>
                       </td>
                       <td className="px-4 py-2">
-                        {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
+                        {task.dueDate &&
+                        !isNaN(new Date(task.dueDate).getTime())
                           ? new Date(task.dueDate).toLocaleDateString()
                           : "-"}
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <Button size="sm" variant="outline" className="bg-blue-100 text-blue-800 border border-blue-200 hover:bg-blue-200">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="bg-blue-100 text-blue-800 border border-blue-200 hover:bg-blue-200"
+                        >
                           View
                         </Button>
                       </td>
@@ -1040,9 +1202,9 @@ export function TaskBoardContent() {
         open={isTaskDetailOpen}
         onOpenChange={setIsTaskDetailOpen}
         task={selectedTask}
-        onUpdateTask={updatedTask => {
-          setTasks(tasks =>
-            tasks.map(t => (t.id === updatedTask.id ? updatedTask : t))
+        onUpdateTask={(updatedTask) => {
+          setTasks((tasks) =>
+            tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t)),
           );
         }}
       />
