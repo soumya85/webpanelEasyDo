@@ -17,6 +17,18 @@ export const translations = {
     verifyOTP: "VERIFY OTP",
     backToLogin: "← Back to login",
 
+    // QR Login
+    stepsToLogin: "Steps to log in",
+    openWhatsApp: "Open WhatsApp",
+    onYourPhone: "on your phone",
+    onAndroidTapMenu: "On Android tap Menu",
+    onIPhoneTapSettings: "On iPhone tap Settings",
+    tapLinkedDevices: "Tap Linked devices, then Link device",
+    scanQRToConfirm: "Scan the QR code to confirm",
+    stayLoggedIn: "Stay logged in",
+    logInWithPhoneInstead: "Log in with phone number instead",
+    backToQRLogin: "← Back to QR login",
+
     // Navigation & Layout
     dashboard: "Today",
     overview: "Overview",
@@ -647,7 +659,7 @@ export const translations = {
     edit: "संपादित करें",
     add: "जोड़ें",
     remove: "हटाएं",
-    search: "खोजें",
+    search: "खोज���ं",
     loading: "लोड हो रहा है...",
     noData: "कोई डेटा उपलब्ध ��हीं",
     submit: "जमा करें",
@@ -682,7 +694,7 @@ export const translations = {
     // Employee Management
     employees: "कर्मचारी",
     addEmployee: "कर्मचा���ी जोड़ें",
-    employeeDetails: "कर्मचारी विवरण",
+    employeeDetails: "कर्मचारी विवर���",
     employeeList: "कर्म���ारी सूची",
     employeeName: "कर्मचारी ����� नाम",
     employeeId: "कर्मचारी आईडी",
@@ -715,7 +727,7 @@ export const translations = {
     lastMessage: "अंतिम संदेश",
     yesterday: "कल",
     executiveDirector: "कार्यकारी निदेशक",
-    headOffice: "मुख्य कार्यालय",
+    headOffice: "मुख्य ���ार्यालय",
 
     // Messages
     successMessage: "ऑपरेशन सफलतापूर्वक पूरा हुआ",
@@ -757,7 +769,7 @@ export const translations = {
     priority: "प्राथमिकता",
     high: "उच्���",
     medium: "मध्यम",
-    low: "निम्���",
+    low: "निम्�����",
 
     // Card Content
     monthlyAttendanceSummary: "मासिक उपस्थिति सारांश",
@@ -861,7 +873,7 @@ export const translations = {
       "पंच-इन के लिए, ऊपर क्लिक ��रें अपने रिपोर्टिंग म���नेजर से अनुमोदन का अनुरोध करें...",
     locationTimeline: "स्था��� समयरेखा",
     trackedOnlyBetween:
-      "(कंपनी के नियम के अनु��ार केवल ���ंच-इन और पंच-आउट के बीच ट्रैक किया गया)",
+      "(कंपनी के ���ियम के अनु��ार केवल ���ंच-इन और पंच-आउट के बीच ट्रै�� किया गया)",
     clickHereForMoreDetail: "अधि��� विवर�� के लिए यहां क्लिक करें",
 
     // Performance Card
@@ -892,7 +904,7 @@ export const translations = {
     dropCardsOnGreenZones:
       "सेक्शन के अंत में नई पंक्ति���ां जोड़ने के लिए कार्ड को हरे ज़ोन पर ड्रॉप करें",
     dragBlueResizeHandle:
-      "कार्ड की चौड़ाई समायोजित करने के लिए दाईं ओर नीले ��ीसाइज़ हैंडल को ड्रैग करें (छोटा, मध्यम, बड़ा, अतिरिक्त बड���ा)",
+      "कार्ड की चौ��़ाई समायोजित करने के लिए दाईं ओर नीले ��ीसाइज़ हैंडल को ड्रैग करें (छोटा, मध्यम, बड़ा, अतिरिक्त बड���ा)",
     sameRowEqualHeight:
       "एक ही पंक्ति में सभी कार्ड स्वचालित रूप से समान ऊंचाई बना��� रखते हैं",
     layoutSavedAutomatically:
@@ -964,7 +976,7 @@ export const translations = {
     searchDocument: "दस्त��वेज़ खोजें",
     typeAMessage: "संदेश टाइप करें",
     typeHere: "यहाँ ट��इप करें...",
-    searchOrStartNewChat: "चैट खोजें या नई शुरू करें",
+    searchOrStartNewChat: "चैट खोज��ं या नई शुरू करें",
     searchEmployee: "कर्मचारी, शाखा या पद खोजें",
     searchBranchOrLocation: "शाखा या स्थान ���ोजें",
     searchEmployeeLeave: "कर्मचारी, शाखा या कारण खोजें",
@@ -1058,7 +1070,7 @@ export const translations = {
     addAdditionalNotes:
       "अपन��� छुट्टी अनुरो��� के लिए कोई अतिरिक्त न���ट जोड़ें...",
     addAdditionalInfo:
-      "अपन�� वेतन अग्रिम अनुरोध के लिए कोई अतिरिक्त जानकारी या औचित्य जोड़ें...",
+      "अपन�� वेतन अग्रिम अनुरोध के लिए कोई अतिरिक्त ज���नकारी या औचित्य जोड़ें...",
 
     // Modal and Dialog Actions
     createNewTask: "नया का��्य बनाएं",
@@ -1082,7 +1094,7 @@ export const translations = {
     totalAttendance: "कुल उपस्थिति",
     totalEmployeeSalary: "कुल कर्मचारी वेतन",
     amountTotal: "राशि/कुल",
-    clickToSelectKolkata: "कोलकाता चुनने के लिए क्लिक करें (डेमो)",
+    clickToSelectKolkata: "कोलकाता चुनने के लिए क���लिक करें (डेमो)",
     selectAttachmentSource: "अटैचमेंट स्रोत चु���ें",
     allBranches: "सभी श��खाएं",
     headOffice: "मुख्य कार्यालय",
@@ -1171,7 +1183,7 @@ export const translations = {
     logout: "লগআউট",
     create: "তৈরি করুন",
     filter: "ফিল্�����ার",
-    company: "কোম্পা��ি",
+    company: "কোম্পা����",
     branch: "শাখা",
     allBranch: "সকল শ���খা",
 
@@ -1240,7 +1252,7 @@ export const translations = {
     completed: "সম্পন্ন",
     inProgress: "চলমান",
     approved: "অনুমোদিত",
-    rejected: "প্রত্যাখ্যাত",
+    rejected: "প্���ত্যাখ্যাত",
     draft: "খসড��া",
     published: "প্রকাশিত",
 
@@ -1396,7 +1408,7 @@ export const translations = {
     dropCardsOnGreenZones:
       "সেকশনের ��েষে নতুন সারি যোগ করতে সবুজ জোনে কার্ড ড্রপ করুন",
     dragBlueResizeHandle:
-      "কার্ডের প্রস্থ সামঞ্জস্য করতে ডানদিকের নীল রিসাইজ হ্যান্ডেল ড্রাগ করুন (ছোট, মাঝারি, বড়, অতিরি��্ত বড়)",
+      "কার্ডের প্রস্থ সামঞ্জস্য ক���তে ডানদিকের নীল রিসাইজ হ্যান্ডেল ড্রাগ করুন (ছোট, মাঝারি, বড়, অতিরি��্ত বড়)",
     sameRowEqualHeight:
       "একই সারির সব কার্ড স্বয়ংক্রিয়ভাবে সমান উচ্চতা বজা���� রাখে",
     layoutSavedAutomatically:
@@ -1451,7 +1463,7 @@ export const translations = {
     // Authentication
     welcomeToEasyDo: "EasyDo కు స్వాగతం",
     mobileNumberPlaceholder: "మొబైల్ నంబర్",
-    bySigningUp: "సైన్ ���ప్ చేయడం ద్వారా, మీరు మా",
+    bySigningUp: "సైన్ ���ప్ చేయడం ద్వారా, మీ���ు మా",
     termsAndConditions: "నిబంధనలు & షరత���లు",
     and: "మరియు",
     privacyPolicy: "గోప్యతా విధానం",
@@ -1563,7 +1575,7 @@ export const translations = {
     employees: "ఉద్యోగులు",
     addEmployee: "ఉద్యోగిని జోడిం��ండి",
     employeeDetails: "ఉద్యోగి వివ��ాలు",
-    employeeList: "ఉద్యోగుల జాబితా",
+    employeeList: "ఉ��్యోగుల జాబితా",
     employeeName: "ఉద్యోగి పేరు",
     employeeId: "ఉద్యోగి ID",
     department: "వి��ాగం",
@@ -1711,7 +1723,7 @@ export const translations = {
     dropCardsOnGreenZones:
       "విభాగం చివరిలో కొత్త వరుసలను జోడించడానికి ఆకుప���్చ జోన్‌లపై కార్డులను డ్రాప్ చ��యండి",
     dragBlueResizeHandle:
-      "కార్డ్ వెడల్పును సర్దుబాటు చేయడానికి కుడివైపు నీలి రీసైజ్ హ్��ాండిల్‌ను డ్రాగ్ చేయండ��� (చిన్న, మధ్యమ, పెద్ద, అదనపు పెద్ద)",
+      "కార్డ్ వెడల్పును సర్దుబాటు చే���డానికి కుడివైపు నీలి రీసైజ్ హ్��ాండిల్‌ను డ్రాగ్ చేయండ��� (చిన్న, మధ్యమ, పెద్ద, అదనపు పెద్ద)",
     sameRowEqualHeight:
       "అదే ���రుసలోని అన్ని కార్డుల�� స్వయంచాలకంగా సమాన ఎత్తును నిర్వహిస్తాయి",
     layoutSavedAutomatically:
@@ -1798,7 +1810,7 @@ export const translations = {
 
     // Layout Controls
     layoutAutoSaved: "লেআউট স্বয়ংক্রি��়ভাবে সংরক্ষিত",
-    resetLayout: "রিসেট লেআউট",
+    resetLayout: "রিসেট ��েআউট",
     dragResizeCards: "কার্��� টেনে আনুন ও আকার পরিবর্তন করুন",
 
     // Task Detail Modal
@@ -1829,7 +1841,7 @@ export const translations = {
     // Common Placeholders
     selectPriority: "অগ্রাধিকার নির্বাচন করুন",
     selectBranch: "শাখা নি���্বাচন করুন",
-    selectContact: "য��গাযোগ নি��্বাচন করুন",
+    selectContact: "য��গা��োগ নি��্বাচন করুন",
     enterName: "নাম প্রবেশ করুন",
     phoneNumber: "ফোন নম্বর",
     enterEmail: "ইমেইল প্রবেশ করুন",
@@ -1850,7 +1862,7 @@ export const translations = {
     verify: "যাচাই করুন",
     pan: "PAN",
     uan: "UAN",
-    enterTag: "ট্যাগ প্রবেশ করুন",
+    enterTag: "ট্যাগ প্রবেশ করু��",
     copyToCard: "কার্ডে কপি করুন",
     enterLocation: "অবস্থান প্রবেশ করুন",
     describeTaskInDetail: "কাজের বিস্তারিত বর্���না করুন...",
@@ -2007,7 +2019,7 @@ export const translations = {
     enhancedDragDropInstructions:
       "மேம்படுத்தப்ப���்ட இழுத்து விடுதல் + அகல மறுஅளவு வழிமுறைகள்",
     hoverOverCardInstructions:
-      "இழுத்துச் செல்லும் கைப்பிடி (மேல் மைய�����) மற்றும் அகல மறுஅளவு க���ப்பி���ி (வலது விளிம்பு) காண எந்த அட்டையின் மீதும் நகர்த்தவும்",
+      "இழுத்துச் செல்லும் கைப்பிடி (மேல் மைய�����) மற்றும�� அகல மறுஅளவு க���ப்பி���ி (வலது விளிம்பு) காண எந்த அட்டையின் மீதும் நகர்த்தவும்",
     dragCardsBetweenSections:
       "மறுசீரமைப்பிற்காக ��ிரிவுகளுக்கு இடையே அல்லது பிரிவுகளுக்குள் அட்டைகளை இழுக்கவும் - அகலம் பாதுகாக்கப்படு��ிறது",
     dropCardsOnPurpleZones:
@@ -2068,7 +2080,7 @@ export const translations = {
     updateTeamOnProjectTimeline: "پروجیکٹ ٹائم لائن پر ��یم اپڈیٹ",
     addedHoursAgo: "{hours} گھنٹے پہلے شامل کیا گیا",
     addedYesterday: "کل شامل کیا گیا",
-    addedDaysAgo: "{days} دن پہلے شامل کیا گیا",
+    addedDaysAgo: "{days} دن پہلے شامل ک��ا گیا",
     addNewNote: "نیا نوٹ شامل کریں",
 
     // Drag & Drop Instructions
@@ -2146,7 +2158,7 @@ export const translations = {
     dragCardsBetweenSections:
       "પ��નઃવ્યવસ્થા માટે વિભાગો વચ્ચે અથવા વિભાગોની અં���ર કાર્ડ્સ ડ્રેગ કરો - પહોળાઈ સાચવવામાં આવે છે",
     dropCardsOnPurpleZones:
-      "વિભાગમાં નવી પંક્તિઓ બનાવવા માટે જાંબલી ઝોનમાં કાર્ડ્સ ડ્રોપ ���રો",
+      "વિભાગમાં નવી પંક્તિઓ બનાવવા માટે જાંબલી ઝોનમાં કાર્ડ્સ ડ્રો�� ���રો",
     dropCardsOnGreenZones:
       "વિભાગના અંતે નવી પંક્તિઓ ઉમેરવા માટે લીલા ઝોનમાં કાર્ડ્સ ડ્રોપ કરો",
     dragBlueResizeHandle:
@@ -2154,7 +2166,7 @@ export const translations = {
     sameRowEqualHeight:
       "એક જ ���ંક્તિના તમ��મ કાર્ડ્સ આપમેળે સ��ાન ઊંચાઈ જાળવી રાખે છે",
     layoutSavedAutomatically:
-      "તમારું લેઆઉટ અન��� કાર્ડ સાઇઝ આપમેળે સેવ થાય છે અને સેશનમાં ટકી રહે છે",
+      "તમારું લેઆઉટ અન��� કાર્ડ સાઇઝ આપમેળે સેવ થાય છ��� અને સેશનમાં ટકી રહે છે",
     useResetLayoutButton:
       'ડિફોલ���ટ ગોઠવણી પુનઃસ્થાપિત કરવ�� માટે "રીસેટ લેઆઉટ" બટનનો ઉપયોગ કરો',
   },
@@ -2199,7 +2211,7 @@ export const translations = {
     // Quick Notes Card
     quickNotes: "ತ್ವರಿತ ಟಿಪ್ಪಣಿಗಳು",
     followUpOnClientProposal: "ಕ್ಲ���ಂಟ್ ಪ್ರಸ್ತಾವನೆಯ ಮೇಲೆ ಫಾಲೋ ಅಪ್",
-    reviewQ4BudgetAllocation: "Q4 ಬಜೆಟ್ ಹಂಚಿಕೆ ಪರಿಶೀ���ನೆ",
+    reviewQ4BudgetAllocation: "Q4 ಬಜೆಟ್ ಹಂಚಿಕೆ ಪರಿ��ೀ���ನೆ",
     updateTeamOnProjectTimeline: "ಪ್ರಾಜೆಕ್ಟ್ ಟೈಮ್‌ಲೈನ್‌ನಲ್ಲಿ ���ಂಡದ ಅಪ್‌ಡೇಟ್",
     addedHoursAgo: "{hours} ಗಂಟೆಗಳ ��ಿಂದೆ ಸೇರಿಸಲಾಗಿದೆ",
     addedYesterday: "ನಿನ್ನೆ ಸೇ��ಿಸಲಾಗಿದೆ",
@@ -2222,7 +2234,7 @@ export const translations = {
     sameRowEqualHeight:
       "ಒಂದೇ ಸಾಲಿನಲ್ಲಿರುವ ����್ಲಾ ಕಾರ್ಡ��‌ಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸಮಾನ ಎತ್ತರವನ್��ು ನಿರ್ವಹಿಸುತ್ತವೆ",
     layoutSavedAutomatically:
-      "ನಿಮ್ಮ ಲೇಔಟ್ ಮತ್ತು ಕಾರ್ಡ್ ಗಾತ್ರ���ಳು ಸ್��ಯಂಚಾಲಿತವಾಗಿ ಉಳಿಸಲ್ಪಡುತ್ತವೆ ಮತ್ತು ಸೆಷನ್‌ಗಳಾದ್ಯಂತ ಮುಂದುವರಿಯುತ್ತವೆ",
+      "ನಿಮ್ಮ ಲೇಔಟ್ ಮತ್ತು ��ಾರ್ಡ್ ಗಾತ್ರ���ಳು ಸ್��ಯಂಚಾಲಿತವಾಗಿ ಉಳಿಸಲ್ಪಡುತ್ತವೆ ಮತ್ತು ಸೆಷನ್‌ಗಳಾದ್ಯಂತ ಮುಂದುವರಿಯುತ್ತವೆ",
     useResetLayoutButton:
       'ಪೂರ್ವ���ಿಗದಿ ವ್ಯವಸ್ಥೆಯನ್ನು ಮರುಸ್ಥಾಪಿಸಲು "ರೀಸೆ��್ ಲೇಔಟ್" ಬಟನ್ ಬಳಸಿ',
   },
@@ -2290,7 +2302,7 @@ export const translations = {
     sameRowEqualHeight:
       "ସମାନ ଧାଡ���ିର ସମସ୍ତ କାର୍ଡ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସମାନ ଉଚ୍ଚତା ବଜାୟ ରଖନ���ତି",
     layoutSavedAutomatically:
-      "ଆପଣଙ୍କ ଲେଆଉଟ୍ ଏବଂ କାର୍ଡ ଆ��ାରଗୁଡ଼ିକ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସଞ���ଚିତ ହୋଇଥାଏ ଏବଂ ସେସନ୍ ଗୁଡ଼ିକରେ ରହିଥାଏ",
+      "ଆପଣଙ୍କ ଲେଆଉଟ୍ ଏବଂ କାର୍ଡ ଆ��ାରଗୁଡ଼ିକ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସଞ���ଚିତ ହୋଇଥାଏ ଏବଂ ସେସନ୍ ଗୁଡ଼ିକରେ ରହ��ଥାଏ",
     useResetLayoutButton:
       'ଡିଫଲ୍ଟ ବ୍ୟବସ୍ଥା ��ୁନଃସ୍ଥାପନ କରିବା ପାଇଁ "ରିସେଟ୍ ଲେଆଉଟ୍" ବଟନ୍ ବ୍ୟବହାର କରନ୍ତୁ',
   },
@@ -2317,7 +2329,7 @@ export const translations = {
     chats: "ਚੈਟਸ",
     todaysSchedule: "ਅੱਜ ਦਾ ਸਮਾਂ-��ਾਰਣੀ",
     employeeDashboard: "ਕਰਮਚਾਰੀ ਡੈਸ਼ਬੋਰਡ",
-    companyDashboard: "ਕੰਪਨੀ ਡੈਸ਼ਬੋਰਡ",
+    companyDashboard: "ਕੰਪ��ੀ ਡੈਸ਼ਬੋਰਡ",
     tasks: "ਕੰਮ",
     meet: "ਮਿਲਣਾ",
     notesReminder: "ਨੋਟਸ ਅਤੇ ਰਿਮਾਈਂਡਰ",
@@ -2419,7 +2431,7 @@ export const translations = {
     dropCardsOnPurpleZones:
       "വിഭാഗ��്തിൽ പുതിയ വരികൾ സൃഷ്ടിക്കാൻ പർപ്പിൾ സോണുകളിൽ കാർ��ുകൾ ഡ്രോപ്പ് ചെയ്യുക",
     dropCardsOnGreenZones:
-      "വിഭാഗത്തിന്റെ അവസാനം പുതിയ വരി��ൾ ചേർ���്കാൻ പച്ച സോണുകളിൽ കാർഡുകൾ ഡ്രോപ്പ് ചെയ്യുക",
+      "വിഭാ���ത്തിന്റെ അവസാനം പുതിയ വരി��ൾ ചേർ���്കാൻ പച്ച സോണുകളിൽ കാർഡുകൾ ഡ്രോപ്പ് ചെയ്യുക",
     dragBlueResizeHandle:
       "കാർഡിന്റെ വീതി ക്രമീക��ിക്കാൻ വലതുവശത്തുള്ള നീല റീസൈസ് ഹാ���ഡിൽ ഡ്രാഗ് ചെയ്യുക (ചെറുത്, ഇടത്തരം, വലുത്, അധിക വലുത്)",
     sameRowEqualHeight:
