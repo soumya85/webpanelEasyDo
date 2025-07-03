@@ -22,7 +22,7 @@ export function PageLayout({ children }: PageLayoutProps) {
         className={cn(
           "transition-all duration-300 pt-[70px] pb-16",
           // Desktop margins
-          isExpanded ? "lg:ml-[280px]" : "lg:ml-[103px]",
+          isExpanded ? "lg:ml-[260px]" : "lg:ml-[103px]",
           // Mobile/Tablet margins (no sidebar margin, but account for mobile breadcrumb)
           "ml-0 lg:pt-[70px] pt-[135px]", // Reduced padding for desktop and mobile
         )}
