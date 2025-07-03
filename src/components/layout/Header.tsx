@@ -201,7 +201,7 @@ export function Header() {
           // Mobile/Tablet: always full width (left-0)
           "left-0",
           // Desktop: adjust for sidebar
-          isExpanded ? "lg:left-[280px]" : "lg:left-[103px]",
+          isExpanded ? "lg:left-[260px]" : "lg:left-[103px]",
         )}
       >
         {/* Left Controls */}
