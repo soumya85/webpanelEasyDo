@@ -27,7 +27,7 @@ interface Task {
 
 interface TaskGanttViewProps {
   tasks: Task[];
-  setIsAddTaskModalOpen: (open: boolean) => void;
+  onTaskClick: (open: boolean) => void;
 }
 
 const getStatusColor = (status: string) => {
@@ -43,7 +43,7 @@ const getStatusColor = (status: string) => {
   }
 };
 
-export function TaskGanttView({ tasks, setIsAddTaskModalOpen }: TaskGanttViewProps) {
+export function TaskGanttView({ tasks, onTaskClick }: TaskGanttViewProps) {
   // Generate weeks for the timeline
   const weeks = Array.from({ length: 8 }, (_, i) => {
     const date = new Date();
@@ -78,7 +78,7 @@ export function TaskGanttView({ tasks, setIsAddTaskModalOpen }: TaskGanttViewPro
             </Badge>
           </div>
           <Button 
-            onClick={() => setIsAddTaskModalOpen(true)}
+            onClick={() => onTaskClick(true)}
             className="bg-blue-600 hover:bg-blue-700"
           >
             <Plus size={16} className="mr-2" />
@@ -168,7 +168,7 @@ export function TaskGanttView({ tasks, setIsAddTaskModalOpen }: TaskGanttViewPro
             <BarChart3 size={48} className="mx-auto mb-4 opacity-50" />
             <p className="mb-4">No tasks to display in Gantt view</p>
             <Button 
-              onClick={() => setIsAddTaskModalOpen(true)}
+              onClick={() => onTaskClick(true)}
               variant="outline"
             >
               <Plus size={16} className="mr-2" />

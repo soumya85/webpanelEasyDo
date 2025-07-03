@@ -29,7 +29,7 @@ interface Task {
 
 interface TaskCalendarViewProps {
   tasks: Task[];
-  setIsAddTaskModalOpen: (open: boolean) => void;
+  onTaskClick: (open: boolean) => void;
 }
 
 const getPriorityColor = (priority?: string) => {
@@ -47,7 +47,7 @@ const getPriorityColor = (priority?: string) => {
   }
 };
 
-export function TaskCalendarView({ tasks, setIsAddTaskModalOpen }: TaskCalendarViewProps) {
+export function TaskCalendarView({ tasks, onTaskClick }: TaskCalendarViewProps) {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
 
@@ -87,7 +87,7 @@ export function TaskCalendarView({ tasks, setIsAddTaskModalOpen }: TaskCalendarV
             </div>
           </div>
           <Button 
-            onClick={() => setIsAddTaskModalOpen(true)}
+            onClick={() => onTaskClick(true)}
             className="bg-blue-600 hover:bg-blue-700"
           >
             <Plus size={16} className="mr-2" />
@@ -162,7 +162,7 @@ export function TaskCalendarView({ tasks, setIsAddTaskModalOpen }: TaskCalendarV
                 <CalendarIcon size={32} className="mx-auto mb-2 opacity-50" />
                 <p className="text-sm">No tasks for this date</p>
                 <Button 
-                  onClick={() => setIsAddTaskModalOpen(true)}
+                  onClick={() => onTaskClick(true)}
                   variant="ghost"
                   size="sm"
                   className="mt-2"
