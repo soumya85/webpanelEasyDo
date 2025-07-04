@@ -37,6 +37,11 @@ export function NavItem({
     }
   };
 
+  // Check if this is Employee Dashboard or Meet for larger icons
+  const isEmployeeDashboard = href === "/employee-dashboard";
+  const isMeet = href === "/meet";
+  const shouldUseLargerIcon = isEmployeeDashboard || isMeet;
+
   return (
     <Link
       to={href}
@@ -54,14 +59,27 @@ export function NavItem({
         <img
           src={customIconUrl}
           alt=""
-          className="h-[18px] w-[18px] flex-shrink-0 object-contain"
+          className={cn(
+            "flex-shrink-0 object-contain",
+            shouldUseLargerIcon ? "h-[24px] w-[24px]" : "h-[18px] w-[18px]",
+          )}
         />
       ) : materialIcon ? (
-        <span className="material-icons-outlined text-[18px] flex-shrink-0">
+        <span
+          className={cn(
+            "material-icons-outlined flex-shrink-0",
+            shouldUseLargerIcon ? "text-[24px]" : "text-[18px]",
+          )}
+        >
           {materialIcon}
         </span>
       ) : Icon ? (
-        <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+        <Icon
+          className={cn(
+            "flex-shrink-0",
+            shouldUseLargerIcon ? "h-[24px] w-[24px]" : "h-[18px] w-[18px]",
+          )}
+        />
       ) : null}
       {isExpanded && (
         <MultilingualText className="text-13 font-semibold leading-tight">
