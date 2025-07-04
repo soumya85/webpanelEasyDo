@@ -38,24 +38,33 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-        {/* Pie Chart Section */}
-        <div className="flex justify-center mb-4">
-          <div className="relative w-16 h-16">
+        {/* Top Section with Headers and Pie Chart */}
+        <div className="flex justify-between items-start mb-4">
+          <div className="flex-1">
+            {/* Header Section */}
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-xs text-blue-600 font-medium">
+                Completed Tasks
+              </div>
+              <div className="text-xs text-gray-500 font-medium">All Time</div>
+            </div>
+
+            {/* Main Number */}
+            <div className="mb-4">
+              <div className="text-3xl font-bold text-blue-600 border-b-2 border-blue-600 inline-block pb-1">
+                15
+              </div>
+            </div>
+          </div>
+
+          {/* Pie Chart */}
+          <div className="relative w-16 h-16 ml-4">
             <svg
               width="64"
               height="64"
               viewBox="0 0 64 64"
               className="transform -rotate-90"
             >
-              {/* Background circle */}
-              <circle
-                cx="32"
-                cy="32"
-                r="28"
-                fill="none"
-                stroke="#e5e7eb"
-                strokeWidth="8"
-              />
               {/* Blue segment (10/15 = 66.67%) */}
               <circle
                 cx="32"
@@ -85,21 +94,6 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
                 <div className="text-xs font-bold text-blue-600">10</div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Header Section */}
-        <div className="flex justify-between items-center mb-2">
-          <div className="text-xs text-blue-600 font-medium">
-            Completed Tasks
-          </div>
-          <div className="text-xs text-gray-500 font-medium">All Time</div>
-        </div>
-
-        {/* Main Number */}
-        <div className="mb-4">
-          <div className="text-3xl font-bold text-blue-600 border-b-2 border-blue-600 inline-block pb-1">
-            15
           </div>
         </div>
 
