@@ -14,10 +14,9 @@ const sizeClasses = {
 export function TaskIcon({ className, size = "md" }: TaskIconProps) {
   return (
     <img
-      src="https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F9f2b8203760d4faeb934077bd8947014?format=webp&width=800"
+      src="https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F97c07813dd384df6b1728dda34d63ef6?format=webp&width=800"
       alt="Task"
       className={cn(sizeClasses[size], "object-contain", className)}
-      style={{ backgroundColor: "transparent" }}
     />
   );
 }
