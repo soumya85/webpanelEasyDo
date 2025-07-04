@@ -66,7 +66,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-2">
+        <div className="flex items-center gap-3 mb-1">
           <div className="p-1.5 rounded-lg bg-indigo-50">
             <Clock className="w-4 h-4 text-indigo-600" />
           </div>
@@ -76,7 +76,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Current Time and Status Row */}
-        <div className="grid grid-cols-4 gap-2 mb-2">
+        <div className="grid grid-cols-4 gap-2 mb-1">
           {/* Current Time */}
           <div className="text-center">
             <div className="text-lg font-bold text-gray-900">
