@@ -71,9 +71,9 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
               className="absolute left-0 top-0 h-full bg-red-500 transition-all duration-300"
               style={{ width: `${(69 / (69 + 20)) * 100}%` }}
             />
-            {/* In Progress (Blue) */}
+            {/* In Progress (Green) */}
             <div
-              className="absolute top-0 h-full bg-blue-500 transition-all duration-300"
+              className="absolute top-0 h-full bg-green-500 transition-all duration-300"
               style={{
                 left: `${(69 / (69 + 20)) * 100}%`,
                 width: `${(20 / (69 + 20)) * 100}%`,
@@ -82,7 +82,7 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
           </div>
           <div className="flex justify-between text-xs">
             <span className="text-red-500 font-medium">Overdue</span>
-            <span className="text-blue-500 font-medium">In Progress</span>
+            <span className="text-green-500 font-medium">In Progress</span>
           </div>
         </div>
       </div>
