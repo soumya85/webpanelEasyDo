@@ -55,17 +55,11 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
           </div>
         </div>
 
-        {/* Progress Bar */}
+        {/* Weekly Progress Text Only */}
         <div className="mt-3">
-          <div className="flex justify-between text-xs mb-1">
+          <div className="flex justify-between text-xs">
             <span className="text-gray-600">Weekly Progress</span>
             <span className="font-semibold text-[#4766E5]">85%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div
-              className="bg-[#4766E5] h-2 rounded-full transition-all duration-300"
-              style={{ width: "85%" }}
-            ></div>
           </div>
         </div>
       </div>
