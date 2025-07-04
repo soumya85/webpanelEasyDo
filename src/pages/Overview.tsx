@@ -18,7 +18,6 @@ import {
 import {
   ChevronDown,
   Trophy,
-  CheckSquare,
   Calendar as CalendarIcon,
   CheckCircle,
   Search,
