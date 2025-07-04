@@ -38,36 +38,51 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-        <div className="mb-2">
+        <div className="mb-2 flex items-center gap-3">
           <div className="text-3xl font-bold text-[#4766E5]">34</div>
-          <div className="text-xs text-gray-600">
+          <div className="text-sm font-bold text-gray-600">
             {t("totalDelegatedTasks")}
           </div>
         </div>
 
         {/* Details */}
-        <div className="space-y-2 text-xs">
+        <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-gray-600">{t("pendingReview")}</span>
-            <span className="font-semibold text-orange-500">12</span>
+            <span className="text-gray-600 font-bold">{t("overdue")}</span>
+            <span className="font-semibold text-red-500">12</span>
           </div>
+          <div className="border-t border-gray-200"></div>
           <div className="flex justify-between">
-            <span className="text-gray-600">{t("completed")}</span>
-            <span className="font-semibold text-green-500">22</span>
+            <span className="text-gray-600 font-bold">{t("inProgress")}</span>
+            <span className="font-semibold text-green-500">15</span>
+          </div>
+          <div className="border-t border-gray-200"></div>
+          <div className="flex justify-between">
+            <span className="text-gray-600 font-bold">{t("noAction")}</span>
+            <span className="font-semibold text-gray-800">7</span>
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="mt-3">
-          <div className="flex justify-between text-xs mb-1">
-            <span className="text-gray-600">Weekly Progress</span>
-            <span className="font-semibold text-[#4766E5]">65%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+        {/* Progress Bar Section */}
+        <div className="mt-3 space-y-2">
+          <div className="relative h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+            {/* Overdue Progress (Red) */}
             <div
-              className="bg-[#4766E5] h-2 rounded-full transition-all duration-300"
-              style={{ width: "65%" }}
-            ></div>
+              className="absolute left-0 top-0 h-full bg-red-500 transition-all duration-300"
+              style={{ width: `${(12 / (12 + 15)) * 100}%` }}
+            />
+            {/* In Progress (Green) */}
+            <div
+              className="absolute top-0 h-full bg-green-500 transition-all duration-300"
+              style={{
+                left: `${(12 / (12 + 15)) * 100}%`,
+                width: `${(15 / (12 + 15)) * 100}%`,
+              }}
+            />
+          </div>
+          <div className="flex justify-between text-xs">
+            <span className="text-red-500 font-medium">12</span>
+            <span className="text-green-500 font-medium">15</span>
           </div>
         </div>
       </div>
