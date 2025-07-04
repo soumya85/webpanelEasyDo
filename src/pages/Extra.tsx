@@ -7,8 +7,11 @@ import { TaskCompletedTrendsCard } from "@/components/insights/TaskCompletedTren
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Download, Filter, Calendar, BarChart3 } from "lucide-react";
+import { useState } from "react";
 
 const Extra = () => {
+  const [showInsight, setShowInsight] = useState(false);
+
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {/* Header Section */}
@@ -92,6 +95,48 @@ const Extra = () => {
             </div>
           </div>
         </div>
+
+        {!showInsight && (
+          <div className="w-full flex justify-center py-4 bg-white border-b">
+            <div className="relative flex flex-col items-center">
+              {/* Green circle with red border for In Progress */}
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10">
+                <div className="rounded-full border-4 border-red-500 bg-green-300 w-16 h-16 flex items-center justify-center text-xl font-bold text-black shadow">
+                  {myTaskGroups.find(g => g.status === 'inprogress')?.tasks.length || 0}
+                </div>
+              </div>
+              {/* Main Card */}
+              <div className="mt-8 bg-blue-50 rounded-xl shadow border flex flex-col items-center px-8 py-4 min-w-[320px] relative">
+                <div className="flex justify-between w-full mb-2">
+                  <span className="text-blue-700 font-bold text-lg">Pending Tasks</span>
+                  <span className="text-blue-700 font-bold text-lg">All Time</span>
+                </div>
+                <div className="flex justify-between w-full items-end gap-6">
+                  <div className="flex flex-col items-center">
+                    <span className="text-4xl font-extrabold text-blue-600">{myTaskGroups.reduce((sum, g) => sum + g.tasks.length, 0)}</span>
+                    <span className="w-8 h-1 bg-blue-600 rounded-full mt-1" />
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl font-bold text-red-600">{myTaskGroups.find(g => g.status === 'skip')?.tasks.length || 0}</span>
+                    <span className="text-xs text-red-600 font-semibold mt-1">Overdue</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl font-bold text-green-600">{myTaskGroups.find(g => g.status === 'inprogress')?.tasks.length || 0}</span>
+                    <span className="text-xs text-green-600 font-semibold mt-1">In Progress</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-2xl font-bold text-black">{myTaskGroups.find(g => g.status === 'noAction')?.tasks.length || 0}</span>
+                    <span className="text-xs text-black font-semibold mt-1">No Action</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showInsight && (
+          <YourInsightComponentOrPanel />
+        )}
       </div>
     </div>
   );
