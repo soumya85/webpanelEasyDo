@@ -181,7 +181,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Status Message */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-1">
           <div className="flex items-center gap-2 text-green-700">
             <CheckCircle className="w-4 h-4 flex-shrink-0" />
             <div className="text-sm">
