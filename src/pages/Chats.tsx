@@ -39,7 +39,6 @@ import {
   ArrowLeft,
   MoreHorizontal,
   Calendar,
-  CheckSquare,
   Receipt,
   UserPlus,
   Clock,
