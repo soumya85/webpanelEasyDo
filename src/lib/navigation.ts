@@ -19,7 +19,8 @@ import { type TranslationKey } from "@/data/translations";
 export interface NavigationItem {
   id: string;
   labelKey: TranslationKey;
-  icon: typeof LayoutDashboard;
+  icon?: typeof LayoutDashboard;
+  customIconUrl?: string;
   href: string;
   badge?: number;
 }
@@ -58,7 +59,8 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "meet",
     labelKey: "meet",
-    icon: Video,
+    customIconUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F4c1092977bf841b2a70401d8084df7da?format=webp&width=800",
     href: "/meet",
   },
   {
