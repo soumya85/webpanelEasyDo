@@ -147,7 +147,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Punch Times Row */}
-        <div className="grid grid-cols-3 gap-2 mb-2">
+        <div className="grid grid-cols-3 gap-2 mb-1">
           {/* Punch In */}
           <div className="text-center">
             <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
