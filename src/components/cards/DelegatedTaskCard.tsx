@@ -38,51 +38,77 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-        <div className="mb-2 flex items-center gap-3">
-          <div className="text-3xl font-bold text-[#4766E5]">34</div>
-          <div className="text-sm font-bold text-gray-600">
-            {t("totalDelegatedTasks")}
+        {/* Pie Chart Section */}
+        <div className="flex justify-center mb-4">
+          <div className="relative w-16 h-16">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              className="transform -rotate-90"
+            >
+              {/* Background circle */}
+              <circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="none"
+                stroke="#e5e7eb"
+                strokeWidth="8"
+              />
+              {/* Blue segment (10/15 = 66.67%) */}
+              <circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="none"
+                stroke="#4F46E5"
+                strokeWidth="8"
+                strokeDasharray={`${(10 / 15) * 175.93} 175.93`}
+                strokeDashoffset="0"
+              />
+              {/* Purple segment (5/15 = 33.33%) */}
+              <circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="none"
+                stroke="#A855F7"
+                strokeWidth="8"
+                strokeDasharray={`${(5 / 15) * 175.93} 175.93`}
+                strokeDashoffset={`-${(10 / 15) * 175.93}`}
+              />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-xs font-bold text-purple-600">5</div>
+                <div className="text-xs font-bold text-blue-600">10</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Details */}
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("overdue")}</span>
-            <span className="font-semibold text-red-500">12</span>
+        {/* Completed Tasks Section */}
+        <div className="text-center mb-4">
+          <div className="text-xs text-blue-600 font-medium mb-1">
+            Completed Tasks
           </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("inProgress")}</span>
-            <span className="font-semibold text-green-500">15</span>
-          </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("noAction")}</span>
-            <span className="font-semibold text-gray-800">7</span>
-          </div>
+          <div className="text-3xl font-bold text-blue-600">15</div>
         </div>
 
-        {/* Progress Bar Section */}
-        <div className="mt-3 space-y-2">
-          <div className="relative h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-            {/* Overdue Progress (Red) */}
-            <div
-              className="absolute left-0 top-0 h-full bg-red-500 transition-all duration-300"
-              style={{ width: `${(12 / (12 + 15)) * 100}%` }}
-            />
-            {/* In Progress (Green) */}
-            <div
-              className="absolute top-0 h-full bg-green-500 transition-all duration-300"
-              style={{
-                left: `${(12 / (12 + 15)) * 100}%`,
-                width: `${(15 / (12 + 15)) * 100}%`,
-              }}
-            />
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-3 gap-2 text-center">
+          <div>
+            <div className="text-lg font-bold text-blue-600">10</div>
+            <div className="text-xs text-blue-600 font-medium">On Time</div>
           </div>
-          <div className="flex justify-between text-xs">
-            <span className="text-red-500 font-medium">12</span>
-            <span className="text-green-500 font-medium">15</span>
+          <div>
+            <div className="text-lg font-bold text-purple-600">5</div>
+            <div className="text-xs text-purple-600 font-medium">Delayed</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold text-red-500">0</div>
+            <div className="text-xs text-red-500 font-medium">Skipped</div>
           </div>
         </div>
       </div>
