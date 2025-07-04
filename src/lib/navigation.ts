@@ -48,7 +48,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "company-dashboard",
     labelKey: "companyDashboard",
-    icon: Building,
+    materialIcon: "maps_home_work",
     href: "/sample-page-3",
   },
   {
