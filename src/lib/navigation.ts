@@ -53,8 +53,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "tasks",
     labelKey: "tasks",
-    customIconUrl:
-      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2Ffc7e67f030a648d88ee68c1ca36d1224?format=webp&width=800",
+    materialIcon: "task_alt",
     href: "/tasks",
   },
   {
