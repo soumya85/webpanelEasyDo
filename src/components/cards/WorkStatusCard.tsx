@@ -150,43 +150,43 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         <div className="grid grid-cols-3 gap-2 mb-4">
           {/* Punch In */}
           <div className="text-center">
-            <div className="w-4 h-4 mx-auto mb-0.5 bg-blue-50 rounded-full flex items-center justify-center">
-              <ArrowDown className="w-2 h-2 text-blue-600" />
+            <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
+              <ArrowDown className="w-3 h-3 text-blue-600" />
             </div>
-            <div className="text-[10px] font-medium text-gray-900">
+            <div className="text-xs font-medium text-gray-900">
               {punchInTime}
             </div>
-            <div className="text-[9px] text-blue-600">Punch-in</div>
+            <div className="text-xs text-blue-600">Punch-in</div>
           </div>
 
           {/* Punch Out */}
           <div className="text-center">
-            <div className="w-4 h-4 mx-auto mb-0.5 bg-blue-50 rounded-full flex items-center justify-center">
-              <ArrowUp className="w-2 h-2 text-blue-600" />
+            <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
+              <ArrowUp className="w-3 h-3 text-blue-600" />
             </div>
-            <div className="text-[10px] font-medium text-gray-500">--:--</div>
-            <div className="text-[9px] text-blue-600">Punch-out</div>
+            <div className="text-xs font-medium text-gray-500">--:--</div>
+            <div className="text-xs text-blue-600">Punch-out</div>
           </div>
 
           {/* Total Work */}
           <div className="text-center">
-            <div className="w-4 h-4 mx-auto mb-0.5 bg-blue-50 rounded-full flex items-center justify-center">
-              <Clock className="w-2 h-2 text-blue-600" />
+            <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
+              <Clock className="w-3 h-3 text-blue-600" />
             </div>
-            <div className="text-[10px] font-medium text-gray-900">
+            <div className="text-xs font-medium text-gray-900">
               {totalWorkHours}
             </div>
-            <div className="text-[9px] text-blue-600">Total Work</div>
+            <div className="text-xs text-blue-600">Total Work</div>
           </div>
         </div>
 
         {/* Status Message */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-1.5">
-          <div className="flex items-center gap-1 text-green-700">
-            <CheckCircle className="w-3 h-3 flex-shrink-0" />
-            <div className="text-xs">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+          <div className="flex items-center gap-2 text-green-700">
+            <CheckCircle className="w-4 h-4 flex-shrink-0" />
+            <div className="text-sm">
               <span className="font-medium">You're Present today</span>
-              <div className="text-[10px]">Branch</div>
+              <div className="text-xs">Branch</div>
             </div>
           </div>
         </div>
