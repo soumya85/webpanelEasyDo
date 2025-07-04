@@ -9,6 +9,7 @@ import { type TranslationKey } from "@/data/translations";
 interface NavItemProps {
   icon?: LucideIcon;
   customIconUrl?: string;
+  materialIcon?: string;
   labelKey: TranslationKey;
   href: string;
   badge?: number;
@@ -17,6 +18,7 @@ interface NavItemProps {
 export function NavItem({
   icon: Icon,
   customIconUrl,
+  materialIcon,
   labelKey,
   href,
   badge,
@@ -54,6 +56,10 @@ export function NavItem({
           alt=""
           className="h-[18px] w-[18px] flex-shrink-0 object-contain"
         />
+      ) : materialIcon ? (
+        <span className="material-icons-outlined text-[18px] flex-shrink-0">
+          {materialIcon}
+        </span>
       ) : Icon ? (
         <Icon className="h-[18px] w-[18px] flex-shrink-0" />
       ) : null}

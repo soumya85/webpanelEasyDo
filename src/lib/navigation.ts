@@ -21,6 +21,7 @@ export interface NavigationItem {
   labelKey: TranslationKey;
   icon?: typeof LayoutDashboard;
   customIconUrl?: string;
+  materialIcon?: string;
   href: string;
   badge?: number;
 }
@@ -41,7 +42,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "employee-dashboard",
     labelKey: "employeeDashboard",
-    icon: Users,
+    materialIcon: "person_outline",
     href: "/employee-dashboard",
   },
   {
@@ -53,15 +54,14 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "tasks",
     labelKey: "tasks",
-    customIconUrl:
-      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2Ffc7e67f030a648d88ee68c1ca36d1224?format=webp&width=800",
+    materialIcon: "task_alt",
     href: "/tasks",
   },
   {
     id: "meet",
     labelKey: "meet",
     customIconUrl:
-      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F4c1092977bf841b2a70401d8084df7da?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F51d359c5891a4e05a53ecd2441dc52fd?format=webp&width=800",
     href: "/meet",
   },
   {

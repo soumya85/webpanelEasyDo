@@ -43,17 +43,26 @@ export function TaskCard({ task, className }: TaskCardProps) {
           minWidth: "fit-content",
         }}
       >
-        <img
-          src="/task-logo.png?v=1"
+        <div
           style={{
             width: "51px",
             height: "51px",
             aspectRatio: "1/1",
             borderRadius: "53px",
             position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#f3f4f6",
           }}
-          alt="Task logo"
-        />
+        >
+          <span
+            className="material-icons-outlined"
+            style={{ fontSize: "28px" }}
+          >
+            task_alt
+          </span>
+        </div>
         <div
           style={{
             display: "flex",
