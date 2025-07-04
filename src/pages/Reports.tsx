@@ -99,7 +99,11 @@ export default function Reports() {
                 <div
                   className={`w-16 h-16 rounded-full flex items-center justify-center mb-5 ${item.color} shadow-md group-hover:scale-105 transition-transform`}
                 >
-                  <item.icon className="w-10 h-10" />
+                  {typeof item.icon === "function" ? (
+                    <item.icon />
+                  ) : (
+                    <item.icon className="w-10 h-10" />
+                  )}
                 </div>
                 <h3 className="font-semibold text-lg text-gray-900 group-hover:text-indigo-700 transition">
                   {item.title}
