@@ -61,14 +61,14 @@ export function NavItem({
           alt=""
           className={cn(
             "flex-shrink-0 object-contain",
-            shouldUseLargerIcon ? "h-[24px] w-[24px]" : "h-[18px] w-[18px]",
+            shouldUseLargerIcon ? "h-[20px] w-[20px]" : "h-[18px] w-[18px]",
           )}
         />
       ) : materialIcon ? (
         <span
           className={cn(
             "material-icons-outlined flex-shrink-0",
-            shouldUseLargerIcon ? "text-[24px]" : "text-[18px]",
+            shouldUseLargerIcon ? "text-[20px]" : "text-[18px]",
           )}
         >
           {materialIcon}
@@ -77,7 +77,7 @@ export function NavItem({
         <Icon
           className={cn(
             "flex-shrink-0",
-            shouldUseLargerIcon ? "h-[24px] w-[24px]" : "h-[18px] w-[18px]",
+            shouldUseLargerIcon ? "h-[20px] w-[20px]" : "h-[18px] w-[18px]",
           )}
         />
       ) : null}
