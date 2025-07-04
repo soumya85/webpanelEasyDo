@@ -6,6 +6,8 @@ export interface DashboardCard {
   id: string;
   type:
     | "task"
+    | "myTask"
+    | "delegatedTask"
     | "meetings"
     | "approvals"
     | "notes"
