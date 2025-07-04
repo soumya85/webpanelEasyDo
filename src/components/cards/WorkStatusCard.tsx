@@ -66,7 +66,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-1">
+        <div className="flex items-center gap-3 mb-4">
           <div className="p-1.5 rounded-lg bg-indigo-50">
             <Clock className="w-4 h-4 text-indigo-600" />
           </div>
@@ -76,7 +76,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Current Time and Status Row */}
-        <div className="grid grid-cols-4 gap-2 mb-1">
+        <div className="grid grid-cols-4 gap-2 mb-4">
           {/* Current Time */}
           <div className="text-center">
             <div className="text-lg font-bold text-gray-900">
@@ -114,7 +114,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Central Punch Button */}
-        <div className="flex justify-center mb-1">
+        <div className="flex justify-center mb-4">
           <div className="relative">
             <div
               className={cn(
@@ -147,7 +147,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Punch Times Row */}
-        <div className="grid grid-cols-3 gap-2 mb-1">
+        <div className="grid grid-cols-3 gap-2 mb-4">
           {/* Punch In */}
           <div className="text-center">
             <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
@@ -181,7 +181,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Status Message */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-1">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
           <div className="flex items-center gap-2 text-green-700">
             <CheckCircle className="w-4 h-4 flex-shrink-0" />
             <div className="text-sm">
