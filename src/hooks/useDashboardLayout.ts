@@ -6,6 +6,8 @@ export interface DashboardCard {
   id: string;
   type:
     | "task"
+    | "myTask"
+    | "delegatedTask"
     | "meetings"
     | "approvals"
     | "notes"
@@ -33,11 +35,19 @@ const STORAGE_KEY = "dashboard-layout";
 
 const getDefaultLayout = (): DashboardCard[] => [
   {
-    id: "tasks",
-    type: "task",
-    title: "taskAtGlance",
+    id: "myTasks",
+    type: "myTask",
+    title: "myTask",
     section: "quick-overview",
     order: 0,
+    size: "medium",
+  },
+  {
+    id: "delegatedTasks",
+    type: "delegatedTask",
+    title: "delegatedTask",
+    section: "quick-overview",
+    order: 1,
     size: "medium",
   },
   {
@@ -45,7 +55,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     type: "meetings",
     title: "meetingsThisWeek",
     section: "quick-overview",
-    order: 1,
+    order: 2,
     size: "medium",
   },
   {
@@ -53,14 +63,14 @@ const getDefaultLayout = (): DashboardCard[] => [
     type: "approvals",
     title: "pendingApprovals",
     section: "quick-overview",
-    order: 2,
+    order: 3,
     size: "medium",
   },
   {
     id: "notes",
     type: "notes",
     title: "personalNotes",
-    section: "quick-overview",
+    section: "productivity",
     order: 3,
     size: "medium",
   },

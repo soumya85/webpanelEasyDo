@@ -35,7 +35,7 @@ export default function SamplePage2() {
       id: "calendar",
     },
     {
-      icon: <img src="/leave_request-icon.png" alt="Tasks" />,
+      icon: <span className="material-icons-outlined text-2xl">task_alt</span>,
       title: "Tasks",
       id: "tasks",
     },

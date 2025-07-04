@@ -3,12 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Calendar,
   FileText,
-  CheckSquare,
   HelpCircle,
   CreditCard,
   TrendingUp,
-  ClipboardList
+  ClipboardList,
 } from "lucide-react";
+import { TaskIcon } from "@/components/ui/task-icon";
 
 // Use Lucide icons directly for best performance and consistency
 const reportItems = [
@@ -17,50 +17,50 @@ const reportItems = [
     title: "Attendance Report",
     icon: Calendar,
     color: "bg-blue-100 text-blue-700",
-    route: "/attendance-report"
+    route: "/attendance-report",
   },
   {
     id: 2,
     title: "Sales Register",
     icon: FileText,
     color: "bg-green-100 text-green-700",
-    route: "/sales-register"
+    route: "/sales-register",
   },
   {
     id: 3,
     title: "Approvals",
-    icon: CheckSquare,
+    icon: () => <TaskIcon size="lg" />,
     color: "bg-yellow-100 text-yellow-700",
-    route: "/approvals-report"
+    route: "/approvals-report",
   },
   {
     id: 4,
     title: "Operational Expenses",
     icon: HelpCircle,
     color: "bg-red-100 text-red-700",
-    route: "/operational-expenses"
+    route: "/operational-expenses",
   },
   {
     id: 5,
     title: "Salary Statement",
     icon: CreditCard,
     color: "bg-indigo-100 text-indigo-700",
-    route: "/salary-statement"
+    route: "/salary-statement",
   },
   {
     id: 6,
     title: "Employee Performance Report",
     icon: TrendingUp,
     color: "bg-purple-100 text-purple-700",
-    route: "/performance-report"
+    route: "/performance-report",
   },
   {
     id: 7,
     title: "Task Report",
     icon: ClipboardList,
     color: "bg-teal-100 text-teal-700",
-    route: "/task-report"
-  }
+    route: "/task-report",
+  },
 ];
 
 export default function Reports() {
@@ -96,8 +96,14 @@ export default function Reports() {
               aria-label={item.title}
             >
               <CardContent className="p-8 flex flex-col items-center text-center">
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-5 ${item.color} shadow-md group-hover:scale-105 transition-transform`}>
-                  <item.icon className="w-10 h-10" />
+                <div
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-5 ${item.color} shadow-md group-hover:scale-105 transition-transform`}
+                >
+                  {typeof item.icon === "function" ? (
+                    <item.icon />
+                  ) : (
+                    <item.icon className="w-10 h-10" />
+                  )}
                 </div>
                 <h3 className="font-semibold text-lg text-gray-900 group-hover:text-indigo-700 transition">
                   {item.title}

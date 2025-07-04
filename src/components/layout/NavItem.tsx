@@ -7,13 +7,22 @@ import { MultilingualText } from "@/components/MultilingualText";
 import { type TranslationKey } from "@/data/translations";
 
 interface NavItemProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  customIconUrl?: string;
+  materialIcon?: string;
   labelKey: TranslationKey;
   href: string;
   badge?: number;
 }
 
-export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
+export function NavItem({
+  icon: Icon,
+  customIconUrl,
+  materialIcon,
+  labelKey,
+  href,
+  badge,
+}: NavItemProps) {
   const location = useLocation();
   const { isExpanded, setMobileOpen } = useSidebar();
   const { t } = useTranslation();
@@ -28,6 +37,10 @@ export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
     }
   };
 
+  // Check if this is Employee Dashboard or Meet for special icon sizes
+  const isEmployeeDashboard = href === "/employee-dashboard";
+  const isMeet = href === "/meet";
+
   return (
     <Link
       to={href}
@@ -41,7 +54,44 @@ export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
         !isExpanded && "justify-center px-2",
       )}
     >
-      <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+      {customIconUrl ? (
+        <img
+          src={customIconUrl}
+          alt=""
+          className={cn(
+            "flex-shrink-0 object-contain",
+            isEmployeeDashboard
+              ? "h-[20px] w-[20px]"
+              : isMeet
+                ? "h-[16px] w-[16px]"
+                : "h-[18px] w-[18px]",
+          )}
+        />
+      ) : materialIcon ? (
+        <span
+          className={cn(
+            "material-icons-outlined flex-shrink-0",
+            isEmployeeDashboard
+              ? "text-[20px]"
+              : isMeet
+                ? "text-[16px]"
+                : "text-[18px]",
+          )}
+        >
+          {materialIcon}
+        </span>
+      ) : Icon ? (
+        <Icon
+          className={cn(
+            "flex-shrink-0",
+            isEmployeeDashboard
+              ? "h-[20px] w-[20px]"
+              : isMeet
+                ? "h-[16px] w-[16px]"
+                : "h-[18px] w-[18px]",
+          )}
+        />
+      ) : null}
       {isExpanded && (
         <MultilingualText className="text-13 font-semibold leading-tight">
           {t(labelKey)}

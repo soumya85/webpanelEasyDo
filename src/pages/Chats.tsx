@@ -39,7 +39,6 @@ import {
   ArrowLeft,
   MoreHorizontal,
   Calendar,
-  CheckSquare,
   Receipt,
   UserPlus,
   Clock,
@@ -50,6 +49,7 @@ import {
   Search,
   MoreVertical,
 } from "lucide-react";
+import { TaskIcon } from "@/components/ui/task-icon";
 
 // Types
 interface TaskSummary {
@@ -2422,7 +2422,7 @@ const conversationData: Record<string, ChatMessage[]> = {
 const quickActions = [
   { id: "invoice", label: "Sales Invoice", icon: Receipt },
   { id: "lead", label: "Lead", icon: UserPlus },
-  { id: "approval", label: "Approval", icon: CheckSquare },
+  { id: "approval", label: "Approval", icon: () => <TaskIcon size="sm" /> },
   { id: "poll", label: "Poll", icon: BarChart3 },
   { id: "attendance", label: "Attendance", icon: Clock },
 ];
@@ -2485,7 +2485,7 @@ const companyActions = [
   {
     id: "delegate",
     label: "Delegate Task",
-    icon: CheckSquare,
+    icon: () => <TaskIcon size="sm" />,
     category: "company",
   },
   { id: "logs", label: "View Logs", icon: Info, category: "company" },
@@ -2771,7 +2771,7 @@ const ChatConversation: React.FC<{
             size="sm"
             className="flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm"
           >
-            <CheckSquare className="h-4 w-4" />
+            <TaskIcon size="sm" />
             Approval
           </Button>
           <Button
@@ -3155,7 +3155,11 @@ const MobileChatView: React.FC<{
               key={action.id}
               className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-full whitespace-nowrap text-[12px] font-medium text-gray-700"
             >
-              <action.icon className="h-4 w-4" />
+              {typeof action.icon === "function" ? (
+                <action.icon />
+              ) : (
+                <action.icon className="h-4 w-4" />
+              )}
               {action.label}
             </button>
           ))}
@@ -3234,7 +3238,11 @@ const CompanyActionDrawer: React.FC<{
                   className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
                 >
                   <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                    <action.icon className="h-6 w-6 text-gray-700" />
+                    {typeof action.icon === "function" ? (
+                      <action.icon />
+                    ) : (
+                      <action.icon className="h-6 w-6 text-gray-700" />
+                    )}
                   </div>
                   <span className="text-[11px] text-gray-700 text-center leading-tight">
                     {action.label}
@@ -3271,15 +3279,19 @@ const CompanyActionDrawer: React.FC<{
                           : "bg-gray-100",
                     )}
                   >
-                    <action.icon
-                      className={cn(
-                        "h-6 w-6",
-                        action.id === "delegate" ||
-                          action.id === "mark-attendance"
-                          ? "text-white"
-                          : "text-gray-700",
-                      )}
-                    />
+                    {typeof action.icon === "function" ? (
+                      <action.icon />
+                    ) : (
+                      <action.icon
+                        className={cn(
+                          "h-6 w-6",
+                          action.id === "delegate" ||
+                            action.id === "mark-attendance"
+                            ? "text-white"
+                            : "text-gray-700",
+                        )}
+                      />
+                    )}
                   </div>
                   <span className="text-[11px] text-gray-700 text-center leading-tight">
                     {action.label}

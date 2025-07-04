@@ -19,7 +19,9 @@ import { type TranslationKey } from "@/data/translations";
 export interface NavigationItem {
   id: string;
   labelKey: TranslationKey;
-  icon: typeof LayoutDashboard;
+  icon?: typeof LayoutDashboard;
+  customIconUrl?: string;
+  materialIcon?: string;
   href: string;
   badge?: number;
 }
@@ -40,25 +42,26 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "employee-dashboard",
     labelKey: "employeeDashboard",
-    icon: Users,
+    materialIcon: "person_outline",
     href: "/employee-dashboard",
   },
   {
     id: "company-dashboard",
     labelKey: "companyDashboard",
-    icon: Building,
+    materialIcon: "maps_home_work",
     href: "/sample-page-3",
   },
   {
     id: "tasks",
     labelKey: "tasks",
-    icon: CheckSquare,
+    materialIcon: "task_alt",
     href: "/tasks",
   },
   {
     id: "meet",
     labelKey: "meet",
-    icon: Video,
+    customIconUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F51d359c5891a4e05a53ecd2441dc52fd?format=webp&width=800",
     href: "/meet",
   },
   {

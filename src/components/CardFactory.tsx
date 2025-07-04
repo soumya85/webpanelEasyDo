@@ -2,6 +2,8 @@ import React from "react";
 import { DashboardCard } from "../hooks/useDashboardLayout";
 import { CardSize } from "@/types/cardSize";
 import { TaskCard } from "./cards/TaskCard";
+import { MyTaskCard } from "./cards/MyTaskCard";
+import { DelegatedTaskCard } from "./cards/DelegatedTaskCard";
 import { MeetingsCard } from "./cards/MeetingsCard";
 import { ApprovalsCard } from "./cards/ApprovalsCard";
 import { NotesCard } from "./cards/NotesCard";
@@ -34,6 +36,10 @@ export const CardFactory: React.FC<CardFactoryProps> = ({
   switch (card.type) {
     case "task":
       return <TaskCard {...commonProps} />;
+    case "myTask":
+      return <MyTaskCard {...commonProps} />;
+    case "delegatedTask":
+      return <DelegatedTaskCard {...commonProps} />;
     case "meetings":
       return <MeetingsCard {...commonProps} />;
     case "approvals":

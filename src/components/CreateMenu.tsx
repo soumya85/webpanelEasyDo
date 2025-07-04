@@ -1,4 +1,4 @@
-import { CheckSquare, Check, Users, MessageSquare, Bell } from "lucide-react";
+import { Check, Users, MessageSquare, Bell } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { MultilingualText } from "@/components/MultilingualText";
 import { useTranslation } from "@/hooks/useTranslation";
+import { TaskIcon } from "@/components/ui/task-icon";
 
 interface CreateMenuProps {
   children: React.ReactNode;
@@ -20,7 +21,7 @@ export function CreateMenu({ children }: CreateMenuProps) {
     {
       id: "my-task",
       label: "My Task (To-do)",
-      icon: CheckSquare,
+      icon: () => <TaskIcon size="sm" />,
       onClick: () => {
         // TODO: Navigate to create task page or open task modal
         console.log("Create My Task clicked");
@@ -76,7 +77,11 @@ export function CreateMenu({ children }: CreateMenuProps) {
               onClick={item.onClick}
               className="flex items-center gap-3 px-3 py-3 cursor-pointer hover:bg-gray-50"
             >
-              <IconComponent className="h-4 w-4 text-gray-600" />
+              {typeof IconComponent === "function" ? (
+                <IconComponent />
+              ) : (
+                <IconComponent className="h-4 w-4 text-gray-600" />
+              )}
               <span className="text-sm text-gray-700 font-medium">
                 {item.label}
               </span>
