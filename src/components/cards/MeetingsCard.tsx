@@ -1,5 +1,4 @@
 import React from "react";
-import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
