@@ -46,41 +46,41 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
         {/* Details */}
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("overdue")}</span>
-            <span className="font-semibold text-red-500">12</span>
+            <span className="text-gray-600 font-bold">On Time</span>
+            <span className="font-semibold text-blue-500">10</span>
           </div>
           <div className="border-t border-gray-200"></div>
           <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("inProgress")}</span>
-            <span className="font-semibold text-green-500">15</span>
+            <span className="text-gray-600 font-bold">Delayed</span>
+            <span className="font-semibold text-purple-500">5</span>
           </div>
           <div className="border-t border-gray-200"></div>
           <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("noAction")}</span>
-            <span className="font-semibold text-gray-800">7</span>
+            <span className="text-gray-600 font-bold">Skipped</span>
+            <span className="font-semibold text-red-500">0</span>
           </div>
         </div>
 
         {/* Progress Bar Section */}
         <div className="mt-3 space-y-2">
           <div className="relative h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-            {/* Overdue Progress (Red) */}
+            {/* On Time Progress (Blue) */}
             <div
-              className="absolute left-0 top-0 h-full bg-red-500 transition-all duration-300"
-              style={{ width: `${(12 / (12 + 15)) * 100}%` }}
+              className="absolute left-0 top-0 h-full bg-blue-500 transition-all duration-300"
+              style={{ width: `${(10 / (10 + 5)) * 100}%` }}
             />
-            {/* In Progress (Green) */}
+            {/* Delayed Progress (Purple) */}
             <div
-              className="absolute top-0 h-full bg-green-500 transition-all duration-300"
+              className="absolute top-0 h-full bg-purple-500 transition-all duration-300"
               style={{
-                left: `${(12 / (12 + 15)) * 100}%`,
-                width: `${(15 / (12 + 15)) * 100}%`,
+                left: `${(10 / (10 + 5)) * 100}%`,
+                width: `${(5 / (10 + 5)) * 100}%`,
               }}
             />
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-red-500 font-medium">12</span>
-            <span className="text-green-500 font-medium">15</span>
+            <span className="text-blue-500 font-medium">10</span>
+            <span className="text-purple-500 font-medium">5</span>
           </div>
         </div>
       </div>
