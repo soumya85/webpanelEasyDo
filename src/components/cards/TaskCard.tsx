@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-import { CheckSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
 import { useTranslation } from "@/hooks/useTranslation";
 import { MultilingualText } from "@/components/MultilingualText";
+import { TaskIcon } from "@/components/ui/task-icon";
 
 interface TaskCardProps {
   id: string;
@@ -53,7 +53,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-blue-50">
-          <CheckSquare className="w-5 h-5 text-blue-600" />
+          <TaskIcon size="md" className="text-blue-600" />
         </div>
         <MultilingualText
           as="h3"

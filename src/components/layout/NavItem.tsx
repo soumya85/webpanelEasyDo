@@ -7,13 +7,20 @@ import { MultilingualText } from "@/components/MultilingualText";
 import { type TranslationKey } from "@/data/translations";
 
 interface NavItemProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  customIconUrl?: string;
   labelKey: TranslationKey;
   href: string;
   badge?: number;
 }
 
-export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
+export function NavItem({
+  icon: Icon,
+  customIconUrl,
+  labelKey,
+  href,
+  badge,
+}: NavItemProps) {
   const location = useLocation();
   const { isExpanded, setMobileOpen } = useSidebar();
   const { t } = useTranslation();
@@ -41,7 +48,15 @@ export function NavItem({ icon: Icon, labelKey, href, badge }: NavItemProps) {
         !isExpanded && "justify-center px-2",
       )}
     >
-      <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+      {customIconUrl ? (
+        <img
+          src={customIconUrl}
+          alt=""
+          className="h-[18px] w-[18px] flex-shrink-0 object-contain"
+        />
+      ) : Icon ? (
+        <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+      ) : null}
       {isExpanded && (
         <MultilingualText className="text-13 font-semibold leading-tight">
           {t(labelKey)}
