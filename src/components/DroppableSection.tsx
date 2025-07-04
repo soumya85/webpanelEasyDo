@@ -25,7 +25,7 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
   cards = [],
 }) => {
   return (
-    <div className="mb-3">
+    <div className="mb-8">
       <MultilingualText
         as="h2"
         className="text-lg font-semibold text-[#283C50] mb-4"
