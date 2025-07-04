@@ -45,21 +45,72 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
           </div>
         </div>
 
-        {/* Details */}
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("overdue")}</span>
-            <span className="font-semibold text-red-500">69</span>
+        {/* Progress Circles */}
+        <div className="flex items-center justify-around mt-4">
+          {/* Overdue Progress Circle */}
+          <div className="flex flex-col items-center">
+            <div className="relative w-16 h-16">
+              <svg
+                className="w-16 h-16 transform -rotate-90"
+                viewBox="0 0 36 36"
+              >
+                <path
+                  className="text-gray-200"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  fill="transparent"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  className="text-red-500"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="77.4, 100"
+                  strokeLinecap="round"
+                  fill="transparent"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-sm font-bold text-red-500">69</span>
+              </div>
+            </div>
+            <span className="text-xs font-bold text-gray-600 mt-1">
+              {t("overdue")}
+            </span>
           </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("inProgress")}</span>
-            <span className="font-semibold text-green-500">20</span>
-          </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">{t("noAction")}</span>
-            <span className="font-semibold text-gray-800">0</span>
+
+          {/* In Progress Circle */}
+          <div className="flex flex-col items-center">
+            <div className="relative w-16 h-16">
+              <svg
+                className="w-16 h-16 transform -rotate-90"
+                viewBox="0 0 36 36"
+              >
+                <path
+                  className="text-gray-200"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  fill="transparent"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  className="text-green-500"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="22.4, 100"
+                  strokeLinecap="round"
+                  fill="transparent"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-sm font-bold text-green-500">20</span>
+              </div>
+            </div>
+            <span className="text-xs font-bold text-gray-600 mt-1">
+              {t("inProgress")}
+            </span>
           </div>
         </div>
       </div>
