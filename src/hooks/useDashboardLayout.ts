@@ -60,7 +60,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     id: "notes",
     type: "notes",
     title: "personalNotes",
-    section: "quick-overview",
+    section: "productivity",
     order: 3,
     size: "medium",
   },
