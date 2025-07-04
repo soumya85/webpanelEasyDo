@@ -1236,9 +1236,9 @@ export function TaskBoardContent() {
                             ) : (
                               group.tasks.map((task, idx) => (
                                 <Draggable
-                                  draggableId={String(task.id)}
+                                  draggableId={`${group.status}-${task.id}`}
                                   index={idx}
-                                  key={task.id}
+                                  key={`${group.status}-${task.id}`}
                                 >
                                   {(provided, snapshot) => (
                                     <div
