@@ -114,7 +114,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Central Punch Button */}
-        <div className="flex justify-center mb-2">
+        <div className="flex justify-center mb-1">
           <div className="relative">
             <div
               className={cn(
