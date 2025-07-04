@@ -37,10 +37,9 @@ export function NavItem({
     }
   };
 
-  // Check if this is Employee Dashboard or Meet for larger icons
+  // Check if this is Employee Dashboard or Meet for special icon sizes
   const isEmployeeDashboard = href === "/employee-dashboard";
   const isMeet = href === "/meet";
-  const shouldUseLargerIcon = isEmployeeDashboard || isMeet;
 
   return (
     <Link
@@ -61,14 +60,22 @@ export function NavItem({
           alt=""
           className={cn(
             "flex-shrink-0 object-contain",
-            shouldUseLargerIcon ? "h-[20px] w-[20px]" : "h-[18px] w-[18px]",
+            isEmployeeDashboard
+              ? "h-[20px] w-[20px]"
+              : isMeet
+                ? "h-[16px] w-[16px]"
+                : "h-[18px] w-[18px]",
           )}
         />
       ) : materialIcon ? (
         <span
           className={cn(
             "material-icons-outlined flex-shrink-0",
-            shouldUseLargerIcon ? "text-[20px]" : "text-[18px]",
+            isEmployeeDashboard
+              ? "text-[20px]"
+              : isMeet
+                ? "text-[16px]"
+                : "text-[18px]",
           )}
         >
           {materialIcon}
@@ -77,7 +84,11 @@ export function NavItem({
         <Icon
           className={cn(
             "flex-shrink-0",
-            shouldUseLargerIcon ? "h-[20px] w-[20px]" : "h-[18px] w-[18px]",
+            isEmployeeDashboard
+              ? "h-[20px] w-[20px]"
+              : isMeet
+                ? "h-[16px] w-[16px]"
+                : "h-[18px] w-[18px]",
           )}
         />
       ) : null}
