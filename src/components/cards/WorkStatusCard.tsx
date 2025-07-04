@@ -118,7 +118,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
           <div className="relative">
             <div
               className={cn(
-                "w-16 h-16 rounded-full border-4 border-dashed flex items-center justify-center cursor-pointer transition-colors",
+                "w-12 h-12 rounded-full border-2 border-dashed flex items-center justify-center cursor-pointer transition-colors",
                 isPunchedIn
                   ? "border-red-300 bg-red-50"
                   : "border-green-300 bg-green-50",
@@ -126,20 +126,20 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
               onClick={handlePunchAction}
             >
               <div className="text-center">
-                <div className="w-6 h-6 mx-auto mb-1 flex items-center justify-center">
+                <div className="w-4 h-4 mx-auto flex items-center justify-center">
                   {isPunchedIn ? (
-                    <ArrowUp className="w-4 h-4 text-red-600" />
+                    <ArrowUp className="w-3 h-3 text-red-600" />
                   ) : (
-                    <ArrowDown className="w-4 h-4 text-green-600" />
+                    <ArrowDown className="w-3 h-3 text-green-600" />
                   )}
                 </div>
                 <div
                   className={cn(
-                    "text-xs font-medium",
+                    "text-[10px] font-medium",
                     isPunchedIn ? "text-red-600" : "text-green-600",
                   )}
                 >
-                  {isPunchedIn ? "Punch-out" : "Punch-in"}
+                  {isPunchedIn ? "Out" : "In"}
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Punch Times Row */}
-        <div className="grid grid-cols-3 gap-2 mb-1">
+        <div className="grid grid-cols-3 gap-1 mb-1">
           {/* Punch In */}
           <div className="text-center">
             <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
