@@ -61,7 +61,7 @@ export const navigationItems: NavigationItem[] = [
     id: "meet",
     labelKey: "meet",
     customIconUrl:
-      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F4c1092977bf841b2a70401d8084df7da?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F51d359c5891a4e05a53ecd2441dc52fd?format=webp&width=800",
     href: "/meet",
   },
   {
