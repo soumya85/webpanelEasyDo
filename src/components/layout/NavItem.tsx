@@ -9,6 +9,7 @@ import { type TranslationKey } from "@/data/translations";
 interface NavItemProps {
   icon?: LucideIcon;
   customIconUrl?: string;
+  materialIcon?: string;
   labelKey: TranslationKey;
   href: string;
   badge?: number;
