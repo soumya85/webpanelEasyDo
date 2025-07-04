@@ -114,11 +114,11 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Central Punch Button */}
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-2">
           <div className="relative">
             <div
               className={cn(
-                "w-20 h-20 rounded-full border-4 border-dashed flex items-center justify-center cursor-pointer transition-colors",
+                "w-16 h-16 rounded-full border-4 border-dashed flex items-center justify-center cursor-pointer transition-colors",
                 isPunchedIn
                   ? "border-red-300 bg-red-50"
                   : "border-green-300 bg-green-50",
@@ -126,11 +126,11 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
               onClick={handlePunchAction}
             >
               <div className="text-center">
-                <div className="w-8 h-8 mx-auto mb-1 flex items-center justify-center">
+                <div className="w-6 h-6 mx-auto mb-1 flex items-center justify-center">
                   {isPunchedIn ? (
-                    <ArrowUp className="w-5 h-5 text-red-600" />
+                    <ArrowUp className="w-4 h-4 text-red-600" />
                   ) : (
-                    <ArrowDown className="w-5 h-5 text-green-600" />
+                    <ArrowDown className="w-4 h-4 text-green-600" />
                   )}
                 </div>
                 <div
@@ -147,11 +147,11 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Punch Times Row */}
-        <div className="grid grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-3 gap-2 mb-2">
           {/* Punch In */}
           <div className="text-center">
-            <div className="w-8 h-8 mx-auto mb-2 bg-blue-50 rounded-full flex items-center justify-center">
-              <ArrowDown className="w-4 h-4 text-blue-600" />
+            <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
+              <ArrowDown className="w-3 h-3 text-blue-600" />
             </div>
             <div className="text-xs font-medium text-gray-900">
               {punchInTime}
@@ -161,8 +161,8 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
 
           {/* Punch Out */}
           <div className="text-center">
-            <div className="w-8 h-8 mx-auto mb-2 bg-blue-50 rounded-full flex items-center justify-center">
-              <ArrowUp className="w-4 h-4 text-blue-600" />
+            <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
+              <ArrowUp className="w-3 h-3 text-blue-600" />
             </div>
             <div className="text-xs font-medium text-gray-500">--:--</div>
             <div className="text-xs text-blue-600">Punch-out</div>
@@ -170,8 +170,8 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
 
           {/* Total Work */}
           <div className="text-center">
-            <div className="w-8 h-8 mx-auto mb-2 bg-blue-50 rounded-full flex items-center justify-center">
-              <Clock className="w-4 h-4 text-blue-600" />
+            <div className="w-6 h-6 mx-auto mb-1 bg-blue-50 rounded-full flex items-center justify-center">
+              <Clock className="w-3 h-3 text-blue-600" />
             </div>
             <div className="text-xs font-medium text-gray-900">
               {totalWorkHours}
@@ -181,7 +181,7 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
         </div>
 
         {/* Status Message */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
           <div className="flex items-center gap-2 text-green-700">
             <CheckCircle className="w-4 h-4 flex-shrink-0" />
             <div className="text-sm">
