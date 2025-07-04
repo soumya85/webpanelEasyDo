@@ -38,7 +38,7 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-        <div className="mb-2">
+        <div className="mb-2 flex items-center gap-3">
           <div className="text-3xl font-bold text-[#4766E5]">69</div>
           <div className="text-xs text-gray-600">{t("totalPendingTasks")}</div>
         </div>
