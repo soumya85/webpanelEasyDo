@@ -1390,7 +1390,7 @@ export function TaskBoardContent() {
                       ) : (
                         group.tasks.map((task) => (
                           <div
-                            key={task.id}
+                            key={`${group.section}-${task.id}`}
                             className="mb-2 shadow hover:shadow-md transition cursor-pointer border border-gray-200 rounded-lg bg-white p-2"
                             onClick={() => {
                               setSelectedTask(task);
