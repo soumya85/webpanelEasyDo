@@ -544,65 +544,121 @@ export function TaskBoardContent() {
 
   return (
     <div className="h-full flex flex-col min-h-0 bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200">
-      {/* --- Header --- */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-4 py-2 bg-white border-b sticky top-0 z-50 shadow-sm">
-        <div>
-          <h1 className="text-xl font-black text-gray-800 tracking-tight flex items-center gap-2">
-            <LayoutGrid className="w-6 h-6 text-gray-500" />
-            Task Board
-          </h1>
-          <div className="text-xs text-gray-400 mt-1 font-medium">
-            Organize, track, and complete your work efficiently.
+      {/* --- Header, Tabs, and Status Bar --- */}
+      <div className="w-full flex flex-col gap-0 bg-white border-b shadow-sm">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-4 py-2">
+          <div>
+            <h1 className="text-xl font-black text-gray-800 tracking-tight flex items-center gap-2">
+              <LayoutGrid className="w-6 h-6 text-gray-500" />
+              Task Board
+            </h1>
+            <div className="text-xs text-gray-400 mt-1 font-medium">
+              Organize, track, and complete your work efficiently.
+            </div>
+          </div>
+          {/* --- Centered Tabs --- */}
+          <div className="flex-1 flex justify-center items-center gap-2 mt-2 md:mt-0">
+            <button
+              className={`px-3 py-1.5 rounded-full text-sm font-semibold transition shadow-sm ${
+                activeTab === "my"
+                  ? "bg-gradient-to-r from-blue-400 to-blue-300 text-white shadow"
+                  : "bg-blue-100 text-blue-800 hover:bg-blue-200 border border-blue-200"
+              }`}
+              onClick={() => setActiveTab("my")}
+            >
+              My Task
+              <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{myTaskCount}</span>
+            </button>
+            <button
+              className={`px-3 py-1.5 rounded-full text-sm font-semibold transition shadow-sm ${
+                activeTab === "delegated"
+                  ? "bg-gradient-to-r from-blue-400 to-blue-300 text-white shadow"
+                  : "bg-blue-100 text-blue-800 hover:bg-blue-200 border border-blue-200"
+              }`}
+              onClick={() => setActiveTab("delegated")}
+            >
+              Delegated Task
+              <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{delegatedTaskCount}</span>
+            </button>
+          </div>
+          <div className="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
+            <div className="relative w-full md:w-48">
+              <Input
+                placeholder="Search tasks"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-8 py-1.5 text-sm rounded-lg border border-gray-200 focus:border-gray-400 transition bg-gray-50"
+              />
+              <Search className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+            </div>
+            <Button
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-400 to-blue-300 text-white font-semibold px-2.5 py-1.5 rounded-lg shadow hover:from-blue-500 hover:to-blue-400 transition text-sm"
+              onClick={() => setIsAddTaskModalOpen(true)}
+            >
+              <Plus className="w-4 h-4" /> Add Task
+            </Button>
           </div>
         </div>
-        {/* --- Centered Tabs --- */}
-        <div className="flex-1 flex justify-center items-center gap-2">
-          <button
-            className={`px-3 py-1.5 rounded-full text-sm font-semibold transition shadow-sm ${
-              activeTab === "my"
-                ? "bg-gradient-to-r from-blue-400 to-blue-300 text-white shadow"
-                : "bg-blue-100 text-blue-800 hover:bg-blue-200 border border-blue-200"
-            }`}
-            onClick={() => setActiveTab("my")}
-          >
-            My Task
-            <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{myTaskCount}</span>
-          </button>
-          <button
-            className={`px-3 py-1.5 rounded-full text-sm font-semibold transition shadow-sm ${
-              activeTab === "delegated"
-                ? "bg-gradient-to-r from-blue-400 to-blue-300 text-white shadow"
-                : "bg-blue-100 text-blue-800 hover:bg-blue-200 border border-blue-200"
-            }`}
-            onClick={() => setActiveTab("delegated")}
-          >
-            Delegated Task
-            <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{delegatedTaskCount}</span>
-          </button>
-        </div>
-        <div className="flex items-center gap-2 w-full md:w-auto">
-          <div className="relative w-full md:w-48">
-            <Input
-              placeholder="Search tasks"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-8 py-1.5 text-sm rounded-lg border border-gray-200 focus:border-gray-400 transition bg-gray-50"
-            />
-            <Search className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-          </div>
-          <Button
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-400 to-blue-300 text-white font-semibold px-2.5 py-1.5 rounded-lg shadow hover:from-blue-500 hover:to-blue-400 transition text-sm"
-            onClick={() => setIsAddTaskModalOpen(true)}
-          >
-            <Plus className="w-4 h-4" /> Add Task
-          </Button>
+        {/* --- Status Count Bar --- */}
+        <div className="w-full overflow-x-auto flex justify-center gap-2 py-2 px-2 bg-white border-t border-b border-blue-50" style={{ WebkitOverflowScrolling: 'touch' }}>
+          {activeTab === "my" ? (
+            myTaskStatusOrder.map((status) => (
+              <div key={status} className="flex items-center gap-1 px-3 py-1 rounded-lg bg-blue-50 border border-blue-100 shadow-sm min-w-[120px] justify-center">
+                <span className="font-semibold text-xs text-blue-900">{myTaskStatusLabels[status]}</span>
+                <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
+                  status === 'noAction' ? 'bg-gray-200 text-gray-700' :
+                  status === 'inprogress' ? 'bg-blue-200 text-blue-800' :
+                  status === 'skip' ? 'bg-yellow-100 text-yellow-700' :
+                  status === 'done' ? 'bg-green-100 text-green-700' :
+                  status === 'completed' ? 'bg-indigo-100 text-indigo-700' :
+                  'bg-gray-100 text-gray-700'
+                }`}>
+                  {myTaskGroups.find(g => g.status === status)?.tasks.length || 0}
+                </span>
+              </div>
+            ))
+          ) : (
+            <>
+              <div className="flex items-center gap-1 px-3 py-1 rounded-lg bg-blue-50 border border-blue-100 shadow-sm min-w-[120px] justify-center">
+                <span className="font-semibold text-xs text-blue-900">Pending</span>
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-yellow-100 text-yellow-700">
+                  {delegatedGroups[0].tasks.length}
+                </span>
+              </div>
+              {["noAction", "inprogress", "skip"].map(status => (
+                <div key={status} className="flex items-center gap-1 px-2 py-1 rounded-lg bg-white border border-gray-100 shadow-sm min-w-[100px] justify-center">
+                  <span className="font-semibold text-xs text-gray-700">{myTaskStatusLabels[status]}</span>
+                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold ${
+                    status === 'noAction' ? 'bg-gray-200 text-gray-700' :
+                    status === 'inprogress' ? 'bg-blue-200 text-blue-800' :
+                    status === 'skip' ? 'bg-yellow-100 text-yellow-700' :
+                    'bg-gray-100 text-gray-700'
+                  }`}>
+                    {delegatedGroups[0].tasks.filter(t => t.status === status).length}
+                  </span>
+                </div>
+              ))}
+              <div className="flex items-center gap-1 px-3 py-1 rounded-lg bg-green-50 border border-green-100 shadow-sm min-w-[120px] justify-center">
+                <span className="font-semibold text-xs text-green-900">In Review</span>
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-green-100 text-green-700">
+                  {delegatedGroups[1].tasks.length}
+                </span>
+              </div>
+              <div className="flex items-center gap-1 px-3 py-1 rounded-lg bg-indigo-50 border border-indigo-100 shadow-sm min-w-[120px] justify-center">
+                <span className="font-semibold text-xs text-indigo-900">Completed</span>
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+                  {delegatedGroups[2].tasks.length}
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
       {/* --- View Switcher and Filters --- */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-50 to-gray-100 border-b">
-        {/* View Switcher */}
-        <div className="flex gap-1">
+      <div className="flex flex-col md:flex-row md:items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-50 to-gray-100 border-b">
+        {/* View Switcher (left) */}
+        <div className="flex gap-1 mb-2 md:mb-0">
           <button
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg font-semibold text-sm transition ${
               currentView === "board"
@@ -653,106 +709,106 @@ export function TaskBoardContent() {
             Gantt
           </button>
         </div>
-        {/* Filter */}
-        <Popover>
-          <PopoverTrigger asChild>
-            <button className="ml-2 px-2.5 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 flex items-center gap-2 shadow-sm hover:bg-blue-200">
-              <Filter className="w-4 h-4" /> Filter
-            </button>
-          </PopoverTrigger>
-          <PopoverContent className="w-60 rounded-lg shadow-lg border border-gray-200 bg-white">
-            <div className="mb-2 font-semibold text-gray-700 text-base">Filter Tasks</div>
-            <div className="mb-2">
-              <label className="block text-xs text-gray-500 mb-1">Assignee</label>
-              <select
-                className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
-                value={filters.assignee || "all"}
-                onChange={e => setFilters(f => ({ ...f, assignee: e.target.value }))}
-              >
-                <option value="all">All</option>
-                <option value="me">Me</option>
-                {[...new Set(tasks.map(t => t.assignedTo?.name).filter(Boolean))]
-                  .filter(name => name !== "Current User")
-                  .map(name => (
-                    <option key={name} value={name}>{name}</option>
+        {/* Filters, Sort, Group By (right) */}
+        <div className="flex flex-wrap md:flex-nowrap gap-2 md:ml-auto items-center justify-end w-full md:w-auto">
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="px-2.5 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 flex items-center gap-2 shadow-sm hover:bg-blue-200">
+                <Filter className="w-4 h-4" /> Filter
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-60 rounded-lg shadow-lg border border-gray-200 bg-white">
+              <div className="mb-2 font-semibold text-gray-700 text-base">Filter Tasks</div>
+              <div className="mb-2">
+                <label className="block text-xs text-gray-500 mb-1">Assignee</label>
+                <select
+                  className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
+                  value={filters.assignee || "all"}
+                  onChange={e => setFilters(f => ({ ...f, assignee: e.target.value }))}
+                >
+                  <option value="all">All</option>
+                  <option value="me">Me</option>
+                  {[...new Set(tasks.map(t => t.assignedTo?.name).filter(Boolean))]
+                    .filter(name => name !== "Current User")
+                    .map(name => (
+                      <option key={name} value={name}>{name}</option>
+                    ))}
+                </select>
+              </div>
+              <div className="mb-2">
+                <label className="block text-xs text-gray-500 mb-1">Priority</label>
+                <select
+                  className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
+                  value={filters.priority || "all"}
+                  onChange={e => setFilters(f => ({ ...f, priority: e.target.value }))}
+                >
+                  <option value="all">All</option>
+                  <option value="urgent">Urgent</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+              <div className="mb-2">
+                <label className="block text-xs text-gray-500 mb-1">Status</label>
+                <select
+                  className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
+                  value={filters.status || "all"}
+                  onChange={e => setFilters(f => ({ ...f, status: e.target.value }))}
+                >
+                  <option value="all">All</option>
+                  <option value="noAction">No Action</option>
+                  <option value="inprogress">In Progress</option>
+                  <option value="skip">Skipped</option>
+                  <option value="done">Done</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Tag</label>
+                <select
+                  className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
+                  value={filters.tag || "all"}
+                  onChange={e => setFilters(f => ({ ...f, tag: e.target.value }))}
+                >
+                  <option value="all">All</option>
+                  {[...new Set(tasks.flatMap(t => t.tags || []))].map(tag => (
+                    <option key={tag} value={tag}>{tag}</option>
                   ))}
-              </select>
-            </div>
-            <div className="mb-2">
-              <label className="block text-xs text-gray-500 mb-1">Priority</label>
-              <select
-                className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
-                value={filters.priority || "all"}
-                onChange={e => setFilters(f => ({ ...f, priority: e.target.value }))}
+                </select>
+              </div>
+              <button
+                className="mt-2 w-full bg-gradient-to-r from-blue-400 to-blue-300 text-white rounded px-2 py-1 text-sm font-semibold hover:from-blue-500 hover:to-blue-400 transition"
+                onClick={() => setFilters({})}
+                type="button"
               >
-                <option value="all">All</option>
-                <option value="urgent">Urgent</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
-            </div>
-            <div className="mb-2">
-              <label className="block text-xs text-gray-500 mb-1">Status</label>
-              <select
-                className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
-                value={filters.status || "all"}
-                onChange={e => setFilters(f => ({ ...f, status: e.target.value }))}
-              >
-                <option value="all">All</option>
-                <option value="noAction">No Action</option>
-                <option value="inprogress">In Progress</option>
-                <option value="skip">Skipped</option>
-                <option value="done">Done</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">Tag</label>
-              <select
-                className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
-                value={filters.tag || "all"}
-                onChange={e => setFilters(f => ({ ...f, tag: e.target.value }))}
-              >
-                <option value="all">All</option>
-                {[...new Set(tasks.flatMap(t => t.tags || []))].map(tag => (
-                  <option key={tag} value={tag}>{tag}</option>
-                ))}
-              </select>
-            </div>
-            <button
-              className="mt-2 w-full bg-gradient-to-r from-blue-400 to-blue-300 text-white rounded px-2 py-1 text-sm font-semibold hover:from-blue-500 hover:to-blue-400 transition"
-              onClick={() => setFilters({})}
-              type="button"
-            >
-              Clear Filters
-            </button>
-          </PopoverContent>
-        </Popover>
-        {/* Sort */}
-        <select
-          className="px-2.5 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
-          value={sortBy}
-          onChange={e => setSortBy(e.target.value as SortOption)}
-        >
-          <option value="created-desc">Newest</option>
-          <option value="created-asc">Oldest</option>
-          <option value="due-date">Due Date</option>
-          <option value="priority">Priority</option>
-          <option value="name">Name</option>
-        </select>
-        {/* Group by */}
-        <span className="ml-1 text-blue-800 font-semibold text-sm">Group by</span>
-        <select
-          className="px-2 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
-          value={groupBy}
-          onChange={e => setGroupBy(e.target.value as typeof groupBy)}
-        >
-          <option value="status">Status</option>
-          <option value="priority">Priority</option>
-          <option value="assignedTo">Assigned To</option>
-          <option value="createdBy">Created By</option>
-        </select>
+                Clear Filters
+              </button>
+            </PopoverContent>
+          </Popover>
+          <select
+            className="px-2.5 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
+            value={sortBy}
+            onChange={e => setSortBy(e.target.value as SortOption)}
+          >
+            <option value="created-desc">Newest</option>
+            <option value="created-asc">Oldest</option>
+            <option value="due-date">Due Date</option>
+            <option value="priority">Priority</option>
+            <option value="name">Name</option>
+          </select>
+          <span className="ml-1 text-blue-800 font-semibold text-sm">Group by</span>
+          <select
+            className="px-2 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
+            value={groupBy}
+            onChange={e => setGroupBy(e.target.value as typeof groupBy)}
+          >
+            <option value="status">Status</option>
+            <option value="priority">Priority</option>
+            <option value="assignedTo">Assigned To</option>
+            <option value="createdBy">Created By</option>
+          </select>
+        </div>
       </div>
 
       {/* --- Main Content --- */}
@@ -1046,6 +1102,133 @@ export function TaskBoardContent() {
           );
         }}
       />
+
+      {/* Insight Panel */}
+      {currentView === "insight" && (
+        <div className="flex flex-col gap-4 p-4 bg-[#18181b] min-h-screen">
+          {/* Your Scores */}
+          <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
+            <div className="text-yellow-400 font-bold text-sm">Your Scores</div>
+            <div className="text-xs text-gray-300">
+              Average Productivity Score of 80% is desirable. Pls focus more on On-Time Task Completion.
+            </div>
+            <div className="flex items-end gap-4 mt-2">
+              <div className="text-4xl font-extrabold text-yellow-300">38<span className="text-2xl">%</span></div>
+              <div className="flex-1">
+                <div className="flex justify-between text-xs text-gray-400 mb-1">
+                  <span>On-Time</span>
+                  <span>Task</span>
+                  <span>Meet</span>
+                </div>
+                <div className="flex gap-1">
+                  <div className="bg-blue-500 h-2 rounded w-2/6 relative">
+                    <span className="absolute right-0 -top-5 text-xs text-blue-200">37%</span>
+                  </div>
+                  <div className="bg-blue-400 h-2 rounded w-2/6 relative">
+                    <span className="absolute right-0 -top-5 text-xs text-blue-200">33%</span>
+                  </div>
+                  <div className="bg-gray-600 h-2 rounded w-2/6 relative">
+                    <span className="absolute right-0 -top-5 text-xs text-gray-300">45%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Task Pending */}
+          <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
+            <div className="text-yellow-400 font-bold text-sm">Task Pending</div>
+            <div className="text-xs text-gray-300">
+              The last 6 Months, you have an average of 33 pending Tasks.
+            </div>
+            <div className="flex items-end gap-4 mt-2">
+              <div className="text-4xl font-extrabold text-yellow-300">33</div>
+              <div className="flex-1">
+                {/* Bar chart for months */}
+                <div className="flex gap-1 items-end h-8">
+                  {/* Example bars, replace with real data */}
+                  {[20, 33, 28, 35, 30, 33].map((val, i) => (
+                    <div key={i} className="bg-red-500 w-4 rounded" style={{height: `${val/2}px`}} />
+                  ))}
+                </div>
+                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  {['M','J','J','A','S','O'].map(m => <span key={m}>{m}</span>)}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Task Pending Trends */}
+          <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
+            <div className="text-yellow-400 font-bold text-sm">Task Pending Trends</div>
+            <div className="text-xs text-gray-300">
+              On Average, your Pending tasks are higher than last year
+            </div>
+            <div className="flex flex-col gap-1 mt-2">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-yellow-300">33</span>
+                <span className="text-xs text-gray-400">Tasks per month</span>
+                <span className="ml-auto bg-yellow-400 text-black text-xs font-bold rounded px-2 py-0.5">2024</span>
+              </div>
+              <div className="w-full h-2 bg-gray-700 rounded">
+                <div className="h-2 bg-yellow-400 rounded" style={{width: '70%'}} />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-gray-300">23</span>
+                <span className="text-xs text-gray-400">Tasks per month</span>
+                <span className="ml-auto bg-gray-400 text-black text-xs font-bold rounded px-2 py-0.5">2023</span>
+              </div>
+              <div className="w-full h-2 bg-gray-700 rounded">
+                <div className="h-2 bg-gray-400 rounded" style={{width: '40%'}} />
+              </div>
+            </div>
+          </div>
+
+          {/* Task Completed */}
+          <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
+            <div className="text-yellow-400 font-bold text-sm">Task Completed</div>
+            <div className="text-xs text-gray-300">
+              The last 6 Months you have completed an average of 23 tasks a day
+            </div>
+            <div className="flex items-end gap-4 mt-2">
+              <div className="text-4xl font-extrabold text-yellow-300">23</div>
+              <div className="flex-1">
+                {/* Bar chart for months */}
+                <div className="flex gap-1 items-end h-8">
+                  {[12, 18, 20, 23, 25, 23].map((val, i) => (
+                    <div key={i} className="bg-green-500 w-4 rounded" style={{height: `${val/2}px`}} />
+                  ))}
+                </div>
+                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  {['M','J','J','A','S','O'].map(m => <span key={m}>{m}</span>)}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Task Completed Trends */}
+          <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
+            <div className="text-yellow-400 font-bold text-sm">Task Completed Trends</div>
+            <div className="text-xs text-gray-300">
+              On average, you are completing more tasks per month compared to last year
+            </div>
+            <div className="flex flex-col gap-1 mt-2">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-yellow-300">23</span>
+                <span className="text-xs text-gray-400">Tasks per month</span>
+                <span className="ml-auto bg-yellow-400 text-black text-xs font-bold rounded px-2 py-0.5">2024</span>
+              </div>
+              <div className="w-full h-2 bg-yellow-400 rounded" style={{width: '70%'}} />
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-gray-300">12</span>
+                <span className="text-xs text-gray-400">Tasks per month</span>
+                <span className="ml-auto bg-gray-400 text-black text-xs font-bold rounded px-2 py-0.5">2023</span>
+              </div>
+              <div className="w-full h-2 bg-gray-400 rounded" style={{width: '40%'}} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
