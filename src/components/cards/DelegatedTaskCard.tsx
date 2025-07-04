@@ -88,12 +88,19 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
           </div>
         </div>
 
-        {/* Completed Tasks Section */}
-        <div className="text-center mb-4">
-          <div className="text-xs text-blue-600 font-medium mb-1">
+        {/* Header Section */}
+        <div className="flex justify-between items-center mb-2">
+          <div className="text-xs text-blue-600 font-medium">
             Completed Tasks
           </div>
-          <div className="text-3xl font-bold text-blue-600">15</div>
+          <div className="text-xs text-gray-500 font-medium">All Time</div>
+        </div>
+
+        {/* Main Number */}
+        <div className="mb-4">
+          <div className="text-3xl font-bold text-blue-600 border-b-2 border-blue-600 inline-block pb-1">
+            15
+          </div>
         </div>
 
         {/* Metrics Grid */}
