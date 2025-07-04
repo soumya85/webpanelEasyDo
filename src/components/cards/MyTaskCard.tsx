@@ -81,8 +81,8 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
             />
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-red-500 font-medium">Overdue</span>
-            <span className="text-green-500 font-medium">In Progress</span>
+            <span className="text-red-500 font-medium">69</span>
+            <span className="text-green-500 font-medium">20</span>
           </div>
         </div>
       </div>
