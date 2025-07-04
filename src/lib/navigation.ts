@@ -21,6 +21,7 @@ export interface NavigationItem {
   labelKey: TranslationKey;
   icon?: typeof LayoutDashboard;
   customIconUrl?: string;
+  materialIcon?: string;
   href: string;
   badge?: number;
 }
