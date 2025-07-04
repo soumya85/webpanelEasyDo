@@ -38,28 +38,28 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-        <div className="mb-2">
-          <div className="text-3xl font-bold text-[#4766E5]">472</div>
-          <div className="text-xs text-gray-600">{t("totalPendingTasks")}</div>
+        <div className="mb-2 flex items-center gap-3">
+          <div className="text-3xl font-bold text-[#4766E5]">69</div>
+          <div className="text-sm font-bold text-gray-600">
+            {t("totalPendingTasks")}
+          </div>
         </div>
 
         {/* Details */}
-        <div className="space-y-2 text-xs">
+        <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-gray-600">{t("overdue")}</span>
-            <span className="font-semibold text-red-500">23</span>
+            <span className="text-gray-600 font-bold">{t("overdue")}</span>
+            <span className="font-semibold text-red-500">69</span>
           </div>
+          <div className="border-t border-gray-200"></div>
           <div className="flex justify-between">
-            <span className="text-gray-600">{t("dueToday")}</span>
-            <span className="font-semibold text-orange-500">18</span>
+            <span className="text-gray-600 font-bold">{t("inProgress")}</span>
+            <span className="font-semibold text-green-500">20</span>
           </div>
-        </div>
-
-        {/* Weekly Progress Text Only */}
-        <div className="mt-3">
-          <div className="flex justify-between text-xs">
-            <span className="text-gray-600">Weekly Progress</span>
-            <span className="font-semibold text-[#4766E5]">85%</span>
+          <div className="border-t border-gray-200"></div>
+          <div className="flex justify-between">
+            <span className="text-gray-600 font-bold">{t("noAction")}</span>
+            <span className="font-semibold text-gray-800">0</span>
           </div>
         </div>
       </div>
