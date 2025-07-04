@@ -63,7 +63,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     type: "approvals",
     title: "pendingApprovals",
     section: "quick-overview",
-    order: 2,
+    order: 3,
     size: "medium",
   },
   {
