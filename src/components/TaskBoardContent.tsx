@@ -574,10 +574,11 @@ export function TaskBoardContent() {
     const sourceIdx = result.source.index;
     const destIdx = result.destination.index;
 
-    // Find the dragged task
-    const sourceTasks =
-      sectionGroups.find((g) => g.section === sourceSection)?.tasks || [];
-    const draggedTask = sourceTasks[sourceIdx];
+    // Extract task ID from draggableId (format: "section-taskId")
+    const draggedTaskId = result.draggableId.split("-").slice(1).join("-");
+
+    // Find the dragged task by ID
+    const draggedTask = tasks.find((t) => t.id === draggedTaskId);
     if (!draggedTask) return;
 
     setTasks((prev) => {
