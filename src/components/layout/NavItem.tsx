@@ -56,6 +56,10 @@ export function NavItem({
           alt=""
           className="h-[18px] w-[18px] flex-shrink-0 object-contain"
         />
+      ) : materialIcon ? (
+        <span className="material-icons-outlined text-[18px] flex-shrink-0">
+          {materialIcon}
+        </span>
       ) : Icon ? (
         <Icon className="h-[18px] w-[18px] flex-shrink-0" />
       ) : null}
