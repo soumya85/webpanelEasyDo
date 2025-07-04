@@ -35,7 +35,13 @@ export default function SamplePage2() {
       id: "calendar",
     },
     {
-      icon: <img src="/leave_request-icon.png" alt="Tasks" />,
+      icon: (
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F529ce68273f14919b950080f449153c7?format=webp&width=800"
+          alt="Tasks"
+          className="w-6 h-6 object-contain"
+        />
+      ),
       title: "Tasks",
       id: "tasks",
     },
