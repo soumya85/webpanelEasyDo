@@ -30,32 +30,32 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
         </div>
         <MultilingualText
           as="h3"
-          className="text-sm font-semibold text-[#4766E5] flex-1"
+          className="text-sm font-semibold text-[#283C50] flex-1"
         >
-          {t("pendingTasks")}
+          {t("myTask")}
         </MultilingualText>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-        <div className="mb-4">
+        <div className="mb-2">
           <div className="text-3xl font-bold text-[#4766E5]">69</div>
-          <div className="w-8 h-1 bg-[#4766E5] rounded-full mt-1"></div>
+          <div className="text-xs text-gray-600">{t("totalPendingTasks")}</div>
         </div>
 
-        {/* Status Grid */}
-        <div className="grid grid-cols-3 gap-3 text-xs">
-          <div className="text-center">
-            <div className="text-lg font-bold text-red-500">69</div>
-            <div className="text-red-500 font-medium">{t("overdue")}</div>
+        {/* Details */}
+        <div className="space-y-2 text-xs">
+          <div className="flex justify-between">
+            <span className="text-gray-600">{t("overdue")}</span>
+            <span className="font-semibold text-red-500">69</span>
           </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-green-500">20</div>
-            <div className="text-green-500 font-medium">{t("inProgress")}</div>
+          <div className="flex justify-between">
+            <span className="text-gray-600">{t("inProgress")}</span>
+            <span className="font-semibold text-green-500">20</span>
           </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-gray-800">0</div>
-            <div className="text-gray-800 font-medium">{t("noAction")}</div>
+          <div className="flex justify-between">
+            <span className="text-gray-600">{t("noAction")}</span>
+            <span className="font-semibold text-gray-800">0</span>
           </div>
         </div>
       </div>
