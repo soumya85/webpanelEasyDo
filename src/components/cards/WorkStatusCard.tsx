@@ -66,17 +66,17 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center gap-2 mb-1">
-          <div className="p-1 rounded-lg bg-indigo-50">
-            <Clock className="w-3 h-3 text-indigo-600" />
+        <div className="flex items-center gap-3 mb-4">
+          <div className="p-1.5 rounded-lg bg-indigo-50">
+            <Clock className="w-4 h-4 text-indigo-600" />
           </div>
-          <h3 className="text-xs font-semibold text-[#283C50]">
+          <h3 className="text-sm font-semibold text-[#283C50]">
             {t("myDailyWorkStatus")}
           </h3>
         </div>
 
         {/* Current Time and Status Row */}
-        <div className="grid grid-cols-4 gap-1 mb-1">
+        <div className="grid grid-cols-4 gap-2 mb-4">
           {/* Current Time */}
           <div className="text-center">
             <div className="text-lg font-bold text-gray-900">
