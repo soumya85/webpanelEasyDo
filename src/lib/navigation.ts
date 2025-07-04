@@ -42,7 +42,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: "employee-dashboard",
     labelKey: "employeeDashboard",
-    icon: Users,
+    materialIcon: "person_outline",
     href: "/employee-dashboard",
   },
   {
