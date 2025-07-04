@@ -18,6 +18,7 @@ interface NavItemProps {
 export function NavItem({
   icon: Icon,
   customIconUrl,
+  materialIcon,
   labelKey,
   href,
   badge,
