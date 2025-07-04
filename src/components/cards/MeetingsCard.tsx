@@ -1,5 +1,4 @@
 import React from "react";
-import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardCard } from "../DashboardCard";
 import { CardSize } from "@/types/cardSize";
@@ -38,13 +37,17 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-green-50">
-          <Calendar className="w-5 h-5 text-green-600" />
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F51d359c5891a4e05a53ecd2441dc52fd?format=webp&width=800"
+            alt="Meet"
+            className="w-5 h-5"
+          />
         </div>
         <MultilingualText
           as="h3"
           className="text-sm font-semibold text-[#283C50] flex-1"
         >
-          {t("meetingsThisWeek")}
+          {t("meetings")}
         </MultilingualText>
       </div>
 
