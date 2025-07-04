@@ -44,7 +44,7 @@ export function TaskCard({ task, className }: TaskCardProps) {
         }}
       >
         <img
-          src="/task-logo.png?v=1"
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F529ce68273f14919b950080f449153c7?format=webp&width=800"
           style={{
             width: "51px",
             height: "51px",
