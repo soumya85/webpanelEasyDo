@@ -35,11 +35,19 @@ const STORAGE_KEY = "dashboard-layout";
 
 const getDefaultLayout = (): DashboardCard[] => [
   {
-    id: "tasks",
-    type: "task",
-    title: "taskAtGlance",
+    id: "myTasks",
+    type: "myTask",
+    title: "myTask",
     section: "quick-overview",
     order: 0,
+    size: "medium",
+  },
+  {
+    id: "delegatedTasks",
+    type: "delegatedTask",
+    title: "delegatedTask",
+    section: "quick-overview",
+    order: 1,
     size: "medium",
   },
   {
@@ -47,7 +55,7 @@ const getDefaultLayout = (): DashboardCard[] => [
     type: "meetings",
     title: "meetingsThisWeek",
     section: "quick-overview",
-    order: 1,
+    order: 2,
     size: "medium",
   },
   {
