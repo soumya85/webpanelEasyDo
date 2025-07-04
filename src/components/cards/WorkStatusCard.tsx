@@ -191,11 +191,9 @@ export const WorkStatusCard: React.FC<WorkStatusCardProps> = ({
           </div>
         </div>
 
-        <div className="mt-auto">
-          <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 text-sm">
-            {t("clickHereForMoreDetail")}
-          </Button>
-        </div>
+        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-1.5 text-sm">
+          {t("clickHereForMoreDetail")}
+        </Button>
       </div>
     </DashboardCard>
   );
