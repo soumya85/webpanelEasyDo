@@ -1342,7 +1342,7 @@ export function TaskBoardContent() {
                                 .filter((task) => task.status === status)
                                 .map((task) => (
                                   <div
-                                    key={task.id}
+                                    key={`delegated-${status}-${task.id}`}
                                     className="mb-2 last:mb-0 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow hover:shadow-md border border-gray-200 p-2 cursor-pointer transition"
                                     onClick={() => {
                                       setSelectedTask(task);
