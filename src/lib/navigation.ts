@@ -88,16 +88,4 @@ export const navigationItems: NavigationItem[] = [
     icon: HelpCircle,
     href: "/help-support",
   },
-  {
-    id: "component-library",
-    labelKey: "componentLibrary",
-    icon: Layers,
-    href: "/component-library",
-  },
-  {
-    id: "extra",
-    labelKey: "extra",
-    icon: Star,
-    href: "/extra",
-  },
 ];
