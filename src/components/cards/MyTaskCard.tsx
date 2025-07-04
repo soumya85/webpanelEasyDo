@@ -62,6 +62,29 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
             <span className="font-semibold text-gray-800">0</span>
           </div>
         </div>
+
+        {/* Progress Bar Section */}
+        <div className="mt-3 space-y-2">
+          <div className="relative h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+            {/* Overdue Progress (Red) */}
+            <div
+              className="absolute left-0 top-0 h-full bg-red-500 transition-all duration-300"
+              style={{ width: `${(69 / (69 + 20)) * 100}%` }}
+            />
+            {/* In Progress (Green) */}
+            <div
+              className="absolute top-0 h-full bg-green-500 transition-all duration-300"
+              style={{
+                left: `${(69 / (69 + 20)) * 100}%`,
+                width: `${(20 / (69 + 20)) * 100}%`,
+              }}
+            />
+          </div>
+          <div className="flex justify-between text-xs">
+            <span className="text-red-500 font-medium">69</span>
+            <span className="text-green-500 font-medium">20</span>
+          </div>
+        </div>
       </div>
 
       {/* Action Button */}
