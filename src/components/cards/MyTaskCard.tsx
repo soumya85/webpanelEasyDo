@@ -46,15 +46,15 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
         {/* Details */}
         <div className="space-y-2 text-xs">
           <div className="flex justify-between">
-            <span className="text-gray-600">{t("overdue")}</span>
+            <span className="text-gray-600 font-bold">{t("overdue")}</span>
             <span className="font-semibold text-red-500">69</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">{t("inProgress")}</span>
+            <span className="text-gray-600 font-bold">{t("inProgress")}</span>
             <span className="font-semibold text-green-500">20</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">{t("noAction")}</span>
+            <span className="text-gray-600 font-bold">{t("noAction")}</span>
             <span className="font-semibold text-gray-800">0</span>
           </div>
         </div>
