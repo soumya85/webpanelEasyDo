@@ -490,8 +490,9 @@ export function TaskBoardContent() {
     const groups: Record<string, typeof tasks> = {};
     filteredAndSortedTasks.forEach((task) => {
       let key = "";
-      if (groupBy === "status") key = task.status;
-      else if (groupBy === "priority") key = task.priority;
+      if (groupBy === "status") key = task.status || "Unknown Status";
+      else if (groupBy === "priority")
+        key = task.priority || "Unknown Priority";
       else if (groupBy === "assignedTo")
         key = task.assignedTo?.name || "Unassigned";
       else if (groupBy === "createdBy") key = task.createdBy?.name || "Unknown";
@@ -584,7 +585,9 @@ export function TaskBoardContent() {
       // If moved to a new section, update status
       if (sourceSection !== destSection) {
         newTasks = newTasks.map((t) =>
-          t.id === draggedTask.id ? { ...t, status: destSection as TaskStatus } : t,
+          t.id === draggedTask.id
+            ? { ...t, status: destSection as TaskStatus }
+            : t,
         );
       }
       // Optionally: reorder within the same section (not persisted unless you store order)
@@ -625,7 +628,9 @@ export function TaskBoardContent() {
               onClick={() => setActiveTab("my")}
             >
               My Task
-              <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{myTaskCount}</span>
+              <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">
+                {myTaskCount}
+              </span>
             </button>
             <button
               className={`px-3 py-1.5 rounded-full text-sm font-semibold transition shadow-sm ${
@@ -636,7 +641,9 @@ export function TaskBoardContent() {
               onClick={() => setActiveTab("delegated")}
             >
               Delegated Task
-              <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">{delegatedTaskCount}</span>
+              <span className="ml-2 bg-blue-200 text-blue-800 rounded-full px-2 text-xs font-bold align-middle">
+                {delegatedTaskCount}
+              </span>
             </button>
           </div>
           <div className="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
@@ -664,12 +671,17 @@ export function TaskBoardContent() {
             <div className="flex flex-col gap-4 p-4 bg-[#18181b] min-h-[400px] rounded-xl w-full max-w-3xl">
               {/* Your Scores */}
               <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
-                <div className="text-yellow-400 font-bold text-sm">Your Scores</div>
+                <div className="text-yellow-400 font-bold text-sm">
+                  Your Scores
+                </div>
                 <div className="text-xs text-gray-300">
-                  Average Productivity Score of 80% is desirable. Pls focus more on On-Time Task Completion.
+                  Average Productivity Score of 80% is desirable. Pls focus more
+                  on On-Time Task Completion.
                 </div>
                 <div className="flex items-end gap-4 mt-2">
-                  <div className="text-4xl font-extrabold text-yellow-300">38<span className="text-2xl">%</span></div>
+                  <div className="text-4xl font-extrabold text-yellow-300">
+                    38<span className="text-2xl">%</span>
+                  </div>
                   <div className="flex-1">
                     <div className="flex justify-between text-xs text-gray-400 mb-1">
                       <span>On-Time</span>
@@ -678,13 +690,19 @@ export function TaskBoardContent() {
                     </div>
                     <div className="flex gap-1">
                       <div className="bg-blue-500 h-2 rounded w-2/6 relative">
-                        <span className="absolute right-0 -top-5 text-xs text-blue-200">37%</span>
+                        <span className="absolute right-0 -top-5 text-xs text-blue-200">
+                          37%
+                        </span>
                       </div>
                       <div className="bg-blue-400 h-2 rounded w-2/6 relative">
-                        <span className="absolute right-0 -top-5 text-xs text-blue-200">33%</span>
+                        <span className="absolute right-0 -top-5 text-xs text-blue-200">
+                          33%
+                        </span>
                       </div>
                       <div className="bg-gray-600 h-2 rounded w-2/6 relative">
-                        <span className="absolute right-0 -top-5 text-xs text-gray-300">45%</span>
+                        <span className="absolute right-0 -top-5 text-xs text-gray-300">
+                          45%
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -692,91 +710,149 @@ export function TaskBoardContent() {
               </div>
               {/* Task Pending */}
               <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
-                <div className="text-yellow-400 font-bold text-sm">Task Pending</div>
+                <div className="text-yellow-400 font-bold text-sm">
+                  Task Pending
+                </div>
                 <div className="text-xs text-gray-300">
                   The last 6 Months, you have an average of 33 pending Tasks.
                 </div>
                 <div className="flex items-end gap-4 mt-2">
-                  <div className="text-4xl font-extrabold text-yellow-300">33</div>
+                  <div className="text-4xl font-extrabold text-yellow-300">
+                    33
+                  </div>
                   <div className="flex-1">
                     {/* Bar chart for months */}
                     <div className="flex gap-1 items-end h-8">
                       {/* Example bars, replace with real data */}
                       {[20, 33, 28, 35, 30, 33].map((val, i) => (
-                        <div key={i} className="bg-red-500 w-4 rounded" style={{height: `${val/2}px`}} />
+                        <div
+                          key={i}
+                          className="bg-red-500 w-4 rounded"
+                          style={{ height: `${val / 2}px` }}
+                        />
                       ))}
                     </div>
                     <div className="flex justify-between text-xs text-gray-400 mt-1">
-                      {['M','J','J','A','S','O'].map(m => <span key={m}>{m}</span>)}
+                      {["M", "J", "J", "A", "S", "O"].map((m) => (
+                        <span key={m}>{m}</span>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
               {/* Task Pending Trends */}
               <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
-                <div className="text-yellow-400 font-bold text-sm">Task Pending Trends</div>
+                <div className="text-yellow-400 font-bold text-sm">
+                  Task Pending Trends
+                </div>
                 <div className="text-xs text-gray-300">
                   On Average, your Pending tasks are higher than last year
                 </div>
                 <div className="flex flex-col gap-1 mt-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-yellow-300">33</span>
-                    <span className="text-xs text-gray-400">Tasks per month</span>
-                    <span className="ml-auto bg-yellow-400 text-black text-xs font-bold rounded px-2 py-0.5">2024</span>
+                    <span className="text-2xl font-bold text-yellow-300">
+                      33
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      Tasks per month
+                    </span>
+                    <span className="ml-auto bg-yellow-400 text-black text-xs font-bold rounded px-2 py-0.5">
+                      2024
+                    </span>
                   </div>
                   <div className="w-full h-2 bg-gray-700 rounded">
-                    <div className="h-2 bg-yellow-400 rounded" style={{width: '70%'}} />
+                    <div
+                      className="h-2 bg-yellow-400 rounded"
+                      style={{ width: "70%" }}
+                    />
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-2xl font-bold text-gray-300">23</span>
-                    <span className="text-xs text-gray-400">Tasks per month</span>
-                    <span className="ml-auto bg-gray-400 text-black text-xs font-bold rounded px-2 py-0.5">2023</span>
+                    <span className="text-xs text-gray-400">
+                      Tasks per month
+                    </span>
+                    <span className="ml-auto bg-gray-400 text-black text-xs font-bold rounded px-2 py-0.5">
+                      2023
+                    </span>
                   </div>
                   <div className="w-full h-2 bg-gray-700 rounded">
-                    <div className="h-2 bg-gray-400 rounded" style={{width: '40%'}} />
+                    <div
+                      className="h-2 bg-gray-400 rounded"
+                      style={{ width: "40%" }}
+                    />
                   </div>
                 </div>
               </div>
               {/* Task Completed */}
               <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
-                <div className="text-yellow-400 font-bold text-sm">Task Completed</div>
+                <div className="text-yellow-400 font-bold text-sm">
+                  Task Completed
+                </div>
                 <div className="text-xs text-gray-300">
-                  The last 6 Months you have completed an average of 23 tasks a day
+                  The last 6 Months you have completed an average of 23 tasks a
+                  day
                 </div>
                 <div className="flex items-end gap-4 mt-2">
-                  <div className="text-4xl font-extrabold text-yellow-300">23</div>
+                  <div className="text-4xl font-extrabold text-yellow-300">
+                    23
+                  </div>
                   <div className="flex-1">
                     {/* Bar chart for months */}
                     <div className="flex gap-1 items-end h-8">
                       {[12, 18, 20, 23, 25, 23].map((val, i) => (
-                        <div key={i} className="bg-green-500 w-4 rounded" style={{height: `${val/2}px`}} />
+                        <div
+                          key={i}
+                          className="bg-green-500 w-4 rounded"
+                          style={{ height: `${val / 2}px` }}
+                        />
                       ))}
                     </div>
                     <div className="flex justify-between text-xs text-gray-400 mt-1">
-                      {['M','J','J','A','S','O'].map(m => <span key={m}>{m}</span>)}
+                      {["M", "J", "J", "A", "S", "O"].map((m) => (
+                        <span key={m}>{m}</span>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
               {/* Task Completed Trends */}
               <div className="rounded-xl bg-[#23232a] p-4 shadow flex flex-col gap-2">
-                <div className="text-yellow-400 font-bold text-sm">Task Completed Trends</div>
+                <div className="text-yellow-400 font-bold text-sm">
+                  Task Completed Trends
+                </div>
                 <div className="text-xs text-gray-300">
-                  On average, you are completing more tasks per month compared to last year
+                  On average, you are completing more tasks per month compared
+                  to last year
                 </div>
                 <div className="flex flex-col gap-1 mt-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-yellow-300">23</span>
-                    <span className="text-xs text-gray-400">Tasks per month</span>
-                    <span className="ml-auto bg-yellow-400 text-black text-xs font-bold rounded px-2 py-0.5">2024</span>
+                    <span className="text-2xl font-bold text-yellow-300">
+                      23
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      Tasks per month
+                    </span>
+                    <span className="ml-auto bg-yellow-400 text-black text-xs font-bold rounded px-2 py-0.5">
+                      2024
+                    </span>
                   </div>
-                  <div className="w-full h-2 bg-yellow-400 rounded" style={{width: '70%'}} />
+                  <div
+                    className="w-full h-2 bg-yellow-400 rounded"
+                    style={{ width: "70%" }}
+                  />
                   <div className="flex items-center gap-2">
                     <span className="text-2xl font-bold text-gray-300">12</span>
-                    <span className="text-xs text-gray-400">Tasks per month</span>
-                    <span className="ml-auto bg-gray-400 text-black text-xs font-bold rounded px-2 py-0.5">2023</span>
+                    <span className="text-xs text-gray-400">
+                      Tasks per month
+                    </span>
+                    <span className="ml-auto bg-gray-400 text-black text-xs font-bold rounded px-2 py-0.5">
+                      2023
+                    </span>
                   </div>
-                  <div className="w-full h-2 bg-gray-400 rounded" style={{width: '40%'}} />
+                  <div
+                    className="w-full h-2 bg-gray-400 rounded"
+                    style={{ width: "40%" }}
+                  />
                 </div>
               </div>
             </div>
@@ -786,30 +862,50 @@ export function TaskBoardContent() {
               {/* Green circle with red border for In Progress */}
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10">
                 <div className="rounded-full border-4 border-red-500 bg-green-300 w-16 h-16 flex items-center justify-center text-xl font-bold text-black shadow">
-                  {myTaskGroups.find(g => g.status === 'inprogress')?.tasks.length || 0}
+                  {myTaskGroups.find((g) => g.status === "inprogress")?.tasks
+                    .length || 0}
                 </div>
               </div>
               {/* Main Card */}
               <div className="mt-8 bg-blue-50 rounded-xl shadow border flex flex-col items-center px-8 py-4 min-w-[320px] relative">
                 <div className="flex justify-between w-full mb-2">
-                  <span className="text-blue-700 font-bold text-lg">Pending Tasks</span>
+                  <span className="text-blue-700 font-bold text-lg">
+                    Pending Tasks
+                  </span>
                 </div>
                 <div className="flex justify-between w-full items-end gap-6">
                   <div className="flex flex-col items-center">
-                    <span className="text-4xl font-extrabold text-blue-600">{myTaskGroups.reduce((sum, g) => sum + g.tasks.length, 0)}</span>
+                    <span className="text-4xl font-extrabold text-blue-600">
+                      {myTaskGroups.reduce((sum, g) => sum + g.tasks.length, 0)}
+                    </span>
                     <span className="w-8 h-1 bg-blue-600 rounded-full mt-1" />
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-2xl font-bold text-red-600">{myTaskGroups.find(g => g.status === 'skip')?.tasks.length || 0}</span>
-                    <span className="text-xs text-red-600 font-semibold mt-1">Overdue</span>
+                    <span className="text-2xl font-bold text-red-600">
+                      {myTaskGroups.find((g) => g.status === "skip")?.tasks
+                        .length || 0}
+                    </span>
+                    <span className="text-xs text-red-600 font-semibold mt-1">
+                      Overdue
+                    </span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-2xl font-bold text-green-600">{myTaskGroups.find(g => g.status === 'inprogress')?.tasks.length || 0}</span>
-                    <span className="text-xs text-green-600 font-semibold mt-1">In Progress</span>
+                    <span className="text-2xl font-bold text-green-600">
+                      {myTaskGroups.find((g) => g.status === "inprogress")
+                        ?.tasks.length || 0}
+                    </span>
+                    <span className="text-xs text-green-600 font-semibold mt-1">
+                      In Progress
+                    </span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-2xl font-bold text-black">{myTaskGroups.find(g => g.status === 'noAction')?.tasks.length || 0}</span>
-                    <span className="text-xs text-black font-semibold mt-1">No Action</span>
+                    <span className="text-2xl font-bold text-black">
+                      {myTaskGroups.find((g) => g.status === "noAction")?.tasks
+                        .length || 0}
+                    </span>
+                    <span className="text-xs text-black font-semibold mt-1">
+                      No Action
+                    </span>
                   </div>
                 </div>
               </div>
@@ -820,30 +916,62 @@ export function TaskBoardContent() {
               {/* Green circle with red border for In Progress */}
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10">
                 <div className="rounded-full border-4 border-red-500 bg-green-300 w-16 h-16 flex items-center justify-center text-xl font-bold text-black shadow">
-                  {delegatedGroups[0].tasks.filter(t => t.status === 'inprogress').length}
+                  {
+                    delegatedGroups[0].tasks.filter(
+                      (t) => t.status === "inprogress",
+                    ).length
+                  }
                 </div>
               </div>
               {/* Main Card */}
               <div className="mt-8 bg-blue-50 rounded-xl shadow border flex flex-col items-center px-8 py-4 min-w-[320px] relative">
                 <div className="flex justify-between w-full mb-2">
-                  <span className="text-blue-700 font-bold text-lg">Pending Tasks</span>
+                  <span className="text-blue-700 font-bold text-lg">
+                    Pending Tasks
+                  </span>
                 </div>
                 <div className="flex justify-between w-full items-end gap-6">
                   <div className="flex flex-col items-center">
-                    <span className="text-4xl font-extrabold text-blue-600">{delegatedGroups[0].tasks.length}</span>
+                    <span className="text-4xl font-extrabold text-blue-600">
+                      {delegatedGroups[0].tasks.length}
+                    </span>
                     <span className="w-8 h-1 bg-blue-600 rounded-full mt-1" />
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-2xl font-bold text-red-600">{delegatedGroups[0].tasks.filter(t => t.status === 'skip').length}</span>
-                    <span className="text-xs text-red-600 font-semibold mt-1">Overdue</span>
+                    <span className="text-2xl font-bold text-red-600">
+                      {
+                        delegatedGroups[0].tasks.filter(
+                          (t) => t.status === "skip",
+                        ).length
+                      }
+                    </span>
+                    <span className="text-xs text-red-600 font-semibold mt-1">
+                      Overdue
+                    </span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-2xl font-bold text-green-600">{delegatedGroups[0].tasks.filter(t => t.status === 'inprogress').length}</span>
-                    <span className="text-xs text-green-600 font-semibold mt-1">In Progress</span>
+                    <span className="text-2xl font-bold text-green-600">
+                      {
+                        delegatedGroups[0].tasks.filter(
+                          (t) => t.status === "inprogress",
+                        ).length
+                      }
+                    </span>
+                    <span className="text-xs text-green-600 font-semibold mt-1">
+                      In Progress
+                    </span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-2xl font-bold text-black">{delegatedGroups[0].tasks.filter(t => t.status === 'noAction').length}</span>
-                    <span className="text-xs text-black font-semibold mt-1">No Action</span>
+                    <span className="text-2xl font-bold text-black">
+                      {
+                        delegatedGroups[0].tasks.filter(
+                          (t) => t.status === "noAction",
+                        ).length
+                      }
+                    </span>
+                    <span className="text-xs text-black font-semibold mt-1">
+                      No Action
+                    </span>
                   </div>
                 </div>
               </div>
@@ -949,29 +1077,45 @@ export function TaskBoardContent() {
               </button>
             </PopoverTrigger>
             <PopoverContent className="w-60 rounded-lg shadow-lg border border-gray-200 bg-white">
-              <div className="mb-2 font-semibold text-gray-700 text-base">Filter Tasks</div>
+              <div className="mb-2 font-semibold text-gray-700 text-base">
+                Filter Tasks
+              </div>
               <div className="mb-2">
-                <label className="block text-xs text-gray-500 mb-1">Assignee</label>
+                <label className="block text-xs text-gray-500 mb-1">
+                  Assignee
+                </label>
                 <select
                   className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                   value={filters.assignee || "all"}
-                  onChange={e => setFilters(f => ({ ...f, assignee: e.target.value }))}
+                  onChange={(e) =>
+                    setFilters((f) => ({ ...f, assignee: e.target.value }))
+                  }
                 >
                   <option value="all">All</option>
                   <option value="me">Me</option>
-                  {[...new Set(tasks.map(t => t.assignedTo?.name).filter(Boolean))]
-                    .filter(name => name !== "Current User")
-                    .map(name => (
-                      <option key={name} value={name}>{name}</option>
+                  {[
+                    ...new Set(
+                      tasks.map((t) => t.assignedTo?.name).filter(Boolean),
+                    ),
+                  ]
+                    .filter((name) => name !== "Current User")
+                    .map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
                     ))}
                 </select>
               </div>
               <div className="mb-2">
-                <label className="block text-xs text-gray-500 mb-1">Priority</label>
+                <label className="block text-xs text-gray-500 mb-1">
+                  Priority
+                </label>
                 <select
                   className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                   value={filters.priority || "all"}
-                  onChange={e => setFilters(f => ({ ...f, priority: e.target.value }))}
+                  onChange={(e) =>
+                    setFilters((f) => ({ ...f, priority: e.target.value }))
+                  }
                 >
                   <option value="all">All</option>
                   <option value="urgent">Urgent</option>
@@ -981,11 +1125,15 @@ export function TaskBoardContent() {
                 </select>
               </div>
               <div className="mb-2">
-                <label className="block text-xs text-gray-500 mb-1">Status</label>
+                <label className="block text-xs text-gray-500 mb-1">
+                  Status
+                </label>
                 <select
                   className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                   value={filters.status || "all"}
-                  onChange={e => setFilters(f => ({ ...f, status: e.target.value }))}
+                  onChange={(e) =>
+                    setFilters((f) => ({ ...f, status: e.target.value }))
+                  }
                 >
                   <option value="all">All</option>
                   <option value="noAction">No Action</option>
@@ -1000,12 +1148,18 @@ export function TaskBoardContent() {
                 <select
                   className="w-full border rounded px-2 py-1 text-sm bg-gray-50"
                   value={filters.tag || "all"}
-                  onChange={e => setFilters(f => ({ ...f, tag: e.target.value }))}
+                  onChange={(e) =>
+                    setFilters((f) => ({ ...f, tag: e.target.value }))
+                  }
                 >
                   <option value="all">All</option>
-                  {[...new Set(tasks.flatMap(t => t.tags || []))].map(tag => (
-                    <option key={tag} value={tag}>{tag}</option>
-                  ))}
+                  {[...new Set(tasks.flatMap((t) => t.tags || []))].map(
+                    (tag) => (
+                      <option key={tag} value={tag}>
+                        {tag}
+                      </option>
+                    ),
+                  )}
                 </select>
               </div>
               <button
@@ -1020,7 +1174,7 @@ export function TaskBoardContent() {
           <select
             className="px-2.5 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
             value={sortBy}
-            onChange={e => setSortBy(e.target.value as SortOption)}
+            onChange={(e) => setSortBy(e.target.value as SortOption)}
           >
             <option value="created-desc">Newest</option>
             <option value="created-asc">Oldest</option>
@@ -1028,11 +1182,13 @@ export function TaskBoardContent() {
             <option value="priority">Priority</option>
             <option value="name">Name</option>
           </select>
-          <span className="ml-1 text-blue-800 font-semibold text-sm">Group by</span>
+          <span className="ml-1 text-blue-800 font-semibold text-sm">
+            Group by
+          </span>
           <select
             className="px-2 py-1.5 rounded-lg bg-blue-100 border border-blue-200 text-sm text-blue-800 shadow-sm focus:ring-blue-300 focus:border-blue-400"
             value={groupBy}
-            onChange={e => setGroupBy(e.target.value as typeof groupBy)}
+            onChange={(e) => setGroupBy(e.target.value as typeof groupBy)}
           >
             <option value="status">Status</option>
             <option value="priority">Priority</option>
