@@ -40,9 +40,7 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
       <div className="flex-1 min-h-0 overflow-hidden">
         <div className="mb-2 flex items-center gap-3">
           <div className="text-3xl font-bold text-[#4766E5]">34</div>
-          <div className="text-sm font-bold text-gray-600">
-            {t("totalDelegatedTasks")}
-          </div>
+          <div className="text-sm font-bold text-gray-600">Completed Tasks</div>
         </div>
 
         {/* Details */}
