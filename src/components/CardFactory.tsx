@@ -36,6 +36,10 @@ export const CardFactory: React.FC<CardFactoryProps> = ({
   switch (card.type) {
     case "task":
       return <TaskCard {...commonProps} />;
+    case "myTask":
+      return <MyTaskCard {...commonProps} />;
+    case "delegatedTask":
+      return <DelegatedTaskCard {...commonProps} />;
     case "meetings":
       return <MeetingsCard {...commonProps} />;
     case "approvals":
