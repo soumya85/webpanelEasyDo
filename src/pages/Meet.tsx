@@ -99,7 +99,9 @@ export default function Meet() {
   const [showParticipantsDropdown, setShowParticipantsDropdown] =
     useState(false);
   const [contacts, setContacts] = useState<any[]>([]); // Replace with your contacts logic
-  const [meetingType, setMeetingType] = useState<"online" | "offline">("online");
+  const [meetingType, setMeetingType] = useState<"online" | "offline">(
+    "online",
+  );
 
   // Venue state
   const [venue, setVenue] = useState("");
@@ -113,7 +115,9 @@ export default function Meet() {
   // Additional fields
   const [instructions, setInstructions] = useState("");
   const [agenda, setAgenda] = useState("");
-  const [repeatType, setRepeatType] = useState<"none" | "weekly" | "monthly" | "yearly">("none");
+  const [repeatType, setRepeatType] = useState<
+    "none" | "weekly" | "monthly" | "yearly"
+  >("none");
   const [attachment, setAttachment] = useState<File | null>(null);
 
   const filteredMeetings = useMemo(() => {
@@ -261,11 +265,7 @@ export default function Meet() {
     onSelect,
     onClose,
   }: {
-    onSelect: (location: {
-      lat: number;
-      lng: number;
-      address: string;
-    }) => void;
+    onSelect: (location: { lat: number; lng: number; address: string }) => void;
     onClose: () => void;
   }) {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -677,14 +677,26 @@ export default function Meet() {
 
       {/* Schedule Meeting Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
+        <div className="fixed inset-0 z-[110] bg-black/30 flex items-center justify-center">
           <div className="bg-white rounded-2xl shadow-2xl p-0 w-full max-w-2xl max-h-[90vh] flex flex-col">
             {/* Modal Header */}
             <div className="flex items-center justify-between px-8 py-5 border-b bg-gradient-to-r from-blue-700 via-blue-500 to-indigo-500 rounded-t-2xl">
               <h2 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24" className="text-yellow-200 drop-shadow-lg">
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="text-yellow-200 drop-shadow-lg"
+                >
                   <circle cx="12" cy="12" r="10" fill="currentColor" />
-                  <path d="M8 12l2 2 4-4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path
+                    d="M8 12l2 2 4-4"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
                 Schedule Meeting
               </h2>
@@ -701,7 +713,7 @@ export default function Meet() {
             <form
               className="px-8 py-6 space-y-5 overflow-y-auto flex-1"
               style={{ minHeight: 0 }}
-              onSubmit={e => {
+              onSubmit={(e) => {
                 e.preventDefault();
                 handleCreateMeeting();
               }}
@@ -726,11 +738,11 @@ export default function Meet() {
                 <select
                   className="border rounded px-3 py-2 text-sm w-full"
                   value={company}
-                  onChange={e => setCompany(e.target.value)}
+                  onChange={(e) => setCompany(e.target.value)}
                   required
                 >
                   <option value="">Select company</option>
-                  {companies.map(c => (
+                  {companies.map((c) => (
                     <option key={c.id} value={c.name}>
                       {c.name}
                     </option>
@@ -772,7 +784,9 @@ export default function Meet() {
                     className="border rounded px-3 py-2 text-sm min-h-[38px] flex flex-wrap gap-1 cursor-pointer bg-white"
                     onClick={() => setShowParticipantsDropdown(true)}
                     tabIndex={0}
-                    onBlur={() => setTimeout(() => setShowParticipantsDropdown(false), 150)}
+                    onBlur={() =>
+                      setTimeout(() => setShowParticipantsDropdown(false), 150)
+                    }
                   >
                     {selectedParticipants.length === 0 && (
                       <span className="text-gray-400">
@@ -788,10 +802,12 @@ export default function Meet() {
                         <button
                           type="button"
                           className="ml-1 text-xs text-red-500"
-                          onClick={e => {
+                          onClick={(e) => {
                             e.stopPropagation();
                             setSelectedParticipants(
-                              selectedParticipants.filter((p) => p !== participant)
+                              selectedParticipants.filter(
+                                (p) => p !== participant,
+                              ),
                             );
                           }}
                         >
@@ -800,39 +816,47 @@ export default function Meet() {
                       </span>
                     ))}
                   </div>
-                  {showParticipantsDropdown && contacts && contacts.length > 0 && (
-                    <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
-                      {contacts
-                        .filter((c) => !selectedParticipants.includes(c.name))
-                        .map((c) => (
-                          <div
-                            key={c.id}
-                            className="px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
-                            onClick={() => {
-                              setSelectedParticipants([...selectedParticipants, c.name]);
-                              setShowParticipantsDropdown(false);
-                            }}
-                          >
-                            {c.name}{" "}
-                            <span className="text-xs text-gray-400">
-                              ({c.email})
-                            </span>
+                  {showParticipantsDropdown &&
+                    contacts &&
+                    contacts.length > 0 && (
+                      <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
+                        {contacts
+                          .filter((c) => !selectedParticipants.includes(c.name))
+                          .map((c) => (
+                            <div
+                              key={c.id}
+                              className="px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
+                              onClick={() => {
+                                setSelectedParticipants([
+                                  ...selectedParticipants,
+                                  c.name,
+                                ]);
+                                setShowParticipantsDropdown(false);
+                              }}
+                            >
+                              {c.name}{" "}
+                              <span className="text-xs text-gray-400">
+                                ({c.email})
+                              </span>
+                            </div>
+                          ))}
+                        {contacts.filter(
+                          (c) => !selectedParticipants.includes(c.name),
+                        ).length === 0 && (
+                          <div className="px-3 py-2 text-gray-400 text-sm">
+                            No more contacts
                           </div>
-                        ))}
-                      {contacts.filter((c) => !selectedParticipants.includes(c.name)).length === 0 && (
-                        <div className="px-3 py-2 text-gray-400 text-sm">
-                          No more contacts
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {showParticipantsDropdown && (!contacts || contacts.length === 0) && (
-                    <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
-                      <div className="px-3 py-2 text-gray-400 text-sm">
-                        No contacts found
+                        )}
                       </div>
-                    </div>
-                  )}
+                    )}
+                  {showParticipantsDropdown &&
+                    (!contacts || contacts.length === 0) && (
+                      <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
+                        <div className="px-3 py-2 text-gray-400 text-sm">
+                          No contacts found
+                        </div>
+                      </div>
+                    )}
                 </div>
               </div>
               {/* Virtual Meeting Toggle */}
@@ -845,7 +869,9 @@ export default function Meet() {
                     type="checkbox"
                     checked={meetingType === "online"}
                     onChange={() => {
-                      setMeetingType(meetingType === "online" ? "offline" : "online");
+                      setMeetingType(
+                        meetingType === "online" ? "offline" : "online",
+                      );
                       if (meetingType === "online") {
                         setVenue("");
                         setSelectedLocation(null);
@@ -854,9 +880,13 @@ export default function Meet() {
                     className="sr-only peer"
                   />
                   <div className="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 transition-colors relative">
-                    <div className={`absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow transition-transform ${meetingType === "online" ? "translate-x-5" : ""}`}></div>
+                    <div
+                      className={`absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow transition-transform ${meetingType === "online" ? "translate-x-5" : ""}`}
+                    ></div>
                   </div>
-                  <span className="ml-2 text-xs text-gray-600">{meetingType === "online" ? "Yes" : "No"}</span>
+                  <span className="ml-2 text-xs text-gray-600">
+                    {meetingType === "online" ? "Yes" : "No"}
+                  </span>
                 </label>
               </div>
               {/* Venue & Map (only if offline) */}
@@ -905,7 +935,7 @@ export default function Meet() {
                 <Input
                   placeholder="Meeting Agenda"
                   value={agenda}
-                  onChange={e => setAgenda(e.target.value)}
+                  onChange={(e) => setAgenda(e.target.value)}
                 />
               </div>
               {/* Instructions */}
@@ -916,7 +946,7 @@ export default function Meet() {
                 <textarea
                   placeholder="Instructions for the meeting"
                   value={instructions}
-                  onChange={e => setInstructions(e.target.value)}
+                  onChange={(e) => setInstructions(e.target.value)}
                   className="w-full min-h-[60px] px-2 py-1 border border-input rounded-lg resize-none text-sm"
                 />
               </div>
@@ -928,7 +958,7 @@ export default function Meet() {
                 <select
                   className="border rounded px-3 py-2 text-sm w-full"
                   value={repeatType}
-                  onChange={e => setRepeatType(e.target.value as any)}
+                  onChange={(e) => setRepeatType(e.target.value as any)}
                 >
                   <option value="none">Does Not Repeat</option>
                   <option value="weekly">Weekly</option>
@@ -971,7 +1001,11 @@ export default function Meet() {
             </form>
             {/* Fixed Modal Footer */}
             <div className="flex justify-end gap-2 px-8 py-4 border-t bg-white rounded-b-2xl sticky bottom-0">
-              <Button variant="ghost" type="button" onClick={() => setShowModal(false)}>
+              <Button
+                variant="ghost"
+                type="button"
+                onClick={() => setShowModal(false)}
+              >
                 Cancel
               </Button>
               <Button
