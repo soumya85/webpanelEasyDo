@@ -222,7 +222,7 @@ export function Header() {
           {/* Title */}
           <MultilingualText
             as="h1"
-            className="text-xl font-black text-azure-24 uppercase tracking-wide"
+            className="text-xl font-black text-azure-24 uppercase tracking-wide mr-8"
           >
             {t("dashboardTitle")}
           </MultilingualText>
