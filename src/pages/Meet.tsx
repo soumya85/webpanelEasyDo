@@ -596,7 +596,7 @@ export default function Meet() {
                 </h3>
                 <ul className="space-y-2">
                   {meetings.filter((m) => m.status === "pending").length ===
-                  0 ? (
+                    0 ? (
                     <li className="text-gray-400 text-sm">
                       No scheduled meetings.
                     </li>
@@ -1220,10 +1220,10 @@ export default function Meet() {
                       ))}
                     {contactsState.filter((c) => !selectedMembers.includes(c.name))
                       .length === 0 && (
-                      <div className="px-3 py-2 text-gray-400 text-sm">
-                        No more contacts
-                      </div>
-                    )}
+                        <div className="px-3 py-2 text-gray-400 text-sm">
+                          No more contacts
+                        </div>
+                      )}
                   </div>
                 )}
               </div>
