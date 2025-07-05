@@ -302,7 +302,7 @@ export const TodayScheduleCard: React.FC<TodayScheduleCardProps> = ({
       </div>
       {/* MultiDay Section */}
       <div className="px-6 py-4 bg-[#F8FAFF]">
-        {/* <div className="text-xs text-gray-500 mb-2 font-semibold">MultiDay</div> */}
+        <div className="text-xs text-gray-500 mb-2 font-semibold">AllDay</div>
         {content}
       </div>
     </DashboardCard>

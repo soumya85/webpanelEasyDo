@@ -98,7 +98,10 @@ export default function Meet() {
   );
   const [showParticipantsDropdown, setShowParticipantsDropdown] =
     useState(false);
-  const [contacts, setContacts] = useState<any[]>([]); // Replace with your contacts logic
+  const [contactsState, setContactsState] = useState([
+    { id: "1", name: "Alice Smith", email: "alice@email.com" },
+    { id: "2", name: "Bob Johnson", email: "bob@email.com" },
+  ]);
   const [meetingType, setMeetingType] = useState<"online" | "offline">("online");
 
   // Venue state
@@ -165,10 +168,6 @@ export default function Meet() {
   };
 
   // --- Contact & Group State ---
-  const [contactsState, setContactsState] = useState([
-    { id: "1", name: "Alice Smith", email: "alice@email.com" },
-    { id: "2", name: "Bob Johnson", email: "bob@email.com" },
-  ]);
   const [groups, setGroups] = useState([
     { id: "1", name: "Developers", members: ["Alice Smith", "Bob Johnson"] },
   ]);
@@ -800,9 +799,9 @@ export default function Meet() {
                       </span>
                     ))}
                   </div>
-                  {showParticipantsDropdown && contacts && contacts.length > 0 && (
+                  {showParticipantsDropdown && contactsState && contactsState.length > 0 && (
                     <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
-                      {contacts
+                      {contactsState
                         .filter((c) => !selectedParticipants.includes(c.name))
                         .map((c) => (
                           <div
@@ -819,14 +818,14 @@ export default function Meet() {
                             </span>
                           </div>
                         ))}
-                      {contacts.filter((c) => !selectedParticipants.includes(c.name)).length === 0 && (
+                      {contactsState.filter((c) => !selectedParticipants.includes(c.name)).length === 0 && (
                         <div className="px-3 py-2 text-gray-400 text-sm">
                           No more contacts
                         </div>
                       )}
                     </div>
                   )}
-                  {showParticipantsDropdown && (!contacts || contacts.length === 0) && (
+                  {showParticipantsDropdown && (!contactsState || contactsState.length === 0) && (
                     <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
                       <div className="px-3 py-2 text-gray-400 text-sm">
                         No contacts found
@@ -1001,7 +1000,7 @@ export default function Meet() {
               </Button>
             </div>
             <ul className="space-y-2 mb-4 max-h-40 overflow-auto">
-              {contacts.map((c) => (
+              {contactsState.map((c) => (
                 <li
                   key={c.id}
                   className="flex items-center justify-between border-b pb-1"
@@ -1156,7 +1155,7 @@ export default function Meet() {
                 </div>
                 {showMembersDropdown && (
                   <div className="absolute z-10 bg-white border rounded shadow w-full mt-1 max-h-40 overflow-auto">
-                    {contacts
+                    {contactsState
                       .filter((c) => !selectedMembers.includes(c.name))
                       .map((c) => (
                         <div
@@ -1173,7 +1172,7 @@ export default function Meet() {
                           </span>
                         </div>
                       ))}
-                    {contacts.filter((c) => !selectedMembers.includes(c.name))
+                    {contactsState.filter((c) => !selectedMembers.includes(c.name))
                       .length === 0 && (
                       <div className="px-3 py-2 text-gray-400 text-sm">
                         No more contacts
