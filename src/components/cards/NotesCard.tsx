@@ -47,14 +47,23 @@ export const NotesCard: React.FC<NotesCardProps> = ({
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
         {/* Notes Items */}
-        <div className="space-y-2 text-xs max-h-60 overflow-y-auto">
+        <div className="space-y-0 text-xs max-h-60 overflow-y-auto">
           {notes.map((note, idx) => (
             <div
               key={idx}
-              className="border-b border-gray-100 pb-1 last:border-b-0"
+              className="group hover:bg-gray-50 transition-colors duration-200 rounded-lg"
             >
-              <div className="text-gray-800 font-medium">{note.text}</div>
-              <div className="text-gray-500 text-xs mt-1">{note.time}</div>
+              <div className="px-3 py-3">
+                <div className="text-gray-800 font-medium leading-relaxed mb-1">
+                  {note.text}
+                </div>
+                <div className="text-gray-500 text-xs">{note.time}</div>
+              </div>
+              {idx < notes.length - 1 && (
+                <div className="mx-3">
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+                </div>
+              )}
             </div>
           ))}
         </div>
