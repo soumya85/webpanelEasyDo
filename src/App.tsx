@@ -152,7 +152,7 @@ const AppContent = () => {
                       path="/component-library"
                       element={<ComponentLibrary />}
                     />
-                                        <Route path="/extra" element={<Extra />} />
+                    <Route path="/extra" element={<Extra />} />
                     <Route path="/demo1" element={<Demo1 />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />

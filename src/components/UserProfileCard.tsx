@@ -14,11 +14,11 @@ interface AdminProfileCardProps {
 
 export function AdminProfileCard({
   name = "Bhaskar Ghosh",
-  title = "Executive Director", 
+  title = "Executive Director",
   initials = "BG",
   authorityLevel = "1",
   showVerification = true,
-  className = ""
+  className = "",
 }: AdminProfileCardProps) {
   return (
     <Card className={className}>

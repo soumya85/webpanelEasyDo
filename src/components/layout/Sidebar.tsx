@@ -55,7 +55,7 @@ export function Sidebar() {
               />
             )}
           </div>
-                </div>
+        </div>
 
         {/* Company Changer */}
         <CompanyChanger isExpanded={isExpanded} />

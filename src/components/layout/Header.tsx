@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Menu,
-  Plus,
-  MessageSquare,
-  Bell,
-} from "lucide-react";
+import { Menu, Plus, MessageSquare, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { NotificationBadge } from "@/components/ui/notification-badge";
@@ -30,7 +25,7 @@ export function Header() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-    const isChatsPage = location.pathname === "/chats";
+  const isChatsPage = location.pathname === "/chats";
 
   const handleProfileClick = () => {
     navigate("/profile");
@@ -213,11 +208,11 @@ export function Header() {
             {t("dashboardTitle")}
           </MultilingualText>
 
-                    {/* Desktop Controls */}
+          {/* Desktop Controls */}
           <div className="flex items-center gap-6">
             {/* Create Button */}
             <CreateMenu>
-                            <Button className="bg-primary hover:bg-primary-600 text-white px-3 h-9 gap-2">
+              <Button className="bg-primary hover:bg-primary-600 text-white px-3 h-9 gap-2">
                 <Plus className="h-4 w-4" />
                 <MultilingualText className="text-sm font-semibold uppercase tracking-wider">
                   {t("create")}
@@ -283,8 +278,6 @@ export function Header() {
           </DropdownMenu>
         </div>
       </header>
-
-      
     </>
   );
 }

@@ -29,9 +29,9 @@ interface CompanyChangerProps {
 
 const getCompanyInitials = (name: string): string => {
   return name
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase())
-    .join('')
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase())
+    .join("")
     .substring(0, 2);
 };
 
@@ -42,7 +42,7 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
     setSelectedCompany(company);
   };
 
-    if (!isExpanded) {
+  if (!isExpanded) {
     // Collapsed view - show just the avatar
     return (
       <div className="flex items-center justify-center px-4 py-3 border-b border-gray-400">
@@ -65,13 +65,13 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
               Switch Company
             </div>
             <DropdownMenuSeparator />
-                        {companies.map((company) => (
+            {companies.map((company) => (
               <DropdownMenuItem
                 key={company.id}
                 onClick={() => handleCompanyChange(company)}
                 className={cn(
                   "flex items-center justify-between cursor-pointer",
-                  selectedCompany.id === company.id && "bg-gray-100"
+                  selectedCompany.id === company.id && "bg-gray-100",
                 )}
               >
                 <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
             variant="ghost"
             className="w-full justify-between h-auto p-3 hover:bg-gray-50"
           >
-                        <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <div className="h-8 w-8 bg-black rounded-full flex items-center justify-center">
                 <span className="text-white text-xs font-semibold">
                   {getCompanyInitials(selectedCompany.name)}
@@ -131,10 +131,10 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
               onClick={() => handleCompanyChange(company)}
               className={cn(
                 "flex items-center justify-between cursor-pointer",
-                selectedCompany.id === company.id && "bg-gray-100"
+                selectedCompany.id === company.id && "bg-gray-100",
               )}
             >
-                            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <div className="h-4 w-4 bg-black rounded-full flex items-center justify-center">
                   <span className="text-white text-xs font-semibold">
                     {getCompanyInitials(company.name)}
