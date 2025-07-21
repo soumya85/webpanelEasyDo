@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
-interface UserProfileCardProps {
+interface AdminProfileCardProps {
   name?: string;
   title?: string;
   initials?: string;
@@ -12,7 +12,7 @@ interface UserProfileCardProps {
   className?: string;
 }
 
-export function UserProfileCard({
+export function AdminProfileCard({
   name = "Bhaskar Ghosh",
   title = "Executive Director", 
   initials = "BG",
