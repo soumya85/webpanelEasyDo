@@ -17,7 +17,7 @@ interface Company {
 }
 
 const companies: Company[] = [
-  { id: "1", name: "EasyDo Corp", type: "primary" },
+  { id: "1", name: "Liberty Highrise", type: "primary" },
   { id: "2", name: "EasyDo Tech", type: "secondary" },
   { id: "3", name: "EasyDo Solutions", type: "secondary" },
   { id: "4", name: "EasyDo Services", type: "secondary" },
