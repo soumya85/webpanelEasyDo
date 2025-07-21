@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/useSidebar";
-import { UserProfile } from "./UserProfile";
 import { NavItem } from "./NavItem";
 import { navigationItems } from "@/lib/navigation";
 import { X } from "lucide-react";
