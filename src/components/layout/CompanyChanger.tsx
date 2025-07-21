@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Building, Check } from "lucide-react";
+import { ChevronDown, Check } from "lucide-react";
 
 interface Company {
   id: string;
