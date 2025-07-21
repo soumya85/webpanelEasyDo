@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/useSidebar";
-import { UserProfile } from "./UserProfile";
+import { CompanyChanger } from "./CompanyChanger";
 import { NavItem } from "./NavItem";
 import { navigationItems } from "@/lib/navigation";
 import { X } from "lucide-react";
@@ -57,8 +57,8 @@ export function Sidebar() {
           </div>
         </div>
 
-        {/* User Profile */}
-        <UserProfile isExpanded={isExpanded} />
+        {/* Company Changer */}
+        <CompanyChanger isExpanded={isExpanded} />
 
         {/* Navigation Menu - Scrollable */}
         <nav className="flex-1 overflow-y-auto py-4">

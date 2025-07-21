@@ -45,6 +45,7 @@ import SalaryStatement from "./pages/SalaryStatement";
 import TaskReport from "./pages/TaskReport";
 import ComponentLibrary from "./pages/ComponentLibrary";
 import Extra from "./pages/Extra";
+import Demo1 from "./pages/Demo1";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -152,6 +153,7 @@ const AppContent = () => {
                       element={<ComponentLibrary />}
                     />
                     <Route path="/extra" element={<Extra />} />
+                    <Route path="/demo1" element={<Demo1 />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
