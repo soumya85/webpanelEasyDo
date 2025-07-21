@@ -118,7 +118,7 @@ const Dashboard: React.FC = () => {
     <div className="flex flex-col h-full bg-white">
       {/* Simple Header Section */}
       <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100">
-        <h1 className="text-sm font-medium text-gray-700">
+        <h1 className="text-sm font-bold text-gray-700">
           {getCurrentDate()}
         </h1>
         <LayoutControls onReset={resetLayout} />
