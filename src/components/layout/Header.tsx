@@ -78,7 +78,15 @@ export function Header() {
           <div className="flex items-center gap-3 ml-3">
                         {/* Dashboard Title */}
                         <h1 className="text-[16px] text-[#283C50] tracking-wide leading-6">
-              Good afternoon, Bhaskar Ghosh! 👋
+              {(() => {
+                const hour = new Date().getHours();
+                let greeting = "Good morning";
+                if (hour >= 12 && hour < 17) greeting = "Good afternoon";
+                else if (hour >= 17 && hour < 22) greeting = "Good evening";
+                else if (hour >= 22 || hour < 6) greeting = "Good night";
+                return `${greeting}, `;
+              })()}
+              <span className="font-bold">Bhaskar Ghosh</span>! 👋
             </h1>
 
             {/* Create Button */}
