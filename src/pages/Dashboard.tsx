@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
-                              {/* Header Section */}
+      {/* Header Section */}
       <div className="flex justify-between items-center mb-2 px-6">
         {/* Date Display */}
         <h2 className="text-lg font-semibold text-[#283C50]">

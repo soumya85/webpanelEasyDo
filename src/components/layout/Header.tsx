@@ -76,8 +76,8 @@ export function Header() {
 
           {/* Title and Button Group */}
           <div className="flex items-center gap-3 ml-3">
-                        {/* Dashboard Title */}
-                        <h1 className="text-[16px] text-[#283C50] tracking-wide leading-6">
+            {/* Dashboard Title */}
+            <h1 className="text-[16px] text-[#283C50] tracking-wide leading-6">
               {(() => {
                 const hour = new Date().getHours();
                 let greeting = "Good morning";
@@ -205,8 +205,8 @@ export function Header() {
             <Menu className="h-6 w-6" />
           </Button>
 
-                    {/* Title */}
-                    <h1 className="text-xl text-azure-24 tracking-wide mr-8">
+          {/* Title */}
+          <h1 className="text-xl text-azure-24 tracking-wide mr-8">
             {(() => {
               const hour = new Date().getHours();
               let greeting = "Good morning";

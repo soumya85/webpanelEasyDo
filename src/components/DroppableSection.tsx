@@ -24,7 +24,7 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
   className,
   cards = [],
 }) => {
-    return (
+  return (
     <div className="mb-8">
       {/* Only show title if it doesn't start with "Today -" to avoid duplication */}
       {!title.startsWith("Today -") && (
