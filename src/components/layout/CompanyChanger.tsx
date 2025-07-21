@@ -42,8 +42,8 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
     setSelectedCompany(company);
   };
 
-  if (!isExpanded) {
-    // Collapsed view - show just the icon
+    if (!isExpanded) {
+    // Collapsed view - show just the avatar
     return (
       <div className="flex items-center justify-center px-4 py-3 border-b border-gray-400">
         <DropdownMenu>
@@ -53,7 +53,11 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
               size="sm"
               className="h-10 w-10 p-0 hover:bg-gray-100"
             >
-              <Building className="h-5 w-5 text-azure-24" />
+              <div className="h-8 w-8 bg-black rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-semibold">
+                  {getCompanyInitials(selectedCompany.name)}
+                </span>
+              </div>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" side="right" className="w-56">
