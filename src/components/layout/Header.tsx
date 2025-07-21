@@ -30,13 +30,7 @@ export function Header() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  const [showMobileFilter, setShowMobileFilter] = useState(false);
-
-  const isChatsPage = location.pathname === "/chats";
-  const [selectedCompany, setSelectedCompany] = useState(
-    "Liberty Highrise PVT Ltd",
-  );
-  const [selectedBranch, setSelectedBranch] = useState("All Branch");
+    const isChatsPage = location.pathname === "/chats";
 
   const handleProfileClick = () => {
     navigate("/profile");
