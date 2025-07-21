@@ -65,7 +65,7 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
               Switch Company
             </div>
             <DropdownMenuSeparator />
-            {companies.map((company) => (
+                        {companies.map((company) => (
               <DropdownMenuItem
                 key={company.id}
                 onClick={() => handleCompanyChange(company)}
@@ -75,7 +75,11 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
                 )}
               >
                 <div className="flex items-center gap-2">
-                  <Building className="h-4 w-4" />
+                  <div className="h-4 w-4 bg-black rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs font-semibold">
+                      {getCompanyInitials(company.name)}
+                    </span>
+                  </div>
                   <span>{company.name}</span>
                 </div>
                 {selectedCompany.id === company.id && (
