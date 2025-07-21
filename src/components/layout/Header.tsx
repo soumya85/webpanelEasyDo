@@ -200,7 +200,7 @@ export function Header() {
 
           {/* Greeting */}
           <h1 className="text-xl font-normal text-azure-24 mr-8">
-            Good afternoon,{" "}
+            <span className="font-bold">Good afternoon,</span>{" "}
             <span className="font-semibold">Bhaskar Ghosh!</span> 👋
           </h1>
 
