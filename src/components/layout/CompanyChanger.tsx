@@ -27,6 +27,14 @@ interface CompanyChangerProps {
   isExpanded: boolean;
 }
 
+const getCompanyInitials = (name: string): string => {
+  return name
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase())
+    .join('')
+    .substring(0, 2);
+};
+
 export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
   const [selectedCompany, setSelectedCompany] = useState<Company>(companies[0]);
 
