@@ -45,6 +45,7 @@ import SalaryStatement from "./pages/SalaryStatement";
 import TaskReport from "./pages/TaskReport";
 import ComponentLibrary from "./pages/ComponentLibrary";
 import Extra from "./pages/Extra";
+import Demo1 from "./pages/Demo1";
 
 const queryClient = new QueryClient({
   defaultOptions: {
