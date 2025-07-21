@@ -207,7 +207,15 @@ export function Header() {
 
                     {/* Title */}
                     <h1 className="text-xl text-azure-24 tracking-wide mr-8">
-            Good afternoon, Bhaskar Ghosh! 👋
+            {(() => {
+              const hour = new Date().getHours();
+              let greeting = "Good morning";
+              if (hour >= 12 && hour < 17) greeting = "Good afternoon";
+              else if (hour >= 17 && hour < 22) greeting = "Good evening";
+              else if (hour >= 22 || hour < 6) greeting = "Good night";
+              return `${greeting}, `;
+            })()}
+            <span className="font-bold">Bhaskar Ghosh</span>! 👋
           </h1>
 
           {/* Desktop Controls */}
