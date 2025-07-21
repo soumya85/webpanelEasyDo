@@ -76,9 +76,10 @@ export function Header() {
 
           {/* Title and Button Group */}
           <div className="flex items-center gap-3 ml-3">
-                        {/* Greeting */}
+            {/* Greeting */}
             <h1 className="text-[16px] font-normal text-[#283C50] leading-6">
-              Good afternoon, <span className="font-semibold">Bhaskar Ghosh!</span> 👋
+              Good afternoon,{" "}
+              <span className="font-semibold">Bhaskar Ghosh!</span> 👋
             </h1>
 
             {/* Create Button */}
@@ -197,9 +198,10 @@ export function Header() {
             <Menu className="h-6 w-6" />
           </Button>
 
-                    {/* Greeting */}
+          {/* Greeting */}
           <h1 className="text-xl font-normal text-azure-24 mr-8">
-            Good afternoon, <span className="font-semibold">Bhaskar Ghosh!</span> 👋
+            Good afternoon,{" "}
+            <span className="font-semibold">Bhaskar Ghosh!</span> 👋
           </h1>
 
           {/* Desktop Controls */}

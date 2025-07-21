@@ -95,22 +95,26 @@ const Dashboard: React.FC = () => {
   const getCurrentDate = () => {
     const now = new Date();
     const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     };
-    const dateStr = now.toLocaleDateString('en-GB', options);
+    const dateStr = now.toLocaleDateString("en-GB", options);
     const ordinal = getOrdinal(now.getDate());
-    return `Today - ${ordinal} ${dateStr.split(' ').slice(1).join(' ')}`;
+    return `Today - ${ordinal} ${dateStr.split(" ").slice(1).join(" ")}`;
   };
 
   const getOrdinal = (day: number) => {
-    if (day > 3 && day < 21) return day + 'th';
+    if (day > 3 && day < 21) return day + "th";
     switch (day % 10) {
-      case 1: return day + 'st';
-      case 2: return day + 'nd';
-      case 3: return day + 'rd';
-      default: return day + 'th';
+      case 1:
+        return day + "st";
+      case 2:
+        return day + "nd";
+      case 3:
+        return day + "rd";
+      default:
+        return day + "th";
     }
   };
 
@@ -118,9 +122,7 @@ const Dashboard: React.FC = () => {
     <div className="flex flex-col h-full bg-white">
       {/* Simple Header Section */}
       <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100">
-        <h1 className="text-sm font-bold text-gray-700">
-          {getCurrentDate()}
-        </h1>
+        <h1 className="text-sm font-bold text-gray-700">{getCurrentDate()}</h1>
         <LayoutControls onReset={resetLayout} />
       </div>
 

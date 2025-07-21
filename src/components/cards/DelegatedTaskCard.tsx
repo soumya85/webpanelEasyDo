@@ -23,7 +23,7 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
 
   return (
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
-                  {/* Header */}
+      {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-purple-50">
           <TaskIcon size="md" className="text-purple-600" />
@@ -38,12 +38,12 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-                        <div className="mb-2 flex items-center gap-3">
+        <div className="mb-2 flex items-center gap-3">
           <div className="text-3xl font-bold text-[#4766E5]">15</div>
           <div className="text-sm font-bold text-gray-600">Completed Tasks</div>
         </div>
 
-                        {/* Details */}
+        {/* Details */}
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-600 font-bold">On Time</span>

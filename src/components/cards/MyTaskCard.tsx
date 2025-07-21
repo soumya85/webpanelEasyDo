@@ -23,7 +23,7 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
 
   return (
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
-                  {/* Header */}
+      {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-blue-50">
           <TaskIcon size="md" className="text-blue-600" />
@@ -38,14 +38,14 @@ export const MyTaskCard: React.FC<MyTaskCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-                        <div className="mb-2 flex items-center gap-3">
+        <div className="mb-2 flex items-center gap-3">
           <div className="text-3xl font-bold text-[#4766E5]">69</div>
           <div className="text-sm font-bold text-gray-600">
             {t("totalPendingTasks")}
           </div>
         </div>
 
-                        {/* Details */}
+        {/* Details */}
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-600 font-bold">{t("overdue")}</span>

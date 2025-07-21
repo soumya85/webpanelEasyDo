@@ -34,7 +34,7 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
 
   return (
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
-                  {/* Header */}
+      {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 rounded-lg bg-green-50">
           <img
@@ -53,14 +53,14 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-                        <div className="mb-2">
+        <div className="mb-2">
           <div className="text-3xl font-bold text-[#4766E5]">7</div>
           <div className="text-xs text-gray-600">
             <MultilingualText>{t("scheduledMeetings")}</MultilingualText>
           </div>
         </div>
 
-                        {/* Meeting Items */}
+        {/* Meeting Items */}
         <div className="space-y-2 text-xs max-h-40 overflow-y-auto">
           {meetings.map((meeting, idx) => (
             <div
