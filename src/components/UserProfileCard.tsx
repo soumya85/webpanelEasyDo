@@ -19,7 +19,7 @@ export function AdminProfileCard({
   authorityLevel = "1",
   showVerification = true,
   className = ""
-}: UserProfileCardProps) {
+}: AdminProfileCardProps) {
   return (
     <Card className={className}>
       <CardContent className="flex flex-col items-center gap-4 p-4">
