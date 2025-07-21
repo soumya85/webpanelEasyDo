@@ -285,7 +285,7 @@ export const useDashboardLayout = () => {
     return [
       {
         id: "quick-overview",
-        title: `Today - ${formattedDate}`,
+        title: t("quickOverview"),
         cards: getCardsBySection("quick-overview"),
       },
       {
