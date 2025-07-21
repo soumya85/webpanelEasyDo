@@ -56,10 +56,7 @@ export function Sidebar() {
           </div>
         </div>
 
-        {/* User Profile */}
-        <UserProfile isExpanded={isExpanded} />
-
-        {/* Navigation Menu - Scrollable */}
+                {/* Navigation Menu - Scrollable */}
         <nav className="flex-1 overflow-y-auto py-4">
           <div className="space-y-1">
             {navigationItems.map((item) => (
