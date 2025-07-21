@@ -227,46 +227,8 @@ export function Header() {
             {t("dashboardTitle")}
           </MultilingualText>
 
-          {/* Desktop Controls */}
+                    {/* Desktop Controls */}
           <div className="flex items-center gap-6">
-            {/* Company Select */}
-            <div className="flex items-center gap-2">
-              <MultilingualText className="text-base font-semibold text-azure-24">
-                {t("company")}
-              </MultilingualText>
-              <Select
-                value={selectedCompany}
-                onValueChange={setSelectedCompany}
-              >
-                <SelectTrigger className="w-[210px] h-11 border-gray-200">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Liberty Highrise PVT Ltd">
-                    Liberty Highrise PVT Ltd
-                  </SelectItem>
-                  <SelectItem value="Other Company">Other Company</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Branch Select */}
-            <div className="flex items-center gap-2">
-              <MultilingualText className="text-base font-semibold text-azure-24">
-                {t("branch")}
-              </MultilingualText>
-              <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                <SelectTrigger className="w-[130px] h-11 border-gray-200">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="All Branch">{t("allBranch")}</SelectItem>
-                  <SelectItem value="Branch 1">Branch 1</SelectItem>
-                  <SelectItem value="Branch 2">Branch 2</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
             {/* Create Button */}
             <CreateMenu>
               <Button className="bg-primary hover:bg-primary-600 text-white px-3 h-11 gap-2">
