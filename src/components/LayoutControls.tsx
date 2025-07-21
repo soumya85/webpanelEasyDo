@@ -8,6 +8,7 @@ import { MultilingualText } from "@/components/MultilingualText";
 interface LayoutControlsProps {
   onReset: () => void;
   isDirty?: boolean;
+  dateDisplay?: string;
 }
 
 export const LayoutControls: React.FC<LayoutControlsProps> = ({
