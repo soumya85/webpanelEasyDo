@@ -24,14 +24,17 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
   className,
   cards = [],
 }) => {
-  return (
+    return (
     <div className="mb-8">
-      <MultilingualText
-        as="h2"
-        className="text-lg font-semibold text-[#283C50] mb-4"
-      >
-        {title}
-      </MultilingualText>
+      {/* Only show title if it doesn't start with "Today -" to avoid duplication */}
+      {!title.startsWith("Today -") && (
+        <MultilingualText
+          as="h2"
+          className="text-lg font-semibold text-[#283C50] mb-4"
+        >
+          {title}
+        </MultilingualText>
+      )}
 
       {/* Main section droppable */}
       <Droppable droppableId={sectionId} direction="horizontal">
