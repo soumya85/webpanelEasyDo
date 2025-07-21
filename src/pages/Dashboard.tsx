@@ -93,8 +93,12 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
-            {/* Header Section */}
-      <div className="flex justify-end items-center mb-2 px-6 pt-2">
+                  {/* Header Section */}
+      <div className="flex justify-between items-center mb-2 px-6 pt-2">
+        {/* Date Display */}
+        <h2 className="text-lg font-semibold text-[#283C50]">
+          Today - 21st July 2025
+        </h2>
         {/* Layout Controls moved to header row */}
         <LayoutControls onReset={resetLayout} />
       </div>
