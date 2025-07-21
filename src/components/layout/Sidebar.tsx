@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/useSidebar";
+import { CompanyChanger } from "./CompanyChanger";
 import { NavItem } from "./NavItem";
 import { navigationItems } from "@/lib/navigation";
 import { X } from "lucide-react";
