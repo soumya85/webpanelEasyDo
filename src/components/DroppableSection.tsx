@@ -26,12 +26,14 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
 }) => {
   return (
     <div className="mb-8">
-      <MultilingualText
-        as="h2"
-        className="text-lg font-semibold text-[#283C50] mb-4"
-      >
-        {title}
-      </MultilingualText>
+      {sectionId !== "quick-overview" && (
+        <MultilingualText
+          as="h2"
+          className="text-lg font-semibold text-[#283C50] mb-4"
+        >
+          {title}
+        </MultilingualText>
+      )}
 
       {/* Main section droppable */}
       <Droppable droppableId={sectionId} direction="horizontal">
