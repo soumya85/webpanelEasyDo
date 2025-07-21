@@ -134,8 +134,12 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
                 selectedCompany.id === company.id && "bg-gray-100"
               )}
             >
-              <div className="flex items-center gap-2">
-                <Building className="h-4 w-4" />
+                            <div className="flex items-center gap-2">
+                <div className="h-4 w-4 bg-black rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-semibold">
+                    {getCompanyInitials(company.name)}
+                  </span>
+                </div>
                 <div className="flex flex-col">
                   <span className="text-sm">{company.name}</span>
                   <span className="text-xs text-gray-500 capitalize">
