@@ -64,4 +64,4 @@ export function AdminProfileCard({
   );
 }
 
-export default UserProfileCard;
+export default AdminProfileCard;
