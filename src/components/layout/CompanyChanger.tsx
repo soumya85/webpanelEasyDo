@@ -102,9 +102,11 @@ export function CompanyChanger({ isExpanded }: CompanyChangerProps) {
             variant="ghost"
             className="w-full justify-between h-auto p-3 hover:bg-gray-50"
           >
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
-                <Building className="h-4 w-4 text-white" />
+                        <div className="flex items-center gap-3">
+              <div className="h-8 w-8 bg-black rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-semibold">
+                  {getCompanyInitials(selectedCompany.name)}
+                </span>
               </div>
               <div className="flex flex-col items-start">
                 <span className="text-sm font-semibold text-azure-24">
