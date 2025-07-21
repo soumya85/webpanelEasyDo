@@ -298,78 +298,7 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile/Tablet Breadcrumb Section */}
-      <div
-        className={cn(
-          "fixed top-[86px] left-0 right-0 z-[90] lg:hidden bg-white border-b border-gray-200 shadow-sm",
-          "transition-all duration-300",
-        )}
-      >
-        <div className="flex items-start justify-between px-4 py-3">
-          <div className="flex flex-col gap-1 text-sm flex-1 mr-4">
-            <span className="font-semibold text-azure-24 leading-tight break-words">
-              {selectedCompany}
-            </span>
-            <div className="flex items-center gap-2">
-              <ChevronDown className="h-4 w-4 text-gray-800 -rotate-90 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 leading-tight">
-                {selectedBranch}
-              </span>
-            </div>
-          </div>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setShowMobileFilter(!showMobileFilter)}
-            className="gap-2 text-sm border-gray-400"
-          >
-            <Filter className="h-4 w-4" />
-            <MultilingualText>{t("filter")}</MultilingualText>
-          </Button>
-        </div>
-
-        {/* Mobile Filter Dropdown */}
-        {showMobileFilter && (
-          <div className="bg-white border-t border-gray-200 p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <MultilingualText className="text-base font-semibold text-azure-24">
-                {t("company")}
-              </MultilingualText>
-              <Select
-                value={selectedCompany}
-                onValueChange={setSelectedCompany}
-              >
-                <SelectTrigger className="w-[241px] h-11 border-gray-200">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Liberty Highrise PVT Ltd">
-                    Liberty Highrise PVT Ltd
-                  </SelectItem>
-                  <SelectItem value="Other Company">Other Company</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <MultilingualText className="text-base font-semibold text-azure-24">
-                {t("branch")}
-              </MultilingualText>
-              <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                <SelectTrigger className="w-[241px] h-11 border-gray-200">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="All Branch">{t("allBranch")}</SelectItem>
-                  <SelectItem value="Branch 1">Branch 1</SelectItem>
-                  <SelectItem value="Branch 2">Branch 2</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        )}
-      </div>
+      
     </>
   );
 }
