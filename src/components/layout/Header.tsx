@@ -76,13 +76,10 @@ export function Header() {
 
           {/* Title and Button Group */}
           <div className="flex items-center gap-3 ml-3">
-            {/* Dashboard Title */}
-            <MultilingualText
-              as="h1"
-              className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6"
-            >
-              {t("dashboardTitle")}
-            </MultilingualText>
+                        {/* Dashboard Title */}
+            <h1 className="text-[16px] font-black text-[#283C50] uppercase tracking-wide leading-6">
+              Good afternoon, Bhaskar Ghosh! 👋
+            </h1>
 
             {/* Create Button */}
             <CreateMenu>
