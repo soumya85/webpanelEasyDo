@@ -23,41 +23,38 @@ export const DelegatedTaskCard: React.FC<DelegatedTaskCardProps> = ({
 
   return (
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-3">
-        <div className="p-2 rounded-lg bg-purple-50">
-          <TaskIcon size="md" className="text-purple-600" />
+            {/* Header */}
+      <div className="flex items-center gap-2 mb-4">
+        <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+          <div className="w-3 h-3 rounded-full bg-purple-600"></div>
         </div>
-        <MultilingualText
-          as="h3"
-          className="text-sm font-semibold text-[#283C50] flex-1"
-        >
-          {t("delegatedTask")}
-        </MultilingualText>
+        <h3 className="text-sm font-semibold text-purple-600 uppercase tracking-wide">
+          DELEGATED TASK
+        </h3>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-        <div className="mb-2 flex items-center gap-3">
-          <div className="text-3xl font-bold text-[#4766E5]">15</div>
-          <div className="text-sm font-bold text-gray-600">Completed Tasks</div>
+                <div className="mb-4">
+          <div className="text-4xl font-bold text-[#4766E5] mb-1">15</div>
+          <div className="text-sm font-medium text-gray-700">
+            Completed Tasks
+          </div>
         </div>
 
-        {/* Details */}
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">On Time</span>
+                {/* Details */}
+        <div className="space-y-3 text-sm">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-700 font-medium">On Time</span>
             <span className="font-semibold text-blue-500">10</span>
           </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">Delayed</span>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-700 font-medium">Delayed</span>
             <span className="font-semibold text-purple-500">5</span>
           </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex justify-between">
-            <span className="text-gray-600 font-bold">Skipped</span>
-            <span className="font-semibold text-red-500">0</span>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-700 font-medium">Skipped</span>
+            <span className="font-semibold text-gray-500">0</span>
           </div>
         </div>
 
