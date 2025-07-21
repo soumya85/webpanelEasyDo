@@ -82,10 +82,16 @@ export const navigationItems: NavigationItem[] = [
     icon: Settings,
     href: "/settings",
   },
-  {
+    {
     id: "help-support",
     labelKey: "helpSupport",
     icon: HelpCircle,
     href: "/help-support",
+  },
+  {
+    id: "demo1",
+    labelKey: "demo1",
+    icon: Zap,
+    href: "/demo1",
   },
 ];
