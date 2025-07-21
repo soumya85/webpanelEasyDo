@@ -198,7 +198,7 @@ export function Header() {
           </Button>
 
                     {/* Title */}
-          <h1 className="text-xl font-black text-azure-24 uppercase tracking-wide mr-8">
+                    <h1 className="text-xl text-azure-24 tracking-wide mr-8">
             Good afternoon, Bhaskar Ghosh! 👋
           </h1>
 
