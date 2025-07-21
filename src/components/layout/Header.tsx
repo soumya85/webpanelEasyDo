@@ -78,7 +78,7 @@ export function Header() {
           <div className="flex items-center gap-3 ml-3">
             {/* Greeting */}
             <h1 className="text-[16px] font-normal text-[#283C50] leading-6">
-              Good afternoon,{" "}
+              <span className="font-bold">Good afternoon,</span>{" "}
               <span className="font-semibold">Bhaskar Ghosh!</span> 👋
             </h1>
 
