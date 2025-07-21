@@ -34,37 +34,52 @@ export const MeetingsCard: React.FC<MeetingsCardProps> = ({
 
   return (
     <DashboardCard id={id} index={index} size={size} onResize={onResize}>
-            {/* Header */}
-      <div className="flex items-center gap-2 mb-4">
-        <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
-          <div className="w-3 h-3 rounded-full bg-orange-600"></div>
+                  {/* Header */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className="p-2 rounded-lg bg-green-50">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2Fd6f93891567641d1bb19c951c166916e%2F51d359c5891a4e05a53ecd2441dc52fd?format=webp&width=800"
+            alt="Meet"
+            className="w-5 h-5"
+          />
         </div>
-        <h3 className="text-sm font-semibold text-orange-600 uppercase tracking-wide">
-          Meetings
-        </h3>
+        <MultilingualText
+          as="h3"
+          className="text-sm font-semibold text-[#283C50] flex-1"
+        >
+          {t("meetings")}
+        </MultilingualText>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
-                <div className="mb-4">
-          <div className="text-4xl font-bold text-[#4766E5] mb-1">7</div>
-          <div className="text-sm font-medium text-gray-700">
-            Scheduled Meetings
+                        <div className="mb-2">
+          <div className="text-3xl font-bold text-[#4766E5]">7</div>
+          <div className="text-xs text-gray-600">
+            <MultilingualText>{t("scheduledMeetings")}</MultilingualText>
           </div>
         </div>
 
-                {/* Meeting Items */}
-        <div className="space-y-3 text-sm max-h-40 overflow-y-auto">
-          <div className="space-y-2">
-            <div className="font-medium text-gray-800">Weekly Team Sync</div>
-            <div className="text-xs text-gray-500">Today at 3:00 PM</div>
-            <div className="text-xs text-gray-500">5 minutes</div>
-          </div>
-          <div className="space-y-2">
-            <div className="font-medium text-gray-800">Client Review Meeting</div>
-            <div className="text-xs text-gray-500">Tomorrow at 10:30 AM</div>
-            <div className="text-xs text-gray-500">3 minutes</div>
-          </div>
+                        {/* Meeting Items */}
+        <div className="space-y-2 text-xs max-h-40 overflow-y-auto">
+          {meetings.map((meeting, idx) => (
+            <div
+              key={idx}
+              className="border-b border-gray-100 pb-1 last:border-b-0"
+            >
+              <div className="flex justify-between items-start">
+                <span className="text-gray-800 font-medium">
+                  <MultilingualText>{meeting.type}</MultilingualText>
+                </span>
+              </div>
+              <div className="text-gray-500 text-xs mt-1">
+                <MultilingualText>{meeting.time}</MultilingualText>
+              </div>
+              <div className="text-gray-500 text-xs">
+                <MultilingualText>{meeting.duration}</MultilingualText>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
