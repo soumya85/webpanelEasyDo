@@ -137,10 +137,12 @@ export default function Demo1() {
   ]);
 
   const [sidebarCards, setSidebarCards] = useState<DemoCard[]>([
-    { ...availableCards[2], collapsed: true },
-    { ...availableCards[3], collapsed: true },
-    { ...availableCards[4], collapsed: true },
-    { ...availableCards[5], collapsed: true },
+    { ...availableCards[2], collapsed: true }, // Meetings
+    { ...availableCards[3], collapsed: true }, // Pending Approvals
+    { ...availableCards[6], collapsed: true }, // Notice Board
+    { ...availableCards[7], collapsed: true }, // Monthly Attendance Summary
+    { ...availableCards[8], collapsed: true }, // Salary Snapshot
+    { ...availableCards[9], collapsed: true }, // My Performance
   ]);
 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
