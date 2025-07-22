@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { TaskIcon } from "@/components/ui/task-icon";
 import { cn } from "@/lib/utils";
 
 // Available card types
@@ -21,7 +22,7 @@ interface CardType {
   id: string;
   title: string;
   type: string;
-  icon: string;
+  icon: string | 'task-icon';
   description: string;
 }
 
@@ -30,14 +31,14 @@ const availableCards: CardType[] = [
     id: "task-1",
     title: "My Tasks",
     type: "myTask",
-    icon: "📋",
+    icon: "task-icon",
     description: "View and manage your personal tasks",
   },
   {
     id: "task-2",
     title: "Delegated Tasks",
     type: "delegatedTask",
-    icon: "👥",
+    icon: "task-icon",
     description: "Track tasks you've assigned to others",
   },
   {
@@ -348,7 +349,11 @@ export default function Demo1() {
                             <CardHeader className="pb-3">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3 min-w-0">
-                                  <span className="text-xl">{card.icon}</span>
+                                  {card.icon === 'task-icon' ? (
+                                    <TaskIcon size="lg" className="text-gray-600" />
+                                  ) : (
+                                    <span className="text-xl">{card.icon}</span>
+                                  )}
                                   <h3
                                     className="font-semibold truncate"
                                     style={{ fontSize: "15px" }}
@@ -507,9 +512,13 @@ export default function Demo1() {
                                         <ChevronDown className="h-4 w-4 text-gray-400" />
                                       )}
                                     </button>
-                                    <span className="text-lg flex-shrink-0">
-                                      {card.icon}
-                                    </span>
+                                    {card.icon === 'task-icon' ? (
+                                      <TaskIcon size="md" className="text-gray-600 flex-shrink-0" />
+                                    ) : (
+                                      <span className="text-lg flex-shrink-0">
+                                        {card.icon}
+                                      </span>
+                                    )}
                                     <span className="text-sm font-medium text-gray-700 truncate">
                                       {card.title}
                                     </span>
