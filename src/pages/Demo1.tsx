@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TaskIcon } from "@/components/ui/task-icon";
+import { MeetIcon } from "@/components/ui/meet-icon";
 import { cn } from "@/lib/utils";
 
 // Available card types
@@ -22,7 +23,7 @@ interface CardType {
   id: string;
   title: string;
   type: string;
-  icon: string | 'task-icon';
+  icon: string | 'task-icon' | 'meet-icon';
   description: string;
 }
 
@@ -45,7 +46,7 @@ const availableCards: CardType[] = [
     id: "meetings-1",
     title: "Meetings",
     type: "meetings",
-    icon: "📅",
+    icon: "meet-icon",
     description: "Your scheduled meetings and appointments",
   },
   {
@@ -351,6 +352,8 @@ export default function Demo1() {
                                 <div className="flex items-center gap-3 min-w-0">
                                   {card.icon === 'task-icon' ? (
                                     <TaskIcon size="lg" className="text-gray-600" />
+                                  ) : card.icon === 'meet-icon' ? (
+                                    <MeetIcon size="lg" className="" />
                                   ) : (
                                     <span className="text-xl">{card.icon}</span>
                                   )}
@@ -514,6 +517,8 @@ export default function Demo1() {
                                     </button>
                                     {card.icon === 'task-icon' ? (
                                       <TaskIcon size="md" className="text-gray-600 flex-shrink-0" />
+                                    ) : card.icon === 'meet-icon' ? (
+                                      <MeetIcon size="md" className="flex-shrink-0" />
                                     ) : (
                                       <span className="text-lg flex-shrink-0">
                                         {card.icon}
