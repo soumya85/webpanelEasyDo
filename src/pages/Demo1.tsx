@@ -138,6 +138,20 @@ const availableCards: CardType[] = [
     icon: "💬",
     description: "View recent messages and team communications",
   },
+  {
+    id: "today-1",
+    title: "Today",
+    type: "today",
+    icon: "📅",
+    description: "Your daily schedule, tasks, and calendar overview",
+  },
+  {
+    id: "quick-notes-1",
+    title: "Quick Notes",
+    type: "quickNotes",
+    icon: "📝",
+    description: "Add and manage quick notes and reminders",
+  },
 ];
 
 interface DemoCard extends CardType {
@@ -159,6 +173,8 @@ export default function Demo1() {
     { ...availableCards[9], collapsed: true }, // My Performance
     { ...availableCards[15], collapsed: true }, // My Daily Work Status
     { ...availableCards[16], collapsed: true }, // Recent Chat Activity
+    { ...availableCards[17], collapsed: true }, // Today
+    { ...availableCards[18], collapsed: true }, // Quick Notes
   ]);
 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
