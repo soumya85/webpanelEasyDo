@@ -13,7 +13,7 @@ import {
   ChevronRight,
   Calendar,
   MessageSquare,
-  CheckSquare,
+  SquareCheck,
   Video,
   StickyNote,
   FileText,
@@ -46,7 +46,7 @@ const availableCards: CardType[] = [
     id: "task-1",
     title: "My Tasks",
     type: "myTask",
-    icon: CheckSquare,
+    icon: SquareCheck,
     description: "View and manage your personal tasks",
   },
   {
@@ -67,7 +67,7 @@ const availableCards: CardType[] = [
     id: "approvals-1",
     title: "Pending Approvals",
     type: "approvals",
-    icon: CheckSquare,
+    icon: SquareCheck,
     description: "Items awaiting your approval",
   },
   {
