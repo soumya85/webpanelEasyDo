@@ -171,10 +171,10 @@ export default function Demo1() {
     { ...availableCards[7], collapsed: true }, // Monthly Attendance Summary
     { ...availableCards[8], collapsed: true }, // Salary Snapshot
     { ...availableCards[9], collapsed: true }, // My Performance
-    { ...availableCards[15], collapsed: true }, // My Daily Work Status
-    { ...availableCards[16], collapsed: true }, // Recent Chat Activity
-    { ...availableCards[17], collapsed: true }, // Today
-    { ...availableCards[18], collapsed: true }, // Quick Notes
+    { ...availableCards[14], collapsed: true }, // My Daily Work Status
+    { ...availableCards[15], collapsed: true }, // Recent Chat Activity
+    { ...availableCards[16], collapsed: true }, // Today
+    { ...availableCards[17], collapsed: true }, // Quick Notes
   ]);
 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
