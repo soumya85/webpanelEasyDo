@@ -50,8 +50,7 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
                 // Universal responsive grid that supports dynamic column spans
                 "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
                 // Drag over styles
-                snapshot.isDraggingOver &&
-                  "bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg p-4",
+                snapshot.isDraggingOver && "bg-blue-50 rounded-lg p-4",
               )}
             >
               {children}
@@ -61,7 +60,7 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
             {/* Drop zone for new row when dragging */}
             {snapshot.isDraggingOver && (
               <>
-                <div className="mt-6 flex items-center justify-center h-20 border-2 border-dashed border-blue-400 rounded-lg bg-blue-50 text-blue-600 text-sm font-medium opacity-75">
+                <div className="mt-6 flex items-center justify-center h-20 rounded-lg bg-blue-50 text-blue-600 text-sm font-medium opacity-75">
                   Drop card here to add to this section
                 </div>
 
