@@ -68,6 +68,62 @@ const availableCards: CardType[] = [
     icon: "💬",
     description: "Chat with your team members",
   },
+  {
+    id: "notice-1",
+    title: "Notice Board",
+    type: "notice",
+    icon: "📢",
+    description: "Company notices and announcements",
+  },
+  {
+    id: "attendance-1",
+    title: "Monthly Attendance Summary",
+    type: "attendance",
+    icon: "📊",
+    description: "Your monthly attendance statistics",
+  },
+  {
+    id: "salary-1",
+    title: "Salary Snapshot",
+    type: "salary",
+    icon: "💰",
+    description: "Current salary and payroll information",
+  },
+  {
+    id: "performance-1",
+    title: "My Performance",
+    type: "performance",
+    icon: "⭐",
+    description: "Your performance ratings and reviews",
+  },
+  {
+    id: "leave-1",
+    title: "Leave Balance",
+    type: "leave",
+    icon: "🏖️",
+    description: "Available leave days and requests",
+  },
+  {
+    id: "expenses-1",
+    title: "Expense Reports",
+    type: "expenses",
+    icon: "💳",
+    description: "Submit and track expense reports",
+  },
+  {
+    id: "timesheet-1",
+    title: "Timesheet",
+    type: "timesheet",
+    icon: "⏰",
+    description: "Log and manage your working hours",
+  },
+  {
+    id: "training-1",
+    title: "Training & Development",
+    type: "training",
+    icon: "🎓",
+    description: "Available courses and skill development",
+  },
 ];
 
 interface DemoCard extends CardType {
@@ -81,10 +137,12 @@ export default function Demo1() {
   ]);
 
   const [sidebarCards, setSidebarCards] = useState<DemoCard[]>([
-    { ...availableCards[2], collapsed: true },
-    { ...availableCards[3], collapsed: true },
-    { ...availableCards[4], collapsed: true },
-    { ...availableCards[5], collapsed: true },
+    { ...availableCards[2], collapsed: true }, // Meetings
+    { ...availableCards[3], collapsed: true }, // Pending Approvals
+    { ...availableCards[6], collapsed: true }, // Notice Board
+    { ...availableCards[7], collapsed: true }, // Monthly Attendance Summary
+    { ...availableCards[8], collapsed: true }, // Salary Snapshot
+    { ...availableCards[9], collapsed: true }, // My Performance
   ]);
 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
@@ -230,7 +288,7 @@ export default function Demo1() {
                     : "border-gray-300 bg-white hover:border-gray-400",
                 )}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="flex flex-wrap gap-6">
                   {mainCards.map((card, index) => (
                     <Draggable
                       key={card.id}
@@ -243,7 +301,7 @@ export default function Demo1() {
                           {...provided.draggableProps}
                           style={provided.draggableProps.style}
                           className={cn(
-                            "transition-all duration-200",
+                            "w-full md:w-[calc(50%-12px)] xl:w-[calc(33.333%-16px)] transition-all duration-200",
                             snapshot.isDragging && "rotate-2 scale-105 z-50",
                           )}
                         >
