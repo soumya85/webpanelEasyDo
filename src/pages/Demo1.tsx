@@ -68,6 +68,62 @@ const availableCards: CardType[] = [
     icon: "💬",
     description: "Chat with your team members",
   },
+  {
+    id: "notice-1",
+    title: "Notice Board",
+    type: "notice",
+    icon: "📢",
+    description: "Company notices and announcements",
+  },
+  {
+    id: "attendance-1",
+    title: "Monthly Attendance Summary",
+    type: "attendance",
+    icon: "📊",
+    description: "Your monthly attendance statistics",
+  },
+  {
+    id: "salary-1",
+    title: "Salary Snapshot",
+    type: "salary",
+    icon: "💰",
+    description: "Current salary and payroll information",
+  },
+  {
+    id: "performance-1",
+    title: "My Performance",
+    type: "performance",
+    icon: "⭐",
+    description: "Your performance ratings and reviews",
+  },
+  {
+    id: "leave-1",
+    title: "Leave Balance",
+    type: "leave",
+    icon: "🏖️",
+    description: "Available leave days and requests",
+  },
+  {
+    id: "expenses-1",
+    title: "Expense Reports",
+    type: "expenses",
+    icon: "💳",
+    description: "Submit and track expense reports",
+  },
+  {
+    id: "timesheet-1",
+    title: "Timesheet",
+    type: "timesheet",
+    icon: "⏰",
+    description: "Log and manage your working hours",
+  },
+  {
+    id: "training-1",
+    title: "Training & Development",
+    type: "training",
+    icon: "🎓",
+    description: "Available courses and skill development",
+  },
 ];
 
 interface DemoCard extends CardType {
