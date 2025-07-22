@@ -226,8 +226,8 @@ export default function Demo1() {
                 className={cn(
                   "min-h-[500px] p-6 rounded-lg border-2 border-dashed transition-all duration-200",
                   snapshot.isDraggingOver
-                    ? "border-blue-400 bg-blue-50 shadow-inner"
-                    : "border-gray-300 bg-white",
+                    ? "border-blue-400 bg-blue-50 shadow-inner ring-2 ring-blue-200"
+                    : "border-gray-300 bg-white hover:border-gray-400",
                 )}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -244,15 +244,15 @@ export default function Demo1() {
                           style={provided.draggableProps.style}
                           className={cn(
                             "transition-all duration-200",
-                            snapshot.isDragging && "rotate-3 scale-105",
+                            snapshot.isDragging && "rotate-2 scale-105 z-50",
                           )}
                         >
                           <Card
                             className={cn(
-                              "h-full cursor-move select-none",
+                              "h-full cursor-move select-none group",
                               snapshot.isDragging
-                                ? "shadow-2xl ring-2 ring-blue-400 ring-opacity-50"
-                                : "shadow-md hover:shadow-lg",
+                                ? "shadow-2xl ring-2 ring-blue-400 ring-opacity-50 bg-white"
+                                : "shadow-md hover:shadow-lg hover:ring-1 hover:ring-gray-200",
                             )}
                           >
                             <CardHeader className="pb-3">
@@ -265,9 +265,10 @@ export default function Demo1() {
                                 </div>
                                 <div
                                   {...provided.dragHandleProps}
-                                  className="p-1 rounded hover:bg-gray-100"
+                                  className="p-1 rounded hover:bg-gray-100 cursor-grab active:cursor-grabbing transition-colors"
+                                  title="Drag to reorder"
                                 >
-                                  <GripVertical className="h-5 w-5 text-gray-400" />
+                                  <GripVertical className="h-5 w-5 text-gray-400 group-hover:text-gray-600" />
                                 </div>
                               </div>
                             </CardHeader>
