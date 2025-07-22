@@ -121,7 +121,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-full bg-white">
       {/* Simple Header Section */}
-      <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100">
+      <div className="flex justify-between items-center px-6 py-4">
         <h1 className="text-sm font-bold text-gray-700">{getCurrentDate()}</h1>
         <LayoutControls onReset={resetLayout} />
       </div>
@@ -152,7 +152,7 @@ const Dashboard: React.FC = () => {
         <Accordion type="single" collapsible className="mt-8">
           <AccordionItem
             value="instructions"
-            className="bg-blue-50 border border-blue-200 rounded-lg px-4"
+            className="bg-blue-50 rounded-lg px-4"
           >
             <AccordionTrigger className="text-sm font-semibold text-blue-900 hover:no-underline">
               💡 {t("enhancedDragDropInstructions")}
