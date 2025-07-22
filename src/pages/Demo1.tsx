@@ -347,9 +347,9 @@ export default function Demo1() {
                           >
                             <CardHeader className="pb-3">
                               <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-3 min-w-0">
                                   <span className="text-2xl">{card.icon}</span>
-                                  <h3 className="font-semibold text-lg">
+                                  <h3 className="font-semibold text-lg truncate">
                                     {card.title}
                                   </h3>
                                 </div>
