@@ -13,7 +13,7 @@ import {
   ChevronRight,
   Calendar,
   MessageSquare,
-  SquareCheck,
+  CheckSquare,
   Video,
   StickyNote,
   FileText,
@@ -22,10 +22,8 @@ import {
   Clock,
   DollarSign,
   Star,
-  Plane,
-  CreditCard,
-  GraduationCap,
-  Activity,
+  Settings,
+  HelpCircle,
   Home,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -46,7 +44,7 @@ const availableCards: CardType[] = [
     id: "task-1",
     title: "My Tasks",
     type: "myTask",
-    icon: SquareCheck,
+    icon: CheckSquare,
     description: "View and manage your personal tasks",
   },
   {
@@ -67,7 +65,7 @@ const availableCards: CardType[] = [
     id: "approvals-1",
     title: "Pending Approvals",
     type: "approvals",
-    icon: SquareCheck,
+    icon: CheckSquare,
     description: "Items awaiting your approval",
   },
   {
@@ -116,14 +114,14 @@ const availableCards: CardType[] = [
     id: "leave-1",
     title: "Leave Balance",
     type: "leave",
-    icon: Plane,
+    icon: Calendar,
     description: "Available leave days and requests",
   },
   {
     id: "expenses-1",
     title: "Expense Reports",
     type: "expenses",
-    icon: CreditCard,
+    icon: DollarSign,
     description: "Submit and track expense reports",
   },
   {
@@ -137,14 +135,14 @@ const availableCards: CardType[] = [
     id: "training-1",
     title: "Training & Development",
     type: "training",
-    icon: GraduationCap,
+    icon: Star,
     description: "Available courses and skill development",
   },
   {
     id: "work-status-1",
     title: "My Daily Work Status",
     type: "workStatus",
-    icon: Activity,
+    icon: Clock,
     description: "Track your daily work hours, punch times, and attendance",
   },
   {
