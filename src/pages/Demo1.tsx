@@ -349,7 +349,7 @@ export default function Demo1() {
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3 min-w-0">
                                   <span className="text-xl">{card.icon}</span>
-                                  <h3 className="font-semibold text-base truncate">
+                                  <h3 className="font-semibold truncate" style={{fontSize: '15px'}}>
                                     {card.title}
                                   </h3>
                                 </div>
