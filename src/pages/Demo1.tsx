@@ -30,7 +30,7 @@ interface CardType {
   id: string;
   title: string;
   type: string;
-  icon: React.ComponentType<any>;
+  icon: string;
   description: string;
 }
 
@@ -39,126 +39,126 @@ const availableCards: CardType[] = [
     id: "task-1",
     title: "My Tasks",
     type: "myTask",
-    icon: CheckCircle,
+    icon: "📋",
     description: "View and manage your personal tasks",
   },
   {
     id: "task-2",
     title: "Delegated Tasks",
     type: "delegatedTask",
-    icon: User,
+    icon: "👥",
     description: "Track tasks you've assigned to others",
   },
   {
     id: "meetings-1",
     title: "Meetings",
     type: "meetings",
-    icon: Calendar,
+    icon: "📅",
     description: "Your scheduled meetings and appointments",
   },
   {
     id: "approvals-1",
     title: "Pending Approvals",
     type: "approvals",
-    icon: CheckCircle,
+    icon: "⚠️",
     description: "Items awaiting your approval",
   },
   {
     id: "notes-1",
     title: "Personal Notes",
     type: "notes",
-    icon: FileText,
+    icon: "📝",
     description: "Your personal notes and reminders",
   },
   {
     id: "chat-1",
     title: "Team Chat",
     type: "chat",
-    icon: User,
+    icon: "💬",
     description: "Chat with your team members",
   },
   {
     id: "notice-1",
     title: "Notice Board",
     type: "notice",
-    icon: FileText,
+    icon: "📢",
     description: "Company notices and announcements",
   },
   {
     id: "attendance-1",
     title: "Monthly Attendance Summary",
     type: "attendance",
-    icon: Calendar,
+    icon: "📊",
     description: "Your monthly attendance statistics",
   },
   {
     id: "salary-1",
     title: "Salary Snapshot",
     type: "salary",
-    icon: Star,
+    icon: "💰",
     description: "Current salary and payroll information",
   },
   {
     id: "performance-1",
     title: "My Performance",
     type: "performance",
-    icon: Star,
+    icon: "⭐",
     description: "Your performance ratings and reviews",
   },
   {
     id: "leave-1",
     title: "Leave Balance",
     type: "leave",
-    icon: Calendar,
+    icon: "🏖️",
     description: "Available leave days and requests",
   },
   {
     id: "expenses-1",
     title: "Expense Reports",
     type: "expenses",
-    icon: FileText,
+    icon: "💳",
     description: "Submit and track expense reports",
   },
   {
     id: "timesheet-1",
     title: "Timesheet",
     type: "timesheet",
-    icon: Calendar,
+    icon: "⏰",
     description: "Log and manage your working hours",
   },
   {
     id: "training-1",
     title: "Training & Development",
     type: "training",
-    icon: Star,
+    icon: "🎓",
     description: "Available courses and skill development",
   },
   {
     id: "work-status-1",
     title: "My Daily Work Status",
     type: "workStatus",
-    icon: CheckCircle,
+    icon: "⏱️",
     description: "Track your daily work hours, punch times, and attendance",
   },
   {
     id: "chat-activity-1",
     title: "Recent Chat Activity",
     type: "chatActivity",
-    icon: User,
+    icon: "💬",
     description: "View recent messages and team communications",
   },
   {
     id: "today-1",
     title: "Today",
     type: "today",
-    icon: Calendar,
+    icon: "📅",
     description: "Your daily schedule, tasks, and calendar overview",
   },
   {
     id: "quick-notes-1",
     title: "Quick Notes",
     type: "quickNotes",
-    icon: FileText,
+    icon: "📝",
     description: "Add and manage quick notes and reminders",
   },
 ];
@@ -357,7 +357,7 @@ export default function Demo1() {
                             <CardHeader className="pb-3">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3 min-w-0">
-                                  <card.icon className="h-5 w-5 text-gray-600" />
+                                  <span className="text-xl">{card.icon}</span>
                                   <h3
                                     className="font-semibold truncate"
                                     style={{ fontSize: "15px" }}
@@ -516,7 +516,9 @@ export default function Demo1() {
                                         <ChevronDown className="h-4 w-4 text-gray-400" />
                                       )}
                                     </button>
-                                    <card.icon className="h-4 w-4 flex-shrink-0 text-gray-600" />
+                                    <span className="text-lg flex-shrink-0">
+                                      {card.icon}
+                                    </span>
                                     <span className="text-sm font-medium text-gray-700 truncate">
                                       {card.title}
                                     </span>
