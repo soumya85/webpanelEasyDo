@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { TaskIcon } from "@/components/ui/task-icon";
+import { MeetIcon } from "@/components/ui/meet-icon";
 import { cn } from "@/lib/utils";
 
 // Available card types
@@ -21,7 +23,7 @@ interface CardType {
   id: string;
   title: string;
   type: string;
-  icon: string;
+  icon: string | "task-icon" | "meet-icon";
   description: string;
 }
 
@@ -30,21 +32,21 @@ const availableCards: CardType[] = [
     id: "task-1",
     title: "My Tasks",
     type: "myTask",
-    icon: "📋",
+    icon: "task-icon",
     description: "View and manage your personal tasks",
   },
   {
     id: "task-2",
     title: "Delegated Tasks",
     type: "delegatedTask",
-    icon: "👥",
+    icon: "task-icon",
     description: "Track tasks you've assigned to others",
   },
   {
     id: "meetings-1",
     title: "Meetings",
     type: "meetings",
-    icon: "📅",
+    icon: "meet-icon",
     description: "Your scheduled meetings and appointments",
   },
   {
@@ -157,6 +159,94 @@ const availableCards: CardType[] = [
 interface DemoCard extends CardType {
   collapsed?: boolean;
 }
+
+// Function to get icon and color for each card type
+const getCardIconConfig = (type: string) => {
+  switch (type) {
+    case "myTask":
+      return {
+        icon: "task-icon",
+        bgColor: "bg-blue-100",
+        iconColor: "text-blue-600",
+      };
+    case "delegatedTask":
+      return {
+        icon: "task-icon",
+        bgColor: "bg-purple-100",
+        iconColor: "text-purple-600",
+      };
+    case "meetings":
+      return {
+        icon: "meet-icon",
+        bgColor: "bg-gray-100",
+        iconColor: "text-gray-600",
+      };
+    case "approvals":
+      return { icon: "⚠️", bgColor: "bg-red-100", iconColor: "text-red-600" };
+    case "notes":
+      return {
+        icon: "📝",
+        bgColor: "bg-yellow-100",
+        iconColor: "text-yellow-600",
+      };
+    case "chat":
+      return {
+        icon: "💬",
+        bgColor: "bg-green-100",
+        iconColor: "text-green-600",
+      };
+    case "notice":
+      return {
+        icon: "📢",
+        bgColor: "bg-orange-100",
+        iconColor: "text-orange-600",
+      };
+    case "attendance":
+      return {
+        icon: "📊",
+        bgColor: "bg-indigo-100",
+        iconColor: "text-indigo-600",
+      };
+    case "salary":
+      return {
+        icon: "💰",
+        bgColor: "bg-emerald-100",
+        iconColor: "text-emerald-600",
+      };
+    case "performance":
+      return {
+        icon: "⭐",
+        bgColor: "bg-amber-100",
+        iconColor: "text-amber-600",
+      };
+    case "leave":
+      return { icon: "🏖️", bgColor: "bg-cyan-100", iconColor: "text-cyan-600" };
+    case "expenses":
+      return { icon: "💳", bgColor: "bg-pink-100", iconColor: "text-pink-600" };
+    case "timesheet":
+      return {
+        icon: "⏰",
+        bgColor: "bg-violet-100",
+        iconColor: "text-violet-600",
+      };
+    case "training":
+      return { icon: "🎓", bgColor: "bg-teal-100", iconColor: "text-teal-600" };
+    case "workStatus":
+      return {
+        icon: "⏱️",
+        bgColor: "bg-slate-100",
+        iconColor: "text-slate-600",
+      };
+    case "chatActivity":
+      return { icon: "💬", bgColor: "bg-lime-100", iconColor: "text-lime-600" };
+    case "today":
+      return { icon: "📅", bgColor: "bg-sky-100", iconColor: "text-sky-600" };
+    case "quickNotes":
+      return { icon: "📝", bgColor: "bg-rose-100", iconColor: "text-rose-600" };
+    default:
+      return { icon: "📋", bgColor: "bg-gray-100", iconColor: "text-gray-600" };
+  }
+};
 
 export default function Demo1() {
   const [mainCards, setMainCards] = useState<DemoCard[]>([
@@ -346,16 +436,31 @@ export default function Demo1() {
                             )}
                           >
                             <CardHeader className="pb-3">
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3 min-w-0">
-                                  <span className="text-xl">{card.icon}</span>
-                                  <h3
-                                    className="font-semibold truncate"
-                                    style={{ fontSize: "15px" }}
-                                  >
-                                    {card.title}
-                                  </h3>
-                                </div>
+                              <div className="flex items-start justify-between mb-2">
+                                {(() => {
+                                  const config = getCardIconConfig(card.type);
+                                  return (
+                                    <div
+                                      className={cn(
+                                        "w-8 h-8 rounded-full flex items-center justify-center",
+                                        config.bgColor,
+                                      )}
+                                    >
+                                      {config.icon === "task-icon" ? (
+                                        <TaskIcon
+                                          size="sm"
+                                          className={config.iconColor}
+                                        />
+                                      ) : config.icon === "meet-icon" ? (
+                                        <MeetIcon size="sm" className="" />
+                                      ) : (
+                                        <span className="text-sm">
+                                          {config.icon}
+                                        </span>
+                                      )}
+                                    </div>
+                                  );
+                                })()}
                                 <div
                                   {...provided.dragHandleProps}
                                   className="p-1 rounded hover:bg-gray-100 cursor-grab active:cursor-grabbing transition-colors"
@@ -363,6 +468,14 @@ export default function Demo1() {
                                 >
                                   <GripVertical className="h-5 w-5 text-gray-400 group-hover:text-gray-600" />
                                 </div>
+                              </div>
+                              <div>
+                                <h3
+                                  className="font-semibold text-gray-800 mb-1"
+                                  style={{ fontSize: "15px" }}
+                                >
+                                  {card.title}
+                                </h3>
                               </div>
                             </CardHeader>
                             <CardContent>
@@ -507,9 +620,32 @@ export default function Demo1() {
                                         <ChevronDown className="h-4 w-4 text-gray-400" />
                                       )}
                                     </button>
-                                    <span className="text-lg flex-shrink-0">
-                                      {card.icon}
-                                    </span>
+                                    {(() => {
+                                      const config = getCardIconConfig(
+                                        card.type,
+                                      );
+                                      return (
+                                        <div
+                                          className={cn(
+                                            "w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0",
+                                            config.bgColor,
+                                          )}
+                                        >
+                                          {config.icon === "task-icon" ? (
+                                            <TaskIcon
+                                              size="sm"
+                                              className={config.iconColor}
+                                            />
+                                          ) : config.icon === "meet-icon" ? (
+                                            <MeetIcon size="sm" className="" />
+                                          ) : (
+                                            <span className="text-xs">
+                                              {config.icon}
+                                            </span>
+                                          )}
+                                        </div>
+                                      );
+                                    })()}
                                     <span className="text-sm font-medium text-gray-700 truncate">
                                       {card.title}
                                     </span>
