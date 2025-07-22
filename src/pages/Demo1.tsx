@@ -395,7 +395,8 @@ export default function Demo1() {
                   <div className="mt-4 text-center">
                     <p className="text-sm text-gray-500">
                       💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder
-                      them or move between areas
+                      them or move between areas. You can also drag cards from
+                      the right sidebar to the main area.
                     </p>
                   </div>
                 )}
@@ -417,7 +418,7 @@ export default function Demo1() {
               {isSidebarExpanded && (
                 <div className="flex items-center gap-2">
                   <Inbox className="h-6 w-6 text-blue-600" />
-                  <h2 className="font-bold text-blue-900 text-lg">Inbox</h2>
+                  <h2 className="font-bold text-blue-900 text-lg">Data Hub</h2>
                 </div>
               )}
               <Button
