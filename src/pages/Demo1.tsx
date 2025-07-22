@@ -214,7 +214,7 @@ export default function Demo1() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-86px-64px-32px)] bg-gray-50 overflow-hidden">
+    <div className="flex h-[calc(100vh-156px)] bg-gray-50 overflow-hidden">
       <DragDropContext onDragEnd={handleDragEnd}>
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-auto">
