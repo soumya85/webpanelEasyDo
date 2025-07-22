@@ -395,7 +395,8 @@ export default function Demo1() {
                   <div className="mt-4 text-center">
                     <p className="text-sm text-gray-500">
                       💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder
-                      them or move between areas. You can also drag cards from the right sidebar to the main area.
+                      them or move between areas. You can also drag cards from
+                      the right sidebar to the main area.
                     </p>
                   </div>
                 )}
