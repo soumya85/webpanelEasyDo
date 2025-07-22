@@ -301,6 +301,13 @@ export default function Demo1() {
                     </p>
                   </div>
                 )}
+                {mainCards.length > 0 && (
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-gray-500">
+                      💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder them or move between areas
+                    </p>
+                  </div>
+                )}
               </div>
             )}
           </Droppable>
