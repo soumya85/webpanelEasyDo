@@ -23,7 +23,7 @@ interface CardType {
   id: string;
   title: string;
   type: string;
-  icon: string | 'task-icon' | 'meet-icon';
+  icon: string | "task-icon" | "meet-icon";
   description: string;
 }
 
@@ -163,44 +163,88 @@ interface DemoCard extends CardType {
 // Function to get icon and color for each card type
 const getCardIconConfig = (type: string) => {
   switch (type) {
-    case 'myTask':
-      return { icon: 'task-icon', bgColor: 'bg-blue-100', iconColor: 'text-blue-600' };
-    case 'delegatedTask':
-      return { icon: 'task-icon', bgColor: 'bg-purple-100', iconColor: 'text-purple-600' };
-    case 'meetings':
-      return { icon: 'meet-icon', bgColor: 'bg-gray-100', iconColor: 'text-gray-600' };
-    case 'approvals':
-      return { icon: '⚠️', bgColor: 'bg-red-100', iconColor: 'text-red-600' };
-    case 'notes':
-      return { icon: '📝', bgColor: 'bg-yellow-100', iconColor: 'text-yellow-600' };
-    case 'chat':
-      return { icon: '💬', bgColor: 'bg-green-100', iconColor: 'text-green-600' };
-    case 'notice':
-      return { icon: '📢', bgColor: 'bg-orange-100', iconColor: 'text-orange-600' };
-    case 'attendance':
-      return { icon: '📊', bgColor: 'bg-indigo-100', iconColor: 'text-indigo-600' };
-    case 'salary':
-      return { icon: '💰', bgColor: 'bg-emerald-100', iconColor: 'text-emerald-600' };
-    case 'performance':
-      return { icon: '⭐', bgColor: 'bg-amber-100', iconColor: 'text-amber-600' };
-    case 'leave':
-      return { icon: '🏖️', bgColor: 'bg-cyan-100', iconColor: 'text-cyan-600' };
-    case 'expenses':
-      return { icon: '💳', bgColor: 'bg-pink-100', iconColor: 'text-pink-600' };
-    case 'timesheet':
-      return { icon: '⏰', bgColor: 'bg-violet-100', iconColor: 'text-violet-600' };
-    case 'training':
-      return { icon: '🎓', bgColor: 'bg-teal-100', iconColor: 'text-teal-600' };
-    case 'workStatus':
-      return { icon: '⏱️', bgColor: 'bg-slate-100', iconColor: 'text-slate-600' };
-    case 'chatActivity':
-      return { icon: '💬', bgColor: 'bg-lime-100', iconColor: 'text-lime-600' };
-    case 'today':
-      return { icon: '📅', bgColor: 'bg-sky-100', iconColor: 'text-sky-600' };
-    case 'quickNotes':
-      return { icon: '📝', bgColor: 'bg-rose-100', iconColor: 'text-rose-600' };
+    case "myTask":
+      return {
+        icon: "task-icon",
+        bgColor: "bg-blue-100",
+        iconColor: "text-blue-600",
+      };
+    case "delegatedTask":
+      return {
+        icon: "task-icon",
+        bgColor: "bg-purple-100",
+        iconColor: "text-purple-600",
+      };
+    case "meetings":
+      return {
+        icon: "meet-icon",
+        bgColor: "bg-gray-100",
+        iconColor: "text-gray-600",
+      };
+    case "approvals":
+      return { icon: "⚠️", bgColor: "bg-red-100", iconColor: "text-red-600" };
+    case "notes":
+      return {
+        icon: "📝",
+        bgColor: "bg-yellow-100",
+        iconColor: "text-yellow-600",
+      };
+    case "chat":
+      return {
+        icon: "💬",
+        bgColor: "bg-green-100",
+        iconColor: "text-green-600",
+      };
+    case "notice":
+      return {
+        icon: "📢",
+        bgColor: "bg-orange-100",
+        iconColor: "text-orange-600",
+      };
+    case "attendance":
+      return {
+        icon: "📊",
+        bgColor: "bg-indigo-100",
+        iconColor: "text-indigo-600",
+      };
+    case "salary":
+      return {
+        icon: "💰",
+        bgColor: "bg-emerald-100",
+        iconColor: "text-emerald-600",
+      };
+    case "performance":
+      return {
+        icon: "⭐",
+        bgColor: "bg-amber-100",
+        iconColor: "text-amber-600",
+      };
+    case "leave":
+      return { icon: "🏖️", bgColor: "bg-cyan-100", iconColor: "text-cyan-600" };
+    case "expenses":
+      return { icon: "💳", bgColor: "bg-pink-100", iconColor: "text-pink-600" };
+    case "timesheet":
+      return {
+        icon: "⏰",
+        bgColor: "bg-violet-100",
+        iconColor: "text-violet-600",
+      };
+    case "training":
+      return { icon: "🎓", bgColor: "bg-teal-100", iconColor: "text-teal-600" };
+    case "workStatus":
+      return {
+        icon: "⏱️",
+        bgColor: "bg-slate-100",
+        iconColor: "text-slate-600",
+      };
+    case "chatActivity":
+      return { icon: "💬", bgColor: "bg-lime-100", iconColor: "text-lime-600" };
+    case "today":
+      return { icon: "📅", bgColor: "bg-sky-100", iconColor: "text-sky-600" };
+    case "quickNotes":
+      return { icon: "📝", bgColor: "bg-rose-100", iconColor: "text-rose-600" };
     default:
-      return { icon: '📋', bgColor: 'bg-gray-100', iconColor: 'text-gray-600' };
+      return { icon: "📋", bgColor: "bg-gray-100", iconColor: "text-gray-600" };
   }
 };
 
@@ -396,13 +440,23 @@ export default function Demo1() {
                                 {(() => {
                                   const config = getCardIconConfig(card.type);
                                   return (
-                                    <div className={cn("w-8 h-8 rounded-full flex items-center justify-center", config.bgColor)}>
-                                      {config.icon === 'task-icon' ? (
-                                        <TaskIcon size="sm" className={config.iconColor} />
-                                      ) : config.icon === 'meet-icon' ? (
+                                    <div
+                                      className={cn(
+                                        "w-8 h-8 rounded-full flex items-center justify-center",
+                                        config.bgColor,
+                                      )}
+                                    >
+                                      {config.icon === "task-icon" ? (
+                                        <TaskIcon
+                                          size="sm"
+                                          className={config.iconColor}
+                                        />
+                                      ) : config.icon === "meet-icon" ? (
                                         <MeetIcon size="sm" className="" />
                                       ) : (
-                                        <span className="text-sm">{config.icon}</span>
+                                        <span className="text-sm">
+                                          {config.icon}
+                                        </span>
                                       )}
                                     </div>
                                   );
@@ -567,15 +621,27 @@ export default function Demo1() {
                                       )}
                                     </button>
                                     {(() => {
-                                      const config = getCardIconConfig(card.type);
+                                      const config = getCardIconConfig(
+                                        card.type,
+                                      );
                                       return (
-                                        <div className={cn("w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0", config.bgColor)}>
-                                          {config.icon === 'task-icon' ? (
-                                            <TaskIcon size="sm" className={config.iconColor} />
-                                          ) : config.icon === 'meet-icon' ? (
+                                        <div
+                                          className={cn(
+                                            "w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0",
+                                            config.bgColor,
+                                          )}
+                                        >
+                                          {config.icon === "task-icon" ? (
+                                            <TaskIcon
+                                              size="sm"
+                                              className={config.iconColor}
+                                            />
+                                          ) : config.icon === "meet-icon" ? (
                                             <MeetIcon size="sm" className="" />
                                           ) : (
-                                            <span className="text-xs">{config.icon}</span>
+                                            <span className="text-xs">
+                                              {config.icon}
+                                            </span>
                                           )}
                                         </div>
                                       );
