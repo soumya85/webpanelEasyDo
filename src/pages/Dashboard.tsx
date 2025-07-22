@@ -91,17 +91,38 @@ const Dashboard: React.FC = () => {
     );
   }
 
+  // Get current date in the format shown in screenshot
+  const getCurrentDate = () => {
+    const now = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+    const dateStr = now.toLocaleDateString("en-GB", options);
+    const ordinal = getOrdinal(now.getDate());
+    return `Today - ${ordinal} ${dateStr.split(" ").slice(1).join(" ")}`;
+  };
+
+  const getOrdinal = (day: number) => {
+    if (day > 3 && day < 21) return day + "th";
+    switch (day % 10) {
+      case 1:
+        return day + "st";
+      case 2:
+        return day + "nd";
+      case 3:
+        return day + "rd";
+      default:
+        return day + "th";
+    }
+  };
+
   return (
-    <div className="flex flex-col h-full bg-gray-50">
-      {/* Header Section */}
-      <div className="flex justify-between items-center mb-2 px-6 pt-2">
-        <MultilingualText
-          as="h1"
-          className="text-xl font-bold text-[#283C50] flex items-center gap-2"
-        >
-          {getGreeting()}, {t("bhaskarGhosh")}! 👋
-        </MultilingualText>
-        {/* Layout Controls moved to header row */}
+    <div className="flex flex-col h-full bg-white">
+      {/* Simple Header Section */}
+      <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100">
+        <h1 className="text-sm font-bold text-gray-700">{getCurrentDate()}</h1>
         <LayoutControls onReset={resetLayout} />
       </div>
 
