@@ -11,15 +11,6 @@ import {
   GripVertical,
   ChevronDown,
   ChevronRight,
-  Calendar,
-  User,
-  CheckCircle,
-  Search,
-  FileText,
-  Briefcase,
-  X,
-  Star,
-  Home,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
