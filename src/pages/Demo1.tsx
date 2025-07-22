@@ -417,7 +417,7 @@ export default function Demo1() {
               {isSidebarExpanded && (
                 <div className="flex items-center gap-2">
                   <Inbox className="h-6 w-6 text-blue-600" />
-                  <h2 className="font-bold text-blue-900 text-lg">Inbox</h2>
+                  <h2 className="font-bold text-blue-900 text-lg">Data Hub</h2>
                 </div>
               )}
               <Button
