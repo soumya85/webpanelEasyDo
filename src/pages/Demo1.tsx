@@ -311,7 +311,9 @@ export default function Demo1() {
           {/* Tip at the top */}
           <div className="mb-4 text-center">
             <p className="text-sm text-gray-600 bg-blue-50 border border-blue-200 rounded-lg p-3">
-              💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder them, move between the main area and sidebar, or rearrange within each area
+              💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder them,
+              move between the main area and sidebar, or rearrange within each
+              area
             </p>
           </div>
 
