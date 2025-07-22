@@ -1,6 +1,17 @@
 import React, { useState, useCallback } from "react";
-import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
-import { Plus, Inbox, GripVertical, ChevronDown, ChevronRight } from "lucide-react";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from "@hello-pangea/dnd";
+import {
+  Plus,
+  Inbox,
+  GripVertical,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -20,43 +31,43 @@ const availableCards: CardType[] = [
     title: "My Tasks",
     type: "myTask",
     icon: "📋",
-    description: "View and manage your personal tasks"
+    description: "View and manage your personal tasks",
   },
   {
-    id: "task-2", 
+    id: "task-2",
     title: "Delegated Tasks",
-    type: "delegatedTask", 
+    type: "delegatedTask",
     icon: "👥",
-    description: "Track tasks you've assigned to others"
+    description: "Track tasks you've assigned to others",
   },
   {
     id: "meetings-1",
     title: "Meetings",
     type: "meetings",
-    icon: "📅", 
-    description: "Your scheduled meetings and appointments"
+    icon: "📅",
+    description: "Your scheduled meetings and appointments",
   },
   {
     id: "approvals-1",
     title: "Pending Approvals",
     type: "approvals",
     icon: "⚠️",
-    description: "Items awaiting your approval"
+    description: "Items awaiting your approval",
   },
   {
     id: "notes-1",
     title: "Personal Notes",
-    type: "notes", 
+    type: "notes",
     icon: "📝",
-    description: "Your personal notes and reminders"
+    description: "Your personal notes and reminders",
   },
   {
     id: "chat-1",
     title: "Team Chat",
     type: "chat",
     icon: "💬",
-    description: "Chat with your team members"
-  }
+    description: "Chat with your team members",
+  },
 ];
 
 interface DemoCard extends CardType {
@@ -66,103 +77,137 @@ interface DemoCard extends CardType {
 export default function Demo1() {
   const [mainCards, setMainCards] = useState<DemoCard[]>([
     { ...availableCards[0], collapsed: false },
-    { ...availableCards[1], collapsed: false }
+    { ...availableCards[1], collapsed: false },
   ]);
-  
+
   const [sidebarCards, setSidebarCards] = useState<DemoCard[]>([
     { ...availableCards[2], collapsed: true },
     { ...availableCards[3], collapsed: true },
     { ...availableCards[4], collapsed: true },
-    { ...availableCards[5], collapsed: true }
+    { ...availableCards[5], collapsed: true },
   ]);
 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
 
-  const handleDragEnd = useCallback((result: DropResult) => {
-    console.log("Drag ended:", result);
-    
-    const { destination, source, draggableId } = result;
+  const handleDragEnd = useCallback(
+    (result: DropResult) => {
+      console.log("Drag ended:", result);
 
-    // If dropped outside any droppable area
-    if (!destination) {
-      console.log("No destination");
-      return;
-    }
+      const { destination, source, draggableId } = result;
 
-    // If dropped in the same position
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      console.log("Same position");
-      return;
-    }
+      // If dropped outside any droppable area
+      if (!destination) {
+        console.log("No destination");
+        return;
+      }
 
-    console.log("Moving from", source.droppableId, "to", destination.droppableId);
+      // If dropped in the same position
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ) {
+        console.log("Same position");
+        return;
+      }
 
-    // Find the dragged card
-    let draggedCard: DemoCard | undefined;
-    if (source.droppableId === "main-area") {
-      draggedCard = mainCards.find(card => card.id === draggableId);
-    } else if (source.droppableId === "sidebar") {
-      draggedCard = sidebarCards.find(card => card.id === draggableId);
-    }
+      console.log(
+        "Moving from",
+        source.droppableId,
+        "to",
+        destination.droppableId,
+      );
 
-    if (!draggedCard) {
-      console.log("Card not found");
-      return;
-    }
+      // Find the dragged card
+      let draggedCard: DemoCard | undefined;
+      if (source.droppableId === "main-area") {
+        draggedCard = mainCards.find((card) => card.id === draggableId);
+      } else if (source.droppableId === "sidebar") {
+        draggedCard = sidebarCards.find((card) => card.id === draggableId);
+      }
 
-    console.log("Found dragged card:", draggedCard.title);
+      if (!draggedCard) {
+        console.log("Card not found");
+        return;
+      }
 
-    // Moving from main to sidebar
-    if (source.droppableId === "main-area" && destination.droppableId === "sidebar") {
-      console.log("Moving from main to sidebar");
-      const newMainCards = mainCards.filter(card => card.id !== draggableId);
-      const newSidebarCards = [...sidebarCards];
-      newSidebarCards.splice(destination.index, 0, { ...draggedCard, collapsed: true });
-      
-      setMainCards(newMainCards);
-      setSidebarCards(newSidebarCards);
-    }
-    // Moving from sidebar to main
-    else if (source.droppableId === "sidebar" && destination.droppableId === "main-area") {
-      console.log("Moving from sidebar to main");
-      const newSidebarCards = sidebarCards.filter(card => card.id !== draggableId);
-      const newMainCards = [...mainCards];
-      newMainCards.splice(destination.index, 0, { ...draggedCard, collapsed: false });
-      
-      setSidebarCards(newSidebarCards);
-      setMainCards(newMainCards);
-    }
-    // Reordering within main area
-    else if (source.droppableId === "main-area" && destination.droppableId === "main-area") {
-      console.log("Reordering in main area");
-      const newMainCards = [...mainCards];
-      const [removed] = newMainCards.splice(source.index, 1);
-      newMainCards.splice(destination.index, 0, removed);
-      setMainCards(newMainCards);
-    }
-    // Reordering within sidebar
-    else if (source.droppableId === "sidebar" && destination.droppableId === "sidebar") {
-      console.log("Reordering in sidebar");
-      const newSidebarCards = [...sidebarCards];
-      const [removed] = newSidebarCards.splice(source.index, 1);
-      newSidebarCards.splice(destination.index, 0, removed);
-      setSidebarCards(newSidebarCards);
-    }
-  }, [mainCards, sidebarCards]);
+      console.log("Found dragged card:", draggedCard.title);
+
+      // Moving from main to sidebar
+      if (
+        source.droppableId === "main-area" &&
+        destination.droppableId === "sidebar"
+      ) {
+        console.log("Moving from main to sidebar");
+        const newMainCards = mainCards.filter(
+          (card) => card.id !== draggableId,
+        );
+        const newSidebarCards = [...sidebarCards];
+        newSidebarCards.splice(destination.index, 0, {
+          ...draggedCard,
+          collapsed: true,
+        });
+
+        setMainCards(newMainCards);
+        setSidebarCards(newSidebarCards);
+      }
+      // Moving from sidebar to main
+      else if (
+        source.droppableId === "sidebar" &&
+        destination.droppableId === "main-area"
+      ) {
+        console.log("Moving from sidebar to main");
+        const newSidebarCards = sidebarCards.filter(
+          (card) => card.id !== draggableId,
+        );
+        const newMainCards = [...mainCards];
+        newMainCards.splice(destination.index, 0, {
+          ...draggedCard,
+          collapsed: false,
+        });
+
+        setSidebarCards(newSidebarCards);
+        setMainCards(newMainCards);
+      }
+      // Reordering within main area
+      else if (
+        source.droppableId === "main-area" &&
+        destination.droppableId === "main-area"
+      ) {
+        console.log("Reordering in main area");
+        const newMainCards = [...mainCards];
+        const [removed] = newMainCards.splice(source.index, 1);
+        newMainCards.splice(destination.index, 0, removed);
+        setMainCards(newMainCards);
+      }
+      // Reordering within sidebar
+      else if (
+        source.droppableId === "sidebar" &&
+        destination.droppableId === "sidebar"
+      ) {
+        console.log("Reordering in sidebar");
+        const newSidebarCards = [...sidebarCards];
+        const [removed] = newSidebarCards.splice(source.index, 1);
+        newSidebarCards.splice(destination.index, 0, removed);
+        setSidebarCards(newSidebarCards);
+      }
+    },
+    [mainCards, sidebarCards],
+  );
 
   const toggleCardCollapse = (cardId: string) => {
-    setSidebarCards(sidebarCards.map(card => 
-      card.id === cardId ? { ...card, collapsed: !card.collapsed } : card
-    ));
+    setSidebarCards(
+      sidebarCards.map((card) =>
+        card.id === cardId ? { ...card, collapsed: !card.collapsed } : card,
+      ),
+    );
   };
 
   const addNewCard = () => {
-    const usedCardIds = [...mainCards, ...sidebarCards].map(card => card.id);
-    const availableCard = availableCards.find(card => !usedCardIds.includes(card.id));
-    
+    const usedCardIds = [...mainCards, ...sidebarCards].map((card) => card.id);
+    const availableCard = availableCards.find(
+      (card) => !usedCardIds.includes(card.id),
+    );
+
     if (availableCard) {
       setSidebarCards([...sidebarCards, { ...availableCard, collapsed: true }]);
     }
@@ -174,8 +219,13 @@ export default function Demo1() {
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-auto">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Demo Dashboard</h1>
-            <p className="text-gray-600">Drag cards between the main area and sidebar to organize your dashboard.</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+              Demo Dashboard
+            </h1>
+            <p className="text-gray-600">
+              Drag cards between the main area and sidebar to organize your
+              dashboard.
+            </p>
           </div>
 
           <Droppable droppableId="main-area">
@@ -185,14 +235,18 @@ export default function Demo1() {
                 {...provided.droppableProps}
                 className={cn(
                   "min-h-[500px] p-6 rounded-lg border-2 border-dashed transition-all duration-200",
-                  snapshot.isDraggingOver 
-                    ? "border-blue-400 bg-blue-50 shadow-inner" 
-                    : "border-gray-300 bg-white"
+                  snapshot.isDraggingOver
+                    ? "border-blue-400 bg-blue-50 shadow-inner"
+                    : "border-gray-300 bg-white",
                 )}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {mainCards.map((card, index) => (
-                    <Draggable key={card.id} draggableId={card.id} index={index}>
+                    <Draggable
+                      key={card.id}
+                      draggableId={card.id}
+                      index={index}
+                    >
                       {(provided, snapshot) => (
                         <div
                           ref={provided.innerRef}
@@ -200,22 +254,26 @@ export default function Demo1() {
                           style={provided.draggableProps.style}
                           className={cn(
                             "transition-all duration-200",
-                            snapshot.isDragging && "rotate-3 scale-105"
+                            snapshot.isDragging && "rotate-3 scale-105",
                           )}
                         >
-                          <Card className={cn(
-                            "h-full cursor-move select-none",
-                            snapshot.isDragging 
-                              ? "shadow-2xl ring-2 ring-blue-400 ring-opacity-50" 
-                              : "shadow-md hover:shadow-lg"
-                          )}>
+                          <Card
+                            className={cn(
+                              "h-full cursor-move select-none",
+                              snapshot.isDragging
+                                ? "shadow-2xl ring-2 ring-blue-400 ring-opacity-50"
+                                : "shadow-md hover:shadow-lg",
+                            )}
+                          >
                             <CardHeader className="pb-3">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                   <span className="text-2xl">{card.icon}</span>
-                                  <h3 className="font-semibold text-lg">{card.title}</h3>
+                                  <h3 className="font-semibold text-lg">
+                                    {card.title}
+                                  </h3>
                                 </div>
-                                <div 
+                                <div
                                   {...provided.dragHandleProps}
                                   className="p-1 rounded hover:bg-gray-100"
                                 >
@@ -224,9 +282,13 @@ export default function Demo1() {
                               </div>
                             </CardHeader>
                             <CardContent>
-                              <p className="text-sm text-gray-600 mb-4">{card.description}</p>
+                              <p className="text-sm text-gray-600 mb-4">
+                                {card.description}
+                              </p>
                               <div className="p-4 bg-gray-50 rounded-lg">
-                                <p className="text-xs text-gray-500 mb-2">Card Content Preview:</p>
+                                <p className="text-xs text-gray-500 mb-2">
+                                  Card Content Preview:
+                                </p>
                                 <div className="space-y-2">
                                   <div className="h-2 bg-gray-200 rounded"></div>
                                   <div className="h-2 bg-gray-200 rounded w-3/4"></div>
@@ -243,7 +305,9 @@ export default function Demo1() {
                 {provided.placeholder}
                 {mainCards.length === 0 && (
                   <div className="flex items-center justify-center h-40 border-2 border-dashed border-gray-300 rounded-lg">
-                    <p className="text-gray-400 text-lg">Drop cards here to add them to your dashboard</p>
+                    <p className="text-gray-400 text-lg">
+                      Drop cards here to add them to your dashboard
+                    </p>
                   </div>
                 )}
               </div>
@@ -252,10 +316,12 @@ export default function Demo1() {
         </div>
 
         {/* Right Sidebar */}
-        <div className={cn(
-          "transition-all duration-300 bg-blue-100 border-l border-blue-200 flex flex-col shadow-lg",
-          isSidebarExpanded ? "w-80" : "w-16"
-        )}>
+        <div
+          className={cn(
+            "transition-all duration-300 bg-blue-100 border-l border-blue-200 flex flex-col shadow-lg",
+            isSidebarExpanded ? "w-80" : "w-16",
+          )}
+        >
           {/* Sidebar Header */}
           <div className="p-4 border-b border-blue-200 bg-blue-50">
             <div className="flex items-center justify-between">
@@ -288,7 +354,10 @@ export default function Demo1() {
                   onClick={addNewCard}
                   variant="outline"
                   className="w-full justify-start text-gray-700 border-gray-300 bg-white hover:bg-gray-50"
-                  disabled={sidebarCards.length + mainCards.length >= availableCards.length}
+                  disabled={
+                    sidebarCards.length + mainCards.length >=
+                    availableCards.length
+                  }
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add a card
@@ -303,11 +372,15 @@ export default function Demo1() {
                     {...provided.droppableProps}
                     className={cn(
                       "flex-1 p-4 space-y-3 overflow-auto",
-                      snapshot.isDraggingOver && "bg-blue-200"
+                      snapshot.isDraggingOver && "bg-blue-200",
                     )}
                   >
                     {sidebarCards.map((card, index) => (
-                      <Draggable key={card.id} draggableId={card.id} index={index}>
+                      <Draggable
+                        key={card.id}
+                        draggableId={card.id}
+                        index={index}
+                      >
                         {(provided, snapshot) => (
                           <div
                             ref={provided.innerRef}
@@ -315,20 +388,24 @@ export default function Demo1() {
                             style={provided.draggableProps.style}
                             className={cn(
                               "transition-all duration-200",
-                              snapshot.isDragging && "rotate-2 scale-105"
+                              snapshot.isDragging && "rotate-2 scale-105",
                             )}
                           >
-                            <Card className={cn(
-                              "bg-white cursor-move select-none border",
-                              snapshot.isDragging 
-                                ? "shadow-xl ring-2 ring-blue-400 ring-opacity-50" 
-                                : "shadow-sm hover:shadow-md"
-                            )}>
+                            <Card
+                              className={cn(
+                                "bg-white cursor-move select-none border",
+                                snapshot.isDragging
+                                  ? "shadow-xl ring-2 ring-blue-400 ring-opacity-50"
+                                  : "shadow-sm hover:shadow-md",
+                              )}
+                            >
                               <CardContent className="p-3">
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-2 flex-1 min-w-0">
                                     <button
-                                      onClick={() => toggleCardCollapse(card.id)}
+                                      onClick={() =>
+                                        toggleCardCollapse(card.id)
+                                      }
                                       className="flex-shrink-0 p-1 hover:bg-gray-100 rounded"
                                     >
                                       {card.collapsed ? (
@@ -337,12 +414,14 @@ export default function Demo1() {
                                         <ChevronDown className="h-4 w-4 text-gray-400" />
                                       )}
                                     </button>
-                                    <span className="text-lg flex-shrink-0">{card.icon}</span>
+                                    <span className="text-lg flex-shrink-0">
+                                      {card.icon}
+                                    </span>
                                     <span className="text-sm font-medium text-gray-700 truncate">
                                       {card.title}
                                     </span>
                                   </div>
-                                  <div 
+                                  <div
                                     {...provided.dragHandleProps}
                                     className="flex-shrink-0 ml-2 p-1 hover:bg-gray-100 rounded"
                                   >
@@ -351,7 +430,9 @@ export default function Demo1() {
                                 </div>
                                 {!card.collapsed && (
                                   <div className="mt-3 pl-6">
-                                    <p className="text-xs text-gray-500 mb-2">{card.description}</p>
+                                    <p className="text-xs text-gray-500 mb-2">
+                                      {card.description}
+                                    </p>
                                     <div className="space-y-1">
                                       <div className="h-1 bg-gray-200 rounded"></div>
                                       <div className="h-1 bg-gray-200 rounded w-2/3"></div>
