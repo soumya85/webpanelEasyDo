@@ -74,7 +74,7 @@ const AppContent = () => {
               <SidebarProvider>
                 <PageLayout>
                   <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/" element={<Demo1 />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/chats" element={<Chats />} />
                     <Route
