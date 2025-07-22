@@ -214,20 +214,10 @@ export default function Demo1() {
   };
 
   return (
-    <div className="flex h-full bg-gray-50 overflow-hidden">
+    <div className="flex h-[calc(100vh-156px)] bg-gray-50 overflow-hidden">
       <DragDropContext onDragEnd={handleDragEnd}>
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-auto">
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              Demo Dashboard
-            </h1>
-            <p className="text-gray-600">
-              Drag cards between the main area and sidebar to organize your
-              dashboard.
-            </p>
-          </div>
-
           <Droppable droppableId="main-area">
             {(provided, snapshot) => (
               <div
@@ -236,8 +226,8 @@ export default function Demo1() {
                 className={cn(
                   "min-h-[500px] p-6 rounded-lg border-2 border-dashed transition-all duration-200",
                   snapshot.isDraggingOver
-                    ? "border-blue-400 bg-blue-50 shadow-inner"
-                    : "border-gray-300 bg-white",
+                    ? "border-blue-400 bg-blue-50 shadow-inner ring-2 ring-blue-200"
+                    : "border-gray-300 bg-white hover:border-gray-400",
                 )}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -254,15 +244,15 @@ export default function Demo1() {
                           style={provided.draggableProps.style}
                           className={cn(
                             "transition-all duration-200",
-                            snapshot.isDragging && "rotate-3 scale-105",
+                            snapshot.isDragging && "rotate-2 scale-105 z-50",
                           )}
                         >
                           <Card
                             className={cn(
-                              "h-full cursor-move select-none",
+                              "h-full cursor-move select-none group",
                               snapshot.isDragging
-                                ? "shadow-2xl ring-2 ring-blue-400 ring-opacity-50"
-                                : "shadow-md hover:shadow-lg",
+                                ? "shadow-2xl ring-2 ring-blue-400 ring-opacity-50 bg-white"
+                                : "shadow-md hover:shadow-lg hover:ring-1 hover:ring-gray-200",
                             )}
                           >
                             <CardHeader className="pb-3">
@@ -275,9 +265,10 @@ export default function Demo1() {
                                 </div>
                                 <div
                                   {...provided.dragHandleProps}
-                                  className="p-1 rounded hover:bg-gray-100"
+                                  className="p-1 rounded hover:bg-gray-100 cursor-grab active:cursor-grabbing transition-colors"
+                                  title="Drag to reorder"
                                 >
-                                  <GripVertical className="h-5 w-5 text-gray-400" />
+                                  <GripVertical className="h-5 w-5 text-gray-400 group-hover:text-gray-600" />
                                 </div>
                               </div>
                             </CardHeader>
@@ -307,6 +298,14 @@ export default function Demo1() {
                   <div className="flex items-center justify-center h-40 border-2 border-dashed border-gray-300 rounded-lg">
                     <p className="text-gray-400 text-lg">
                       Drop cards here to add them to your dashboard
+                    </p>
+                  </div>
+                )}
+                {mainCards.length > 0 && (
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-gray-500">
+                      💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder
+                      them or move between areas
                     </p>
                   </div>
                 )}
