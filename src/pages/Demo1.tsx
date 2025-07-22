@@ -214,20 +214,10 @@ export default function Demo1() {
   };
 
   return (
-    <div className="flex h-full bg-gray-50 overflow-hidden">
+    <div className="flex h-[calc(100vh-86px-64px-32px)] bg-gray-50 overflow-hidden">
       <DragDropContext onDragEnd={handleDragEnd}>
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-auto">
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              Demo Dashboard
-            </h1>
-            <p className="text-gray-600">
-              Drag cards between the main area and sidebar to organize your
-              dashboard.
-            </p>
-          </div>
-
           <Droppable droppableId="main-area">
             {(provided, snapshot) => (
               <div
