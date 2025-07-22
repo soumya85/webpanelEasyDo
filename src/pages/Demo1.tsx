@@ -230,7 +230,7 @@ export default function Demo1() {
                     : "border-gray-300 bg-white hover:border-gray-400",
                 )}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="flex flex-wrap gap-6">
                   {mainCards.map((card, index) => (
                     <Draggable
                       key={card.id}
@@ -243,7 +243,7 @@ export default function Demo1() {
                           {...provided.draggableProps}
                           style={provided.draggableProps.style}
                           className={cn(
-                            "transition-all duration-200",
+                            "w-full md:w-[calc(50%-12px)] xl:w-[calc(33.333%-16px)] transition-all duration-200",
                             snapshot.isDragging && "rotate-2 scale-105 z-50",
                           )}
                         >
