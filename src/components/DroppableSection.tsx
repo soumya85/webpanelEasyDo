@@ -50,8 +50,7 @@ export const DroppableSection: React.FC<DroppableSectionProps> = ({
                 // Universal responsive grid that supports dynamic column spans
                 "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
                 // Drag over styles
-                snapshot.isDraggingOver &&
-                  "bg-blue-50 rounded-lg p-4",
+                snapshot.isDraggingOver && "bg-blue-50 rounded-lg p-4",
               )}
             >
               {children}
