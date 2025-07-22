@@ -308,6 +308,14 @@ export default function Demo1() {
       <DragDropContext onDragEnd={handleDragEnd}>
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-auto">
+          {/* Tip at the top */}
+          <div className="mb-4 text-center">
+            <p className="text-sm text-gray-600 bg-blue-50 border border-blue-200 rounded-lg p-3">
+              💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder them or
+              move between areas
+            </p>
+          </div>
+
           <Droppable droppableId="main-area">
             {(provided, snapshot) => (
               <div
@@ -388,14 +396,6 @@ export default function Demo1() {
                   <div className="flex items-center justify-center h-40 border-2 border-dashed border-gray-300 rounded-lg">
                     <p className="text-gray-400 text-lg">
                       Drop cards here to add them to your dashboard
-                    </p>
-                  </div>
-                )}
-                {mainCards.length > 0 && (
-                  <div className="mt-4 text-center">
-                    <p className="text-sm text-gray-500">
-                      💡 Tip: Drag cards by their grip handles (⋮⋮) to reorder
-                      them or move between areas
                     </p>
                   </div>
                 )}
